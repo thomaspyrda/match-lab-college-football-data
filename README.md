@@ -1,46 +1,29 @@
-# Match Lab AP + Elo Data Layer
+# Match Lab AP Top 25 + Team Strength Data
 
-This replaces the attempted full-FBS editorial ranking with two independent pregame signals:
+Public, pregame-safe college-football data for Match Lab covering 2015–2026.
 
-- **AP Top 25**: national recognition and matchup importance. Teams outside the poll are stored as unranked, never as rank 26.
-- **CFBD Elo**: performance-based strength for every FBS team. Elo rank is calculated within the FBS field for the same snapshot.
+## User-facing metrics
 
-## Timing contract
+- **AP Top 25** is the official poll position. Unranked teams remain `null`, never No. 26.
+- **Team Strength** converts pregame CFBD Elo to a 1–100 score relative to all available FBS teams in the same season and week.
+- Raw Elo remains internally for auditability and matching, but Match Lab must display **Team Strength**, never raw Elo or Elo rank.
 
-`effective_week` means the football week whose games may consume the snapshot.
+## Calculation
 
-- AP poll week `N` is joined only to games in week `N`.
-- Elo requested for week `N` is joined only to games in week `N`. CFBD's weekly Elo endpoint represents the pregame snapshot; this was cross-checked against the game-level `homePregameElo`/`awayPregameElo` fields.
-- Week 1 uses the Week 1 poll and CFBD's Week 1 pregame Elo snapshot.
-- No postgame result from the target week may enter either value.
+`100 × (teams below + (teams tied − 1) / 2) / (available teams − 1)`
 
-## Missing-data contract
+The percentile is rounded half-up and clamped to 1–100. Tied Elo values share the midpoint percentile. `top_percent = 101 - strength_score`.
 
-- A team absent from a verified AP Top 25 is `is_ap_ranked=false` and `ap_rank=null`.
-- Missing Elo remains unavailable. AP status must never fill Elo and Elo must never fill AP status.
-- 2026 includes only weeks available as of the build date.
+| Score | Tier |
+|---:|---|
+| 90–100 | Elite |
+| 75–89 | Strong |
+| 50–74 | Above Average |
+| 25–49 | Below Average |
+| 1–24 | Weak |
 
-## Raw input layout
+## Production files
 
-The compiler consumes raw API responses beneath `raw/`:
+Use `match_lab_game_ap_elo_lookup.json` for historical game comparisons and `match_lab_ap_elo_lookup.json` for general team-week or bye-week context. CSV files provide auditable records; `hostinger_lookup.js` is the browser helper.
 
-```text
-raw/rankings_2015.json
-raw/elo_2015_week_1.json
-...
-```
-
-Rankings responses come from `GET /rankings?year=YYYY&seasonType=regular`.
-Elo responses come from `GET /ratings/elo?year=YYYY&seasonType=regular&week=N`, where `N` is the target game's week.
-
-The API key belongs only in the `CFBD_API_KEY` environment variable. It must never be written into a file or browser bundle.
-
-## Outputs
-
-- `match_lab_ap_elo_master.csv`: source-level weekly team rows.
-- `match_lab_ap_elo_lookup.json`: compact Hostinger lookup.
-- `match_lab_game_ap_elo.csv`: authoritative game-team join rows using exact game-level pregame Elo when supplied.
-- `match_lab_game_ap_elo_lookup.json`: preferred Match Lab lookup keyed by CFBD game ID and canonical team.
-- `match_lab_ap_elo_coverage.csv`: validation and coverage by season/week.
-
-For historical game comparisons, use the game-ID lookup. `GAME_PREGAME` means the Elo exactly matches CFBD's game record. `WEEKLY_CARRY` is used when CFBD omits Elo on the game record, typically for an FBS-vs-FCS game; the team's verified weekly Elo state is carried without a fabricated change.
+The private compiler inputs and raw subscription responses are intentionally excluded. Store the CFBD key only in a server-side `CFBD_API_KEY` environment variable.

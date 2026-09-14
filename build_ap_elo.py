@@ -66,6 +66,21 @@ def rank_elos(ratings: dict[str, int], field_size: int) -> dict[str, dict]:
             "rank": last_rank,
             "field": field_size,
         }
+    available = [int(v) for v in ratings.values() if v is not None]
+    for item in out.values():
+        rating = item["rating"]
+        below = sum(v < rating for v in available)
+        tied = sum(v == rating for v in available)
+        percentile = 100.0 if len(available) <= 1 else (
+            100.0 * (below + (tied - 1) / 2) / (len(available) - 1)
+        )
+        score = max(1, min(100, int(percentile + 0.5)))
+        item["strength_score"] = score
+        item["strength_tier"] = (
+            "Elite" if score >= 90 else "Strong" if score >= 75 else
+            "Above Average" if score >= 50 else "Below Average" if score >= 25 else "Weak"
+        )
+        item["top_percent"] = 101 - score
     return out
 
 
@@ -135,6 +150,9 @@ def compile_rows() -> tuple[list[dict], list[dict]]:
                     "ap_first_place_votes": poll.get("firstPlaceVotes") if poll else None,
                     "elo_rating": strength["rating"] if strength else None,
                     "elo_rank": strength["rank"] if strength else None,
+                    "strength_score": strength["strength_score"] if strength else None,
+                    "strength_tier": strength["strength_tier"] if strength else None,
+                    "top_percent": strength["top_percent"] if strength else None,
                     "fbs_field_size": len(teams),
                     "ap_source_week": effective_week,
                     "elo_snapshot_week": elo_snapshot_week,
@@ -170,6 +188,9 @@ def compile_rows() -> tuple[list[dict], list[dict]]:
                         "ap_rank": int(poll["rank"]) if poll else None,
                         "pregame_elo": int(rating) if rating is not None else None,
                         "pregame_elo_rank": ranked["rank"] if ranked else None,
+                        "strength_score": ranked["strength_score"] if ranked else None,
+                        "strength_tier": ranked["strength_tier"] if ranked else None,
+                        "top_percent": ranked["top_percent"] if ranked else None,
                         "elo_source": "GAME_PREGAME" if direct_rating is not None else ("WEEKLY_CARRY" if rating is not None else "UNAVAILABLE"),
                         "fbs_field_size": len(teams),
                         "timing_status": "PREGAME_SAFE" if rating is not None else "ELO_UNAVAILABLE",
@@ -181,20 +202,23 @@ def write_outputs(rows: list[dict], game_rows: list[dict]) -> None:
     fields = [
         "season", "effective_week", "team", "is_ap_ranked", "ap_rank",
         "ap_points", "ap_first_place_votes", "elo_rating", "elo_rank",
-        "fbs_field_size", "ap_source_week", "elo_snapshot_week", "timing_status",
+        "strength_score", "strength_tier", "top_percent", "fbs_field_size", "ap_source_week", "elo_snapshot_week", "timing_status",
     ]
     with (ROOT / "match_lab_ap_elo_master.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
 
-    lookup = {"schema_version": "2.0", "data": {}}
+    lookup = {"schema_version": "3.0", "display_metric": "Team Strength", "data": {}}
     for r in rows:
         leaf = lookup["data"].setdefault(str(r["season"]), {}).setdefault(str(r["effective_week"]), {})
         leaf[r["team"]] = {
             "ap_rank": r["ap_rank"],
             "elo_rating": r["elo_rating"],
             "elo_rank": r["elo_rank"],
+            "strength_score": r["strength_score"],
+            "strength_tier": r["strength_tier"],
+            "top_percent": r["top_percent"],
             "fbs_field_size": r["fbs_field_size"],
         }
     (ROOT / "match_lab_ap_elo_lookup.json").write_text(
@@ -203,19 +227,23 @@ def write_outputs(rows: list[dict], game_rows: list[dict]) -> None:
 
     game_fields = [
         "game_id", "season", "week", "start_date", "team", "side", "opponent",
-        "is_ap_ranked", "ap_rank", "pregame_elo", "pregame_elo_rank", "elo_source",
+        "is_ap_ranked", "ap_rank", "pregame_elo", "pregame_elo_rank",
+        "strength_score", "strength_tier", "top_percent", "elo_source",
         "fbs_field_size", "timing_status",
     ]
     with (ROOT / "match_lab_game_ap_elo.csv").open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=game_fields)
         writer.writeheader()
         writer.writerows(game_rows)
-    game_lookup = {"schema_version": "2.0", "data": {}}
+    game_lookup = {"schema_version": "3.0", "display_metric": "Team Strength", "data": {}}
     for r in game_rows:
         game_lookup["data"].setdefault(str(r["game_id"]), {})[r["team"]] = {
             "ap_rank": r["ap_rank"],
             "pregame_elo": r["pregame_elo"],
             "pregame_elo_rank": r["pregame_elo_rank"],
+            "strength_score": r["strength_score"],
+            "strength_tier": r["strength_tier"],
+            "top_percent": r["top_percent"],
             "fbs_field_size": r["fbs_field_size"],
         }
     (ROOT / "match_lab_game_ap_elo_lookup.json").write_text(
@@ -246,6 +274,8 @@ def write_outputs(rows: list[dict], game_rows: list[dict]) -> None:
             "team_count": len(rr),
             "ap_ranked_count": len(ranked),
             "elo_count": sum(r["elo_rating"] is not None for r in rr),
+            "strength_score_count": sum(r["strength_score"] is not None for r in rr),
+            "strength_score_status": "PASS" if all((r["elo_rating"] is None) == (r["strength_score"] is None) for r in rr) else "FAIL",
             "status": "FAIL" if errors else ("PASS_WITH_INACTIVE_UNAVAILABLE" if elo_missing else "PASS"),
             "issues": "; ".join(errors) if errors else ("Elo unavailable: " + ", ".join(elo_missing) if elo_missing else ""),
         })

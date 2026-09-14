@@ -11,7 +11,10 @@
 - Duplicate game/team keys: 0
 - AP board coverage: 170 of 170 snapshots valid, including official ties
 - Full weekly Elo coverage: 155 snapshots
-- 2020 inactive-team exception: 15 snapshots contain no Elo for New Mexico State, which did not play during the fall schedule. No value was fabricated.
-- 2026 scope: Weeks 1–2 only, matching data available on September 11, 2026.
+- Team Strength availability parity with Elo: PASS
+- Team Strength range, tier boundaries, tied-Elo midpoint handling, JSON/CSV parity: PASS
+- 2020 inactive-team exception: 15 snapshots omit New Mexico State; no value was fabricated.
+- 2026 scope: Weeks 1–2, matching availability on September 11, 2026.
+- Credential and raw-response exclusion: PASS
 
-The game-ID lookup is the production source for Match Lab historical comparisons. The weekly lookup supports general team-week display and bye-week context.
+Raw Elo is retained internally. The website must display Team Strength.

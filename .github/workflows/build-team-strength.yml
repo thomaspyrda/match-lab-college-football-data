@@ -1,0 +1,30 @@
+name: Build Team Strength
+on:
+  push:
+    branches: [main]
+    paths:
+      - enrich_team_strength.py
+      - build_ap_elo.py
+      - match_lab_ap_elo_master.csv
+      - match_lab_game_ap_elo.csv
+permissions:
+  contents: write
+jobs:
+  enrich:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python enrich_team_strength.py
+      - run: python -m unittest -v test_build.py
+      - run: sha256sum -c SHA256SUMS.txt
+      - name: Commit generated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Generate validated Team Strength datasets"
+          git push
