@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - enrich_team_strength.py
+      - build_web_data.py
+      - index.html
+      - app.js
+      - styles.css
       - build_ap_elo.py
       - match_lab_ap_elo_master.csv
       - match_lab_game_ap_elo.csv
@@ -20,6 +24,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python enrich_team_strength.py
+      - run: python build_web_data.py
       - run: python -m unittest -v test_build.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs

@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Compare pregame college football team strength and AP rankings across every FBS team from 2015–2026."><title>Match Lab — College Football Research</title><link rel="stylesheet" href="styles.css"></head><body>
+<header><a class="brand" href="#">MATCH <span>LAB</span></a><div class="tag">COLLEGE FOOTBALL · 2015–2026</div></header>
+<main>
+<section class="hero"><p class="eyebrow">PREGAME HISTORICAL RESEARCH</p><h1>Compare every FBS team<br><em>at that exact point in time.</em></h1><p>AP recognition and full-field National Strength Rank for 130+ teams each available week. Every value is frozen before kickoff.</p><div class="notice">Research tool · Historical observations, not predictions</div></section>
+<section class="lab">
+<div class="tabs"><button class="tab active" data-view="compare">Compare Teams</button><button class="tab" data-view="rankings">Weekly Rankings</button></div>
+<div class="controls"><label>Season<select id="season"></select></label><label>Pregame week<select id="week"></select></label><button id="load">Load Week</button></div>
+<p id="status" role="status">Loading verified data…</p>
+<div id="compareView">
+<div class="team-pickers"><label>Team A<select id="teamA"></select></label><span>VS</span><label>Team B<select id="teamB"></select></label></div>
+<div class="comparison"><article class="team-card" id="cardA"></article><div class="middle"><span>VS</span><small>PREGAME PROFILE</small></div><article class="team-card" id="cardB"></article></div>
+<div id="edge" class="edge"></div>
+</div>
+<div id="rankingsView" hidden><div class="rank-head"><div><h2>National Strength Ranking</h2><p>Every available FBS team for the selected pregame week.</p></div><input id="search" type="search" placeholder="Search team"></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Team</th><th>Team Strength</th><th>Tier</th><th>AP Poll</th><th>FBS Percentile</th></tr></thead><tbody id="rankingRows"></tbody></table></div></div>
+</section>
+<section class="method"><div><p class="eyebrow">HOW TO READ IT</p><h2>Two rankings. Two different meanings.</h2></div><div class="method-grid"><article><b>AP Top 25</b><p>National recognition from the weekly AP poll. Teams outside the poll remain Unranked.</p></article><article><b>National Strength Rank</b><p>Every available FBS team ranked by its pregame strength for that same season and week.</p></article><article><b>Team Strength</b><p>A 1–100 percentile score. Tied underlying ratings share the same midpoint percentile.</p></article></div></section>
+</main><footer>Match Lab · Pregame-safe college football research</footer><script src="app.js" defer></script></body></html>
