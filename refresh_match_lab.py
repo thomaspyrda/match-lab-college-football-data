@@ -45,7 +45,9 @@ for year in sorted(strength):
   if not home or not away:continue
   line=lm.get(gid,{})
   hs=srank(year,week,home);as_=srank(year,week,away)
-  if hs.get("national_strength_rank") is None or as_.get("national_strength_rank") is None:continue
+  if hs.get("national_strength_rank") is None and as_.get("national_strength_rank") is None:continue
+  hs["classification"]="FBS" if hs.get("national_strength_rank") is not None else "FCS/Other"
+  as_["classification"]="FBS" if as_.get("national_strength_rank") is not None else "FCS/Other"
   hf=form(home,histories[home]);af=form(away,histories[away])
   spread=num(line.get("spread"));total=num(line.get("overUnder"));hml=num(line.get("homeMoneyline"));aml=num(line.get("awayMoneyline"))
   hp=g.get("homePoints");ap=g.get("awayPoints");completed=hp is not None and ap is not None
@@ -96,7 +98,9 @@ for week in (next_week,next_week+1):
   if not (now<=kickoff<=end):continue
   home=g.get("homeTeam");away=g.get("awayTeam");line=fl.get(str(g.get("id")),{})
   hp=board.get(home,{});ap=board.get(away,{})
-  if hp.get("national_strength_rank") is None or ap.get("national_strength_rank") is None: continue
+  if hp.get("national_strength_rank") is None and ap.get("national_strength_rank") is None: continue
+  hp["classification"]="FBS" if hp.get("national_strength_rank") is not None else "FCS/Other"
+  ap["classification"]="FBS" if ap.get("national_strength_rank") is not None else "FCS/Other"
   home_prior=[x for x in games if (x.get("homeTeam")==home or x.get("awayTeam")==home) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior)},"away_profile":ap|{"recent_form":form(away,away_prior)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
