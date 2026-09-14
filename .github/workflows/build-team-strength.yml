@@ -6,6 +6,7 @@ on:
     paths:
       - enrich_team_strength.py
       - build_web_data.py
+      - refresh_match_lab.py
       - index.html
       - app.js
       - styles.css
@@ -14,6 +15,8 @@ on:
       - match_lab_game_ap_elo.csv
 permissions:
   contents: write
+  pages: write
+  id-token: write
 jobs:
   enrich:
     if: github.actor != 'github-actions[bot]'
@@ -25,6 +28,10 @@ jobs:
           python-version: '3.12'
       - run: python enrich_team_strength.py
       - run: python build_web_data.py
+      - name: Refresh upcoming games and historical market index
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs
