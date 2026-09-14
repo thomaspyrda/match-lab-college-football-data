@@ -63,5 +63,39 @@ for year in sorted(strength):
   if year==now.year and now<=kickoff<=end: all_upcoming.append(rec|{"result":None})
   if completed:histories[home].append(g);histories[away].append(g)
  (DATA/"historical"/f"{year}.json").write_text(json.dumps({"season":year,"games":records},separators=(",",":")),encoding="utf-8")
+# CFBD's season-wide games response may omit future weeks. Request the next
+# two weeks explicitly, then build their live AP and full-field strength boards.
+current_records=json.loads((DATA/"historical"/f"{now.year}.json").read_text())["games"]
+next_week=max((g["week"] for g in current_records),default=0)+1
+rankings=api("/rankings",year=now.year,seasonType="regular")
+def live_ap(week):
+ snap=next((x for x in rankings if int(x.get("week") or 0)==week),None)
+ poll=next((p for p in (snap or {}).get("polls",[]) if str(p.get("poll","")).lower() in ("ap top 25","ap")),None)
+ return {r.get("school"):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
+def live_strength(week):
+ ratings=api("/ratings/elo",year=now.year,seasonType="regular",week=week)
+ vals=[]
+ for r in ratings:
+  team=r.get("team") or r.get("school"); value=r.get("elo")
+  if team and value is not None: vals.append((team,int(value)))
+ vals.sort(key=lambda x:(-x[1],x[0])); ap=live_ap(week); out={}; last=None; rank=0
+ for pos,(team,value) in enumerate(vals,1):
+  if value!=last:rank=pos;last=value
+  below=sum(v<value for _,v in vals); tied=sum(v==value for _,v in vals)
+  pct=100 if len(vals)<=1 else 100*(below+(tied-1)/2)/(len(vals)-1)
+  score=max(1,min(100,int(pct+0.5)))
+  out[team]={"ap_rank":ap.get(team),"national_strength_rank":rank,"fbs_field_size":len(vals),"strength_score":score,"strength_tier":"Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak","top_percent":101-score}
+ return out
+all_upcoming=[]
+for week in (next_week,next_week+1):
+ future=api("/games",year=now.year,seasonType="regular",week=week)
+ future_lines=api("/lines",year=now.year,seasonType="regular",week=week)
+ fl={str(x.get("id")):pickline(x) for x in future_lines}; board=live_strength(week)
+ for g in future:
+  kickoff=dt(g.get("startDate"))
+  if not (now<=kickoff<=end):continue
+  home=g.get("homeTeam");away=g.get("awayTeam");line=fl.get(str(g.get("id")),{})
+  hp=board.get(home,{});ap=board.get(away,{})
+  all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,[x for x in api_games_cache if x.get("homeTeam")==home or x.get("awayTeam")==home])} if False else hp|{"recent_form":{"games":0,"wins":0,"losses":0,"avg_points":None,"avg_allowed":None,"coming_off_loss":None}},"away_profile":ap|{"recent_form":{"games":0,"wins":0,"losses":0,"avg_points":None,"avg_allowed":None,"coming_off_loss":None}},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
 print(f"Published {len(all_upcoming)} upcoming games and historical indexes for {len(strength)} seasons")
