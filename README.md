@@ -34,6 +34,6 @@ Use `match_lab_game_ap_elo_lookup.json` for historical game comparisons and `mat
 
 The scheduled GitHub workflow refreshes the active season every six hours. Historical advanced profiles are cached after validation, while the current season is rebuilt so newly completed games flow into future pregame snapshots.
 
-Historical matching returns the 10 closest eligible games from Week 2 onward; Week 1 is excluded because teams have no same-season pregame form sample. Each matchup's Season-to-Date Form uses every completed game earlier in that same season—never games played after the compared kickoff.
+Historical matching returns the 10 closest eligible games. A matchup is eligible only when both teams had at least one completed game before kickoff and both have a usable advanced pregame profile. This excludes Week 1 and delayed season openers with no current-season performance sample. Each matchup's Season-to-Date Form uses every completed game earlier in that same season—never games played after the compared kickoff.
 
 The private compiler inputs and raw subscription responses are intentionally excluded. Store the CFBD key only in a server-side `CFBD_API_KEY` environment variable.

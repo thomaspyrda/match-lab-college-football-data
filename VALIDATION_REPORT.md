@@ -8,7 +8,7 @@
 - Current-season completed games become eligible historical matches only after a final result exists.
 - Season-to-Date Form includes every completed game earlier in the same season and excludes later games.
 - Each search displays the 10 closest eligible historical matches.
-- Historical candidates are limited to Week 2 and later so every result occurs after the season has begun.
+- Historical candidates require at least one completed prior game and a usable advanced pregame profile for both teams. This excludes Week 1 and delayed openers without relying on the schedule's week label.
 - Every available FBS profile exposes its same-week Strength Rank and Team Strength score/tier in the interface.
 - Spread, moneyline, and total selections render distinct pregame factor snapshots while percentile rows retain a consistent neutral presentation.
 - Raw CFBD subscription responses and `CFBD_API_KEY` are never written to the repository.

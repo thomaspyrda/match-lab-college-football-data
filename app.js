@@ -283,6 +283,13 @@ function differences(g) {
     ? r.slice(0, 5)
     : ["No major difference among the available comparison fields"];
 }
+function hasUsablePregameProfile(profile) {
+  return (
+    (profile?.recent_form?.games ?? 0) >= 1 &&
+    (profile?.advanced?.games_played ?? 0) >= 1 &&
+    (profile?.advanced?.metrics_available ?? 0) >= 1
+  );
+}
 async function match(m) {
   market = m;
   $("resultsSection").hidden = false;
@@ -301,7 +308,8 @@ async function match(m) {
     .filter(
       (g) =>
         g.result &&
-        g.week >= 2 &&
+        hasUsablePregameProfile(g.home_profile) &&
+        hasUsablePregameProfile(g.away_profile) &&
         g.game_id !== selected.game_id &&
         (m !== "spread" || g.spread != null) &&
         (m !== "total" || g.over_under != null),
