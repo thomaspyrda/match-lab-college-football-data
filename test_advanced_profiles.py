@@ -1,4 +1,4 @@
-import json, unittest
+import json, re, unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -46,7 +46,7 @@ class AdvancedProfileTests(unittest.TestCase):
 
     def test_browser_requests_ten_closest_matches(self):
         source = (ROOT / "app.js").read_text(encoding="utf-8")
-        self.assertIn(".slice(0,10)", source)
+        self.assertRegex(source, re.compile(r"\.slice\(0,\s*10\)"))
 
 if __name__ == "__main__":
     unittest.main()

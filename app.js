@@ -1,29 +1,436 @@
-const $=x=>document.getElementById(x);let upcoming,selected,market,historical=[],activeDate="all";
-async function get(u){const r=await fetch(u,{cache:"no-cache"});if(!r.ok)throw Error("Unable to load "+u);return r.json()}
-const odds=v=>v==null?"—":(v>0?"+":"")+v,rank=p=>p.ap_rank?"AP #"+p.ap_rank:"AP Unranked",profile=p=>p.national_strength_rank?`${rank(p)} · Strength #${p.national_strength_rank}`:`${p.classification||"FCS/Other"} · FBS strength unavailable`,initials=n=>n.split(/\s+/).map(x=>x[0]).join("").slice(0,3).toUpperCase();
-function logo(name,id,cls="team-logo"){const fallback=`<span class="logo-fallback"${id?" hidden":""}>${initials(name)}</span>`;return id?`<span class="logo-wrap"><img class="${cls}" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png" alt="${name} logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`:fallback}
-function line(g){return `<span>${g.spread==null?"Spread unavailable":g.home+" "+(g.spread>0?"+":"")+g.spread}</span><span>${g.home_moneyline==null?"ML unavailable":g.home+" "+odds(g.home_moneyline)}</span><span>${g.over_under==null?"Total unavailable":"O/U "+g.over_under}</span>`}
-function teamRow(name,id,p){return `<div class="team">${logo(name,id)}<span class="team-copy"><b>${name}</b><small>${profile(p)}${p.strength_score?` · ${p.strength_score}th percentile`:""}</small></span></div>`}
-function gameCard(g){return `<button class="game${selected?.game_id===g.game_id?" selected":""}" data-id="${g.game_id}"><div class="date">${new Date(g.start_date).toLocaleString([], {weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})}</div><div class="teams">${teamRow(g.away,g.away_id,g.away_profile)}<span class="at">at</span>${teamRow(g.home,g.home_id,g.home_profile)}</div><div class="lines">${line(g)}</div></button>`}
-const dateKey=g=>new Date(g.start_date).toLocaleDateString([], {weekday:"short",month:"short",day:"numeric"});
-function renderSlate(){const games=activeDate==="all"?upcoming.games:upcoming.games.filter(g=>dateKey(g)===activeDate);$("games").innerHTML=games.map(gameCard).join("");document.querySelectorAll("#dateFilters button").forEach(b=>b.classList.toggle("active",b.dataset.date===activeDate))}
-async function init(){try{upcoming=await get("data/upcoming.json");$("status").textContent=upcoming.games.length?`${upcoming.games.length} games available in the next seven days`:"No games are currently scheduled in the next seven days.";const dates=[...new Set(upcoming.games.map(dateKey))];$("dateFilters").innerHTML=["all",...dates].map(d=>`<button data-date="${d}" class="${d==="all"?"active":""}">${d==="all"?"All games":d}</button>`).join("");renderSlate()}catch(e){$("status").textContent="The upcoming slate is temporarily unavailable.";console.error(e)}}
-function dist(a,b){return a==null||b==null?null:Math.abs(a-b)}
-const ADVANCED=["offensive_efficiency","defensive_efficiency","rushing_success","passing_success","explosiveness","havoc","finishing_drives"];
-function features(g,m){const hp=g.home_profile,ap=g.away_profile,hf=hp.recent_form||{},af=ap.recent_form||{},base={strengthGap:hp.strength_score!=null&&ap.strength_score!=null?hp.strength_score-ap.strength_score:null,homeStrength:hp.strength_score,awayStrength:ap.strength_score,homeFbs:hp.classification==="FBS"?1:0,awayFbs:ap.classification==="FBS"?1:0,conference:g.conference_game?1:0,neutral:g.neutral_site?1:0,homeLoss:hf.coming_off_loss==null?null:+hf.coming_off_loss,awayLoss:af.coming_off_loss==null?null:+af.coming_off_loss,homeWinRate:hf.games?hf.wins/hf.games:null,awayWinRate:af.games?af.wins/af.games:null,homePts:hf.avg_points,awayPts:af.avg_points,homeAllow:hf.avg_allowed,awayAllow:af.avg_allowed};ADVANCED.forEach(k=>{base["home_"+k]=hp.advanced?.[k]??null;base["away_"+k]=ap.advanced?.[k]??null});if(m==="spread")return {...base,line:g.spread};if(m==="total")return {...base,total:g.over_under};return base}
-const specs={line:[14,18],total:[10,20],strengthGap:[22,15],homeStrength:[25,10],awayStrength:[25,10],homeWinRate:[.7,6],awayWinRate:[.7,6],homePts:[18,5],awayPts:[18,5],homeAllow:[18,5],awayAllow:[18,5],conference:[1,5],neutral:[1,3],homeLoss:[1,3],awayLoss:[1,3],homeFbs:[1,10],awayFbs:[1,10]};ADVANCED.forEach(k=>{specs["home_"+k]=[35,4];specs["away_"+k]=[35,4]});
-function similarity(a,b,m){const A=features(a,m),B=features(b,m),core=m==="spread"?["line","strengthGap","homeStrength","awayStrength","homeWinRate","awayWinRate","conference","neutral","homeLoss","awayLoss","homeFbs","awayFbs"]:m==="total"?["total","homePts","awayPts","homeAllow","awayAllow","strengthGap","homeStrength","awayStrength","conference","homeFbs","awayFbs"]:["strengthGap","homeStrength","awayStrength","homeWinRate","awayWinRate","conference","neutral","homeLoss","awayLoss","homeFbs","awayFbs"],keys=core.concat(ADVANCED.flatMap(k=>["home_"+k,"away_"+k]));let earned=0,used=0,possible=0,advancedUsed=0;keys.forEach(k=>{const [scale,w]=specs[k];possible+=w;if(A[k]==null||B[k]==null)return;used+=w;if(k.startsWith("home_")||k.startsWith("away_"))advancedUsed++;earned+=w*Math.max(0,1-Math.abs(A[k]-B[k])/scale)});const coverage=used/possible,fit=used?earned/used:0,score=100*fit*(.62+.38*coverage),ceiling=advancedUsed>=10?92:84;return Math.max(0,Math.min(ceiling,Math.round(score)))}
-function why(g){const r=[],sd=dist(selected.spread,g.spread),td=dist(selected.over_under,g.over_under),hd=dist(selected.home_profile.strength_score,g.home_profile.strength_score),ad=dist(selected.away_profile.strength_score,g.away_profile.strength_score);if(market==="spread"&&sd!=null&&sd<=3)r.push(`Point spreads are within ${sd} points`);if(market==="total"&&td!=null&&td<=6)r.push(`Market totals are within ${td} points`);if(selected.home_profile.classification===g.home_profile.classification&&selected.away_profile.classification===g.away_profile.classification)r.push(selected.home_profile.classification==="FBS"&&selected.away_profile.classification!=="FBS"?"Both are FBS-versus-FCS setups":selected.home_profile.classification!=="FBS"&&selected.away_profile.classification==="FBS"?"Both are FCS-at-FBS setups":"Same division setup");if(selected.conference_game===g.conference_game)r.push(selected.conference_game?"Both are conference games":"Both are non-conference games");if(hd!=null&&hd<=10)r.push(`Home teams are within ${hd} strength points`);if(ad!=null&&ad<=10)r.push(`Road teams are within ${ad} strength points`);return r.slice(0,6)}
-function differences(g){const r=[],sd=dist(selected.spread,g.spread),td=dist(selected.over_under,g.over_under),hd=dist(selected.home_profile.strength_score,g.home_profile.strength_score),ad=dist(selected.away_profile.strength_score,g.away_profile.strength_score);if(market==="spread"&&sd!=null&&sd>3)r.push(`Point spreads differ by ${sd} points`);if(market==="total"&&td!=null&&td>6)r.push(`Market totals differ by ${td} points`);if(hd!=null&&hd>10)r.push(`Home-team strength differs by ${hd} percentile points`);if(ad!=null&&ad>10)r.push(`Road-team strength differs by ${ad} percentile points`);if(selected.conference_game!==g.conference_game)r.push("Conference setting is different");const sf=selected.home_profile.recent_form?.games||0,gf=g.home_profile.recent_form?.games||0;if(Math.abs(sf-gf)>=2)r.push(`Pregame sample sizes differ (${sf} vs ${gf} prior games)`);return r.length?r.slice(0,5):["No major difference among the available comparison fields"]}
-async function match(m){market=m;$("resultsSection").hidden=false;$("resultTitle").textContent=`${selected.away} at ${selected.home} · ${m==="total"?"O/U Total":m[0].toUpperCase()+m.slice(1)}`;$("matches").innerHTML="Searching verified historical games…";if(!historical.length)historical=(await Promise.all(Array.from({length:12},(_,i)=>get(`data/historical/${2015+i}.json`)))).flatMap(x=>x.games);const candidates=historical.filter(g=>g.result&&g.game_id!==selected.game_id&&(m!=="spread"||g.spread!=null)&&(m!=="total"||g.over_under!=null)).map(g=>({g,s:similarity(selected,g,m)})).sort((a,b)=>b.s-a.s).slice(0,10);renderMatches(candidates)}
-function midpoint(value,values,higher=true){if(value==null)return null;const usable=values.filter(v=>v!=null);if(usable.length<2)return null;const better=usable.filter(v=>higher?v<value:v>value).length,tied=usable.filter(v=>v===value).length;return Math.max(1,Math.min(100,Math.round(100*(better+(tied-1)/2)/(usable.length-1))))}
-function weekPool(g){const rows=historical.filter(x=>x.season===g.season&&x.week===g.week),out=[];rows.forEach(x=>out.push(x.home_profile,x.away_profile));return out}
-function metrics(g,p){const a=p.advanced||{};return [{name:"Overall Strength",score:p.strength_score},{name:"Offensive Efficiency",score:a.offensive_efficiency},{name:"Defensive Efficiency",score:a.defensive_efficiency},{name:"Rushing Success Rate",score:a.rushing_success},{name:"Passing Success Rate",score:a.passing_success},{name:"Explosiveness",score:a.explosiveness},{name:"Havoc (Disruption)",score:a.havoc},{name:"Finishing Drives",score:a.finishing_drives}]}
-function metricSide(v,side="away"){return `<div class="metric-side ${side}"><span class="bar"><i style="width:${v??0}%"></i></span><span class="metric-value">${v??"—"}</span></div>`}
-function matchupTeams(g){return `<div class="panel-teams"><div>${logo(g.away,g.away_id)}<b>${g.away}</b><small>${rank(g.away_profile)} · ${g.away_profile.strength_tier||g.away_profile.classification}</small></div><i>@</i><div>${logo(g.home,g.home_id)}<b>${g.home}</b><small>${rank(g.home_profile)} · ${g.home_profile.strength_tier||g.home_profile.classification}</small></div></div>`}
-function gamePanel(g,title,tone){const a=metrics(g,g.away_profile),h=metrics(g,g.home_profile),af=g.away_profile.recent_form||{},hf=g.home_profile.recent_form||{},ag=g.away_profile.advanced?.games_played??0,hg=g.home_profile.advanced?.games_played??0;return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x,i)=>`<div class="panel-metric"><span>${x.name}</span>${metricSide(x.score,"away")}${metricSide(h[i].score,"home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag===1?"":"s"} · ${g.home} ${hg} game${hg===1?"":"s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games?`${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games===1?"":"s"}`:"No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games?`${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games===1?"":"s"}`:"No prior-game sample"}</span></div></div></section>`}
-function matchLabel(s){return s>=80?"Very close match":s>=68?"Close match":s>=55?"Useful comparison":"Loose comparison"}
-function bottomLine(g){const w=why(g),d=differences(g);return `This game is comparable because ${w.slice(0,2).join(" and ").toLowerCase()||"its broad pregame setup is similar"}. The most important caution is ${d[0].toLowerCase()}.`}
-function comparison(g,s){return `<div class="comparison-v2"><div class="score-row"><div><small>Match score</small><b>${s}</b><span>${matchLabel(s)}</span></div><em>Pregame similarity only — not a predicted outcome.</em></div><div class="versus-grid">${gamePanel(selected,"Researched game","researched")}<span class="vs">VS</span>${gamePanel(g,"Historical match","historical")}</div><div class="explain-grid"><section><h4>◎ Why these games match</h4><ul>${why(g).map(x=>`<li>${x}</li>`).join("")}</ul></section><section><h4>△ Key differences</h4><ul>${differences(g).map(x=>`<li>${x}</li>`).join("")}</ul></section><section class="bottom-line"><h4>♧ The bottom line</h4><p>${bottomLine(g)}</p></section></div><section class="what-happened"><small>What happened</small><strong>${g.result.away_points} – ${g.result.home_points}</strong><p>${g.away} ${g.result.away_points}, ${g.home} ${g.result.home_points}</p><div>${g.result.ats?`ATS: ${g.result.ats.replace("_"," ")}`:"ATS unavailable"} · ${g.result.total?`Total: ${g.result.total}`:"Total unavailable"}</div></section></div>`}
-function renderMatches(xs){let hc=0,ac=0,o=0,u=0;for(const {g} of xs){if(g.result.ats==="home_cover")hc++;if(g.result.ats==="away_cover")ac++;if(g.result.total==="over")o++;if(g.result.total==="under")u++}$("summary").innerHTML=`<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}</b><span>Over–Under</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;$("matches").innerHTML=xs.map(({g,s},i)=>`<details class="match" ${i===0?"open":""}><summary><div class="matchtop"><span>#${i+1} · ${g.season} Week ${g.week}</span><b>${s} · ${matchLabel(s)}</b></div><div class="match-summary-teams">${logo(g.away,g.away_id)}<h3>${g.away} at ${g.home}</h3>${logo(g.home,g.home_id)}</div><div class="matchlines">${line(g)}</div></summary>${comparison(g,s)}</details>`).join("")}
-$("dateFilters").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;activeDate=b.dataset.date;renderSlate()});$("games").addEventListener("click",e=>{const b=e.target.closest(".game");if(!b)return;selected=upcoming.games.find(g=>g.game_id===b.dataset.id);renderSlate();$("selectedGame").innerHTML=`Selected: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;$("marketSection").hidden=false;$("resultsSection").hidden=true;$("marketSection").scrollIntoView({behavior:"smooth",block:"start"})});document.querySelector(".markets").addEventListener("click",e=>{const b=e.target.closest("button");if(b)match(b.dataset.market)});document.querySelector(".rail-arrow.prev").addEventListener("click",()=>$("games").scrollBy({left:-650,behavior:"smooth"}));document.querySelector(".rail-arrow.next").addEventListener("click",()=>$("games").scrollBy({left:650,behavior:"smooth"}));init();
+const $ = (x) => document.getElementById(x);
+let upcoming,
+  selected,
+  market,
+  historical = [],
+  activeDate = "all";
+async function get(u) {
+  const r = await fetch(u, { cache: "no-cache" });
+  if (!r.ok) throw Error("Unable to load " + u);
+  return r.json();
+}
+const odds = (v) => (v == null ? "—" : (v > 0 ? "+" : "") + v),
+  rank = (p) => (p.ap_rank ? "AP #" + p.ap_rank : "AP Unranked"),
+  profile = (p) =>
+    p.national_strength_rank
+      ? `${rank(p)} · Strength #${p.national_strength_rank}`
+      : `${p.classification || "FCS/Other"} · FBS strength unavailable`,
+  initials = (n) =>
+    n
+      .split(/\s+/)
+      .map((x) => x[0])
+      .join("")
+      .slice(0, 3)
+      .toUpperCase();
+function logo(name, id, cls = "team-logo") {
+  const fallback = `<span class="logo-fallback"${id ? " hidden" : ""}>${initials(name)}</span>`;
+  return id
+    ? `<span class="logo-wrap"><img class="${cls}" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png" alt="${name} logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`
+    : fallback;
+}
+function line(g) {
+  return `<span>${g.spread == null ? "Spread unavailable" : g.home + " " + (g.spread > 0 ? "+" : "") + g.spread}</span><span>${g.home_moneyline == null ? "ML unavailable" : g.home + " " + odds(g.home_moneyline)}</span><span>${g.over_under == null ? "Total unavailable" : "O/U " + g.over_under}</span>`;
+}
+function teamRow(name, id, p) {
+  return `<div class="team">${logo(name, id)}<span class="team-copy"><b>${name}</b><small>${profile(p)}${p.strength_score ? ` · ${p.strength_score}th percentile` : ""}</small></span></div>`;
+}
+function gameCard(g) {
+  return `<button class="game${selected?.game_id === g.game_id ? " selected" : ""}" data-id="${g.game_id}"><div class="date">${new Date(g.start_date).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</div><div class="teams">${teamRow(g.away, g.away_id, g.away_profile)}<span class="at">at</span>${teamRow(g.home, g.home_id, g.home_profile)}</div><div class="lines">${line(g)}</div></button>`;
+}
+const dateKey = (g) =>
+  new Date(g.start_date).toLocaleDateString([], {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+function renderSlate() {
+  const games =
+    activeDate === "all"
+      ? upcoming.games
+      : upcoming.games.filter((g) => dateKey(g) === activeDate);
+  $("games").innerHTML = games.map(gameCard).join("");
+  document
+    .querySelectorAll("#dateFilters button")
+    .forEach((b) =>
+      b.classList.toggle("active", b.dataset.date === activeDate),
+    );
+}
+async function init() {
+  try {
+    upcoming = await get("data/upcoming.json");
+    $("status").textContent = upcoming.games.length
+      ? `${upcoming.games.length} games available in the next seven days`
+      : "No games are currently scheduled in the next seven days.";
+    const dates = [...new Set(upcoming.games.map(dateKey))];
+    $("dateFilters").innerHTML = ["all", ...dates]
+      .map(
+        (d) =>
+          `<button data-date="${d}" class="${d === "all" ? "active" : ""}">${d === "all" ? "All games" : d}</button>`,
+      )
+      .join("");
+    renderSlate();
+  } catch (e) {
+    $("status").textContent = "The upcoming slate is temporarily unavailable.";
+    console.error(e);
+  }
+}
+function dist(a, b) {
+  return a == null || b == null ? null : Math.abs(a - b);
+}
+const ADVANCED = [
+  "offensive_efficiency",
+  "defensive_efficiency",
+  "rushing_success",
+  "passing_success",
+  "explosiveness",
+  "havoc",
+  "finishing_drives",
+];
+function features(g, m) {
+  const hp = g.home_profile,
+    ap = g.away_profile,
+    hf = hp.recent_form || {},
+    af = ap.recent_form || {},
+    base = {
+      strengthGap:
+        hp.strength_score != null && ap.strength_score != null
+          ? hp.strength_score - ap.strength_score
+          : null,
+      homeStrength: hp.strength_score,
+      awayStrength: ap.strength_score,
+      homeFbs: hp.classification === "FBS" ? 1 : 0,
+      awayFbs: ap.classification === "FBS" ? 1 : 0,
+      conference: g.conference_game ? 1 : 0,
+      neutral: g.neutral_site ? 1 : 0,
+      homeLoss: hf.coming_off_loss == null ? null : +hf.coming_off_loss,
+      awayLoss: af.coming_off_loss == null ? null : +af.coming_off_loss,
+      homeWinRate: hf.games ? hf.wins / hf.games : null,
+      awayWinRate: af.games ? af.wins / af.games : null,
+      homePts: hf.avg_points,
+      awayPts: af.avg_points,
+      homeAllow: hf.avg_allowed,
+      awayAllow: af.avg_allowed,
+    };
+  ADVANCED.forEach((k) => {
+    base["home_" + k] = hp.advanced?.[k] ?? null;
+    base["away_" + k] = ap.advanced?.[k] ?? null;
+  });
+  if (m === "spread") return { ...base, line: g.spread };
+  if (m === "total") return { ...base, total: g.over_under };
+  return base;
+}
+const specs = {
+  line: [14, 18],
+  total: [10, 20],
+  strengthGap: [22, 15],
+  homeStrength: [25, 10],
+  awayStrength: [25, 10],
+  homeWinRate: [0.7, 6],
+  awayWinRate: [0.7, 6],
+  homePts: [18, 5],
+  awayPts: [18, 5],
+  homeAllow: [18, 5],
+  awayAllow: [18, 5],
+  conference: [1, 5],
+  neutral: [1, 3],
+  homeLoss: [1, 3],
+  awayLoss: [1, 3],
+  homeFbs: [1, 10],
+  awayFbs: [1, 10],
+};
+ADVANCED.forEach((k) => {
+  specs["home_" + k] = [35, 4];
+  specs["away_" + k] = [35, 4];
+});
+function similarity(a, b, m) {
+  const A = features(a, m),
+    B = features(b, m),
+    core =
+      m === "spread"
+        ? [
+            "line",
+            "strengthGap",
+            "homeStrength",
+            "awayStrength",
+            "homeWinRate",
+            "awayWinRate",
+            "conference",
+            "neutral",
+            "homeLoss",
+            "awayLoss",
+            "homeFbs",
+            "awayFbs",
+          ]
+        : m === "total"
+          ? [
+              "total",
+              "homePts",
+              "awayPts",
+              "homeAllow",
+              "awayAllow",
+              "strengthGap",
+              "homeStrength",
+              "awayStrength",
+              "conference",
+              "homeFbs",
+              "awayFbs",
+            ]
+          : [
+              "strengthGap",
+              "homeStrength",
+              "awayStrength",
+              "homeWinRate",
+              "awayWinRate",
+              "conference",
+              "neutral",
+              "homeLoss",
+              "awayLoss",
+              "homeFbs",
+              "awayFbs",
+            ],
+    keys = core.concat(ADVANCED.flatMap((k) => ["home_" + k, "away_" + k]));
+  let earned = 0,
+    used = 0,
+    possible = 0,
+    advancedUsed = 0;
+  keys.forEach((k) => {
+    const [scale, w] = specs[k];
+    possible += w;
+    if (A[k] == null || B[k] == null) return;
+    used += w;
+    if (k.startsWith("home_") || k.startsWith("away_")) advancedUsed++;
+    earned += w * Math.max(0, 1 - Math.abs(A[k] - B[k]) / scale);
+  });
+  const coverage = used / possible,
+    fit = used ? earned / used : 0,
+    score = 100 * fit * (0.62 + 0.38 * coverage),
+    ceiling = advancedUsed >= 10 ? 92 : 84;
+  return Math.max(0, Math.min(ceiling, Math.round(score)));
+}
+function why(g) {
+  const r = [],
+    sd = dist(selected.spread, g.spread),
+    td = dist(selected.over_under, g.over_under),
+    hd = dist(
+      selected.home_profile.strength_score,
+      g.home_profile.strength_score,
+    ),
+    ad = dist(
+      selected.away_profile.strength_score,
+      g.away_profile.strength_score,
+    );
+  if (market === "spread" && sd != null && sd <= 3)
+    r.push(`Point spreads are within ${sd} points`);
+  if (market === "total" && td != null && td <= 6)
+    r.push(`Market totals are within ${td} points`);
+  if (
+    selected.home_profile.classification === g.home_profile.classification &&
+    selected.away_profile.classification === g.away_profile.classification
+  )
+    r.push(
+      selected.home_profile.classification === "FBS" &&
+        selected.away_profile.classification !== "FBS"
+        ? "Both are FBS-versus-FCS setups"
+        : selected.home_profile.classification !== "FBS" &&
+            selected.away_profile.classification === "FBS"
+          ? "Both are FCS-at-FBS setups"
+          : "Same division setup",
+    );
+  if (selected.conference_game === g.conference_game)
+    r.push(
+      selected.conference_game
+        ? "Both are conference games"
+        : "Both are non-conference games",
+    );
+  if (hd != null && hd <= 10)
+    r.push(`Home teams are within ${hd} strength points`);
+  if (ad != null && ad <= 10)
+    r.push(`Road teams are within ${ad} strength points`);
+  return r.slice(0, 6);
+}
+function differences(g) {
+  const r = [],
+    sd = dist(selected.spread, g.spread),
+    td = dist(selected.over_under, g.over_under),
+    hd = dist(
+      selected.home_profile.strength_score,
+      g.home_profile.strength_score,
+    ),
+    ad = dist(
+      selected.away_profile.strength_score,
+      g.away_profile.strength_score,
+    );
+  if (market === "spread" && sd != null && sd > 3)
+    r.push(`Point spreads differ by ${sd} points`);
+  if (market === "total" && td != null && td > 6)
+    r.push(`Market totals differ by ${td} points`);
+  if (hd != null && hd > 10)
+    r.push(`Home-team strength differs by ${hd} percentile points`);
+  if (ad != null && ad > 10)
+    r.push(`Road-team strength differs by ${ad} percentile points`);
+  if (selected.conference_game !== g.conference_game)
+    r.push("Conference setting is different");
+  const sf = selected.home_profile.recent_form?.games || 0,
+    gf = g.home_profile.recent_form?.games || 0;
+  if (Math.abs(sf - gf) >= 2)
+    r.push(`Pregame sample sizes differ (${sf} vs ${gf} prior games)`);
+  return r.length
+    ? r.slice(0, 5)
+    : ["No major difference among the available comparison fields"];
+}
+async function match(m) {
+  market = m;
+  $("resultsSection").hidden = false;
+  $("resultTitle").textContent =
+    `${selected.away} at ${selected.home} · ${m === "total" ? "O/U Total" : m[0].toUpperCase() + m.slice(1)}`;
+  $("matches").innerHTML = "Searching verified historical games…";
+  if (!historical.length)
+    historical = (
+      await Promise.all(
+        Array.from({ length: 12 }, (_, i) =>
+          get(`data/historical/${2015 + i}.json`),
+        ),
+      )
+    ).flatMap((x) => x.games);
+  const candidates = historical
+    .filter(
+      (g) =>
+        g.result &&
+        g.game_id !== selected.game_id &&
+        (m !== "spread" || g.spread != null) &&
+        (m !== "total" || g.over_under != null),
+    )
+    .map((g) => ({ g, s: similarity(selected, g, m) }))
+    .sort((a, b) => b.s - a.s)
+    .slice(0, 10);
+  renderMatches(candidates);
+}
+function midpoint(value, values, higher = true) {
+  if (value == null) return null;
+  const usable = values.filter((v) => v != null);
+  if (usable.length < 2) return null;
+  const better = usable.filter((v) => (higher ? v < value : v > value)).length,
+    tied = usable.filter((v) => v === value).length;
+  return Math.max(
+    1,
+    Math.min(
+      100,
+      Math.round((100 * (better + (tied - 1) / 2)) / (usable.length - 1)),
+    ),
+  );
+}
+function weekPool(g) {
+  const rows = historical.filter(
+      (x) => x.season === g.season && x.week === g.week,
+    ),
+    out = [];
+  rows.forEach((x) => out.push(x.home_profile, x.away_profile));
+  return out;
+}
+function metrics(g, p) {
+  const a = p.advanced || {};
+  return [
+    { name: "Overall Strength", score: p.strength_score },
+    { name: "Offensive Efficiency", score: a.offensive_efficiency },
+    { name: "Defensive Efficiency", score: a.defensive_efficiency },
+    { name: "Rushing Success Rate", score: a.rushing_success },
+    { name: "Passing Success Rate", score: a.passing_success },
+    { name: "Explosiveness", score: a.explosiveness },
+    { name: "Havoc (Disruption)", score: a.havoc },
+    { name: "Finishing Drives", score: a.finishing_drives },
+  ];
+}
+function metricSide(v, side = "away") {
+  return `<div class="metric-side ${side}"><span class="bar"><i style="width:${v ?? 0}%"></i></span><span class="metric-value">${v ?? "—"}</span></div>`;
+}
+function matchupTeams(g) {
+  return `<div class="panel-teams"><div><span class="panel-team-name">${logo(g.away, g.away_id)}<b>${g.away}</b></span><small>${rank(g.away_profile)} · ${g.away_profile.strength_tier || g.away_profile.classification}</small></div><i>@</i><div><span class="panel-team-name">${logo(g.home, g.home_id)}<b>${g.home}</b></span><small>${rank(g.home_profile)} · ${g.home_profile.strength_tier || g.home_profile.classification}</small></div></div>`;
+}
+function gamePanel(g, title, tone) {
+  const a = metrics(g, g.away_profile),
+    h = metrics(g, g.home_profile),
+    af = g.away_profile.recent_form || {},
+    hf = g.home_profile.recent_form || {},
+    ag = g.away_profile.advanced?.games_played ?? 0,
+    hg = g.home_profile.advanced?.games_played ?? 0;
+  return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x, i) => `<div class="panel-metric"><span>${x.name}</span>${metricSide(x.score, "away")}${metricSide(h[i].score, "home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag === 1 ? "" : "s"} · ${g.home} ${hg} game${hg === 1 ? "" : "s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games ? `${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games ? `${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div></div></section>`;
+}
+function matchLabel(s) {
+  return s >= 80
+    ? "Very close match"
+    : s >= 68
+      ? "Close match"
+      : s >= 55
+        ? "Useful comparison"
+        : "Loose comparison";
+}
+function bottomLine(g) {
+  const w = why(g),
+    d = differences(g);
+  return `This game is comparable because ${w.slice(0, 2).join(" and ").toLowerCase() || "its broad pregame setup is similar"}. The most important caution is ${d[0].toLowerCase()}.`;
+}
+function comparison(g, s) {
+  return `<div class="comparison-v2"><div class="score-row"><div><small>Match score</small><b>${s}</b><span>${matchLabel(s)}</span></div><em>Pregame similarity only — not a predicted outcome.</em></div><div class="versus-grid">${gamePanel(selected, "Researched game", "researched")}<span class="vs">VS</span>${gamePanel(g, "Historical match", "historical")}</div><div class="explain-grid"><section><h4>◎ Why these games match</h4><ul>${why(
+    g,
+  )
+    .map((x) => `<li>${x}</li>`)
+    .join(
+      "",
+    )}</ul></section><section><h4>△ Key differences</h4><ul>${differences(g)
+    .map((x) => `<li>${x}</li>`)
+    .join(
+      "",
+    )}</ul></section><section class="bottom-line"><h4>♧ The bottom line</h4><p>${bottomLine(g)}</p></section></div><section class="what-happened"><small>What happened</small><strong>${g.result.away_points} – ${g.result.home_points}</strong><p>${g.away} ${g.result.away_points}, ${g.home} ${g.result.home_points}</p><div>${g.result.ats ? `ATS: ${g.result.ats.replace("_", " ")}` : "ATS unavailable"} · ${g.result.total ? `Total: ${g.result.total}` : "Total unavailable"}</div></section></div>`;
+}
+function renderMatches(xs) {
+  let hc = 0,
+    ac = 0,
+    o = 0,
+    u = 0;
+  for (const { g } of xs) {
+    if (g.result.ats === "home_cover") hc++;
+    if (g.result.ats === "away_cover") ac++;
+    if (g.result.total === "over") o++;
+    if (g.result.total === "under") u++;
+  }
+  $("summary").innerHTML =
+    `<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}</b><span>Over–Under</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;
+  $("matches").innerHTML = xs
+    .map(
+      ({ g, s }, i) =>
+        `<details class="match" ${i === 0 ? "open" : ""}><summary><div class="matchtop"><span>#${i + 1} · ${g.season} Week ${g.week}</span><b><strong>${s}</strong><em>${matchLabel(s)}</em></b></div><div class="match-summary-teams"><span class="summary-team">${logo(g.away, g.away_id)}<strong>${g.away}</strong></span><span class="summary-at">at</span><span class="summary-team">${logo(g.home, g.home_id)}<strong>${g.home}</strong></span></div><div class="matchlines">${line(g)}</div></summary>${comparison(g, s)}</details>`,
+    )
+    .join("");
+}
+$("dateFilters").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  activeDate = b.dataset.date;
+  renderSlate();
+});
+$("games").addEventListener("click", (e) => {
+  const b = e.target.closest(".game");
+  if (!b) return;
+  selected = upcoming.games.find((g) => g.game_id === b.dataset.id);
+  renderSlate();
+  $("selectedGame").innerHTML =
+    `Selected: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
+  $("marketSection").hidden = false;
+  $("resultsSection").hidden = true;
+  $("marketSection").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.querySelector(".markets").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (b) match(b.dataset.market);
+});
+document
+  .querySelector(".rail-arrow.prev")
+  .addEventListener("click", () =>
+    $("games").scrollBy({ left: -650, behavior: "smooth" }),
+  );
+document
+  .querySelector(".rail-arrow.next")
+  .addEventListener("click", () =>
+    $("games").scrollBy({ left: 650, behavior: "smooth" }),
+  );
+init();
