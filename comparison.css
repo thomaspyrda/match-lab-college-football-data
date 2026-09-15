@@ -166,15 +166,17 @@
 .panel-lines {
   display: flex;
   justify-content: center;
-  gap: 5px;
+  gap: 7px;
   flex-wrap: wrap;
 }
 .panel-lines span {
-  background: #20262d;
-  border: 1px solid #363e46;
+  background: #2a2a2a;
+  border: 1px solid #424242;
   border-radius: 999px;
-  padding: 3px 7px;
-  font-size: 9px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 .micro-label {
   margin: 18px 0 0;

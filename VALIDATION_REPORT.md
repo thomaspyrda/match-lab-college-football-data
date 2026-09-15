@@ -8,6 +8,7 @@
 - Current-season completed games become eligible historical matches only after a final result exists.
 - Season-to-Date Form includes every completed game earlier in the same season and excludes later games.
 - Each search displays the 10 closest eligible historical matches.
+- Historical candidates are limited to Week 2 and later so every result occurs after the season has begun.
 - Raw CFBD subscription responses and `CFBD_API_KEY` are never written to the repository.
 
 - Seasons: 2015–2026

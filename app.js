@@ -296,6 +296,7 @@ async function match(m) {
     .filter(
       (g) =>
         g.result &&
+        g.week >= 2 &&
         g.game_id !== selected.game_id &&
         (m !== "spread" || g.spread != null) &&
         (m !== "total" || g.over_under != null),

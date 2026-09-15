@@ -47,6 +47,7 @@ class AdvancedProfileTests(unittest.TestCase):
     def test_browser_requests_ten_closest_matches(self):
         source = (ROOT / "app.js").read_text(encoding="utf-8")
         self.assertRegex(source, re.compile(r"\.slice\(0,\s*10\)"))
+        self.assertRegex(source, re.compile(r"g\.week\s*>=\s*2"))
 
 if __name__ == "__main__":
     unittest.main()
