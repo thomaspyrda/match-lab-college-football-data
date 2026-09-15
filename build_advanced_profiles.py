@@ -80,7 +80,7 @@ def build_year(year, weeks):
             team = row.get("team")
             if not team:
                 continue
-            raw[team] = {name: value(row, spec[:-1]) for name, spec in METRICS.items()}
+            raw[team] = {name: value(row, spec) for name, spec in METRICS.items()}
         boards = {name: [team_values.get(name) for team_values in raw.values()] for name in METRICS}
         teams = {}
         for team, team_values in raw.items():
@@ -92,7 +92,7 @@ def build_year(year, weeks):
             teams[team] = scores
         output[str(week)] = {"through_week": week - 1, "fbs_field_size": len(raw), "teams": teams}
         print(f"{year} week {week}: {len(raw)} FBS advanced profiles")
-    payload = {"schema_version": "2.0", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
+    payload = {"schema_version": "2.1", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
     temp = OUT / f".{year}.tmp"
     temp.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
     temp.replace(OUT / f"{year}.json")
@@ -104,13 +104,16 @@ def main():
         year = int(weekly["season"])
         target = OUT / f"{year}.json"
         if year < current and target.exists():
-            print(f"{year}: using validated cached profiles")
-            continue
+            cached = json.loads(target.read_text(encoding="utf-8"))
+            if cached.get("schema_version") == "2.1":
+                print(f"{year}: using validated cached profiles")
+                continue
         weeks = sorted(int(w) for w in weekly.get("weeks", {}))
         if year == current:
             history_path = DATA / "historical" / f"{year}.json"
             games = json.loads(history_path.read_text(encoding="utf-8")).get("games", []) if history_path.exists() else []
             last_completed = max((int(g.get("week") or 0) for g in games if g.get("result")), default=0)
+            weeks = sorted(set(weeks) | set(range(1, last_completed + 3)))
             weeks = [w for w in weeks if w <= last_completed + 2]
         build_year(year, weeks)
 
