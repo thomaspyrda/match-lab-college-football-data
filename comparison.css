@@ -262,17 +262,6 @@
   border-top: 1px solid #222931;
   padding: 7px 0;
 }
-.panel-metric.market-highlight {
-  margin: 0 -7px;
-  padding-right: 7px;
-  padding-left: 7px;
-  border-left: 2px solid var(--green);
-  background: rgba(0, 255, 65, 0.055);
-}
-.panel-metric.market-highlight > span {
-  color: var(--green);
-  font-weight: 700;
-}
 .panel-metric > span {
   font-size: 10px;
   color: var(--muted);

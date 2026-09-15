@@ -349,28 +349,6 @@ function metrics(g, p) {
 function metricSide(v, side = "away") {
   return `<div class="metric-side ${side}"><span class="bar"><i style="width:${v ?? 0}%"></i></span><span class="metric-value">${v ?? "—"}</span></div>`;
 }
-function focusMetrics() {
-  if (market === "total")
-    return new Set([
-      "Offensive Efficiency",
-      "Defensive Efficiency",
-      "Explosiveness",
-      "Finishing Drives",
-    ]);
-  if (market === "moneyline")
-    return new Set([
-      "Overall Strength",
-      "Offensive Efficiency",
-      "Defensive Efficiency",
-    ]);
-  return new Set([
-    "Overall Strength",
-    "Offensive Efficiency",
-    "Defensive Efficiency",
-    "Havoc (Disruption)",
-    "Finishing Drives",
-  ]);
-}
 function matchupTeams(g) {
   return `<div class="panel-teams"><div><span class="panel-team-name">${logo(g.away, g.away_id)}<b>${g.away}</b></span>${strengthMeta(g.away_profile)}</div><i>@</i><div><span class="panel-team-name">${logo(g.home, g.home_id)}<b>${g.home}</b></span>${strengthMeta(g.home_profile)}</div></div>`;
 }
@@ -380,9 +358,8 @@ function gamePanel(g, title, tone) {
     af = g.away_profile.recent_form || {},
     hf = g.home_profile.recent_form || {},
     ag = g.away_profile.advanced?.games_played ?? 0,
-    hg = g.home_profile.advanced?.games_played ?? 0,
-    focused = focusMetrics();
-  return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x, i) => `<div class="panel-metric${focused.has(x.name) ? " market-highlight" : ""}"><span>${x.name}</span>${metricSide(x.score, "away")}${metricSide(h[i].score, "home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag === 1 ? "" : "s"} · ${g.home} ${hg} game${hg === 1 ? "" : "s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games ? `${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games ? `${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div></div></section>`;
+    hg = g.home_profile.advanced?.games_played ?? 0;
+  return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x, i) => `<div class="panel-metric"><span>${x.name}</span>${metricSide(x.score, "away")}${metricSide(h[i].score, "home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag === 1 ? "" : "s"} · ${g.home} ${hg} game${hg === 1 ? "" : "s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games ? `${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games ? `${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div></div></section>`;
 }
 const signed = (v) => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}`);
 const winPct = (f) =>
