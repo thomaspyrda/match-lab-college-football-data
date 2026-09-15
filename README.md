@@ -7,7 +7,10 @@ Public, pregame-safe college-football data for Match Lab covering 2015–2026.
 - **AP Top 25** is the official poll position. Unranked teams remain `null`, never No. 26.
 - **Team Strength** converts pregame CFBD Elo to a 1–100 score relative to all available FBS teams in the same season and week.
 - Raw Elo remains internally for auditability and matching, but Match Lab must display **Team Strength**, never raw Elo or Elo rank.
+- Every FBS team is labeled with its pregame **Strength Rank** and **Team Strength** score/tier for that exact season and week; AP placement remains a separate official-poll label.
 - **Advanced Team Profiles** contain pregame-only, same-week FBS percentiles for offensive efficiency, defensive efficiency, rushing success, passing success, explosiveness, defensive Havoc, and finishing drives.
+
+The comparison interface changes its highlighted factors with the selected market: line and scoring-margin context for spreads, weekly strength and win form for moneylines, and scoring/allowance profiles for totals.
 
 ## Calculation
 

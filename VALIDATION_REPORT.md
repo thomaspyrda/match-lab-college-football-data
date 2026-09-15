@@ -9,6 +9,8 @@
 - Season-to-Date Form includes every completed game earlier in the same season and excludes later games.
 - Each search displays the 10 closest eligible historical matches.
 - Historical candidates are limited to Week 2 and later so every result occurs after the season has begun.
+- Every available FBS profile exposes its same-week Strength Rank and Team Strength score/tier in the interface.
+- Spread, moneyline, and total selections render distinct pregame factor snapshots and metric highlights.
 - Raw CFBD subscription responses and `CFBD_API_KEY` are never written to the repository.
 
 - Seasons: 2015–2026

@@ -48,6 +48,10 @@ class AdvancedProfileTests(unittest.TestCase):
         source = (ROOT / "app.js").read_text(encoding="utf-8")
         self.assertRegex(source, re.compile(r"\.slice\(0,\s*10\)"))
         self.assertRegex(source, re.compile(r"g\.week\s*>=\s*2"))
+        self.assertIn("Strength Rank #", source)
+        self.assertIn("Team Strength ${p.strength_score}/100", source)
+        for market_label in ("Point Spread", "Moneyline", "Market Total"):
+            self.assertIn(market_label, source)
 
 if __name__ == "__main__":
     unittest.main()

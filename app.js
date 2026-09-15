@@ -22,6 +22,11 @@ const odds = (v) => (v == null ? "—" : (v > 0 ? "+" : "") + v),
       .join("")
       .slice(0, 3)
       .toUpperCase();
+function strengthMeta(p) {
+  if (!p?.national_strength_rank)
+    return `<small>${p?.classification || "FCS/Other"} · FBS Strength unavailable</small>`;
+  return `<small>${rank(p)} · Strength Rank #${p.national_strength_rank}</small><small>Team Strength ${p.strength_score}/100 · ${p.strength_tier}</small>`;
+}
 function logo(name, id, cls = "team-logo") {
   const fallback = `<span class="logo-fallback"${id ? " hidden" : ""}>${initials(name)}</span>`;
   return id
@@ -32,7 +37,7 @@ function line(g) {
   return `<span>${g.spread == null ? "Spread unavailable" : g.home + " " + (g.spread > 0 ? "+" : "") + g.spread}</span><span>${g.home_moneyline == null ? "ML unavailable" : g.home + " " + odds(g.home_moneyline)}</span><span>${g.over_under == null ? "Total unavailable" : "O/U " + g.over_under}</span>`;
 }
 function teamRow(name, id, p) {
-  return `<div class="team">${logo(name, id)}<span class="team-copy"><b>${name}</b><small>${profile(p)}${p.strength_score ? ` · ${p.strength_score}th percentile` : ""}</small></span></div>`;
+  return `<div class="team">${logo(name, id)}<span class="team-copy"><b>${name}</b>${strengthMeta(p)}</span></div>`;
 }
 function gameCard(g) {
   return `<button class="game${selected?.game_id === g.game_id ? " selected" : ""}" data-id="${g.game_id}"><div class="date">${new Date(g.start_date).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</div><div class="teams">${teamRow(g.away, g.away_id, g.away_profile)}<span class="at">at</span>${teamRow(g.home, g.home_id, g.home_profile)}</div><div class="lines">${line(g)}</div></button>`;
@@ -344,8 +349,30 @@ function metrics(g, p) {
 function metricSide(v, side = "away") {
   return `<div class="metric-side ${side}"><span class="bar"><i style="width:${v ?? 0}%"></i></span><span class="metric-value">${v ?? "—"}</span></div>`;
 }
+function focusMetrics() {
+  if (market === "total")
+    return new Set([
+      "Offensive Efficiency",
+      "Defensive Efficiency",
+      "Explosiveness",
+      "Finishing Drives",
+    ]);
+  if (market === "moneyline")
+    return new Set([
+      "Overall Strength",
+      "Offensive Efficiency",
+      "Defensive Efficiency",
+    ]);
+  return new Set([
+    "Overall Strength",
+    "Offensive Efficiency",
+    "Defensive Efficiency",
+    "Havoc (Disruption)",
+    "Finishing Drives",
+  ]);
+}
 function matchupTeams(g) {
-  return `<div class="panel-teams"><div><span class="panel-team-name">${logo(g.away, g.away_id)}<b>${g.away}</b></span><small>${rank(g.away_profile)} · ${g.away_profile.strength_tier || g.away_profile.classification}</small></div><i>@</i><div><span class="panel-team-name">${logo(g.home, g.home_id)}<b>${g.home}</b></span><small>${rank(g.home_profile)} · ${g.home_profile.strength_tier || g.home_profile.classification}</small></div></div>`;
+  return `<div class="panel-teams"><div><span class="panel-team-name">${logo(g.away, g.away_id)}<b>${g.away}</b></span>${strengthMeta(g.away_profile)}</div><i>@</i><div><span class="panel-team-name">${logo(g.home, g.home_id)}<b>${g.home}</b></span>${strengthMeta(g.home_profile)}</div></div>`;
 }
 function gamePanel(g, title, tone) {
   const a = metrics(g, g.away_profile),
@@ -353,8 +380,89 @@ function gamePanel(g, title, tone) {
     af = g.away_profile.recent_form || {},
     hf = g.home_profile.recent_form || {},
     ag = g.away_profile.advanced?.games_played ?? 0,
-    hg = g.home_profile.advanced?.games_played ?? 0;
-  return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x, i) => `<div class="panel-metric"><span>${x.name}</span>${metricSide(x.score, "away")}${metricSide(h[i].score, "home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag === 1 ? "" : "s"} · ${g.home} ${hg} game${hg === 1 ? "" : "s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games ? `${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games ? `${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div></div></section>`;
+    hg = g.home_profile.advanced?.games_played ?? 0,
+    focused = focusMetrics();
+  return `<section class="game-panel ${tone}"><div class="panel-title"><b>${title}</b><span>${new Date(g.start_date).toLocaleDateString()} · Week ${g.week}</span></div>${matchupTeams(g)}<div class="panel-lines">${line(g)}</div><p class="micro-label">Percentile rankings at this point in the season</p><small class="pregame-note">Season-to-date before kickoff · higher is stronger · same-week FBS field</small><div class="panel-metrics">${a.map((x, i) => `<div class="panel-metric${focused.has(x.name) ? " market-highlight" : ""}"><span>${x.name}</span>${metricSide(x.score, "away")}${metricSide(h[i].score, "home")}</div>`).join("")}</div><div class="sample-note">Advanced sample: ${g.away} ${ag} game${ag === 1 ? "" : "s"} · ${g.home} ${hg} game${hg === 1 ? "" : "s"}</div><p class="micro-label">Season-to-Date Form (Before Kickoff)</p><div class="form-pair"><div><b>${g.away}</b><span>${af.games ? `${af.wins}-${af.losses} · ${af.avg_points} scored · ${af.avg_allowed} allowed · ${af.games} game${af.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div><div><b>${g.home}</b><span>${hf.games ? `${hf.wins}-${hf.losses} · ${hf.avg_points} scored · ${hf.avg_allowed} allowed · ${hf.games} game${hf.games === 1 ? "" : "s"}` : "No prior-game sample"}</span></div></div></section>`;
+}
+const signed = (v) => (v == null ? "—" : `${v > 0 ? "+" : ""}${v}`);
+const winPct = (f) =>
+  f?.games ? `${Math.round((100 * f.wins) / f.games)}%` : "No sample";
+function marketFactors(g) {
+  const away = g.away_profile,
+    home = g.home_profile,
+    af = away.recent_form || {},
+    hf = home.recent_form || {},
+    strengthGap =
+      away.strength_score != null && home.strength_score != null
+        ? Math.abs(away.strength_score - home.strength_score)
+        : null,
+    formMargin = (f) =>
+      f.avg_points == null || f.avg_allowed == null
+        ? "—"
+        : signed(Math.round((f.avg_points - f.avg_allowed) * 10) / 10);
+  if (market === "moneyline")
+    return [
+      [
+        "Moneyline",
+        `${g.away} ${odds(g.away_moneyline)} · ${g.home} ${odds(g.home_moneyline)}`,
+      ],
+      [
+        "Weekly Strength Ranks",
+        `${g.away} #${away.national_strength_rank || "—"} · ${g.home} #${home.national_strength_rank || "—"}`,
+      ],
+      ["Season Win Rate", `${g.away} ${winPct(af)} · ${g.home} ${winPct(hf)}`],
+    ];
+  if (market === "total") {
+    const scoring =
+        af.avg_points == null || hf.avg_points == null
+          ? "—"
+          : (af.avg_points + hf.avg_points).toFixed(1),
+      allowed =
+        af.avg_allowed == null || hf.avg_allowed == null
+          ? "—"
+          : (af.avg_allowed + hf.avg_allowed).toFixed(1);
+    return [
+      [
+        "Market Total",
+        g.over_under == null ? "Unavailable" : `O/U ${g.over_under}`,
+      ],
+      [
+        "Combined Scoring Form",
+        scoring === "—" ? "No sample" : `${scoring} PPG`,
+      ],
+      [
+        "Combined Points Allowed",
+        allowed === "—" ? "No sample" : `${allowed} PPG`,
+      ],
+    ];
+  }
+  return [
+    [
+      "Point Spread",
+      g.spread == null ? "Unavailable" : `${g.home} ${signed(g.spread)}`,
+    ],
+    [
+      "Team Strength Gap",
+      strengthGap == null ? "Unavailable" : `${strengthGap} percentile points`,
+    ],
+    [
+      "Scoring Margins",
+      `${g.away} ${formMargin(af)} · ${g.home} ${formMargin(hf)}`,
+    ],
+  ];
+}
+function marketSnapshot(researched, historicalGame) {
+  const label =
+      market === "total"
+        ? "O/U Total"
+        : market[0].toUpperCase() + market.slice(1),
+    card = (game, title) =>
+      `<section><small>${title}</small>${marketFactors(game)
+        .map(
+          ([name, value]) => `<div><span>${name}</span><b>${value}</b></div>`,
+        )
+        .join("")}</section>`;
+  return `<div class="market-focus"><h4>${label} Factors</h4><p>These inputs receive extra emphasis for the selected market.</p><div>${card(researched, "Researched Game")}${card(historicalGame, "Historical Match")}</div></div>`;
 }
 function matchLabel(s) {
   return s >= 80
@@ -371,7 +479,7 @@ function bottomLine(g) {
   return `This game is comparable because ${w.slice(0, 2).join(" and ").toLowerCase() || "its broad pregame setup is similar"}. The most important caution is ${d[0].toLowerCase()}.`;
 }
 function comparison(g, s) {
-  return `<div class="comparison-v2"><div class="score-row"><div><small>Match score</small><b>${s}</b><span>${matchLabel(s)}</span></div><em>Pregame similarity only — not a predicted outcome.</em></div><div class="versus-grid">${gamePanel(selected, "Researched game", "researched")}<span class="vs">VS</span>${gamePanel(g, "Historical match", "historical")}</div><div class="explain-grid"><section><h4>◎ Why these games match</h4><ul>${why(
+  return `<div class="comparison-v2"><div class="score-row"><div><small>Match score</small><b>${s}</b><span>${matchLabel(s)}</span></div><em>Pregame similarity only — not a predicted outcome.</em></div>${marketSnapshot(selected, g)}<div class="versus-grid">${gamePanel(selected, "Researched game", "researched")}<span class="vs">VS</span>${gamePanel(g, "Historical match", "historical")}</div><div class="explain-grid"><section><h4>◎ Why these games match</h4><ul>${why(
     g,
   )
     .map((x) => `<li>${x}</li>`)
@@ -399,7 +507,7 @@ function renderMatches(xs) {
   $("matches").innerHTML = xs
     .map(
       ({ g, s }, i) =>
-        `<details class="match" ${i === 0 ? "open" : ""}><summary><div class="matchtop"><span>#${i + 1} · ${g.season} Week ${g.week}</span><b><strong>${s}</strong><em>${matchLabel(s)}</em></b></div><div class="match-summary-teams"><span class="summary-team">${logo(g.away, g.away_id)}<strong>${g.away}</strong></span><span class="summary-at">at</span><span class="summary-team">${logo(g.home, g.home_id)}<strong>${g.home}</strong></span></div><div class="matchlines">${line(g)}</div></summary>${comparison(g, s)}</details>`,
+        `<details class="match" ${i === 0 ? "open" : ""}><summary><div class="matchtop"><span>#${i + 1} · ${g.season} Week ${g.week}</span><b><strong>${s}</strong><em>${matchLabel(s)}</em></b></div><div class="match-summary-teams"><span class="summary-team">${logo(g.away, g.away_id)}<span class="summary-team-copy"><strong>${g.away}</strong>${strengthMeta(g.away_profile)}</span></span><span class="summary-at">at</span><span class="summary-team">${logo(g.home, g.home_id)}<span class="summary-team-copy"><strong>${g.home}</strong>${strengthMeta(g.home_profile)}</span></span></div><div class="matchlines">${line(g)}</div></summary>${comparison(g, s)}</details>`,
     )
     .join("");
 }

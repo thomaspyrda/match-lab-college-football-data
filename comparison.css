@@ -15,6 +15,15 @@
   font-size: 21px;
   line-height: 1.15;
 }
+.summary-team-copy {
+  display: grid;
+  gap: 1px;
+}
+.summary-team-copy small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+}
 .summary-at {
   color: var(--muted);
   font-size: 14px;
@@ -81,6 +90,58 @@
   color: var(--muted);
   font-size: 10px;
   font-style: normal;
+}
+.market-focus {
+  margin-bottom: 18px;
+  padding: 16px;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: 14px;
+  background: #0a1a0f;
+}
+.market-focus h4 {
+  margin: 0;
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+.market-focus > p {
+  margin: 3px 0 12px;
+  color: var(--muted);
+  font-size: 10px;
+}
+.market-focus > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.market-focus section {
+  padding: 12px;
+  border: 1px solid #383838;
+  border-radius: 10px;
+  background: #1f1f1f;
+}
+.market-focus section > small {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.market-focus section > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-top: 1px solid #303030;
+  font-size: 11px;
+}
+.market-focus section span {
+  color: var(--muted);
+}
+.market-focus section b {
+  text-align: right;
 }
 .versus-grid {
   display: grid;
@@ -200,6 +261,17 @@
   align-items: center;
   border-top: 1px solid #222931;
   padding: 7px 0;
+}
+.panel-metric.market-highlight {
+  margin: 0 -7px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-left: 2px solid var(--green);
+  background: rgba(0, 255, 65, 0.055);
+}
+.panel-metric.market-highlight > span {
+  color: var(--green);
+  font-weight: 700;
 }
 .panel-metric > span {
   font-size: 10px;
@@ -397,6 +469,9 @@
   }
   .summary-team strong {
     font-size: 18px;
+  }
+  .market-focus > div {
+    grid-template-columns: 1fr;
   }
   .matchtop b {
     align-items: flex-end;
