@@ -32,5 +32,21 @@ class AdvancedProfileTests(unittest.TestCase):
                     if advanced:
                         self.assertEqual(advanced.get("through_week"), max(0, game["week"] - 1))
 
+    def test_recent_form_uses_every_prior_season_game(self):
+        for path in sorted((ROOT / "data" / "historical").glob("*.json")):
+            prior_games = {}
+            games = json.loads(path.read_text(encoding="utf-8")).get("games", [])
+            for game in sorted(games, key=lambda item: item.get("start_date") or ""):
+                for team, side in ((game["home"], "home_profile"), (game["away"], "away_profile")):
+                    actual = game.get(side, {}).get("recent_form", {}).get("games")
+                    self.assertEqual(actual, prior_games.get(team, 0), f"{path.name}: {team} before {game['game_id']}")
+                if game.get("result") is not None:
+                    prior_games[game["home"]] = prior_games.get(game["home"], 0) + 1
+                    prior_games[game["away"]] = prior_games.get(game["away"], 0) + 1
+
+    def test_browser_requests_ten_closest_matches(self):
+        source = (ROOT / "app.js").read_text(encoding="utf-8")
+        self.assertIn(".slice(0,10)", source)
+
 if __name__ == "__main__":
     unittest.main()

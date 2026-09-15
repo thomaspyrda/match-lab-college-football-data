@@ -31,4 +31,6 @@ Use `match_lab_game_ap_elo_lookup.json` for historical game comparisons and `mat
 
 The scheduled GitHub workflow refreshes the active season every six hours. Historical advanced profiles are cached after validation, while the current season is rebuilt so newly completed games flow into future pregame snapshots.
 
+Historical matching returns the 10 closest eligible games. Each matchup's Season-to-Date Form uses every completed game earlier in that same season—never games played after the compared kickoff.
+
 The private compiler inputs and raw subscription responses are intentionally excluded. Store the CFBD key only in a server-side `CFBD_API_KEY` environment variable.

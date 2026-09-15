@@ -26,7 +26,7 @@ def result(team,g):
  home=g.get("homeTeam")==team; won=(hp>ap) if home else (ap>hp)
  return {"won":won,"points":hp if home else ap,"allowed":ap if home else hp}
 def form(team,prior):
- rr=[result(team,g) for g in prior[-5:]];rr=[x for x in rr if x]
+ rr=[result(team,g) for g in prior];rr=[x for x in rr if x]
  return {"games":len(rr),"wins":sum(x["won"] for x in rr),"losses":sum(not x["won"] for x in rr),"avg_points":round(sum(x["points"] for x in rr)/len(rr),1) if rr else None,"avg_allowed":round(sum(x["allowed"] for x in rr)/len(rr),1) if rr else None,"coming_off_loss":(not rr[-1]["won"]) if rr else None}
 strength={}
 for p in (DATA/"weekly").glob("*.json"):
