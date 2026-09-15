@@ -1,5 +1,13 @@
 # Validation Report
 
+## Advanced pregame profiles
+
+- Seven advanced categories are converted to 1–100 same-season, same-week FBS percentiles with midpoint handling for ties.
+- Each effective week uses CFBD data only through `effective_week - 1`.
+- Defensive efficiency is direction-adjusted so higher percentiles always mean stronger performance.
+- Current-season completed games become eligible historical matches only after a final result exists.
+- Raw CFBD subscription responses and `CFBD_API_KEY` are never written to the repository.
+
 - Seasons: 2015–2026
 - AP/Elo snapshots: 170
 - Weekly FBS team rows: 22,246

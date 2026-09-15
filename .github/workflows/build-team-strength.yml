@@ -9,6 +9,8 @@ on:
       - enrich_team_strength.py
       - build_web_data.py
       - refresh_match_lab.py
+      - build_advanced_profiles.py
+      - test_advanced_profiles.py
       - index.html
       - app.js
       - styles.css
@@ -30,11 +32,16 @@ jobs:
           python-version: '3.12'
       - run: python enrich_team_strength.py
       - run: python build_web_data.py
+      - name: Build pregame advanced percentile profiles
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python build_advanced_profiles.py
       - name: Refresh upcoming games and historical market index
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
+      - run: python -m unittest -v test_advanced_profiles.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs
         run: |
