@@ -495,6 +495,237 @@ main {
 .method article p {
   color: var(--muted);
 }
+.betwise-cta {
+  overflow: hidden;
+  margin: 10px 0 70px;
+  border: 1px solid rgba(0, 255, 65, 0.28);
+  border-radius: 22px;
+  background:
+    linear-gradient(rgba(0, 255, 65, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0, rgba(0, 255, 65, 0.12), transparent 38%),
+    #030604;
+  background-size: 42px 42px, 42px 42px, auto, auto;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+}
+.betwise-collage {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 42%, #030604 100%),
+    url("assets/betwise-cfb-vip-collage.webp");
+  background-position: center;
+  background-size: cover;
+  isolation: isolate;
+}
+.betwise-collage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(3, 6, 4, 0.48), transparent 18%, transparent 82%, rgba(3, 6, 4, 0.48)),
+    radial-gradient(circle at 50% 100%, rgba(0, 255, 65, 0.2), transparent 34%);
+}
+.betwise-collage p {
+  margin: 0;
+  padding: 8px 13px;
+  border: 1px solid rgba(0, 255, 65, 0.48);
+  border-radius: 999px;
+  background: rgba(2, 8, 4, 0.84);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.betwise-intro {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: -20px auto 0;
+  padding: 56px 54px 34px;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(180deg, rgba(3, 6, 4, 0.98), rgba(3, 6, 4, 0.94));
+  text-align: center;
+}
+.betwise-intro .eyebrow {
+  margin: 0 0 16px;
+}
+.betwise-intro h2 {
+  max-width: 790px;
+  margin: 0 auto 16px;
+  font-size: clamp(30px, 4.5vw, 55px);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+.betwise-intro h2 em {
+  color: var(--green);
+  font-style: normal;
+}
+.betwise-intro > p:last-child {
+  max-width: 730px;
+  margin: 0 auto;
+  color: #b8c9bd;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.betwise-offers {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 16px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 34px 28px;
+}
+.betwise-offer {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(13, 28, 17, 0.96), rgba(5, 12, 8, 0.97));
+}
+.betwise-offer.vip-offer {
+  border-color: rgba(0, 255, 65, 0.58);
+  background:
+    radial-gradient(circle at 92% 5%, rgba(0, 255, 65, 0.15), transparent 34%),
+    linear-gradient(145deg, rgba(10, 31, 16, 0.98), rgba(4, 12, 7, 0.98));
+  box-shadow: 0 0 34px rgba(0, 255, 65, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.offer-label {
+  align-self: flex-start;
+  margin-bottom: 17px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d8e7dc;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+.vip-offer .offer-label {
+  background: var(--green);
+  color: #021006;
+}
+.betwise-offer h3 {
+  margin: 0 0 8px;
+  font-size: clamp(23px, 2.6vw, 31px);
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.betwise-offer > p {
+  margin: 0 0 20px;
+  color: #b8c9bd;
+}
+.betwise-offer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+.betwise-offer li {
+  padding: 7px 9px;
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 255, 65, 0.055);
+  color: #dce9df;
+  font-size: 12px;
+  line-height: 1.15;
+}
+.offer-button {
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 13px 17px;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  color: #031006;
+  background: var(--green);
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.offer-button.secondary {
+  color: var(--green);
+  background: transparent;
+}
+.offer-button:hover,
+.offer-button:focus-visible,
+.vip-plan:hover,
+.vip-plan:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.2);
+}
+.vip-pricing {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.vip-plan {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 13px 8px 11px;
+  border: 1px solid rgba(0, 255, 65, 0.22);
+  border-radius: 10px;
+  background: rgba(0, 255, 65, 0.045);
+  color: var(--text);
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.vip-plan.featured {
+  border-color: rgba(0, 255, 65, 0.78);
+  background: rgba(0, 255, 65, 0.11);
+}
+.vip-plan span {
+  margin-bottom: 5px;
+  color: #bed0c2;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+.vip-plan strong {
+  color: var(--green);
+  font: 900 25px/1 var(--number-font);
+  letter-spacing: -1px;
+}
+.vip-plan small {
+  min-height: 25px;
+  margin-top: 5px;
+  color: #b8c9bd;
+  font-size: 9px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.vip-plan b {
+  margin-top: 9px;
+  color: var(--green);
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.betwise-disclaimer {
+  margin: 0;
+  padding: 0 24px 28px;
+  color: #839488;
+  font-size: 11px;
+  text-align: center;
+}
 footer {
   text-align: center;
   border-top: 1px solid var(--line);
@@ -530,6 +761,47 @@ footer {
   }
   .method-grid {
     grid-template-columns: 1fr;
+  }
+  .betwise-cta {
+    margin-bottom: 48px;
+    border-radius: 15px;
+  }
+  .betwise-collage {
+    min-height: 238px;
+  }
+  .betwise-intro {
+    margin-top: -10px;
+    padding: 44px 22px 24px;
+  }
+  .betwise-intro h2 {
+    letter-spacing: -1px;
+  }
+  .betwise-offers {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 22px;
+  }
+  .betwise-offer {
+    padding: 23px;
+  }
+  .vip-pricing {
+    grid-template-columns: 1fr;
+  }
+  .vip-plan {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    text-align: left;
+  }
+  .vip-plan strong {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+  }
+  .vip-plan small {
+    min-height: 0;
+    margin-top: 0;
+  }
+  .vip-plan b {
+    grid-column: 1 / -1;
   }
   .comparison-head,
   .metric {
