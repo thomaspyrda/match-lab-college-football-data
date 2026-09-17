@@ -30,7 +30,7 @@ function strengthMeta(p) {
 function logo(name, id, cls = "team-logo") {
   const fallback = `<span class="logo-fallback"${id ? " hidden" : ""}>${initials(name)}</span>`;
   return id
-    ? `<span class="logo-wrap"><img class="${cls}" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png" alt="${name} logo" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`
+    ? `<span class="logo-wrap"><img class="${cls}" src="https://a.espncdn.com/i/teamlogos/ncaa/500/${id}.png" alt="${name} logo" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false">${fallback}</span>`
     : fallback;
 }
 function line(g) {
@@ -56,9 +56,11 @@ function renderSlate() {
   $("games").innerHTML = games.map(gameCard).join("");
   document
     .querySelectorAll("#dateFilters button")
-    .forEach((b) =>
-      b.classList.toggle("active", b.dataset.date === activeDate),
-    );
+    .forEach((b) => {
+      const active = b.dataset.date === activeDate;
+      b.classList.toggle("active", active);
+      b.setAttribute("aria-pressed", String(active));
+    });
 }
 async function init() {
   try {
@@ -70,7 +72,7 @@ async function init() {
     $("dateFilters").innerHTML = ["all", ...dates]
       .map(
         (d) =>
-          `<button data-date="${d}" class="${d === "all" ? "active" : ""}">${d === "all" ? "All games" : d}</button>`,
+          `<button data-date="${d}" class="${d === "all" ? "active" : ""}" aria-pressed="${d === "all"}">${d === "all" ? "All games" : d}</button>`,
       )
       .join("");
     renderSlate();
