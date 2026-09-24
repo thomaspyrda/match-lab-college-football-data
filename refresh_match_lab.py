@@ -111,7 +111,15 @@ for year in sorted(strength):
 # CFBD's season-wide games response may omit future weeks. Request the next
 # two weeks explicitly, then build their live AP and full-field strength boards.
 current_records=json.loads((DATA/"historical"/f"{now.year}.json").read_text())["games"]
-next_week=max((g["week"] for g in current_records),default=0)+1
+# Determine the weeks that actually intersect the rolling seven-day window.
+# Do not use max(schedule week)+1: CFBD may return the full future schedule,
+# which would incorrectly jump to the end of the season and publish zero games.
+scheduled_weeks={
+ int(g.get("week") or 0) for g in current_records
+ if now<=dt(g.get("start_date"))<=end and int(g.get("week") or 0)>0
+}
+last_completed=max((int(g.get("week") or 0) for g in current_records if g.get("result")),default=0)
+candidate_weeks=sorted(scheduled_weeks | {last_completed+1,last_completed+2})
 rankings=api("/rankings",year=now.year,seasonType="regular")
 def live_ap(week):
  snap=next((x for x in rankings if int(x.get("week") or 0)==week),None)
@@ -137,7 +145,7 @@ def live_strength(week):
   out[team]={"ap_rank":ap.get(team),"national_strength_rank":rank,"fbs_field_size":len(vals),"strength_score":score,"strength_tier":tier(score),"top_percent":101-score,"strength_source":"elo_fallback"}
  return out
 all_upcoming=[]
-for week in (next_week,next_week+1):
+for week in candidate_weeks:
  future=api("/games",year=now.year,seasonType="regular",week=week)
  future_lines=api("/lines",year=now.year,seasonType="regular",week=week)
  fl={str(x.get("id")):pickline(x) for x in future_lines}; board=live_strength(week)
