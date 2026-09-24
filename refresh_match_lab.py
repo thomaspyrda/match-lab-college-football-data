@@ -35,126 +35,130 @@ advanced={}
 for p in (DATA/"profiles").glob("*.json"):
  d=json.loads(p.read_text());advanced[int(d["season"])]=d.get("weeks",{})
 
-# Team Strength blends current-season performance, opponent-adjusted results,
-# schedule quality, and a live Elo anchor. All inputs are pregame-safe.
-OFFENSE_STRENGTH_METRICS=("offensive_efficiency","rushing_success","passing_success","explosiveness","finishing_drives")
-DEFENSE_STRENGTH_METRICS=("defensive_efficiency","havoc")
+# Compounded weekly power rating.
+# Week 1 begins from the preseason full-FBS strength board. After each completed
+# week, teams move up/down based on (1) opponent quality and (2) game performance.
+# No week is recalculated from scratch and no future result enters a pregame board.
 FCS_OTHER_STRENGTH=15.0
+RATING_TO_POINTS=0.30
+HOME_FIELD_POINTS=2.5
+UPDATE_RATE=0.32
+MAX_GAME_DELTA=12.0
+MARGIN_CAP=42.0
 
-def profile_composite(p):
- off=[p.get(k) for k in OFFENSE_STRENGTH_METRICS if p.get(k) is not None]
- de=[p.get(k) for k in DEFENSE_STRENGTH_METRICS if p.get(k) is not None]
- if not off or not de:return None
- return 0.5*(sum(off)/len(off))+0.5*(sum(de)/len(de))
+TEAM_ALIASES={
+ "UConn":"Connecticut",
+ "Connecticut":"Connecticut",
+}
+def canon_team(team):
+ return TEAM_ALIASES.get(team,team)
 
 def tier(score):
  return "Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak"
 
-def pct_score(value, values):
+def pct_score(value,values):
  usable=[float(v) for v in values if v is not None]
  if value is None or len(usable)<2:return None
  value=float(value);below=sum(v<value for v in usable);tied=sum(v==value for v in usable)
  return max(1,min(100,int(100*(below+(tied-1)/2)/(len(usable)-1)+0.5)))
 
-history_cache={}
-for p in (DATA/"historical").glob("*.json"):
- try:
-  d=json.loads(p.read_text())
-  history_cache[int(d.get("season") or p.stem)]=d.get("games",[])
- except Exception:
-  pass
+def preseason_board(year):
+ weeks=strength.get(year,{})
+ if not weeks:return {}
+ first_week=min((int(w) for w in weeks),default=1)
+ teams=weeks.get(str(first_week),{}).get("teams",{})
+ out={}
+ for team,row in teams.items():
+  score=row.get("strength_score")
+  if score is not None:out[canon_team(team)]=float(score)
+ return out
 
-def schedule_context(year,week,team):
- opponents=[];game_quality=[]
- for g in history_cache.get(year,[]):
-  if not g.get("result") or int(g.get("week") or 0)>=int(week):
-   continue
-  if team not in (g.get("home"),g.get("away")):
-   continue
-  is_home=g.get("home")==team
-  opp_profile=g.get("away_profile") if is_home else g.get("home_profile")
-  opp_strength=(opp_profile or {}).get("strength_score")
-  opp_strength=float(opp_strength) if opp_strength is not None else FCS_OTHER_STRENGTH
-  opponents.append(opp_strength)
-  res=g.get("result") or {}
-  team_pts=res.get("home_points") if is_home else res.get("away_points")
-  opp_pts=res.get("away_points") if is_home else res.get("home_points")
-  if team_pts is not None and opp_pts is not None:
-   margin=max(-35.0,min(35.0,float(team_pts)-float(opp_pts)))
-   margin_score=max(1.0,min(100.0,50.0+1.4*margin))
-   # Result quality rewards beating strong teams and dominant wins, while a
-   # hard schedule alone cannot make a team elite after poor results.
-   game_quality.append(0.65*margin_score+0.35*opp_strength)
- if not opponents:return None
- return {
-  "raw":sum(opponents)/len(opponents),
-  "resume_raw":sum(game_quality)/len(game_quality) if game_quality else None,
-  "games":len(opponents),
- }
+def ap_for_week(year,week,team):
+ rows=strength.get(year,{}).get(str(week),{}).get("teams",{})
+ direct=rows.get(team)
+ if direct:return direct.get("ap_rank")
+ key=canon_team(team)
+ for name,row in rows.items():
+  if canon_team(name)==key:return row.get("ap_rank")
+ return None
 
-profile_strength={}
-for year,weeks in advanced.items():
- profile_strength[year]={}
- for week,board in weeks.items():
-  rows=[]
-  for team,p in board.get("teams",{}).items():
-   performance=profile_composite(p)
-   if performance is None:continue
-   ctx=schedule_context(year,int(week),team)
-   rows.append({"team":team,"performance":float(performance),"ctx":ctx})
+def build_compounded_boards(year,games):
+ ratings=preseason_board(year)
+ if not ratings:return {}
+ preseason=dict(ratings)
+ opponent_log={team:[] for team in ratings}
+ games_played={team:0 for team in ratings}
+ max_week=max([int(g.get("week") or 0) for g in games] or [1])
+ by_week=defaultdict(list)
+ for g in games:
+  if g.get("homePoints") is None or g.get("awayPoints") is None:continue
+  by_week[int(g.get("week") or 0)].append(g)
 
-  perf_values=[r["performance"] for r in rows]
-  sos_values=[r["ctx"]["raw"] for r in rows if r["ctx"]]
-  resume_values=[r["ctx"]["resume_raw"] for r in rows if r["ctx"] and r["ctx"]["resume_raw"] is not None]
-  for r in rows:
-   ctx=r["ctx"]
-   r["performance_score"]=pct_score(r["performance"],perf_values)
-   r["schedule_strength_score"]=pct_score(ctx["raw"],sos_values) if ctx else None
-   r["resume_score"]=pct_score(ctx["resume_raw"],resume_values) if ctx and ctx["resume_raw"] is not None else None
-   # Current-season production is the primary signal. Resume rewards what the
-   # team actually did against its schedule; raw SOS is deliberately smaller.
-   ps=r["performance_score"] or 50
-   rs=r["resume_score"] if r["resume_score"] is not None else 50
-   ss=r["schedule_strength_score"] if r["schedule_strength_score"] is not None else 50
-   r["profile_score"]=0.65*ps+0.25*rs+0.10*ss
+ boards={}
+ for week in range(1,max_week+2):
+  teams=sorted(ratings)
+  values=[ratings[t] for t in teams]
+  sos_raw={t:(sum(opponent_log[t])/len(opponent_log[t]) if opponent_log[t] else None) for t in teams}
+  sos_values=[v for v in sos_raw.values() if v is not None]
+  ranked=sorted(teams,key=lambda t:(-ratings[t],t))
+  rank_map={};last=None;rank=0
+  for pos,t in enumerate(ranked,1):
+   if ratings[t]!=last:rank=pos;last=ratings[t]
+   rank_map[t]=rank
 
-  rows.sort(key=lambda x:(-x["profile_score"],x["team"]))
-  out={};last=None;rank=0;profile_values=[r["profile_score"] for r in rows]
-  for pos,r in enumerate(rows,1):
-   value=r["profile_score"]
-   if value!=last:rank=pos;last=value
-   score=pct_score(value,profile_values)
-   ctx=r["ctx"]
-   out[r["team"]]={
-    "national_strength_rank":rank,
-    "fbs_field_size":len(rows),
+  board={}
+  for t in teams:
+   score=pct_score(ratings[t],values)
+   board[t]={
+    "national_strength_rank":rank_map[t],
+    "fbs_field_size":len(teams),
     "strength_score":score,
     "strength_tier":tier(score),
     "top_percent":101-score,
-    "strength_source":"current_profile_resume_sos",
-    "performance_index":round(r["performance"],1),
-    "performance_score":r["performance_score"],
-    "schedule_strength":round(ctx["raw"],1) if ctx else None,
-    "schedule_strength_score":r["schedule_strength_score"],
-    "resume_score":r["resume_score"],
-    "schedule_games":ctx["games"] if ctx else 0,
+    "strength_source":"compounded_weekly_power",
+    "power_rating":round(ratings[t],2),
+    "preseason_strength":round(preseason[t],2),
+    "schedule_strength":round(sos_raw[t],2) if sos_raw[t] is not None else None,
+    "schedule_strength_score":pct_score(sos_raw[t],sos_values) if sos_raw[t] is not None else None,
+    "games_in_rating":games_played[t],
    }
-  profile_strength[year][str(week)]=out
+  boards[str(week)]=board
 
+  # All games in a week are graded against the same pregame snapshot so the
+  # weekly board is stable and strictly pregame-safe.
+  pre=dict(ratings);deltas=defaultdict(list)
+  for g in sorted(by_week.get(week,[]),key=lambda x:x.get("startDate") or ""):
+   hp=float(g.get("homePoints"));ap=float(g.get("awayPoints"))
+   home=canon_team(g.get("homeTeam"));away=canon_team(g.get("awayTeam"))
+   for team,opp,is_home,margin in (
+    (home,away,True,hp-ap),
+    (away,home,False,ap-hp),
+   ):
+    if team not in pre:continue
+    team_rating=pre[team]
+    opp_rating=pre.get(opp,FCS_OTHER_STRENGTH)
+    capped=max(-MARGIN_CAP,min(MARGIN_CAP,margin))
+    expected=(team_rating-opp_rating)*RATING_TO_POINTS+(HOME_FIELD_POINTS if is_home else -HOME_FIELD_POINTS)
+    surprise=capped-expected
+    delta=max(-MAX_GAME_DELTA,min(MAX_GAME_DELTA,UPDATE_RATE*surprise))
+    deltas[team].append(delta)
+    opponent_log[team].append(float(opp_rating))
+    games_played[team]+=1
+
+  for team,team_deltas in deltas.items():
+   ratings[team]=pre[team]+sum(team_deltas)/len(team_deltas)
+
+ return boards
+
+power_boards={}
 def srank(year,week,team):
- weekly=strength.get(year,{}).get(str(week),{}).get("teams",{}).get(team,{})
- prof=profile_strength.get(year,{}).get(str(week),{}).get(team)
- if prof:
-  return {"ap_rank":weekly.get("ap_rank")} | prof
- return {k:weekly.get(k) for k in ("ap_rank","national_strength_rank","fbs_field_size","strength_score","strength_tier","top_percent")} | {
-  "strength_source":"elo_fallback",
-  "performance_index":None,
-  "performance_score":None,
-  "schedule_strength":None,
-  "schedule_strength_score":None,
-  "resume_score":None,
-  "schedule_games":0,
- }
+ board=power_boards.get(year,{})
+ row=board.get(str(week),{}).get(canon_team(team))
+ if row is None and board:
+  prior=[int(w) for w in board if int(w)<=int(week)]
+  if prior:row=board[str(max(prior))].get(canon_team(team))
+ if not row:return {"ap_rank":ap_for_week(year,week,team)}
+ return {"ap_rank":ap_for_week(year,week,team)}|row
 
 def adv(year,week,team):
  board=advanced.get(year,{}).get(str(week),{})
@@ -163,6 +167,7 @@ def adv(year,week,team):
 all_upcoming=[]; now=datetime.now(timezone.utc); end=now+timedelta(days=7)
 for year in sorted(strength):
  games=api("/games",year=year,seasonType="regular")
+ power_boards[year]=build_compounded_boards(year,games)
  lines=api("/lines",year=year,seasonType="regular")
  lm={str(x.get("id")):pickline(x) for x in lines}
  histories=defaultdict(list); records=[]
@@ -210,52 +215,18 @@ def live_ap(week):
  return {r.get("school"):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
 def live_strength(week):
  ap=live_ap(week)
- prof=profile_strength.get(now.year,{}).get(str(week),{})
- ratings=api("/ratings/elo",year=now.year,seasonType="regular",week=week)
- elo_rows=[]
- for r in ratings:
-  team=r.get("team") or r.get("school");value=r.get("elo")
-  if team and value is not None:elo_rows.append((team,int(value)))
- elo_values=[v for _,v in elo_rows]
- elo_scores={team:pct_score(value,elo_values) for team,value in elo_rows}
-
- # Once current-season profiles exist, combine them with a 40% Elo anchor.
- # Elo stabilizes tiny early-season samples and captures opponent-adjusted
- # team quality; the 60% profile side keeps current performance dominant.
- if prof:
-  rows=[]
-  for team,row in prof.items():
-   profile_score=row.get("strength_score")
-   elo_score=elo_scores.get(team)
-   if profile_score is None and elo_score is None:continue
-   combined=(0.60*(profile_score if profile_score is not None else 50)+
-             0.40*(elo_score if elo_score is not None else 50))
-   rows.append((team,combined,elo_score,row))
-  vals=[v for _,v,_,_ in rows]
-  rows.sort(key=lambda x:(-x[1],x[0]))
-  out={};last=None;rank=0
-  for pos,(team,value,elo_score,row) in enumerate(rows,1):
-   if value!=last:rank=pos;last=value
-   score=pct_score(value,vals)
-   out[team]=row|{
-    "ap_rank":ap.get(team),
-    "national_strength_rank":rank,
-    "fbs_field_size":len(rows),
-    "strength_score":score,
-    "strength_tier":tier(score),
-    "top_percent":101-score,
-    "elo_score":elo_score,
-    "strength_source":"performance_resume_sos_plus_elo",
-   }
-  return out
-
- # Week 1 fallback: live Elo only.
- elo_rows.sort(key=lambda x:(-x[1],x[0]));out={};last=None;rank=0
- for pos,(team,value) in enumerate(elo_rows,1):
-  if value!=last:rank=pos;last=value
-  score=elo_scores.get(team)
-  out[team]={"ap_rank":ap.get(team),"national_strength_rank":rank,"fbs_field_size":len(elo_rows),"strength_score":score,"strength_tier":tier(score),"top_percent":101-score,"elo_score":score,"strength_source":"elo_fallback"}
+ board=power_boards.get(now.year,{})
+ rows=board.get(str(week))
+ if rows is None and board:
+  prior=[int(w) for w in board if int(w)<=int(week)]
+  rows=board.get(str(max(prior)),{}) if prior else {}
+ out={}
+ for team,row in (rows or {}).items():
+  out[team]=row|{"ap_rank":ap.get(team) or (ap.get("UConn") if team=="Connecticut" else None)}
+  if team=="Connecticut":
+   out["UConn"]=out.pop("Connecticut")
  return out
+
 all_upcoming=[]
 for week in candidate_weeks:
  future=api("/games",year=now.year,seasonType="regular",week=week)
