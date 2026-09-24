@@ -347,6 +347,7 @@ function metrics(g, p) {
   const a = p.advanced || {};
   return [
     { name: "Overall Strength", score: p.strength_score },
+    { name: "Schedule Strength", score: p.schedule_strength_score },
     { name: "Offensive Efficiency", score: a.offensive_efficiency },
     { name: "Defensive Efficiency", score: a.defensive_efficiency },
     { name: "Rushing Success Rate", score: a.rushing_success },
