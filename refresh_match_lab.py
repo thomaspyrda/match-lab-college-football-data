@@ -34,9 +34,45 @@ for p in (DATA/"weekly").glob("*.json"):
 advanced={}
 for p in (DATA/"profiles").glob("*.json"):
  d=json.loads(p.read_text());advanced[int(d["season"])]=d.get("weeks",{})
+
+# Team Strength should describe current pregame performance, not legacy Elo alone.
+# Build a balanced current-season composite from the existing pregame-only
+# advanced percentile profiles. Offense and defense each contribute 50%.
+OFFENSE_STRENGTH_METRICS=("offensive_efficiency","rushing_success","passing_success","explosiveness","finishing_drives")
+DEFENSE_STRENGTH_METRICS=("defensive_efficiency","havoc")
+def profile_composite(p):
+ off=[p.get(k) for k in OFFENSE_STRENGTH_METRICS if p.get(k) is not None]
+ de=[p.get(k) for k in DEFENSE_STRENGTH_METRICS if p.get(k) is not None]
+ if not off or not de:return None
+ return 0.5*(sum(off)/len(off))+0.5*(sum(de)/len(de))
+def tier(score):
+ return "Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak"
+profile_strength={}
+for year,weeks in advanced.items():
+ profile_strength[year]={}
+ for week,board in weeks.items():
+  vals=[]
+  for team,p in board.get("teams",{}).items():
+   value=profile_composite(p)
+   if value is not None:vals.append((team,float(value)))
+  vals.sort(key=lambda x:(-x[1],x[0]))
+  out={};last=None;rank=0
+  only=[v for _,v in vals]
+  for pos,(team,value) in enumerate(vals,1):
+   if value!=last:rank=pos;last=value
+   below=sum(v<value for v in only);tied=sum(v==value for v in only)
+   pct=100 if len(only)<=1 else 100*(below+(tied-1)/2)/(len(only)-1)
+   score=max(1,min(100,int(pct+0.5)))
+   out[team]={"national_strength_rank":rank,"fbs_field_size":len(vals),"strength_score":score,"strength_tier":tier(score),"top_percent":101-score,"strength_source":"advanced_profile"}
+  profile_strength[year][str(week)]=out
+
 def srank(year,week,team):
- r=strength.get(year,{}).get(str(week),{}).get("teams",{}).get(team,{})
- return {k:r.get(k) for k in ("ap_rank","national_strength_rank","fbs_field_size","strength_score","strength_tier","top_percent")}
+ weekly=strength.get(year,{}).get(str(week),{}).get("teams",{}).get(team,{})
+ prof=profile_strength.get(year,{}).get(str(week),{}).get(team)
+ if prof:
+  return {"ap_rank":weekly.get("ap_rank")} | prof
+ # Week 1 / missing-profile fallback: retain Elo rather than fabricate a rating.
+ return {k:weekly.get(k) for k in ("ap_rank","national_strength_rank","fbs_field_size","strength_score","strength_tier","top_percent")} | {"strength_source":"elo_fallback"}
 def adv(year,week,team):
  board=advanced.get(year,{}).get(str(week),{})
  r=board.get("teams",{}).get(team)
@@ -82,18 +118,23 @@ def live_ap(week):
  poll=next((p for p in (snap or {}).get("polls",[]) if str(p.get("poll","")).lower() in ("ap top 25","ap")),None)
  return {r.get("school"):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
 def live_strength(week):
+ ap=live_ap(week)
+ prof=profile_strength.get(now.year,{}).get(str(week),{})
+ if prof:
+  return {team:(row|{"ap_rank":ap.get(team)}) for team,row in prof.items()}
+ # Only use Elo when a pregame advanced profile does not yet exist (primarily Week 1).
  ratings=api("/ratings/elo",year=now.year,seasonType="regular",week=week)
  vals=[]
  for r in ratings:
   team=r.get("team") or r.get("school"); value=r.get("elo")
   if team and value is not None: vals.append((team,int(value)))
- vals.sort(key=lambda x:(-x[1],x[0])); ap=live_ap(week); out={}; last=None; rank=0
+ vals.sort(key=lambda x:(-x[1],x[0])); out={}; last=None; rank=0
  for pos,(team,value) in enumerate(vals,1):
   if value!=last:rank=pos;last=value
   below=sum(v<value for _,v in vals); tied=sum(v==value for _,v in vals)
   pct=100 if len(vals)<=1 else 100*(below+(tied-1)/2)/(len(vals)-1)
   score=max(1,min(100,int(pct+0.5)))
-  out[team]={"ap_rank":ap.get(team),"national_strength_rank":rank,"fbs_field_size":len(vals),"strength_score":score,"strength_tier":"Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak","top_percent":101-score}
+  out[team]={"ap_rank":ap.get(team),"national_strength_rank":rank,"fbs_field_size":len(vals),"strength_score":score,"strength_tier":tier(score),"top_percent":101-score,"strength_source":"elo_fallback"}
  return out
 all_upcoming=[]
 for week in (next_week,next_week+1):
