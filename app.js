@@ -3,7 +3,8 @@ let upcoming,
   selected,
   market,
   historical = [],
-  activeDate = "all";
+  activeDate = "all",
+  historySeason = new Date().getFullYear();
 async function get(u) {
   const r = await fetch(u, { cache: "no-cache" });
   if (!r.ok) throw Error("Unable to load " + u);
@@ -61,6 +62,63 @@ function renderSlate() {
       b.classList.toggle("active", active);
       b.setAttribute("aria-pressed", String(active));
     });
+}
+function setLabMode(mode) {
+  const historyMode = mode === "history";
+  $("upcomingSection").hidden = historyMode;
+  $("historySection").hidden = !historyMode;
+  $("upcomingMode").classList.toggle("active", !historyMode);
+  $("historyMode").classList.toggle("active", historyMode);
+  $("upcomingMode").setAttribute("aria-selected", String(!historyMode));
+  $("historyMode").setAttribute("aria-selected", String(historyMode));
+  $("marketSection").hidden = true;
+  $("resultsSection").hidden = true;
+}
+async function ensureHistorical() {
+  if (historical.length) return;
+  historical = (
+    await Promise.all(
+      Array.from({ length: 12 }, (_, i) => get(`data/historical/${2015 + i}.json`)),
+    )
+  ).flatMap((x) => x.games);
+}
+function historicalGameCard(g) {
+  const finalText = g.result
+    ? `Final: ${g.away} ${g.result.away_points}, ${g.home} ${g.result.home_points}`
+    : "Result unavailable";
+  return `<button class="history-game" data-id="${g.game_id}">
+    <span class="history-date">${new Date(g.start_date).toLocaleDateString([], { year: "numeric", month: "short", day: "numeric" })} · Week ${g.week}</span>
+    <strong>${g.away} at ${g.home}</strong>
+    <small>${finalText}</small>
+  </button>`;
+}
+async function searchHistory() {
+  try {
+    await ensureHistorical();
+    const season = Number($("historySeason").value);
+    const q = $("historyTeam").value.trim().toLowerCase();
+    const rows = historical
+      .filter((g) => g.season === season)
+      .filter((g) => !q || g.home.toLowerCase().includes(q) || g.away.toLowerCase().includes(q))
+      .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
+      .slice(0, 100);
+    $("historyStatus").textContent = rows.length
+      ? `${rows.length} past college football game${rows.length === 1 ? "" : "s"} found`
+      : "No past college football games matched that search.";
+    $("historyGames").innerHTML = rows.map(historicalGameCard).join("");
+  } catch (e) {
+    $("historyStatus").textContent = "Historical college football games are temporarily unavailable.";
+    console.error(e);
+  }
+}
+function selectHistoricalGame(gameId) {
+  selected = historical.find((g) => g.game_id === gameId);
+  if (!selected) return;
+  $("selectedGame").innerHTML =
+    `Selected past CFB game: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
+  $("marketSection").hidden = false;
+  $("resultsSection").hidden = true;
+  $("marketSection").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 async function init() {
   try {
@@ -298,14 +356,7 @@ async function match(m) {
   $("resultTitle").textContent =
     `${selected.away} at ${selected.home} · ${m === "total" ? "O/U Total" : m[0].toUpperCase() + m.slice(1)}`;
   $("matches").innerHTML = "Searching verified historical games…";
-  if (!historical.length)
-    historical = (
-      await Promise.all(
-        Array.from({ length: 12 }, (_, i) =>
-          get(`data/historical/${2015 + i}.json`),
-        ),
-      )
-    ).flatMap((x) => x.games);
+  await ensureHistorical();
   const candidates = historical
     .filter(
       (g) =>
@@ -530,4 +581,22 @@ document
   .addEventListener("click", () =>
     $("games").scrollBy({ left: 650, behavior: "smooth" }),
   );
+$("upcomingMode").addEventListener("click", () => setLabMode("upcoming"));
+$("historyMode").addEventListener("click", async () => {
+  setLabMode("history");
+  if (!$("historySeason").options.length) {
+    const current = new Date().getFullYear();
+    $("historySeason").innerHTML = Array.from({ length: current - 2014 }, (_, i) => current - i)
+      .map((y) => `<option value="${y}">${y}</option>`)
+      .join("");
+  }
+});
+$("historySearchButton").addEventListener("click", searchHistory);
+$("historyTeam").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") searchHistory();
+});
+$("historyGames").addEventListener("click", (e) => {
+  const b = e.target.closest(".history-game");
+  if (b) selectHistoricalGame(b.dataset.id);
+});
 init();
