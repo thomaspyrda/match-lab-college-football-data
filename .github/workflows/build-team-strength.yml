@@ -40,6 +40,8 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python refresh_match_lab.py
+      - name: Build indexable college football matchup pages
+        run: python build_seo_pages.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
       - run: sha256sum -c SHA256SUMS.txt

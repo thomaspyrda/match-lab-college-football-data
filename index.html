@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Compare this week's college football games with historically similar pregame profiles, AP rankings, Team Strength, market lines and season-to-date form."
+      content="Use CFB Match Lab to compare upcoming and past college football games with historically similar pregame profiles, Team Strength, schedule context, market lines and season-to-date form."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://matchlab.parlaycalculator.bet/" />
@@ -46,7 +46,7 @@
       content="https://matchlab.parlaycalculator.bet/assets/betwise-cfb-vip-collage.webp"
     />
 
-    <title>CFB Match Lab: Historical College Football Matchups | BetWise</title>
+    <title>CFB Match Lab | College Football Matchup Research Tool</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -120,7 +120,7 @@
             class="active"
             href="https://matchlab.parlaycalculator.bet/"
             aria-current="page"
-            >Match Lab</a
+            >CFB Match Lab</a
           >
           <a href="https://nfl.parlaycalculator.bet/">NFL Dashboard</a>
           <a href="https://parlaycalculator.bet/#calculator"
@@ -136,7 +136,7 @@
               class="active"
               href="https://matchlab.parlaycalculator.bet/"
               aria-current="page"
-              >Match Lab</a
+              >CFB Match Lab</a
             >
             <a href="https://nfl.parlaycalculator.bet/">NFL Dashboard</a>
             <a href="https://parlaycalculator.bet/#calculator"
@@ -149,26 +149,31 @@
     </header>
     <main>
       <section class="hero">
-        <p class="eyebrow">HISTORICAL MATCHUP ENGINE</p>
-        <h1>What happened when teams<br /> <em>looked like this before?</em></h1>
+        <p class="eyebrow">CFB MATCH LAB · COLLEGE FOOTBALL MATCHUP RESEARCH</p>
+        <h1>College football matchup context<br /> <em>built from what happened before.</em></h1>
         <p>
-          <strong>Put this week’s games into perspective.</strong> Match Lab
-          compares teams with historically similar pregame profiles and market
-          perception to show how comparable situations have played out—giving
-          you additional context to make more informed betting decisions.
+          <strong>Put this week’s college football games into perspective.</strong>
+          CFB Match Lab compares each college football matchup with historically
+          similar pregame profiles, market lines, team strength, schedule context
+          and season-to-date form.
         </p>
         <div class="notice">
           Historical observations · Not predictions or betting advice
         </div>
       </section>
       <section class="lab">
-        <div class="step">
-          <span>1</span>
-          <div>
-            <b>Choose an upcoming game</b
-            ><small>Games scheduled in the next seven days</small>
-          </div>
+        <div class="lab-mode" role="tablist" aria-label="CFB Match Lab game mode">
+          <button id="upcomingMode" class="active" type="button" role="tab" aria-selected="true">Upcoming college football</button>
+          <button id="historyMode" type="button" role="tab" aria-selected="false">Past college football games</button>
         </div>
+        <div id="upcomingSection">
+          <div class="step">
+            <span>1</span>
+            <div>
+              <b>Choose an upcoming college football game</b>
+              <small>FBS games scheduled in the next seven days</small>
+            </div>
+          </div>
         <div class="slate-head">
           <p id="status" role="status" aria-live="polite">
             Loading the upcoming slate…
@@ -183,6 +188,27 @@
           <button class="rail-arrow prev" aria-label="Previous games">‹</button>
           <div id="games" class="games"></div>
           <button class="rail-arrow next" aria-label="Next games">›</button>
+        </div>
+        </div>
+        <div id="historySection" hidden>
+          <div class="step">
+            <span>1</span>
+            <div>
+              <b>Search past college football games</b>
+              <small>Reopen the pregame CFB Match Lab view from prior seasons</small>
+            </div>
+          </div>
+          <div class="history-search">
+            <label>Season
+              <select id="historySeason" aria-label="Historical college football season"></select>
+            </label>
+            <label>Team
+              <input id="historyTeam" type="search" placeholder="Georgia, Ohio State, UConn…" autocomplete="off" />
+            </label>
+            <button id="historySearchButton" type="button">Find past games</button>
+          </div>
+          <p id="historyStatus" class="history-status">Search by season and team to view past college football matchups.</p>
+          <div id="historyGames" class="history-games"></div>
         </div>
         <div id="marketSection" hidden>
           <div class="step">
@@ -207,7 +233,7 @@
           <div class="step">
             <span>3</span>
             <div>
-              <b>Closest historical matches</b><small id="resultTitle"></small>
+              <b>Closest historical college football matches</b><small id="resultTitle"></small>
             </div>
           </div>
           <div id="summary" class="summary"></div>
@@ -216,7 +242,7 @@
       </section>
       <section class="method">
         <p class="eyebrow">MATCHING PRINCIPLES</p>
-        <h2>Pregame compared with pregame.</h2>
+        <h2>College football pregame compared with college football pregame.</h2>
         <div class="method-grid">
           <article>
             <b>Market setup</b>
@@ -335,7 +361,7 @@
         </p>
       </section>
     </main>
-    <footer>Match Lab · Research, not advice</footer>
+    <footer>CFB Match Lab · College football research, not advice</footer>
     <script src="app.js?v=11" defer></script>
   </body>
 </html>
