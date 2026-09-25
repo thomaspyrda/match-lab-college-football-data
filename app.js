@@ -599,4 +599,24 @@ $("historyGames").addEventListener("click", (e) => {
   const b = e.target.closest(".history-game");
   if (b) selectHistoricalGame(b.dataset.id);
 });
-init();
+async function applyDeepLink() {
+  const params = new URLSearchParams(location.search);
+  const gameId = params.get("game");
+  if (!gameId) return;
+  await ensureHistorical();
+  const game = historical.find((g) => g.game_id === gameId);
+  if (!game) return;
+  setLabMode("history");
+  if (!$("historySeason").options.length) {
+    const current = new Date().getFullYear();
+    $("historySeason").innerHTML = Array.from({ length: current - 2014 }, (_, i) => current - i)
+      .map((y) => `<option value="${y}">${y}</option>`)
+      .join("");
+  }
+  $("historySeason").value = String(game.season);
+  $("historyTeam").value = game.home;
+  $("historyGames").innerHTML = historicalGameCard(game);
+  $("historyStatus").textContent = "Historical college football game loaded from its permanent matchup page.";
+  selectHistoricalGame(gameId);
+}
+init().then(applyDeepLink);
