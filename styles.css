@@ -943,3 +943,23 @@ footer {
     letter-spacing: -1px;
   }
 }
+
+/* CFB Match Lab mode switch + historical archive */
+.lab-mode{display:flex;gap:.65rem;flex-wrap:wrap;margin:0 0 1.4rem}
+.lab-mode button{border:1px solid rgba(255,255,255,.16);background:#111;color:#c9c9c9;border-radius:999px;padding:.72rem 1rem;font-weight:800;cursor:pointer}
+.lab-mode button.active{background:#fff;color:#111;border-color:#fff}
+.history-search{display:grid;grid-template-columns:160px minmax(220px,1fr) auto;gap:.8rem;align-items:end;margin:1rem 0}
+.history-search label{display:grid;gap:.35rem;font-size:.78rem;font-weight:800;letter-spacing:.04em;color:#aaa;text-transform:uppercase}
+.history-search input,.history-search select{width:100%;border:1px solid rgba(255,255,255,.16);background:#101010;color:#fff;border-radius:10px;padding:.8rem .9rem;font:inherit}
+.history-search button{border:0;border-radius:10px;background:#f5f5f5;color:#111;padding:.83rem 1rem;font-weight:900;cursor:pointer}
+.history-status{color:#a9a9a9;margin:.6rem 0 1rem}
+.history-games{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.history-game{display:grid;gap:.35rem;text-align:left;border:1px solid rgba(255,255,255,.12);background:#111;color:#fff;border-radius:12px;padding:1rem;cursor:pointer}
+.history-game:hover{border-color:rgba(255,255,255,.35);transform:translateY(-1px)}
+.history-game .history-date{color:#999;font-size:.76rem;text-transform:uppercase;letter-spacing:.05em}
+.history-game strong{font-size:1rem}
+.history-game small{color:#bdbdbd}
+@media(max-width:760px){
+  .history-search{grid-template-columns:1fr}
+  .history-games{grid-template-columns:1fr}
+}
