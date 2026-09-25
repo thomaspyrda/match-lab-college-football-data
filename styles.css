@@ -9,6 +9,7 @@
   --green: #00ff41;
   --purple: #00ff41;
   --number-font: "DM Sans", sans-serif;
+  --font: "Outfit", system-ui, sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -19,10 +20,7 @@ body {
     radial-gradient(circle at 75% 0, rgba(0, 255, 65, 0.08), transparent 30%),
     var(--bg);
   color: var(--text);
-  font:
-    15px/1.5 Outfit,
-    system-ui,
-    sans-serif;
+  font: 15px/1.5 var(--font);
   -webkit-font-smoothing: antialiased;
 }
 button {
@@ -155,7 +153,7 @@ button {
   font-style: normal;
 }
 main {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: auto;
   padding: 0 22px;
 }
@@ -170,8 +168,7 @@ main {
   font-size: 11px;
 }
 .hero h1 {
-  font-size: clamp(38px, 6vw, 66px);
-  line-height: 1.02;
+  font: 900 clamp(40px, 6vw, 66px)/1.02 "DM Sans", sans-serif;
   margin: 10px 0 20px;
   letter-spacing: -2px;
 }
@@ -963,3 +960,10 @@ footer {
   .history-search{grid-template-columns:1fr}
   .history-games{grid-template-columns:1fr}
 }
+
+/* Keep CFB Match Lab visually aligned with the NFL Dashboard. */
+.lab,.game,.match,.game-panel,.market-focus,.history-game{font-family:var(--font)}
+.step b,.team-copy b,.panel-teams b,.match-summary-teams strong,.history-game strong{font-family:"DM Sans",sans-serif;font-weight:800}
+.empty-state{margin:18px 0;padding:22px;border:1px solid var(--line);border-radius:14px;background:#202020;color:var(--muted)}
+.empty-state b{display:block;margin-bottom:6px;color:var(--text);font:800 17px "DM Sans",sans-serif}
+.empty-state p{margin:0;font-size:13px;line-height:1.55}
