@@ -32,6 +32,7 @@ jobs:
           python-version: '3.12'
       - run: python enrich_team_strength.py
       - run: python build_web_data.py
+      - run: python build_seo_pages.py
       - name: Build pregame advanced percentile profiles
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
