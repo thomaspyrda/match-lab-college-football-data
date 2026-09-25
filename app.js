@@ -99,12 +99,13 @@ async function searchHistory() {
     const q = $("historyTeam").value.trim().toLowerCase();
     const rows = historical
       .filter((g) => g.season === season)
+      .filter(researchableGame)
       .filter((g) => !q || g.home.toLowerCase().includes(q) || g.away.toLowerCase().includes(q))
       .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
       .slice(0, 100);
     $("historyStatus").textContent = rows.length
       ? `${rows.length} past college football game${rows.length === 1 ? "" : "s"} found`
-      : "No past college football games matched that search.";
+      : "No eligible past games matched that search. CFB Match Lab only shows games where both teams had at least one completed game and usable pregame data.";
     $("historyGames").innerHTML = rows.map(historicalGameCard).join("");
   } catch (e) {
     $("historyStatus").textContent = "Historical college football games are temporarily unavailable.";
@@ -350,26 +351,83 @@ function hasUsablePregameProfile(profile) {
     (profile?.advanced?.metrics_available ?? 0) >= 1
   );
 }
+function researchableGame(g) {
+  return (
+    hasUsablePregameProfile(g?.home_profile) &&
+    hasUsablePregameProfile(g?.away_profile)
+  );
+}
+function advancedProfileDistance(a, b) {
+  const diffs = ADVANCED.flatMap((k) => {
+    const ah = a.home_profile?.advanced?.[k],
+      bh = b.home_profile?.advanced?.[k],
+      aa = a.away_profile?.advanced?.[k],
+      ba = b.away_profile?.advanced?.[k];
+    return [
+      ah == null || bh == null ? null : Math.abs(ah - bh),
+      aa == null || ba == null ? null : Math.abs(aa - ba),
+    ];
+  }).filter((v) => v != null);
+  return diffs.length ? diffs.reduce((sum, v) => sum + v, 0) / diffs.length : null;
+}
+function structurallyCompatible(a, b, m) {
+  const homeStrength = dist(a.home_profile?.strength_score, b.home_profile?.strength_score);
+  const awayStrength = dist(a.away_profile?.strength_score, b.away_profile?.strength_score);
+  if (homeStrength == null || awayStrength == null) return false;
+
+  // Similar relative gaps are not enough: both sides also need to live in a
+  // comparable absolute strength band.
+  if (homeStrength > 18 || awayStrength > 18) return false;
+
+  const profileDistance = advancedProfileDistance(a, b);
+  if (profileDistance != null && profileDistance > 24) return false;
+
+  if (m === "spread") {
+    const d = dist(a.spread, b.spread);
+    if (d != null && d > 7.5) return false;
+  }
+  if (m === "total") {
+    const d = dist(a.over_under, b.over_under);
+    if (d != null && d > 10) return false;
+  }
+  return true;
+}
 async function match(m) {
   market = m;
   $("resultsSection").hidden = false;
   $("resultTitle").textContent =
     `${selected.away} at ${selected.home} · ${m === "total" ? "O/U Total" : m[0].toUpperCase() + m.slice(1)}`;
+
+  if (!researchableGame(selected)) {
+    $("summary").innerHTML = "";
+    $("matches").innerHTML =
+      '<div class="empty-state"><b>Not enough pregame data for a reliable comparison.</b><p>CFB Match Lab requires both teams to have at least one completed game and a usable pregame advanced profile before kickoff. This prevents early-season or irregular-schedule games from producing misleading matches.</p></div>';
+    return;
+  }
+
   $("matches").innerHTML = "Searching verified historical games…";
   await ensureHistorical();
   const candidates = historical
     .filter(
       (g) =>
         g.result &&
-        hasUsablePregameProfile(g.home_profile) &&
-        hasUsablePregameProfile(g.away_profile) &&
+        researchableGame(g) &&
         g.game_id !== selected.game_id &&
         (m !== "spread" || g.spread != null) &&
-        (m !== "total" || g.over_under != null),
+        (m !== "total" || g.over_under != null) &&
+        structurallyCompatible(selected, g, m),
     )
     .map((g) => ({ g, s: similarity(selected, g, m) }))
+    .filter(({ s }) => s >= 55)
     .sort((a, b) => b.s - a.s)
     .slice(0, 10);
+
+  if (!candidates.length) {
+    $("summary").innerHTML = "";
+    $("matches").innerHTML =
+      '<div class="empty-state"><b>No trustworthy historical match cleared the similarity threshold.</b><p>CFB Match Lab now prefers fewer comparisons over forcing a poor match between teams from very different strength bands.</p></div>';
+    return;
+  }
   renderMatches(candidates);
 }
 function midpoint(value, values, higher = true) {
