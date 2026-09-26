@@ -212,8 +212,8 @@ def write_live_data_pages(now):
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
     table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offensive Strength"),("defense","Defensive Strength"),("sos","SOS Score"),("ap","AP Rank"),("games","Games")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
-<p>{context}. CFB Match Lab Team Strength is a 50/50 combination of opponent-adjusted Offensive Strength and Defensive Strength. Each unit starts with what it has actually produced, then scales that performance by the quality of the opposing unit faced.</p>
-<p class="note">Offensive Strength rewards production against stronger defenses. Defensive Strength rewards suppression against stronger offenses. Historical matchup snapshots remain pregame-safe; this live board updates as completed games enter the current dataset.</p>
+<p>{context}. CFB Match Lab Team Strength is a 50/50 combination of Offensive Strength and Defensive Strength. Each unit is built from game-level performance versus expectation using PPA, success rate, explosiveness, points per drive and scoring, with opponent-unit strength adjusting how much credit or penalty each performance receives.</p>
+<p class="note">AP Rank is displayed only as an independent reference and never affects the formula. Historical matchup snapshots remain pregame-safe; this live board updates as completed games enter the current dataset.</p>
 <div class="data-links"><a href="{BASE}/college-football-strength-of-schedule-rankings/"><b>Strength of Schedule Rankings</b><br><span class="meta">See which teams have faced the strongest opponents.</span></a><a href="{BASE}/college-football-offensive-strength-rankings/"><b>Offensive Strength Rankings</b><br><span class="meta">Compare opponent-adjusted offensive performance.</span></a></div>
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Team Strength Rankings | CFB Match Lab",f"Current {season} college football Team Strength rankings for the full FBS field from CFB Match Lab, updated weekly using opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
@@ -254,6 +254,8 @@ def write_live_data_pages(now):
                 "rank":rank,
                 "team":r.get("team"),
                 "score":score,
+                "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
+                "vs_expectation":r.get("offensive_performance_vs_expectation") if field=="offensive_strength" else r.get("defensive_performance_vs_expectation"),
                 "opp_quality":r.get(opponent_quality_field),
                 "multiplier":r.get(multiplier_field),
                 "overall_rank":r.get("overall_strength_rank"),
@@ -266,10 +268,10 @@ def write_live_data_pages(now):
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("score",label),("opp_quality",opponent_label),("multiplier","Opponent Multiplier"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
+        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP Rank"),("score",label),("vs_expectation","Performance vs Expectation"),("opp_quality",opponent_label),("multiplier","Avg Opponent Adjustment"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
-<p>{context}. {label} starts with the unit's season-to-date advanced performance, then applies a smooth 0.80×–1.20× multiplier based on the quality of the opposing units already faced. The adjusted results are converted back to a 1–100 FBS percentile.</p>
-<p class="note">The opponent adjustment is unit-specific: offense is adjusted by defenses faced, while defense is adjusted by offenses faced. A 100 is the strongest end of the current FBS distribution.</p>
+<p>{context}. {label} is built game by game from performance versus expectation: 45% PPA, 20% success rate, 15% explosiveness, 10% points per drive and 10% scoring. Each game is compared with a pregame expectation based on the team's prior production and the opposing unit's prior allowance, then adjusted for opponent-unit strength.</p>
+<p class="note">AP Rank is shown only as a reference point and never enters the formula. Opponent adjustment is asymmetric: strong opponents increase credit for outperformance and soften poor results, while weak opponents do the reverse.</p>
 <div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/"><b>Team Strength Rankings</b><br><span class="meta">Overall rating combines Offensive and Defensive Strength 50/50.</span></a><a href="{BASE}/college-football-strength-of-schedule-rankings/"><b>Strength of Schedule Rankings</b><br><span class="meta">See overall opponent difficulty already faced.</span></a></div>
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
         (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab, adjusted for the quality of opposing units faced.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
