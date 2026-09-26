@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate crawlable college-football landing, rankings and matchup pages."""
 from __future__ import annotations
-import html, json, re
+import html, json, re, shutil
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -30,6 +30,22 @@ def strength(p):
     if score is not None: bits.append(f"Team Strength {score}/100{(' · '+tier) if tier else ''}")
     return " · ".join(bits) or "FBS strength unavailable"
 
+
+def usable_profile(p):
+    if not p:
+        return False
+    recent=(p.get("recent_form") or {}).get("games") or 0
+    advanced=p.get("advanced") or {}
+    return recent >= 1 and (advanced.get("games_played") or 0) >= 1 and (advanced.get("metrics_available") or 0) >= 1
+
+def indexable_game(g, upcoming_ids):
+    # Completed games need a real result and both teams need a usable pregame profile.
+    if g.get("result") is not None:
+        return usable_profile(g.get("home_profile")) and usable_profile(g.get("away_profile"))
+    # Future games are indexable only when they are in the live seven-day upcoming slate
+    # and both sides already have enough pregame data to make the page useful.
+    return str(g.get("game_id")) in upcoming_ids and usable_profile(g.get("home_profile")) and usable_profile(g.get("away_profile"))
+
 def page_shell(title,description,canonical,body):
     return f"""<!doctype html>
 <html lang="en"><head>
@@ -39,10 +55,11 @@ def page_shell(title,description,canonical,body):
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{esc(canonical)}">
 <style>
-body{{margin:0;background:#090909;color:#f5f5f5;font-family:Inter,Arial,sans-serif;line-height:1.55}}
-main{{max-width:1050px;margin:auto;padding:34px 20px 70px}}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+body{{margin:0;background:#090909;color:#f5f5f5;font-family:'Outfit',system-ui,sans-serif;font-size:15px;line-height:1.5}}
+main{{max-width:1180px;margin:auto;padding:34px 20px 70px}}
 a{{color:#fff}} .eyebrow{{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#9b9b9b;font-weight:800}}
-h1{{font-size:clamp(2rem,5vw,4.2rem);line-height:1.02;margin:.3rem 0 1rem}} h2{{margin-top:2rem}}
+h1{{font-family:'DM Sans',system-ui,sans-serif;font-weight:900;font-size:clamp(40px,6vw,66px);line-height:1.02;margin:.3rem 0 1rem}} h2{{font-family:'DM Sans',system-ui,sans-serif;font-weight:800;margin-top:2rem}}
 .card,.team{{border:1px solid #272727;background:#111;border-radius:16px;padding:18px}}
 .grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}} .meta{{color:#b8b8b8}}
 .metrics{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}}
@@ -94,9 +111,11 @@ def main():
 <h2>What you can research</h2><div class="grid"><div class="card"><b>Upcoming college football games</b><p>Compare the next seven days of FBS matchups.</p></div><div class="card"><b>Past college football games</b><p>Reopen the exact pregame context for completed games.</p></div><div class="card"><b>Historical matchup comparisons</b><p>Find the 10 closest prior games by market, strength, form and advanced profile.</p></div><div class="card"><b>College football Team Strength</b><p>Track compounded weekly movement from preseason based on opponent quality and game performance.</p></div></div>"""
     (d/"index.html").write_text(page_shell("CFB Match Lab | College Football Matchup Research Tool","Research upcoming and past college football matchups with CFB Match Lab, Team Strength, schedule quality, advanced metrics and historically similar games.",f"{BASE}/college-football-matchup-tool/",body),encoding="utf-8")
 
-    # Current Team Strength rankings page from upcoming profiles.
+    # Current Team Strength rankings page from the latest available current-season
+    # profile for each team, not only teams appearing in the seven-day upcoming slate.
     team_rows={}
-    for g in upcoming:
+    current_games=historical+upcoming
+    for g in sorted(current_games,key=lambda x:x.get("start_date") or ""):
         for side in ("home","away"):
             team=g.get(side); p=g.get(f"{side}_profile") or {}
             if team and p.get("national_strength_rank"):
@@ -108,11 +127,17 @@ def main():
 <p>Current CFB Match Lab power rankings. Teams begin from a preseason baseline and move week by week based on opponent quality and game performance. The rating compounds through the season and is pregame-safe.</p><div class="grid">{rows}</div><a class="cta" href="{BASE}/">Research matchups in CFB Match Lab</a>"""
     (rd/"index.html").write_text(page_shell("College Football Team Strength Rankings | CFB Match Lab","Current college football Team Strength rankings from CFB Match Lab, updated with compounded weekly movement based on opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
 
-    # Permanent current-season matchup pages.
-    matchup_root=ROOT/"college-football"/"matchups"; matchup_root.mkdir(parents=True,exist_ok=True)
+    # Permanent matchup pages: completed games with usable pregame profiles plus
+    # only the live seven-day upcoming slate. Avoid publishing thin distant-future pages.
+    matchup_root=ROOT/"college-football"/"matchups"
+    if matchup_root.exists():
+        shutil.rmtree(matchup_root)
+    matchup_root.mkdir(parents=True,exist_ok=True)
+    upcoming_ids={str(g.get("game_id")) for g in upcoming}
     seen={}
     for g in historical+upcoming:
         if not g.get("home") or not g.get("away"): continue
+        if not indexable_game(g, upcoming_ids): continue
         seen[str(g.get("game_id"))]=g
     urls=[]
     for g in seen.values():
@@ -136,7 +161,7 @@ def main():
         sm.append(f"<url><loc>{url}</loc><lastmod>{now.date()}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>")
     sm.append("</urlset>")
     (ROOT/"sitemap.xml").write_text("\n".join(sm),encoding="utf-8")
-    print(f"Built {len(urls)} current-season college football matchup pages")
+    print(f"Built {len(urls)} indexable current-season college football matchup pages")
 
 if __name__=="__main__":
     main()
