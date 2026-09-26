@@ -19,8 +19,12 @@ METRICS = {
     "rushing_success": ("offense", "rushingPlays", "successRate", True),
     "passing_success": ("offense", "passingPlays", "successRate", True),
     "explosiveness": ("offense", "explosiveness", True),
-    "havoc": ("defense", "havoc", "total", True),
     "finishing_drives": ("offense", "pointsPerOpportunity", True),
+    "defensive_rushing_success": ("defense", "rushingPlays", "successRate", False),
+    "defensive_passing_success": ("defense", "passingPlays", "successRate", False),
+    "defensive_explosiveness": ("defense", "explosiveness", False),
+    "defensive_finishing_drives": ("defense", "pointsPerOpportunity", False),
+    "havoc": ("defense", "havoc", "total", True),
 }
 
 def api(path, **params):
