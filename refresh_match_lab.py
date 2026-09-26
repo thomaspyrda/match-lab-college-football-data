@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import csv,json,os,urllib.parse,urllib.request
+import csv,json,os,time,urllib.parse,urllib.request
 from collections import defaultdict
 from datetime import datetime,timezone,timedelta
 from pathlib import Path
@@ -9,7 +9,15 @@ if not KEY: raise SystemExit("CFBD_API_KEY secret is required")
 def api(path,**params):
  url="https://api.collegefootballdata.com"+path+"?"+urllib.parse.urlencode(params)
  req=urllib.request.Request(url,headers={"Authorization":"Bearer "+KEY,"Accept":"application/json","User-Agent":"MatchLab/1.0"})
- with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
+ last_error=None
+ for attempt in range(5):
+  try:
+   with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
+  except Exception as exc:
+   last_error=exc
+   if attempt==4:raise
+   time.sleep(2**attempt)
+ raise last_error
 def dt(v):
  try:return datetime.fromisoformat((v or "").replace("Z","+00:00"))
  except:return datetime.min.replace(tzinfo=timezone.utc)
