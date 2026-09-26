@@ -218,7 +218,8 @@ last_completed=max((int(g.get("week") or 0) for g in current_records if g.get("r
 candidate_weeks=sorted(scheduled_weeks | {last_completed+1,last_completed+2})
 rankings=api("/rankings",year=now.year,seasonType="regular")
 def live_ap(week):
- snap=next((x for x in rankings if int(x.get("week") or 0)==week),None)
+ eligible=[x for x in rankings if int(x.get("week") or 0)<=int(week)]
+ snap=max(eligible,key=lambda x:int(x.get("week") or 0),default=None)
  poll=next((p for p in (snap or {}).get("polls",[]) if str(p.get("poll","")).lower() in ("ap top 25","ap")),None)
  return {r.get("school"):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
 def live_strength(week):
@@ -254,113 +255,263 @@ for week in candidate_weeks:
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
 
 # Publish a current-to-date full-FBS strength snapshot.
-# Unlike historical matchup snapshots, this live board intentionally includes every
-# completed game available at build time, including games already finished in the
-# current week. Historical matchup pages remain strictly pregame-safe.
+# Historical matchup snapshots remain pregame-safe. This live board intentionally
+# includes every completed game available at build time.
 current_week=max(1,last_completed+1)
 current_board=live_strength(current_week)
 
-OFFENSE_WEIGHTS={
- "offensive_efficiency":0.30,
- "rushing_success":0.15,
- "passing_success":0.20,
+# Game-level opponent-adjusted performance model.
+# Each offensive game is graded against a pregame expectation built from the
+# offense's prior production and the opponent defense's prior allowance. Defense
+# receives the mirror image of the opponent offense's performance-vs-expectation.
+# Opponent unit quality then adjusts the magnitude of the over/under-performance.
+GAME_COMPONENT_WEIGHTS={
+ "ppa":0.45,
+ "success_rate":0.20,
  "explosiveness":0.15,
- "finishing_drives":0.20,
+ "finishing":0.10,
+ "scoring":0.10,
 }
-DEFENSE_WEIGHTS={
- "defensive_efficiency":0.30,
- "defensive_rushing_success":0.15,
- "defensive_passing_success":0.20,
- "defensive_explosiveness":0.15,
- "defensive_finishing_drives":0.10,
- "havoc":0.10,
-}
+NEUTRAL_UNIT_STRENGTH=50.0
+FCS_UNIT_STRENGTH=15.0
+RECENCY_STEP=0.05
+RECENCY_CAP=1.15
 
-def weighted_unit_score(profile,weights):
- if not profile:return None
- pairs=[(profile.get(k),w) for k,w in weights.items() if profile.get(k) is not None]
- if not pairs:return None
- total=sum(w for _,w in pairs)
- return sum(float(v)*w for v,w in pairs)/total if total else None
+def safe_float(v):
+ try:return float(v) if v is not None else None
+ except:return None
 
-def opponent_multiplier(opponent_unit_score):
- # Smooth 0.80x-1.20x curve centered near the FBS median.
- if opponent_unit_score is None:return 1.0
- return 0.80+0.40*((max(1.0,min(100.0,float(opponent_unit_score)))-1.0)/99.0)
+def mean_or_none(values):
+ vals=[float(v) for v in values if v is not None]
+ return sum(vals)/len(vals) if vals else None
 
-profiles={team:adv(now.year,current_week,team) for team in current_board}
-off_base={team:weighted_unit_score(profile,OFFENSE_WEIGHTS) for team,profile in profiles.items()}
-def_base={team:weighted_unit_score(profile,DEFENSE_WEIGHTS) for team,profile in profiles.items()}
+def std_or_one(values):
+ vals=[float(v) for v in values if v is not None]
+ if len(vals)<2:return 1.0
+ m=sum(vals)/len(vals)
+ var=sum((v-m)**2 for v in vals)/(len(vals)-1)
+ return max(var**0.5,1e-6)
 
-prior_opponents=defaultdict(list)
-for g in current_records:
- if not g.get("result"):continue
- if int(g.get("week") or 0)>=current_week:continue
- home=canon_team(g.get("home"));away=canon_team(g.get("away"))
- if home:prior_opponents[home].append(away)
- if away:prior_opponents[away].append(home)
+def pct_rank_desc(values):
+ vals=[float(v) for v in values if v is not None]
+ out={}
+ if len(vals)<2:return out
+ ordered=sorted(vals)
+ for v in vals:
+  below=sum(x<v for x in ordered)
+  tied=sum(x==v for x in ordered)
+  out[v]=max(1,min(100,int(100*(below+(tied-1)/2)/(len(ordered)-1)+0.5)))
+ return out
 
-unit_raw={}
-for team in current_board:
- opponents=prior_opponents.get(canon_team(team),[])
- # Offensive performance is scaled by the defensive quality of defenses faced.
- faced_def=[def_base.get(canon_team(o)) for o in opponents if def_base.get(canon_team(o)) is not None]
- # Defensive performance is scaled by the offensive quality of offenses faced.
- faced_off=[off_base.get(canon_team(o)) for o in opponents if off_base.get(canon_team(o)) is not None]
- opp_def=sum(faced_def)/len(faced_def) if faced_def else None
- opp_off=sum(faced_off)/len(faced_off) if faced_off else None
- ob=off_base.get(team)
- db=def_base.get(team)
- unit_raw[team]={
-  "offensive_base":round(ob,2) if ob is not None else None,
-  "defensive_base":round(db,2) if db is not None else None,
-  "opponent_defensive_quality":round(opp_def,2) if opp_def is not None else None,
-  "opponent_offensive_quality":round(opp_off,2) if opp_off is not None else None,
-  "offensive_multiplier":round(opponent_multiplier(opp_def),3),
-  "defensive_multiplier":round(opponent_multiplier(opp_off),3),
-  "offensive_adjusted_raw":(ob*opponent_multiplier(opp_def)) if ob is not None else None,
-  "defensive_adjusted_raw":(db*opponent_multiplier(opp_off)) if db is not None else None,
+def game_metric_row(row,points):
+ offense=row.get("offense") or {}
+ drives=safe_float(offense.get("drives"))
+ return {
+  "ppa":safe_float(offense.get("ppa")),
+  "success_rate":safe_float(offense.get("successRate")),
+  "explosiveness":safe_float(offense.get("explosiveness")),
+  "finishing":(float(points)/drives) if points is not None and drives and drives>0 else None,
+  "scoring":safe_float(points),
  }
 
-off_values=[x["offensive_adjusted_raw"] for x in unit_raw.values() if x["offensive_adjusted_raw"] is not None]
-def_values=[x["defensive_adjusted_raw"] for x in unit_raw.values() if x["defensive_adjusted_raw"] is not None]
-for team,x in unit_raw.items():
- x["offensive_strength"]=pct_score(x["offensive_adjusted_raw"],off_values) if x["offensive_adjusted_raw"] is not None else None
- x["defensive_strength"]=pct_score(x["defensive_adjusted_raw"],def_values) if x["defensive_adjusted_raw"] is not None else None
- if x["offensive_strength"] is not None and x["defensive_strength"] is not None:
-  x["overall_raw"]=0.50*x["offensive_strength"]+0.50*x["defensive_strength"]
+# Fetch all current-season game-level advanced rows in one request. CFBD's
+# game-advanced endpoint supplies PPA, success rate and explosiveness per team/game.
+game_advanced=api(
+ "/stats/game/advanced",
+ year=now.year,
+ seasonType="regular",
+ excludeGarbageTime="true",
+)
+game_results={str(g.get("game_id")):g for g in current_records if g.get("result")}
+rows_by_game=defaultdict(dict)
+for row in game_advanced:
+ gid=str(row.get("gameId"))
+ team=canon_team(row.get("team"))
+ if gid not in game_results or not team:continue
+ rows_by_game[gid][team]=row
+
+# Week-local distributions provide a neutral expectation and normalization scale
+# without borrowing information from future weeks.
+week_values=defaultdict(lambda:defaultdict(list))
+for gid,team_rows in rows_by_game.items():
+ g=game_results.get(gid)
+ if not g:continue
+ week=int(g.get("week") or 0)
+ for team,row in team_rows.items():
+  result_data=g.get("result") or {}
+  points=result_data.get("home_points") if canon_team(g.get("home"))==team else result_data.get("away_points")
+  metrics=game_metric_row(row,points)
+  for key,value in metrics.items():
+   if value is not None:week_values[week][key].append(value)
+
+# Histories contain only games already processed. That means each expectation uses
+# what was known before that game rather than end-of-season opponent statistics.
+off_history=defaultdict(lambda:defaultdict(list))
+def_allowed_history=defaultdict(lambda:defaultdict(list))
+off_game_scores=defaultdict(list)
+def_game_scores=defaultdict(list)
+opponent_def_quality_log=defaultdict(list)
+opponent_off_quality_log=defaultdict(list)
+off_multiplier_log=defaultdict(list)
+def_multiplier_log=defaultdict(list)
+
+# Unit strengths are recomputed after each week and then used as the opponent
+# quality reference for the following week's games.
+off_strength_entering={team:NEUTRAL_UNIT_STRENGTH for team in current_board}
+def_strength_entering={team:NEUTRAL_UNIT_STRENGTH for team in current_board}
+
+def expectation(team,opponent,key,week):
+ own=mean_or_none(off_history[team][key])
+ opp=mean_or_none(def_allowed_history[opponent][key])
+ neutral=mean_or_none(week_values[week][key])
+ candidates=[v for v in (own,opp) if v is not None]
+ if len(candidates)==2:return 0.5*candidates[0]+0.5*candidates[1]
+ if len(candidates)==1 and neutral is not None:return 0.65*candidates[0]+0.35*neutral
+ if len(candidates)==1:return candidates[0]
+ return neutral
+
+def quality_multiplier(opponent_strength,residual):
+ # Positive performances are boosted against stronger units and discounted
+ # against weaker units. Negative performances are penalized more against weak
+ # units and softened against strong units. Range: 0.80x–1.20x.
+ q=(max(0.0,min(100.0,float(opponent_strength)))-50.0)/50.0
+ factor=(1.0+0.20*q) if residual>=0 else (1.0-0.20*q)
+ return max(0.80,min(1.20,factor))
+
+def season_weighted_average(entries):
+ if not entries:return None
+ weighted=0.0;weights=0.0
+ n=len(entries)
+ for i,value in enumerate(entries):
+  recency=min(RECENCY_CAP,1.0+RECENCY_STEP*max(0,i))
+  weighted+=float(value)*recency
+  weights+=recency
+ return weighted/weights if weights else None
+
+weeks=sorted({int(g.get("week") or 0) for g in current_records if g.get("result")})
+for week in weeks:
+ week_games=[
+  g for g in current_records
+  if g.get("result") and int(g.get("week") or 0)==week
+ ]
+ pending=[]
+ for g in sorted(week_games,key=lambda x:x.get("start_date") or ""):
+  gid=str(g.get("game_id"))
+  home=canon_team(g.get("home"));away=canon_team(g.get("away"))
+  team_rows=rows_by_game.get(gid,{})
+  if home not in team_rows or away not in team_rows:continue
+  result_data=g.get("result") or {}
+  points_map={
+   home:result_data.get("home_points"),
+   away:result_data.get("away_points"),
+  }
+  metrics={
+   home:game_metric_row(team_rows[home],points_map[home]),
+   away:game_metric_row(team_rows[away],points_map[away]),
+  }
+  for team,opp in ((home,away),(away,home)):
+   component_residuals={}
+   for key,weight in GAME_COMPONENT_WEIGHTS.items():
+    actual=metrics[team].get(key)
+    expected=expectation(team,opp,key,week)
+    if actual is None or expected is None:continue
+    scale=std_or_one(week_values[week][key])
+    component_residuals[key]=(actual-expected)/scale
+   if not component_residuals:continue
+   available_weight=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)
+   weighted_z=sum(component_residuals[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)/available_weight
+   base_score=max(0.0,min(100.0,50.0+15.0*weighted_z))
+   opp_def_strength=def_strength_entering.get(opp,FCS_UNIT_STRENGTH)
+   mult=quality_multiplier(opp_def_strength,base_score-50.0)
+   adjusted=max(0.0,min(100.0,50.0+(base_score-50.0)*mult))
+   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opp_def_strength))
+
+ # Record offense and mirrored defense only after every game in the week is graded,
+ # so same-week games all use the same entering-strength snapshot.
+ for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_def_strength in pending:
+  off_game_scores[team].append(off_score)
+  opponent_def_quality_log[team].append(opp_def_strength)
+  off_multiplier_log[team].append(off_mult)
+
+  # The opponent defense receives the mirror of this offense's performance score,
+  # adjusted by the offense quality it faced entering the week.
+  opp_off_strength=off_strength_entering.get(team,FCS_UNIT_STRENGTH)
+  defensive_base=100.0-off_score
+  defensive_residual=defensive_base-50.0
+  def_mult=quality_multiplier(opp_off_strength,defensive_residual)
+  defensive_adjusted=max(0.0,min(100.0,50.0+defensive_residual*def_mult))
+  def_game_scores[opp].append(defensive_adjusted)
+  opponent_off_quality_log[opp].append(opp_off_strength)
+  def_multiplier_log[opp].append(def_mult)
+
+  for key,value in team_metrics.items():
+   if value is not None:off_history[team][key].append(value)
+  # The opponent defense allowed exactly the offensive output generated by team.
+  for key,value in team_metrics.items():
+   if value is not None:def_allowed_history[opp][key].append(value)
+
+ # Recompute current unit percentiles to become the opponent-quality reference
+ # entering the next week.
+ off_raw={t:season_weighted_average(off_game_scores[t]) for t in current_board}
+ def_raw={t:season_weighted_average(def_game_scores[t]) for t in current_board}
+ off_vals=[v for v in off_raw.values() if v is not None]
+ def_vals=[v for v in def_raw.values() if v is not None]
+ for t in current_board:
+  if off_raw[t] is not None:off_strength_entering[t]=pct_score(off_raw[t],off_vals)
+  if def_raw[t] is not None:def_strength_entering[t]=pct_score(def_raw[t],def_vals)
+
+unit_raw={}
+off_raw={t:season_weighted_average(off_game_scores[t]) for t in current_board}
+def_raw={t:season_weighted_average(def_game_scores[t]) for t in current_board}
+off_values=[v for v in off_raw.values() if v is not None]
+def_values=[v for v in def_raw.values() if v is not None]
+for team in current_board:
+ offensive_strength=pct_score(off_raw[team],off_values) if off_raw[team] is not None else None
+ defensive_strength=pct_score(def_raw[team],def_values) if def_raw[team] is not None else None
+ unit_raw[team]={
+  "offensive_performance_vs_expectation":round(off_raw[team],2) if off_raw[team] is not None else None,
+  "defensive_performance_vs_expectation":round(def_raw[team],2) if def_raw[team] is not None else None,
+  "offensive_strength":offensive_strength,
+  "defensive_strength":defensive_strength,
+  "opponent_defensive_quality":round(mean_or_none(opponent_def_quality_log[team]),2) if opponent_def_quality_log[team] else None,
+  "opponent_offensive_quality":round(mean_or_none(opponent_off_quality_log[team]),2) if opponent_off_quality_log[team] else None,
+  "offensive_multiplier":round(mean_or_none(off_multiplier_log[team]),3) if off_multiplier_log[team] else None,
+  "defensive_multiplier":round(mean_or_none(def_multiplier_log[team]),3) if def_multiplier_log[team] else None,
+  "games_modeled":len(off_game_scores[team]),
+ }
+ if offensive_strength is not None and defensive_strength is not None:
+  unit_raw[team]["overall_raw"]=0.50*offensive_strength+0.50*defensive_strength
  else:
-  x["overall_raw"]=None
+  unit_raw[team]["overall_raw"]=None
 
 overall_values=[x["overall_raw"] for x in unit_raw.values() if x["overall_raw"] is not None]
-ranked_overall=sorted(
- [t for t,x in unit_raw.items() if x["overall_raw"] is not None],
- key=lambda t:(-unit_raw[t]["overall_raw"],t)
-)
+ranked_overall=sorted([t for t,x in unit_raw.items() if x["overall_raw"] is not None],key=lambda t:(-unit_raw[t]["overall_raw"],t))
 overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
 off_rank={team:i for i,team in enumerate(sorted([t for t,x in unit_raw.items() if x["offensive_strength"] is not None],key=lambda t:(-unit_raw[t]["offensive_strength"],t)),1)}
 def_rank={team:i for i,team in enumerate(sorted([t for t,x in unit_raw.items() if x["defensive_strength"] is not None],key=lambda t:(-unit_raw[t]["defensive_strength"],t)),1)}
 
 current_teams=[]
 for team,row in sorted(current_board.items()):
- profile=profiles.get(team)
  units=unit_raw.get(team,{})
- overall_score=pct_score(units.get("overall_raw"),overall_values) if units.get("overall_raw") is not None else row.get("strength_score")
+ overall_score=pct_score(units.get("overall_raw"),overall_values) if units.get("overall_raw") is not None else None
  current_teams.append({
   "team":team,
   **row,
-  "advanced":profile,
+  "advanced":adv(now.year,current_week,team),
   "offensive_strength":units.get("offensive_strength"),
   "offensive_strength_rank":off_rank.get(team),
   "defensive_strength":units.get("defensive_strength"),
   "defensive_strength_rank":def_rank.get(team),
   "overall_strength_score":overall_score,
-  "overall_strength_rank":overall_rank.get(team) or row.get("national_strength_rank"),
+  "overall_strength_rank":overall_rank.get(team),
+  "offensive_performance_vs_expectation":units.get("offensive_performance_vs_expectation"),
+  "defensive_performance_vs_expectation":units.get("defensive_performance_vs_expectation"),
   "opponent_defensive_quality":units.get("opponent_defensive_quality"),
   "opponent_offensive_quality":units.get("opponent_offensive_quality"),
   "offensive_multiplier":units.get("offensive_multiplier"),
   "defensive_multiplier":units.get("defensive_multiplier"),
-  "unit_strength_model":"performance_x_opponent_unit_multiplier",
+  "games_modeled":units.get("games_modeled"),
+  "unit_strength_model":"game_level_performance_vs_expectation",
  })
 current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 
@@ -372,13 +523,18 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
   "through_week":max(0,current_week-1),
   "snapshot_type":"current_to_date",
   "model":{
-   "offense":"weighted offensive performance × opponent defensive-quality multiplier (0.80x–1.20x)",
-   "defense":"weighted defensive performance × opponent offensive-quality multiplier (0.80x–1.20x)",
+   "offense":"45% PPA vs expectation + 20% success rate vs expectation + 15% explosiveness vs expectation + 10% points/drive vs expectation + 10% scoring vs expectation; game deviation adjusted by opponent defensive strength",
+   "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
+   "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
+   "opponent_adjustment":"asymmetric 0.80x–1.20x adjustment: strong opponents amplify positive outperformance and soften underperformance; weak opponents do the reverse",
+   "recency":"5% additional weight per successive game, capped at 1.15x",
    "overall":"50% Offensive Strength + 50% Defensive Strength, re-percentiled across FBS",
+   "ap_rank":"reference only; never enters the formula",
   },
   "fbs_field_size":len(current_teams),
   "teams":current_teams,
  },indent=2),
  encoding="utf-8",
 )
-print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} opponent-adjusted current FBS strength rows, and historical indexes for {len(strength)} seasons")
+print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} performance-vs-expectation FBS strength rows, and historical indexes for {len(strength)} seasons")
+
