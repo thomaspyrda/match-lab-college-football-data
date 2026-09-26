@@ -47,8 +47,9 @@ class AdvancedProfileTests(unittest.TestCase):
     def test_browser_requests_ten_closest_matches(self):
         source = (ROOT / "app.js").read_text(encoding="utf-8")
         self.assertRegex(source, re.compile(r"\.slice\(0,\s*10\)"))
-        self.assertIn("hasUsablePregameProfile(g.home_profile)", source)
-        self.assertIn("hasUsablePregameProfile(g.away_profile)", source)
+        self.assertIn("researchableGame(g)", source)
+        self.assertIn("hasUsablePregameProfile(g?.home_profile)", source)
+        self.assertIn("hasUsablePregameProfile(g?.away_profile)", source)
         self.assertRegex(source, re.compile(r"recent_form\?\.games\s*\?\?\s*0\)\s*>=\s*1"))
         self.assertRegex(source, re.compile(r"metrics_available\s*\?\?\s*0\)\s*>=\s*1"))
         self.assertIn("Strength Rank #", source)
