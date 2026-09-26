@@ -44,8 +44,6 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python refresh_match_lab.py
-      - name: Build indexable college football matchup pages
-        run: python build_seo_pages.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
       - run: sha256sum -c SHA256SUMS.txt
@@ -67,6 +65,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Build crawlable CFB archive and sitemaps
+        run: python build_seo_pages.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
