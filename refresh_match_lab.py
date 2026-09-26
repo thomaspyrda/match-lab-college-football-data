@@ -245,28 +245,132 @@ for week in candidate_weeks:
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
 
-# Publish one full-FBS current snapshot for crawlable rankings/data pages.
-# Use the earliest scheduled week in the live window (or the next week after the
-# most recently completed week) so every metric reflects a consistent pregame board.
-current_week=min(scheduled_weeks) if scheduled_weeks else last_completed+1
+# Publish a current-to-date full-FBS strength snapshot.
+# Unlike historical matchup snapshots, this live board intentionally includes every
+# completed game available at build time, including games already finished in the
+# current week. Historical matchup pages remain strictly pregame-safe.
+current_week=max(1,last_completed+1)
 current_board=live_strength(current_week)
+
+OFFENSE_WEIGHTS={
+ "offensive_efficiency":0.30,
+ "rushing_success":0.15,
+ "passing_success":0.20,
+ "explosiveness":0.15,
+ "finishing_drives":0.20,
+}
+DEFENSE_WEIGHTS={
+ "defensive_efficiency":0.30,
+ "defensive_rushing_success":0.15,
+ "defensive_passing_success":0.20,
+ "defensive_explosiveness":0.15,
+ "defensive_finishing_drives":0.10,
+ "havoc":0.10,
+}
+
+def weighted_unit_score(profile,weights):
+ if not profile:return None
+ pairs=[(profile.get(k),w) for k,w in weights.items() if profile.get(k) is not None]
+ if not pairs:return None
+ total=sum(w for _,w in pairs)
+ return sum(float(v)*w for v,w in pairs)/total if total else None
+
+def opponent_multiplier(opponent_unit_score):
+ # Smooth 0.80x-1.20x curve centered near the FBS median.
+ if opponent_unit_score is None:return 1.0
+ return 0.80+0.40*((max(1.0,min(100.0,float(opponent_unit_score)))-1.0)/99.0)
+
+profiles={team:adv(now.year,current_week,team) for team in current_board}
+off_base={team:weighted_unit_score(profile,OFFENSE_WEIGHTS) for team,profile in profiles.items()}
+def_base={team:weighted_unit_score(profile,DEFENSE_WEIGHTS) for team,profile in profiles.items()}
+
+prior_opponents=defaultdict(list)
+for g in current_records:
+ if not g.get("result"):continue
+ if int(g.get("week") or 0)>=current_week:continue
+ home=canon_team(g.get("home"));away=canon_team(g.get("away"))
+ if home:prior_opponents[home].append(away)
+ if away:prior_opponents[away].append(home)
+
+unit_raw={}
+for team in current_board:
+ opponents=prior_opponents.get(canon_team(team),[])
+ # Offensive performance is scaled by the defensive quality of defenses faced.
+ faced_def=[def_base.get(canon_team(o)) for o in opponents if def_base.get(canon_team(o)) is not None]
+ # Defensive performance is scaled by the offensive quality of offenses faced.
+ faced_off=[off_base.get(canon_team(o)) for o in opponents if off_base.get(canon_team(o)) is not None]
+ opp_def=sum(faced_def)/len(faced_def) if faced_def else None
+ opp_off=sum(faced_off)/len(faced_off) if faced_off else None
+ ob=off_base.get(team)
+ db=def_base.get(team)
+ unit_raw[team]={
+  "offensive_base":round(ob,2) if ob is not None else None,
+  "defensive_base":round(db,2) if db is not None else None,
+  "opponent_defensive_quality":round(opp_def,2) if opp_def is not None else None,
+  "opponent_offensive_quality":round(opp_off,2) if opp_off is not None else None,
+  "offensive_multiplier":round(opponent_multiplier(opp_def),3),
+  "defensive_multiplier":round(opponent_multiplier(opp_off),3),
+  "offensive_adjusted_raw":(ob*opponent_multiplier(opp_def)) if ob is not None else None,
+  "defensive_adjusted_raw":(db*opponent_multiplier(opp_off)) if db is not None else None,
+ }
+
+off_values=[x["offensive_adjusted_raw"] for x in unit_raw.values() if x["offensive_adjusted_raw"] is not None]
+def_values=[x["defensive_adjusted_raw"] for x in unit_raw.values() if x["defensive_adjusted_raw"] is not None]
+for team,x in unit_raw.items():
+ x["offensive_strength"]=pct_score(x["offensive_adjusted_raw"],off_values) if x["offensive_adjusted_raw"] is not None else None
+ x["defensive_strength"]=pct_score(x["defensive_adjusted_raw"],def_values) if x["defensive_adjusted_raw"] is not None else None
+ if x["offensive_strength"] is not None and x["defensive_strength"] is not None:
+  x["overall_raw"]=0.50*x["offensive_strength"]+0.50*x["defensive_strength"]
+ else:
+  x["overall_raw"]=None
+
+overall_values=[x["overall_raw"] for x in unit_raw.values() if x["overall_raw"] is not None]
+ranked_overall=sorted(
+ [t for t,x in unit_raw.items() if x["overall_raw"] is not None],
+ key=lambda t:(-unit_raw[t]["overall_raw"],t)
+)
+overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
+off_rank={team:i for i,team in enumerate(sorted([t for t,x in unit_raw.items() if x["offensive_strength"] is not None],key=lambda t:(-unit_raw[t]["offensive_strength"],t)),1)}
+def_rank={team:i for i,team in enumerate(sorted([t for t,x in unit_raw.items() if x["defensive_strength"] is not None],key=lambda t:(-unit_raw[t]["defensive_strength"],t)),1)}
+
 current_teams=[]
-for team,row in sorted(current_board.items(),key=lambda x:(x[1].get("national_strength_rank") or 999,x[0])):
- profile=adv(now.year,current_week,team)
+for team,row in sorted(current_board.items()):
+ profile=profiles.get(team)
+ units=unit_raw.get(team,{})
+ overall_score=pct_score(units.get("overall_raw"),overall_values) if units.get("overall_raw") is not None else row.get("strength_score")
  current_teams.append({
   "team":team,
   **row,
   "advanced":profile,
+  "offensive_strength":units.get("offensive_strength"),
+  "offensive_strength_rank":off_rank.get(team),
+  "defensive_strength":units.get("defensive_strength"),
+  "defensive_strength_rank":def_rank.get(team),
+  "overall_strength_score":overall_score,
+  "overall_strength_rank":overall_rank.get(team) or row.get("national_strength_rank"),
+  "opponent_defensive_quality":units.get("opponent_defensive_quality"),
+  "opponent_offensive_quality":units.get("opponent_offensive_quality"),
+  "offensive_multiplier":units.get("offensive_multiplier"),
+  "defensive_multiplier":units.get("defensive_multiplier"),
+  "unit_strength_model":"performance_x_opponent_unit_multiplier",
  })
+current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
+
 (DATA/"current_rankings.json").write_text(
  json.dumps({
   "generated_at":now.isoformat(),
   "season":now.year,
   "week":current_week,
   "through_week":max(0,current_week-1),
+  "snapshot_type":"current_to_date",
+  "model":{
+   "offense":"weighted offensive performance × opponent defensive-quality multiplier (0.80x–1.20x)",
+   "defense":"weighted defensive performance × opponent offensive-quality multiplier (0.80x–1.20x)",
+   "overall":"50% Offensive Strength + 50% Defensive Strength, re-percentiled across FBS",
+  },
   "fbs_field_size":len(current_teams),
   "teams":current_teams,
  },indent=2),
  encoding="utf-8",
 )
-print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} current FBS ranking rows, and historical indexes for {len(strength)} seasons")
+print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} opponent-adjusted current FBS strength rows, and historical indexes for {len(strength)} seasons")
