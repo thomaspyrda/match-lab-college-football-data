@@ -10,7 +10,7 @@ class AdvancedProfileTests(unittest.TestCase):
         for path in files:
             data = json.loads(path.read_text(encoding="utf-8"))
             self.assertTrue(data["pregame_only"])
-            self.assertEqual(data["schema_version"], "2.2")
+            self.assertEqual(data["schema_version"], "2.1")
             populated = 0
             for week, board in data["weeks"].items():
                 self.assertEqual(board["through_week"], max(0, int(week) - 1))
