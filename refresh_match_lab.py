@@ -244,4 +244,29 @@ for week in candidate_weeks:
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
-print(f"Published {len(all_upcoming)} upcoming games and historical indexes for {len(strength)} seasons")
+
+# Publish one full-FBS current snapshot for crawlable rankings/data pages.
+# Use the earliest scheduled week in the live window (or the next week after the
+# most recently completed week) so every metric reflects a consistent pregame board.
+current_week=min(scheduled_weeks) if scheduled_weeks else last_completed+1
+current_board=live_strength(current_week)
+current_teams=[]
+for team,row in sorted(current_board.items(),key=lambda x:(x[1].get("national_strength_rank") or 999,x[0])):
+ profile=adv(now.year,current_week,team)
+ current_teams.append({
+  "team":team,
+  **row,
+  "advanced":profile,
+ })
+(DATA/"current_rankings.json").write_text(
+ json.dumps({
+  "generated_at":now.isoformat(),
+  "season":now.year,
+  "week":current_week,
+  "through_week":max(0,current_week-1),
+  "fbs_field_size":len(current_teams),
+  "teams":current_teams,
+ },indent=2),
+ encoding="utf-8",
+)
+print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} current FBS ranking rows, and historical indexes for {len(strength)} seasons")
