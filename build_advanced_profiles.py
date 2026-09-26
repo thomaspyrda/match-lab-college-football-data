@@ -96,7 +96,7 @@ def build_year(year, weeks):
             teams[team] = scores
         output[str(week)] = {"through_week": week - 1, "fbs_field_size": len(raw), "teams": teams}
         print(f"{year} week {week}: {len(raw)} FBS advanced profiles")
-    payload = {"schema_version": "2.2", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
+    payload = {"schema_version": "2.1", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
     temp = OUT / f".{year}.tmp"
     temp.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
     temp.replace(OUT / f"{year}.json")
@@ -109,7 +109,7 @@ def main():
         target = OUT / f"{year}.json"
         if year < current and target.exists():
             cached = json.loads(target.read_text(encoding="utf-8"))
-            if cached.get("schema_version") == "2.2":
+            if cached.get("schema_version") == "2.1":
                 print(f"{year}: using validated cached profiles")
                 continue
         weeks = sorted(int(w) for w in weekly.get("weeks", {}))
