@@ -15,6 +15,10 @@ on:
       - app.js
       - styles.css
       - build_ap_elo.py
+      - CNAME
+      - robots.txt
+      - sitemap.xml
+      - build_seo_pages.py
       - match_lab_ap_elo_master.csv
       - match_lab_game_ap_elo.csv
 permissions:
