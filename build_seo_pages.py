@@ -187,7 +187,8 @@ def write_live_data_pages(now):
     week=data.get("week")
     through=data.get("through_week")
     stamp=data.get("generated_at")
-    context=f"{season} season · Week {esc(week)} pregame snapshot · through Week {esc(through)}"
+    snapshot_type=data.get("snapshot_type")
+    context=(f"{season} season · current through completed games in Week {esc(through)}" if snapshot_type=="current_to_date" else f"{season} season · Week {esc(week)} pregame snapshot · through Week {esc(through)}")
 
     # Full Team Strength ranking. Overall Strength is built from the opponent-adjusted
     # Offensive Strength and Defensive Strength components in current_rankings.json.
