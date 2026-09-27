@@ -1,0 +1,26 @@
+name: Validate Strength Model
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - validate_strength_model.py
+      - .github/workflows/validate-strength-model.yml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Backtest strength model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python validate_strength_model.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: strength-model-validation
+          path: validation/strength_model_report.json
