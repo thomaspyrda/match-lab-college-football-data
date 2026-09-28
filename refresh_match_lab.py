@@ -57,6 +57,8 @@ MARGIN_CAP=42.0
 TEAM_ALIASES={
  "UConn":"Connecticut",
  "Connecticut":"Connecticut",
+ "Ole Miss":"Mississippi",
+ "Mississippi":"Mississippi",
 }
 def canon_team(team):
  return TEAM_ALIASES.get(team,team)
@@ -170,7 +172,14 @@ def srank(year,week,team):
 
 def adv(year,week,team):
  board=advanced.get(year,{}).get(str(week),{})
- r=board.get("teams",{}).get(team)
+ teams=board.get("teams",{})
+ r=teams.get(team)
+ if r is None:
+  key=canon_team(team)
+  for name,row in teams.items():
+   if canon_team(name)==key:
+    r=row
+    break
  return (r|{"through_week":board.get("through_week")}) if r else None
 all_upcoming=[]; now=datetime.now(timezone.utc); end=now+timedelta(days=7)
 for year in sorted(strength):
@@ -221,7 +230,7 @@ def live_ap(week):
  eligible=[x for x in rankings if int(x.get("week") or 0)<=int(week)]
  snap=max(eligible,key=lambda x:int(x.get("week") or 0),default=None)
  poll=next((p for p in (snap or {}).get("polls",[]) if str(p.get("poll","")).lower() in ("ap top 25","ap")),None)
- return {r.get("school"):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
+ return {canon_team(r.get("school")):int(r["rank"]) for r in (poll or {}).get("ranks",[]) if r.get("school")}
 def live_strength(week):
  ap=live_ap(week)
  board=power_boards.get(now.year,{})
@@ -416,9 +425,9 @@ def quality_multiplier(opponent_strength,residual):
  return max(0.75,min(1.25,factor))
 
 def result_score(team,opp,is_home,points,opp_points,opp_quality):
- team_pre=preseason_ratings.get(team,FCS_UNIT_STRENGTH)
- opp_pre=preseason_ratings.get(opp,FCS_UNIT_STRENGTH)
- expected=(float(team_pre)-float(opp_pre))*RATING_TO_POINTS+(HOME_FIELD_POINTS if is_home else -HOME_FIELD_POINTS)
+ team_quality=current_evidence_strength(team)
+ if team_quality is None:team_quality=preseason_ratings.get(team,FCS_UNIT_STRENGTH)
+ expected=(float(team_quality)-float(opp_quality))*RATING_TO_POINTS+(HOME_FIELD_POINTS if is_home else -HOME_FIELD_POINTS)
  actual=float(points)-float(opp_points)
  surprise=max(-RESULT_MARGIN_CAP,min(RESULT_MARGIN_CAP,actual-expected))
  won=actual>0
@@ -431,20 +440,28 @@ def result_score(team,opp,is_home,points,opp_points,opp_quality):
   outcome_bonus=0.0
  return max(0.0,min(100.0,50.0+surprise+outcome_bonus))
 
-def rating_movement(current_rating,game_grade,opponent_quality,expectation_grade):
- gap=float(game_grade)-float(current_rating)
+def rating_movement(opponent_quality,expectation_grade,result_grade,absolute_grade):
+ # Ratings move on over/under-performance, not by comparing a game-grade scale
+ # directly with the team's 1-100 power rating. 50 means expectation was met.
+ stat_surprise=float(expectation_grade)-50.0
+ result_surprise=float(result_grade)-50.0
+ absolute_surprise=float(absolute_grade)-50.0
+ # Performance versus expectation drives movement. Result/margin confirms it.
+ # Absolute dominance is only a small secondary signal and mainly helps identify
+ # truly exceptional performances against weak competition.
+ surprise=0.70*stat_surprise+0.20*result_surprise+0.10*absolute_surprise
  oq=max(0.0,min(100.0,float(opponent_quality)))
- if gap>=0:
-  # Upside is intentionally hard to earn against weak competition. Exceptional
-  # overperformance can partially overcome that discount.
-  competition_factor=0.20+0.80*((oq/100.0)**1.5)
-  exceptional=max(0.0,min(1.0,(float(expectation_grade)-75.0)/25.0))
-  movement_factor=min(1.10,competition_factor+0.20*exceptional)
+ if surprise>=0:
+  competition_factor=0.15+0.85*((oq/100.0)**1.6)
+  exceptional=max(0.0,min(1.0,(stat_surprise-18.0)/20.0))
+  # Weak opponents create little upside unless the team beats expectation by a
+  # very large amount; elite opponents can deliver the full reward.
+  movement_factor=min(1.15,competition_factor+0.25*exceptional)
  else:
-  # Poor games against weak opponents are more damaging; a poor game against an
-  # elite opponent is treated more leniently.
-  movement_factor=min(1.25,0.65+0.60*(1.0-oq/100.0))
- delta=UNIT_UPDATE_RATE*movement_factor*gap
+  # Underperformance against weak competition is punished most. Poor results
+  # against elite teams are softened, but still count.
+  movement_factor=min(1.30,0.60+0.70*(1.0-oq/100.0))
+ delta=UNIT_UPDATE_RATE*movement_factor*surprise
  return max(-MAX_UNIT_GAME_DELTA,min(MAX_UNIT_GAME_DELTA,delta))
 
 def season_weighted_average(entries):
@@ -509,27 +526,28 @@ for week in weeks:
    statistical_score=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
    rscore=result_score(team,opp,is_home,points_map[team],points_map[opp],opponent_competition)
    adjusted=STATISTICAL_GAME_WEIGHT*statistical_score+RESULT_GAME_WEIGHT*rscore
-   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted))
+   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted,rscore,absolute_score))
 
  # Apply every game in the week against the same entering snapshot. Ratings are
  # updated only after the full week is graded, keeping the model pregame-safe.
  off_deltas=defaultdict(list)
  def_deltas=defaultdict(list)
- for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade in pending:
+ for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade,result_grade,absolute_grade in pending:
   off_game_scores[team].append(off_score)
   opponent_def_quality_log[team].append(opp_competition)
   off_multiplier_log[team].append(off_mult)
 
-  off_delta=rating_movement(off_strength_entering.get(team,preseason_ratings.get(team,50.0)),off_score,opp_competition,expectation_grade)
+  off_delta=rating_movement(opp_competition,expectation_grade,result_grade,absolute_grade)
   off_deltas[team].append(off_delta)
 
-  # Defense receives the mirror of the opponent's offensive game evidence. Its
-  # own rating then moves from its preseason/current prior rather than resetting
-  # to a weekly percentile.
+  # Defense receives the mirror of the opponent offense's evidence. Movement is
+  # likewise measured against expectation rather than against the current rating.
   team_competition=competition_strength(team,week)
   defensive_grade=100.0-off_score
   defensive_expectation=100.0-expectation_grade
-  def_delta=rating_movement(def_strength_entering.get(opp,preseason_ratings.get(opp,50.0)),defensive_grade,team_competition,defensive_expectation)
+  defensive_result=100.0-result_grade
+  defensive_absolute=100.0-absolute_grade
+  def_delta=rating_movement(team_competition,defensive_expectation,defensive_result,defensive_absolute)
   def_deltas[opp].append(def_delta)
   def_game_scores[opp].append(defensive_grade)
   opponent_off_quality_log[opp].append(team_competition)
@@ -609,7 +627,7 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+; strong opponents amplify positive performance while weak opponents require much larger overperformance for comparable credit",
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus preseason expectation; wins over strong opponents receive the largest result bonus and losses to weak opponents receive the largest penalty",
-   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move after each game. Positive movement is strongly discounted against weak opponents unless performance beats expectation by an exceptional amount; poor games against weak opponents are penalized more heavily. Each game can move a unit by at most 10 rating points.",
+   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move only on over/under-performance versus expectation. Statistical overperformance drives 70% of movement, result/margin surprise 20%, and absolute dominance 10%. Positive movement is strongly discounted against weak opponents unless performance is exceptional; poor games against weak opponents are penalized more heavily. Each game can move a unit by at most 10 rating points.",
    "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
    "ap_rank":"reference only; never enters the formula",
   },
