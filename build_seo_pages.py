@@ -104,9 +104,11 @@ h2{{margin-top:2rem}}
 .mobile-menu nav a{{min-height:44px;display:flex;align-items:center;padding:11px 13px;border-radius:9px}}
 .rank-hero{{margin:16px 0 22px;border:1px solid #1f6f34;border-radius:18px;overflow:hidden;background:#0d0d0d}}
 .rank-hero img{{display:block;width:100%;height:auto;aspect-ratio:3.15/1;object-fit:cover}}
-.rank-tabs{{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}}
-.rank-tabs a{{border:1px solid #2b2b2b;background:#111;border-radius:999px;padding:7px 11px;text-decoration:none;font-size:.84rem;font-weight:700}}
-.rank-tabs a.active{{border-color:#00ff41;color:#00ff41;background:#0d170f}}
+.rank-tabs{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 20px}}
+.rank-tabs a{{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #2b2b2b;background:#111;border-radius:12px;padding:10px 12px;text-decoration:none;font-size:.9rem;font-weight:800;text-align:center}}
+.rank-tabs a.active{{border-color:#00ff41;color:#00ff41;background:#0d170f;box-shadow:0 0 0 1px rgba(0,255,65,.08)}}
+.rank-tabs a:hover,.rank-tabs a:focus-visible{{border-color:#555;background:#161616}}
+.rank-tabs-label{{margin:18px 0 6px;color:#9d9d9d;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}}
 
 .archive-list{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
 .archive-list a{{border:1px solid #272727;background:#111;border-radius:14px;padding:14px;text-decoration:none}}
@@ -143,6 +145,8 @@ h2{{margin-top:2rem}}
 }}
 @media(max-width:620px){{
  h1{{font-size:clamp(34px,10vw,48px)}}
+ .rank-tabs{{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+ .rank-tabs a{{min-height:42px;padding:8px 9px;font-size:.78rem}}
  .data-table th,.data-table td{{padding:7px 3px}}
  .data-table th{{font-size:.5rem}}
  .data-table td{{font-size:.62rem}}
@@ -274,7 +278,7 @@ def ranking_tabs(active):
         ("offense","Offensive Strength",f"{BASE}/college-football-offensive-strength-rankings/"),
         ("defense","Defensive Strength",f"{BASE}/college-football-defensive-strength-rankings/"),
     ]
-    return "<div class='rank-tabs' aria-label='CFB ranking categories'>"+"".join(
+    return "<p class='rank-tabs-label'>Explore CFB Rankings</p><div class='rank-tabs' aria-label='CFB ranking categories'>"+"".join(
         f"<a href='{url}' class='{'active' if key==active else ''}'{' aria-current=\"page\"' if key==active else ''}>{label}</a>"
         for key,label,url in items
     )+"</div>"
