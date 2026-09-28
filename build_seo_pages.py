@@ -101,7 +101,15 @@ nav a{{text-decoration:none}}
 .note{{border-left:3px solid #00ff41;padding:10px 14px;background:#101410;color:#d7d7d7}}
 @media(max-width:800px){{.grid,.metrics,.archive-list,.data-links{{grid-template-columns:1fr}}}}
 </style>
-</head><body><main><nav><a href="{BASE}/">CFB Match Lab</a><a href="{BASE}/college-football-matchup-tool/">Matchup Research</a><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a><a href="{BASE}/college-football/matchups/">Historical Archive</a><a href="https://parlaycalculator.bet/">ParlayCalculator.bet</a></nav>{body}</main></body></html>"""
+</head><body><main><nav><a href="{BASE}/">CFB Match Lab</a><a href="{BASE}/college-football-matchup-tool/">Matchup Research</a><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a><a href="{BASE}/college-football/matchups/">Historical Archive</a><a href="https://parlaycalculator.bet/">ParlayCalculator.bet</a></nav>{body}</main>
+<script>
+document.addEventListener('click',function(e){
+ const btn=e.target.closest('.help-btn');
+ document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
+ if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
+</script></body></html>"""
 
 def team_snapshot(name,p):
     recent=p.get("recent_form") or {}
@@ -167,18 +175,44 @@ def current_rankings_data():
         return {"teams":[],"week":None,"through_week":None,"season":None,"generated_at":None}
     return json.loads(p.read_text(encoding="utf-8"))
 
+COLUMN_HELP={
+    "rank":"Current position in this ranking table.",
+    "team":"College football team.",
+    "ap":"Current AP Poll rank shown for reference only. It does not affect Match Lab ratings.",
+    "strength":"Current overall Team Strength score based on completed games to date.",
+    "offense":"Current Offensive Strength score based on completed offensive performances.",
+    "defense":"Current Defensive Strength score based on completed defensive performances.",
+    "sos":"Strength of schedule score for opponents already faced. Higher means a tougher schedule to date.",
+    "raw":"Average entering strength of opponents already faced.",
+    "strength_rank":"Current overall Team Strength rank.",
+    "score":"Current unit strength score based on completed games to date.",
+    "vs_expectation":"Season-to-date performance compared with what the model expected entering each completed game. Higher means more consistent overperformance.",
+    "opp_quality":"Average entering strength of the opposing units this team has already faced.",
+    "multiplier":"Average opponent-quality adjustment applied across completed games. Values above 1 increased credit; values below 1 reduced it.",
+    "overall_rank":"Current overall Team Strength rank.",
+    "overall":"Current overall Team Strength score.",
+    "games":"Number of completed games represented in this ranking."
+}
+
 def ranking_table(rows,columns):
-    head="".join(f"<th>{esc(label)}</th>" for _,label in columns)
+    head=[]
+    for key,label in columns:
+        help_text=COLUMN_HELP.get(key,"Context for this statistic based on completed games to date.")
+        head.append(
+            f"<th><span class='help-wrap'><span>{esc(label)}</span>"
+            f"<button class='help-btn' type='button' aria-label='About {esc(label)}' aria-expanded='false'>?</button>"
+            f"<span class='help-pop' role='tooltip'>{esc(help_text)}</span></span></th>"
+        )
     body=[]
     for idx,row in enumerate(rows,1):
         cells=[]
-        for key,_ in columns:
+        for key,label in columns:
             value=row.get(key)
             if key=="rank":
                 value=idx
-            cells.append(f"<td>{esc(value)}</td>")
+            cells.append(f"<td data-label='{esc(label)}'>{esc(value)}</td>")
         body.append("<tr>"+"".join(cells)+"</tr>")
-    return f"<div class='data-table-wrap'><table class='data-table'><thead><tr>{head}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
+    return f"<div class='data-table-wrap'><table class='data-table'><thead><tr>{''.join(head)}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
 
 def write_live_data_pages(now):
     data=current_rankings_data()
@@ -210,11 +244,10 @@ def write_live_data_pages(now):
         })
     strength_rows=sorted(strength_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offensive Strength"),("defense","Defensive Strength"),("sos","SOS Score"),("ap","AP Rank"),("games","Games")])
+    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("sos","SOS"),("ap","AP"),("games","Games")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
-<p>{context}. CFB Match Lab Team Strength uses 55% evolving Offensive Strength and 45% evolving Defensive Strength, with both units seeded from preseason strength and updated game by game. Each unit is built from game-level performance versus expectation using PPA, success rate, explosiveness, points per drive and scoring, with opponent-unit strength adjusting how much credit or penalty each performance receives.</p>
-<p class="note">AP Rank is displayed only as an independent reference and never affects the formula. Offensive and Defensive Strength begin from preseason strength and evolve after each completed game. Competition quality remains preseason-anchored early, then current-season evidence is blended in gradually. Historical matchup snapshots remain pregame-safe; this live board updates as completed games enter the current dataset.</p>
-<div class="data-links"><a href="{BASE}/college-football-strength-of-schedule-rankings/"><b>Strength of Schedule Rankings</b><br><span class="meta">See which teams have faced the strongest opponents.</span></a><a href="{BASE}/college-football-offensive-strength-rankings/"><b>Offensive Strength Rankings</b><br><span class="meta">Compare opponent-adjusted offensive performance.</span></a></div>
+<p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
+<div class="data-links"><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Team Strength Rankings | CFB Match Lab",f"Current {season} college football Team Strength rankings for the full FBS field from CFB Match Lab, updated weekly using opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
 
@@ -235,11 +268,10 @@ def write_live_data_pages(now):
     sos_rows=sorted(sos_rows,key=lambda r:(-(r["sos"] or 0),r["team"]))
     for i,r in enumerate(sos_rows,1): r["rank"]=i
     d=ROOT/"college-football-strength-of-schedule-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("sos","SOS Score"),("raw","Opponent Strength Avg"),("strength_rank","Team Strength Rank"),("strength","Team Strength"),("games","Games")])
+    table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("sos","SOS"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("games","Games")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Strength of Schedule Rankings</h1>
-<p>{context}. Schedule Strength is based on the entering CFB Match Lab strength of opponents already faced. The SOS Score converts that opponent-quality average into a 1–100 FBS percentile, where 100 represents the most difficult schedule to date.</p>
-<p class="note">This is schedule difficulty already faced, not a future remaining-schedule projection.</p>
-<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/"><b>Team Strength Rankings</b><br><span class="meta">Compare opponent-adjusted overall ratings.</span></a><a href="{BASE}/college-football-defensive-strength-rankings/"><b>Defensive Strength Rankings</b><br><span class="meta">Compare opponent-adjusted defensive performance.</span></a></div>
+<p class="page-intro">{context}. Current strength-of-schedule rankings based only on opponents already faced, not future schedule projections. Tap or click any <b>?</b> for metric definitions.</p>
+<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Strength of Schedule Rankings | CFB Match Lab",f"Current {season} college football strength of schedule rankings based on opponent strength already faced, with full-FBS SOS percentiles from CFB Match Lab.",f"{BASE}/college-football-strength-of-schedule-rankings/",body),encoding="utf-8")
 
@@ -268,11 +300,10 @@ def write_live_data_pages(now):
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP Rank"),("score",label),("vs_expectation","Performance vs Expectation"),("opp_quality",opponent_label),("multiplier","Avg Opponent Adjustment"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
+        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),("vs_expectation","Perf vs Exp"),("opp_quality",opponent_label),("multiplier","Opp Adj"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
-<p>{context}. {label} is built game by game from a 50/50 blend of absolute performance and performance versus expectation. Each side uses 45% PPA, 20% success rate, 15% explosiveness, 10% points per drive and 10% scoring. The statistical grade supplies 85% of the game score and result/margin versus expectation supplies 15%. Those game grades move each unit from its preseason starting rating based on over- or under-performance versus expectation rather than by comparing the game grade directly with the team's power rating. Statistical surprise drives most movement, result/margin surprise provides confirmation, and absolute dominance is a smaller secondary signal. Weak opponents set a higher expected margin of dominance rather than suppressing credit. Strong teams are expected to separate from weak teams; meeting that expectation confirms strength, exceeding it earns additional credit, and struggling against weak competition is penalized. Offensive validation uses a simpler trigger: at least 3 of the last 4 games with 40+ points, a clearly positive season offensive performance grade, and a current 40+ point above-expectation win over an 85+ opponent. Once triggered, opponent quality and advanced metrics determine how far the offense is re-anchored upward, without artificially raising the defense. Low-rated teams can accelerate upward after materially beating expectation against legitimate competition. A separate signature-performance accelerator adds extra corrective movement only when a team defeats a 75+ opponent and its underlying performance also beats expectation, so dominant wins over elite competition can override an inaccurate preseason prior faster. Public strength scores use these bands: 1–49 Below Average, 50–64 Above Average, 65–75 Strong, 76–84 Very Strong, 85–94 Great, and 95–100 Elite. Internal ratings above 95 are spread across the Elite band to preserve separation.</p>
-<p class="note">AP Rank is shown only as a reference point and never enters the formula. Strong opponents create the largest rewards for wins and strong performances; weak opponents require major overperformance for comparable credit, while poor results against weak competition are penalized more heavily.</p>
-<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/"><b>Team Strength Rankings</b><br><span class="meta">Overall rating uses 55% evolving Offensive Strength / 45% evolving Defensive Strength.</span></a><a href="{BASE}/college-football-strength-of-schedule-rankings/"><b>Strength of Schedule Rankings</b><br><span class="meta">See overall opponent difficulty already faced.</span></a></div>
+<p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
+<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
         (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab, adjusted for the quality of opposing units faced.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
 
