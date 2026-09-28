@@ -381,6 +381,8 @@ opponent_def_quality_log=defaultdict(list)
 opponent_off_quality_log=defaultdict(list)
 off_multiplier_log=defaultdict(list)
 def_multiplier_log=defaultdict(list)
+off_scoring_percentiles=defaultdict(list)
+off_validated_targets=defaultdict(list)
 
 # Offensive and defensive power ratings begin at the real preseason team-strength
 # prior and evolve game by game. This preserves preseason information early while
@@ -537,6 +539,29 @@ def game_absolute_score(metrics,week):
  total=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_scores)
  return sum(component_scores[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_scores)/total if total else None
 
+def validated_offense_target(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade,scoring_percentile,dominant_games,won):
+ # Repeated high-end offensive production is useful evidence even when early
+ # opponents are weak. When that same production is validated against an elite
+ # opponent, sharply reduce reliance on an outdated preseason prior.
+ if not won or dominant_games<4:return None
+ oq=float(opponent_quality)
+ if oq<85.0:return None
+ if float(expectation_grade)<60.0 or float(result_grade)<65.0:return None
+ if float(absolute_grade)<70.0 or float(scoring_percentile)<80.0:return None
+
+ elite_gate=max(0.0,min(1.0,(oq-85.0)/15.0))
+ scoring_gate=max(0.0,min(1.0,(float(scoring_percentile)-80.0)/20.0))
+ expectation_gate=max(0.0,min(1.0,(float(expectation_grade)-60.0)/20.0))
+ result_gate=max(0.0,min(1.0,(float(result_grade)-65.0)/25.0))
+ consistency_gate=max(0.0,min(1.0,(dominant_games-3)/2.0))
+
+ # The target is deliberately offense-only. It does not raise the defense just
+ # because the team won. Four repeated dominant outputs plus elite validation
+ # can move a previously underrated offense into the low/mid 90s, with room for
+ # further growth if the production continues.
+ target=90.0+2.0*consistency_gate+2.0*elite_gate+1.5*scoring_gate+1.5*expectation_gate+1.0*result_gate
+ return min(96.5,max(float(current_rating),target))
+
 weeks=sorted({int(g.get("week") or 0) for g in current_records if g.get("result")})
 for week in weeks:
  week_games=[
@@ -579,20 +604,38 @@ for week in weeks:
    rscore=result_score(team,opp,is_home,points_map[team],points_map[opp],opponent_competition)
    adjusted=STATISTICAL_GAME_WEIGHT*statistical_score+RESULT_GAME_WEIGHT*rscore
    won=float(points_map[team])>float(points_map[opp])
-   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted,rscore,absolute_score,won))
+   scoring_percentile=pct_score(metrics[team].get("scoring"),week_values[week]["scoring"]) or 50
+   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted,rscore,absolute_score,won,scoring_percentile))
 
  # Apply every game in the week against the same entering snapshot. Ratings are
  # updated only after the full week is graded, keeping the model pregame-safe.
  off_deltas=defaultdict(list)
  def_deltas=defaultdict(list)
- for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade,result_grade,absolute_grade,won in pending:
+ for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade,result_grade,absolute_grade,won,scoring_percentile in pending:
   off_game_scores[team].append(off_score)
   opponent_def_quality_log[team].append(opp_competition)
   off_multiplier_log[team].append(off_mult)
+  off_scoring_percentiles[team].append(scoring_percentile)
+
+  # A dominant offensive game requires both high-end production and meaningful
+  # performance versus expectation. Weak opponents can establish consistency;
+  # elite competition is required to validate that consistency.
+  dominant_games=sum(
+   1 for i,s in enumerate(off_game_scores[team])
+   if s>=60.0 and i<len(off_scoring_percentiles[team]) and off_scoring_percentiles[team][i]>=75.0
+  )
   off_evidence_count=sum(1 for s in off_game_scores[team] if s>=60.0)
 
-  off_delta=rating_movement(off_strength_entering.get(team,preseason_ratings.get(team,50.0)),opp_competition,expectation_grade,result_grade,absolute_grade,won,off_evidence_count)
+  current_off=off_strength_entering.get(team,preseason_ratings.get(team,50.0))
+  off_delta=rating_movement(current_off,opp_competition,expectation_grade,result_grade,absolute_grade,won,off_evidence_count)
   off_deltas[team].append(off_delta)
+
+  validated_target=validated_offense_target(
+   current_off,opp_competition,expectation_grade,result_grade,absolute_grade,
+   scoring_percentile,dominant_games,won
+  )
+  if validated_target is not None:
+   off_validated_targets[team].append(validated_target)
 
   # Defense receives the mirror of the opponent offense's evidence. Movement is
   # likewise measured against expectation rather than against the current rating.
@@ -616,10 +659,16 @@ for week in weeks:
 
  for team,deltas in off_deltas.items():
   if team not in off_strength_entering:continue
-  off_strength_entering[team]=max(1.0,min(INTERNAL_RATING_MAX,off_strength_entering[team]+sum(deltas)/len(deltas)))
+  updated=max(1.0,min(INTERNAL_RATING_MAX,off_strength_entering[team]+sum(deltas)/len(deltas)))
+  # Elite validation can reset the offensive prior upward, but never lowers a
+  # rating and never changes the defensive unit.
+  if off_validated_targets.get(team):
+   updated=max(updated,max(off_validated_targets[team]))
+  off_strength_entering[team]=updated
  for team,deltas in def_deltas.items():
   if team not in def_strength_entering:continue
   def_strength_entering[team]=max(1.0,min(INTERNAL_RATING_MAX,def_strength_entering[team]+sum(deltas)/len(deltas)))
+ off_validated_targets.clear()
 
 unit_raw={}
 for team in current_board:
@@ -679,13 +728,13 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
   "through_week":max(0,current_week-1),
   "snapshot_type":"current_to_date",
   "model":{
-   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring",
+   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Repeated high-end scoring/performance builds unit-specific confidence; when four dominant offensive outputs are validated by another dominant performance against an 85+ opponent, the offensive prior can be reset into the low/mid-90s without changing the defense.",
    "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
    "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Opponent quality sets the expected level of dominance: beating a weak team by the margin and efficiency expected of a strong team confirms strength, exceeding that expectation earns additional credit, and struggling against weak competition is penalized.",
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
-   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. A signature-performance accelerator rewards strong wins over 75+ opponents, and a validated-breakout rule can unlock a larger correction when repeated dominance is confirmed by a dominant win over an 85+ opponent. Internal ratings can exceed 100 to preserve elite-team separation, while public scores use a soft 1-100 ceiling.",
+   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
    "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
    "ap_rank":"reference only; never enters the formula",
   },
