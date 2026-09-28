@@ -39,6 +39,12 @@ def form(team,prior):
 strength={}
 for p in (DATA/"weekly").glob("*.json"):
  d=json.loads(p.read_text());strength[int(d["season"])]=d["weeks"]
+preseason_consensus={}
+preseason_dir=DATA/"preseason"
+if preseason_dir.exists():
+ for p in preseason_dir.glob("*.json"):
+  d=json.loads(p.read_text())
+  preseason_consensus[int(d["season"])]=d
 advanced={}
 for p in (DATA/"profiles").glob("*.json"):
  d=json.loads(p.read_text());advanced[int(d["season"])]=d.get("weeks",{})
@@ -59,6 +65,14 @@ TEAM_ALIASES={
  "Connecticut":"Connecticut",
  "Ole Miss":"Mississippi",
  "Mississippi":"Mississippi",
+ "UTSA":"Texas-San Antonio",
+ "Texas-San Antonio":"Texas-San Antonio",
+ "Appalachian State":"App State",
+ "App State":"App State",
+ "FIU":"Florida International",
+ "Florida International":"Florida International",
+ "San Jose State":"San José State",
+ "San José State":"San José State",
 }
 def canon_team(team):
  return TEAM_ALIASES.get(team,team)
@@ -80,6 +94,18 @@ def pct_score(value,values):
  return max(1,min(100,int(100*(below+(tied-1)/2)/(len(usable)-1)+0.5)))
 
 def preseason_board(year):
+ # Prefer the frozen, source-audited preseason consensus for seasons where one
+ # exists. This keeps the starting prior tied to projections for the upcoming
+ # season rather than carrying forward the previous season's final results.
+ consensus=preseason_consensus.get(year)
+ if consensus:
+  out={}
+  for team,row in (consensus.get("teams") or {}).items():
+   score=row.get("score")
+   if score is not None:out[canon_team(team)]=float(score)
+  if out:return out
+
+ # Historical fallback for seasons that predate the explicit consensus files.
  weeks=strength.get(year,{})
  if not weeks:return {}
  first_week=min((int(w) for w in weeks),default=1)
@@ -519,17 +545,28 @@ def rating_movement(current_rating,opponent_quality,expectation_grade,result_gra
  return max(-cap,min(cap,delta))
 
 def display_strength(raw):
- # Public 1-100 scale:
- # 1-49 Below Average, 50-64 Above Average, 65-75 Strong,
- # 76-84 Very Strong, 85-94 Great, 95-100 Elite.
- # Preserve the underlying rating directly through the Great tier. Internal
- # ratings above 95 are spread linearly across the Elite band so elite teams
- # remain distinguishable instead of bunching together near the ceiling.
+ # Public 1-100 scale intentionally spreads good/very-good teams across more
+ # of the board while compressing the weakest teams toward the bottom.
+ # Elite (95+) remains rare and must be earned by truly exceptional raw ratings.
  if raw is None:return None
- x=max(1.0,float(raw))
- if x<95.0:return round(min(94.9,x),1)
- elite=95.0+5.0*min(1.0,max(0.0,(x-95.0)/(INTERNAL_RATING_MAX-95.0)))
- return round(min(100.0,elite),1)
+ x=max(1.0,min(float(INTERNAL_RATING_MAX),float(raw)))
+ anchors=(
+  (1.0,1.0),
+  (20.0,8.0),
+  (35.0,18.0),
+  (50.0,35.0),
+  (65.0,55.0),
+  (75.0,68.0),
+  (85.0,80.0),
+  (95.0,90.0),
+  (105.0,96.0),
+  (INTERNAL_RATING_MAX,100.0),
+ )
+ for (x1,y1),(x2,y2) in zip(anchors,anchors[1:]):
+  if x<=x2:
+   t=0.0 if x2==x1 else (x-x1)/(x2-x1)
+   return round(y1+(y2-y1)*t,1)
+ return 100.0
 
 def season_weighted_average(entries):
  if not entries:return None
@@ -756,7 +793,8 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
    "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
-   "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving power ratings; national rank uses the underlying raw rating order. Public scores use the reset bands: 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. Internal ratings above 95 are spread across the Elite band to preserve separation.",
+   "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving power ratings; national rank uses the underlying raw rating order. Public scores use the bands 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. The display mapping is nonlinear: strong teams are spread across more of the 65-94 range while the weakest teams are compressed toward the bottom, making 95+ naturally rare rather than quota-capped.",
+   "preseason_prior":"2026 uses a frozen equal-weight consensus of full-FBS preseason projections from Phil Steele, CBS Sports, and The Athletic, all published before Week 0. Previous-season final rankings are not used as a source.",
    "ap_rank":"reference only; never enters the formula",
   },
   "fbs_field_size":len(current_teams),
