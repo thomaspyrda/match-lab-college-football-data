@@ -281,6 +281,10 @@ EXPECTATION_PERFORMANCE_WEIGHT=0.50
 OPPONENT_ADJUSTMENT=0.20
 OVERALL_OFFENSE_WEIGHT=0.55
 OVERALL_DEFENSE_WEIGHT=0.45
+STATISTICAL_GAME_WEIGHT=0.85
+RESULT_GAME_WEIGHT=0.15
+COMPETITION_ADJUSTMENT=0.25
+RESULT_MARGIN_CAP=28.0
 
 def safe_float(v):
  try:return float(v) if v is not None else None
@@ -364,6 +368,7 @@ def_multiplier_log=defaultdict(list)
 # quality reference for the following week's games.
 off_strength_entering={team:NEUTRAL_UNIT_STRENGTH for team in current_board}
 def_strength_entering={team:NEUTRAL_UNIT_STRENGTH for team in current_board}
+preseason_ratings=preseason_board(now.year)
 
 def expectation(team,opponent,key,week):
  own=mean_or_none(off_history[team][key])
@@ -375,13 +380,53 @@ def expectation(team,opponent,key,week):
  if len(candidates)==1:return candidates[0]
  return neutral
 
+def current_evidence_strength(team):
+ off=off_strength_entering.get(team)
+ deff=def_strength_entering.get(team)
+ if off is None and deff is None:return None
+ if off is None:return deff
+ if deff is None:return off
+ return OVERALL_OFFENSE_WEIGHT*float(off)+OVERALL_DEFENSE_WEIGHT*float(deff)
+
+def competition_current_weight(week):
+ # Preseason ranking is the competition anchor early, then actual season
+ # evidence is allowed to take over gradually.
+ if week<=3:return 0.0
+ if week==4:return 0.15
+ if week==5:return 0.30
+ if week==6:return 0.45
+ if week==7:return 0.60
+ return 0.75
+
+def competition_strength(opponent,week):
+ preseason=preseason_ratings.get(opponent,FCS_UNIT_STRENGTH)
+ current=current_evidence_strength(opponent)
+ if current is None:return preseason
+ cw=competition_current_weight(week)
+ return (1.0-cw)*float(preseason)+cw*float(current)
+
 def quality_multiplier(opponent_strength,residual):
- # Positive performances are boosted against stronger units and discounted
- # against weaker units. Negative performances are penalized more against weak
- # units and softened against strong units. Range: 0.80x–1.20x.
+ # Strong competition amplifies positive performances and softens poor ones.
+ # Weak competition does the opposite. Competition is preseason-anchored.
  q=(max(0.0,min(100.0,float(opponent_strength)))-50.0)/50.0
- factor=(1.0+OPPONENT_ADJUSTMENT*q) if residual>=0 else (1.0-OPPONENT_ADJUSTMENT*q)
- return max(0.80,min(1.20,factor))
+ factor=(1.0+COMPETITION_ADJUSTMENT*q) if residual>=0 else (1.0-COMPETITION_ADJUSTMENT*q)
+ return max(0.75,min(1.25,factor))
+
+def result_score(team,opp,is_home,points,opp_points,opp_quality):
+ team_pre=preseason_ratings.get(team,FCS_UNIT_STRENGTH)
+ opp_pre=preseason_ratings.get(opp,FCS_UNIT_STRENGTH)
+ expected=(float(team_pre)-float(opp_pre))*RATING_TO_POINTS+(HOME_FIELD_POINTS if is_home else -HOME_FIELD_POINTS)
+ actual=float(points)-float(opp_points)
+ surprise=max(-RESULT_MARGIN_CAP,min(RESULT_MARGIN_CAP,actual-expected))
+ won=actual>0
+ lost=actual<0
+ if won:
+  outcome_bonus=4.0+8.0*(max(0.0,min(100.0,float(opp_quality)))/100.0)
+ elif lost:
+  outcome_bonus=-(4.0+8.0*((100.0-max(0.0,min(100.0,float(opp_quality))))/100.0))
+ else:
+  outcome_bonus=0.0
+ return max(0.0,min(100.0,50.0+surprise+outcome_bonus))
 
 def season_weighted_average(entries):
  if not entries:return None
@@ -425,7 +470,7 @@ for week in weeks:
    home:game_metric_row(team_rows[home],points_map[home]),
    away:game_metric_row(team_rows[away],points_map[away]),
   }
-  for team,opp in ((home,away),(away,home)):
+  for team,opp,is_home in ((home,away,True),(away,home,False)):
    component_residuals={}
    for key,weight in GAME_COMPONENT_WEIGHTS.items():
     actual=metrics[team].get(key)
@@ -437,13 +482,15 @@ for week in weeks:
    available_weight=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)
    weighted_z=sum(component_residuals[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)/available_weight
    expectation_score=max(0.0,min(100.0,50.0+15.0*weighted_z))
-   opp_def_strength=def_strength_entering.get(opp,FCS_UNIT_STRENGTH)
-   mult=quality_multiplier(opp_def_strength,expectation_score-50.0)
+   opponent_competition=competition_strength(opp,week)
+   mult=quality_multiplier(opponent_competition,expectation_score-50.0)
    expectation_adjusted=max(0.0,min(100.0,50.0+(expectation_score-50.0)*mult))
    absolute_score=game_absolute_score(metrics[team],week)
    if absolute_score is None:continue
-   adjusted=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
-   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opp_def_strength))
+   statistical_score=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
+   rscore=result_score(team,opp,is_home,points_map[team],points_map[opp],opponent_competition)
+   adjusted=STATISTICAL_GAME_WEIGHT*statistical_score+RESULT_GAME_WEIGHT*rscore
+   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition))
 
  # Record offense and mirrored defense only after every game in the week is graded,
  # so same-week games all use the same entering-strength snapshot.
@@ -454,7 +501,7 @@ for week in weeks:
 
   # The opponent defense receives the mirror of this offense's performance score,
   # adjusted by the offense quality it faced entering the week.
-  opp_off_strength=off_strength_entering.get(team,FCS_UNIT_STRENGTH)
+  opp_off_strength=competition_strength(team,week)
   defensive_base=100.0-off_score
   defensive_residual=defensive_base-50.0
   def_mult=quality_multiplier(opp_off_strength,defensive_residual)
@@ -530,7 +577,7 @@ for team,row in sorted(current_board.items()):
   "offensive_multiplier":units.get("offensive_multiplier"),
   "defensive_multiplier":units.get("defensive_multiplier"),
   "games_modeled":units.get("games_modeled"),
-  "unit_strength_model":"game_level_performance_vs_expectation",
+  "unit_strength_model":"preseason_anchored_competition_performance",
  })
 current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 
@@ -545,8 +592,9 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring",
    "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
-   "opponent_adjustment":"validated asymmetric 20% opponent adjustment: strong opponents amplify positive outperformance and soften underperformance; weak opponents do the reverse",
+   "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+; strong opponents amplify positive performance while weak opponents require much larger overperformance for comparable credit",
    "recency":"5% additional weight per successive game, capped at 1.15x",
+   "game_grade":"85% statistical performance + 15% result/margin versus preseason expectation; wins over strong opponents receive the largest result bonus and losses to weak opponents receive the largest penalty",
    "overall":"55% Offensive Strength + 45% Defensive Strength, re-percentiled across FBS",
    "ap_rank":"reference only; never enters the formula",
   },
