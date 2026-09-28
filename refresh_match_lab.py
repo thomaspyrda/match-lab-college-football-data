@@ -64,7 +64,14 @@ def canon_team(team):
  return TEAM_ALIASES.get(team,team)
 
 def tier(score):
- return "Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak"
+ if score is None:return None
+ s=float(score)
+ if s>=95:return "Elite"
+ if s>=85:return "Great"
+ if s>=76:return "Very Strong"
+ if s>=65:return "Strong"
+ if s>=50:return "Above Average"
+ return "Below Average"
 
 def pct_score(value,values):
  usable=[float(v) for v in values if v is not None]
@@ -512,12 +519,17 @@ def rating_movement(current_rating,opponent_quality,expectation_grade,result_gra
  return max(-cap,min(cap,delta))
 
 def display_strength(raw):
- # Internal ratings may rise above 100. Preserve separation at the top while
- # presenting a stable 1-100 public scale.
+ # Public 1-100 scale:
+ # 1-49 Below Average, 50-64 Above Average, 65-75 Strong,
+ # 76-84 Very Strong, 85-94 Great, 95-100 Elite.
+ # Preserve the underlying rating directly through the Great tier. Internal
+ # ratings above 95 are spread linearly across the Elite band so elite teams
+ # remain distinguishable instead of bunching together near the ceiling.
  if raw is None:return None
  x=max(1.0,float(raw))
- if x<=90.0:return round(x,1)
- return round(90.0+10.0*(1.0-(2.718281828459045**(-(x-90.0)/12.0))),1)
+ if x<95.0:return round(min(94.9,x),1)
+ elite=95.0+5.0*min(1.0,max(0.0,(x-95.0)/(INTERNAL_RATING_MAX-95.0)))
+ return round(min(100.0,elite),1)
 
 def season_weighted_average(entries):
  if not entries:return None
@@ -571,7 +583,7 @@ def validated_offense_target(current_rating,opponent_quality,expectation_grade,r
  # can re-anchor an underrated offense into the low/mid 90s while preserving room
  # for further growth and leaving defense untouched.
  target=90.0+1.5*consistency_gate+1.5*elite_gate+1.5*scoring_gate+2.0*expectation_gate+1.0*result_gate+1.0*absolute_gate+1.5*season_gate
- return min(96.0,max(float(current_rating),target))
+ return min(94.0,max(float(current_rating),target))
 
 weeks=sorted({int(g.get("week") or 0) for g in current_records if g.get("result")})
 for week in weeks:
@@ -710,10 +722,13 @@ for team,row in sorted(current_board.items()):
   **row,
   "advanced":adv(now.year,current_week,team),
   "offensive_strength":units.get("offensive_strength"),
+  "offensive_strength_tier":tier(units.get("offensive_strength")),
   "offensive_strength_rank":off_rank.get(team),
   "defensive_strength":units.get("defensive_strength"),
+  "defensive_strength_tier":tier(units.get("defensive_strength")),
   "defensive_strength_rank":def_rank.get(team),
   "overall_strength_score":overall_score,
+  "overall_strength_tier":tier(overall_score),
   "overall_strength_rank":overall_rank.get(team),
   "offensive_performance_vs_expectation":units.get("offensive_performance_vs_expectation"),
   "defensive_performance_vs_expectation":units.get("defensive_performance_vs_expectation"),
@@ -741,7 +756,7 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
    "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
-   "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
+   "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving power ratings; national rank uses the underlying raw rating order. Public scores use the reset bands: 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. Internal ratings above 95 are spread across the Elite band to preserve separation.",
    "ap_rank":"reference only; never enters the formula",
   },
   "fbs_field_size":len(current_teams),
