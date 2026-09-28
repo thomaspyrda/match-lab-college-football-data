@@ -276,6 +276,11 @@ NEUTRAL_UNIT_STRENGTH=50.0
 FCS_UNIT_STRENGTH=15.0
 RECENCY_STEP=0.05
 RECENCY_CAP=1.15
+ABSOLUTE_PERFORMANCE_WEIGHT=0.50
+EXPECTATION_PERFORMANCE_WEIGHT=0.50
+OPPONENT_ADJUSTMENT=0.20
+OVERALL_OFFENSE_WEIGHT=0.55
+OVERALL_DEFENSE_WEIGHT=0.45
 
 def safe_float(v):
  try:return float(v) if v is not None else None
@@ -375,7 +380,7 @@ def quality_multiplier(opponent_strength,residual):
  # against weaker units. Negative performances are penalized more against weak
  # units and softened against strong units. Range: 0.80x–1.20x.
  q=(max(0.0,min(100.0,float(opponent_strength)))-50.0)/50.0
- factor=(1.0+0.20*q) if residual>=0 else (1.0-0.20*q)
+ factor=(1.0+OPPONENT_ADJUSTMENT*q) if residual>=0 else (1.0-OPPONENT_ADJUSTMENT*q)
  return max(0.80,min(1.20,factor))
 
 def season_weighted_average(entries):
@@ -387,6 +392,17 @@ def season_weighted_average(entries):
   weighted+=float(value)*recency
   weights+=recency
  return weighted/weights if weights else None
+
+def game_absolute_score(metrics,week):
+ component_scores={}
+ for key,weight in GAME_COMPONENT_WEIGHTS.items():
+  actual=metrics.get(key)
+  if actual is None:continue
+  score=pct_score(actual,week_values[week][key])
+  if score is not None:component_scores[key]=score
+ if not component_scores:return None
+ total=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_scores)
+ return sum(component_scores[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_scores)/total if total else None
 
 weeks=sorted({int(g.get("week") or 0) for g in current_records if g.get("result")})
 for week in weeks:
@@ -420,10 +436,13 @@ for week in weeks:
    if not component_residuals:continue
    available_weight=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)
    weighted_z=sum(component_residuals[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)/available_weight
-   base_score=max(0.0,min(100.0,50.0+15.0*weighted_z))
+   expectation_score=max(0.0,min(100.0,50.0+15.0*weighted_z))
    opp_def_strength=def_strength_entering.get(opp,FCS_UNIT_STRENGTH)
-   mult=quality_multiplier(opp_def_strength,base_score-50.0)
-   adjusted=max(0.0,min(100.0,50.0+(base_score-50.0)*mult))
+   mult=quality_multiplier(opp_def_strength,expectation_score-50.0)
+   expectation_adjusted=max(0.0,min(100.0,50.0+(expectation_score-50.0)*mult))
+   absolute_score=game_absolute_score(metrics[team],week)
+   if absolute_score is None:continue
+   adjusted=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
    pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opp_def_strength))
 
  # Record offense and mirrored defense only after every game in the week is graded,
@@ -480,7 +499,7 @@ for team in current_board:
   "games_modeled":len(off_game_scores[team]),
  }
  if offensive_strength is not None and defensive_strength is not None:
-  unit_raw[team]["overall_raw"]=0.50*offensive_strength+0.50*defensive_strength
+  unit_raw[team]["overall_raw"]=OVERALL_OFFENSE_WEIGHT*offensive_strength+OVERALL_DEFENSE_WEIGHT*defensive_strength
  else:
   unit_raw[team]["overall_raw"]=None
 
@@ -523,12 +542,12 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
   "through_week":max(0,current_week-1),
   "snapshot_type":"current_to_date",
   "model":{
-   "offense":"45% PPA vs expectation + 20% success rate vs expectation + 15% explosiveness vs expectation + 10% points/drive vs expectation + 10% scoring vs expectation; game deviation adjusted by opponent defensive strength",
+   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring",
    "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
-   "opponent_adjustment":"asymmetric 0.80x–1.20x adjustment: strong opponents amplify positive outperformance and soften underperformance; weak opponents do the reverse",
+   "opponent_adjustment":"validated asymmetric 20% opponent adjustment: strong opponents amplify positive outperformance and soften underperformance; weak opponents do the reverse",
    "recency":"5% additional weight per successive game, capped at 1.15x",
-   "overall":"50% Offensive Strength + 50% Defensive Strength, re-percentiled across FBS",
+   "overall":"55% Offensive Strength + 45% Defensive Strength, re-percentiled across FBS",
    "ap_rank":"reference only; never enters the formula",
   },
   "fbs_field_size":len(current_teams),
