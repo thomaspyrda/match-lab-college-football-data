@@ -7,7 +7,12 @@ ROOT=Path(__file__).resolve().parent
 FIELDS=("strength_score","strength_tier","top_percent")
 
 def tier(score):
-    return "Elite" if score>=90 else "Strong" if score>=75 else "Above Average" if score>=50 else "Below Average" if score>=25 else "Weak"
+    if score>=95: return "Elite"
+    if score>=85: return "Great"
+    if score>=76: return "Very Strong"
+    if score>=65: return "Strong"
+    if score>=50: return "Above Average"
+    return "Below Average"
 
 def strength(rating, values):
     if rating in (None,""): return {"strength_score":"","strength_tier":"","top_percent":""}
