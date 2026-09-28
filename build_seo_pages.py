@@ -89,17 +89,41 @@ nav{{margin-bottom:30px;font-weight:800;display:flex;gap:16px;flex-wrap:wrap}}
 nav a{{text-decoration:none}}
 .archive-list{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
 .archive-list a{{border:1px solid #272727;background:#111;border-radius:14px;padding:14px;text-decoration:none}}
-.data-table-wrap{{overflow-x:auto;border:1px solid #272727;border-radius:16px;background:#111}}
-.data-table{{width:100%;border-collapse:collapse;min-width:760px}}
-.data-table th,.data-table td{{padding:12px 14px;border-bottom:1px solid #242424;text-align:left;white-space:nowrap}}
-.data-table th{{font-family:'DM Sans',system-ui,sans-serif;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:#aaa;background:#0d0d0d;position:sticky;top:0}}
+.page-intro{{max-width:860px;color:#c6c6c6;margin:0 0 16px}}
+.data-links{{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}}
+.data-links a{{border:1px solid #272727;background:#111;border-radius:999px;padding:7px 11px;text-decoration:none;font-size:.84rem}}
+.data-table-wrap{{overflow:hidden;border:1px solid #272727;border-radius:16px;background:#111}}
+.data-table{{width:100%;border-collapse:collapse;table-layout:fixed}}
+.data-table th,.data-table td{{padding:10px 7px;border-bottom:1px solid #242424;text-align:left;vertical-align:middle}}
+.data-table th{{font-family:'DM Sans',system-ui,sans-serif;font-size:.67rem;line-height:1.18;letter-spacing:.025em;text-transform:uppercase;color:#aaa;background:#0d0d0d;position:sticky;top:0;white-space:normal}}
+.data-table td{{font-size:.84rem;line-height:1.2;white-space:normal;overflow-wrap:anywhere}}
 .data-table tr:last-child td{{border-bottom:0}}
 .data-table td:first-child{{font-weight:800}}
 .rank-num{{font-family:'DM Sans',system-ui,sans-serif;font-weight:900;font-size:1.05rem}}
-.data-links{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}}
-.data-links a{{border:1px solid #272727;background:#111;border-radius:14px;padding:16px;text-decoration:none}}
+.help-wrap{{display:inline-flex;align-items:center;gap:4px;position:relative;max-width:100%}}
+.help-btn{{appearance:none;-webkit-appearance:none;border:1px solid #555;background:#171717;color:#d0d0d0;border-radius:50%;width:16px;height:16px;min-width:16px;padding:0;font:800 10px/14px 'DM Sans',sans-serif;cursor:pointer}}
+.help-btn:hover,.help-btn:focus-visible{{color:#fff;border-color:#8d8d8d;outline:none}}
+.help-pop{{display:none;position:absolute;z-index:100;top:22px;left:0;width:250px;max-width:70vw;padding:10px 11px;border:1px solid #3a3a3a;border-radius:10px;background:#181818;color:#eee;font:500 12px/1.4 'Outfit',sans-serif;text-transform:none;letter-spacing:0;white-space:normal;box-shadow:0 10px 28px rgba(0,0,0,.48)}}
+.help-wrap.open .help-pop{{display:block}}
+.data-table th:nth-child(1),.data-table td:nth-child(1){{width:6%}}
+.data-table th:nth-child(2),.data-table td:nth-child(2){{width:15%}}
+.data-table th:nth-child(3),.data-table td:nth-child(3){{width:8%}}
 .note{{border-left:3px solid #00ff41;padding:10px 14px;background:#101410;color:#d7d7d7}}
-@media(max-width:800px){{.grid,.metrics,.archive-list,.data-links{{grid-template-columns:1fr}}}}
+@media(max-width:900px){{
+ .grid,.metrics,.archive-list{{grid-template-columns:1fr}}
+ main{{padding-left:12px;padding-right:12px}}
+ .data-table th,.data-table td{{padding:8px 4px}}
+ .data-table th{{font-size:.58rem;letter-spacing:0}}
+ .data-table td{{font-size:.72rem}}
+ .help-btn{{width:14px;height:14px;min-width:14px;font-size:9px;line-height:12px}}
+}}
+@media(max-width:620px){{
+ h1{{font-size:clamp(34px,10vw,48px)}}
+ .data-table th,.data-table td{{padding:7px 3px}}
+ .data-table th{{font-size:.5rem}}
+ .data-table td{{font-size:.62rem}}
+ .help-pop{{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}}
+}}
 </style>
 </head><body><main><nav><a href="{BASE}/">CFB Match Lab</a><a href="{BASE}/college-football-matchup-tool/">Matchup Research</a><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a><a href="{BASE}/college-football/matchups/">Historical Archive</a><a href="https://parlaycalculator.bet/">ParlayCalculator.bet</a></nav>{body}</main>
 <script>
