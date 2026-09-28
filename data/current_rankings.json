@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-09-28T04:25:17.861806+00:00",
+  "generated_at": "2026-09-28T04:38:25.307631+00:00",
   "season": 2026,
   "week": 5,
   "through_week": 4,
   "snapshot_type": "current_to_date",
   "model": {
-    "offense": "50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring",
+    "offense": "50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Repeated high-end scoring/performance builds unit-specific confidence; when four dominant offensive outputs are validated by another dominant performance against an 85+ opponent, the offensive prior can be reset into the low/mid-90s without changing the defense.",
     "defense": "mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
     "expectation": "pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
     "opponent_adjustment": "competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Opponent quality sets the expected level of dominance: beating a weak team by the margin and efficiency expected of a strong team confirms strength, exceeding that expectation earns additional credit, and struggling against weak competition is penalized.",
     "recency": "5% additional weight per successive game, capped at 1.15x",
     "game_grade": "85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
-    "rating_evolution": "Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. A signature-performance accelerator rewards strong wins over 75+ opponents, and a validated-breakout rule can unlock a larger correction when repeated dominance is confirmed by a dominant win over an 85+ opponent. Internal ratings can exceed 100 to preserve elite-team separation, while public scores use a soft 1-100 ceiling.",
+    "rating_evolution": "Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
     "overall": "55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
     "ap_rank": "reference only; never enters the formula"
   },
