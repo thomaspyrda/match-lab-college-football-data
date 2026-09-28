@@ -382,6 +382,7 @@ opponent_off_quality_log=defaultdict(list)
 off_multiplier_log=defaultdict(list)
 def_multiplier_log=defaultdict(list)
 off_scoring_percentiles=defaultdict(list)
+off_points_log=defaultdict(list)
 off_validated_targets=defaultdict(list)
 
 # Offensive and defensive power ratings begin at the real preseason team-strength
@@ -539,28 +540,38 @@ def game_absolute_score(metrics,week):
  total=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_scores)
  return sum(component_scores[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_scores)/total if total else None
 
-def validated_offense_target(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade,scoring_percentile,dominant_games,won):
- # Repeated high-end offensive production is useful evidence even when early
- # opponents are weak. When that same production is validated against an elite
- # opponent, sharply reduce reliance on an outdated preseason prior.
- if not won or dominant_games<4:return None
+def validated_offense_target(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade,scoring_percentile,recent_points,season_off_grade,won):
+ # Simplified validation gate:
+ # 1) repeated production: at least 3 of the last 4 games with 40+ points;
+ # 2) underlying offensive quality: season performance grade is clearly positive;
+ # 3) elite validation: the current 40+ point win comes against an 85+ opponent
+ #    while the offense still performs above expectation.
  oq=float(opponent_quality)
+ points=[float(p) for p in recent_points[-4:] if p is not None]
+ high_output_games=sum(1 for p in points if p>=40.0)
+ current_points=points[-1] if points else None
+
+ if not won or current_points is None or current_points<40.0:return None
+ if len(points)<3 or high_output_games<3:return None
  if oq<85.0:return None
- if float(expectation_grade)<60.0 or float(result_grade)<65.0:return None
- if float(absolute_grade)<70.0 or float(scoring_percentile)<80.0:return None
+ if season_off_grade is None or float(season_off_grade)<60.0:return None
+ if float(expectation_grade)<=50.0:return None
 
+ # Once the trigger fires, richer metrics determine magnitude rather than acting
+ # as brittle yes/no gates.
  elite_gate=max(0.0,min(1.0,(oq-85.0)/15.0))
- scoring_gate=max(0.0,min(1.0,(float(scoring_percentile)-80.0)/20.0))
- expectation_gate=max(0.0,min(1.0,(float(expectation_grade)-60.0)/20.0))
- result_gate=max(0.0,min(1.0,(float(result_grade)-65.0)/25.0))
- consistency_gate=max(0.0,min(1.0,(dominant_games-3)/2.0))
+ scoring_gate=max(0.0,min(1.0,(float(scoring_percentile)-65.0)/35.0))
+ expectation_gate=max(0.0,min(1.0,(float(expectation_grade)-50.0)/25.0))
+ result_gate=max(0.0,min(1.0,(float(result_grade)-50.0)/35.0))
+ absolute_gate=max(0.0,min(1.0,(float(absolute_grade)-50.0)/35.0))
+ consistency_gate=max(0.0,min(1.0,(high_output_games-3)/1.0))
+ season_gate=max(0.0,min(1.0,(float(season_off_grade)-60.0)/20.0))
 
- # The target is deliberately offense-only. It does not raise the defense just
- # because the team won. Four repeated dominant outputs plus elite validation
- # can move a previously underrated offense into the low/mid 90s, with room for
- # further growth if the production continues.
- target=90.0+2.0*consistency_gate+2.0*elite_gate+1.5*scoring_gate+1.5*expectation_gate+1.0*result_gate
- return min(96.5,max(float(current_rating),target))
+ # The target is offense-only. A validated pattern of repeated 40+ point output
+ # can re-anchor an underrated offense into the low/mid 90s while preserving room
+ # for further growth and leaving defense untouched.
+ target=90.0+1.5*consistency_gate+1.5*elite_gate+1.5*scoring_gate+2.0*expectation_gate+1.0*result_gate+1.0*absolute_gate+1.5*season_gate
+ return min(96.0,max(float(current_rating),target))
 
 weeks=sorted({int(g.get("week") or 0) for g in current_records if g.get("result")})
 for week in weeks:
@@ -616,15 +627,10 @@ for week in weeks:
   opponent_def_quality_log[team].append(opp_competition)
   off_multiplier_log[team].append(off_mult)
   off_scoring_percentiles[team].append(scoring_percentile)
+  off_points_log[team].append(team_metrics.get("scoring"))
 
-  # A dominant offensive game requires both high-end production and meaningful
-  # performance versus expectation. Weak opponents can establish consistency;
-  # elite competition is required to validate that consistency.
-  dominant_games=sum(
-   1 for i,s in enumerate(off_game_scores[team])
-   if s>=60.0 and i<len(off_scoring_percentiles[team]) and off_scoring_percentiles[team][i]>=75.0
-  )
   off_evidence_count=sum(1 for s in off_game_scores[team] if s>=60.0)
+  season_off_grade=season_weighted_average(off_game_scores[team])
 
   current_off=off_strength_entering.get(team,preseason_ratings.get(team,50.0))
   off_delta=rating_movement(current_off,opp_competition,expectation_grade,result_grade,absolute_grade,won,off_evidence_count)
@@ -632,7 +638,7 @@ for week in weeks:
 
   validated_target=validated_offense_target(
    current_off,opp_competition,expectation_grade,result_grade,absolute_grade,
-   scoring_percentile,dominant_games,won
+   scoring_percentile,off_points_log[team],season_off_grade,won
   )
   if validated_target is not None:
    off_validated_targets[team].append(validated_target)
@@ -728,7 +734,7 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
   "through_week":max(0,current_week-1),
   "snapshot_type":"current_to_date",
   "model":{
-   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Repeated high-end scoring/performance builds unit-specific confidence; when four dominant offensive outputs are validated by another dominant performance against an 85+ opponent, the offensive prior can be reset into the low/mid-90s without changing the defense.",
+   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Offensive validation uses a simple trigger: at least 3 of the last 4 games with 40+ points, a season offensive performance grade of 60+, and a current 40+ point above-expectation win over an 85+ opponent. Once triggered, opponent quality and advanced metrics determine how far the offense is re-anchored into the low/mid-90s without changing the defense.",
    "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
    "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Opponent quality sets the expected level of dominance: beating a weak team by the margin and efficiency expected of a strong team confirms strength, exceeding that expectation earns additional credit, and struggling against weak competition is penalized.",
