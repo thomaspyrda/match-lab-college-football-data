@@ -74,8 +74,10 @@ def page_shell(title,description,canonical,body):
 <link rel="canonical" href="{esc(canonical)}">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
-body{{margin:0;background:#090909;color:#f5f5f5;font-family:'Outfit',system-ui,sans-serif;font-size:15px;line-height:1.5}}
-main{{max-width:1180px;margin:auto;padding:34px 20px 70px}}
+:root{{--bg:#0f0f0f;--p:#1f1f1f;--line:#303030;--text:#f4f4f4;--muted:#9d9d9d;--green:#00ff41;--font:'Outfit',system-ui,sans-serif}}
+*{{box-sizing:border-box}}
+body{{margin:0;background:radial-gradient(circle at 75% 0,rgba(0,255,65,.08),transparent 30%),var(--bg);color:var(--text);font:15px/1.5 var(--font);-webkit-font-smoothing:antialiased}}
+main{{max-width:1180px;margin:auto;padding:34px 22px 70px}}
 a{{color:#fff}} .eyebrow{{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#9b9b9b;font-weight:800}}
 h1{{font-family:'DM Sans',system-ui,sans-serif;font-weight:900;font-size:clamp(40px,6vw,66px);line-height:1.02;margin:.3rem 0 1rem}}
 h2,h3{{font-family:'DM Sans',system-ui,sans-serif;font-weight:800}}
@@ -85,17 +87,21 @@ h2{{margin-top:2rem}}
 .metrics{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}}
 .metric{{border:1px solid #222;border-radius:12px;padding:12px;background:#0d0d0d}} .metric b{{display:block;font-size:1.25rem}}
 .cta{{display:inline-block;margin-top:18px;padding:12px 16px;border-radius:10px;background:#fff;color:#111;text-decoration:none;font-weight:900}}
-.site-header{{border-bottom:1px solid #222;background:#0a0a0a}}
-.header-inner{{max-width:1180px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:22px}}
-.betwise-brand{{display:flex;align-items:center;flex:0 0 auto}}
-.betwise-brand img{{width:42px;height:42px;object-fit:contain}}
-.site-nav{{margin:0;font-weight:800;display:flex;align-items:center;gap:20px;flex-wrap:wrap}}
-.site-nav a{{text-decoration:none;color:#f5f5f5}}
-.site-nav a:hover,.site-nav a.active{{color:#00ff41}}
-.mobile-menu{{display:none;margin-left:auto}}
-.mobile-menu summary{{cursor:pointer;font-weight:800}}
-.mobile-menu nav{{display:grid;gap:12px;margin-top:12px}}
-.mobile-menu a{{text-decoration:none;color:#fff}}
+.site-header{{position:relative;z-index:20;min-height:78px;border-bottom:1px solid var(--line);background:rgba(20,20,20,.94);backdrop-filter:blur(14px)}}
+.header-inner{{position:relative;max-width:1280px;min-height:78px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;padding:8px 22px}}
+.betwise-brand{{flex:0 0 auto;width:60px;height:60px;display:grid;place-items:center;overflow:hidden;border-radius:12px;background:#000;text-decoration:none;transition:opacity .2s ease,box-shadow .2s ease}}
+.betwise-brand:hover,.betwise-brand:focus-visible{{opacity:.86;box-shadow:0 0 0 1px rgba(0,255,65,.5)}}
+.betwise-brand img{{width:100%;height:100%;display:block;object-fit:contain}}
+.site-nav{{display:flex;align-items:center;gap:4px;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(31,31,31,.78);margin:0}}
+.site-nav a,.mobile-menu nav a{{color:#b7b7b7;text-decoration:none;text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:.07em;transition:color .2s ease,background .2s ease}}
+.site-nav a{{padding:10px 16px;border-radius:999px;white-space:nowrap}}
+.site-nav a:hover,.site-nav a:focus-visible,.site-nav a.active,.mobile-menu nav a:hover,.mobile-menu nav a:focus-visible,.mobile-menu nav a.active{{color:var(--green);background:rgba(0,255,65,.08)}}
+.mobile-menu{{display:none;position:relative}}
+.mobile-menu summary{{min-width:74px;min-height:44px;display:grid;place-items:center;border:1px solid var(--line);border-radius:999px;background:var(--p);color:var(--text);font-size:12px;font-weight:800;letter-spacing:.08em;list-style:none;text-transform:uppercase;cursor:pointer}}
+.mobile-menu summary::-webkit-details-marker{{display:none}}
+.mobile-menu[open] summary{{border-color:rgba(0,255,65,.55);color:var(--green)}}
+.mobile-menu nav{{position:absolute;top:calc(100% + 10px);right:0;width:min(270px,calc(100vw - 44px));display:grid;gap:4px;padding:8px;border:1px solid var(--line);border-radius:14px;background:#181818;box-shadow:0 20px 50px rgba(0,0,0,.48)}}
+.mobile-menu nav a{{min-height:44px;display:flex;align-items:center;padding:11px 13px;border-radius:9px}}
 .rank-hero{{margin:16px 0 22px;border:1px solid #1f6f34;border-radius:18px;overflow:hidden;background:#0d0d0d}}
 .rank-hero img{{display:block;width:100%;height:auto;aspect-ratio:3.15/1;object-fit:cover}}
 .rank-tabs{{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}}
@@ -146,8 +152,8 @@ h2{{margin-top:2rem}}
 </head><body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="ParlayCalculator.bet home">
-      <img src="{BASE}/assets/betwise-logo.png" alt="BetWise" width="42" height="42">
+    <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="BetWise and ParlayCalculator.bet home">
+      <img src="{BASE}/assets/betwise-logo.png" alt="BetWise Sports Picks" width="240" height="240">
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
       <a href="https://parlaycalculator.bet/betwise">Why BetWise?</a>
