@@ -296,6 +296,8 @@ COMPETITION_ADJUSTMENT=0.25
 RESULT_MARGIN_CAP=28.0
 UNIT_UPDATE_RATE=0.28
 MAX_UNIT_GAME_DELTA=10.0
+INTERNAL_RATING_MAX=115.0
+BREAKOUT_MAX_BOOST=1.55
 
 def safe_float(v):
  try:return float(v) if v is not None else None
@@ -440,29 +442,40 @@ def result_score(team,opp,is_home,points,opp_points,opp_quality):
   outcome_bonus=0.0
  return max(0.0,min(100.0,50.0+surprise+outcome_bonus))
 
-def rating_movement(opponent_quality,expectation_grade,result_grade,absolute_grade):
- # Ratings move on over/under-performance, not by comparing a game-grade scale
- # directly with the team's 1-100 power rating. 50 means expectation was met.
+def rating_movement(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade):
+ # Ratings move on over/under-performance. 50 means expectation was met.
  stat_surprise=float(expectation_grade)-50.0
  result_surprise=float(result_grade)-50.0
  absolute_surprise=float(absolute_grade)-50.0
- # Performance versus expectation drives movement. Result/margin confirms it.
- # Absolute dominance is only a small secondary signal and mainly helps identify
- # truly exceptional performances against weak competition.
  surprise=0.70*stat_surprise+0.20*result_surprise+0.10*absolute_surprise
  oq=max(0.0,min(100.0,float(opponent_quality)))
+ cr=max(1.0,min(INTERNAL_RATING_MAX,float(current_rating)))
  if surprise>=0:
   competition_factor=0.15+0.85*((oq/100.0)**1.6)
   exceptional=max(0.0,min(1.0,(stat_surprise-18.0)/20.0))
-  # Weak opponents create little upside unless the team beats expectation by a
-  # very large amount; elite opponents can deliver the full reward.
   movement_factor=min(1.15,competition_factor+0.25*exceptional)
+
+  # Breakout acceleration: a low-rated team that repeatedly beats expectation
+  # against legitimate competition can climb faster. No extra boost is granted
+  # versus weak opponents, which preserves weak-schedule suppression.
+  if oq>=50.0 and cr<70.0:
+   rating_room=(70.0-cr)/69.0
+   opponent_gate=min(1.0,(oq-50.0)/30.0)
+   evidence_gate=max(0.0,min(1.0,(stat_surprise-8.0)/18.0))
+   breakout_boost=1.0+(BREAKOUT_MAX_BOOST-1.0)*rating_room*opponent_gate*evidence_gate
+   movement_factor*=breakout_boost
  else:
-  # Underperformance against weak competition is punished most. Poor results
-  # against elite teams are softened, but still count.
   movement_factor=min(1.30,0.60+0.70*(1.0-oq/100.0))
  delta=UNIT_UPDATE_RATE*movement_factor*surprise
  return max(-MAX_UNIT_GAME_DELTA,min(MAX_UNIT_GAME_DELTA,delta))
+
+def display_strength(raw):
+ # Internal ratings may rise above 100. Preserve separation at the top while
+ # presenting a stable 1-100 public scale.
+ if raw is None:return None
+ x=max(1.0,float(raw))
+ if x<=90.0:return round(x,1)
+ return round(90.0+10.0*(1.0-(2.718281828459045**(-(x-90.0)/12.0))),1)
 
 def season_weighted_average(entries):
  if not entries:return None
@@ -537,7 +550,7 @@ for week in weeks:
   opponent_def_quality_log[team].append(opp_competition)
   off_multiplier_log[team].append(off_mult)
 
-  off_delta=rating_movement(opp_competition,expectation_grade,result_grade,absolute_grade)
+  off_delta=rating_movement(off_strength_entering.get(team,preseason_ratings.get(team,50.0)),opp_competition,expectation_grade,result_grade,absolute_grade)
   off_deltas[team].append(off_delta)
 
   # Defense receives the mirror of the opponent offense's evidence. Movement is
@@ -547,7 +560,7 @@ for week in weeks:
   defensive_expectation=100.0-expectation_grade
   defensive_result=100.0-result_grade
   defensive_absolute=100.0-absolute_grade
-  def_delta=rating_movement(team_competition,defensive_expectation,defensive_result,defensive_absolute)
+  def_delta=rating_movement(def_strength_entering.get(opp,preseason_ratings.get(opp,50.0)),team_competition,defensive_expectation,defensive_result,defensive_absolute)
   def_deltas[opp].append(def_delta)
   def_game_scores[opp].append(defensive_grade)
   opponent_off_quality_log[opp].append(team_competition)
@@ -560,16 +573,18 @@ for week in weeks:
 
  for team,deltas in off_deltas.items():
   if team not in off_strength_entering:continue
-  off_strength_entering[team]=max(1.0,min(100.0,off_strength_entering[team]+sum(deltas)/len(deltas)))
+  off_strength_entering[team]=max(1.0,min(INTERNAL_RATING_MAX,off_strength_entering[team]+sum(deltas)/len(deltas)))
  for team,deltas in def_deltas.items():
   if team not in def_strength_entering:continue
-  def_strength_entering[team]=max(1.0,min(100.0,def_strength_entering[team]+sum(deltas)/len(deltas)))
+  def_strength_entering[team]=max(1.0,min(INTERNAL_RATING_MAX,def_strength_entering[team]+sum(deltas)/len(deltas)))
 
 unit_raw={}
 for team in current_board:
- offensive_strength=round(off_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH)))
- defensive_strength=round(def_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH)))
- overall_raw=OVERALL_OFFENSE_WEIGHT*offensive_strength+OVERALL_DEFENSE_WEIGHT*defensive_strength
+ offensive_raw=off_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH))
+ defensive_raw=def_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH))
+ offensive_strength=display_strength(offensive_raw)
+ defensive_strength=display_strength(defensive_raw)
+ overall_raw=OVERALL_OFFENSE_WEIGHT*float(offensive_raw)+OVERALL_DEFENSE_WEIGHT*float(defensive_raw)
  unit_raw[team]={
   "offensive_performance_vs_expectation":round(season_weighted_average(off_game_scores[team]),2) if off_game_scores[team] else None,
   "defensive_performance_vs_expectation":round(season_weighted_average(def_game_scores[team]),2) if def_game_scores[team] else None,
@@ -585,13 +600,13 @@ for team in current_board:
 
 ranked_overall=sorted(unit_raw,key=lambda t:(-unit_raw[t]["overall_raw"],t))
 overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
-off_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-unit_raw[t]["offensive_strength"],t)),1)}
-def_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-unit_raw[t]["defensive_strength"],t)),1)}
+off_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-off_strength_entering.get(t,0),t)),1)}
+def_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-def_strength_entering.get(t,0),t)),1)}
 
 current_teams=[]
 for team,row in sorted(current_board.items()):
  units=unit_raw.get(team,{})
- overall_score=round(units.get("overall_raw")) if units.get("overall_raw") is not None else None
+ overall_score=display_strength(units.get("overall_raw")) if units.get("overall_raw") is not None else None
  current_teams.append({
   "team":team,
   **row,
@@ -627,7 +642,7 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+; strong opponents amplify positive performance while weak opponents require much larger overperformance for comparable credit",
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus preseason expectation; wins over strong opponents receive the largest result bonus and losses to weak opponents receive the largest penalty",
-   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move only on over/under-performance versus expectation. Statistical overperformance drives 70% of movement, result/margin surprise 20%, and absolute dominance 10%. Positive movement is strongly discounted against weak opponents unless performance is exceptional; poor games against weak opponents are penalized more heavily. Each game can move a unit by at most 10 rating points.",
+   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move only on over/under-performance versus expectation. Statistical overperformance drives 70% of movement, result/margin surprise 20%, and absolute dominance 10%. Low-rated teams receive controlled breakout acceleration only when they materially beat expectation against opponents rated 50+; weak opponents do not trigger the acceleration. Internal ratings can exceed 100 to preserve elite-team separation, while public scores use a soft 1-100 ceiling. Each game can move a unit by at most 10 rating points.",
    "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
    "ap_rank":"reference only; never enters the formula",
   },
