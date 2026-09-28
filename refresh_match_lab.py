@@ -541,8 +541,10 @@ for week in weeks:
    if value is not None:def_allowed_history[opp][key].append(value)
 
  for team,deltas in off_deltas.items():
+  if team not in off_strength_entering:continue
   off_strength_entering[team]=max(1.0,min(100.0,off_strength_entering[team]+sum(deltas)/len(deltas)))
  for team,deltas in def_deltas.items():
+  if team not in def_strength_entering:continue
   def_strength_entering[team]=max(1.0,min(100.0,def_strength_entering[team]+sum(deltas)/len(deltas)))
 
 unit_raw={}
