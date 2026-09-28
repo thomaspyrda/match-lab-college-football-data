@@ -298,6 +298,8 @@ UNIT_UPDATE_RATE=0.28
 MAX_UNIT_GAME_DELTA=10.0
 INTERNAL_RATING_MAX=115.0
 BREAKOUT_MAX_BOOST=1.55
+QUALITY_WIN_MIN_OPPONENT=75.0
+QUALITY_WIN_MAX_BONUS=6.0
 
 def safe_float(v):
  try:return float(v) if v is not None else None
@@ -442,7 +444,7 @@ def result_score(team,opp,is_home,points,opp_points,opp_quality):
   outcome_bonus=0.0
  return max(0.0,min(100.0,50.0+surprise+outcome_bonus))
 
-def rating_movement(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade):
+def rating_movement(current_rating,opponent_quality,expectation_grade,result_grade,absolute_grade,won=False):
  # Ratings move on over/under-performance. 50 means expectation was met.
  stat_surprise=float(expectation_grade)-50.0
  result_surprise=float(result_grade)-50.0
@@ -455,9 +457,9 @@ def rating_movement(current_rating,opponent_quality,expectation_grade,result_gra
   exceptional=max(0.0,min(1.0,(stat_surprise-18.0)/20.0))
   movement_factor=min(1.15,competition_factor+0.25*exceptional)
 
-  # Breakout acceleration: a low-rated team that repeatedly beats expectation
-  # against legitimate competition can climb faster. No extra boost is granted
-  # versus weak opponents, which preserves weak-schedule suppression.
+  # Breakout acceleration: low-rated teams can move faster when they repeatedly
+  # beat expectation against legitimate competition. Weak opponents cannot
+  # trigger this mechanism.
   if oq>=50.0 and cr<70.0:
    rating_room=(70.0-cr)/69.0
    opponent_gate=min(1.0,(oq-50.0)/30.0)
@@ -466,7 +468,25 @@ def rating_movement(current_rating,opponent_quality,expectation_grade,result_gra
    movement_factor*=breakout_boost
  else:
   movement_factor=min(1.30,0.60+0.70*(1.0-oq/100.0))
+
  delta=UNIT_UPDATE_RATE*movement_factor*surprise
+
+ # Signature-performance accelerator. A win by itself is not enough: this only
+ # activates when a team beats a high-level opponent AND its underlying unit
+ # performance also beats expectation. This lets games such as a dominant win
+ # over an elite preseason opponent reveal that a low preseason prior was wrong.
+ if won and oq>=QUALITY_WIN_MIN_OPPONENT and stat_surprise>=5.0 and result_surprise>=10.0:
+  quality_gate=max(0.0,min(1.0,(oq-QUALITY_WIN_MIN_OPPONENT)/(100.0-QUALITY_WIN_MIN_OPPONENT)))
+  performance_gate=max(0.0,min(1.0,(stat_surprise-5.0)/20.0))
+  result_gate=max(0.0,min(1.0,(result_surprise-10.0)/25.0))
+  absolute_gate=max(0.0,min(1.0,max(0.0,absolute_surprise)/25.0))
+  evidence=0.45*performance_gate+0.35*result_gate+0.20*absolute_gate
+  # Lower-rated teams get somewhat more corrective power because the purpose is
+  # to allow strong current evidence to overcome an inaccurate preseason prior.
+  prior_correction=1.0+0.30*max(0.0,min(1.0,(80.0-cr)/40.0))
+  quality_bonus=QUALITY_WIN_MAX_BONUS*quality_gate*evidence*prior_correction
+  delta+=quality_bonus
+
  return max(-MAX_UNIT_GAME_DELTA,min(MAX_UNIT_GAME_DELTA,delta))
 
 def display_strength(raw):
@@ -539,18 +559,19 @@ for week in weeks:
    statistical_score=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
    rscore=result_score(team,opp,is_home,points_map[team],points_map[opp],opponent_competition)
    adjusted=STATISTICAL_GAME_WEIGHT*statistical_score+RESULT_GAME_WEIGHT*rscore
-   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted,rscore,absolute_score))
+   won=float(points_map[team])>float(points_map[opp])
+   pending.append((team,opp,metrics[team],metrics[opp],adjusted,mult,opponent_competition,expectation_adjusted,rscore,absolute_score,won))
 
  # Apply every game in the week against the same entering snapshot. Ratings are
  # updated only after the full week is graded, keeping the model pregame-safe.
  off_deltas=defaultdict(list)
  def_deltas=defaultdict(list)
- for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade,result_grade,absolute_grade in pending:
+ for team,opp,team_metrics,opp_metrics,off_score,off_mult,opp_competition,expectation_grade,result_grade,absolute_grade,won in pending:
   off_game_scores[team].append(off_score)
   opponent_def_quality_log[team].append(opp_competition)
   off_multiplier_log[team].append(off_mult)
 
-  off_delta=rating_movement(off_strength_entering.get(team,preseason_ratings.get(team,50.0)),opp_competition,expectation_grade,result_grade,absolute_grade)
+  off_delta=rating_movement(off_strength_entering.get(team,preseason_ratings.get(team,50.0)),opp_competition,expectation_grade,result_grade,absolute_grade,won)
   off_deltas[team].append(off_delta)
 
   # Defense receives the mirror of the opponent offense's evidence. Movement is
@@ -560,7 +581,7 @@ for week in weeks:
   defensive_expectation=100.0-expectation_grade
   defensive_result=100.0-result_grade
   defensive_absolute=100.0-absolute_grade
-  def_delta=rating_movement(def_strength_entering.get(opp,preseason_ratings.get(opp,50.0)),team_competition,defensive_expectation,defensive_result,defensive_absolute)
+  def_delta=rating_movement(def_strength_entering.get(opp,preseason_ratings.get(opp,50.0)),team_competition,defensive_expectation,defensive_result,defensive_absolute,not won)
   def_deltas[opp].append(def_delta)
   def_game_scores[opp].append(defensive_grade)
   opponent_off_quality_log[opp].append(team_competition)
@@ -641,8 +662,8 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
    "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+; strong opponents amplify positive performance while weak opponents require much larger overperformance for comparable credit",
    "recency":"5% additional weight per successive game, capped at 1.15x",
-   "game_grade":"85% statistical performance + 15% result/margin versus preseason expectation; wins over strong opponents receive the largest result bonus and losses to weak opponents receive the largest penalty",
-   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move only on over/under-performance versus expectation. Statistical overperformance drives 70% of movement, result/margin surprise 20%, and absolute dominance 10%. Low-rated teams receive controlled breakout acceleration only when they materially beat expectation against opponents rated 50+; weak opponents do not trigger the acceleration. Internal ratings can exceed 100 to preserve elite-team separation, while public scores use a soft 1-100 ceiling. Each game can move a unit by at most 10 rating points.",
+   "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
+   "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Low-rated teams receive controlled breakout acceleration against legitimate competition. A signature-performance accelerator gives additional credit only for wins over 75+ opponents when the unit also beats expectation, allowing dominant wins over elite competition to correct an inaccurate preseason prior faster. Internal ratings can exceed 100 to preserve elite-team separation, while public scores use a soft 1-100 ceiling. Total movement remains capped at 10 rating points per unit per game.",
    "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving 1-100 power ratings; national rank is the sorted rating order",
    "ap_rank":"reference only; never enters the formula",
   },
