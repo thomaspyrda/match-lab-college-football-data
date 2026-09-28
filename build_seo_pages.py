@@ -85,8 +85,23 @@ h2{{margin-top:2rem}}
 .metrics{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}}
 .metric{{border:1px solid #222;border-radius:12px;padding:12px;background:#0d0d0d}} .metric b{{display:block;font-size:1.25rem}}
 .cta{{display:inline-block;margin-top:18px;padding:12px 16px;border-radius:10px;background:#fff;color:#111;text-decoration:none;font-weight:900}}
-nav{{margin-bottom:30px;font-weight:800;display:flex;gap:16px;flex-wrap:wrap}}
-nav a{{text-decoration:none}}
+.site-header{{border-bottom:1px solid #222;background:#0a0a0a}}
+.header-inner{{max-width:1180px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:22px}}
+.betwise-brand{{display:flex;align-items:center;flex:0 0 auto}}
+.betwise-brand img{{width:42px;height:42px;object-fit:contain}}
+.site-nav{{margin:0;font-weight:800;display:flex;align-items:center;gap:20px;flex-wrap:wrap}}
+.site-nav a{{text-decoration:none;color:#f5f5f5}}
+.site-nav a:hover,.site-nav a.active{{color:#00ff41}}
+.mobile-menu{{display:none;margin-left:auto}}
+.mobile-menu summary{{cursor:pointer;font-weight:800}}
+.mobile-menu nav{{display:grid;gap:12px;margin-top:12px}}
+.mobile-menu a{{text-decoration:none;color:#fff}}
+.rank-hero{{margin:16px 0 22px;border:1px solid #1f6f34;border-radius:18px;overflow:hidden;background:#0d0d0d}}
+.rank-hero img{{display:block;width:100%;height:auto;aspect-ratio:3.15/1;object-fit:cover}}
+.rank-tabs{{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}}
+.rank-tabs a{{border:1px solid #2b2b2b;background:#111;border-radius:999px;padding:7px 11px;text-decoration:none;font-size:.84rem;font-weight:700}}
+.rank-tabs a.active{{border-color:#00ff41;color:#00ff41;background:#0d170f}}
+
 .archive-list{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
 .archive-list a{{border:1px solid #272727;background:#111;border-radius:14px;padding:14px;text-decoration:none}}
 .page-intro{{max-width:860px;color:#c6c6c6;margin:0 0 16px}}
@@ -111,6 +126,9 @@ nav a{{text-decoration:none}}
 .note{{border-left:3px solid #00ff41;padding:10px 14px;background:#101410;color:#d7d7d7}}
 @media(max-width:900px){{
  .grid,.metrics,.archive-list{{grid-template-columns:1fr}}
+ .site-nav{{display:none}}
+ .mobile-menu{{display:block}}
+ .header-inner{{padding-left:12px;padding-right:12px}}
  main{{padding-left:12px;padding-right:12px}}
  .data-table th,.data-table td{{padding:8px 4px}}
  .data-table th{{font-size:.58rem;letter-spacing:0}}
@@ -125,7 +143,32 @@ nav a{{text-decoration:none}}
  .help-pop{{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}}
 }}
 </style>
-</head><body><main><nav><a href="{BASE}/">CFB Match Lab</a><a href="{BASE}/college-football-matchup-tool/">Matchup Research</a><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a><a href="{BASE}/college-football/matchups/">Historical Archive</a><a href="https://parlaycalculator.bet/">ParlayCalculator.bet</a></nav>{body}</main>
+</head><body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="ParlayCalculator.bet home">
+      <img src="{BASE}/assets/betwise-logo.png" alt="BetWise" width="42" height="42">
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="https://parlaycalculator.bet/betwise">Why BetWise?</a>
+      <a class="active" href="{BASE}/" aria-current="page">CFB Match Lab</a>
+      <a href="https://nfl.parlaycalculator.bet/">NFL Dashboard</a>
+      <a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a>
+      <a href="https://parlaycalculator.bet/resources">Resources</a>
+    </nav>
+    <details class="mobile-menu">
+      <summary aria-label="Open navigation menu">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        <a href="https://parlaycalculator.bet/betwise">Why BetWise?</a>
+        <a class="active" href="{BASE}/" aria-current="page">CFB Match Lab</a>
+        <a href="https://nfl.parlaycalculator.bet/">NFL Dashboard</a>
+        <a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a>
+        <a href="https://parlaycalculator.bet/resources">Resources</a>
+      </nav>
+    </details>
+  </div>
+</header>
+<main>{body}</main>
 <script>
 document.addEventListener('click',function(e){{
  const btn=e.target.closest('.help-btn');
@@ -218,6 +261,23 @@ COLUMN_HELP={
     "games":"Number of completed games represented in this ranking."
 }
 
+def ranking_tabs(active):
+    items=[
+        ("team","Team Strength",f"{BASE}/college-football-team-strength-rankings/"),
+        ("sos","SOS Rankings",f"{BASE}/college-football-strength-of-schedule-rankings/"),
+        ("offense","Offensive Strength",f"{BASE}/college-football-offensive-strength-rankings/"),
+        ("defense","Defensive Strength",f"{BASE}/college-football-defensive-strength-rankings/"),
+    ]
+    return "<div class='rank-tabs' aria-label='CFB ranking categories'>"+"".join(
+        f"<a href='{url}' class='{'active' if key==active else ''}'{' aria-current=\"page\"' if key==active else ''}>{label}</a>"
+        for key,label,url in items
+    )+"</div>"
+
+def ranking_hero():
+    return f"""<div class="rank-hero">
+<img src="{BASE}/assets/betwise-cfb-vip-collage.webp" alt="College football players and mascots in a stadium collage">
+</div>"""
+
 def ranking_table(rows,columns):
     head=[]
     for key,label in columns:
@@ -271,7 +331,8 @@ def write_live_data_pages(now):
     table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("sos","SOS"),("ap","AP"),("games","Games")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
-<div class="data-links"><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
+{ranking_tabs("team")}
+{ranking_hero()}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Team Strength Rankings | CFB Match Lab",f"Current {season} college football Team Strength rankings for the full FBS field from CFB Match Lab, updated weekly using opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
 
@@ -295,7 +356,8 @@ def write_live_data_pages(now):
     table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("sos","SOS"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("games","Games")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Strength of Schedule Rankings</h1>
 <p class="page-intro">{context}. Current strength-of-schedule rankings based only on opponents already faced, not future schedule projections. Tap or click any <b>?</b> for metric definitions.</p>
-<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
+{ranking_tabs("sos")}
+{ranking_hero()}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Strength of Schedule Rankings | CFB Match Lab",f"Current {season} college football strength of schedule rankings based on opponent strength already faced, with full-FBS SOS percentiles from CFB Match Lab.",f"{BASE}/college-football-strength-of-schedule-rankings/",body),encoding="utf-8")
 
@@ -327,7 +389,8 @@ def write_live_data_pages(now):
         table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),("vs_expectation","Perf vs Exp"),("opp_quality",opponent_label),("multiplier","Opp Adj"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
-<div class="data-links"><a href="{BASE}/college-football-team-strength-rankings/">Team Strength</a><a href="{BASE}/college-football-strength-of-schedule-rankings/">SOS Rankings</a><a href="{BASE}/college-football-offensive-strength-rankings/">Offensive Strength</a><a href="{BASE}/college-football-defensive-strength-rankings/">Defensive Strength</a></div>
+{ranking_tabs("offense" if field=="offensive_strength" else "defense")}
+{ranking_hero()}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
         (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab, adjusted for the quality of opposing units faced.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
 
