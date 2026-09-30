@@ -143,6 +143,10 @@ def build_compounded_boards(year,games):
   values=[ratings[t] for t in teams]
   sos_raw={t:(sum(opponent_log[t])/len(opponent_log[t]) if opponent_log[t] else None) for t in teams}
   sos_values=[v for v in sos_raw.values() if v is not None]
+  # SOS is a strict national rank among FBS teams: #1 = hardest schedule
+  # actually played to date. Keep the continuous value internally for modeling.
+  sos_order=sorted((t for t in teams if sos_raw[t] is not None),key=lambda t:(-sos_raw[t],t))
+  sos_rank_map={t:i for i,t in enumerate(sos_order,1)}
   ranked=sorted(teams,key=lambda t:(-ratings[t],t))
   rank_map={};last=None;rank=0
   for pos,t in enumerate(ranked,1):
@@ -162,6 +166,7 @@ def build_compounded_boards(year,games):
     "power_rating":round(ratings[t],2),
     "preseason_strength":round(preseason[t],2),
     "schedule_strength":round(sos_raw[t],2) if sos_raw[t] is not None else None,
+    "schedule_strength_rank":sos_rank_map.get(t),
     "schedule_strength_score":pct_score(sos_raw[t],sos_values) if sos_raw[t] is not None else None,
     "games_in_rating":games_played[t],
    }
@@ -435,9 +440,11 @@ def expectation(team,opponent,key,week):
  if len(candidates)==1:return candidates[0]
  return neutral
 
-def current_evidence_strength(team):
+def current_evidence_strength(team,unit="overall"):
  off=off_strength_entering.get(team)
  deff=def_strength_entering.get(team)
+ if unit=="offense":return off
+ if unit=="defense":return deff
  if off is None and deff is None:return None
  if off is None:return deff
  if deff is None:return off
@@ -453,9 +460,13 @@ def competition_current_weight(week):
  if week==7:return 0.60
  return 0.75
 
-def competition_strength(opponent,week):
+def competition_strength(opponent,week,unit="overall"):
+ # Unit-specific opponent quality is critical. An offense is graded against the
+ # defense it actually faced; a defense is graded against the offense it faced.
+ # The shared preseason prior supplies the early-season talent/competition
+ # baseline, then current unit evidence progressively takes over.
  preseason=preseason_ratings.get(opponent,FCS_UNIT_STRENGTH)
- current=current_evidence_strength(opponent)
+ current=current_evidence_strength(opponent,unit)
  if current is None:return preseason
  cw=competition_current_weight(week)
  return (1.0-cw)*float(preseason)+cw*float(current)
@@ -655,7 +666,7 @@ for week in weeks:
    available_weight=sum(GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)
    weighted_z=sum(component_residuals[k]*GAME_COMPONENT_WEIGHTS[k] for k in component_residuals)/available_weight
    expectation_score=max(0.0,min(100.0,50.0+15.0*weighted_z))
-   opponent_competition=competition_strength(opp,week)
+   opponent_competition=competition_strength(opp,week,"defense")
    mult=quality_multiplier(opponent_competition,expectation_score-50.0)
    expectation_adjusted=max(0.0,min(100.0,50.0+(expectation_score-50.0)*mult))
    absolute_score=game_absolute_score(metrics[team],week)
@@ -694,7 +705,7 @@ for week in weeks:
 
   # Defense receives the mirror of the opponent offense's evidence. Movement is
   # likewise measured against expectation rather than against the current rating.
-  team_competition=competition_strength(team,week)
+  team_competition=competition_strength(team,week,"offense")
   defensive_grade=100.0-off_score
   defensive_expectation=100.0-expectation_grade
   defensive_result=100.0-result_grade
@@ -789,11 +800,11 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
    "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Offensive validation uses a simple trigger: at least 3 of the last 4 games with 40+ points, a season offensive performance grade of 60+, and a current 40+ point above-expectation win over an 85+ opponent. Once triggered, opponent quality and advanced metrics determine how far the offense is re-anchored into the low/mid-90s without changing the defense.",
    "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
-   "opponent_adjustment":"competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Opponent quality sets the expected level of dominance: beating a weak team by the margin and efficiency expected of a strong team confirms strength, exceeding that expectation earns additional credit, and struggling against weak competition is penalized.",
+   "opponent_adjustment":"unit-specific competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Offensive performances are graded against the opponent's Defensive Strength; defensive performances are graded against the opponent's Offensive Strength. This preserves the early talent/competition baseline while allowing actual unit performance to take over.",
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
    "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
-   "overall":"55% Offensive Strength + 45% Defensive Strength using the evolving power ratings; national rank uses the underlying raw rating order. Public scores use the bands 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. The display mapping is nonlinear: strong teams are spread across more of the 65-94 range while the weakest teams are compressed toward the bottom, making 95+ naturally rare rather than quota-capped.",
+   "overall":"55% Offensive Strength + 45% Defensive Strength using the rebuilt opponent-adjusted unit ratings; national rank uses the underlying raw rating order. SOS is separately displayed as a strict #1-#138 rank based only on opponents already played. Public scores use the bands 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. The display mapping is nonlinear: strong teams are spread across more of the 65-94 range while the weakest teams are compressed toward the bottom, making 95+ naturally rare rather than quota-capped.",
    "preseason_prior":"2026 uses a frozen equal-weight consensus of full-FBS preseason projections from Phil Steele, CBS Sports, and The Athletic, all published before Week 0. Previous-season final rankings are not used as a source.",
    "ap_rank":"reference only; never enters the formula",
   },
