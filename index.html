@@ -175,8 +175,8 @@
         (async () => {
           try {
             const parts = await Promise.all(
-              Array.from({ length: 20 }, (_, index) => `v3-${String(index).padStart(2, "0")}`).map((name) =>
-                fetch(`/assets/cfb-hero/${name}.txt?v=3`).then((response) => {
+              Array.from({ length: 20 }, (_, index) => `full-${String(index).padStart(2, "0")}`).map((name) =>
+                fetch(`/assets/cfb-hero/${name}.txt?v=4`).then((response) => {
                   if (!response.ok) throw new Error(`Hero image part ${name} failed to load`);
                   return response.text();
                 })
