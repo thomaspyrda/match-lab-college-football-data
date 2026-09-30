@@ -195,10 +195,10 @@ main {
   height: auto;
   aspect-ratio: 1536 / 658;
   object-fit: cover;
-  border: 1px solid rgba(0, 255, 65, 0.35);
+  border: 0;
   border-radius: 18px;
-  background: #07110b;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  background: transparent;
+  box-shadow: none;
 }
 .ranking-links {
   margin: 0 0 22px;
