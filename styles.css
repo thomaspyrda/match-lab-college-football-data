@@ -188,6 +188,10 @@ main {
 }
 .cfb-hero-art {
   margin: 0 0 28px;
+  border: 2px solid #00ff41;
+  border-radius: 18px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 .cfb-hero-art img {
   display: block;
@@ -196,7 +200,7 @@ main {
   aspect-ratio: 1536 / 658;
   object-fit: cover;
   border: 0;
-  border-radius: 18px;
+  border-radius: 16px;
   background: transparent;
   box-shadow: none;
 }
