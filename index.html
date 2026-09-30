@@ -165,8 +165,8 @@
         <img
           id="cfbHeroArtwork"
           alt="College football players and mascots representing Georgia, Ohio State, Oregon, LSU, USC, Notre Dame and Miami"
-          width="560"
-          height="240"
+          width="2048"
+          height="752"
           decoding="async"
           fetchpriority="high"
         />
@@ -175,8 +175,8 @@
         (async () => {
           try {
             const parts = await Promise.all(
-              ["part0a", "part0b", "part1", "part2", "part3"].map((name) =>
-                fetch(`/assets/cfb-hero/${name}.txt?v=1`).then((response) => {
+              Array.from({ length: 20 }, (_, index) => `v3-${String(index).padStart(2, "0")}`).map((name) =>
+                fetch(`/assets/cfb-hero/${name}.txt?v=3`).then((response) => {
                   if (!response.ok) throw new Error(`Hero image part ${name} failed to load`);
                   return response.text();
                 })
