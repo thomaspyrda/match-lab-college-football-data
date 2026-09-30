@@ -161,6 +161,34 @@
           Historical observations · Not predictions or betting advice
         </div>
       </section>
+      <section class="cfb-hero-art" aria-label="College football players and mascots">
+        <img
+          id="cfbHeroArtwork"
+          alt="College football players and mascots representing Georgia, Ohio State, Oregon, LSU, USC, Notre Dame and Miami"
+          width="560"
+          height="240"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </section>
+      <script>
+        (async () => {
+          try {
+            const parts = await Promise.all(
+              [0, 1, 2, 3].map((i) =>
+                fetch(`/assets/cfb-hero/part${i}.txt?v=1`).then((response) => {
+                  if (!response.ok) throw new Error(`Hero image part ${i} failed to load`);
+                  return response.text();
+                })
+              )
+            );
+            const hero = document.getElementById("cfbHeroArtwork");
+            if (hero) hero.src = "data:image/webp;base64," + parts.join("");
+          } catch (error) {
+            console.error("Unable to load CFB hero artwork", error);
+          }
+        })();
+      </script>
       <section class="ranking-links" aria-labelledby="rankingLinksTitle">
         <p id="rankingLinksTitle" class="ranking-links-label">Explore CFB Rankings</p>
         <div class="ranking-links-grid">
