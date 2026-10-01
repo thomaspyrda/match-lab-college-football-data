@@ -126,16 +126,18 @@ def main():
         by_team=defaultdict(list)
         for t,o,z in games_m:by_team[t].append((o,z))
         delta=None
-        for iteration in range(50):
+        for iteration in range(200):
             no={}; nd={}
             for t in teams:
                 rows=by_team.get(t,[])
                 evidence=mean([z+deff.get(o,0.0) for o,z in rows])
-                no[t]=prior_weight*prior_z.get(t,0.0)+(1-prior_weight)*(evidence if evidence is not None else prior_z.get(t,0.0))
+                pw=evidence_prior_weight(game_counts[t])
+                no[t]=pw*prior_z.get(t,0.0)+(1-pw)*(evidence if evidence is not None else prior_z.get(t,0.0))
                 # Defense evidence comes from every opponent offensive observation against t.
                 faced=[(opp,z) for offense,opp,z in games_m if opp==t]
                 dev=mean([-z+off.get(offense,0.0) for offense,z in faced])
-                nd[t]=prior_weight*prior_z.get(t,0.0)+(1-prior_weight)*(dev if dev is not None else prior_z.get(t,0.0))
+                pw=evidence_prior_weight(game_counts[t])
+                nd[t]=pw*prior_z.get(t,0.0)+(1-pw)*(dev if dev is not None else prior_z.get(t,0.0))
             # Center and scale each unit back to FBS SD space every pass.
             no=zdict(no); nd=zdict(nd)
             delta=max(max(abs(no[t]-off[t]) for t in teams),max(abs(nd[t]-deff[t]) for t in teams))
@@ -157,16 +159,16 @@ def main():
         rows.append({"team":t,"rank":rt[t],"overall_team_strength_sd":round(overall[t],3),
           "offense_rank":ro[t],"offensive_strength_sd":round(off[t],3),
           "defense_rank":rd[t],"defensive_strength_sd":round(deff[t],3),
-          "games":game_counts[t],"preseason_rank":next((v.get("consensus_rank") for n,v in preseason.items() if canon(n)==t),None),
+          "games":game_counts[t],"preseason_weight":evidence_prior_weight(game_counts[t]),"preseason_rank":next((v.get("consensus_rank") for n,v in preseason.items() if canon(n)==t),None),
           "ppg":round(mean(points_for[t]),2),"points_per_play":round(mean(ppp_for[t]),4),
           "ppg_allowed":round(mean(points_against[t]),2),"points_per_play_allowed":round(mean(ppp_against[t]),4)})
-    payload={"schema_version":"experimental-3.0","season":SEASON,"pregame_week":WEEK,"through_week":WEEK-1,
-      "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),"preseason_prior_weight":prior_weight,
-      "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays weekly; 50/50 unit combination",
+    payload={"schema_version":"experimental-4.0","season":SEASON,"pregame_week":WEEK,"through_week":WEEK-1,
+      "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),"preseason_prior_decay":"qualifying_fbs_games", "preseason_prior_curve":PRIOR_BY_GAMES,
+      "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays by qualifying FBS games played; 50/50 unit combination",
       "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
       "convergence":convergence,"rankings":rows}
     OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"\n")
-    print("Experimental v3 recursive top 25")
+    print("Experimental v4 evidence-decay recursive top 25")
     for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
 
 if __name__=="__main__":main()
