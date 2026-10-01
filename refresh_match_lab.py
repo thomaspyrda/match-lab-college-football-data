@@ -313,11 +313,22 @@ current_board=live_strength(current_week)
 # receives the mirror image of the opponent offense's performance-vs-expectation.
 # Opponent unit quality then adjusts the magnitude of the over/under-performance.
 GAME_COMPONENT_WEIGHTS={
- "ppa":0.45,
+ "ppa":0.30,
  "success_rate":0.20,
  "explosiveness":0.15,
- "finishing":0.10,
- "scoring":0.10,
+ "finishing":0.15,
+ "passing_success":0.10,
+ "rushing_success":0.10,
+}
+# Final unit rankings use ranks, not raw metric magnitudes. Each metric is first
+# opponent-adjusted game by game, then teams are ranked nationally in that metric.
+RANK_METRIC_WEIGHTS={
+ "ppa":0.30,
+ "success_rate":0.20,
+ "explosiveness":0.15,
+ "finishing":0.15,
+ "passing_success":0.10,
+ "rushing_success":0.10,
 }
 NEUTRAL_UNIT_STRENGTH=50.0
 FCS_UNIT_STRENGTH=15.0
@@ -371,11 +382,15 @@ def pct_rank_desc(values):
 def game_metric_row(row,points):
  offense=row.get("offense") or {}
  drives=safe_float(offense.get("drives"))
+ passing=offense.get("passingPlays") or {}
+ rushing=offense.get("rushingPlays") or {}
  return {
   "ppa":safe_float(offense.get("ppa")),
   "success_rate":safe_float(offense.get("successRate")),
   "explosiveness":safe_float(offense.get("explosiveness")),
   "finishing":(float(points)/drives) if points is not None and drives and drives>0 else None,
+  "passing_success":safe_float(passing.get("successRate")),
+  "rushing_success":safe_float(rushing.get("successRate")),
   "scoring":safe_float(points),
  }
 
@@ -422,6 +437,8 @@ def_multiplier_log=defaultdict(list)
 off_scoring_percentiles=defaultdict(list)
 off_points_log=defaultdict(list)
 off_validated_targets=defaultdict(list)
+off_rank_metric_grades=defaultdict(lambda:defaultdict(list))
+def_rank_metric_grades=defaultdict(lambda:defaultdict(list))
 
 # Offensive and defensive power ratings begin at the real preseason team-strength
 # prior and evolve game by game. This preserves preseason information early while
@@ -669,6 +686,17 @@ for week in weeks:
    opponent_competition=competition_strength(opp,week,"defense")
    mult=quality_multiplier(opponent_competition,expectation_score-50.0)
    expectation_adjusted=max(0.0,min(100.0,50.0+(expectation_score-50.0)*mult))
+
+   # Preserve each component separately for the final rank-based model. A 50 is
+   # average relative to pregame expectation; opponent quality changes the credit.
+   for metric,z in component_residuals.items():
+    base=max(0.0,min(100.0,50.0+15.0*z))
+    metric_mult=quality_multiplier(opponent_competition,base-50.0)
+    adjusted_metric=max(0.0,min(100.0,50.0+(base-50.0)*metric_mult))
+    off_rank_metric_grades[team][metric].append(adjusted_metric)
+    # The opponent defense gets the mirror grade for suppressing/allowing it.
+    def_rank_metric_grades[opp][metric].append(100.0-adjusted_metric)
+
    absolute_score=game_absolute_score(metrics[team],week)
    if absolute_score is None:continue
    statistical_score=ABSOLUTE_PERFORMANCE_WEIGHT*absolute_score+EXPECTATION_PERFORMANCE_WEIGHT*expectation_adjusted
@@ -736,35 +764,79 @@ for week in weeks:
   def_strength_entering[team]=max(1.0,min(INTERNAL_RATING_MAX,def_strength_entering[team]+sum(deltas)/len(deltas)))
  off_validated_targets.clear()
 
+# Rank-based unit model.
+# 1) Average each team's opponent-adjusted game grades within each metric.
+# 2) Rank all FBS teams 1..N for each metric.
+# 3) Weighted-average those national metric ranks.
+# 4) Rank the composite again for Offensive, Defensive and Overall Strength.
+metric_team_values={"offense":{},"defense":{}}
+for side,logs in (("offense",off_rank_metric_grades),("defense",def_rank_metric_grades)):
+ for metric in RANK_METRIC_WEIGHTS:
+  metric_team_values[side][metric]={
+   team:season_weighted_average(logs[team][metric])
+   for team in current_board if logs[team][metric]
+  }
+
+def national_rank_map(values):
+ ordered=sorted(values,key=lambda t:(-values[t],t))
+ return {team:i for i,team in enumerate(ordered,1)}
+
+metric_ranks={"offense":{},"defense":{}}
+for side in ("offense","defense"):
+ for metric,values in metric_team_values[side].items():
+  metric_ranks[side][metric]=national_rank_map(values)
+
+def composite_metric_rank(team,side):
+ weighted=0.0;weights=0.0;components={}
+ for metric,weight in RANK_METRIC_WEIGHTS.items():
+  rank=metric_ranks[side][metric].get(team)
+  if rank is None:continue
+  components[metric]=rank
+  weighted+=rank*weight
+  weights+=weight
+ return ((weighted/weights) if weights else None),components
+
 unit_raw={}
 for team in current_board:
- offensive_raw=off_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH))
- defensive_raw=def_strength_entering.get(team,preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH))
- offensive_strength=display_strength(offensive_raw)
- defensive_strength=display_strength(defensive_raw)
- overall_raw=OVERALL_OFFENSE_WEIGHT*float(offensive_raw)+OVERALL_DEFENSE_WEIGHT*float(defensive_raw)
+ off_avg,off_components=composite_metric_rank(team,"offense")
+ def_avg,def_components=composite_metric_rank(team,"defense")
  unit_raw[team]={
-  "offensive_performance_vs_expectation":round(season_weighted_average(off_game_scores[team]),2) if off_game_scores[team] else None,
-  "defensive_performance_vs_expectation":round(season_weighted_average(def_game_scores[team]),2) if def_game_scores[team] else None,
-  "offensive_strength":offensive_strength,
-  "defensive_strength":defensive_strength,
+  "offensive_composite_rank_value":off_avg,
+  "defensive_composite_rank_value":def_avg,
+  "offensive_metric_ranks":off_components,
+  "defensive_metric_ranks":def_components,
   "opponent_defensive_quality":round(mean_or_none(opponent_def_quality_log[team]),2) if opponent_def_quality_log[team] else None,
   "opponent_offensive_quality":round(mean_or_none(opponent_off_quality_log[team]),2) if opponent_off_quality_log[team] else None,
-  "offensive_multiplier":round(mean_or_none(off_multiplier_log[team]),3) if off_multiplier_log[team] else None,
-  "defensive_multiplier":round(mean_or_none(def_multiplier_log[team]),3) if def_multiplier_log[team] else None,
   "games_modeled":len(off_game_scores[team]),
-  "overall_raw":overall_raw,
  }
 
-ranked_overall=sorted(unit_raw,key=lambda t:(-unit_raw[t]["overall_raw"],t))
-overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
-off_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-off_strength_entering.get(t,0),t)),1)}
-def_rank={team:i for i,team in enumerate(sorted(unit_raw,key=lambda t:(-def_strength_entering.get(t,0),t)),1)}
+eligible_off=[t for t in unit_raw if unit_raw[t]["offensive_composite_rank_value"] is not None]
+eligible_def=[t for t in unit_raw if unit_raw[t]["defensive_composite_rank_value"] is not None]
+off_order=sorted(eligible_off,key=lambda t:(unit_raw[t]["offensive_composite_rank_value"],t))
+def_order=sorted(eligible_def,key=lambda t:(unit_raw[t]["defensive_composite_rank_value"],t))
+off_rank={t:i for i,t in enumerate(off_order,1)}
+def_rank={t:i for i,t in enumerate(def_order,1)}
 
+def rank_score(rank,n):
+ if rank is None or n<2:return None
+ return round(100.0-99.0*(rank-1)/(n-1),1)
+
+for team in unit_raw:
+ unit_raw[team]["offensive_strength"]=rank_score(off_rank.get(team),len(eligible_off))
+ unit_raw[team]["defensive_strength"]=rank_score(def_rank.get(team),len(eligible_def))
+ o=unit_raw[team]["offensive_composite_rank_value"]
+ d=unit_raw[team]["defensive_composite_rank_value"]
+ unit_raw[team]["overall_composite_rank_value"]=(OVERALL_OFFENSE_WEIGHT*o+OVERALL_DEFENSE_WEIGHT*d) if o is not None and d is not None else None
+
+ranked_overall=sorted(
+ (t for t in unit_raw if unit_raw[t]["overall_composite_rank_value"] is not None),
+ key=lambda t:(unit_raw[t]["overall_composite_rank_value"],t)
+)
+overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
 current_teams=[]
 for team,row in sorted(current_board.items()):
  units=unit_raw.get(team,{})
- overall_score=display_strength(units.get("overall_raw")) if units.get("overall_raw") is not None else None
+ overall_score=rank_score(overall_rank.get(team),len(ranked_overall))
  current_teams.append({
   "team":team,
   **row,
@@ -778,14 +850,15 @@ for team,row in sorted(current_board.items()):
   "overall_strength_score":overall_score,
   "overall_strength_tier":tier(overall_score),
   "overall_strength_rank":overall_rank.get(team),
-  "offensive_performance_vs_expectation":units.get("offensive_performance_vs_expectation"),
-  "defensive_performance_vs_expectation":units.get("defensive_performance_vs_expectation"),
+  "offensive_metric_ranks":units.get("offensive_metric_ranks"),
+  "defensive_metric_ranks":units.get("defensive_metric_ranks"),
+  "offensive_composite_rank_value":round(units.get("offensive_composite_rank_value"),2) if units.get("offensive_composite_rank_value") is not None else None,
+  "defensive_composite_rank_value":round(units.get("defensive_composite_rank_value"),2) if units.get("defensive_composite_rank_value") is not None else None,
   "opponent_defensive_quality":units.get("opponent_defensive_quality"),
   "opponent_offensive_quality":units.get("opponent_offensive_quality"),
-  "offensive_multiplier":units.get("offensive_multiplier"),
-  "defensive_multiplier":units.get("defensive_multiplier"),
+
   "games_modeled":units.get("games_modeled"),
-  "unit_strength_model":"evolving_preseason_power_rating",
+  "unit_strength_model":"opponent_adjusted_metric_rank_composite",
  })
 current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 
@@ -797,14 +870,14 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
   "through_week":max(0,current_week-1),
   "snapshot_type":"current_to_date",
   "model":{
-   "offense":"50% absolute game performance + 50% performance versus expectation; components are 45% PPA, 20% success rate, 15% explosiveness, 10% points/drive, and 10% scoring. Offensive validation uses a simple trigger: at least 3 of the last 4 games with 40+ points, a season offensive performance grade of 60+, and a current 40+ point above-expectation win over an 85+ opponent. Once triggered, opponent quality and advanced metrics determine how far the offense is re-anchored into the low/mid-90s without changing the defense.",
-   "defense":"mirror of opponent offensive performance vs expectation, adjusted by opponent offensive strength",
+   "offense":"rank-based composite of six opponent-adjusted metrics: 30% PPA, 20% success rate, 15% explosiveness, 15% points per drive, 10% passing success rate, and 10% rushing success rate. Each metric is adjusted game-by-game for opponent Defensive Strength, averaged across the season with modest recency weighting, ranked nationally, then combined by rank.",
+   "defense":"rank-based mirror of the same six metrics, with every defensive component adjusted for the Offensive Strength of the opponent faced before national metric ranks are calculated",
    "expectation":"pregame blend of the team's prior production and opponent's prior allowance, with same-week FBS baseline fallback",
    "opponent_adjustment":"unit-specific competition quality is anchored to preseason strength through Week 3, then blends in current-season evidence at 15%, 30%, 45%, 60%, and 75% from Weeks 4, 5, 6, 7, and 8+. Offensive performances are graded against the opponent's Defensive Strength; defensive performances are graded against the opponent's Offensive Strength. This preserves the early talent/competition baseline while allowing actual unit performance to take over.",
    "recency":"5% additional weight per successive game, capped at 1.15x",
    "game_grade":"85% statistical performance + 15% result/margin versus expectation. A separate signature-performance accelerator can add corrective movement only when a team wins against a 75+ opponent while also materially beating statistical and result expectations; AP rank is never used.",
    "rating_evolution":"Offensive and Defensive Strength begin at the preseason team-strength prior and move on over/under-performance versus expectation. Statistical overperformance drives 70% of base movement, result/margin surprise 20%, and absolute dominance 10%. Repeated above-expectation performances increase confidence even against weaker teams because dominant teams are expected to create margin. Offensive validation is unit-specific: four dominant scoring/performance games followed by a qualifying dominant win over an 85+ opponent can sharply re-anchor the offense into the low/mid-90s while leaving the defense unchanged. Signature wins and validated breakouts still require underlying performance, not the final result alone.",
-   "overall":"55% Offensive Strength + 45% Defensive Strength using the rebuilt opponent-adjusted unit ratings; national rank uses the underlying raw rating order. SOS is separately displayed as a strict #1-#138 rank based only on opponents already played. Public scores use the bands 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. The display mapping is nonlinear: strong teams are spread across more of the 65-94 range while the weakest teams are compressed toward the bottom, making 95+ naturally rare rather than quota-capped.",
+   "overall":"55% offensive composite rank value + 45% defensive composite rank value. The combined value is ranked nationally. SOS remains separate so opponent strength is not double-counted. Public scores use the bands 1-49 Below Average, 50-64 Above Average, 65-75 Strong, 76-84 Very Strong, 85-94 Great, and 95-100 Elite. The display mapping is nonlinear: strong teams are spread across more of the 65-94 range while the weakest teams are compressed toward the bottom, making 95+ naturally rare rather than quota-capped.",
    "preseason_prior":"2026 uses a frozen equal-weight consensus of full-FBS preseason projections from Phil Steele, CBS Sports, and The Athletic, all published before Week 0. Previous-season final rankings are not used as a source.",
    "ap_rank":"reference only; never enters the formula",
   },
