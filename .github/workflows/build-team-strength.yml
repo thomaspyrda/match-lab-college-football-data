@@ -11,6 +11,7 @@ on:
       - refresh_match_lab.py
       - build_advanced_profiles.py
       - test_advanced_profiles.py
+      - experiment_standardized_power.py
       - index.html
       - app.js
       - styles.css
@@ -47,6 +48,8 @@ jobs:
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
+      - name: Build backend standardized power experiment
+        run: python experiment_standardized_power.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs
         run: |
