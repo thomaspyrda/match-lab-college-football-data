@@ -19,10 +19,11 @@ OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_{SEASON}_week_{WEEK}.jso
 KEY=os.environ.get("CFBD_API_KEY")
 if not KEY: raise SystemExit("CFBD_API_KEY secret required")
 
-# Smoothly declining generic preseason prior. This curve is explicitly a v3
-# research hyperparameter and should ultimately be selected by historical backtest.
-PRIOR_WEIGHT={1:1.00,2:.75,3:.55,4:.40,5:.28,6:.18,7:.10}
-prior_weight=PRIOR_WEIGHT.get(WEEK,.05)
+# Evidence-based preseason prior. Only qualifying FBS games reduce uncertainty;
+# byes, FCS games, and unusable profiles do not artificially decay the anchor.
+PRIOR_BY_GAMES={0:1.00,1:.75,2:.55,3:.40,4:.28,5:.18,6:.10}
+def evidence_prior_weight(games):
+    return PRIOR_BY_GAMES.get(games,.05)
 
 CATS={
  "scoring":(.22,["points","points_per_play"]),
