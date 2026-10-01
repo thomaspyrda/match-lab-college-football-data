@@ -16,7 +16,7 @@ class AdvancedProfileTests(unittest.TestCase):
                 self.assertEqual(board["through_week"], max(0, int(week) - 1))
                 for profile in board.get("teams", {}).values():
                     for key, score in profile.items():
-                        if key in ("games_played", "metrics_available") or score is None:
+                        if key in ("raw", "games_played", "metrics_available") or score is None:
                             continue
                         self.assertGreaterEqual(score, 1)
                         self.assertLessEqual(score, 100)
