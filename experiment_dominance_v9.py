@@ -231,12 +231,11 @@ def main():
       "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),
       "population_validation":{"api_fbs_count":len(fbs_api),"model_fbs_count":len(fbs),
         "explicit_exclusions":sorted(FBS_EXCLUSIONS_2026),"excluded_present_in_api":excluded_from_fbs,
-        "model_teams_with_games":len(teams)},"preseason_prior_decay":"qualifying_fbs_games","fcs_policy":{"calibration_file":str(CALIBRATION.relative_to(ROOT)),"training_seasons":calibration["training_seasons"],"metric_specific_median_expectations":True,"positive_effect_cap":0.0,"negative_residuals_only":True,"counts_toward_preseason_decay":False}, "preseason_prior_curve":PRIOR_BY_GAMES,
+        "model_teams_with_games":len(teams)},"preseason_prior_decay":"qualifying_fbs_games","fcs_policy":{"calibration_file":str(FCS_CALIBRATION.relative_to(ROOT)),"training_seasons":calibration["training_seasons"],"metric_specific_median_expectations":True,"positive_effect_cap":0.0,"negative_residuals_only":True,"counts_toward_preseason_decay":False}, "preseason_prior_curve":PRIOR_BY_GAMES,
       "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays by qualifying FBS games played; FCS games add downside-only residuals against metric-specific historical FBS-vs-FCS median expectations and never reduce prior weight; 50/50 unit combination",
       "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
       "convergence":convergence,"fcs_diagnostics":fcs_diagnostics,"rankings":rows}
-    OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"
-")
+    OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+chr(10))
     print("Experimental v9 calibrated-FCS recursive top 25")
     for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
 
