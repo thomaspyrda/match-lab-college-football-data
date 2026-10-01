@@ -20,7 +20,13 @@ def median(xs):
     xs=[x for x in xs if x is not None]
     return statistics.median(xs) if xs else None
 
-def fit(pairs):\n    if len(pairs)<20:return 0.0\n    xs=[x for x,y in pairs]; ys=[y for x,y in pairs]\n    xm=statistics.fmean(xs); ym=statistics.fmean(ys); den=sum((x-xm)**2 for x in xs)\n    return abs(sum((x-xm)*(y-ym) for x,y in pairs)/den) if den else 0.0\n\nsamples=defaultdict(lambda:{"offense":[],"defense":[]})
+def fit(pairs):
+    if len(pairs)<20:return 0.0
+    xs=[x for x,y in pairs]; ys=[y for x,y in pairs]
+    xm=statistics.fmean(xs); ym=statistics.fmean(ys); den=sum((x-xm)**2 for x in xs)
+    return abs(sum((x-xm)*(y-ym) for x,y in pairs)/den) if den else 0.0
+
+samples=defaultdict(lambda:{"offense":[],"defense":[]})
 year_counts={}
 for year in YEARS:
     games=api("/games",year=year,seasonType="regular")
@@ -57,5 +63,6 @@ for m in METRICS:
 payload={"schema_version":"opponent-multiplier-1.0","training_seasons":list(YEARS),
  "method":"leave-one-game-out historical FBS opponent-unit quality; continuous exponential multiplier; no tiers",
  "year_counts":year_counts,"metrics":metrics}
-OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(payload,indent=2)+"\\n")
+OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(payload,indent=2)+"\
+")
 print(json.dumps(payload,indent=2))
