@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BetWise experimental v2: opponent-expectation unit strength.
 
-Research-only. Never writes current_rankings.json or public UI files.
+Research-only. Never writes current_rankings.json or public UI files.\nWorkflow-enabled experimental build.
 Each game is graded as actual performance versus an expectation derived from
 (1) the team's prior production and (2) the opponent unit's prior allowance.
 Weak opponents create easier expectations; meeting/exceeding those expectations
