@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BetWise experimental v9: recursive FBS strength with historically calibrated FCS evidence (test-only).
 
-Research only. Never writes current_rankings.json or public UI files. V9 validation build. Continuous opponent multipliers remain experimental. Calibration remains experimental. Historical FCS calibration is generated before this experiment.
+Research only. Never writes current_rankings.json or public UI files. V9 validation build trigger. Continuous opponent multipliers remain experimental. Calibration remains experimental. Historical FCS calibration is generated before this experiment.
 Offenses are solved against opposing defenses; defenses against opposing offenses.
 All component ratings live in FBS standard-deviation space. A generic preseason
 full-FBS prior anchors Week 1 and decays as current-season evidence accumulates.
