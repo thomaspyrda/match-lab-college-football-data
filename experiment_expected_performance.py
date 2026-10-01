@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""BetWise experimental v3: recursive opponent-adjusted FBS unit strength.
+"""BetWise experimental v5: recursive opponent-adjusted FBS unit strength.
 
 Research only. Never writes current_rankings.json or public UI files.
 Offenses are solved against opposing defenses; defenses against opposing offenses.
@@ -35,6 +35,10 @@ CATS={
 }
 METRICS=sorted({m for _,ms in CATS.values() for m in ms})
 ALIASES={"Mississippi":"Ole Miss","Connecticut":"UConn","Texas-San Antonio":"UTSA","San José State":"San Jose State"}
+# 2026 transition/classification guardrail. The experiment models the established
+# FBS population used by Match Lab; transition/FCS classifications cannot silently
+# enter the standardization universe even if an upstream endpoint changes.
+FBS_EXCLUSIONS_2026={"Sacramento State","North Dakota State"}
 
 def canon(t): return ALIASES.get(t,t)
 def api(path,**params):
@@ -81,7 +85,9 @@ def main():
     for row in adv:
         if row.get("team"):by_gid[str(row.get("gameId"))][canon(row["team"])]=row
 
-    fbs={canon(x["school"]) for x in api("/teams/fbs",year=SEASON) if x.get("school")}
+    fbs_api={canon(x["school"]) for x in api("/teams/fbs",year=SEASON) if x.get("school")}
+    excluded_from_fbs=sorted(t for t in FBS_EXCLUSIONS_2026 if t in fbs_api)
+    fbs=fbs_api-FBS_EXCLUSIONS_2026
     preseason=json.loads(PRESEASON.read_text()).get("teams",{})
     prior_raw={canon(t):f(v.get("score")) for t,v in preseason.items() if canon(t) in fbs}
     # Missing preseason entries get the FBS mean, never zero/bottom.
@@ -147,6 +153,11 @@ def main():
         off_metric[m]=off;def_metric[m]=deff
         convergence[m]={"iterations":iteration+1,"max_delta":round(delta,6)}
 
+    # Diagnostics expose the formula rather than changing it.
+    category_off={}; category_def={}
+    for cat,(_,ms) in CATS.items():
+        category_off[cat]={t:mean([off_metric[m].get(t) for m in ms]) for t in teams}
+        category_def[cat]={t:mean([def_metric[m].get(t) for m in ms]) for t in teams}
     off=composite(off_metric,teams);deff=composite(def_metric,teams)
     # Final composites are standardized once more so +1 means one FBS SD.
     off=zdict(off);deff=zdict(deff)
@@ -162,14 +173,21 @@ def main():
           "defense_rank":rd[t],"defensive_strength_sd":round(deff[t],3),
           "games":game_counts[t],"preseason_weight":evidence_prior_weight(game_counts[t]),"preseason_rank":next((v.get("consensus_rank") for n,v in preseason.items() if canon(n)==t),None),
           "ppg":round(mean(points_for[t]),2),"points_per_play":round(mean(ppp_for[t]),4),
-          "ppg_allowed":round(mean(points_against[t]),2),"points_per_play_allowed":round(mean(ppp_against[t]),4)})
-    payload={"schema_version":"experimental-4.0","season":SEASON,"pregame_week":WEEK,"through_week":WEEK-1,
-      "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),"preseason_prior_decay":"qualifying_fbs_games", "preseason_prior_curve":PRIOR_BY_GAMES,
+          "ppg_allowed":round(mean(points_against[t]),2),"points_per_play_allowed":round(mean(ppp_against[t]),4),
+          "diagnostics":{"offense_categories":{k:round(category_off[k][t],3) for k in CATS},
+            "defense_categories":{k:round(category_def[k][t],3) for k in CATS},
+            "offense_metrics":{m:round(off_metric[m][t],3) for m in METRICS},
+            "defense_metrics":{m:round(def_metric[m][t],3) for m in METRICS}}})
+    payload={"schema_version":"experimental-5.0","season":SEASON,"pregame_week":WEEK,"through_week":WEEK-1,
+      "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),
+      "population_validation":{"api_fbs_count":len(fbs_api),"model_fbs_count":len(fbs),
+        "explicit_exclusions":sorted(FBS_EXCLUSIONS_2026),"excluded_present_in_api":excluded_from_fbs,
+        "model_teams_with_games":len(teams)},"preseason_prior_decay":"qualifying_fbs_games", "preseason_prior_curve":PRIOR_BY_GAMES,
       "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays by qualifying FBS games played; 50/50 unit combination",
       "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
       "convergence":convergence,"rankings":rows}
     OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"\n")
-    print("Experimental v4 evidence-decay recursive top 25")
+    print("Experimental v5 population-validated recursive top 25")
     for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
 
 if __name__=="__main__":main()
