@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reconstruct exact v5 Team Strength week by week for dominance auditing."""
+"""Reconstruct exact v5 Team Strength week by week for dominance auditing.\nProduces research-only snapshots; no live ranking files are modified.\n"""
 import json, os, subprocess, sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
