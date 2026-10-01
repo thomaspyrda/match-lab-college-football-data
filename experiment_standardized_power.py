@@ -6,6 +6,7 @@ Uses raw pregame advanced profiles, adjusts each metric for the average quality 
 the units faced, standardizes against the FBS population, then builds hierarchical
 offense/defense composites to avoid double-counting correlated statistics.
 """
+# Workflow trigger: rerun corrected experimental build; no model logic changed.
 import json, math, statistics
 from collections import defaultdict
 from pathlib import Path
