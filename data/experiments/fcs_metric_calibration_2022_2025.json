@@ -1,0 +1,121 @@
+{
+  "schema_version": "fcs-calibration-1.0",
+  "training_seasons": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "statistic": "median historical FBS performance vs FCS, standardized within each season against FBS-vs-FBS game distributions",
+  "positive_effect_cap": 0.0,
+  "year_counts": {
+    "2022": {
+      "fbs_fcs_games_with_advanced_data": 120,
+      "candidate_games": 120
+    },
+    "2023": {
+      "fbs_fcs_games_with_advanced_data": 118,
+      "candidate_games": 118
+    },
+    "2024": {
+      "fbs_fcs_games_with_advanced_data": 121,
+      "candidate_games": 121
+    },
+    "2025": {
+      "fbs_fcs_games_with_advanced_data": 126,
+      "candidate_games": 126
+    }
+  },
+  "metrics": {
+    "finishing": {
+      "offense_expected_z": 1.2744,
+      "defense_expected_z": 0.8173,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "line_yards": {
+      "offense_expected_z": 0.7678,
+      "defense_expected_z": 0.5288,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "open_field_yards": {
+      "offense_expected_z": 0.0764,
+      "defense_expected_z": 0.7193,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "passing_explosiveness": {
+      "offense_expected_z": -0.0755,
+      "defense_expected_z": 0.3528,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "passing_ppa": {
+      "offense_expected_z": 0.702,
+      "defense_expected_z": 0.633,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "passing_success": {
+      "offense_expected_z": 0.8606,
+      "defense_expected_z": 0.8272,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "points": {
+      "offense_expected_z": 1.1864,
+      "defense_expected_z": 1.2469,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "points_per_play": {
+      "offense_expected_z": 1.1964,
+      "defense_expected_z": 0.688,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "power_success": {
+      "offense_expected_z": 0.4744,
+      "defense_expected_z": 0.1555,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "ppa": {
+      "offense_expected_z": 1.0319,
+      "defense_expected_z": 0.9608,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "rushing_explosiveness": {
+      "offense_expected_z": 0.0912,
+      "defense_expected_z": 0.067,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "rushing_ppa": {
+      "offense_expected_z": 0.8551,
+      "defense_expected_z": 0.632,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "rushing_success": {
+      "offense_expected_z": 0.9552,
+      "defense_expected_z": 0.8636,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "second_level_yards": {
+      "offense_expected_z": 0.7164,
+      "defense_expected_z": 0.6261,
+      "offense_samples": 485,
+      "defense_samples": 485
+    },
+    "success_rate": {
+      "offense_expected_z": 1.1401,
+      "defense_expected_z": 1.0905,
+      "offense_samples": 485,
+      "defense_samples": 485
+    }
+  }
+}
