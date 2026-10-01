@@ -13,6 +13,7 @@ on:
       - test_advanced_profiles.py
       - experiment_standardized_power.py
       - experiment_expected_performance.py
+      - build_weekly_dominance_audit.py
       - index.html
       - app.js
       - styles.css
@@ -55,6 +56,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_expected_performance.py
+      - name: Build week-by-week dominance audit
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python build_weekly_dominance_audit.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs
         run: |
