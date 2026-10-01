@@ -177,6 +177,25 @@ def main():
         off_metric[m]=off;def_metric[m]=deff
         convergence[m]={"iterations":iteration+1,"max_delta":round(delta,6)}
 
+    # Persist raw FCS residual diagnostics so the synthetic baseline can be calibrated
+    # independently of final ranks and the faster preseason-decay curve.
+    fcs_diagnostics=[]
+    for t,own,opp in fcs_obs:
+        item={"team":t,"baseline_sd":FCS_BASELINE_SD,"metrics":{}}
+        for m in METRICS:
+            oz=((own[m]-mus[m])/sds[m]) if own[m] is not None else None
+            dz=((-((opp[m]-mus[m])/sds[m]))) if opp[m] is not None else None
+            oraw=(oz+FCS_BASELINE_SD) if oz is not None else None
+            draw=(dz+FCS_BASELINE_SD) if dz is not None else None
+            item["metrics"][m]={
+                "offense_observed_z":round(oz,4) if oz is not None else None,
+                "offense_raw_residual":round(oraw,4) if oraw is not None else None,
+                "offense_applied":round(min(0.0,oraw),4) if oraw is not None else None,
+                "defense_observed_z":round(dz,4) if dz is not None else None,
+                "defense_raw_residual":round(draw,4) if draw is not None else None,
+                "defense_applied":round(min(0.0,draw),4) if draw is not None else None}
+        fcs_diagnostics.append(item)
+
     # Diagnostics expose the formula rather than changing it.
     category_off={}; category_def={}
     for cat,(_,ms) in CATS.items():
@@ -209,7 +228,7 @@ def main():
         "model_teams_with_games":len(teams)},"preseason_prior_decay":"qualifying_fbs_games","fcs_policy":{"baseline_sd":FCS_BASELINE_SD,"positive_effect_cap":0.0,"negative_residuals_only":True,"counts_toward_preseason_decay":False}, "preseason_prior_curve":PRIOR_BY_GAMES,
       "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays by qualifying FBS games played; FCS games add downside-only metric residuals against a fixed baseline and never reduce prior weight; 50/50 unit combination",
       "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
-      "convergence":convergence,"rankings":rows}
+      "convergence":convergence,"fcs_diagnostics":fcs_diagnostics,"rankings":rows}
     OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"\n")
     print("Experimental v5 population-validated recursive top 25")
     for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
