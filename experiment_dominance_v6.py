@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""BetWise experimental v6: recursive FBS strength with downside-only FCS evidence.
+"""BetWise experimental v6: recursive FBS strength with downside-only FCS evidence (test-only).
 
 Research only. Never writes current_rankings.json or public UI files.
 Offenses are solved against opposing defenses; defenses against opposing offenses.
