@@ -117,7 +117,8 @@ def build_year(year, weeks):
             scores = {}
             for name, spec in METRICS.items():
                 scores[name] = midpoint_percentile(team_values[name], boards[name], spec[-1])
-            scores["raw"] = team_values\n            scores["games_played"] = counts.get(week, {}).get(team, 0)
+            scores["raw"] = team_values
+            scores["games_played"] = counts.get(week, {}).get(team, 0)
             scores["metrics_available"] = sum(v is not None for k, v in scores.items() if k not in ("raw", "games_played", "metrics_available"))
             teams[team] = scores
         output[str(week)] = {"through_week": week - 1, "fbs_field_size": len(raw), "teams": teams}
