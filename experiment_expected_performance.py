@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
 SEASON=2026
-WEEK=6
+WEEK=int(os.environ.get("MODEL_WEEK","6"))
 HISTORY=ROOT/"data"/"historical"/f"{SEASON}.json"
 PRESEASON=ROOT/"data"/"preseason"/f"{SEASON}.json"
 OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_{SEASON}_week_{WEEK}.json"
