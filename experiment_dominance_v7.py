@@ -15,7 +15,8 @@ SEASON=2026
 WEEK=int(os.environ.get("MODEL_WEEK","6"))
 HISTORY=ROOT/"data"/"historical"/f"{SEASON}.json"
 PRESEASON=ROOT/"data"/"preseason"/f"{SEASON}.json"
-OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_v7_{SEASON}_week_{WEEK}.json"\nCALIBRATION=ROOT/"data"/"experiments"/"fcs_metric_calibration_2022_2025.json"
+OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_v7_{SEASON}_week_{WEEK}.json"
+CALIBRATION=ROOT/"data"/"experiments"/"fcs_metric_calibration_2022_2025.json"
 KEY=os.environ.get("CFBD_API_KEY")
 if not KEY: raise SystemExit("CFBD_API_KEY secret required")
 
@@ -81,7 +82,8 @@ def ranks(vals):
     return {t:i+1 for i,t in enumerate(sorted(vals,key=lambda x:vals[x],reverse=True))}
 
 def main():
-    calibration=json.loads(CALIBRATION.read_text())\n    hist=json.loads(HISTORY.read_text())["games"]
+    calibration=json.loads(CALIBRATION.read_text())
+    hist=json.loads(HISTORY.read_text())["games"]
     games=[g for g in hist if g.get("result") and int(g.get("week") or 0)<WEEK]
     adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
     by_gid=defaultdict(dict)
