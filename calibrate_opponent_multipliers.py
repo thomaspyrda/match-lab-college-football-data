@@ -20,7 +20,7 @@ def median(xs):
     xs=[x for x in xs if x is not None]
     return statistics.median(xs) if xs else None
 
-samples=defaultdict(lambda:{"offense":[],"defense":[]})
+def fit(pairs):\n    if len(pairs)<20:return 0.0\n    xs=[x for x,y in pairs]; ys=[y for x,y in pairs]\n    xm=statistics.fmean(xs); ym=statistics.fmean(ys); den=sum((x-xm)**2 for x in xs)\n    return abs(sum((x-xm)*(y-ym) for x,y in pairs)/den) if den else 0.0\n\nsamples=defaultdict(lambda:{"offense":[],"defense":[]})
 year_counts={}
 for year in YEARS:
     games=api("/games",year=year,seasonType="regular")
