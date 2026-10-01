@@ -15,7 +15,9 @@ on:
       - experiment_expected_performance.py
       - experiment_dominance_v6.py
       - experiment_dominance_v7.py
+      - experiment_dominance_v8.py
       - calibrate_fcs_expectations.py
+      - calibrate_fcs_expectations_v8.py
       - build_weekly_dominance_audit.py
       - index.html
       - app.js
@@ -67,6 +69,14 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v7.py
+      - name: Calibrate v8 expanded FCS expectations from 2022-2025
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python calibrate_fcs_expectations_v8.py
+      - name: Build experimental v8 expanded-metric dominance model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_dominance_v8.py
       - name: Build experimental v6 FCS-aware dominance model
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
