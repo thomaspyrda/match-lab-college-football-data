@@ -6,7 +6,7 @@ Offenses are solved against opposing defenses; defenses against opposing offense
 All component ratings live in FBS standard-deviation space. A generic preseason
 full-FBS prior anchors Week 1 and decays as current-season evidence accumulates.
 """
-import json, os, statistics, urllib.parse, urllib.request
+import json, os, statistics, urllib.parse, urllib.request, math
 from collections import defaultdict
 from pathlib import Path
 
@@ -163,12 +163,12 @@ def main():
             no={}; nd={}
             for t in teams:
                 rows=by_team.get(t,[])
-                evidence=mean([z+deff.get(o,0.0) for o,z in rows]+fcs_off_penalty.get(t,[]))
+                sens=mult_calibration["metrics"][m]["offense"]["sensitivity"]\n                evidence=mean([adjusted_evidence(z,deff.get(o,0.0),sens) for o,z in rows]+fcs_off_penalty.get(t,[]))
                 pw=evidence_prior_weight(game_counts[t])
                 no[t]=pw*prior_z.get(t,0.0)+(1-pw)*(evidence if evidence is not None else prior_z.get(t,0.0))
                 # Defense evidence comes from every opponent offensive observation against t.
                 faced=[(opp,z) for offense,opp,z in games_m if opp==t]
-                dev=mean([-z+off.get(offense,0.0) for offense,z in faced]+fcs_def_penalty.get(t,[]))
+                dsens=mult_calibration["metrics"][m]["defense"]["sensitivity"]\n                dev=mean([adjusted_evidence(-z,off.get(offense,0.0),dsens) for offense,z in faced]+fcs_def_penalty.get(t,[]))
                 pw=evidence_prior_weight(game_counts[t])
                 nd[t]=pw*prior_z.get(t,0.0)+(1-pw)*(dev if dev is not None else prior_z.get(t,0.0))
             # Center and scale each unit back to FBS SD space every pass.
