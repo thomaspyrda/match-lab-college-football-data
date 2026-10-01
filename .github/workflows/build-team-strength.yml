@@ -12,6 +12,7 @@ on:
       - build_advanced_profiles.py
       - test_advanced_profiles.py
       - experiment_standardized_power.py
+      - experiment_expected_performance.py
       - index.html
       - app.js
       - styles.css
@@ -50,6 +51,10 @@ jobs:
       - run: python -m unittest -v test_advanced_profiles.py
       - name: Build backend standardized power experiment
         run: python experiment_standardized_power.py
+      - name: Build opponent-expectation power experiment
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_expected_performance.py
       - run: sha256sum -c SHA256SUMS.txt
       - name: Commit generated outputs
         run: |
