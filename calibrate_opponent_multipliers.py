@@ -48,4 +48,14 @@ for year in YEARS:
             oq=[v for g2,v in produced[o] if g2!=gid]; dq=[v for g2,v in allowed[o] if g2!=gid]
             if oq: samples[m]["defense"].append((statistics.fmean(oq),-z))
             if dq: samples[m]["offense"].append((statistics.fmean(dq),z))
-
+metrics={}
+for m in METRICS:
+    metrics[m]={}
+    for side in ("offense","defense"):
+        ps=samples[m][side]
+        metrics[m][side]={"sensitivity":round(fit(ps),6),"samples":len(ps)}
+payload={"schema_version":"opponent-multiplier-1.0","training_seasons":list(YEARS),
+ "method":"leave-one-game-out historical FBS opponent-unit quality; continuous exponential multiplier; no tiers",
+ "year_counts":year_counts,"metrics":metrics}
+OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(payload,indent=2)+"\\n")
+print(json.dumps(payload,indent=2))
