@@ -13,6 +13,7 @@ on:
       - test_advanced_profiles.py
       - experiment_standardized_power.py
       - experiment_expected_performance.py
+      - experiment_dominance_v6.py
       - build_weekly_dominance_audit.py
       - index.html
       - app.js
@@ -56,6 +57,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_expected_performance.py
+      - name: Build experimental v6 FCS-aware dominance model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_dominance_v6.py
       - name: Build week-by-week dominance audit
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
