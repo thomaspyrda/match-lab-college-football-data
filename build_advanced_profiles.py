@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build pregame-only advanced team profiles and weekly FBS percentiles."""
+"""Build pregame-only advanced team profiles with raw values and FBS percentiles."""
 import json, os, time, urllib.parse, urllib.request
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -25,6 +25,32 @@ METRICS = {
     "defensive_explosiveness": ("defense", "explosiveness", False),
     "defensive_finishing_drives": ("defense", "pointsPerOpportunity", False),
     "havoc": ("defense", "havoc", "total", True),
+    # Expanded independent dimensions retained as raw values + percentiles for
+    # the experimental BetWise standardized power model.
+    "overall_success": ("offense", "successRate", True),
+    "defensive_success": ("defense", "successRate", False),
+    "standard_down_success": ("offense", "standardDowns", "successRate", True),
+    "defensive_standard_down_success": ("defense", "standardDowns", "successRate", False),
+    "passing_down_success": ("offense", "passingDowns", "successRate", True),
+    "defensive_passing_down_success": ("defense", "passingDowns", "successRate", False),
+    "line_yards": ("offense", "lineYards", True),
+    "defensive_line_yards": ("defense", "lineYards", False),
+    "stuff_rate": ("offense", "stuffRate", False),
+    "defensive_stuff_rate": ("defense", "stuffRate", True),
+    "power_success": ("offense", "powerSuccess", True),
+    "defensive_power_success": ("defense", "powerSuccess", False),
+    "second_level_yards": ("offense", "secondLevelYards", True),
+    "defensive_second_level_yards": ("defense", "secondLevelYards", False),
+    "open_field_yards": ("offense", "openFieldYards", True),
+    "defensive_open_field_yards": ("defense", "openFieldYards", False),
+    "passing_ppa": ("offense", "passingPlays", "ppa", True),
+    "defensive_passing_ppa": ("defense", "passingPlays", "ppa", False),
+    "rushing_ppa": ("offense", "rushingPlays", "ppa", True),
+    "defensive_rushing_ppa": ("defense", "rushingPlays", "ppa", False),
+    "passing_explosiveness": ("offense", "passingPlays", "explosiveness", True),
+    "defensive_passing_explosiveness": ("defense", "passingPlays", "explosiveness", False),
+    "rushing_explosiveness": ("offense", "rushingPlays", "explosiveness", True),
+    "defensive_rushing_explosiveness": ("defense", "rushingPlays", "explosiveness", False),
 }
 
 def api(path, **params):
@@ -91,12 +117,12 @@ def build_year(year, weeks):
             scores = {}
             for name, spec in METRICS.items():
                 scores[name] = midpoint_percentile(team_values[name], boards[name], spec[-1])
-            scores["games_played"] = counts.get(week, {}).get(team, 0)
-            scores["metrics_available"] = sum(v is not None for k, v in scores.items() if k not in ("games_played", "metrics_available"))
+            scores["raw"] = team_values\n            scores["games_played"] = counts.get(week, {}).get(team, 0)
+            scores["metrics_available"] = sum(v is not None for k, v in scores.items() if k not in ("raw", "games_played", "metrics_available"))
             teams[team] = scores
         output[str(week)] = {"through_week": week - 1, "fbs_field_size": len(raw), "teams": teams}
         print(f"{year} week {week}: {len(raw)} FBS advanced profiles")
-    payload = {"schema_version": "2.1", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
+    payload = {"schema_version": "3.0", "season": year, "pregame_only": True, "generated_at": datetime.now(timezone.utc).isoformat(), "weeks": output}
     temp = OUT / f".{year}.tmp"
     temp.write_text(json.dumps(payload, separators=(",", ":")), encoding="utf-8")
     temp.replace(OUT / f"{year}.json")
@@ -109,7 +135,7 @@ def main():
         target = OUT / f"{year}.json"
         if year < current and target.exists():
             cached = json.loads(target.read_text(encoding="utf-8"))
-            if cached.get("schema_version") == "2.1":
+            if cached.get("schema_version") == "3.0":
                 print(f"{year}: using validated cached profiles")
                 continue
         weeks = sorted(int(w) for w in weekly.get("weeks", {}))
