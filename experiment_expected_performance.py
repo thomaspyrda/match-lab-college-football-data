@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""BetWise experimental v2: opponent-expectation unit strength.
+"""BetWise experimental v3: recursive opponent-adjusted FBS unit strength.
 
-Research-only. Never writes current_rankings.json or public UI files.\nWorkflow-enabled experimental build.
-Each game is graded as actual performance versus an expectation derived from
-(1) the team's prior production and (2) the opponent unit's prior allowance.
-Weak opponents create easier expectations; meeting/exceeding those expectations
-is not punished. PPG and points/play are explicit model inputs.
+Research only. Never writes current_rankings.json or public UI files.
+Offenses are solved against opposing defenses; defenses against opposing offenses.
+All component ratings live in FBS standard-deviation space. A generic preseason
+full-FBS prior anchors Week 1 and decays as current-season evidence accumulates.
 """
 import json, os, statistics, urllib.parse, urllib.request
 from collections import defaultdict
@@ -15,12 +14,16 @@ ROOT=Path(__file__).resolve().parent
 SEASON=2026
 WEEK=6
 HISTORY=ROOT/"data"/"historical"/f"{SEASON}.json"
-OUT=ROOT/"data"/"experiments"/f"expected_performance_{SEASON}_week_{WEEK}.json"
+PRESEASON=ROOT/"data"/"preseason"/f"{SEASON}.json"
+OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_{SEASON}_week_{WEEK}.json"
 KEY=os.environ.get("CFBD_API_KEY")
 if not KEY: raise SystemExit("CFBD_API_KEY secret required")
 
-# 16 dimensions. Category weighting prevents clusters of correlated metrics
-# (e.g. multiple rushing measures) from overwhelming scoring/efficiency.
+# Smoothly declining generic preseason prior. This curve is explicitly a v3
+# research hyperparameter and should ultimately be selected by historical backtest.
+PRIOR_WEIGHT={1:1.00,2:.75,3:.55,4:.40,5:.28,6:.18,7:.10}
+prior_weight=PRIOR_WEIGHT.get(WEEK,.05)
+
 CATS={
  "scoring":(.22,["points","points_per_play"]),
  "efficiency":(.23,["ppa","success_rate"]),
@@ -29,154 +32,141 @@ CATS={
  "line":(.10,["line_yards","power_success","second_level_yards","open_field_yards"]),
  "finishing":(.10,["finishing"]),
 }
-LOWER_OFF={"rushing_explosiveness","passing_explosiveness"}  # CFBD explosiveness is an efficiency cost metric.
+METRICS=sorted({m for _,ms in CATS.values() for m in ms})
+ALIASES={"Mississippi":"Ole Miss","Connecticut":"UConn","Texas-San Antonio":"UTSA","San José State":"San Jose State"}
 
+def canon(t): return ALIASES.get(t,t)
 def api(path,**params):
     url="https://api.collegefootballdata.com"+path+"?"+urllib.parse.urlencode(params)
     req=urllib.request.Request(url,headers={"Authorization":"Bearer "+KEY,"Accept":"application/json","User-Agent":"MatchLab/1.0"})
     with urllib.request.urlopen(req,timeout=120) as r:return json.load(r)
-
 def f(v):
     try:return float(v) if v is not None else None
     except:return None
-
-def mean(vals):
-    vals=[float(x) for x in vals if x is not None]
-    return statistics.fmean(vals) if vals else None
-
-def zmap(vals):
+def mean(v):
+    v=[float(x) for x in v if x is not None]
+    return statistics.fmean(v) if v else None
+def zdict(vals):
     usable=[v for v in vals.values() if v is not None]
-    if len(usable)<2:return {k:0.0 if v is not None else None for k,v in vals.items()}
-    mu=statistics.fmean(usable); sd=statistics.pstdev(usable)
-    return {k:((v-mu)/sd if v is not None and sd else 0.0 if v is not None else None) for k,v in vals.items()}
-
+    mu=statistics.fmean(usable); sd=statistics.pstdev(usable) if len(usable)>1 else 1
+    return {k:((v-mu)/sd if v is not None and sd else None) for k,v in vals.items()}
 def metric_row(row,points):
-    o=row.get("offense") or {}
-    p=o.get("passingPlays") or {}; r=o.get("rushingPlays") or {}
+    o=row.get("offense") or {}; p=o.get("passingPlays") or {}; r=o.get("rushingPlays") or {}
     plays=f(o.get("plays")); drives=f(o.get("drives"))
-    return {
-      "points":f(points),
-      "points_per_play":(f(points)/plays if points is not None and plays else None),
-      "ppa":f(o.get("ppa")),
-      "success_rate":f(o.get("successRate")),
-      "passing_ppa":f(p.get("ppa")),
-      "passing_success":f(p.get("successRate")),
-      "passing_explosiveness":f(p.get("explosiveness")),
-      "rushing_ppa":f(r.get("ppa")),
-      "rushing_success":f(r.get("successRate")),
-      "rushing_explosiveness":f(r.get("explosiveness")),
-      "line_yards":f(o.get("lineYards")),
-      "power_success":f(o.get("powerSuccess")),
-      "second_level_yards":f(o.get("secondLevelYards")),
-      "open_field_yards":f(o.get("openFieldYards")),
-      "finishing":(f(points)/drives if points is not None and drives else None),
-      "explosiveness":f(o.get("explosiveness")),
-    }
-
-def expected(own_hist,opp_allowed,key,neutral):
-    a=mean(own_hist[key]); b=mean(opp_allowed[key])
-    if a is not None and b is not None:return .5*a+.5*b
-    if a is not None:return .65*a+.35*neutral if neutral is not None else a
-    if b is not None:return .65*b+.35*neutral if neutral is not None else b
-    return neutral
-
-def composite(metric_scores,teams):
+    return {"points":f(points),"points_per_play":(f(points)/plays if points is not None and plays else None),
+      "ppa":f(o.get("ppa")),"success_rate":f(o.get("successRate")),
+      "passing_ppa":f(p.get("ppa")),"passing_success":f(p.get("successRate")),"passing_explosiveness":f(p.get("explosiveness")),
+      "rushing_ppa":f(r.get("ppa")),"rushing_success":f(r.get("successRate")),"rushing_explosiveness":f(r.get("explosiveness")),
+      "line_yards":f(o.get("lineYards")),"power_success":f(o.get("powerSuccess")),
+      "second_level_yards":f(o.get("secondLevelYards")),"open_field_yards":f(o.get("openFieldYards")),
+      "finishing":(f(points)/drives if points is not None and drives else None)}
+def composite(metric_ratings,teams):
     out={}
     for t in teams:
-        cats=[]
-        for _,(w,metrics) in CATS.items():
-            vals=[metric_scores[m].get(t) for m in metrics if metric_scores[m].get(t) is not None]
-            if vals: cats.append((w,statistics.fmean(vals)))
-        den=sum(w for w,_ in cats)
-        out[t]=sum(w*v for w,v in cats)/den if den else None
+        parts=[]
+        for _,(w,ms) in CATS.items():
+            vals=[metric_ratings[m].get(t) for m in ms if metric_ratings[m].get(t) is not None]
+            if vals:parts.append((w,statistics.fmean(vals)))
+        den=sum(w for w,_ in parts); out[t]=sum(w*v for w,v in parts)/den if den else None
     return out
+def ranks(vals):
+    return {t:i+1 for i,t in enumerate(sorted(vals,key=lambda x:vals[x],reverse=True))}
 
 def main():
     hist=json.loads(HISTORY.read_text())["games"]
     games=[g for g in hist if g.get("result") and int(g.get("week") or 0)<WEEK]
     adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
     by_gid=defaultdict(dict)
-    for row in adv: by_gid[str(row.get("gameId"))][row.get("team")]=row
+    for row in adv:
+        if row.get("team"):by_gid[str(row.get("gameId"))][canon(row["team"])]=row
 
-    # FBS population comes from CFBD's explicit FBS team endpoint, preventing FCS
-    # teams from entering the national standard-deviation population.
-    fbs_rows=api("/teams/fbs",year=SEASON)
-    fbs={x.get("school") for x in fbs_rows if x.get("school")}
+    fbs={canon(x["school"]) for x in api("/teams/fbs",year=SEASON) if x.get("school")}
+    preseason=json.loads(PRESEASON.read_text()).get("teams",{})
+    prior_raw={canon(t):f(v.get("score")) for t,v in preseason.items() if canon(t) in fbs}
+    # Missing preseason entries get the FBS mean, never zero/bottom.
+    pm=mean(prior_raw.values())
+    prior_z=zdict({t:prior_raw.get(t,pm) for t in fbs})
 
-    observations=[]
-    for g in sorted(games,key=lambda x:(int(x.get("week") or 0),x.get("start_date") or "")):
-        gid=str(g.get("game_id")); h=g.get("home"); a=g.get("away"); res=g.get("result") or {}
-        if h not in fbs or a not in fbs: continue
-        if h not in by_gid.get(gid,{}) or a not in by_gid.get(gid,{}): continue
-        observations.append((int(g.get("week") or 0),gid,h,a,
-          metric_row(by_gid[gid][h],res.get("home_points")),
-          metric_row(by_gid[gid][a],res.get("away_points"))))
-
-    metrics=sorted({m for _,ms in CATS.values() for m in ms})
-    # Neutral baselines use only games already played before Week 6.
-    neutral={m:mean([row[m] for *_,hm,am in observations for row in (hm,am)]) for m in metrics}
-    scale={}
-    for m in metrics:
-        vals=[row[m] for *_,hm,am in observations for row in (hm,am) if row[m] is not None]
-        scale[m]=statistics.pstdev(vals) if len(vals)>1 else 1.0
-        if not scale[m]:scale[m]=1.0
-
-    off_hist=defaultdict(lambda:defaultdict(list)); allowed_hist=defaultdict(lambda:defaultdict(list))
-    off_grades=defaultdict(lambda:defaultdict(list)); def_grades=defaultdict(lambda:defaultdict(list))
+    obs=[]
+    raw_metric_values=defaultdict(list)
+    points_for=defaultdict(list); points_against=defaultdict(list); ppp_for=defaultdict(list); ppp_against=defaultdict(list)
     game_counts=defaultdict(int)
+    for g in sorted(games,key=lambda x:(int(x.get("week") or 0),x.get("start_date") or "")):
+        gid=str(g.get("game_id")); h=canon(g.get("home")); a=canon(g.get("away")); res=g.get("result") or {}
+        if h not in fbs or a not in fbs or h not in by_gid.get(gid,{}) or a not in by_gid.get(gid,{}):continue
+        hm=metric_row(by_gid[gid][h],res.get("home_points")); am=metric_row(by_gid[gid][a],res.get("away_points"))
+        obs.append((h,a,hm,am))
+        for row in (hm,am):
+            for m in METRICS:
+                if row[m] is not None:raw_metric_values[m].append(row[m])
+        for t,own,opp in ((h,hm,am),(a,am,hm)):
+            game_counts[t]+=1; points_for[t].append(own["points"]);points_against[t].append(opp["points"])
+            ppp_for[t].append(own["points_per_play"]);ppp_against[t].append(opp["points_per_play"])
 
-    for week,gid,h,a,hm,am in observations:
-        for team,opp,actual,oppactual in ((h,a,hm,am),(a,h,am,hm)):
-            game_counts[team]+=1
-            for m in metrics:
-                x=actual.get(m); ox=oppactual.get(m)
-                exp=expected(off_hist[team],allowed_hist[opp],m,neutral[m])
-                opp_exp=expected(off_hist[opp],allowed_hist[team],m,neutral[m])
-                if x is not None and exp is not None:
-                    direction=-1.0 if m in LOWER_OFF else 1.0
-                    # 70% performance-vs-expectation, 30% absolute quality.
-                    residual=direction*(x-exp)/scale[m]
-                    absolute=direction*(x-neutral[m])/scale[m]
-                    off_grades[team][m].append(.70*residual+.30*absolute)
-                if ox is not None and opp_exp is not None:
-                    direction=-1.0 if m in LOWER_OFF else 1.0
-                    # Defense is good when opponent production falls below expectation.
-                    residual=-direction*(ox-opp_exp)/scale[m]
-                    absolute=-direction*(ox-neutral[m])/scale[m]
-                    def_grades[team][m].append(.70*residual+.30*absolute)
-            for m in metrics:
-                if actual.get(m) is not None:off_hist[team][m].append(actual[m])
-                if oppactual.get(m) is not None:allowed_hist[team][m].append(oppactual[m])
+    # Convert every game metric to FBS game-distribution SD units first.
+    mus={m:mean(raw_metric_values[m]) for m in METRICS}
+    sds={m:(statistics.pstdev(raw_metric_values[m]) if len(raw_metric_values[m])>1 else 1.0) for m in METRICS}
+    for m in METRICS:
+        if not sds[m]:sds[m]=1.0
 
     teams=sorted(t for t in fbs if game_counts[t]>0)
-    off_metric={m:{t:mean(off_grades[t][m]) for t in teams} for m in metrics}
-    def_metric={m:{t:mean(def_grades[t][m]) for t in teams} for m in metrics}
-    # Re-standardize each adjusted metric across the true FBS population.
-    off_z={m:zmap(off_metric[m]) for m in metrics}; def_z={m:zmap(def_metric[m]) for m in metrics}
-    off=composite(off_z,teams); deff=composite(def_z,teams)
-    overall={t:.50*off[t]+.50*deff[t] for t in teams if off[t] is not None and deff[t] is not None}
+    off_metric={}; def_metric={}
+    convergence={}
+    # Fixed-point solve per metric:
+    # observed_z ~= offense_strength - defense_strength.
+    # Therefore offense = mean(observed_z + opponent defense), while
+    # defense = mean(-observed_z + opponent offense). Both are then shrunk
+    # toward the same generic preseason prior according to the weekly decay.
+    for m in METRICS:
+        games_m=[]
+        for h,a,hm,am in obs:
+            if hm[m] is not None:games_m.append((h,a,(hm[m]-mus[m])/sds[m]))
+            if am[m] is not None:games_m.append((a,h,(am[m]-mus[m])/sds[m]))
+        off={t:prior_z.get(t,0.0) for t in teams}; deff={t:prior_z.get(t,0.0) for t in teams}
+        by_team=defaultdict(list)
+        for t,o,z in games_m:by_team[t].append((o,z))
+        delta=None
+        for iteration in range(50):
+            no={}; nd={}
+            for t in teams:
+                rows=by_team.get(t,[])
+                evidence=mean([z+deff.get(o,0.0) for o,z in rows])
+                no[t]=prior_weight*prior_z.get(t,0.0)+(1-prior_weight)*(evidence if evidence is not None else prior_z.get(t,0.0))
+                # Defense evidence comes from every opponent offensive observation against t.
+                faced=[(opp,z) for offense,opp,z in games_m if opp==t]
+                dev=mean([-z+off.get(offense,0.0) for offense,z in faced])
+                nd[t]=prior_weight*prior_z.get(t,0.0)+(1-prior_weight)*(dev if dev is not None else prior_z.get(t,0.0))
+            # Center and scale each unit back to FBS SD space every pass.
+            no=zdict(no); nd=zdict(nd)
+            delta=max(max(abs(no[t]-off[t]) for t in teams),max(abs(nd[t]-deff[t]) for t in teams))
+            off,deff=no,nd
+            if delta<0.001:break
+        off_metric[m]=off;def_metric[m]=deff
+        convergence[m]={"iterations":iteration+1,"max_delta":round(delta,6)}
 
-    def ranks(vals):
-        return {t:i+1 for i,t in enumerate(sorted(vals,key=lambda k:vals[k],reverse=True))}
+    off=composite(off_metric,teams);deff=composite(def_metric,teams)
+    # Final composites are standardized once more so +1 means one FBS SD.
+    off=zdict(off);deff=zdict(deff)
+    overall={t:.5*off[t]+.5*deff[t] for t in teams}
+    # Standardize the combined rating too: Overall Team Strength is expressed
+    # directly in SDs from the FBS mean, while remaining exactly 50/50 O/D.
+    overall=zdict(overall)
     ro,rd,rt=ranks(off),ranks(deff),ranks(overall)
     rows=[]
-    for t in sorted(overall,key=overall.get,reverse=True):
-        rows.append({"team":t,"rank":rt[t],"team_strength_z":round(overall[t],3),
-          "offense_rank":ro[t],"offensive_strength_z":round(off[t],3),
-          "defense_rank":rd[t],"defensive_strength_z":round(deff[t],3),
-          "games":game_counts[t],
-          "ppg":round(mean(off_hist[t]["points"]),2) if mean(off_hist[t]["points"]) is not None else None,
-          "points_per_play":round(mean(off_hist[t]["points_per_play"]),4) if mean(off_hist[t]["points_per_play"]) is not None else None,
-          "ppg_allowed":round(mean(allowed_hist[t]["points"]),2) if mean(allowed_hist[t]["points"]) is not None else None,
-          "points_per_play_allowed":round(mean(allowed_hist[t]["points_per_play"]),4) if mean(allowed_hist[t]["points_per_play"]) is not None else None})
-    payload={"schema_version":"experimental-2.0","season":SEASON,"pregame_week":WEEK,
-      "through_week":WEEK-1,"public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),
-      "method":"16-metric game-level performance vs opponent-specific expectation; PPG and points/play explicit; 50/50 offense-defense Team Strength",
-      "game_grade_weights":{"performance_vs_expected":.70,"absolute_performance":.30},
-      "team_strength_weights":{"offense":.50,"defense":.50},"category_weights":{k:v[0] for k,v in CATS.items()},
-      "rankings":rows}
+    for t in sorted(teams,key=lambda x:overall[x],reverse=True):
+        rows.append({"team":t,"rank":rt[t],"overall_team_strength_sd":round(overall[t],3),
+          "offense_rank":ro[t],"offensive_strength_sd":round(off[t],3),
+          "defense_rank":rd[t],"defensive_strength_sd":round(deff[t],3),
+          "games":game_counts[t],"preseason_rank":next((v.get("consensus_rank") for n,v in preseason.items() if canon(n)==t),None),
+          "ppg":round(mean(points_for[t]),2),"points_per_play":round(mean(ppp_for[t]),4),
+          "ppg_allowed":round(mean(points_against[t]),2),"points_per_play_allowed":round(mean(ppp_against[t]),4)})
+    payload={"schema_version":"experimental-3.0","season":SEASON,"pregame_week":WEEK,"through_week":WEEK-1,
+      "public_ui":False,"fbs_only":True,"fbs_teams_ranked":len(rows),"preseason_prior_weight":prior_weight,
+      "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays weekly; 50/50 unit combination",
+      "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
+      "convergence":convergence,"rankings":rows}
     OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"\n")
-    print("Experimental v2 top 25")
-    for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["team_strength_z"]:+.3f} O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3} PPG {r["ppg"]} PA {r["ppg_allowed"]}')
+    print("Experimental v3 recursive top 25")
+    for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
 
 if __name__=="__main__":main()
