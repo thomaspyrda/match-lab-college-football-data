@@ -16,7 +16,8 @@ WEEK=int(os.environ.get("MODEL_WEEK","6"))
 HISTORY=ROOT/"data"/"historical"/f"{SEASON}.json"
 PRESEASON=ROOT/"data"/"preseason"/f"{SEASON}.json"
 OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_v9_{SEASON}_week_{WEEK}.json"
-FCS_CALIBRATION=ROOT/"data"/"experiments"/"fcs_metric_calibration_v8_2022_2025.json"\nMULT_CALIBRATION=ROOT/"data"/"experiments"/"opponent_multiplier_calibration_2022_2025.json"
+FCS_CALIBRATION=ROOT/"data"/"experiments"/"fcs_metric_calibration_v8_2022_2025.json"
+MULT_CALIBRATION=ROOT/"data"/"experiments"/"opponent_multiplier_calibration_2022_2025.json"
 KEY=os.environ.get("CFBD_API_KEY")
 if not KEY: raise SystemExit("CFBD_API_KEY secret required")
 
@@ -82,7 +83,8 @@ def ranks(vals):
     return {t:i+1 for i,t in enumerate(sorted(vals,key=lambda x:vals[x],reverse=True))}
 
 def main():
-    calibration=json.loads(FCS_CALIBRATION.read_text())\n    mult_calibration=json.loads(MULT_CALIBRATION.read_text())
+    calibration=json.loads(FCS_CALIBRATION.read_text())
+    mult_calibration=json.loads(MULT_CALIBRATION.read_text())
     hist=json.loads(HISTORY.read_text())["games"]
     games=[g for g in hist if g.get("result") and int(g.get("week") or 0)<WEEK]
     adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
@@ -163,12 +165,14 @@ def main():
             no={}; nd={}
             for t in teams:
                 rows=by_team.get(t,[])
-                sens=mult_calibration["metrics"][m]["offense"]["sensitivity"]\n                evidence=mean([adjusted_evidence(z,deff.get(o,0.0),sens) for o,z in rows]+fcs_off_penalty.get(t,[]))
+                sens=mult_calibration["metrics"][m]["offense"]["sensitivity"]
+                evidence=mean([adjusted_evidence(z,deff.get(o,0.0),sens) for o,z in rows]+fcs_off_penalty.get(t,[]))
                 pw=evidence_prior_weight(game_counts[t])
                 no[t]=pw*prior_z.get(t,0.0)+(1-pw)*(evidence if evidence is not None else prior_z.get(t,0.0))
                 # Defense evidence comes from every opponent offensive observation against t.
                 faced=[(opp,z) for offense,opp,z in games_m if opp==t]
-                dsens=mult_calibration["metrics"][m]["defense"]["sensitivity"]\n                dev=mean([adjusted_evidence(-z,off.get(offense,0.0),dsens) for offense,z in faced]+fcs_def_penalty.get(t,[]))
+                dsens=mult_calibration["metrics"][m]["defense"]["sensitivity"]
+                dev=mean([adjusted_evidence(-z,off.get(offense,0.0),dsens) for offense,z in faced]+fcs_def_penalty.get(t,[]))
                 pw=evidence_prior_weight(game_counts[t])
                 nd[t]=pw*prior_z.get(t,0.0)+(1-pw)*(dev if dev is not None else prior_z.get(t,0.0))
             # Center and scale each unit back to FBS SD space every pass.
@@ -231,7 +235,8 @@ def main():
       "method":"recursive fixed-point unit model: game metric standardized across FBS; offense solved vs opponent defense; defense solved vs opponent offense; generic preseason prior decays by qualifying FBS games played; FCS games add downside-only residuals against metric-specific historical FBS-vs-FCS median expectations and never reduce prior weight; 50/50 unit combination",
       "team_strength_weights":{"offense":.5,"defense":.5},"category_weights":{k:v[0] for k,v in CATS.items()},
       "convergence":convergence,"fcs_diagnostics":fcs_diagnostics,"rankings":rows}
-    OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"\n")
+    OUT.parent.mkdir(parents=True,exist_ok=True);OUT.write_text(json.dumps(payload,indent=2)+"
+")
     print("Experimental v9 calibrated-FCS recursive top 25")
     for r in rows[:25]:print(f'{r["rank"]:>2}. {r["team"]:<22} {r["overall_team_strength_sd"]:+.3f} SD  O#{r["offense_rank"]:<3} D#{r["defense_rank"]:<3}')
 
