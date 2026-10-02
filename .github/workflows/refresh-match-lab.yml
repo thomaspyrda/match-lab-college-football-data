@@ -3,6 +3,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 10 * * 1"
+  push:
+    branches: [main]
+    paths:
+      - "build_seo_pages.py"
 permissions:
   contents: write
 jobs:
@@ -15,7 +19,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh data
+      - name: Refresh data on weekly runs
+        if: github.event_name != 'push'
         run: python refresh_match_lab.py
       - name: Generate pages
         run: python build_seo_pages.py
