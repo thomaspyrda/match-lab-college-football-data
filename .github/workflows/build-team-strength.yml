@@ -23,6 +23,8 @@ on:
       - experiment_dominance_v13.py
       - experiment_dominance_v14.py
       - calibrate_sd_to_sd_v14.py
+      - validate_v14_final.py
+      - diagnose_finishing_schema.py
       - calibrate_opponent_interaction_v13.py
       - calibrate_opponent_significance_v12.py
       - calibrate_opponent_multipliers.py
@@ -127,6 +129,14 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v14.py
+      - name: Validate v14 week-by-week pregame reconstruction
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python validate_v14_final.py
+      - name: Diagnose finishing metric source schema
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python diagnose_finishing_schema.py
       - name: Build experimental v6 FCS-aware dominance model
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
