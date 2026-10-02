@@ -1,0 +1,250 @@
+{
+  "schema_version": "opponent-interaction-v13.0",
+  "training_seasons": [
+    2022,
+    2023,
+    2024
+  ],
+  "validation_seasons": [
+    2025
+  ],
+  "candidate_strengths": [
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35
+  ],
+  "selection_rule": "lowest held-out 2025 RMSE per metric; ties favor smaller modifier",
+  "interaction": "positive performance multiplied by difficulty modifier; negative performance divided by modifier; modifier=1+strength*signed_log(opponent_unit_sd), capped 0.55..1.45",
+  "metrics": {
+    "finishing": {
+      "selected_strength": 0.2,
+      "training_samples": 0,
+      "validation_samples": 0,
+      "validation_rmse_raw": null,
+      "candidate_validation_rmse": {}
+    },
+    "line_yards": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.047548,
+      "candidate_validation_rmse": {
+        "0.15": 1.044955,
+        "0.2": 1.046666,
+        "0.25": 1.04973,
+        "0.3": 1.054241,
+        "0.35": 1.060342
+      }
+    },
+    "open_field_yards": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.041527,
+      "candidate_validation_rmse": {
+        "0.15": 1.042074,
+        "0.2": 1.044507,
+        "0.25": 1.048109,
+        "0.3": 1.052937,
+        "0.35": 1.059058
+      }
+    },
+    "passing_down_success": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.034626,
+      "candidate_validation_rmse": {
+        "0.15": 1.036983,
+        "0.2": 1.040084,
+        "0.25": 1.044432,
+        "0.3": 1.050113,
+        "0.35": 1.057179
+      }
+    },
+    "passing_explosiveness": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.03168,
+      "candidate_validation_rmse": {
+        "0.15": 1.029929,
+        "0.2": 1.031409,
+        "0.25": 1.033993,
+        "0.3": 1.037717,
+        "0.35": 1.042617
+      }
+    },
+    "passing_ppa": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.061551,
+      "candidate_validation_rmse": {
+        "0.15": 1.06151,
+        "0.2": 1.064355,
+        "0.25": 1.068805,
+        "0.3": 1.075035,
+        "0.35": 1.083294
+      }
+    },
+    "passing_success": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.057656,
+      "candidate_validation_rmse": {
+        "0.15": 1.058104,
+        "0.2": 1.061223,
+        "0.25": 1.065968,
+        "0.3": 1.07249,
+        "0.35": 1.081002
+      }
+    },
+    "points": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.076622,
+      "candidate_validation_rmse": {
+        "0.15": 1.076921,
+        "0.2": 1.080441,
+        "0.25": 1.085851,
+        "0.3": 1.093341,
+        "0.35": 1.103182
+      }
+    },
+    "points_per_play": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.068323,
+      "candidate_validation_rmse": {
+        "0.15": 1.078809,
+        "0.2": 1.085327,
+        "0.25": 1.093578,
+        "0.3": 1.103666,
+        "0.35": 1.115724
+      }
+    },
+    "power_success": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.056125,
+      "candidate_validation_rmse": {
+        "0.15": 1.062789,
+        "0.2": 1.066932,
+        "0.25": 1.072082,
+        "0.3": 1.078292,
+        "0.35": 1.085636
+      }
+    },
+    "ppa": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.068513,
+      "candidate_validation_rmse": {
+        "0.15": 1.068859,
+        "0.2": 1.072243,
+        "0.25": 1.077376,
+        "0.3": 1.084397,
+        "0.35": 1.09359
+      }
+    },
+    "rushing_explosiveness": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.036354,
+      "candidate_validation_rmse": {
+        "0.15": 1.036994,
+        "0.2": 1.038952,
+        "0.25": 1.041824,
+        "0.3": 1.045656,
+        "0.35": 1.050509
+      }
+    },
+    "rushing_ppa": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.043919,
+      "candidate_validation_rmse": {
+        "0.15": 1.043711,
+        "0.2": 1.046334,
+        "0.25": 1.050382,
+        "0.3": 1.055952,
+        "0.35": 1.063191
+      }
+    },
+    "rushing_success": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.051641,
+      "candidate_validation_rmse": {
+        "0.15": 1.051521,
+        "0.2": 1.05431,
+        "0.25": 1.058587,
+        "0.3": 1.064452,
+        "0.35": 1.072055
+      }
+    },
+    "second_level_yards": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.047955,
+      "candidate_validation_rmse": {
+        "0.15": 1.040904,
+        "0.2": 1.041223,
+        "0.25": 1.042925,
+        "0.3": 1.046089,
+        "0.35": 1.050833
+      }
+    },
+    "standard_down_success": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.062636,
+      "candidate_validation_rmse": {
+        "0.15": 1.063524,
+        "0.2": 1.066904,
+        "0.25": 1.071943,
+        "0.3": 1.078784,
+        "0.35": 1.08764
+      }
+    },
+    "stuff_avoidance": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.04705,
+      "candidate_validation_rmse": {
+        "0.15": 1.041743,
+        "0.2": 1.042362,
+        "0.25": 1.044223,
+        "0.3": 1.047392,
+        "0.35": 1.051968
+      }
+    },
+    "success_rate": {
+      "selected_strength": 0.15,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.061776,
+      "candidate_validation_rmse": {
+        "0.15": 1.063022,
+        "0.2": 1.066919,
+        "0.25": 1.07271,
+        "0.3": 1.080573,
+        "0.35": 1.090773
+      }
+    }
+  }
+}
