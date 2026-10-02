@@ -23,6 +23,7 @@ on:
       - experiment_dominance_v13.py
       - experiment_dominance_v14.py
       - experiment_dominance_v15.py
+      - promote_v15_live.py
       - calibrate_sd_to_sd_v14.py
       - validate_v14_final.py
       - validate_v14_final_fixed.py
@@ -145,6 +146,8 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python validate_v15_final_source_aligned.py
+      - name: Promote validated v15 Team Strength to live data
+        run: python promote_v15_live.py
       - name: Diagnose finishing metric source schema
         if: always()
         env:
