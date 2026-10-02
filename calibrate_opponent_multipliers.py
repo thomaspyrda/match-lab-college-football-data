@@ -60,8 +60,10 @@ for m in METRICS:
     for side in ("offense","defense"):
         ps=samples[m][side]
         metrics[m][side]={"sensitivity":round(fit(ps),6),"samples":len(ps)}
-payload={"schema_version":"opponent-multiplier-1.0","training_seasons":list(YEARS),
- "method":"leave-one-game-out historical FBS opponent-unit quality; continuous exponential multiplier; no tiers",
+    pooled=samples[m]["offense"]+samples[m]["defense"]
+    metrics[m]["shared"]={"sensitivity":round(fit(pooled),6),"samples":len(pooled)}
+payload={"schema_version":"opponent-multiplier-2.0","training_seasons":list(YEARS),
+ "method":"leave-one-game-out historical FBS opponent-unit quality; continuous exponential multiplier; shared offense-defense sensitivity per metric; no tiers",
  "year_counts":year_counts,"metrics":metrics}
 OUT.parent.mkdir(parents=True,exist_ok=True); OUT.write_text(json.dumps(payload,indent=2)+"\
 ")
