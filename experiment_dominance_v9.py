@@ -81,6 +81,9 @@ def composite(metric_ratings,teams):
     return out
 def ranks(vals):
     return {t:i+1 for i,t in enumerate(sorted(vals,key=lambda x:vals[x],reverse=True))}
+def adjusted_evidence(performance_z, opponent_unit_z, sensitivity):
+    mult=math.exp(sensitivity*opponent_unit_z)
+    return performance_z*(mult if performance_z>=0 else 1.0/mult)
 
 def main():
     calibration=json.loads(FCS_CALIBRATION.read_text())
