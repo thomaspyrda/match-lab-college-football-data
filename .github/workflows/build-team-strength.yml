@@ -18,6 +18,7 @@ on:
       - experiment_dominance_v8.py
       - experiment_dominance_v9.py
       - experiment_dominance_v10.py
+      - experiment_dominance_v11.py
       - calibrate_opponent_multipliers.py
       - calibrate_fcs_expectations.py
       - calibrate_fcs_expectations_v8.py
@@ -92,6 +93,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v10.py
+      - name: Build experimental v11 logarithmic-SOS dominance model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_dominance_v11.py
       - name: Build experimental v6 FCS-aware dominance model
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
