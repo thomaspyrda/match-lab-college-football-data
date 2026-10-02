@@ -169,6 +169,7 @@ def build_compounded_boards(year,games):
     "schedule_strength_rank":sos_rank_map.get(t),
     "schedule_strength_score":pct_score(sos_raw[t],sos_values) if sos_raw[t] is not None else None,
     "games_in_rating":games_played[t],
+    "record":None,
    }
   boards[str(week)]=board
 
@@ -833,6 +834,11 @@ ranked_overall=sorted(
  key=lambda t:(unit_raw[t]["overall_composite_rank_value"],t)
 )
 overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
+current_records={}
+for team in current_board:
+ prior=[g for g in games if (g.get("homeTeam")==team or g.get("awayTeam")==team) and g.get("homePoints") is not None and dt(g.get("startDate"))<now]
+ fr=form(team,prior)
+ current_records[team]=f"{fr['wins']}-{fr['losses']}"
 current_teams=[]
 for team,row in sorted(current_board.items()):
  units=unit_raw.get(team,{})
@@ -840,6 +846,7 @@ for team,row in sorted(current_board.items()):
  current_teams.append({
   "team":team,
   **row,
+  "record":current_records.get(team),
   "advanced":adv(now.year,current_week,team),
   "offensive_strength":units.get("offensive_strength"),
   "offensive_strength_tier":tier(units.get("offensive_strength")),
