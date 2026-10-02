@@ -33,7 +33,7 @@ CATS={
  "efficiency":(.23,["ppa","success_rate","standard_down_success","passing_down_success","third_down_conversion","third_short_conversion","third_medium_conversion","third_long_conversion","fourth_down_conversion","first_down_rate"]),
  "passing":(.18,["passing_ppa","passing_success","passing_explosiveness","passing_yards_per_play","passing_first_down_rate"]),
  "rushing":(.17,["rushing_ppa","rushing_success","rushing_explosiveness","rushing_yards_per_play","rushing_first_down_rate","short_yard_rush_conversion"]),
- "line":(.10,["line_yards","line_yards_per_rush","power_success","second_level_yards","second_level_yards_per_rush","open_field_yards","open_field_yards_per_rush","stuff_avoidance","sack_avoidance"]),
+ "line":(.10,["line_yards","power_success","second_level_yards","open_field_yards","stuff_avoidance","sack_avoidance"]),
  "finishing":(.10,["points_per_opportunity","opportunity_td_rate","empty_opportunity_avoidance","red_zone_points_per_trip","red_zone_td_rate","red_zone_scoring_rate","goal_to_go_td_rate","red_zone_ppa","red_zone_success_rate"]),
 }
 METRICS=sorted({m for _,ms in CATS.values() for m in ms})
@@ -88,6 +88,7 @@ def situational_metrics(plays):
     td_drives=sum(1 for d in drive_rows if any("Touchdown" in str(p.get("playType") or "") for p in d))
     opp_drives=[d for d in drive_rows if any(0<float(p.get("yardsToGoal") or 999)<=40 for p in d)]
     rz_drives=[d for d in drive_rows if any(0<float(p.get("yardsToGoal") or 999)<=20 for p in d)]
+    g2g_drives=[d for d in drive_rows if any(0<float(p.get("yardsToGoal") or 999)<=10 for p in d)]
     def drive_points(d):
         # Score delta while this offense possesses the ball; excludes opponent scoring.
         vals=[float(p.get("offenseScore") or 0) for p in d]
@@ -116,7 +117,7 @@ def situational_metrics(plays):
       "red_zone_points_per_trip":mean(rz_points),
       "red_zone_td_rate":rate(sum(x>=6 for x in rz_points),len(rz_points)),
       "red_zone_scoring_rate":rate(sum(x>0 for x in rz_points),len(rz_points)),
-      "goal_to_go_td_rate":rate(sum("Touchdown" in str(p.get("playType") or "") for p in g2g),len(g2g)),
+      "goal_to_go_td_rate":rate(sum(any("Touchdown" in str(p.get("playType") or "") for p in d) for d in g2g_drives),len(g2g_drives)),
       "red_zone_ppa":mean([f(p.get("ppa")) for p in rz]),
       "red_zone_success_rate":rate(sum((f(p.get("ppa")) or 0)>0 for p in rz),len(rz)),
     }
@@ -128,10 +129,10 @@ def metric_row(row,points,sit=None):
       "ppa":f(o.get("ppa")),"success_rate":f(o.get("successRate")),"standard_down_success":f(sd.get("successRate")),"passing_down_success":f(pd.get("successRate")),
       "passing_ppa":f(p.get("ppa")),"passing_success":f(p.get("successRate")),"passing_explosiveness":f(p.get("explosiveness")),
       "rushing_ppa":f(r.get("ppa")),"rushing_success":f(r.get("successRate")),"rushing_explosiveness":f(r.get("explosiveness")),
-      "line_yards":f(o.get("lineYards")),"line_yards_per_rush":f(o.get("lineYardsPerRush")),
+      "line_yards":f(o.get("lineYards")),
       "power_success":f(o.get("powerSuccess")),"stuff_avoidance":(-f(o.get("stuffRate")) if f(o.get("stuffRate")) is not None else None),
-      "second_level_yards":f(o.get("secondLevelYards")),"second_level_yards_per_rush":f(o.get("secondLevelYardsPerRush")),
-      "open_field_yards":f(o.get("openFieldYards")),"open_field_yards_per_rush":f(o.get("openFieldYardsPerRush"))}
+      "second_level_yards":f(o.get("secondLevelYards")),
+      "open_field_yards":f(o.get("openFieldYards"))}
     base.update({m:sit.get(m) for m in METRICS if m not in base})
     base["points_per_drive"]=(f(points)/drives if points is not None and drives else None)
     return base
