@@ -836,8 +836,14 @@ ranked_overall=sorted(
 overall_rank={team:i for i,team in enumerate(ranked_overall,1)}
 current_records={}
 for team in current_board:
- prior=[g for g in games if (g.get("homeTeam")==team or g.get("awayTeam")==team) and g.get("homePoints") is not None and dt(g.get("startDate"))<now]
- fr=form(team,prior)
+ # Canonicalize both schedule names and ranking-board names so aliases such as
+ # Ole Miss/Mississippi resolve to the same team before calculating records.
+ prior=[g for g in games if (canon_team(g.get("homeTeam"))==canon_team(team) or canon_team(g.get("awayTeam"))==canon_team(team)) and g.get("homePoints") is not None and dt(g.get("startDate"))<now]
+ normalized_prior=[
+  {**g,"homeTeam":canon_team(g.get("homeTeam")),"awayTeam":canon_team(g.get("awayTeam"))}
+  for g in prior
+ ]
+ fr=form(canon_team(team),normalized_prior)
  current_records[team]=f"{fr['wins']}-{fr['losses']}"
 current_teams=[]
 for team,row in sorted(current_board.items()):
