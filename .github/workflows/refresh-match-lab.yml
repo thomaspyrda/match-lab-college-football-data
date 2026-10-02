@@ -4,13 +4,13 @@ on:
   schedule:
     - cron: "0 10 * * 1"
   push:
-    branches: [main]
-    paths:
-      - "build_seo_pages.py"
+    branches:
+      - main
 permissions:
   contents: write
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
@@ -19,10 +19,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh data on weekly runs
-        if: github.event_name != 'push'
+      - name: Refresh weekly data
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: python refresh_match_lab.py
-      - name: Generate pages
+      - name: Generate production pages
         run: python build_seo_pages.py
       - name: Commit generated output
         run: |
