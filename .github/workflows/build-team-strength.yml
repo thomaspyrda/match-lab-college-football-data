@@ -27,6 +27,7 @@ on:
       - validate_v14_final.py
       - validate_v14_final_fixed.py
       - validate_v14_final_source_aligned.py
+      - validate_v15_final_source_aligned.py
       - diagnose_finishing_schema.py
       - calibrate_opponent_interaction_v13.py
       - calibrate_opponent_significance_v12.py
@@ -140,6 +141,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python validate_v14_final_source_aligned.py
+      - name: Validate v15 week-by-week pregame reconstruction
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python validate_v15_final_source_aligned.py
       - name: Diagnose finishing metric source schema
         if: always()
         env:
