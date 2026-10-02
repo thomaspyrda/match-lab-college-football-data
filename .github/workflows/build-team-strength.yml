@@ -93,7 +93,7 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v10.py
-      - name: Build experimental v11 logarithmic-SOS dominance model # validation
+      - name: Build experimental v11 logarithmic-SOS dominance model # validation-2
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v11.py
