@@ -332,13 +332,13 @@ def write_live_data_pages(now):
             "strength":score,
             "offense":r.get("offensive_strength"),
             "defense":r.get("defensive_strength"),
-            "sos":r.get("schedule_strength_score"),
+            "sos":r.get("schedule_strength_rank"),
             "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
             "record":r.get("record") or "—",
         })
     strength_rows=sorted(strength_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("sos","SOS"),("ap","AP"),("record","Record")])
+    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_tabs("team")}
