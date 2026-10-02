@@ -1,0 +1,206 @@
+{
+  "schema_version": "opponent-multiplier-1.0",
+  "training_seasons": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "method": "leave-one-game-out historical FBS opponent-unit quality; continuous exponential multiplier; no tiers",
+  "year_counts": {
+    "2022": {
+      "fbs_team_game_rows": 1468
+    },
+    "2023": {
+      "fbs_team_game_rows": 1500
+    },
+    "2024": {
+      "fbs_team_game_rows": 1496
+    },
+    "2025": {
+      "fbs_team_game_rows": 1524
+    }
+  },
+  "metrics": {
+    "finishing": {
+      "offense": {
+        "sensitivity": 0.0,
+        "samples": 0
+      },
+      "defense": {
+        "sensitivity": 0.0,
+        "samples": 0
+      }
+    },
+    "line_yards": {
+      "offense": {
+        "sensitivity": 0.534523,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.067906,
+        "samples": 5988
+      }
+    },
+    "open_field_yards": {
+      "offense": {
+        "sensitivity": 0.379183,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.068773,
+        "samples": 5988
+      }
+    },
+    "passing_down_success": {
+      "offense": {
+        "sensitivity": 0.351182,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.110392,
+        "samples": 5988
+      }
+    },
+    "passing_explosiveness": {
+      "offense": {
+        "sensitivity": 0.311692,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.018246,
+        "samples": 5988
+      }
+    },
+    "passing_ppa": {
+      "offense": {
+        "sensitivity": 0.44339,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.259884,
+        "samples": 5988
+      }
+    },
+    "passing_success": {
+      "offense": {
+        "sensitivity": 0.461553,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.17605,
+        "samples": 5988
+      }
+    },
+    "points": {
+      "offense": {
+        "sensitivity": 0.648379,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.286382,
+        "samples": 5988
+      }
+    },
+    "points_per_play": {
+      "offense": {
+        "sensitivity": 0.544574,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.315836,
+        "samples": 5988
+      }
+    },
+    "power_success": {
+      "offense": {
+        "sensitivity": 0.239984,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.0845,
+        "samples": 5988
+      }
+    },
+    "ppa": {
+      "offense": {
+        "sensitivity": 0.594996,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.284585,
+        "samples": 5988
+      }
+    },
+    "rushing_explosiveness": {
+      "offense": {
+        "sensitivity": 0.148752,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.002642,
+        "samples": 5988
+      }
+    },
+    "rushing_ppa": {
+      "offense": {
+        "sensitivity": 0.480297,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.113951,
+        "samples": 5988
+      }
+    },
+    "rushing_success": {
+      "offense": {
+        "sensitivity": 0.558851,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.120586,
+        "samples": 5988
+      }
+    },
+    "second_level_yards": {
+      "offense": {
+        "sensitivity": 0.493793,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.02912,
+        "samples": 5988
+      }
+    },
+    "standard_down_success": {
+      "offense": {
+        "sensitivity": 0.577304,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.227133,
+        "samples": 5988
+      }
+    },
+    "stuff_avoidance": {
+      "offense": {
+        "sensitivity": 0.524469,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.016674,
+        "samples": 5988
+      }
+    },
+    "success_rate": {
+      "offense": {
+        "sensitivity": 0.624334,
+        "samples": 5988
+      },
+      "defense": {
+        "sensitivity": 0.226115,
+        "samples": 5988
+      }
+    }
+  }
+}
