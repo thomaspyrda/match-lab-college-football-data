@@ -22,6 +22,7 @@ on:
       - experiment_dominance_v12.py
       - experiment_dominance_v13.py
       - experiment_dominance_v14.py
+      - experiment_dominance_v15.py
       - calibrate_sd_to_sd_v14.py
       - validate_v14_final.py
       - validate_v14_final_fixed.py
@@ -131,6 +132,10 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v14.py
+      - name: Build experimental v15 expanded-metric model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_dominance_v15.py
       - name: Validate v14 week-by-week pregame reconstruction
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
