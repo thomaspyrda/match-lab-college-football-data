@@ -268,7 +268,7 @@ COLUMN_HELP={
     "multiplier":"Average opponent-quality adjustment applied across completed games. Values above 1 increased credit; values below 1 reduced it.",
     "overall_rank":"Current overall Team Strength rank.",
     "overall":"Current overall Team Strength score.",
-    "games":"Number of completed games represented in this ranking."
+    "record":"Current season win-loss record through completed games."
 }
 
 def ranking_tabs(active):
@@ -334,11 +334,11 @@ def write_live_data_pages(now):
             "defense":r.get("defensive_strength"),
             "sos":r.get("schedule_strength_score"),
             "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
-            "games":r.get("games_in_rating"),
+            "record":r.get("record") or "—",
         })
     strength_rows=sorted(strength_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("sos","SOS"),("ap","AP"),("games","Games")])
+    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("sos","SOS"),("ap","AP"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_tabs("team")}
@@ -349,21 +349,19 @@ def write_live_data_pages(now):
     # Strength of Schedule.
     sos_rows=[]
     for r in teams:
-        if r.get("schedule_strength_score") is None:
+        if r.get("schedule_strength_rank") is None:
             continue
         sos_rows.append({
-            "rank":None,
+            "rank":r.get("schedule_strength_rank"),
             "team":r.get("team"),
-            "sos":r.get("schedule_strength_score"),
             "raw":r.get("schedule_strength"),
             "strength_rank":r.get("overall_strength_rank"),
             "strength":r.get("overall_strength_score"),
-            "games":r.get("games_in_rating"),
+            "record":r.get("record") or "—",
         })
-    sos_rows=sorted(sos_rows,key=lambda r:(-(r["sos"] or 0),r["team"]))
-    for i,r in enumerate(sos_rows,1): r["rank"]=i
+    sos_rows=sorted(sos_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-strength-of-schedule-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("sos","SOS"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("games","Games")])
+    table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Strength of Schedule Rankings</h1>
 <p class="page-intro">{context}. Current strength-of-schedule rankings based only on opponents already faced, not future schedule projections. Tap or click any <b>?</b> for metric definitions.</p>
 {ranking_tabs("sos")}
@@ -383,20 +381,18 @@ def write_live_data_pages(now):
                 "team":r.get("team"),
                 "score":score,
                 "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
-                "vs_expectation":r.get("offensive_performance_vs_expectation") if field=="offensive_strength" else r.get("defensive_performance_vs_expectation"),
                 "opp_quality":r.get(opponent_quality_field),
-                "multiplier":r.get(multiplier_field),
                 "overall_rank":r.get("overall_strength_rank"),
                 "overall":r.get("overall_strength_score"),
                 "sos":r.get("schedule_strength_score"),
-                "games":r.get("games_in_rating"),
+                "record":r.get("record") or "—",
             })
         rows=sorted(rows,key=lambda r:(r["rank"] or 999,r["team"]))
         d=ROOT/slug_name
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),("vs_expectation","Perf vs Exp"),("opp_quality",opponent_label),("multiplier","Opp Adj"),("overall_rank","Team Rank"),("overall","Team Strength"),("games","Games")])
+        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),("opp_quality",opponent_label),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
 {ranking_tabs("offense" if field=="offensive_strength" else "defense")}
