@@ -1,3 +1,4 @@
+# Build trigger: ranking help text updated 2026-10-02
 #!/usr/bin/env python3
 """Generate crawlable CFB Match Lab landing, ranking, season and matchup pages."""
 from __future__ import annotations
