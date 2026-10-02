@@ -20,6 +20,8 @@ on:
       - experiment_dominance_v10.py
       - experiment_dominance_v11.py
       - experiment_dominance_v12.py
+      - experiment_dominance_v13.py
+      - calibrate_opponent_interaction_v13.py
       - calibrate_opponent_significance_v12.py
       - calibrate_opponent_multipliers.py
       - calibrate_fcs_expectations.py
@@ -107,6 +109,14 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v12.py
+      - name: Calibrate v13 asymmetric opponent interaction
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python calibrate_opponent_interaction_v13.py
+      - name: Build experimental v13 performance-opponent interaction model
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python experiment_dominance_v13.py
       - name: Build experimental v6 FCS-aware dominance model
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
