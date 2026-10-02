@@ -1,0 +1,177 @@
+{
+  "schema_version": "sd-to-sd-v14.0",
+  "training_seasons": [
+    2022,
+    2023,
+    2024
+  ],
+  "validation_seasons": [
+    2025
+  ],
+  "formula": "adjusted game SD = raw game-performance SD + coefficient * corresponding opponent-unit SD",
+  "selection": "compare historically fitted coefficient with literal 1:1 on held-out 2025; raw/no adjustment retained as diagnostic",
+  "metrics": {
+    "finishing": {
+      "fitted_coefficient": 0,
+      "selected_coefficient": 0,
+      "training_samples": 0,
+      "validation_samples": 0,
+      "validation_rmse_raw": null,
+      "validation_rmse_fitted": null,
+      "validation_rmse_1_to_1": null
+    },
+    "line_yards": {
+      "fitted_coefficient": 0.279417,
+      "selected_coefficient": 0.279417,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.047548,
+      "validation_rmse_fitted": 1.04045,
+      "validation_rmse_1_to_1": 1.085191
+    },
+    "open_field_yards": {
+      "fitted_coefficient": 0.167099,
+      "selected_coefficient": 0.167099,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.041527,
+      "validation_rmse_fitted": 1.040736,
+      "validation_rmse_1_to_1": 1.095808
+    },
+    "passing_down_success": {
+      "fitted_coefficient": 0.099421,
+      "selected_coefficient": 0.099421,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.034626,
+      "validation_rmse_fitted": 1.033623,
+      "validation_rmse_1_to_1": 1.098583
+    },
+    "passing_explosiveness": {
+      "fitted_coefficient": 0.123217,
+      "selected_coefficient": 0.123217,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.03168,
+      "validation_rmse_fitted": 1.030132,
+      "validation_rmse_1_to_1": 1.082673
+    },
+    "passing_ppa": {
+      "fitted_coefficient": 0.116637,
+      "selected_coefficient": 0.116637,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.061551,
+      "validation_rmse_fitted": 1.059799,
+      "validation_rmse_1_to_1": 1.121008
+    },
+    "passing_success": {
+      "fitted_coefficient": 0.122741,
+      "selected_coefficient": 0.122741,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.057656,
+      "validation_rmse_fitted": 1.055721,
+      "validation_rmse_1_to_1": 1.127348
+    },
+    "points": {
+      "fitted_coefficient": 0.203658,
+      "selected_coefficient": 0.203658,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.076622,
+      "validation_rmse_fitted": 1.07263,
+      "validation_rmse_1_to_1": 1.14723
+    },
+    "points_per_play": {
+      "fitted_coefficient": 0.175074,
+      "selected_coefficient": 0.175074,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.068323,
+      "validation_rmse_fitted": 1.068295,
+      "validation_rmse_1_to_1": 1.140981
+    },
+    "power_success": {
+      "fitted_coefficient": 0.11994,
+      "selected_coefficient": 0.11994,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.056125,
+      "validation_rmse_fitted": 1.057415,
+      "validation_rmse_1_to_1": 1.117077
+    },
+    "ppa": {
+      "fitted_coefficient": 0.162136,
+      "selected_coefficient": 0.162136,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.068513,
+      "validation_rmse_fitted": 1.063757,
+      "validation_rmse_1_to_1": 1.132758
+    },
+    "rushing_explosiveness": {
+      "fitted_coefficient": 0.036396,
+      "selected_coefficient": 0.036396,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.036354,
+      "validation_rmse_fitted": 1.03609,
+      "validation_rmse_1_to_1": 1.084627
+    },
+    "rushing_ppa": {
+      "fitted_coefficient": 0.201272,
+      "selected_coefficient": 0.201272,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.043919,
+      "validation_rmse_fitted": 1.039398,
+      "validation_rmse_1_to_1": 1.09267
+    },
+    "rushing_success": {
+      "fitted_coefficient": 0.250584,
+      "selected_coefficient": 0.250584,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.051641,
+      "validation_rmse_fitted": 1.044551,
+      "validation_rmse_1_to_1": 1.092309
+    },
+    "second_level_yards": {
+      "fitted_coefficient": 0.204472,
+      "selected_coefficient": 0.204472,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.047955,
+      "validation_rmse_fitted": 1.040374,
+      "validation_rmse_1_to_1": 1.087744
+    },
+    "standard_down_success": {
+      "fitted_coefficient": 0.212539,
+      "selected_coefficient": 0.212539,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.062636,
+      "validation_rmse_fitted": 1.056972,
+      "validation_rmse_1_to_1": 1.115508
+    },
+    "stuff_avoidance": {
+      "fitted_coefficient": 0.314395,
+      "selected_coefficient": 0.314395,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.04705,
+      "validation_rmse_fitted": 1.040447,
+      "validation_rmse_1_to_1": 1.082332
+    },
+    "success_rate": {
+      "fitted_coefficient": 0.206633,
+      "selected_coefficient": 0.206633,
+      "training_samples": 8928,
+      "validation_samples": 3048,
+      "validation_rmse_raw": 1.061776,
+      "validation_rmse_fitted": 1.055507,
+      "validation_rmse_1_to_1": 1.123372
+    }
+  }
+}
