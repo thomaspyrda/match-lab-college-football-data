@@ -430,6 +430,155 @@
       }
     },
     {
+      "team": "Buffalo",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.1775,
+          "offense_raw_residual": -0.5903,
+          "offense_applied": -0.5903,
+          "defense_observed_z": 0.5486,
+          "defense_raw_residual": 0.0198,
+          "defense_applied": 0.0
+        },
+        "open_field_yards": {
+          "offense_observed_z": 0.2282,
+          "offense_raw_residual": 0.1518,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.7401,
+          "defense_raw_residual": 0.0208,
+          "defense_applied": 0.0
+        },
+        "passing_down_success": {
+          "offense_observed_z": -0.114,
+          "offense_raw_residual": -0.7436,
+          "offense_applied": -0.7436,
+          "defense_observed_z": 0.7149,
+          "defense_raw_residual": -0.0355,
+          "defense_applied": -0.0355
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -0.574,
+          "offense_raw_residual": -0.4985,
+          "offense_applied": -0.4985,
+          "defense_observed_z": -1.4312,
+          "defense_raw_residual": -1.784,
+          "defense_applied": -1.784
+        },
+        "passing_ppa": {
+          "offense_observed_z": -0.1744,
+          "offense_raw_residual": -0.8764,
+          "offense_applied": -0.8764,
+          "defense_observed_z": 0.4227,
+          "defense_raw_residual": -0.2103,
+          "defense_applied": -0.2103
+        },
+        "passing_success": {
+          "offense_observed_z": -0.1696,
+          "offense_raw_residual": -1.0302,
+          "offense_applied": -1.0302,
+          "defense_observed_z": 1.2002,
+          "defense_raw_residual": 0.373,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": -0.2903,
+          "offense_raw_residual": -1.4767,
+          "offense_applied": -1.4767,
+          "defense_observed_z": 0.5355,
+          "defense_raw_residual": -0.7114,
+          "defense_applied": -0.7114
+        },
+        "points_per_play": {
+          "offense_observed_z": -0.593,
+          "offense_raw_residual": -1.7894,
+          "offense_applied": -1.7894,
+          "defense_observed_z": 0.6397,
+          "defense_raw_residual": -0.0483,
+          "defense_applied": -0.0483
+        },
+        "power_success": {
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.0455,
+          "defense_raw_residual": -0.201,
+          "defense_applied": -0.201
+        },
+        "ppa": {
+          "offense_observed_z": 0.1147,
+          "offense_raw_residual": -0.9172,
+          "offense_applied": -0.9172,
+          "defense_observed_z": 0.6441,
+          "defense_raw_residual": -0.3167,
+          "defense_applied": -0.3167
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": -0.5933,
+          "offense_raw_residual": -0.6845,
+          "offense_applied": -0.6845,
+          "defense_observed_z": 1.2934,
+          "defense_raw_residual": 1.2264,
+          "defense_applied": 0.0
+        },
+        "rushing_ppa": {
+          "offense_observed_z": -0.1456,
+          "offense_raw_residual": -1.0007,
+          "offense_applied": -1.0007,
+          "defense_observed_z": 0.7401,
+          "defense_raw_residual": 0.1081,
+          "defense_applied": 0.0
+        },
+        "rushing_success": {
+          "offense_observed_z": -0.2774,
+          "offense_raw_residual": -1.2326,
+          "offense_applied": -1.2326,
+          "defense_observed_z": 0.3281,
+          "defense_raw_residual": -0.5355,
+          "defense_applied": -0.5355
+        },
+        "second_level_yards": {
+          "offense_observed_z": -0.9131,
+          "offense_raw_residual": -1.6295,
+          "offense_applied": -1.6295,
+          "defense_observed_z": 0.6242,
+          "defense_raw_residual": -0.0019,
+          "defense_applied": -0.0019
+        },
+        "standard_down_success": {
+          "offense_observed_z": -0.075,
+          "offense_raw_residual": -1.0232,
+          "offense_applied": -1.0232,
+          "defense_observed_z": 0.7293,
+          "defense_raw_residual": -0.1776,
+          "defense_applied": -0.1776
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.0223,
+          "offense_raw_residual": -0.6134,
+          "offense_applied": -0.6134,
+          "defense_observed_z": 0.9285,
+          "defense_raw_residual": 0.4444,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": -0.1237,
+          "offense_raw_residual": -1.2638,
+          "offense_applied": -1.2638,
+          "defense_observed_z": 1.0548,
+          "defense_raw_residual": -0.0357,
+          "defense_applied": -0.0357
+        }
+      }
+    },
+    {
       "team": "UCF",
       "metrics": {
         "finishing": {
@@ -574,155 +723,6 @@
           "offense_applied": 0.0,
           "defense_observed_z": 2.3977,
           "defense_raw_residual": 1.3072,
-          "defense_applied": 0.0
-        }
-      }
-    },
-    {
-      "team": "Kennesaw State",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 1.0375,
-          "offense_raw_residual": 0.2697,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.7382,
-          "defense_raw_residual": 1.2094,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": 2.6761,
-          "offense_raw_residual": 2.5997,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
-          "defense_applied": 0.0
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.6859,
-          "offense_raw_residual": 0.0563,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.64,
-          "defense_raw_residual": 0.8896,
-          "defense_applied": 0.0
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -1.2956,
-          "offense_raw_residual": -1.2201,
-          "offense_applied": -1.2201,
-          "defense_observed_z": 1.2758,
-          "defense_raw_residual": 0.923,
-          "defense_applied": 0.0
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.2422,
-          "offense_raw_residual": -0.9442,
-          "offense_applied": -0.9442,
-          "defense_observed_z": 1.0003,
-          "defense_raw_residual": 0.3673,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 0.4951,
-          "offense_raw_residual": -0.3655,
-          "offense_applied": -0.3655,
-          "defense_observed_z": 1.4885,
-          "defense_raw_residual": 0.6613,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": 1.3038,
-          "offense_raw_residual": 0.1174,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.5779,
-          "defense_raw_residual": 0.331,
-          "defense_applied": 0.0
-        },
-        "points_per_play": {
-          "offense_observed_z": 1.5299,
-          "offense_raw_residual": 0.3335,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.2918,
-          "defense_raw_residual": 0.6038,
-          "defense_applied": 0.0
-        },
-        "power_success": {
-          "offense_observed_z": 0.4171,
-          "offense_raw_residual": -0.0573,
-          "offense_applied": -0.0573,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 0.9866,
-          "offense_raw_residual": -0.0453,
-          "offense_applied": -0.0453,
-          "defense_observed_z": 1.9417,
-          "defense_raw_residual": 0.9809,
-          "defense_applied": 0.0
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 1.8175,
-          "offense_raw_residual": 1.7263,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.9562,
-          "defense_raw_residual": 1.8892,
-          "defense_applied": 0.0
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 1.7512,
-          "offense_raw_residual": 0.8961,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.7491,
-          "defense_raw_residual": 2.1171,
-          "defense_applied": 0.0
-        },
-        "rushing_success": {
-          "offense_observed_z": 1.9897,
-          "offense_raw_residual": 1.0345,
-          "offense_applied": 0.0,
-          "defense_observed_z": 3.1181,
-          "defense_raw_residual": 2.2545,
-          "defense_applied": 0.0
-        },
-        "second_level_yards": {
-          "offense_observed_z": 1.9926,
-          "offense_raw_residual": 1.2762,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.6626,
-          "defense_raw_residual": 1.0365,
-          "defense_applied": 0.0
-        },
-        "standard_down_success": {
-          "offense_observed_z": 1.608,
-          "offense_raw_residual": 0.6598,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.1421,
-          "defense_raw_residual": 1.2352,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": -0.0737,
-          "offense_raw_residual": -0.7094,
-          "offense_applied": -0.7094,
-          "defense_observed_z": 1.0593,
-          "defense_raw_residual": 0.5752,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 1.5408,
-          "offense_raw_residual": 0.4007,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.5638,
-          "defense_raw_residual": 1.4733,
           "defense_applied": 0.0
         }
       }
@@ -877,7 +877,7 @@
       }
     },
     {
-      "team": "Buffalo",
+      "team": "Kennesaw State",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -888,288 +888,139 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 0.1775,
-          "offense_raw_residual": -0.5903,
-          "offense_applied": -0.5903,
-          "defense_observed_z": 0.5486,
-          "defense_raw_residual": 0.0198,
+          "offense_observed_z": 1.0375,
+          "offense_raw_residual": 0.2697,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.7382,
+          "defense_raw_residual": 1.2094,
           "defense_applied": 0.0
         },
         "open_field_yards": {
-          "offense_observed_z": 0.2282,
-          "offense_raw_residual": 0.1518,
+          "offense_observed_z": 2.6761,
+          "offense_raw_residual": 2.5997,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.7401,
-          "defense_raw_residual": 0.0208,
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
           "defense_applied": 0.0
         },
         "passing_down_success": {
-          "offense_observed_z": -0.114,
-          "offense_raw_residual": -0.7436,
-          "offense_applied": -0.7436,
-          "defense_observed_z": 0.7149,
-          "defense_raw_residual": -0.0355,
-          "defense_applied": -0.0355
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -0.574,
-          "offense_raw_residual": -0.4985,
-          "offense_applied": -0.4985,
-          "defense_observed_z": -1.4312,
-          "defense_raw_residual": -1.784,
-          "defense_applied": -1.784
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.1744,
-          "offense_raw_residual": -0.8764,
-          "offense_applied": -0.8764,
-          "defense_observed_z": 0.4227,
-          "defense_raw_residual": -0.2103,
-          "defense_applied": -0.2103
-        },
-        "passing_success": {
-          "offense_observed_z": -0.1696,
-          "offense_raw_residual": -1.0302,
-          "offense_applied": -1.0302,
-          "defense_observed_z": 1.2002,
-          "defense_raw_residual": 0.373,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": -0.2903,
-          "offense_raw_residual": -1.4767,
-          "offense_applied": -1.4767,
-          "defense_observed_z": 0.5355,
-          "defense_raw_residual": -0.7114,
-          "defense_applied": -0.7114
-        },
-        "points_per_play": {
-          "offense_observed_z": -0.593,
-          "offense_raw_residual": -1.7894,
-          "offense_applied": -1.7894,
-          "defense_observed_z": 0.6397,
-          "defense_raw_residual": -0.0483,
-          "defense_applied": -0.0483
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
+          "offense_observed_z": 0.6859,
+          "offense_raw_residual": 0.0563,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.0455,
-          "defense_raw_residual": -0.201,
-          "defense_applied": -0.201
-        },
-        "ppa": {
-          "offense_observed_z": 0.1147,
-          "offense_raw_residual": -0.9172,
-          "offense_applied": -0.9172,
-          "defense_observed_z": 0.6441,
-          "defense_raw_residual": -0.3167,
-          "defense_applied": -0.3167
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": -0.5933,
-          "offense_raw_residual": -0.6845,
-          "offense_applied": -0.6845,
-          "defense_observed_z": 1.2934,
-          "defense_raw_residual": 1.2264,
-          "defense_applied": 0.0
-        },
-        "rushing_ppa": {
-          "offense_observed_z": -0.1456,
-          "offense_raw_residual": -1.0007,
-          "offense_applied": -1.0007,
-          "defense_observed_z": 0.7401,
-          "defense_raw_residual": 0.1081,
-          "defense_applied": 0.0
-        },
-        "rushing_success": {
-          "offense_observed_z": -0.2774,
-          "offense_raw_residual": -1.2326,
-          "offense_applied": -1.2326,
-          "defense_observed_z": 0.3281,
-          "defense_raw_residual": -0.5355,
-          "defense_applied": -0.5355
-        },
-        "second_level_yards": {
-          "offense_observed_z": -0.9131,
-          "offense_raw_residual": -1.6295,
-          "offense_applied": -1.6295,
-          "defense_observed_z": 0.6242,
-          "defense_raw_residual": -0.0019,
-          "defense_applied": -0.0019
-        },
-        "standard_down_success": {
-          "offense_observed_z": -0.075,
-          "offense_raw_residual": -1.0232,
-          "offense_applied": -1.0232,
-          "defense_observed_z": 0.7293,
-          "defense_raw_residual": -0.1776,
-          "defense_applied": -0.1776
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 0.0223,
-          "offense_raw_residual": -0.6134,
-          "offense_applied": -0.6134,
-          "defense_observed_z": 0.9285,
-          "defense_raw_residual": 0.4444,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": -0.1237,
-          "offense_raw_residual": -1.2638,
-          "offense_applied": -1.2638,
-          "defense_observed_z": 1.0548,
-          "defense_raw_residual": -0.0357,
-          "defense_applied": -0.0357
-        }
-      }
-    },
-    {
-      "team": "Missouri",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.8134,
-          "offense_raw_residual": 0.0456,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.5356,
-          "defense_raw_residual": 0.0068,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": -0.8107,
-          "offense_raw_residual": -0.8871,
-          "offense_applied": -0.8871,
-          "defense_observed_z": -0.5051,
-          "defense_raw_residual": -1.2244,
-          "defense_applied": -1.2244
-        },
-        "passing_down_success": {
-          "offense_observed_z": 2.1458,
-          "offense_raw_residual": 1.5162,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.197,
-          "defense_raw_residual": 0.4466,
+          "defense_observed_z": 1.64,
+          "defense_raw_residual": 0.8896,
           "defense_applied": 0.0
         },
         "passing_explosiveness": {
-          "offense_observed_z": 0.055,
-          "offense_raw_residual": 0.1305,
-          "offense_applied": 0.0,
-          "defense_observed_z": -1.0876,
-          "defense_raw_residual": -1.4404,
-          "defense_applied": -1.4404
+          "offense_observed_z": -1.2956,
+          "offense_raw_residual": -1.2201,
+          "offense_applied": -1.2201,
+          "defense_observed_z": 1.2758,
+          "defense_raw_residual": 0.923,
+          "defense_applied": 0.0
         },
         "passing_ppa": {
-          "offense_observed_z": 1.6012,
-          "offense_raw_residual": 0.8992,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.6764,
-          "defense_raw_residual": 1.0434,
+          "offense_observed_z": -0.2422,
+          "offense_raw_residual": -0.9442,
+          "offense_applied": -0.9442,
+          "defense_observed_z": 1.0003,
+          "defense_raw_residual": 0.3673,
           "defense_applied": 0.0
         },
         "passing_success": {
-          "offense_observed_z": 1.8534,
-          "offense_raw_residual": 0.9928,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.4422,
-          "defense_raw_residual": 1.615,
+          "offense_observed_z": 0.4951,
+          "offense_raw_residual": -0.3655,
+          "offense_applied": -0.3655,
+          "defense_observed_z": 1.4885,
+          "defense_raw_residual": 0.6613,
           "defense_applied": 0.0
         },
         "points": {
-          "offense_observed_z": 1.733,
-          "offense_raw_residual": 0.5466,
+          "offense_observed_z": 1.3038,
+          "offense_raw_residual": 0.1174,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.7195,
-          "defense_raw_residual": -0.5274,
-          "defense_applied": -0.5274
+          "defense_observed_z": 1.5779,
+          "defense_raw_residual": 0.331,
+          "defense_applied": 0.0
         },
         "points_per_play": {
-          "offense_observed_z": 1.8811,
-          "offense_raw_residual": 0.6847,
+          "offense_observed_z": 1.5299,
+          "offense_raw_residual": 0.3335,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.1402,
-          "defense_raw_residual": -0.8282,
-          "defense_applied": -0.8282
+          "defense_observed_z": 1.2918,
+          "defense_raw_residual": 0.6038,
+          "defense_applied": 0.0
         },
         "power_success": {
-          "offense_observed_z": -0.1403,
-          "offense_raw_residual": -0.6147,
-          "offense_applied": -0.6147,
+          "offense_observed_z": 0.4171,
+          "offense_raw_residual": -0.0573,
+          "offense_applied": -0.0573,
           "defense_observed_z": 1.8125,
           "defense_raw_residual": 1.657,
           "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": 1.2745,
-          "offense_raw_residual": 0.2426,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3672,
-          "defense_raw_residual": 0.4064,
+          "offense_observed_z": 0.9866,
+          "offense_raw_residual": -0.0453,
+          "offense_applied": -0.0453,
+          "defense_observed_z": 1.9417,
+          "defense_raw_residual": 0.9809,
           "defense_applied": 0.0
         },
         "rushing_explosiveness": {
-          "offense_observed_z": -0.8952,
-          "offense_raw_residual": -0.9864,
-          "offense_applied": -0.9864,
-          "defense_observed_z": -3.9941,
-          "defense_raw_residual": -4.0611,
-          "defense_applied": -4.0611
+          "offense_observed_z": 1.8175,
+          "offense_raw_residual": 1.7263,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.9562,
+          "defense_raw_residual": 1.8892,
+          "defense_applied": 0.0
         },
         "rushing_ppa": {
-          "offense_observed_z": -0.2238,
-          "offense_raw_residual": -1.0789,
-          "offense_applied": -1.0789,
-          "defense_observed_z": -0.1303,
-          "defense_raw_residual": -0.7623,
-          "defense_applied": -0.7623
+          "offense_observed_z": 1.7512,
+          "offense_raw_residual": 0.8961,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.7491,
+          "defense_raw_residual": 2.1171,
+          "defense_applied": 0.0
         },
         "rushing_success": {
-          "offense_observed_z": 0.9577,
-          "offense_raw_residual": 0.0025,
+          "offense_observed_z": 1.9897,
+          "offense_raw_residual": 1.0345,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.9162,
-          "defense_raw_residual": 1.0526,
+          "defense_observed_z": 3.1181,
+          "defense_raw_residual": 2.2545,
           "defense_applied": 0.0
         },
         "second_level_yards": {
-          "offense_observed_z": 1.0166,
-          "offense_raw_residual": 0.3002,
+          "offense_observed_z": 1.9926,
+          "offense_raw_residual": 1.2762,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.2606,
-          "defense_raw_residual": -0.3655,
-          "defense_applied": -0.3655
+          "defense_observed_z": 1.6626,
+          "defense_raw_residual": 1.0365,
+          "defense_applied": 0.0
         },
         "standard_down_success": {
-          "offense_observed_z": 1.3064,
-          "offense_raw_residual": 0.3582,
+          "offense_observed_z": 1.608,
+          "offense_raw_residual": 0.6598,
           "offense_applied": 0.0,
-          "defense_observed_z": 3.1207,
-          "defense_raw_residual": 2.2138,
+          "defense_observed_z": 2.1421,
+          "defense_raw_residual": 1.2352,
           "defense_applied": 0.0
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.0946,
-          "offense_raw_residual": -0.5411,
-          "offense_applied": -0.5411,
-          "defense_observed_z": 1.1297,
-          "defense_raw_residual": 0.6456,
+          "offense_observed_z": -0.0737,
+          "offense_raw_residual": -0.7094,
+          "offense_applied": -0.7094,
+          "defense_observed_z": 1.0593,
+          "defense_raw_residual": 0.5752,
           "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": 1.8051,
-          "offense_raw_residual": 0.665,
+          "offense_observed_z": 1.5408,
+          "offense_raw_residual": 0.4007,
           "offense_applied": 0.0,
-          "defense_observed_z": 2.6419,
-          "defense_raw_residual": 1.5514,
+          "defense_observed_z": 2.5638,
+          "defense_raw_residual": 1.4733,
           "defense_applied": 0.0
         }
       }
@@ -1324,6 +1175,155 @@
       }
     },
     {
+      "team": "Missouri",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.8134,
+          "offense_raw_residual": 0.0456,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.5356,
+          "defense_raw_residual": 0.0068,
+          "defense_applied": 0.0
+        },
+        "open_field_yards": {
+          "offense_observed_z": -0.8107,
+          "offense_raw_residual": -0.8871,
+          "offense_applied": -0.8871,
+          "defense_observed_z": -0.5051,
+          "defense_raw_residual": -1.2244,
+          "defense_applied": -1.2244
+        },
+        "passing_down_success": {
+          "offense_observed_z": 2.1458,
+          "offense_raw_residual": 1.5162,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.197,
+          "defense_raw_residual": 0.4466,
+          "defense_applied": 0.0
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": 0.055,
+          "offense_raw_residual": 0.1305,
+          "offense_applied": 0.0,
+          "defense_observed_z": -1.0876,
+          "defense_raw_residual": -1.4404,
+          "defense_applied": -1.4404
+        },
+        "passing_ppa": {
+          "offense_observed_z": 1.6012,
+          "offense_raw_residual": 0.8992,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.6764,
+          "defense_raw_residual": 1.0434,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 1.8534,
+          "offense_raw_residual": 0.9928,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.4422,
+          "defense_raw_residual": 1.615,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": 1.733,
+          "offense_raw_residual": 0.5466,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.7195,
+          "defense_raw_residual": -0.5274,
+          "defense_applied": -0.5274
+        },
+        "points_per_play": {
+          "offense_observed_z": 1.8811,
+          "offense_raw_residual": 0.6847,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.1402,
+          "defense_raw_residual": -0.8282,
+          "defense_applied": -0.8282
+        },
+        "power_success": {
+          "offense_observed_z": -0.1403,
+          "offense_raw_residual": -0.6147,
+          "offense_applied": -0.6147,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 1.2745,
+          "offense_raw_residual": 0.2426,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3672,
+          "defense_raw_residual": 0.4064,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": -0.8952,
+          "offense_raw_residual": -0.9864,
+          "offense_applied": -0.9864,
+          "defense_observed_z": -3.9941,
+          "defense_raw_residual": -4.0611,
+          "defense_applied": -4.0611
+        },
+        "rushing_ppa": {
+          "offense_observed_z": -0.2238,
+          "offense_raw_residual": -1.0789,
+          "offense_applied": -1.0789,
+          "defense_observed_z": -0.1303,
+          "defense_raw_residual": -0.7623,
+          "defense_applied": -0.7623
+        },
+        "rushing_success": {
+          "offense_observed_z": 0.9577,
+          "offense_raw_residual": 0.0025,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.9162,
+          "defense_raw_residual": 1.0526,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 1.0166,
+          "offense_raw_residual": 0.3002,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.2606,
+          "defense_raw_residual": -0.3655,
+          "defense_applied": -0.3655
+        },
+        "standard_down_success": {
+          "offense_observed_z": 1.3064,
+          "offense_raw_residual": 0.3582,
+          "offense_applied": 0.0,
+          "defense_observed_z": 3.1207,
+          "defense_raw_residual": 2.2138,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.0946,
+          "offense_raw_residual": -0.5411,
+          "offense_applied": -0.5411,
+          "defense_observed_z": 1.1297,
+          "defense_raw_residual": 0.6456,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": 1.8051,
+          "offense_raw_residual": 0.665,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.6419,
+          "defense_raw_residual": 1.5514,
+          "defense_applied": 0.0
+        }
+      }
+    },
+    {
       "team": "Utah",
       "metrics": {
         "finishing": {
@@ -1473,155 +1473,6 @@
       }
     },
     {
-      "team": "Purdue",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.9416,
-          "offense_raw_residual": 0.1738,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.101,
-          "defense_raw_residual": 0.5722,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": -0.2402,
-          "offense_raw_residual": -0.3166,
-          "offense_applied": -0.3166,
-          "defense_observed_z": -0.4484,
-          "defense_raw_residual": -1.1677,
-          "defense_applied": -1.1677
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.409,
-          "offense_raw_residual": -0.2206,
-          "offense_applied": -0.2206,
-          "defense_observed_z": 0.7539,
-          "defense_raw_residual": 0.0035,
-          "defense_applied": 0.0
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": 0.0589,
-          "offense_raw_residual": 0.1344,
-          "offense_applied": 0.0,
-          "defense_observed_z": -2.5156,
-          "defense_raw_residual": -2.8684,
-          "defense_applied": -2.8684
-        },
-        "passing_ppa": {
-          "offense_observed_z": 1.4203,
-          "offense_raw_residual": 0.7183,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9103,
-          "defense_raw_residual": 0.2773,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 1.2389,
-          "offense_raw_residual": 0.3783,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.9348,
-          "defense_raw_residual": 1.1076,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": 1.1199,
-          "offense_raw_residual": -0.0665,
-          "offense_applied": -0.0665,
-          "defense_observed_z": 0.4129,
-          "defense_raw_residual": -0.834,
-          "defense_applied": -0.834
-        },
-        "points_per_play": {
-          "offense_observed_z": 0.9175,
-          "offense_raw_residual": -0.2789,
-          "offense_applied": -0.2789,
-          "defense_observed_z": -0.1264,
-          "defense_raw_residual": -0.8144,
-          "defense_applied": -0.8144
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.9745,
-          "defense_raw_residual": -1.13,
-          "defense_applied": -1.13
-        },
-        "ppa": {
-          "offense_observed_z": 1.1434,
-          "offense_raw_residual": 0.1115,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.6627,
-          "defense_raw_residual": -0.2981,
-          "defense_applied": -0.2981
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": -0.1821,
-          "offense_raw_residual": -0.2733,
-          "offense_applied": -0.2733,
-          "defense_observed_z": -2.0355,
-          "defense_raw_residual": -2.1025,
-          "defense_applied": -2.1025
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 0.445,
-          "offense_raw_residual": -0.4101,
-          "offense_applied": -0.4101,
-          "defense_observed_z": -0.0468,
-          "defense_raw_residual": -0.6788,
-          "defense_applied": -0.6788
-        },
-        "rushing_success": {
-          "offense_observed_z": -0.1135,
-          "offense_raw_residual": -1.0687,
-          "offense_applied": -1.0687,
-          "defense_observed_z": 0.6769,
-          "defense_raw_residual": -0.1867,
-          "defense_applied": -0.1867
-        },
-        "second_level_yards": {
-          "offense_observed_z": 0.2401,
-          "offense_raw_residual": -0.4763,
-          "offense_applied": -0.4763,
-          "defense_observed_z": -0.6157,
-          "defense_raw_residual": -1.2418,
-          "defense_applied": -1.2418
-        },
-        "standard_down_success": {
-          "offense_observed_z": 0.697,
-          "offense_raw_residual": -0.2512,
-          "offense_applied": -0.2512,
-          "defense_observed_z": 1.846,
-          "defense_raw_residual": 0.9391,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 1.3343,
-          "offense_raw_residual": 0.6986,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.7457,
-          "defense_raw_residual": 1.2616,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 0.6965,
-          "offense_raw_residual": -0.4436,
-          "offense_applied": -0.4436,
-          "defense_observed_z": 1.718,
-          "defense_raw_residual": 0.6275,
-          "defense_applied": 0.0
-        }
-      }
-    },
-    {
       "team": "Georgia State",
       "metrics": {
         "finishing": {
@@ -1766,6 +1617,155 @@
           "offense_applied": 0.0,
           "defense_observed_z": 1.4968,
           "defense_raw_residual": 0.4063,
+          "defense_applied": 0.0
+        }
+      }
+    },
+    {
+      "team": "Purdue",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.9416,
+          "offense_raw_residual": 0.1738,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.101,
+          "defense_raw_residual": 0.5722,
+          "defense_applied": 0.0
+        },
+        "open_field_yards": {
+          "offense_observed_z": -0.2402,
+          "offense_raw_residual": -0.3166,
+          "offense_applied": -0.3166,
+          "defense_observed_z": -0.4484,
+          "defense_raw_residual": -1.1677,
+          "defense_applied": -1.1677
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.409,
+          "offense_raw_residual": -0.2206,
+          "offense_applied": -0.2206,
+          "defense_observed_z": 0.7539,
+          "defense_raw_residual": 0.0035,
+          "defense_applied": 0.0
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": 0.0589,
+          "offense_raw_residual": 0.1344,
+          "offense_applied": 0.0,
+          "defense_observed_z": -2.5156,
+          "defense_raw_residual": -2.8684,
+          "defense_applied": -2.8684
+        },
+        "passing_ppa": {
+          "offense_observed_z": 1.4203,
+          "offense_raw_residual": 0.7183,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9103,
+          "defense_raw_residual": 0.2773,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 1.2389,
+          "offense_raw_residual": 0.3783,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.9348,
+          "defense_raw_residual": 1.1076,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": 1.1199,
+          "offense_raw_residual": -0.0665,
+          "offense_applied": -0.0665,
+          "defense_observed_z": 0.4129,
+          "defense_raw_residual": -0.834,
+          "defense_applied": -0.834
+        },
+        "points_per_play": {
+          "offense_observed_z": 0.9175,
+          "offense_raw_residual": -0.2789,
+          "offense_applied": -0.2789,
+          "defense_observed_z": -0.1264,
+          "defense_raw_residual": -0.8144,
+          "defense_applied": -0.8144
+        },
+        "power_success": {
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.9745,
+          "defense_raw_residual": -1.13,
+          "defense_applied": -1.13
+        },
+        "ppa": {
+          "offense_observed_z": 1.1434,
+          "offense_raw_residual": 0.1115,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.6627,
+          "defense_raw_residual": -0.2981,
+          "defense_applied": -0.2981
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": -0.1821,
+          "offense_raw_residual": -0.2733,
+          "offense_applied": -0.2733,
+          "defense_observed_z": -2.0355,
+          "defense_raw_residual": -2.1025,
+          "defense_applied": -2.1025
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 0.445,
+          "offense_raw_residual": -0.4101,
+          "offense_applied": -0.4101,
+          "defense_observed_z": -0.0468,
+          "defense_raw_residual": -0.6788,
+          "defense_applied": -0.6788
+        },
+        "rushing_success": {
+          "offense_observed_z": -0.1135,
+          "offense_raw_residual": -1.0687,
+          "offense_applied": -1.0687,
+          "defense_observed_z": 0.6769,
+          "defense_raw_residual": -0.1867,
+          "defense_applied": -0.1867
+        },
+        "second_level_yards": {
+          "offense_observed_z": 0.2401,
+          "offense_raw_residual": -0.4763,
+          "offense_applied": -0.4763,
+          "defense_observed_z": -0.6157,
+          "defense_raw_residual": -1.2418,
+          "defense_applied": -1.2418
+        },
+        "standard_down_success": {
+          "offense_observed_z": 0.697,
+          "offense_raw_residual": -0.2512,
+          "offense_applied": -0.2512,
+          "defense_observed_z": 1.846,
+          "defense_raw_residual": 0.9391,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 1.3343,
+          "offense_raw_residual": 0.6986,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.7457,
+          "defense_raw_residual": 1.2616,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": 0.6965,
+          "offense_raw_residual": -0.4436,
+          "offense_applied": -0.4436,
+          "defense_observed_z": 1.718,
+          "defense_raw_residual": 0.6275,
           "defense_applied": 0.0
         }
       }
@@ -1920,7 +1920,7 @@
       }
     },
     {
-      "team": "Army",
+      "team": "Bowling Green",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -1931,289 +1931,140 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 2.2235,
-          "offense_raw_residual": 1.4557,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.7752,
-          "defense_raw_residual": 0.2464,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.5958,
+          "offense_raw_residual": -1.3636,
+          "offense_applied": -1.3636,
+          "defense_observed_z": -0.0851,
+          "defense_raw_residual": -0.6139,
+          "defense_applied": -0.6139
         },
         "open_field_yards": {
-          "offense_observed_z": 3.4761,
-          "offense_raw_residual": 3.3997,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.7334,
+          "offense_raw_residual": -0.8098,
+          "offense_applied": -0.8098,
+          "defense_observed_z": -2.6599,
+          "defense_raw_residual": -3.3792,
+          "defense_applied": -3.3792
         },
         "passing_down_success": {
-          "offense_observed_z": 0.5751,
-          "offense_raw_residual": -0.0545,
-          "offense_applied": -0.0545,
-          "defense_observed_z": 0.5495,
-          "defense_raw_residual": -0.2009,
-          "defense_applied": -0.2009
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -1.9336,
-          "offense_raw_residual": -1.8581,
-          "offense_applied": -1.8581,
-          "defense_observed_z": 0.5442,
-          "defense_raw_residual": 0.1914,
-          "defense_applied": 0.0
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.863,
-          "offense_raw_residual": -1.565,
-          "offense_applied": -1.565,
-          "defense_observed_z": 1.228,
-          "defense_raw_residual": 0.595,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 0.1094,
-          "offense_raw_residual": -0.7512,
-          "offense_applied": -0.7512,
-          "defense_observed_z": 1.4885,
-          "defense_raw_residual": 0.6613,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": 2.0396,
-          "offense_raw_residual": 0.8532,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3939,
-          "defense_raw_residual": 0.147,
-          "defense_applied": 0.0
-        },
-        "points_per_play": {
-          "offense_observed_z": 2.5876,
-          "offense_raw_residual": 1.3912,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.0407,
-          "defense_raw_residual": 0.3527,
-          "defense_applied": 0.0
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.9745,
-          "defense_raw_residual": -1.13,
-          "defense_applied": -1.13
-        },
-        "ppa": {
-          "offense_observed_z": 2.386,
-          "offense_raw_residual": 1.3541,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9213,
-          "defense_raw_residual": -0.0395,
-          "defense_applied": -0.0395
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 1.9983,
-          "offense_raw_residual": 1.9071,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.1915,
-          "defense_raw_residual": 0.1245,
-          "defense_applied": 0.0
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 3.3858,
-          "offense_raw_residual": 2.5307,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.2807,
-          "defense_raw_residual": -0.3513,
-          "defense_applied": -0.3513
-        },
-        "rushing_success": {
-          "offense_observed_z": 2.2526,
-          "offense_raw_residual": 1.2974,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.0801,
-          "defense_raw_residual": -0.7835,
-          "defense_applied": -0.7835
-        },
-        "second_level_yards": {
-          "offense_observed_z": 2.5142,
-          "offense_raw_residual": 1.7978,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.8911,
-          "defense_raw_residual": 0.265,
-          "defense_applied": 0.0
-        },
-        "standard_down_success": {
-          "offense_observed_z": 1.9472,
-          "offense_raw_residual": 0.999,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.8838,
-          "defense_raw_residual": -0.0231,
-          "defense_applied": -0.0231
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 1.4003,
-          "offense_raw_residual": 0.7646,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3643,
-          "defense_raw_residual": 0.8802,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 1.8229,
-          "offense_raw_residual": 0.6828,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9549,
-          "defense_raw_residual": -0.1356,
-          "defense_applied": -0.1356
-        }
-      }
-    },
-    {
-      "team": "UConn",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.8494,
-          "offense_raw_residual": 0.0816,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.9648,
-          "defense_raw_residual": 1.436,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": 0.6969,
-          "offense_raw_residual": 0.6205,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
-          "defense_applied": 0.0
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.1321,
-          "offense_raw_residual": -0.4975,
-          "offense_applied": -0.4975,
-          "defense_observed_z": 1.6921,
-          "defense_raw_residual": 0.9417,
+          "offense_observed_z": -0.684,
+          "offense_raw_residual": -1.3136,
+          "offense_applied": -1.3136,
+          "defense_observed_z": 0.9755,
+          "defense_raw_residual": 0.2251,
           "defense_applied": 0.0
         },
         "passing_explosiveness": {
-          "offense_observed_z": 0.0028,
-          "offense_raw_residual": 0.0783,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.5433,
-          "defense_raw_residual": 1.1905,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.462,
+          "offense_raw_residual": -0.3865,
+          "offense_applied": -0.3865,
+          "defense_observed_z": -0.5749,
+          "defense_raw_residual": -0.9277,
+          "defense_applied": -0.9277
         },
         "passing_ppa": {
-          "offense_observed_z": 0.7166,
-          "offense_raw_residual": 0.0146,
+          "offense_observed_z": 0.7187,
+          "offense_raw_residual": 0.0167,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.4596,
-          "defense_raw_residual": 0.8266,
-          "defense_applied": 0.0
+          "defense_observed_z": -0.091,
+          "defense_raw_residual": -0.724,
+          "defense_applied": -0.724
         },
         "passing_success": {
-          "offense_observed_z": 0.8106,
-          "offense_raw_residual": -0.05,
-          "offense_applied": -0.05,
-          "defense_observed_z": 1.9844,
-          "defense_raw_residual": 1.1572,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.8542,
+          "offense_raw_residual": -0.0064,
+          "offense_applied": -0.0064,
+          "defense_observed_z": 0.1992,
+          "defense_raw_residual": -0.628,
+          "defense_applied": -0.628
         },
         "points": {
-          "offense_observed_z": 1.8556,
-          "offense_raw_residual": 0.6692,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.1487,
-          "defense_raw_residual": -0.0982,
-          "defense_applied": -0.0982
+          "offense_observed_z": -0.7808,
+          "offense_raw_residual": -1.9672,
+          "offense_applied": -1.9672,
+          "defense_observed_z": 0.3516,
+          "defense_raw_residual": -0.8953,
+          "defense_applied": -0.8953
         },
         "points_per_play": {
-          "offense_observed_z": 1.8643,
-          "offense_raw_residual": 0.6679,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.6252,
-          "defense_raw_residual": -0.0628,
-          "defense_applied": -0.0628
+          "offense_observed_z": -0.7478,
+          "offense_raw_residual": -1.9442,
+          "offense_applied": -1.9442,
+          "defense_observed_z": 0.3556,
+          "defense_raw_residual": -0.3324,
+          "defense_applied": -0.3324
         },
         "power_success": {
           "offense_observed_z": -0.419,
           "offense_raw_residual": -0.8934,
           "offense_applied": -0.8934,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
+          "defense_observed_z": 0.419,
+          "defense_raw_residual": 0.2635,
           "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": 1.2378,
-          "offense_raw_residual": 0.2059,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.4815,
-          "defense_raw_residual": 0.5207,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.7993,
+          "offense_raw_residual": -1.8312,
+          "offense_applied": -1.8312,
+          "defense_observed_z": 0.2972,
+          "defense_raw_residual": -0.6636,
+          "defense_applied": -0.6636
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 1.1445,
-          "offense_raw_residual": 1.0533,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.9376,
-          "defense_raw_residual": -1.0046,
-          "defense_applied": -1.0046
+          "offense_observed_z": -2.0471,
+          "offense_raw_residual": -2.1383,
+          "offense_applied": -2.1383,
+          "defense_observed_z": -0.5182,
+          "defense_raw_residual": -0.5852,
+          "defense_applied": -0.5852
         },
         "rushing_ppa": {
-          "offense_observed_z": 1.2937,
-          "offense_raw_residual": 0.4386,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.6552,
-          "defense_raw_residual": 0.0232,
-          "defense_applied": 0.0
+          "offense_observed_z": -2.1183,
+          "offense_raw_residual": -2.9734,
+          "offense_applied": -2.9734,
+          "defense_observed_z": 0.6044,
+          "defense_raw_residual": -0.0276,
+          "defense_applied": -0.0276
         },
         "rushing_success": {
-          "offense_observed_z": 0.6316,
-          "offense_raw_residual": -0.3236,
-          "offense_applied": -0.3236,
-          "defense_observed_z": 2.1416,
-          "defense_raw_residual": 1.278,
-          "defense_applied": 0.0
+          "offense_observed_z": -1.1651,
+          "offense_raw_residual": -2.1203,
+          "offense_applied": -2.1203,
+          "defense_observed_z": -0.0555,
+          "defense_raw_residual": -0.9191,
+          "defense_applied": -0.9191
         },
         "second_level_yards": {
-          "offense_observed_z": 1.0279,
-          "offense_raw_residual": 0.3115,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.0732,
-          "defense_raw_residual": -0.6993,
-          "defense_applied": -0.6993
+          "offense_observed_z": -1.1925,
+          "offense_raw_residual": -1.9089,
+          "offense_applied": -1.9089,
+          "defense_observed_z": -0.3444,
+          "defense_raw_residual": -0.9705,
+          "defense_applied": -0.9705
         },
         "standard_down_success": {
-          "offense_observed_z": 0.8678,
-          "offense_raw_residual": -0.0804,
-          "offense_applied": -0.0804,
-          "defense_observed_z": 1.7227,
-          "defense_raw_residual": 0.8158,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.1067,
+          "offense_raw_residual": -0.8415,
+          "offense_applied": -0.8415,
+          "defense_observed_z": -0.2721,
+          "defense_raw_residual": -1.179,
+          "defense_applied": -1.179
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.222,
-          "offense_raw_residual": -0.4137,
-          "offense_applied": -0.4137,
-          "defense_observed_z": 2.8896,
-          "defense_raw_residual": 2.4055,
+          "offense_observed_z": -0.6017,
+          "offense_raw_residual": -1.2374,
+          "offense_applied": -1.2374,
+          "defense_observed_z": 0.6017,
+          "defense_raw_residual": 0.1176,
           "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": 0.6868,
-          "offense_raw_residual": -0.4533,
-          "offense_applied": -0.4533,
-          "defense_observed_z": 2.4062,
-          "defense_raw_residual": 1.3157,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.1558,
+          "offense_raw_residual": -1.2959,
+          "offense_applied": -1.2959,
+          "defense_observed_z": 0.1919,
+          "defense_raw_residual": -0.8986,
+          "defense_applied": -0.8986
         }
       }
     },
@@ -2367,7 +2218,7 @@
       }
     },
     {
-      "team": "Bowling Green",
+      "team": "UConn",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -2378,145 +2229,145 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": -0.5958,
-          "offense_raw_residual": -1.3636,
-          "offense_applied": -1.3636,
-          "defense_observed_z": -0.0851,
-          "defense_raw_residual": -0.6139,
-          "defense_applied": -0.6139
+          "offense_observed_z": 0.8494,
+          "offense_raw_residual": 0.0816,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.9648,
+          "defense_raw_residual": 1.436,
+          "defense_applied": 0.0
         },
         "open_field_yards": {
-          "offense_observed_z": -0.7334,
-          "offense_raw_residual": -0.8098,
-          "offense_applied": -0.8098,
-          "defense_observed_z": -2.6599,
-          "defense_raw_residual": -3.3792,
-          "defense_applied": -3.3792
+          "offense_observed_z": 0.6969,
+          "offense_raw_residual": 0.6205,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
+          "defense_applied": 0.0
         },
         "passing_down_success": {
-          "offense_observed_z": -0.684,
-          "offense_raw_residual": -1.3136,
-          "offense_applied": -1.3136,
-          "defense_observed_z": 0.9755,
-          "defense_raw_residual": 0.2251,
+          "offense_observed_z": 0.1321,
+          "offense_raw_residual": -0.4975,
+          "offense_applied": -0.4975,
+          "defense_observed_z": 1.6921,
+          "defense_raw_residual": 0.9417,
           "defense_applied": 0.0
         },
         "passing_explosiveness": {
-          "offense_observed_z": -0.462,
-          "offense_raw_residual": -0.3865,
-          "offense_applied": -0.3865,
-          "defense_observed_z": -0.5749,
-          "defense_raw_residual": -0.9277,
-          "defense_applied": -0.9277
+          "offense_observed_z": 0.0028,
+          "offense_raw_residual": 0.0783,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.5433,
+          "defense_raw_residual": 1.1905,
+          "defense_applied": 0.0
         },
         "passing_ppa": {
-          "offense_observed_z": 0.7187,
-          "offense_raw_residual": 0.0167,
+          "offense_observed_z": 0.7166,
+          "offense_raw_residual": 0.0146,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.091,
-          "defense_raw_residual": -0.724,
-          "defense_applied": -0.724
+          "defense_observed_z": 1.4596,
+          "defense_raw_residual": 0.8266,
+          "defense_applied": 0.0
         },
         "passing_success": {
-          "offense_observed_z": 0.8542,
-          "offense_raw_residual": -0.0064,
-          "offense_applied": -0.0064,
-          "defense_observed_z": 0.1992,
-          "defense_raw_residual": -0.628,
-          "defense_applied": -0.628
+          "offense_observed_z": 0.8106,
+          "offense_raw_residual": -0.05,
+          "offense_applied": -0.05,
+          "defense_observed_z": 1.9844,
+          "defense_raw_residual": 1.1572,
+          "defense_applied": 0.0
         },
         "points": {
-          "offense_observed_z": -0.7808,
-          "offense_raw_residual": -1.9672,
-          "offense_applied": -1.9672,
-          "defense_observed_z": 0.3516,
-          "defense_raw_residual": -0.8953,
-          "defense_applied": -0.8953
+          "offense_observed_z": 1.8556,
+          "offense_raw_residual": 0.6692,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.1487,
+          "defense_raw_residual": -0.0982,
+          "defense_applied": -0.0982
         },
         "points_per_play": {
-          "offense_observed_z": -0.7478,
-          "offense_raw_residual": -1.9442,
-          "offense_applied": -1.9442,
-          "defense_observed_z": 0.3556,
-          "defense_raw_residual": -0.3324,
-          "defense_applied": -0.3324
+          "offense_observed_z": 1.8643,
+          "offense_raw_residual": 0.6679,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.6252,
+          "defense_raw_residual": -0.0628,
+          "defense_applied": -0.0628
         },
         "power_success": {
           "offense_observed_z": -0.419,
           "offense_raw_residual": -0.8934,
           "offense_applied": -0.8934,
-          "defense_observed_z": 0.419,
-          "defense_raw_residual": 0.2635,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
           "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": -0.7993,
-          "offense_raw_residual": -1.8312,
-          "offense_applied": -1.8312,
-          "defense_observed_z": 0.2972,
-          "defense_raw_residual": -0.6636,
-          "defense_applied": -0.6636
+          "offense_observed_z": 1.2378,
+          "offense_raw_residual": 0.2059,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.4815,
+          "defense_raw_residual": 0.5207,
+          "defense_applied": 0.0
         },
         "rushing_explosiveness": {
-          "offense_observed_z": -2.0471,
-          "offense_raw_residual": -2.1383,
-          "offense_applied": -2.1383,
-          "defense_observed_z": -0.5182,
-          "defense_raw_residual": -0.5852,
-          "defense_applied": -0.5852
+          "offense_observed_z": 1.1445,
+          "offense_raw_residual": 1.0533,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.9376,
+          "defense_raw_residual": -1.0046,
+          "defense_applied": -1.0046
         },
         "rushing_ppa": {
-          "offense_observed_z": -2.1183,
-          "offense_raw_residual": -2.9734,
-          "offense_applied": -2.9734,
-          "defense_observed_z": 0.6044,
-          "defense_raw_residual": -0.0276,
-          "defense_applied": -0.0276
+          "offense_observed_z": 1.2937,
+          "offense_raw_residual": 0.4386,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.6552,
+          "defense_raw_residual": 0.0232,
+          "defense_applied": 0.0
         },
         "rushing_success": {
-          "offense_observed_z": -1.1651,
-          "offense_raw_residual": -2.1203,
-          "offense_applied": -2.1203,
-          "defense_observed_z": -0.0555,
-          "defense_raw_residual": -0.9191,
-          "defense_applied": -0.9191
+          "offense_observed_z": 0.6316,
+          "offense_raw_residual": -0.3236,
+          "offense_applied": -0.3236,
+          "defense_observed_z": 2.1416,
+          "defense_raw_residual": 1.278,
+          "defense_applied": 0.0
         },
         "second_level_yards": {
-          "offense_observed_z": -1.1925,
-          "offense_raw_residual": -1.9089,
-          "offense_applied": -1.9089,
-          "defense_observed_z": -0.3444,
-          "defense_raw_residual": -0.9705,
-          "defense_applied": -0.9705
+          "offense_observed_z": 1.0279,
+          "offense_raw_residual": 0.3115,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.0732,
+          "defense_raw_residual": -0.6993,
+          "defense_applied": -0.6993
         },
         "standard_down_success": {
-          "offense_observed_z": 0.1067,
-          "offense_raw_residual": -0.8415,
-          "offense_applied": -0.8415,
-          "defense_observed_z": -0.2721,
-          "defense_raw_residual": -1.179,
-          "defense_applied": -1.179
+          "offense_observed_z": 0.8678,
+          "offense_raw_residual": -0.0804,
+          "offense_applied": -0.0804,
+          "defense_observed_z": 1.7227,
+          "defense_raw_residual": 0.8158,
+          "defense_applied": 0.0
         },
         "stuff_avoidance": {
-          "offense_observed_z": -0.6017,
-          "offense_raw_residual": -1.2374,
-          "offense_applied": -1.2374,
-          "defense_observed_z": 0.6017,
-          "defense_raw_residual": 0.1176,
+          "offense_observed_z": 0.222,
+          "offense_raw_residual": -0.4137,
+          "offense_applied": -0.4137,
+          "defense_observed_z": 2.8896,
+          "defense_raw_residual": 2.4055,
           "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": -0.1558,
-          "offense_raw_residual": -1.2959,
-          "offense_applied": -1.2959,
-          "defense_observed_z": 0.1919,
-          "defense_raw_residual": -0.8986,
-          "defense_applied": -0.8986
+          "offense_observed_z": 0.6868,
+          "offense_raw_residual": -0.4533,
+          "offense_applied": -0.4533,
+          "defense_observed_z": 2.4062,
+          "defense_raw_residual": 1.3157,
+          "defense_applied": 0.0
         }
       }
     },
     {
-      "team": "Iowa State",
+      "team": "Army",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -2527,140 +2378,140 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 0.119,
-          "offense_raw_residual": -0.6488,
-          "offense_applied": -0.6488,
-          "defense_observed_z": 0.5244,
-          "defense_raw_residual": -0.0044,
-          "defense_applied": -0.0044
-        },
-        "open_field_yards": {
-          "offense_observed_z": -0.5596,
-          "offense_raw_residual": -0.636,
-          "offense_applied": -0.636,
-          "defense_observed_z": -0.644,
-          "defense_raw_residual": -1.3633,
-          "defense_applied": -1.3633
-        },
-        "passing_down_success": {
-          "offense_observed_z": -0.0063,
-          "offense_raw_residual": -0.6359,
-          "offense_applied": -0.6359,
-          "defense_observed_z": 0.9755,
-          "defense_raw_residual": 0.2251,
+          "offense_observed_z": 2.2235,
+          "offense_raw_residual": 1.4557,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.7752,
+          "defense_raw_residual": 0.2464,
           "defense_applied": 0.0
         },
-        "passing_explosiveness": {
-          "offense_observed_z": 1.0411,
-          "offense_raw_residual": 1.1166,
+        "open_field_yards": {
+          "offense_observed_z": 3.4761,
+          "offense_raw_residual": 3.3997,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.464,
-          "defense_raw_residual": -0.8168,
-          "defense_applied": -0.8168
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
+          "defense_applied": 0.0
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.5751,
+          "offense_raw_residual": -0.0545,
+          "offense_applied": -0.0545,
+          "defense_observed_z": 0.5495,
+          "defense_raw_residual": -0.2009,
+          "defense_applied": -0.2009
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -1.9336,
+          "offense_raw_residual": -1.8581,
+          "offense_applied": -1.8581,
+          "defense_observed_z": 0.5442,
+          "defense_raw_residual": 0.1914,
+          "defense_applied": 0.0
         },
         "passing_ppa": {
-          "offense_observed_z": 0.1339,
-          "offense_raw_residual": -0.5681,
-          "offense_applied": -0.5681,
-          "defense_observed_z": 1.0332,
-          "defense_raw_residual": 0.4002,
+          "offense_observed_z": -0.863,
+          "offense_raw_residual": -1.565,
+          "offense_applied": -1.565,
+          "defense_observed_z": 1.228,
+          "defense_raw_residual": 0.595,
           "defense_applied": 0.0
         },
         "passing_success": {
-          "offense_observed_z": -0.3728,
-          "offense_raw_residual": -1.2334,
-          "offense_applied": -1.2334,
-          "defense_observed_z": 0.9926,
-          "defense_raw_residual": 0.1654,
+          "offense_observed_z": 0.1094,
+          "offense_raw_residual": -0.7512,
+          "offense_applied": -0.7512,
+          "defense_observed_z": 1.4885,
+          "defense_raw_residual": 0.6613,
           "defense_applied": 0.0
         },
         "points": {
-          "offense_observed_z": 0.752,
-          "offense_raw_residual": -0.4344,
-          "offense_applied": -0.4344,
-          "defense_observed_z": 0.9647,
-          "defense_raw_residual": -0.2822,
-          "defense_applied": -0.2822
+          "offense_observed_z": 2.0396,
+          "offense_raw_residual": 0.8532,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3939,
+          "defense_raw_residual": 0.147,
+          "defense_applied": 0.0
         },
         "points_per_play": {
-          "offense_observed_z": 1.0403,
-          "offense_raw_residual": -0.1561,
-          "offense_applied": -0.1561,
-          "defense_observed_z": 0.7607,
-          "defense_raw_residual": 0.0727,
+          "offense_observed_z": 2.5876,
+          "offense_raw_residual": 1.3912,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.0407,
+          "defense_raw_residual": 0.3527,
           "defense_applied": 0.0
         },
         "power_success": {
-          "offense_observed_z": -1.8125,
-          "offense_raw_residual": -2.2869,
-          "offense_applied": -2.2869,
-          "defense_observed_z": 0.419,
-          "defense_raw_residual": 0.2635,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.9745,
+          "defense_raw_residual": -1.13,
+          "defense_applied": -1.13
         },
         "ppa": {
-          "offense_observed_z": 0.6565,
-          "offense_raw_residual": -0.3754,
-          "offense_applied": -0.3754,
-          "defense_observed_z": 1.2665,
-          "defense_raw_residual": 0.3057,
-          "defense_applied": 0.0
+          "offense_observed_z": 2.386,
+          "offense_raw_residual": 1.3541,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9213,
+          "defense_raw_residual": -0.0395,
+          "defense_applied": -0.0395
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 1.8601,
-          "offense_raw_residual": 1.7689,
+          "offense_observed_z": 1.9983,
+          "offense_raw_residual": 1.9071,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.9707,
-          "defense_raw_residual": -1.0377,
-          "defense_applied": -1.0377
+          "defense_observed_z": 0.1915,
+          "defense_raw_residual": 0.1245,
+          "defense_applied": 0.0
         },
         "rushing_ppa": {
-          "offense_observed_z": 0.9292,
-          "offense_raw_residual": 0.0741,
+          "offense_observed_z": 3.3858,
+          "offense_raw_residual": 2.5307,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.7603,
-          "defense_raw_residual": 0.1283,
-          "defense_applied": 0.0
+          "defense_observed_z": 0.2807,
+          "defense_raw_residual": -0.3513,
+          "defense_applied": -0.3513
         },
         "rushing_success": {
-          "offense_observed_z": -0.3281,
-          "offense_raw_residual": -1.2833,
-          "offense_applied": -1.2833,
-          "defense_observed_z": 1.1651,
-          "defense_raw_residual": 0.3015,
-          "defense_applied": 0.0
+          "offense_observed_z": 2.2526,
+          "offense_raw_residual": 1.2974,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.0801,
+          "defense_raw_residual": -0.7835,
+          "defense_applied": -0.7835
         },
         "second_level_yards": {
-          "offense_observed_z": 0.0732,
-          "offense_raw_residual": -0.6432,
-          "offense_applied": -0.6432,
-          "defense_observed_z": 0.5467,
-          "defense_raw_residual": -0.0794,
-          "defense_applied": -0.0794
+          "offense_observed_z": 2.5142,
+          "offense_raw_residual": 1.7978,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.8911,
+          "defense_raw_residual": 0.265,
+          "defense_applied": 0.0
         },
         "standard_down_success": {
-          "offense_observed_z": -0.638,
-          "offense_raw_residual": -1.5862,
-          "offense_applied": -1.5862,
-          "defense_observed_z": 0.8239,
-          "defense_raw_residual": -0.083,
-          "defense_applied": -0.083
+          "offense_observed_z": 1.9472,
+          "offense_raw_residual": 0.999,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.8838,
+          "defense_raw_residual": -0.0231,
+          "defense_applied": -0.0231
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.3789,
-          "offense_raw_residual": -0.2568,
-          "offense_applied": -0.2568,
-          "defense_observed_z": -0.3789,
-          "defense_raw_residual": -0.863,
-          "defense_applied": -0.863
+          "offense_observed_z": 1.4003,
+          "offense_raw_residual": 0.7646,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3643,
+          "defense_raw_residual": 0.8802,
+          "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": -0.4932,
-          "offense_raw_residual": -1.6333,
-          "offense_applied": -1.6333,
-          "defense_observed_z": 1.252,
-          "defense_raw_residual": 0.1615,
-          "defense_applied": 0.0
+          "offense_observed_z": 1.8229,
+          "offense_raw_residual": 0.6828,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9549,
+          "defense_raw_residual": -0.1356,
+          "defense_applied": -0.1356
         }
       }
     },
@@ -2958,6 +2809,155 @@
           "offense_applied": -0.2067,
           "defense_observed_z": 1.4805,
           "defense_raw_residual": 0.39,
+          "defense_applied": 0.0
+        }
+      }
+    },
+    {
+      "team": "Iowa State",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.119,
+          "offense_raw_residual": -0.6488,
+          "offense_applied": -0.6488,
+          "defense_observed_z": 0.5244,
+          "defense_raw_residual": -0.0044,
+          "defense_applied": -0.0044
+        },
+        "open_field_yards": {
+          "offense_observed_z": -0.5596,
+          "offense_raw_residual": -0.636,
+          "offense_applied": -0.636,
+          "defense_observed_z": -0.644,
+          "defense_raw_residual": -1.3633,
+          "defense_applied": -1.3633
+        },
+        "passing_down_success": {
+          "offense_observed_z": -0.0063,
+          "offense_raw_residual": -0.6359,
+          "offense_applied": -0.6359,
+          "defense_observed_z": 0.9755,
+          "defense_raw_residual": 0.2251,
+          "defense_applied": 0.0
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": 1.0411,
+          "offense_raw_residual": 1.1166,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.464,
+          "defense_raw_residual": -0.8168,
+          "defense_applied": -0.8168
+        },
+        "passing_ppa": {
+          "offense_observed_z": 0.1339,
+          "offense_raw_residual": -0.5681,
+          "offense_applied": -0.5681,
+          "defense_observed_z": 1.0332,
+          "defense_raw_residual": 0.4002,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": -0.3728,
+          "offense_raw_residual": -1.2334,
+          "offense_applied": -1.2334,
+          "defense_observed_z": 0.9926,
+          "defense_raw_residual": 0.1654,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": 0.752,
+          "offense_raw_residual": -0.4344,
+          "offense_applied": -0.4344,
+          "defense_observed_z": 0.9647,
+          "defense_raw_residual": -0.2822,
+          "defense_applied": -0.2822
+        },
+        "points_per_play": {
+          "offense_observed_z": 1.0403,
+          "offense_raw_residual": -0.1561,
+          "offense_applied": -0.1561,
+          "defense_observed_z": 0.7607,
+          "defense_raw_residual": 0.0727,
+          "defense_applied": 0.0
+        },
+        "power_success": {
+          "offense_observed_z": -1.8125,
+          "offense_raw_residual": -2.2869,
+          "offense_applied": -2.2869,
+          "defense_observed_z": 0.419,
+          "defense_raw_residual": 0.2635,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 0.6565,
+          "offense_raw_residual": -0.3754,
+          "offense_applied": -0.3754,
+          "defense_observed_z": 1.2665,
+          "defense_raw_residual": 0.3057,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": 1.8601,
+          "offense_raw_residual": 1.7689,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.9707,
+          "defense_raw_residual": -1.0377,
+          "defense_applied": -1.0377
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 0.9292,
+          "offense_raw_residual": 0.0741,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.7603,
+          "defense_raw_residual": 0.1283,
+          "defense_applied": 0.0
+        },
+        "rushing_success": {
+          "offense_observed_z": -0.3281,
+          "offense_raw_residual": -1.2833,
+          "offense_applied": -1.2833,
+          "defense_observed_z": 1.1651,
+          "defense_raw_residual": 0.3015,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 0.0732,
+          "offense_raw_residual": -0.6432,
+          "offense_applied": -0.6432,
+          "defense_observed_z": 0.5467,
+          "defense_raw_residual": -0.0794,
+          "defense_applied": -0.0794
+        },
+        "standard_down_success": {
+          "offense_observed_z": -0.638,
+          "offense_raw_residual": -1.5862,
+          "offense_applied": -1.5862,
+          "defense_observed_z": 0.8239,
+          "defense_raw_residual": -0.083,
+          "defense_applied": -0.083
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.3789,
+          "offense_raw_residual": -0.2568,
+          "offense_applied": -0.2568,
+          "defense_observed_z": -0.3789,
+          "defense_raw_residual": -0.863,
+          "defense_applied": -0.863
+        },
+        "success_rate": {
+          "offense_observed_z": -0.4932,
+          "offense_raw_residual": -1.6333,
+          "offense_applied": -1.6333,
+          "defense_observed_z": 1.252,
+          "defense_raw_residual": 0.1615,
           "defense_applied": 0.0
         }
       }
@@ -3261,453 +3261,6 @@
       }
     },
     {
-      "team": "Charlotte",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.6764,
-          "offense_raw_residual": -0.0914,
-          "offense_applied": -0.0914,
-          "defense_observed_z": -0.3459,
-          "defense_raw_residual": -0.8747,
-          "defense_applied": -0.8747
-        },
-        "open_field_yards": {
-          "offense_observed_z": 1.1593,
-          "offense_raw_residual": 1.0829,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.7468,
-          "defense_raw_residual": -1.4661,
-          "defense_applied": -1.4661
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.8063,
-          "offense_raw_residual": 0.1767,
-          "offense_applied": 0.0,
-          "defense_observed_z": -1.0814,
-          "defense_raw_residual": -1.8318,
-          "defense_applied": -1.8318
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -0.2213,
-          "offense_raw_residual": -0.1458,
-          "offense_applied": -0.1458,
-          "defense_observed_z": -0.0276,
-          "defense_raw_residual": -0.3804,
-          "defense_applied": -0.3804
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.3431,
-          "offense_raw_residual": -1.0451,
-          "offense_applied": -1.0451,
-          "defense_observed_z": -0.2653,
-          "defense_raw_residual": -0.8983,
-          "defense_applied": -0.8983
-        },
-        "passing_success": {
-          "offense_observed_z": 0.3298,
-          "offense_raw_residual": -0.5308,
-          "offense_applied": -0.5308,
-          "defense_observed_z": -0.2636,
-          "defense_raw_residual": -1.0908,
-          "defense_applied": -1.0908
-        },
-        "points": {
-          "offense_observed_z": 0.936,
-          "offense_raw_residual": -0.2504,
-          "offense_applied": -0.2504,
-          "defense_observed_z": -1.0586,
-          "defense_raw_residual": -2.3055,
-          "defense_applied": -2.3055
-        },
-        "points_per_play": {
-          "offense_observed_z": 0.1599,
-          "offense_raw_residual": -1.0365,
-          "offense_applied": -1.0365,
-          "defense_observed_z": -0.5637,
-          "defense_raw_residual": -1.2517,
-          "defense_applied": -1.2517
-        },
-        "power_success": {
-          "offense_observed_z": -0.2199,
-          "offense_raw_residual": -0.6943,
-          "offense_applied": -0.6943,
-          "defense_observed_z": -0.6648,
-          "defense_raw_residual": -0.8203,
-          "defense_applied": -0.8203
-        },
-        "ppa": {
-          "offense_observed_z": 0.329,
-          "offense_raw_residual": -0.7029,
-          "offense_applied": -0.7029,
-          "defense_observed_z": -0.9171,
-          "defense_raw_residual": -1.8779,
-          "defense_applied": -1.8779
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 1.5071,
-          "offense_raw_residual": 1.4159,
-          "offense_applied": 0.0,
-          "defense_observed_z": -1.0585,
-          "defense_raw_residual": -1.1255,
-          "defense_applied": -1.1255
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 1.2413,
-          "offense_raw_residual": 0.3862,
-          "offense_applied": 0.0,
-          "defense_observed_z": -1.1418,
-          "defense_raw_residual": -1.7738,
-          "defense_applied": -1.7738
-        },
-        "rushing_success": {
-          "offense_observed_z": 0.7879,
-          "offense_raw_residual": -0.1673,
-          "offense_applied": -0.1673,
-          "defense_observed_z": -0.6251,
-          "defense_raw_residual": -1.4887,
-          "defense_applied": -1.4887
-        },
-        "second_level_yards": {
-          "offense_observed_z": 1.2937,
-          "offense_raw_residual": 0.5773,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.254,
-          "defense_raw_residual": -0.8801,
-          "defense_applied": -0.8801
-        },
-        "standard_down_success": {
-          "offense_observed_z": 0.1456,
-          "offense_raw_residual": -0.8026,
-          "offense_applied": -0.8026,
-          "defense_observed_z": -0.2769,
-          "defense_raw_residual": -1.1838,
-          "defense_applied": -1.1838
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 0.2563,
-          "offense_raw_residual": -0.3794,
-          "offense_applied": -0.3794,
-          "defense_observed_z": 0.0297,
-          "defense_raw_residual": -0.4544,
-          "defense_applied": -0.4544
-        },
-        "success_rate": {
-          "offense_observed_z": 0.4384,
-          "offense_raw_residual": -0.7017,
-          "offense_applied": -0.7017,
-          "defense_observed_z": -0.6391,
-          "defense_raw_residual": -1.7296,
-          "defense_applied": -1.7296
-        }
-      }
-    },
-    {
-      "team": "Navy",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 1.6372,
-          "offense_raw_residual": 0.8694,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.2232,
-          "defense_raw_residual": -0.752,
-          "defense_applied": -0.752
-        },
-        "open_field_yards": {
-          "offense_observed_z": 0.5905,
-          "offense_raw_residual": 0.5141,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
-          "defense_applied": 0.0
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.409,
-          "offense_raw_residual": -0.2206,
-          "offense_applied": -0.2206,
-          "defense_observed_z": 0.3109,
-          "defense_raw_residual": -0.4395,
-          "defense_applied": -0.4395
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -3.0209,
-          "offense_raw_residual": -2.9454,
-          "offense_applied": -2.9454,
-          "defense_observed_z": -2.0069,
-          "defense_raw_residual": -2.3597,
-          "defense_applied": -2.3597
-        },
-        "passing_ppa": {
-          "offense_observed_z": -1.5635,
-          "offense_raw_residual": -2.2655,
-          "offense_applied": -2.2655,
-          "defense_observed_z": -0.5415,
-          "defense_raw_residual": -1.1745,
-          "defense_applied": -1.1745
-        },
-        "passing_success": {
-          "offense_observed_z": -0.662,
-          "offense_raw_residual": -1.5226,
-          "offense_applied": -1.5226,
-          "defense_observed_z": 0.1992,
-          "defense_raw_residual": -0.628,
-          "defense_applied": -0.628
-        },
-        "points": {
-          "offense_observed_z": 0.9973,
-          "offense_raw_residual": -0.1891,
-          "offense_applied": -0.1891,
-          "defense_observed_z": 0.6582,
-          "defense_raw_residual": -0.5887,
-          "defense_applied": -0.5887
-        },
-        "points_per_play": {
-          "offense_observed_z": 0.3892,
-          "offense_raw_residual": -0.8072,
-          "offense_applied": -0.8072,
-          "defense_observed_z": 0.2296,
-          "defense_raw_residual": -0.4584,
-          "defense_applied": -0.4584
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 1.412,
-          "offense_raw_residual": 0.3801,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.1288,
-          "defense_raw_residual": -0.832,
-          "defense_applied": -0.832
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 0.5974,
-          "offense_raw_residual": 0.5062,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.0915,
-          "defense_raw_residual": 0.0245,
-          "defense_applied": 0.0
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 1.8452,
-          "offense_raw_residual": 0.9901,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.5438,
-          "defense_raw_residual": -0.0882,
-          "defense_applied": -0.0882
-        },
-        "rushing_success": {
-          "offense_observed_z": 2.0898,
-          "offense_raw_residual": 1.1346,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.1651,
-          "defense_raw_residual": 0.3015,
-          "defense_applied": 0.0
-        },
-        "second_level_yards": {
-          "offense_observed_z": 1.4853,
-          "offense_raw_residual": 0.7689,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.4692,
-          "defense_raw_residual": -0.1569,
-          "defense_applied": -0.1569
-        },
-        "standard_down_success": {
-          "offense_observed_z": 2.1945,
-          "offense_raw_residual": 1.2463,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.0236,
-          "defense_raw_residual": 0.1167,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 1.1052,
-          "offense_raw_residual": 0.4695,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.0297,
-          "defense_raw_residual": -0.4544,
-          "defense_applied": -0.4544
-        },
-        "success_rate": {
-          "offense_observed_z": 1.9867,
-          "offense_raw_residual": 0.8466,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9139,
-          "defense_raw_residual": -0.1766,
-          "defense_applied": -0.1766
-        }
-      }
-    },
-    {
-      "team": "Tennessee",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 1.1055,
-          "offense_raw_residual": 0.3377,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.1595,
-          "defense_raw_residual": -0.6883,
-          "defense_applied": -0.6883
-        },
-        "open_field_yards": {
-          "offense_observed_z": 0.2027,
-          "offense_raw_residual": 0.1263,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.2729,
-          "defense_raw_residual": -0.9922,
-          "defense_applied": -0.9922
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.5751,
-          "offense_raw_residual": -0.0545,
-          "offense_applied": -0.0545,
-          "defense_observed_z": 1.5718,
-          "defense_raw_residual": 0.8214,
-          "defense_applied": 0.0
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": 0.6342,
-          "offense_raw_residual": 0.7097,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.6506,
-          "defense_raw_residual": 2.2978,
-          "defense_applied": 0.0
-        },
-        "passing_ppa": {
-          "offense_observed_z": 0.6027,
-          "offense_raw_residual": -0.0993,
-          "offense_applied": -0.0993,
-          "defense_observed_z": 2.2275,
-          "defense_raw_residual": 1.5945,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 0.2909,
-          "offense_raw_residual": -0.5697,
-          "offense_applied": -0.5697,
-          "defense_observed_z": 1.751,
-          "defense_raw_residual": 0.9238,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": 1.8556,
-          "offense_raw_residual": 0.6692,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.026,
-          "defense_raw_residual": -0.2209,
-          "defense_applied": -0.2209
-        },
-        "points_per_play": {
-          "offense_observed_z": 1.9987,
-          "offense_raw_residual": 0.8023,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.49,
-          "defense_raw_residual": -0.198,
-          "defense_applied": -0.198
-        },
-        "power_success": {
-          "offense_observed_z": 0.2778,
-          "offense_raw_residual": -0.1966,
-          "offense_applied": -0.1966,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 1.2201,
-          "offense_raw_residual": 0.1882,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.8827,
-          "defense_raw_residual": 0.9219,
-          "defense_applied": 0.0
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 0.8067,
-          "offense_raw_residual": 0.7155,
-          "offense_applied": 0.0,
-          "defense_observed_z": -2.9756,
-          "defense_raw_residual": -3.0426,
-          "defense_applied": -3.0426
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 1.3002,
-          "offense_raw_residual": 0.4451,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.2238,
-          "defense_raw_residual": -0.4082,
-          "defense_applied": -0.4082
-        },
-        "rushing_success": {
-          "offense_observed_z": 0.7879,
-          "offense_raw_residual": -0.1673,
-          "offense_applied": -0.1673,
-          "defense_observed_z": 1.1651,
-          "defense_raw_residual": 0.3015,
-          "defense_applied": 0.0
-        },
-        "second_level_yards": {
-          "offense_observed_z": 1.3028,
-          "offense_raw_residual": 0.5864,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.7965,
-          "defense_raw_residual": -1.4226,
-          "defense_applied": -1.4226
-        },
-        "standard_down_success": {
-          "offense_observed_z": 0.4878,
-          "offense_raw_residual": -0.4604,
-          "offense_applied": -0.4604,
-          "defense_observed_z": 1.4897,
-          "defense_raw_residual": 0.5828,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 0.7711,
-          "offense_raw_residual": 0.1354,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3643,
-          "defense_raw_residual": 0.8802,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 0.6829,
-          "offense_raw_residual": -0.4572,
-          "offense_applied": -0.4572,
-          "defense_observed_z": 1.9173,
-          "defense_raw_residual": 0.8268,
-          "defense_applied": 0.0
-        }
-      }
-    },
-    {
       "team": "App State",
       "metrics": {
         "finishing": {
@@ -4002,6 +3555,453 @@
           "defense_observed_z": 0.4095,
           "defense_raw_residual": -0.681,
           "defense_applied": -0.681
+        }
+      }
+    },
+    {
+      "team": "Tennessee",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 1.1055,
+          "offense_raw_residual": 0.3377,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.1595,
+          "defense_raw_residual": -0.6883,
+          "defense_applied": -0.6883
+        },
+        "open_field_yards": {
+          "offense_observed_z": 0.2027,
+          "offense_raw_residual": 0.1263,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.2729,
+          "defense_raw_residual": -0.9922,
+          "defense_applied": -0.9922
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.5751,
+          "offense_raw_residual": -0.0545,
+          "offense_applied": -0.0545,
+          "defense_observed_z": 1.5718,
+          "defense_raw_residual": 0.8214,
+          "defense_applied": 0.0
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": 0.6342,
+          "offense_raw_residual": 0.7097,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.6506,
+          "defense_raw_residual": 2.2978,
+          "defense_applied": 0.0
+        },
+        "passing_ppa": {
+          "offense_observed_z": 0.6027,
+          "offense_raw_residual": -0.0993,
+          "offense_applied": -0.0993,
+          "defense_observed_z": 2.2275,
+          "defense_raw_residual": 1.5945,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 0.2909,
+          "offense_raw_residual": -0.5697,
+          "offense_applied": -0.5697,
+          "defense_observed_z": 1.751,
+          "defense_raw_residual": 0.9238,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": 1.8556,
+          "offense_raw_residual": 0.6692,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.026,
+          "defense_raw_residual": -0.2209,
+          "defense_applied": -0.2209
+        },
+        "points_per_play": {
+          "offense_observed_z": 1.9987,
+          "offense_raw_residual": 0.8023,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.49,
+          "defense_raw_residual": -0.198,
+          "defense_applied": -0.198
+        },
+        "power_success": {
+          "offense_observed_z": 0.2778,
+          "offense_raw_residual": -0.1966,
+          "offense_applied": -0.1966,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 1.2201,
+          "offense_raw_residual": 0.1882,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.8827,
+          "defense_raw_residual": 0.9219,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": 0.8067,
+          "offense_raw_residual": 0.7155,
+          "offense_applied": 0.0,
+          "defense_observed_z": -2.9756,
+          "defense_raw_residual": -3.0426,
+          "defense_applied": -3.0426
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 1.3002,
+          "offense_raw_residual": 0.4451,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.2238,
+          "defense_raw_residual": -0.4082,
+          "defense_applied": -0.4082
+        },
+        "rushing_success": {
+          "offense_observed_z": 0.7879,
+          "offense_raw_residual": -0.1673,
+          "offense_applied": -0.1673,
+          "defense_observed_z": 1.1651,
+          "defense_raw_residual": 0.3015,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 1.3028,
+          "offense_raw_residual": 0.5864,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.7965,
+          "defense_raw_residual": -1.4226,
+          "defense_applied": -1.4226
+        },
+        "standard_down_success": {
+          "offense_observed_z": 0.4878,
+          "offense_raw_residual": -0.4604,
+          "offense_applied": -0.4604,
+          "defense_observed_z": 1.4897,
+          "defense_raw_residual": 0.5828,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.7711,
+          "offense_raw_residual": 0.1354,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3643,
+          "defense_raw_residual": 0.8802,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": 0.6829,
+          "offense_raw_residual": -0.4572,
+          "offense_applied": -0.4572,
+          "defense_observed_z": 1.9173,
+          "defense_raw_residual": 0.8268,
+          "defense_applied": 0.0
+        }
+      }
+    },
+    {
+      "team": "Navy",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 1.6372,
+          "offense_raw_residual": 0.8694,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.2232,
+          "defense_raw_residual": -0.752,
+          "defense_applied": -0.752
+        },
+        "open_field_yards": {
+          "offense_observed_z": 0.5905,
+          "offense_raw_residual": 0.5141,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
+          "defense_applied": 0.0
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.409,
+          "offense_raw_residual": -0.2206,
+          "offense_applied": -0.2206,
+          "defense_observed_z": 0.3109,
+          "defense_raw_residual": -0.4395,
+          "defense_applied": -0.4395
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -3.0209,
+          "offense_raw_residual": -2.9454,
+          "offense_applied": -2.9454,
+          "defense_observed_z": -2.0069,
+          "defense_raw_residual": -2.3597,
+          "defense_applied": -2.3597
+        },
+        "passing_ppa": {
+          "offense_observed_z": -1.5635,
+          "offense_raw_residual": -2.2655,
+          "offense_applied": -2.2655,
+          "defense_observed_z": -0.5415,
+          "defense_raw_residual": -1.1745,
+          "defense_applied": -1.1745
+        },
+        "passing_success": {
+          "offense_observed_z": -0.662,
+          "offense_raw_residual": -1.5226,
+          "offense_applied": -1.5226,
+          "defense_observed_z": 0.1992,
+          "defense_raw_residual": -0.628,
+          "defense_applied": -0.628
+        },
+        "points": {
+          "offense_observed_z": 0.9973,
+          "offense_raw_residual": -0.1891,
+          "offense_applied": -0.1891,
+          "defense_observed_z": 0.6582,
+          "defense_raw_residual": -0.5887,
+          "defense_applied": -0.5887
+        },
+        "points_per_play": {
+          "offense_observed_z": 0.3892,
+          "offense_raw_residual": -0.8072,
+          "offense_applied": -0.8072,
+          "defense_observed_z": 0.2296,
+          "defense_raw_residual": -0.4584,
+          "defense_applied": -0.4584
+        },
+        "power_success": {
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 1.412,
+          "offense_raw_residual": 0.3801,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.1288,
+          "defense_raw_residual": -0.832,
+          "defense_applied": -0.832
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": 0.5974,
+          "offense_raw_residual": 0.5062,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.0915,
+          "defense_raw_residual": 0.0245,
+          "defense_applied": 0.0
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 1.8452,
+          "offense_raw_residual": 0.9901,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.5438,
+          "defense_raw_residual": -0.0882,
+          "defense_applied": -0.0882
+        },
+        "rushing_success": {
+          "offense_observed_z": 2.0898,
+          "offense_raw_residual": 1.1346,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.1651,
+          "defense_raw_residual": 0.3015,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 1.4853,
+          "offense_raw_residual": 0.7689,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.4692,
+          "defense_raw_residual": -0.1569,
+          "defense_applied": -0.1569
+        },
+        "standard_down_success": {
+          "offense_observed_z": 2.1945,
+          "offense_raw_residual": 1.2463,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.0236,
+          "defense_raw_residual": 0.1167,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 1.1052,
+          "offense_raw_residual": 0.4695,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.0297,
+          "defense_raw_residual": -0.4544,
+          "defense_applied": -0.4544
+        },
+        "success_rate": {
+          "offense_observed_z": 1.9867,
+          "offense_raw_residual": 0.8466,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9139,
+          "defense_raw_residual": -0.1766,
+          "defense_applied": -0.1766
+        }
+      }
+    },
+    {
+      "team": "Charlotte",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.6764,
+          "offense_raw_residual": -0.0914,
+          "offense_applied": -0.0914,
+          "defense_observed_z": -0.3459,
+          "defense_raw_residual": -0.8747,
+          "defense_applied": -0.8747
+        },
+        "open_field_yards": {
+          "offense_observed_z": 1.1593,
+          "offense_raw_residual": 1.0829,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.7468,
+          "defense_raw_residual": -1.4661,
+          "defense_applied": -1.4661
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.8063,
+          "offense_raw_residual": 0.1767,
+          "offense_applied": 0.0,
+          "defense_observed_z": -1.0814,
+          "defense_raw_residual": -1.8318,
+          "defense_applied": -1.8318
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -0.2213,
+          "offense_raw_residual": -0.1458,
+          "offense_applied": -0.1458,
+          "defense_observed_z": -0.0276,
+          "defense_raw_residual": -0.3804,
+          "defense_applied": -0.3804
+        },
+        "passing_ppa": {
+          "offense_observed_z": -0.3431,
+          "offense_raw_residual": -1.0451,
+          "offense_applied": -1.0451,
+          "defense_observed_z": -0.2653,
+          "defense_raw_residual": -0.8983,
+          "defense_applied": -0.8983
+        },
+        "passing_success": {
+          "offense_observed_z": 0.3298,
+          "offense_raw_residual": -0.5308,
+          "offense_applied": -0.5308,
+          "defense_observed_z": -0.2636,
+          "defense_raw_residual": -1.0908,
+          "defense_applied": -1.0908
+        },
+        "points": {
+          "offense_observed_z": 0.936,
+          "offense_raw_residual": -0.2504,
+          "offense_applied": -0.2504,
+          "defense_observed_z": -1.0586,
+          "defense_raw_residual": -2.3055,
+          "defense_applied": -2.3055
+        },
+        "points_per_play": {
+          "offense_observed_z": 0.1599,
+          "offense_raw_residual": -1.0365,
+          "offense_applied": -1.0365,
+          "defense_observed_z": -0.5637,
+          "defense_raw_residual": -1.2517,
+          "defense_applied": -1.2517
+        },
+        "power_success": {
+          "offense_observed_z": -0.2199,
+          "offense_raw_residual": -0.6943,
+          "offense_applied": -0.6943,
+          "defense_observed_z": -0.6648,
+          "defense_raw_residual": -0.8203,
+          "defense_applied": -0.8203
+        },
+        "ppa": {
+          "offense_observed_z": 0.329,
+          "offense_raw_residual": -0.7029,
+          "offense_applied": -0.7029,
+          "defense_observed_z": -0.9171,
+          "defense_raw_residual": -1.8779,
+          "defense_applied": -1.8779
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": 1.5071,
+          "offense_raw_residual": 1.4159,
+          "offense_applied": 0.0,
+          "defense_observed_z": -1.0585,
+          "defense_raw_residual": -1.1255,
+          "defense_applied": -1.1255
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 1.2413,
+          "offense_raw_residual": 0.3862,
+          "offense_applied": 0.0,
+          "defense_observed_z": -1.1418,
+          "defense_raw_residual": -1.7738,
+          "defense_applied": -1.7738
+        },
+        "rushing_success": {
+          "offense_observed_z": 0.7879,
+          "offense_raw_residual": -0.1673,
+          "offense_applied": -0.1673,
+          "defense_observed_z": -0.6251,
+          "defense_raw_residual": -1.4887,
+          "defense_applied": -1.4887
+        },
+        "second_level_yards": {
+          "offense_observed_z": 1.2937,
+          "offense_raw_residual": 0.5773,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.254,
+          "defense_raw_residual": -0.8801,
+          "defense_applied": -0.8801
+        },
+        "standard_down_success": {
+          "offense_observed_z": 0.1456,
+          "offense_raw_residual": -0.8026,
+          "offense_applied": -0.8026,
+          "defense_observed_z": -0.2769,
+          "defense_raw_residual": -1.1838,
+          "defense_applied": -1.1838
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.2563,
+          "offense_raw_residual": -0.3794,
+          "offense_applied": -0.3794,
+          "defense_observed_z": 0.0297,
+          "defense_raw_residual": -0.4544,
+          "defense_applied": -0.4544
+        },
+        "success_rate": {
+          "offense_observed_z": 0.4384,
+          "offense_raw_residual": -0.7017,
+          "offense_applied": -0.7017,
+          "defense_observed_z": -0.6391,
+          "defense_raw_residual": -1.7296,
+          "defense_applied": -1.7296
         }
       }
     },
@@ -4453,7 +4453,7 @@
       }
     },
     {
-      "team": "Jacksonville State",
+      "team": "Middle Tennessee",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -4464,438 +4464,140 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 0.8449,
-          "offense_raw_residual": 0.0771,
+          "offense_observed_z": 1.8254,
+          "offense_raw_residual": 1.0576,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.85,
-          "defense_raw_residual": 0.3212,
-          "defense_applied": 0.0
+          "defense_observed_z": -0.2512,
+          "defense_raw_residual": -0.78,
+          "defense_applied": -0.78
         },
         "open_field_yards": {
-          "offense_observed_z": 0.975,
-          "offense_raw_residual": 0.8986,
+          "offense_observed_z": 1.6834,
+          "offense_raw_residual": 1.607,
           "offense_applied": 0.0,
-          "defense_observed_z": -1.8427,
-          "defense_raw_residual": -2.562,
-          "defense_applied": -2.562
+          "defense_observed_z": -0.2925,
+          "defense_raw_residual": -1.0118,
+          "defense_applied": -1.0118
         },
         "passing_down_success": {
-          "offense_observed_z": 1.5417,
-          "offense_raw_residual": 0.9121,
+          "offense_observed_z": 0.9376,
+          "offense_raw_residual": 0.308,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.2707,
-          "defense_raw_residual": -0.4797,
-          "defense_applied": -0.4797
+          "defense_observed_z": 0.5495,
+          "defense_raw_residual": -0.2009,
+          "defense_applied": -0.2009
         },
         "passing_explosiveness": {
-          "offense_observed_z": 0.8428,
-          "offense_raw_residual": 0.9183,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.087,
-          "defense_raw_residual": -0.2658,
-          "defense_applied": -0.2658
+          "offense_observed_z": -0.5817,
+          "offense_raw_residual": -0.5062,
+          "offense_applied": -0.5062,
+          "defense_observed_z": 0.0453,
+          "defense_raw_residual": -0.3075,
+          "defense_applied": -0.3075
         },
         "passing_ppa": {
-          "offense_observed_z": 1.6181,
-          "offense_raw_residual": 0.9161,
-          "offense_applied": 0.0,
-          "defense_observed_z": 3.5628,
-          "defense_raw_residual": 2.9298,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.1179,
+          "offense_raw_residual": -0.5841,
+          "offense_applied": -0.5841,
+          "defense_observed_z": 0.271,
+          "defense_raw_residual": -0.362,
+          "defense_applied": -0.362
         },
         "passing_success": {
-          "offense_observed_z": 1.467,
-          "offense_raw_residual": 0.6064,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.4516,
-          "defense_raw_residual": -0.3756,
-          "defense_applied": -0.3756
+          "offense_observed_z": 0.4951,
+          "offense_raw_residual": -0.3655,
+          "offense_applied": -0.3655,
+          "defense_observed_z": 0.9343,
+          "defense_raw_residual": 0.1071,
+          "defense_applied": 0.0
         },
         "points": {
-          "offense_observed_z": 1.4265,
-          "offense_raw_residual": 0.2401,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.1487,
-          "defense_raw_residual": -0.0982,
-          "defense_applied": -0.0982
-        },
-        "points_per_play": {
-          "offense_observed_z": 1.5874,
-          "offense_raw_residual": 0.391,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.7693,
-          "defense_raw_residual": 0.0813,
-          "defense_applied": 0.0
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.419,
-          "defense_raw_residual": 0.2635,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 1.5109,
-          "offense_raw_residual": 0.479,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.4366,
-          "defense_raw_residual": 0.4758,
-          "defense_applied": 0.0
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": 0.2918,
-          "offense_raw_residual": 0.2006,
-          "offense_applied": 0.0,
-          "defense_observed_z": -2.0433,
-          "defense_raw_residual": -2.1103,
-          "defense_applied": -2.1103
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 1.0632,
-          "offense_raw_residual": 0.2081,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.2944,
-          "defense_raw_residual": -0.9264,
-          "defense_applied": -0.9264
-        },
-        "rushing_success": {
-          "offense_observed_z": 1.9596,
-          "offense_raw_residual": 1.0044,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.3058,
-          "defense_raw_residual": -0.5578,
-          "defense_applied": -0.5578
-        },
-        "second_level_yards": {
-          "offense_observed_z": 1.2666,
-          "offense_raw_residual": 0.5502,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.6808,
-          "defense_raw_residual": -1.3069,
-          "defense_applied": -1.3069
-        },
-        "standard_down_success": {
-          "offense_observed_z": 1.7725,
-          "offense_raw_residual": 0.8243,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.5935,
-          "defense_raw_residual": -0.3134,
-          "defense_applied": -0.3134
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 0.3135,
-          "offense_raw_residual": -0.3222,
-          "offense_applied": -0.3222,
-          "defense_observed_z": 1.9745,
-          "defense_raw_residual": 1.4904,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 1.9921,
-          "offense_raw_residual": 0.852,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.5302,
-          "defense_raw_residual": -0.5603,
-          "defense_applied": -0.5603
-        }
-      }
-    },
-    {
-      "team": "South Alabama",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.2468,
-          "offense_raw_residual": -0.521,
-          "offense_applied": -0.521,
-          "defense_observed_z": 1.8138,
-          "defense_raw_residual": 1.285,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": -0.71,
-          "offense_raw_residual": -0.7864,
-          "offense_applied": -0.7864,
-          "defense_observed_z": 0.5696,
-          "defense_raw_residual": -0.1497,
-          "defense_applied": -0.1497
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.0314,
-          "offense_raw_residual": -0.5982,
-          "offense_applied": -0.5982,
-          "defense_observed_z": 0.0894,
-          "defense_raw_residual": -0.661,
-          "defense_applied": -0.661
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -0.3854,
-          "offense_raw_residual": -0.3099,
-          "offense_applied": -0.3099,
-          "defense_observed_z": -0.3381,
-          "defense_raw_residual": -0.6909,
-          "defense_applied": -0.6909
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.4572,
-          "offense_raw_residual": -1.1592,
-          "offense_applied": -1.1592,
-          "defense_observed_z": -0.0042,
-          "defense_raw_residual": -0.6372,
-          "defense_applied": -0.6372
-        },
-        "passing_success": {
-          "offense_observed_z": -0.2488,
-          "offense_raw_residual": -1.1094,
-          "offense_applied": -1.1094,
-          "defense_observed_z": -0.3124,
-          "defense_raw_residual": -1.1396,
-          "defense_applied": -1.1396
-        },
-        "points": {
-          "offense_observed_z": 0.8133,
-          "offense_raw_residual": -0.3731,
-          "offense_applied": -0.3731,
+          "offense_observed_z": 0.752,
+          "offense_raw_residual": -0.4344,
+          "offense_applied": -0.4344,
           "defense_observed_z": 0.7195,
           "defense_raw_residual": -0.5274,
           "defense_applied": -0.5274
         },
         "points_per_play": {
-          "offense_observed_z": 0.0716,
-          "offense_raw_residual": -1.1248,
-          "offense_applied": -1.1248,
-          "defense_observed_z": 0.0836,
-          "defense_raw_residual": -0.6044,
-          "defense_applied": -0.6044
+          "offense_observed_z": 0.8071,
+          "offense_raw_residual": -0.3893,
+          "offense_applied": -0.3893,
+          "defense_observed_z": 0.3926,
+          "defense_raw_residual": -0.2954,
+          "defense_applied": -0.2954
         },
         "power_success": {
-          "offense_observed_z": 0.3552,
-          "offense_raw_residual": -0.1192,
-          "offense_applied": -0.1192,
-          "defense_observed_z": 1.1157,
-          "defense_raw_residual": 0.9602,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.419,
+          "offense_raw_residual": -0.8934,
+          "offense_applied": -0.8934,
+          "defense_observed_z": -0.51,
+          "defense_raw_residual": -0.6655,
+          "defense_applied": -0.6655
         },
         "ppa": {
-          "offense_observed_z": -0.2236,
-          "offense_raw_residual": -1.2555,
-          "offense_applied": -1.2555,
-          "defense_observed_z": 0.9469,
-          "defense_raw_residual": -0.0139,
-          "defense_applied": -0.0139
+          "offense_observed_z": 0.9815,
+          "offense_raw_residual": -0.0504,
+          "offense_applied": -0.0504,
+          "defense_observed_z": 0.1219,
+          "defense_raw_residual": -0.8389,
+          "defense_applied": -0.8389
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 0.3418,
-          "offense_raw_residual": 0.2506,
+          "offense_observed_z": 0.9782,
+          "offense_raw_residual": 0.887,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.1819,
-          "defense_raw_residual": 1.1149,
-          "defense_applied": 0.0
+          "defense_observed_z": -0.7926,
+          "defense_raw_residual": -0.8596,
+          "defense_applied": -0.8596
         },
         "rushing_ppa": {
-          "offense_observed_z": 0.242,
-          "offense_raw_residual": -0.6131,
-          "offense_applied": -0.6131,
-          "defense_observed_z": 2.0944,
-          "defense_raw_residual": 1.4624,
-          "defense_applied": 0.0
+          "offense_observed_z": 1.6068,
+          "offense_raw_residual": 0.7517,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.0916,
+          "defense_raw_residual": -0.7236,
+          "defense_applied": -0.7236
         },
         "rushing_success": {
-          "offense_observed_z": -0.0259,
-          "offense_raw_residual": -0.9811,
-          "offense_applied": -0.9811,
-          "defense_observed_z": 1.1651,
-          "defense_raw_residual": 0.3015,
-          "defense_applied": 0.0
+          "offense_observed_z": 1.143,
+          "offense_raw_residual": 0.1878,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.6316,
+          "defense_raw_residual": -1.4952,
+          "defense_applied": -1.4952
         },
         "second_level_yards": {
-          "offense_observed_z": -0.1528,
-          "offense_raw_residual": -0.8692,
-          "offense_applied": -0.8692,
-          "defense_observed_z": -0.4348,
-          "defense_raw_residual": -1.0609,
-          "defense_applied": -1.0609
+          "offense_observed_z": 2.6375,
+          "offense_raw_residual": 1.9211,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.0732,
+          "defense_raw_residual": -0.6993,
+          "defense_applied": -0.6993
         },
         "standard_down_success": {
-          "offense_observed_z": -0.2878,
-          "offense_raw_residual": -1.236,
-          "offense_applied": -1.236,
-          "defense_observed_z": 0.3882,
-          "defense_raw_residual": -0.5187,
-          "defense_applied": -0.5187
+          "offense_observed_z": 0.4819,
+          "offense_raw_residual": -0.4663,
+          "offense_applied": -0.4663,
+          "defense_observed_z": -0.0948,
+          "defense_raw_residual": -1.0017,
+          "defense_applied": -1.0017
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.3516,
-          "offense_raw_residual": -0.2841,
-          "offense_applied": -0.2841,
-          "defense_observed_z": 1.3643,
-          "defense_raw_residual": 0.8802,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.8543,
+          "offense_raw_residual": 0.2186,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.222,
+          "defense_raw_residual": -0.7061,
+          "defense_applied": -0.7061
         },
         "success_rate": {
-          "offense_observed_z": -0.1693,
-          "offense_raw_residual": -1.3094,
-          "offense_applied": -1.3094,
-          "defense_observed_z": 0.3223,
-          "defense_raw_residual": -0.7682,
-          "defense_applied": -0.7682
-        }
-      }
-    },
-    {
-      "team": "Texas Tech",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 0.9485,
-          "offense_raw_residual": 0.1807,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.1788,
-          "defense_raw_residual": -0.35,
-          "defense_applied": -0.35
-        },
-        "open_field_yards": {
-          "offense_observed_z": -0.5596,
-          "offense_raw_residual": -0.636,
-          "offense_applied": -0.636,
-          "defense_observed_z": 0.5737,
-          "defense_raw_residual": -0.1456,
-          "defense_applied": -0.1456
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.3335,
-          "offense_raw_residual": -0.2961,
-          "offense_applied": -0.2961,
-          "defense_observed_z": 0.1285,
-          "defense_raw_residual": -0.6219,
-          "defense_applied": -0.6219
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -0.6863,
-          "offense_raw_residual": -0.6108,
-          "offense_applied": -0.6108,
-          "defense_observed_z": 0.9745,
-          "defense_raw_residual": 0.6217,
-          "defense_applied": 0.0
-        },
-        "passing_ppa": {
-          "offense_observed_z": 0.4408,
-          "offense_raw_residual": -0.2612,
-          "offense_applied": -0.2612,
-          "defense_observed_z": 1.2628,
-          "defense_raw_residual": 0.6298,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 0.6148,
-          "offense_raw_residual": -0.2458,
-          "offense_applied": -0.2458,
-          "defense_observed_z": 0.573,
-          "defense_raw_residual": -0.2542,
-          "defense_applied": -0.2542
-        },
-        "points": {
-          "offense_observed_z": 0.4455,
-          "offense_raw_residual": -0.7409,
-          "offense_applied": -0.7409,
-          "defense_observed_z": 0.9647,
-          "defense_raw_residual": -0.2822,
-          "defense_applied": -0.2822
-        },
-        "points_per_play": {
-          "offense_observed_z": 0.2529,
-          "offense_raw_residual": -0.9435,
-          "offense_applied": -0.9435,
-          "defense_observed_z": 0.6781,
-          "defense_raw_residual": -0.0099,
-          "defense_applied": -0.0099
-        },
-        "power_success": {
-          "offense_observed_z": 0.51,
-          "offense_raw_residual": 0.0356,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 0.4686,
-          "offense_raw_residual": -0.5633,
-          "offense_applied": -0.5633,
-          "defense_observed_z": 1.2381,
-          "defense_raw_residual": 0.2773,
-          "defense_applied": 0.0
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": -0.309,
-          "offense_raw_residual": -0.4002,
-          "offense_applied": -0.4002,
-          "defense_observed_z": -2.0047,
-          "defense_raw_residual": -2.0717,
-          "defense_applied": -2.0717
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 0.6907,
-          "offense_raw_residual": -0.1644,
-          "offense_applied": -0.1644,
-          "defense_observed_z": 0.5611,
-          "defense_raw_residual": -0.0709,
-          "defense_applied": -0.0709
-        },
-        "rushing_success": {
-          "offense_observed_z": 1.3459,
-          "offense_raw_residual": 0.3907,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.199,
-          "defense_raw_residual": 1.3354,
-          "defense_applied": 0.0
-        },
-        "second_level_yards": {
-          "offense_observed_z": 0.3832,
-          "offense_raw_residual": -0.3332,
-          "offense_applied": -0.3332,
-          "defense_observed_z": 0.8202,
-          "defense_raw_residual": 0.1941,
-          "defense_applied": 0.0
-        },
-        "standard_down_success": {
-          "offense_observed_z": 0.8987,
-          "offense_raw_residual": -0.0495,
-          "offense_applied": -0.0495,
-          "defense_observed_z": 2.0223,
-          "defense_raw_residual": 1.1154,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 0.7057,
-          "offense_raw_residual": 0.07,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.0712,
-          "defense_raw_residual": -0.5553,
-          "defense_applied": -0.5553
-        },
-        "success_rate": {
-          "offense_observed_z": 0.9999,
-          "offense_raw_residual": -0.1402,
-          "offense_applied": -0.1402,
-          "defense_observed_z": 1.4699,
-          "defense_raw_residual": 0.3794,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.7765,
+          "offense_raw_residual": -0.3636,
+          "offense_applied": -0.3636,
+          "defense_observed_z": 0.1434,
+          "defense_raw_residual": -0.9471,
+          "defense_applied": -0.9471
         }
       }
     },
@@ -5198,7 +4900,7 @@
       }
     },
     {
-      "team": "Middle Tennessee",
+      "team": "Jacksonville State",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -5209,140 +4911,289 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 1.8254,
-          "offense_raw_residual": 1.0576,
+          "offense_observed_z": 0.8449,
+          "offense_raw_residual": 0.0771,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.2512,
-          "defense_raw_residual": -0.78,
-          "defense_applied": -0.78
-        },
-        "open_field_yards": {
-          "offense_observed_z": 1.6834,
-          "offense_raw_residual": 1.607,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.2925,
-          "defense_raw_residual": -1.0118,
-          "defense_applied": -1.0118
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.9376,
-          "offense_raw_residual": 0.308,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.5495,
-          "defense_raw_residual": -0.2009,
-          "defense_applied": -0.2009
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -0.5817,
-          "offense_raw_residual": -0.5062,
-          "offense_applied": -0.5062,
-          "defense_observed_z": 0.0453,
-          "defense_raw_residual": -0.3075,
-          "defense_applied": -0.3075
-        },
-        "passing_ppa": {
-          "offense_observed_z": 0.1179,
-          "offense_raw_residual": -0.5841,
-          "offense_applied": -0.5841,
-          "defense_observed_z": 0.271,
-          "defense_raw_residual": -0.362,
-          "defense_applied": -0.362
-        },
-        "passing_success": {
-          "offense_observed_z": 0.4951,
-          "offense_raw_residual": -0.3655,
-          "offense_applied": -0.3655,
-          "defense_observed_z": 0.9343,
-          "defense_raw_residual": 0.1071,
+          "defense_observed_z": 0.85,
+          "defense_raw_residual": 0.3212,
           "defense_applied": 0.0
         },
+        "open_field_yards": {
+          "offense_observed_z": 0.975,
+          "offense_raw_residual": 0.8986,
+          "offense_applied": 0.0,
+          "defense_observed_z": -1.8427,
+          "defense_raw_residual": -2.562,
+          "defense_applied": -2.562
+        },
+        "passing_down_success": {
+          "offense_observed_z": 1.5417,
+          "offense_raw_residual": 0.9121,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.2707,
+          "defense_raw_residual": -0.4797,
+          "defense_applied": -0.4797
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": 0.8428,
+          "offense_raw_residual": 0.9183,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.087,
+          "defense_raw_residual": -0.2658,
+          "defense_applied": -0.2658
+        },
+        "passing_ppa": {
+          "offense_observed_z": 1.6181,
+          "offense_raw_residual": 0.9161,
+          "offense_applied": 0.0,
+          "defense_observed_z": 3.5628,
+          "defense_raw_residual": 2.9298,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 1.467,
+          "offense_raw_residual": 0.6064,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.4516,
+          "defense_raw_residual": -0.3756,
+          "defense_applied": -0.3756
+        },
         "points": {
-          "offense_observed_z": 0.752,
-          "offense_raw_residual": -0.4344,
-          "offense_applied": -0.4344,
+          "offense_observed_z": 1.4265,
+          "offense_raw_residual": 0.2401,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.1487,
+          "defense_raw_residual": -0.0982,
+          "defense_applied": -0.0982
+        },
+        "points_per_play": {
+          "offense_observed_z": 1.5874,
+          "offense_raw_residual": 0.391,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.7693,
+          "defense_raw_residual": 0.0813,
+          "defense_applied": 0.0
+        },
+        "power_success": {
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.419,
+          "defense_raw_residual": 0.2635,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 1.5109,
+          "offense_raw_residual": 0.479,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.4366,
+          "defense_raw_residual": 0.4758,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": 0.2918,
+          "offense_raw_residual": 0.2006,
+          "offense_applied": 0.0,
+          "defense_observed_z": -2.0433,
+          "defense_raw_residual": -2.1103,
+          "defense_applied": -2.1103
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 1.0632,
+          "offense_raw_residual": 0.2081,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.2944,
+          "defense_raw_residual": -0.9264,
+          "defense_applied": -0.9264
+        },
+        "rushing_success": {
+          "offense_observed_z": 1.9596,
+          "offense_raw_residual": 1.0044,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.3058,
+          "defense_raw_residual": -0.5578,
+          "defense_applied": -0.5578
+        },
+        "second_level_yards": {
+          "offense_observed_z": 1.2666,
+          "offense_raw_residual": 0.5502,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.6808,
+          "defense_raw_residual": -1.3069,
+          "defense_applied": -1.3069
+        },
+        "standard_down_success": {
+          "offense_observed_z": 1.7725,
+          "offense_raw_residual": 0.8243,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.5935,
+          "defense_raw_residual": -0.3134,
+          "defense_applied": -0.3134
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.3135,
+          "offense_raw_residual": -0.3222,
+          "offense_applied": -0.3222,
+          "defense_observed_z": 1.9745,
+          "defense_raw_residual": 1.4904,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": 1.9921,
+          "offense_raw_residual": 0.852,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.5302,
+          "defense_raw_residual": -0.5603,
+          "defense_applied": -0.5603
+        }
+      }
+    },
+    {
+      "team": "South Alabama",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.2468,
+          "offense_raw_residual": -0.521,
+          "offense_applied": -0.521,
+          "defense_observed_z": 1.8138,
+          "defense_raw_residual": 1.285,
+          "defense_applied": 0.0
+        },
+        "open_field_yards": {
+          "offense_observed_z": -0.71,
+          "offense_raw_residual": -0.7864,
+          "offense_applied": -0.7864,
+          "defense_observed_z": 0.5696,
+          "defense_raw_residual": -0.1497,
+          "defense_applied": -0.1497
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.0314,
+          "offense_raw_residual": -0.5982,
+          "offense_applied": -0.5982,
+          "defense_observed_z": 0.0894,
+          "defense_raw_residual": -0.661,
+          "defense_applied": -0.661
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -0.3854,
+          "offense_raw_residual": -0.3099,
+          "offense_applied": -0.3099,
+          "defense_observed_z": -0.3381,
+          "defense_raw_residual": -0.6909,
+          "defense_applied": -0.6909
+        },
+        "passing_ppa": {
+          "offense_observed_z": -0.4572,
+          "offense_raw_residual": -1.1592,
+          "offense_applied": -1.1592,
+          "defense_observed_z": -0.0042,
+          "defense_raw_residual": -0.6372,
+          "defense_applied": -0.6372
+        },
+        "passing_success": {
+          "offense_observed_z": -0.2488,
+          "offense_raw_residual": -1.1094,
+          "offense_applied": -1.1094,
+          "defense_observed_z": -0.3124,
+          "defense_raw_residual": -1.1396,
+          "defense_applied": -1.1396
+        },
+        "points": {
+          "offense_observed_z": 0.8133,
+          "offense_raw_residual": -0.3731,
+          "offense_applied": -0.3731,
           "defense_observed_z": 0.7195,
           "defense_raw_residual": -0.5274,
           "defense_applied": -0.5274
         },
         "points_per_play": {
-          "offense_observed_z": 0.8071,
-          "offense_raw_residual": -0.3893,
-          "offense_applied": -0.3893,
-          "defense_observed_z": 0.3926,
-          "defense_raw_residual": -0.2954,
-          "defense_applied": -0.2954
+          "offense_observed_z": 0.0716,
+          "offense_raw_residual": -1.1248,
+          "offense_applied": -1.1248,
+          "defense_observed_z": 0.0836,
+          "defense_raw_residual": -0.6044,
+          "defense_applied": -0.6044
         },
         "power_success": {
-          "offense_observed_z": -0.419,
-          "offense_raw_residual": -0.8934,
-          "offense_applied": -0.8934,
-          "defense_observed_z": -0.51,
-          "defense_raw_residual": -0.6655,
-          "defense_applied": -0.6655
+          "offense_observed_z": 0.3552,
+          "offense_raw_residual": -0.1192,
+          "offense_applied": -0.1192,
+          "defense_observed_z": 1.1157,
+          "defense_raw_residual": 0.9602,
+          "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": 0.9815,
-          "offense_raw_residual": -0.0504,
-          "offense_applied": -0.0504,
-          "defense_observed_z": 0.1219,
-          "defense_raw_residual": -0.8389,
-          "defense_applied": -0.8389
+          "offense_observed_z": -0.2236,
+          "offense_raw_residual": -1.2555,
+          "offense_applied": -1.2555,
+          "defense_observed_z": 0.9469,
+          "defense_raw_residual": -0.0139,
+          "defense_applied": -0.0139
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 0.9782,
-          "offense_raw_residual": 0.887,
+          "offense_observed_z": 0.3418,
+          "offense_raw_residual": 0.2506,
           "offense_applied": 0.0,
-          "defense_observed_z": -0.7926,
-          "defense_raw_residual": -0.8596,
-          "defense_applied": -0.8596
+          "defense_observed_z": 1.1819,
+          "defense_raw_residual": 1.1149,
+          "defense_applied": 0.0
         },
         "rushing_ppa": {
-          "offense_observed_z": 1.6068,
-          "offense_raw_residual": 0.7517,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.0916,
-          "defense_raw_residual": -0.7236,
-          "defense_applied": -0.7236
+          "offense_observed_z": 0.242,
+          "offense_raw_residual": -0.6131,
+          "offense_applied": -0.6131,
+          "defense_observed_z": 2.0944,
+          "defense_raw_residual": 1.4624,
+          "defense_applied": 0.0
         },
         "rushing_success": {
-          "offense_observed_z": 1.143,
-          "offense_raw_residual": 0.1878,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.6316,
-          "defense_raw_residual": -1.4952,
-          "defense_applied": -1.4952
+          "offense_observed_z": -0.0259,
+          "offense_raw_residual": -0.9811,
+          "offense_applied": -0.9811,
+          "defense_observed_z": 1.1651,
+          "defense_raw_residual": 0.3015,
+          "defense_applied": 0.0
         },
         "second_level_yards": {
-          "offense_observed_z": 2.6375,
-          "offense_raw_residual": 1.9211,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.0732,
-          "defense_raw_residual": -0.6993,
-          "defense_applied": -0.6993
+          "offense_observed_z": -0.1528,
+          "offense_raw_residual": -0.8692,
+          "offense_applied": -0.8692,
+          "defense_observed_z": -0.4348,
+          "defense_raw_residual": -1.0609,
+          "defense_applied": -1.0609
         },
         "standard_down_success": {
-          "offense_observed_z": 0.4819,
-          "offense_raw_residual": -0.4663,
-          "offense_applied": -0.4663,
-          "defense_observed_z": -0.0948,
-          "defense_raw_residual": -1.0017,
-          "defense_applied": -1.0017
+          "offense_observed_z": -0.2878,
+          "offense_raw_residual": -1.236,
+          "offense_applied": -1.236,
+          "defense_observed_z": 0.3882,
+          "defense_raw_residual": -0.5187,
+          "defense_applied": -0.5187
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.8543,
-          "offense_raw_residual": 0.2186,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.222,
-          "defense_raw_residual": -0.7061,
-          "defense_applied": -0.7061
+          "offense_observed_z": 0.3516,
+          "offense_raw_residual": -0.2841,
+          "offense_applied": -0.2841,
+          "defense_observed_z": 1.3643,
+          "defense_raw_residual": 0.8802,
+          "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": 0.7765,
-          "offense_raw_residual": -0.3636,
-          "offense_applied": -0.3636,
-          "defense_observed_z": 0.1434,
-          "defense_raw_residual": -0.9471,
-          "defense_applied": -0.9471
+          "offense_observed_z": -0.1693,
+          "offense_raw_residual": -1.3094,
+          "offense_applied": -1.3094,
+          "defense_observed_z": 0.3223,
+          "defense_raw_residual": -0.7682,
+          "defense_applied": -0.7682
         }
       }
     },
@@ -5794,6 +5645,155 @@
       }
     },
     {
+      "team": "Texas Tech",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 0.9485,
+          "offense_raw_residual": 0.1807,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.1788,
+          "defense_raw_residual": -0.35,
+          "defense_applied": -0.35
+        },
+        "open_field_yards": {
+          "offense_observed_z": -0.5596,
+          "offense_raw_residual": -0.636,
+          "offense_applied": -0.636,
+          "defense_observed_z": 0.5737,
+          "defense_raw_residual": -0.1456,
+          "defense_applied": -0.1456
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.3335,
+          "offense_raw_residual": -0.2961,
+          "offense_applied": -0.2961,
+          "defense_observed_z": 0.1285,
+          "defense_raw_residual": -0.6219,
+          "defense_applied": -0.6219
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -0.6863,
+          "offense_raw_residual": -0.6108,
+          "offense_applied": -0.6108,
+          "defense_observed_z": 0.9745,
+          "defense_raw_residual": 0.6217,
+          "defense_applied": 0.0
+        },
+        "passing_ppa": {
+          "offense_observed_z": 0.4408,
+          "offense_raw_residual": -0.2612,
+          "offense_applied": -0.2612,
+          "defense_observed_z": 1.2628,
+          "defense_raw_residual": 0.6298,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 0.6148,
+          "offense_raw_residual": -0.2458,
+          "offense_applied": -0.2458,
+          "defense_observed_z": 0.573,
+          "defense_raw_residual": -0.2542,
+          "defense_applied": -0.2542
+        },
+        "points": {
+          "offense_observed_z": 0.4455,
+          "offense_raw_residual": -0.7409,
+          "offense_applied": -0.7409,
+          "defense_observed_z": 0.9647,
+          "defense_raw_residual": -0.2822,
+          "defense_applied": -0.2822
+        },
+        "points_per_play": {
+          "offense_observed_z": 0.2529,
+          "offense_raw_residual": -0.9435,
+          "offense_applied": -0.9435,
+          "defense_observed_z": 0.6781,
+          "defense_raw_residual": -0.0099,
+          "defense_applied": -0.0099
+        },
+        "power_success": {
+          "offense_observed_z": 0.51,
+          "offense_raw_residual": 0.0356,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 0.4686,
+          "offense_raw_residual": -0.5633,
+          "offense_applied": -0.5633,
+          "defense_observed_z": 1.2381,
+          "defense_raw_residual": 0.2773,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": -0.309,
+          "offense_raw_residual": -0.4002,
+          "offense_applied": -0.4002,
+          "defense_observed_z": -2.0047,
+          "defense_raw_residual": -2.0717,
+          "defense_applied": -2.0717
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 0.6907,
+          "offense_raw_residual": -0.1644,
+          "offense_applied": -0.1644,
+          "defense_observed_z": 0.5611,
+          "defense_raw_residual": -0.0709,
+          "defense_applied": -0.0709
+        },
+        "rushing_success": {
+          "offense_observed_z": 1.3459,
+          "offense_raw_residual": 0.3907,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.199,
+          "defense_raw_residual": 1.3354,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 0.3832,
+          "offense_raw_residual": -0.3332,
+          "offense_applied": -0.3332,
+          "defense_observed_z": 0.8202,
+          "defense_raw_residual": 0.1941,
+          "defense_applied": 0.0
+        },
+        "standard_down_success": {
+          "offense_observed_z": 0.8987,
+          "offense_raw_residual": -0.0495,
+          "offense_applied": -0.0495,
+          "defense_observed_z": 2.0223,
+          "defense_raw_residual": 1.1154,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 0.7057,
+          "offense_raw_residual": 0.07,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.0712,
+          "defense_raw_residual": -0.5553,
+          "defense_applied": -0.5553
+        },
+        "success_rate": {
+          "offense_observed_z": 0.9999,
+          "offense_raw_residual": -0.1402,
+          "offense_applied": -0.1402,
+          "defense_observed_z": 1.4699,
+          "defense_raw_residual": 0.3794,
+          "defense_applied": 0.0
+        }
+      }
+    },
+    {
       "team": "Virginia Tech",
       "metrics": {
         "finishing": {
@@ -6092,7 +6092,7 @@
       }
     },
     {
-      "team": "Maryland",
+      "team": "Louisiana",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -6103,140 +6103,140 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 1.1008,
-          "offense_raw_residual": 0.333,
+          "offense_observed_z": 0.9393,
+          "offense_raw_residual": 0.1715,
           "offense_applied": 0.0,
-          "defense_observed_z": 2.2594,
-          "defense_raw_residual": 1.7306,
+          "defense_observed_z": 0.595,
+          "defense_raw_residual": 0.0662,
           "defense_applied": 0.0
         },
         "open_field_yards": {
-          "offense_observed_z": 4.4812,
-          "offense_raw_residual": 4.4048,
+          "offense_observed_z": 0.9048,
+          "offense_raw_residual": 0.8284,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
+          "defense_observed_z": 0.844,
+          "defense_raw_residual": 0.1247,
           "defense_applied": 0.0
         },
         "passing_down_success": {
-          "offense_observed_z": -0.7539,
-          "offense_raw_residual": -1.3835,
-          "offense_applied": -1.3835,
-          "defense_observed_z": 1.0606,
-          "defense_raw_residual": 0.3102,
-          "defense_applied": 0.0
+          "offense_observed_z": 1.978,
+          "offense_raw_residual": 1.3484,
+          "offense_applied": 0.0,
+          "defense_observed_z": -0.3335,
+          "defense_raw_residual": -1.0839,
+          "defense_applied": -1.0839
         },
         "passing_explosiveness": {
-          "offense_observed_z": -0.7001,
-          "offense_raw_residual": -0.6246,
-          "offense_applied": -0.6246,
-          "defense_observed_z": -0.5016,
-          "defense_raw_residual": -0.8544,
-          "defense_applied": -0.8544
+          "offense_observed_z": -1.1142,
+          "offense_raw_residual": -1.0387,
+          "offense_applied": -1.0387,
+          "defense_observed_z": 0.6997,
+          "defense_raw_residual": 0.3469,
+          "defense_applied": 0.0
         },
         "passing_ppa": {
-          "offense_observed_z": 0.0265,
-          "offense_raw_residual": -0.6755,
-          "offense_applied": -0.6755,
-          "defense_observed_z": 1.5783,
-          "defense_raw_residual": 0.9453,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.0919,
+          "offense_raw_residual": -0.7939,
+          "offense_applied": -0.7939,
+          "defense_observed_z": 0.1339,
+          "defense_raw_residual": -0.4991,
+          "defense_applied": -0.4991
         },
         "passing_success": {
-          "offense_observed_z": 0.2471,
-          "offense_raw_residual": -0.6135,
-          "offense_applied": -0.6135,
-          "defense_observed_z": 1.4885,
-          "defense_raw_residual": 0.6613,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.8422,
+          "offense_raw_residual": -0.0184,
+          "offense_applied": -0.0184,
+          "defense_observed_z": -0.3298,
+          "defense_raw_residual": -1.157,
+          "defense_applied": -1.157
         },
         "points": {
-          "offense_observed_z": 2.2235,
-          "offense_raw_residual": 1.0371,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.5779,
-          "defense_raw_residual": 0.331,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.752,
+          "offense_raw_residual": -0.4344,
+          "offense_applied": -0.4344,
+          "defense_observed_z": 1.1487,
+          "defense_raw_residual": -0.0982,
+          "defense_applied": -0.0982
         },
         "points_per_play": {
-          "offense_observed_z": 2.5131,
-          "offense_raw_residual": 1.3167,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.2918,
-          "defense_raw_residual": 0.6038,
+          "offense_observed_z": 0.7263,
+          "offense_raw_residual": -0.4701,
+          "offense_applied": -0.4701,
+          "defense_observed_z": 0.8715,
+          "defense_raw_residual": 0.1835,
           "defense_applied": 0.0
         },
         "power_success": {
-          "offense_observed_z": -0.419,
-          "offense_raw_residual": -0.8934,
-          "offense_applied": -0.8934,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.419,
+          "defense_raw_residual": 0.2635,
           "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": 0.8228,
-          "offense_raw_residual": -0.2091,
-          "offense_applied": -0.2091,
-          "defense_observed_z": 2.5959,
-          "defense_raw_residual": 1.6351,
+          "offense_observed_z": 0.5067,
+          "offense_raw_residual": -0.5252,
+          "offense_applied": -0.5252,
+          "defense_observed_z": 1.2831,
+          "defense_raw_residual": 0.3223,
           "defense_applied": 0.0
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 2.1231,
-          "offense_raw_residual": 2.0319,
+          "offense_observed_z": 1.622,
+          "offense_raw_residual": 1.5308,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.0289,
-          "defense_raw_residual": 0.9619,
+          "defense_observed_z": 0.6206,
+          "defense_raw_residual": 0.5536,
           "defense_applied": 0.0
         },
         "rushing_ppa": {
-          "offense_observed_z": 1.4161,
-          "offense_raw_residual": 0.561,
+          "offense_observed_z": 1.6576,
+          "offense_raw_residual": 0.8025,
           "offense_applied": 0.0,
-          "defense_observed_z": 2.0635,
-          "defense_raw_residual": 1.4315,
+          "defense_observed_z": 1.5884,
+          "defense_raw_residual": 0.9564,
           "defense_applied": 0.0
         },
         "rushing_success": {
-          "offense_observed_z": 1.0176,
-          "offense_raw_residual": 0.0624,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.3369,
-          "defense_raw_residual": 1.4733,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.7879,
+          "offense_raw_residual": -0.1673,
+          "offense_applied": -0.1673,
+          "defense_observed_z": -0.0777,
+          "defense_raw_residual": -0.9413,
+          "defense_applied": -0.9413
         },
         "second_level_yards": {
-          "offense_observed_z": 1.2219,
-          "offense_raw_residual": 0.5055,
+          "offense_observed_z": 1.5197,
+          "offense_raw_residual": 0.8033,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.8796,
-          "defense_raw_residual": 1.2535,
-          "defense_applied": 0.0
+          "defense_observed_z": 0.6172,
+          "defense_raw_residual": -0.0089,
+          "defense_applied": -0.0089
         },
         "standard_down_success": {
-          "offense_observed_z": 0.9736,
-          "offense_raw_residual": 0.0254,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.6214,
-          "defense_raw_residual": 1.7145,
-          "defense_applied": 0.0
+          "offense_observed_z": -0.119,
+          "offense_raw_residual": -1.0672,
+          "offense_applied": -1.0672,
+          "defense_observed_z": 0.2248,
+          "defense_raw_residual": -0.6821,
+          "defense_applied": -0.6821
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.0712,
-          "offense_raw_residual": -0.5645,
-          "offense_applied": -0.5645,
-          "defense_observed_z": 2.8896,
-          "defense_raw_residual": 2.4055,
+          "offense_observed_z": 0.161,
+          "offense_raw_residual": -0.4747,
+          "offense_applied": -0.4747,
+          "defense_observed_z": 0.8097,
+          "defense_raw_residual": 0.3256,
           "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": 0.6788,
-          "offense_raw_residual": -0.4613,
-          "offense_applied": -0.4613,
-          "defense_observed_z": 2.3164,
-          "defense_raw_residual": 1.2259,
-          "defense_applied": 0.0
+          "offense_observed_z": 0.7765,
+          "offense_raw_residual": -0.3636,
+          "offense_applied": -0.3636,
+          "defense_observed_z": -0.0121,
+          "defense_raw_residual": -1.1026,
+          "defense_applied": -1.1026
         }
       }
     },
@@ -6390,7 +6390,7 @@
       }
     },
     {
-      "team": "Louisiana",
+      "team": "Maryland",
       "metrics": {
         "finishing": {
           "offense_observed_z": null,
@@ -6401,140 +6401,140 @@
           "defense_applied": null
         },
         "line_yards": {
-          "offense_observed_z": 0.9393,
-          "offense_raw_residual": 0.1715,
+          "offense_observed_z": 1.1008,
+          "offense_raw_residual": 0.333,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.595,
-          "defense_raw_residual": 0.0662,
+          "defense_observed_z": 2.2594,
+          "defense_raw_residual": 1.7306,
           "defense_applied": 0.0
         },
         "open_field_yards": {
-          "offense_observed_z": 0.9048,
-          "offense_raw_residual": 0.8284,
+          "offense_observed_z": 4.4812,
+          "offense_raw_residual": 4.4048,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.844,
-          "defense_raw_residual": 0.1247,
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
           "defense_applied": 0.0
         },
         "passing_down_success": {
-          "offense_observed_z": 1.978,
-          "offense_raw_residual": 1.3484,
-          "offense_applied": 0.0,
-          "defense_observed_z": -0.3335,
-          "defense_raw_residual": -1.0839,
-          "defense_applied": -1.0839
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -1.1142,
-          "offense_raw_residual": -1.0387,
-          "offense_applied": -1.0387,
-          "defense_observed_z": 0.6997,
-          "defense_raw_residual": 0.3469,
+          "offense_observed_z": -0.7539,
+          "offense_raw_residual": -1.3835,
+          "offense_applied": -1.3835,
+          "defense_observed_z": 1.0606,
+          "defense_raw_residual": 0.3102,
           "defense_applied": 0.0
         },
+        "passing_explosiveness": {
+          "offense_observed_z": -0.7001,
+          "offense_raw_residual": -0.6246,
+          "offense_applied": -0.6246,
+          "defense_observed_z": -0.5016,
+          "defense_raw_residual": -0.8544,
+          "defense_applied": -0.8544
+        },
         "passing_ppa": {
-          "offense_observed_z": -0.0919,
-          "offense_raw_residual": -0.7939,
-          "offense_applied": -0.7939,
-          "defense_observed_z": 0.1339,
-          "defense_raw_residual": -0.4991,
-          "defense_applied": -0.4991
+          "offense_observed_z": 0.0265,
+          "offense_raw_residual": -0.6755,
+          "offense_applied": -0.6755,
+          "defense_observed_z": 1.5783,
+          "defense_raw_residual": 0.9453,
+          "defense_applied": 0.0
         },
         "passing_success": {
-          "offense_observed_z": 0.8422,
-          "offense_raw_residual": -0.0184,
-          "offense_applied": -0.0184,
-          "defense_observed_z": -0.3298,
-          "defense_raw_residual": -1.157,
-          "defense_applied": -1.157
+          "offense_observed_z": 0.2471,
+          "offense_raw_residual": -0.6135,
+          "offense_applied": -0.6135,
+          "defense_observed_z": 1.4885,
+          "defense_raw_residual": 0.6613,
+          "defense_applied": 0.0
         },
         "points": {
-          "offense_observed_z": 0.752,
-          "offense_raw_residual": -0.4344,
-          "offense_applied": -0.4344,
-          "defense_observed_z": 1.1487,
-          "defense_raw_residual": -0.0982,
-          "defense_applied": -0.0982
+          "offense_observed_z": 2.2235,
+          "offense_raw_residual": 1.0371,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.5779,
+          "defense_raw_residual": 0.331,
+          "defense_applied": 0.0
         },
         "points_per_play": {
-          "offense_observed_z": 0.7263,
-          "offense_raw_residual": -0.4701,
-          "offense_applied": -0.4701,
-          "defense_observed_z": 0.8715,
-          "defense_raw_residual": 0.1835,
+          "offense_observed_z": 2.5131,
+          "offense_raw_residual": 1.3167,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.2918,
+          "defense_raw_residual": 0.6038,
           "defense_applied": 0.0
         },
         "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.419,
-          "defense_raw_residual": 0.2635,
+          "offense_observed_z": -0.419,
+          "offense_raw_residual": -0.8934,
+          "offense_applied": -0.8934,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
           "defense_applied": 0.0
         },
         "ppa": {
-          "offense_observed_z": 0.5067,
-          "offense_raw_residual": -0.5252,
-          "offense_applied": -0.5252,
-          "defense_observed_z": 1.2831,
-          "defense_raw_residual": 0.3223,
+          "offense_observed_z": 0.8228,
+          "offense_raw_residual": -0.2091,
+          "offense_applied": -0.2091,
+          "defense_observed_z": 2.5959,
+          "defense_raw_residual": 1.6351,
           "defense_applied": 0.0
         },
         "rushing_explosiveness": {
-          "offense_observed_z": 1.622,
-          "offense_raw_residual": 1.5308,
+          "offense_observed_z": 2.1231,
+          "offense_raw_residual": 2.0319,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.6206,
-          "defense_raw_residual": 0.5536,
+          "defense_observed_z": 1.0289,
+          "defense_raw_residual": 0.9619,
           "defense_applied": 0.0
         },
         "rushing_ppa": {
-          "offense_observed_z": 1.6576,
-          "offense_raw_residual": 0.8025,
+          "offense_observed_z": 1.4161,
+          "offense_raw_residual": 0.561,
           "offense_applied": 0.0,
-          "defense_observed_z": 1.5884,
-          "defense_raw_residual": 0.9564,
+          "defense_observed_z": 2.0635,
+          "defense_raw_residual": 1.4315,
           "defense_applied": 0.0
         },
         "rushing_success": {
-          "offense_observed_z": 0.7879,
-          "offense_raw_residual": -0.1673,
-          "offense_applied": -0.1673,
-          "defense_observed_z": -0.0777,
-          "defense_raw_residual": -0.9413,
-          "defense_applied": -0.9413
+          "offense_observed_z": 1.0176,
+          "offense_raw_residual": 0.0624,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.3369,
+          "defense_raw_residual": 1.4733,
+          "defense_applied": 0.0
         },
         "second_level_yards": {
-          "offense_observed_z": 1.5197,
-          "offense_raw_residual": 0.8033,
+          "offense_observed_z": 1.2219,
+          "offense_raw_residual": 0.5055,
           "offense_applied": 0.0,
-          "defense_observed_z": 0.6172,
-          "defense_raw_residual": -0.0089,
-          "defense_applied": -0.0089
+          "defense_observed_z": 1.8796,
+          "defense_raw_residual": 1.2535,
+          "defense_applied": 0.0
         },
         "standard_down_success": {
-          "offense_observed_z": -0.119,
-          "offense_raw_residual": -1.0672,
-          "offense_applied": -1.0672,
-          "defense_observed_z": 0.2248,
-          "defense_raw_residual": -0.6821,
-          "defense_applied": -0.6821
+          "offense_observed_z": 0.9736,
+          "offense_raw_residual": 0.0254,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.6214,
+          "defense_raw_residual": 1.7145,
+          "defense_applied": 0.0
         },
         "stuff_avoidance": {
-          "offense_observed_z": 0.161,
-          "offense_raw_residual": -0.4747,
-          "offense_applied": -0.4747,
-          "defense_observed_z": 0.8097,
-          "defense_raw_residual": 0.3256,
+          "offense_observed_z": 0.0712,
+          "offense_raw_residual": -0.5645,
+          "offense_applied": -0.5645,
+          "defense_observed_z": 2.8896,
+          "defense_raw_residual": 2.4055,
           "defense_applied": 0.0
         },
         "success_rate": {
-          "offense_observed_z": 0.7765,
-          "offense_raw_residual": -0.3636,
-          "offense_applied": -0.3636,
-          "defense_observed_z": -0.0121,
-          "defense_raw_residual": -1.1026,
-          "defense_applied": -1.1026
+          "offense_observed_z": 0.6788,
+          "offense_raw_residual": -0.4613,
+          "offense_applied": -0.4613,
+          "defense_observed_z": 2.3164,
+          "defense_raw_residual": 1.2259,
+          "defense_applied": 0.0
         }
       }
     },
@@ -6837,155 +6837,6 @@
       }
     },
     {
-      "team": "Arizona",
-      "metrics": {
-        "finishing": {
-          "offense_observed_z": null,
-          "offense_raw_residual": null,
-          "offense_applied": null,
-          "defense_observed_z": null,
-          "defense_raw_residual": null,
-          "defense_applied": null
-        },
-        "line_yards": {
-          "offense_observed_z": 2.1704,
-          "offense_raw_residual": 1.4026,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.5197,
-          "defense_raw_residual": 0.9909,
-          "defense_applied": 0.0
-        },
-        "open_field_yards": {
-          "offense_observed_z": 1.0592,
-          "offense_raw_residual": 0.9828,
-          "offense_applied": 0.0,
-          "defense_observed_z": 0.9206,
-          "defense_raw_residual": 0.2013,
-          "defense_applied": 0.0
-        },
-        "passing_down_success": {
-          "offense_observed_z": 0.5751,
-          "offense_raw_residual": -0.0545,
-          "offense_applied": -0.0545,
-          "defense_observed_z": 0.4217,
-          "defense_raw_residual": -0.3287,
-          "defense_applied": -0.3287
-        },
-        "passing_explosiveness": {
-          "offense_observed_z": -1.1539,
-          "offense_raw_residual": -1.0784,
-          "offense_applied": -1.0784,
-          "defense_observed_z": -1.3419,
-          "defense_raw_residual": -1.6947,
-          "defense_applied": -1.6947
-        },
-        "passing_ppa": {
-          "offense_observed_z": -0.1633,
-          "offense_raw_residual": -0.8653,
-          "offense_applied": -0.8653,
-          "defense_observed_z": 1.0152,
-          "defense_raw_residual": 0.3822,
-          "defense_applied": 0.0
-        },
-        "passing_success": {
-          "offense_observed_z": 1.4868,
-          "offense_raw_residual": 0.6262,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3563,
-          "defense_raw_residual": 0.5291,
-          "defense_applied": 0.0
-        },
-        "points": {
-          "offense_observed_z": 0.5681,
-          "offense_raw_residual": -0.6183,
-          "offense_applied": -0.6183,
-          "defense_observed_z": 1.1487,
-          "defense_raw_residual": -0.0982,
-          "defense_applied": -0.0982
-        },
-        "points_per_play": {
-          "offense_observed_z": 0.6035,
-          "offense_raw_residual": -0.5929,
-          "offense_applied": -0.5929,
-          "defense_observed_z": 0.8715,
-          "defense_raw_residual": 0.1835,
-          "defense_applied": 0.0
-        },
-        "power_success": {
-          "offense_observed_z": 0.9745,
-          "offense_raw_residual": 0.5001,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.8125,
-          "defense_raw_residual": 1.657,
-          "defense_applied": 0.0
-        },
-        "ppa": {
-          "offense_observed_z": 0.2266,
-          "offense_raw_residual": -0.8053,
-          "offense_applied": -0.8053,
-          "defense_observed_z": 1.7691,
-          "defense_raw_residual": 0.8083,
-          "defense_applied": 0.0
-        },
-        "rushing_explosiveness": {
-          "offense_observed_z": -0.6251,
-          "offense_raw_residual": -0.7163,
-          "offense_applied": -0.7163,
-          "defense_observed_z": 0.941,
-          "defense_raw_residual": 0.874,
-          "defense_applied": 0.0
-        },
-        "rushing_ppa": {
-          "offense_observed_z": 0.9604,
-          "offense_raw_residual": 0.1053,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.4392,
-          "defense_raw_residual": 0.8072,
-          "defense_applied": 0.0
-        },
-        "rushing_success": {
-          "offense_observed_z": 2.3502,
-          "offense_raw_residual": 1.395,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.5601,
-          "defense_raw_residual": 1.6965,
-          "defense_applied": 0.0
-        },
-        "second_level_yards": {
-          "offense_observed_z": 2.46,
-          "offense_raw_residual": 1.7436,
-          "offense_applied": 0.0,
-          "defense_observed_z": 1.3217,
-          "defense_raw_residual": 0.6956,
-          "defense_applied": 0.0
-        },
-        "standard_down_success": {
-          "offense_observed_z": 2.1134,
-          "offense_raw_residual": 1.1652,
-          "offense_applied": 0.0,
-          "defense_observed_z": 3.0572,
-          "defense_raw_residual": 2.1503,
-          "defense_applied": 0.0
-        },
-        "stuff_avoidance": {
-          "offense_observed_z": 1.6863,
-          "offense_raw_residual": 1.0506,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.2359,
-          "defense_raw_residual": 1.7518,
-          "defense_applied": 0.0
-        },
-        "success_rate": {
-          "offense_observed_z": 2.0691,
-          "offense_raw_residual": 0.929,
-          "offense_applied": 0.0,
-          "defense_observed_z": 2.0899,
-          "defense_raw_residual": 0.9994,
-          "defense_applied": 0.0
-        }
-      }
-    },
-    {
       "team": "San Diego State",
       "metrics": {
         "finishing": {
@@ -7131,6 +6982,155 @@
           "defense_observed_z": -0.196,
           "defense_raw_residual": -1.2865,
           "defense_applied": -1.2865
+        }
+      }
+    },
+    {
+      "team": "Arizona",
+      "metrics": {
+        "finishing": {
+          "offense_observed_z": null,
+          "offense_raw_residual": null,
+          "offense_applied": null,
+          "defense_observed_z": null,
+          "defense_raw_residual": null,
+          "defense_applied": null
+        },
+        "line_yards": {
+          "offense_observed_z": 2.1704,
+          "offense_raw_residual": 1.4026,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.5197,
+          "defense_raw_residual": 0.9909,
+          "defense_applied": 0.0
+        },
+        "open_field_yards": {
+          "offense_observed_z": 1.0592,
+          "offense_raw_residual": 0.9828,
+          "offense_applied": 0.0,
+          "defense_observed_z": 0.9206,
+          "defense_raw_residual": 0.2013,
+          "defense_applied": 0.0
+        },
+        "passing_down_success": {
+          "offense_observed_z": 0.5751,
+          "offense_raw_residual": -0.0545,
+          "offense_applied": -0.0545,
+          "defense_observed_z": 0.4217,
+          "defense_raw_residual": -0.3287,
+          "defense_applied": -0.3287
+        },
+        "passing_explosiveness": {
+          "offense_observed_z": -1.1539,
+          "offense_raw_residual": -1.0784,
+          "offense_applied": -1.0784,
+          "defense_observed_z": -1.3419,
+          "defense_raw_residual": -1.6947,
+          "defense_applied": -1.6947
+        },
+        "passing_ppa": {
+          "offense_observed_z": -0.1633,
+          "offense_raw_residual": -0.8653,
+          "offense_applied": -0.8653,
+          "defense_observed_z": 1.0152,
+          "defense_raw_residual": 0.3822,
+          "defense_applied": 0.0
+        },
+        "passing_success": {
+          "offense_observed_z": 1.4868,
+          "offense_raw_residual": 0.6262,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3563,
+          "defense_raw_residual": 0.5291,
+          "defense_applied": 0.0
+        },
+        "points": {
+          "offense_observed_z": 0.5681,
+          "offense_raw_residual": -0.6183,
+          "offense_applied": -0.6183,
+          "defense_observed_z": 1.1487,
+          "defense_raw_residual": -0.0982,
+          "defense_applied": -0.0982
+        },
+        "points_per_play": {
+          "offense_observed_z": 0.6035,
+          "offense_raw_residual": -0.5929,
+          "offense_applied": -0.5929,
+          "defense_observed_z": 0.8715,
+          "defense_raw_residual": 0.1835,
+          "defense_applied": 0.0
+        },
+        "power_success": {
+          "offense_observed_z": 0.9745,
+          "offense_raw_residual": 0.5001,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.8125,
+          "defense_raw_residual": 1.657,
+          "defense_applied": 0.0
+        },
+        "ppa": {
+          "offense_observed_z": 0.2266,
+          "offense_raw_residual": -0.8053,
+          "offense_applied": -0.8053,
+          "defense_observed_z": 1.7691,
+          "defense_raw_residual": 0.8083,
+          "defense_applied": 0.0
+        },
+        "rushing_explosiveness": {
+          "offense_observed_z": -0.6251,
+          "offense_raw_residual": -0.7163,
+          "offense_applied": -0.7163,
+          "defense_observed_z": 0.941,
+          "defense_raw_residual": 0.874,
+          "defense_applied": 0.0
+        },
+        "rushing_ppa": {
+          "offense_observed_z": 0.9604,
+          "offense_raw_residual": 0.1053,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.4392,
+          "defense_raw_residual": 0.8072,
+          "defense_applied": 0.0
+        },
+        "rushing_success": {
+          "offense_observed_z": 2.3502,
+          "offense_raw_residual": 1.395,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.5601,
+          "defense_raw_residual": 1.6965,
+          "defense_applied": 0.0
+        },
+        "second_level_yards": {
+          "offense_observed_z": 2.46,
+          "offense_raw_residual": 1.7436,
+          "offense_applied": 0.0,
+          "defense_observed_z": 1.3217,
+          "defense_raw_residual": 0.6956,
+          "defense_applied": 0.0
+        },
+        "standard_down_success": {
+          "offense_observed_z": 2.1134,
+          "offense_raw_residual": 1.1652,
+          "offense_applied": 0.0,
+          "defense_observed_z": 3.0572,
+          "defense_raw_residual": 2.1503,
+          "defense_applied": 0.0
+        },
+        "stuff_avoidance": {
+          "offense_observed_z": 1.6863,
+          "offense_raw_residual": 1.0506,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.2359,
+          "defense_raw_residual": 1.7518,
+          "defense_applied": 0.0
+        },
+        "success_rate": {
+          "offense_observed_z": 2.0691,
+          "offense_raw_residual": 0.929,
+          "offense_applied": 0.0,
+          "defense_observed_z": 2.0899,
+          "defense_raw_residual": 0.9994,
+          "defense_applied": 0.0
         }
       }
     },
