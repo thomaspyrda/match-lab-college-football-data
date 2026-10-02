@@ -21,6 +21,7 @@ MULT_CALIBRATION=ROOT/"data"/"experiments"/"opponent_multiplier_calibration_2022
 KEY=os.environ.get("CFBD_API_KEY")
 if not KEY: raise SystemExit("CFBD_API_KEY secret required")
 
+# V11 Actions validation path.
 # Evidence-based preseason prior. Only qualifying FBS games reduce uncertainty;
 # byes, FCS games, and unusable profiles do not artificially decay the anchor.
 PRIOR_BY_GAMES={0:1.00,1:.75,2:.55,3:.40,4:.20,5:.05,6:0.00}
