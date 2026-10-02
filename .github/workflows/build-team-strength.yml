@@ -24,6 +24,7 @@ on:
       - experiment_dominance_v14.py
       - calibrate_sd_to_sd_v14.py
       - validate_v14_final.py
+      - validate_v14_final_fixed.py
       - diagnose_finishing_schema.py
       - calibrate_opponent_interaction_v13.py
       - calibrate_opponent_significance_v12.py
@@ -132,7 +133,7 @@ jobs:
       - name: Validate v14 week-by-week pregame reconstruction
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python validate_v14_final.py
+        run: python validate_v14_final_fixed.py
       - name: Diagnose finishing metric source schema
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
