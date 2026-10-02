@@ -36,7 +36,7 @@ for r in cur["teams"]:
     r["overall_strength_rank"]=x["rank"]; r["overall_strength_score"]=r["strength_score"]; r["overall_strength_tier"]=r["strength_tier"]
     r["offensive_strength_rank"]=x["offense_rank"]; r["offensive_strength"]=score(x["offense_rank"],n); r["offensive_strength_tier"]=tier(r["offensive_strength"])
     r["defensive_strength_rank"]=x["defense_rank"]; r["defensive_strength"]=score(x["defense_rank"],n); r["defensive_strength_tier"]=tier(r["defensive_strength"])
-    r["team_strength_sd"]=x["overall_team_strength_sd"]; r["offensive_strength_sd"]=x["offense_strength_sd"]; r["defensive_strength_sd"]=x["defense_strength_sd"]
+    r["team_strength_sd"]=x["overall_team_strength_sd"]; r["offensive_strength_sd"]=x["offensive_strength_sd"]; r["defensive_strength_sd"]=x["defensive_strength_sd"]
     r["games_modeled"]=x["games"]; r["preseason_weight"]=x["preseason_weight"]; r["unit_strength_model"]="validated_v15_recursive_dominance"
 cur["teams"].sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 cur["fbs_field_size"]=n
