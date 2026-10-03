@@ -279,7 +279,7 @@ COLUMN_HELP={
     "score":"Current unit strength score derived from opponent-adjusted performance metrics normalized against the FBS field.",
     "vs_expectation":"Season-to-date performance versus pregame expectation after accounting for opponent quality. Higher means more consistent overperformance.",
     "opp_quality":"Average entering strength of opposing units already faced; used to adjust performance for quality of competition.",
-    "multiplier":"Average opponent-strength adjustment across completed games. Stronger competition increases credit; weaker competition reduces it."
+    "multiplier":"Average opponent-strength adjustment across completed games. Stronger competition increases credit; weaker competition reduces it.",
     "overall_rank":"Current overall Team Strength rank.",
     "overall":"Current overall Team Strength score.",
     "record":"Current season win-loss record through completed games."
