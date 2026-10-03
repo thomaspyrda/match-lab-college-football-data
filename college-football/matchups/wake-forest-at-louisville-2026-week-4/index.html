@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,15 +116,15 @@ h2{margin-top:2rem}
 <p class="meta">Week 4 · 2026-09-26T16:00:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Conference game · Louisville entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Wake Forest</h2><p>Strength Rank #60 · Team Strength 57/100 · Above Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#60</b></div>
-      <div class="metric"><span>Team Strength</span><b>57/100</b></div>
+<div class="grid"><section class="team"><h2>Wake Forest</h2><p>Strength Rank #52 · Team Strength 62.3/100 · Above Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#52</b></div>
+      <div class="metric"><span>Team Strength</span><b>62.3/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>82</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>79</b></div><div class='metric'><span>Defensive Efficiency</span><b>18</b></div><div class='metric'><span>Rushing Success</span><b>67</b></div><div class='metric'><span>Passing Success</span><b>45</b></div><div class='metric'><span>Explosiveness</span><b>76</b></div><div class='metric'><span>Havoc</span><b>6</b></div><div class='metric'><span>Finishing Drives</span><b>55</b></div></div>
-<p class="meta">2-1 through 3 prior games · 32.0 PPG · 28.3 allowed</p></section><section class="team"><h2>Louisville</h2><p>Strength Rank #20 · Team Strength 86/100 · Great</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#20</b></div>
-      <div class="metric"><span>Team Strength</span><b>86/100</b></div>
+<p class="meta">2-1 through 3 prior games · 32.0 PPG · 28.3 allowed</p></section><section class="team"><h2>Louisville</h2><p>Strength Rank #27 · Team Strength 80.8/100 · Very Strong</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#27</b></div>
+      <div class="metric"><span>Team Strength</span><b>80.8/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>93</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>93</b></div><div class='metric'><span>Defensive Efficiency</span><b>36</b></div><div class='metric'><span>Rushing Success</span><b>86</b></div><div class='metric'><span>Passing Success</span><b>77</b></div><div class='metric'><span>Explosiveness</span><b>87</b></div><div class='metric'><span>Havoc</span><b>26</b></div><div class='metric'><span>Finishing Drives</span><b>90</b></div></div>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

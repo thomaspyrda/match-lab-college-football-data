@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,20 +116,20 @@ h2{margin-top:2rem}
 <p class="meta">Week 5 · 2026-10-04T02:30:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Conference game · Texas State entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Texas State</h2><p>Strength Rank #75 · Team Strength 46/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#75</b></div>
-      <div class="metric"><span>Team Strength</span><b>46/100</b></div>
+<div class="grid"><section class="team"><h2>Texas State</h2><p>Strength Rank #70 · Team Strength 49.4/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#70</b></div>
+      <div class="metric"><span>Team Strength</span><b>49.4/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>74</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>92</b></div><div class='metric'><span>Defensive Efficiency</span><b>13</b></div><div class='metric'><span>Rushing Success</span><b>73</b></div><div class='metric'><span>Passing Success</span><b>94</b></div><div class='metric'><span>Explosiveness</span><b>80</b></div><div class='metric'><span>Havoc</span><b>47</b></div><div class='metric'><span>Finishing Drives</span><b>19</b></div></div>
-<p class="meta">2-2 through 4 prior games · 36.2 PPG · 33.8 allowed</p></section><section class="team"><h2>San Diego State</h2><p>Strength Rank #83 · Team Strength 40/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#83</b></div>
-      <div class="metric"><span>Team Strength</span><b>40/100</b></div>
+<p class="meta">2-2 through 4 prior games · 36.2 PPG · 33.8 allowed</p></section><section class="team"><h2>San Diego State</h2><p>Strength Rank #78 · Team Strength 43.5/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#78</b></div>
+      <div class="metric"><span>Team Strength</span><b>43.5/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>53</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>6</b></div><div class='metric'><span>Defensive Efficiency</span><b>31</b></div><div class='metric'><span>Rushing Success</span><b>7</b></div><div class='metric'><span>Passing Success</span><b>3</b></div><div class='metric'><span>Explosiveness</span><b>82</b></div><div class='metric'><span>Havoc</span><b>1</b></div><div class='metric'><span>Finishing Drives</span><b>30</b></div></div>
 <p class="meta">1-3 through 4 prior games · 23.0 PPG · 28.8 allowed</p></section></div>
-<section class="card"><h2>Pregame market</h2><p>Spread: 8.5 · O/U: 57.5 · San Diego State ML: 260.0 · Texas State ML: -325.0</p></section>
+<section class="card"><h2>Pregame market</h2><p>Spread: 9.5 · O/U: 57.5 · San Diego State ML: 280.0 · Texas State ML: -355.0</p></section>
 
 <a class="cta" href="https://matchlab.parlaycalculator.bet/?mode=history&game=401860900">Open this game in CFB Match Lab</a>
 <p class="meta">Inside CFB Match Lab, choose Spread, Moneyline or O/U Total to compare this game with the 10 closest historical college football matchups using pregame-only data.</p>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

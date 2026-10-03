@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,15 +116,15 @@ h2{margin-top:2rem}
 <p class="meta">Week 4 · 2026-09-27T00:00:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Non-conference game · Arkansas entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Tulsa</h2><p>Strength Rank #75 · Team Strength 46/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#75</b></div>
-      <div class="metric"><span>Team Strength</span><b>46/100</b></div>
+<div class="grid"><section class="team"><h2>Tulsa</h2><p>Strength Rank #88 · Team Strength 35.7/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#88</b></div>
+      <div class="metric"><span>Team Strength</span><b>35.7/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>12</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>42</b></div><div class='metric'><span>Defensive Efficiency</span><b>88</b></div><div class='metric'><span>Rushing Success</span><b>53</b></div><div class='metric'><span>Passing Success</span><b>10</b></div><div class='metric'><span>Explosiveness</span><b>45</b></div><div class='metric'><span>Havoc</span><b>41</b></div><div class='metric'><span>Finishing Drives</span><b>16</b></div></div>
-<p class="meta">3-0 through 3 prior games · 29.7 PPG · 9.0 allowed</p></section><section class="team"><h2>Arkansas</h2><p>Strength Rank #80 · Team Strength 42/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#80</b></div>
-      <div class="metric"><span>Team Strength</span><b>42/100</b></div>
+<p class="meta">3-0 through 3 prior games · 29.7 PPG · 9.0 allowed</p></section><section class="team"><h2>Arkansas</h2><p>Strength Rank #71 · Team Strength 48.3/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#71</b></div>
+      <div class="metric"><span>Team Strength</span><b>48.3/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>97</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>18</b></div><div class='metric'><span>Defensive Efficiency</span><b>9</b></div><div class='metric'><span>Rushing Success</span><b>11</b></div><div class='metric'><span>Passing Success</span><b>74</b></div><div class='metric'><span>Explosiveness</span><b>5</b></div><div class='metric'><span>Havoc</span><b>19</b></div><div class='metric'><span>Finishing Drives</span><b>20</b></div></div>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,15 +116,15 @@ h2{margin-top:2rem}
 <p class="meta">Week 5 · 2026-10-03T19:30:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Conference game · Florida entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Florida</h2><p>AP #8 · Strength Rank #10 · Team Strength 93/100 · Great</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#10</b></div>
-      <div class="metric"><span>Team Strength</span><b>93/100</b></div>
+<div class="grid"><section class="team"><h2>Florida</h2><p>AP #8 · Strength Rank #11 · Team Strength 92.7/100 · Great</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#11</b></div>
+      <div class="metric"><span>Team Strength</span><b>92.7/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>79</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>98</b></div><div class='metric'><span>Defensive Efficiency</span><b>66</b></div><div class='metric'><span>Rushing Success</span><b>88</b></div><div class='metric'><span>Passing Success</span><b>99</b></div><div class='metric'><span>Explosiveness</span><b>60</b></div><div class='metric'><span>Havoc</span><b>88</b></div><div class='metric'><span>Finishing Drives</span><b>99</b></div></div>
-<p class="meta">4-0 through 4 prior games · 53.5 PPG · 22.8 allowed</p></section><section class="team"><h2>Missouri</h2><p>AP #25 · Strength Rank #29 · Team Strength 80/100 · Very Strong</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#29</b></div>
-      <div class="metric"><span>Team Strength</span><b>80/100</b></div>
+<p class="meta">4-0 through 4 prior games · 53.5 PPG · 22.8 allowed</p></section><section class="team"><h2>Missouri</h2><p>AP #25 · Strength Rank #35 · Team Strength 75.1/100 · Strong</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#35</b></div>
+      <div class="metric"><span>Team Strength</span><b>75.1/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>64</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>61</b></div><div class='metric'><span>Defensive Efficiency</span><b>78</b></div><div class='metric'><span>Rushing Success</span><b>14</b></div><div class='metric'><span>Passing Success</span><b>72</b></div><div class='metric'><span>Explosiveness</span><b>54</b></div><div class='metric'><span>Havoc</span><b>94</b></div><div class='metric'><span>Finishing Drives</span><b>42</b></div></div>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

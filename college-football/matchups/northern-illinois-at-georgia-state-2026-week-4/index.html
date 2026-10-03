@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,15 +116,15 @@ h2{margin-top:2rem}
 <p class="meta">Week 4 · 2026-09-26T18:00:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Non-conference game · Georgia State entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Northern Illinois</h2><p>Strength Rank #136 · Team Strength 1/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#136</b></div>
-      <div class="metric"><span>Team Strength</span><b>1/100</b></div>
+<div class="grid"><section class="team"><h2>Northern Illinois</h2><p>Strength Rank #130 · Team Strength 4.7/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#130</b></div>
+      <div class="metric"><span>Team Strength</span><b>4.7/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>82</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>3</b></div><div class='metric'><span>Defensive Efficiency</span><b>8</b></div><div class='metric'><span>Rushing Success</span><b>34</b></div><div class='metric'><span>Passing Success</span><b>16</b></div><div class='metric'><span>Explosiveness</span><b>4</b></div><div class='metric'><span>Havoc</span><b>12</b></div><div class='metric'><span>Finishing Drives</span><b>1</b></div></div>
-<p class="meta">0-3 through 3 prior games · 13.7 PPG · 36.7 allowed</p></section><section class="team"><h2>Georgia State</h2><p>Strength Rank #112 · Team Strength 19/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#112</b></div>
-      <div class="metric"><span>Team Strength</span><b>19/100</b></div>
+<p class="meta">0-3 through 3 prior games · 13.7 PPG · 36.7 allowed</p></section><section class="team"><h2>Georgia State</h2><p>Strength Rank #122 · Team Strength 10.6/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#122</b></div>
+      <div class="metric"><span>Team Strength</span><b>10.6/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>44</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>69</b></div><div class='metric'><span>Defensive Efficiency</span><b>47</b></div><div class='metric'><span>Rushing Success</span><b>50</b></div><div class='metric'><span>Passing Success</span><b>80</b></div><div class='metric'><span>Explosiveness</span><b>60</b></div><div class='metric'><span>Havoc</span><b>45</b></div><div class='metric'><span>Finishing Drives</span><b>62</b></div></div>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

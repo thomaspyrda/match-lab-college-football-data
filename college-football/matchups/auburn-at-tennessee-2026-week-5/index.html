@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,20 +116,20 @@ h2{margin-top:2rem}
 <p class="meta">Week 5 · 2026-10-03T19:30:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Conference game · Tennessee entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Auburn</h2><p>Strength Rank #37 · Team Strength 74/100 · Strong</p><div class="metrics">
+<div class="grid"><section class="team"><h2>Auburn</h2><p>Strength Rank #37 · Team Strength 73.6/100 · Strong</p><div class="metrics">
       <div class="metric"><span>Strength Rank</span><b>#37</b></div>
-      <div class="metric"><span>Team Strength</span><b>74/100</b></div>
+      <div class="metric"><span>Team Strength</span><b>73.6/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>91</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>39</b></div><div class='metric'><span>Defensive Efficiency</span><b>68</b></div><div class='metric'><span>Rushing Success</span><b>53</b></div><div class='metric'><span>Passing Success</span><b>33</b></div><div class='metric'><span>Explosiveness</span><b>59</b></div><div class='metric'><span>Havoc</span><b>41</b></div><div class='metric'><span>Finishing Drives</span><b>58</b></div></div>
-<p class="meta">3-1 through 4 prior games · 30.0 PPG · 20.8 allowed</p></section><section class="team"><h2>Tennessee</h2><p>AP #17 · Strength Rank #12 · Team Strength 92/100 · Great</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#12</b></div>
-      <div class="metric"><span>Team Strength</span><b>92/100</b></div>
+<p class="meta">3-1 through 4 prior games · 30.0 PPG · 20.8 allowed</p></section><section class="team"><h2>Tennessee</h2><p>AP #17 · Strength Rank #14 · Team Strength 90.5/100 · Great</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#14</b></div>
+      <div class="metric"><span>Team Strength</span><b>90.5/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>77</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>55</b></div><div class='metric'><span>Defensive Efficiency</span><b>95</b></div><div class='metric'><span>Rushing Success</span><b>72</b></div><div class='metric'><span>Passing Success</span><b>18</b></div><div class='metric'><span>Explosiveness</span><b>38</b></div><div class='metric'><span>Havoc</span><b>93</b></div><div class='metric'><span>Finishing Drives</span><b>97</b></div></div>
 <p class="meta">3-1 through 4 prior games · 40.0 PPG · 15.5 allowed</p></section></div>
-<section class="card"><h2>Pregame market</h2><p>Spread: -7.0 · O/U: 53.5 · Tennessee ML: -285.0 · Auburn ML: 230.0</p></section>
+<section class="card"><h2>Pregame market</h2><p>Spread: -6.5 · O/U: 53.5 · Tennessee ML: -258.0 · Auburn ML: 210.0</p></section>
 
 <a class="cta" href="https://matchlab.parlaycalculator.bet/?mode=history&game=401856710">Open this game in CFB Match Lab</a>
 <p class="meta">Inside CFB Match Lab, choose Spread, Moneyline or O/U Total to compare this game with the 10 closest historical college football matchups using pregame-only data.</p>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>

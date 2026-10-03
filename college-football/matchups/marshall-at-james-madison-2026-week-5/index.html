@@ -83,7 +83,7 @@ h2{margin-top:2rem}
  .data-table th,.data-table td{padding:7px 3px}
  .data-table th{font-size:.5rem}
  .data-table td{font-size:.62rem}
- .help-pop{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}
+ .help-pop{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}
 }
 </style>
 </head><body>
@@ -116,20 +116,20 @@ h2{margin-top:2rem}
 <p class="meta">Week 5 · 2026-10-03T19:45:00.000Z</p>
 <p>This archive page preserves the information available before kickoff so the matchup can be researched without using future results in its pregame profile.</p>
 <p class="meta">Conference game · James Madison entered as the listed favorite</p>
-<div class="grid"><section class="team"><h2>Marshall</h2><p>Strength Rank #114 · Team Strength 18/100 · Below Average</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#114</b></div>
-      <div class="metric"><span>Team Strength</span><b>18/100</b></div>
+<div class="grid"><section class="team"><h2>Marshall</h2><p>Strength Rank #101 · Team Strength 26.7/100 · Below Average</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#101</b></div>
+      <div class="metric"><span>Team Strength</span><b>26.7/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>12</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>51</b></div><div class='metric'><span>Defensive Efficiency</span><b>1</b></div><div class='metric'><span>Rushing Success</span><b>36</b></div><div class='metric'><span>Passing Success</span><b>48</b></div><div class='metric'><span>Explosiveness</span><b>47</b></div><div class='metric'><span>Havoc</span><b>8</b></div><div class='metric'><span>Finishing Drives</span><b>7</b></div></div>
-<p class="meta">3-1 through 4 prior games · 23.5 PPG · 32.5 allowed</p></section><section class="team"><h2>James Madison</h2><p>Strength Rank #45 · Team Strength 68/100 · Strong</p><div class="metrics">
-      <div class="metric"><span>Strength Rank</span><b>#45</b></div>
-      <div class="metric"><span>Team Strength</span><b>68/100</b></div>
+<p class="meta">3-1 through 4 prior games · 23.5 PPG · 32.5 allowed</p></section><section class="team"><h2>James Madison</h2><p>Strength Rank #46 · Team Strength 67.0/100 · Strong</p><div class="metrics">
+      <div class="metric"><span>Strength Rank</span><b>#46</b></div>
+      <div class="metric"><span>Team Strength</span><b>67.0/100</b></div>
       <div class="metric"><span>Schedule Strength</span><b>26</b></div>
     </div>
 <h3>Pregame advanced profile</h3><div class="metrics"><div class='metric'><span>Offensive Efficiency</span><b>64</b></div><div class='metric'><span>Defensive Efficiency</span><b>96</b></div><div class='metric'><span>Rushing Success</span><b>64</b></div><div class='metric'><span>Passing Success</span><b>41</b></div><div class='metric'><span>Explosiveness</span><b>31</b></div><div class='metric'><span>Havoc</span><b>64</b></div><div class='metric'><span>Finishing Drives</span><b>74</b></div></div>
 <p class="meta">4-0 through 4 prior games · 44.8 PPG · 12.2 allowed</p></section></div>
-<section class="card"><h2>Pregame market</h2><p>Spread: -17.5 · O/U: 55.5 · James Madison ML: -1050.0 · Marshall ML: 675.0</p></section>
+<section class="card"><h2>Pregame market</h2><p>Spread: -18.5 · O/U: 55.5 · James Madison ML: -1100.0 · Marshall ML: 700.0</p></section>
 
 <a class="cta" href="https://matchlab.parlaycalculator.bet/?mode=history&game=401869962">Open this game in CFB Match Lab</a>
 <p class="meta">Inside CFB Match Lab, choose Spread, Moneyline or O/U Total to compare this game with the 10 closest historical college football matchups using pregame-only data.</p>
@@ -138,7 +138,20 @@ h2{margin-top:2rem}
 document.addEventListener('click',function(e){
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')});
- if(btn){e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}
+ if(btn){
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }
+ }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
 </script></body></html>
