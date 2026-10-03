@@ -6,6 +6,7 @@ on:
   push:
     branches: [main]
     paths:
+      - .github/workflows/build-team-strength.yml
       - enrich_team_strength.py
       - build_web_data.py
       - refresh_match_lab.py
