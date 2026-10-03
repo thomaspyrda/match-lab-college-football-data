@@ -282,7 +282,10 @@ COLUMN_HELP={
     "multiplier":"Average opponent-strength adjustment across completed games. Stronger competition increases credit; weaker competition reduces it.",
     "overall_rank":"Current overall Team Strength rank.",
     "overall":"Current overall Team Strength score.",
-    "record":"Current season win-loss record through completed games."
+    "record":"Current season win-loss record through completed games.",
+    "sd":"Standard deviations above or below the FBS average after opponent adjustment. 0.00 is average; positive is above average; negative is below average.",
+    "offense_sd":"Offensive Strength standard deviations above or below the FBS average after opponent adjustment.",
+    "defense_sd":"Defensive Strength standard deviations above or below the FBS average after opponent adjustment."
 }
 
 def ranking_tabs(active):
@@ -344,6 +347,7 @@ def write_live_data_pages(now):
             "rank":rank,
             "team":r.get("team"),
             "strength":score,
+            "sd":f'{r.get("team_strength_sd"):+.2f}' if r.get("team_strength_sd") is not None else "—",
             "offense":r.get("offensive_strength"),
             "defense":r.get("defensive_strength"),
             "sos":r.get("schedule_strength_rank"),
@@ -352,7 +356,7 @@ def write_live_data_pages(now):
         })
     strength_rows=sorted(strength_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
+    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("sd","SD"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_tabs("team")}
@@ -394,6 +398,7 @@ def write_live_data_pages(now):
                 "rank":rank,
                 "team":r.get("team"),
                 "score":score,
+                "sd":f'{r.get("offensive_strength_sd"):+.2f}' if field=="offensive_strength" and r.get("offensive_strength_sd") is not None else (f'{r.get("defensive_strength_sd"):+.2f}' if field=="defensive_strength" and r.get("defensive_strength_sd") is not None else "—"),
                 "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
                 "opp_quality":r.get(opponent_quality_field),
                 "overall_rank":r.get("overall_strength_rank"),
@@ -406,7 +411,11 @@ def write_live_data_pages(now):
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        table=ranking_table(rows,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),("opp_quality",opponent_label),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
+        sd_key="offense_sd" if field=="offensive_strength" else "defense_sd"
+        rows_for_table=[]
+        for row in rows:
+            row=dict(row); row[sd_key]=row.pop("sd"); rows_for_table.append(row)
+        table=ranking_table(rows_for_table,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),(sd_key,"SD"),("opp_quality",opponent_label),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
 {ranking_tabs("offense" if field=="offensive_strength" else "defense")}
