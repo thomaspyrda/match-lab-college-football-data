@@ -2,7 +2,7 @@ name: Build Team Strength
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '17 9 * * 1'
   push:
     branches: [main]
     paths:
@@ -47,6 +47,10 @@ on:
       - data/current_rankings.json
       - match_lab_ap_elo_master.csv
       - match_lab_game_ap_elo.csv
+concurrency:
+  group: team-strength-production
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pages: write
@@ -72,96 +76,18 @@ jobs:
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
-      - name: Build backend standardized power experiment
-        run: python experiment_standardized_power.py
-      - name: Build opponent-expectation power experiment
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_expected_performance.py
-      - name: Calibrate FCS expectations from 2022-2025
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_fcs_expectations.py
-      - name: Build experimental v7 calibrated-FCS dominance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v7.py
-      - name: Calibrate v8 expanded FCS expectations from 2022-2025
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_fcs_expectations_v8.py
-      - name: Build experimental v8 expanded-metric dominance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v8.py
-      - name: Calibrate continuous v9 opponent multipliers from 2022-2025
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_opponent_multipliers.py
-      - name: Build experimental v9 continuous-multiplier dominance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v9.py
-      - name: Build experimental v10 shared-SOS dominance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v10.py
-      - name: Build experimental v11 logarithmic-SOS dominance model # validation-2
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v11.py
-      - name: Calibrate v12 opponent significance on 2022-2024 and validate on 2025
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_opponent_significance_v12.py
-      - name: Build experimental v12 residual-calibrated opponent significance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v12.py
-      - name: Calibrate v13 asymmetric opponent interaction
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_opponent_interaction_v13.py
-      - name: Build experimental v13 performance-opponent interaction model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v13.py
-      - name: Calibrate v14 direct SD-to-SD opponent adjustment
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python calibrate_sd_to_sd_v14.py
-      - name: Build experimental v14 direct SD-to-SD model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v14.py
-      - name: Build experimental v15 expanded-metric model
+      - name: Build validated v15 expanded-metric model
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python experiment_dominance_v15.py
-      - name: Validate v14 week-by-week pregame reconstruction
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python validate_v14_final_source_aligned.py
       - name: Validate v15 week-by-week pregame reconstruction
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python validate_v15_final_source_aligned.py
       - name: Promote validated v15 Team Strength to live data
         run: python promote_v15_live.py
-      - name: Diagnose finishing metric source schema
-        if: always()
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python diagnose_finishing_schema.py
-      - name: Build experimental v6 FCS-aware dominance model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v6.py
-      - name: Build week-by-week dominance audit
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python build_weekly_dominance_audit.py
-      - run: sha256sum -c SHA256SUMS.txt
+      - name: Build ranking and SEO pages
+        run: python build_seo_pages.py
       - name: Commit generated outputs
         run: |
           git config user.name "github-actions[bot]"
