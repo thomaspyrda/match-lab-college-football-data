@@ -151,7 +151,7 @@ h2{{margin-top:2rem}}
  .data-table th,.data-table td{{padding:7px 3px}}
  .data-table th{{font-size:.5rem}}
  .data-table td{{font-size:.62rem}}
- .help-pop{{position:fixed;left:16px;right:16px;top:90px;width:auto;max-width:none}}
+ .help-pop{{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}}
 }}
 </style>
 </head><body>
@@ -184,7 +184,20 @@ h2{{margin-top:2rem}}
 document.addEventListener('click',function(e){{
  const btn=e.target.closest('.help-btn');
  document.querySelectorAll('.help-wrap.open').forEach(w=>{{if(!btn||w!==btn.closest('.help-wrap'))w.classList.remove('open')}});
- if(btn){{e.preventDefault();e.stopPropagation();const w=btn.closest('.help-wrap');w.classList.toggle('open');btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false')}}
+ if(btn){{
+   e.preventDefault();e.stopPropagation();
+   const w=btn.closest('.help-wrap');
+   w.classList.toggle('open');
+   btn.setAttribute('aria-expanded',w.classList.contains('open')?'true':'false');
+   if(w.classList.contains('open')&&window.innerWidth<=620){{
+     const pop=w.querySelector('.help-pop');
+     const r=btn.getBoundingClientRect();
+     const width=Math.min(280,window.innerWidth-24);
+     const left=Math.max(12,Math.min(window.innerWidth-width-12,r.left+r.width/2-width/2));
+     pop.style.left=left+'px';
+     pop.style.top=(r.bottom+8)+'px';
+   }}
+ }}
 }});
 document.addEventListener('keydown',function(e){{if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))}});
 </script></body></html>"""
@@ -260,7 +273,7 @@ COLUMN_HELP={
     "strength":"Overall Team Strength combines nationally ranked offensive and defensive performance after opponent-strength adjustments. AP rank is not used.",
     "offense":"Offensive Strength is built from opponent-adjusted performance metrics, normalized against the FBS field and combined by national metric rank.",
     "defense":"Defensive Strength is built from opponent-adjusted performance metrics, normalized against the FBS field and combined by national metric rank.",
-    "sos":"National strength-of-schedule rank based on opponents already faced. #1 means the toughest schedule to date.",
+    "sos":"National strength-of-schedule rank based on opponents already faced. The lowest number represents the toughest schedule to date (#1 = toughest).",
     "raw":"Average entering Team Strength of opponents already faced. This reflects schedule quality through completed games only.",
     "strength_rank":"Current overall Team Strength rank.",
     "score":"Current unit strength score derived from opponent-adjusted performance metrics normalized against the FBS field.",
