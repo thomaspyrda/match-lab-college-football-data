@@ -47,9 +47,9 @@ week=int(cur["week"]); v=load_week(week)
 if not v: raise SystemExit(f"Missing validated v15 Week {week} output")
 rows={canon(r["team"]):r for r in v["rankings"]}; n=len(rows)
 assert n>=130
+cur["teams"]=[r for r in cur["teams"] if canon(r["team"]) in rows]
 for r in cur["teams"]:
-    x=rows.get(canon(r["team"]))
-    if not x: continue
+    x=rows[canon(r["team"])]
     r["national_strength_rank"]=x["rank"]
     r["team_strength_sd"]=x["overall_team_strength_sd"]; r["offensive_strength_sd"]=x["offensive_strength_sd"]; r["defensive_strength_sd"]=x["defensive_strength_sd"]
     r["strength_score"]=score_from_sd(r["team_strength_sd"]); r["strength_tier"]=tier(r["strength_score"]); r["top_percent"]=top_percent(x["rank"],n)
