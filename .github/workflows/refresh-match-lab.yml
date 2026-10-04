@@ -19,8 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh weekly data
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      - name: Refresh data
         run: python refresh_match_lab.py
       - name: Generate production pages
         run: python build_seo_pages.py
