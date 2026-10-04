@@ -19,10 +19,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Refresh data
+      - name: Refresh source data
         run: python refresh_match_lab.py
+      - name: Rebuild frozen v15 through completed games
+        run: |
+          MODEL_WEEK=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("data/current_rankings.json").read_text())
+          print(int(d["week"]))
+          PY
+          )
+          MODEL_WEEK="$MODEL_WEEK" python experiment_dominance_v15.py
+      - name: Promote frozen v15 to live rankings
+        run: python promote_v15_live.py
       - name: Generate production pages
         run: python build_seo_pages.py
+      - name: Verify frozen v15 is production source
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("data/current_rankings.json").read_text())
+          assert d.get("model",{}).get("version")=="v15", d.get("model")
+          assert d.get("model",{}).get("status")=="production_frozen", d.get("model")
+          teams=d.get("teams",[])
+          assert len(teams)>=130, len(teams)
+          assert all(t.get("unit_strength_model")=="validated_v15_recursive_dominance" for t in teams), "non-v15 rows found"
+          assert any(t.get("team_strength_sd") is not None for t in teams), "v15 SD output missing"
+          print(f"Verified frozen v15 production board: {len(teams)} teams, Week {d.get('week')}")
+          PY
       - name: Commit generated output
         run: |
           git config user.name "github-actions[bot]"
