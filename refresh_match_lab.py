@@ -306,6 +306,41 @@ for week in candidate_weeks:
   home_prior=[x for x in games if (x.get("homeTeam")==home or x.get("awayTeam")==home) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"venue":g.get("venue"),"venue_id":g.get("venueId"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
+# Cache current FBS branding from CFBD so dashboard builds never depend on a second provider.
+team_rows=api("/teams/fbs",year=now.year)
+team_meta={}
+for row in team_rows:
+ school=canon_team(row.get("school"))
+ if not school:continue
+ logos=row.get("logos") or []
+ team_meta[school]={
+  "espn_id":row.get("id"),
+  "abbr":row.get("abbreviation"),
+  "color":("#"+str(row.get("color")).lstrip("#")) if row.get("color") else None,
+  "alternate_color":("#"+str(row.get("alternateColor")).lstrip("#")) if row.get("alternateColor") else None,
+  "logo":logos[0] if logos else None,
+ }
+(DATA/"cfb_dashboard_team_metadata.json").write_text(json.dumps({"schema_version":"1.1","updated":now.date().isoformat(),"source":"CFBD /teams/fbs","teams":team_meta},indent=2),encoding="utf-8")
+
+# Cache current-season player usage once per refresh. Dashboard selects each team's top four.
+usage_rows=api("/player/usage",year=now.year,excludeGarbageTime="true")
+player_usage={}
+for row in usage_rows:
+ team=canon_team(row.get("team"))
+ if not team:continue
+ u=row.get("usage") or {}
+ player_usage.setdefault(team,[]).append({
+  "id":row.get("id"),"name":row.get("name"),"position":row.get("position"),
+  "overall":u.get("overall"),"pass":u.get("pass"),"rush":u.get("rush"),
+  "first_down":u.get("firstDown"),"second_down":u.get("secondDown"),
+  "third_down":u.get("thirdDown"),"standard_downs":u.get("standardDowns"),
+  "passing_downs":u.get("passingDowns"),
+ })
+for team,rows in player_usage.items():
+ rows.sort(key=lambda x:float(x.get("overall") or 0),reverse=True)
+ player_usage[team]=rows[:4]
+(DATA/"cfb_dashboard_player_usage.json").write_text(json.dumps({"season":now.year,"generated_at":now.isoformat(),"teams":player_usage},indent=2),encoding="utf-8")
+
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
 
 # Publish a current-to-date full-FBS strength snapshot.
