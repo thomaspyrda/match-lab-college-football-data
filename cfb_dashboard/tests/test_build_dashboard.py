@@ -137,3 +137,13 @@ def test_player_cards_always_returns_top_four_or_placeholders():
     assert cards[1]["name"] == "P2"
     assert cards[2]["placeholder"] is True
     assert cards[3]["placeholder"] is True
+
+
+def test_raw_metric_rows_use_explicit_source_ranks_without_recalculation():
+    away={"raw_metrics":{"offensive_ppa":0.25,"offensive_ppa_rank":17,"defensive_ppa":0.12,"defensive_ppa_rank":31}}
+    home={"raw_metrics":{"offensive_ppa":0.18,"offensive_ppa_rank":38,"defensive_ppa":0.09,"defensive_ppa_rank":22}}
+    row=next(r for r in metric_rows(away,home) if r["label"]=="EPA / Play")
+    assert row["away_offense"] == 0.25
+    assert row["away_offense_rank"] == 17
+    assert row["home_defense"] == 0.09
+    assert row["home_defense_rank"] == 22
