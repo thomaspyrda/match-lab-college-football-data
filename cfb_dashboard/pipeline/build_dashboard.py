@@ -113,7 +113,7 @@ def main():
           "home":team_payload(g["home"],homep,homer)|{"conference":g.get("home_conference")},
           "market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},
           "context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},
-          "weather":{},"matchup_metrics":metrics,"featured_mismatch":mismatch(metrics),"trends":build_trends(away,home,metrics)
+          "weather":weather,"matchup_metrics":metrics,"featured_mismatch":mismatch(metrics),"trends":build_trends(away,home,metrics)
         })
     payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}
     (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8")
