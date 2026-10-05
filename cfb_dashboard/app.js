@@ -9,7 +9,24 @@ const rank=v=>v==null?"—":"#"+Number(v);
 const rawVal=(v,fmt)=>{if(v==null)return"—";const n=Number(v);if(!Number.isFinite(n))return"—";if(fmt==="percent")return (n*100).toFixed(1)+"%";if(fmt==="decimal")return n.toFixed(3);return String(v)};
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
 const spreadLabel=g=>{const s=Number(g.market?.spread);if(!Number.isFinite(s))return "—";if(s===0)return "PK";const team=s<0?abbr(g.home):abbr(g.away);return `${team} ${s>0?"+":""}${s}`};
-const HELP={"Overall Success Rate":"Share of offensive plays graded successful by down and distance.","Defensive Success Rate":"Share of opponent plays graded successful by down and distance; lower raw rates are stronger defense.","Offensive Efficiency":"Opponent-adjusted offensive efficiency relative to the FBS field.","Defensive Efficiency":"Opponent-adjusted defensive efficiency relative to the FBS field.","Passing Success":"Passing-play success relative to the FBS field.","Defensive Passing Success":"Opponent passing success allowed relative to the FBS field.","Rushing Success":"Rushing-play success relative to the FBS field.","Defensive Rushing Success":"Opponent rushing success allowed relative to the FBS field.","Explosiveness":"Ability to generate high-value explosive plays.","Explosiveness Prevention":"Ability to prevent high-value explosive plays.","Finishing Drives":"Offensive performance after creating scoring opportunities.","Defensive Finishing Drives":"Defensive performance after opponents create scoring opportunities.","Third Down Conversion":"Opponent-adjusted offensive third-down performance in standard deviations.","Third Down Defense":"Opponent-adjusted defensive third-down performance in standard deviations.","Red Zone Efficiency":"Opponent-adjusted offensive red-zone touchdown performance in standard deviations.","Red Zone Defense":"Opponent-adjusted defensive red-zone touchdown prevention in standard deviations."};
+const HELP={
+"Success Rate":"Percentage of offensive plays considered successful by down and distance. Higher is better.",
+"Defensive Success Rate":"Percentage of opponent plays considered successful by down and distance. Lower is better.",
+"EPA / Play":"Average expected points added per offensive play. Higher is better.",
+"EPA / Play Allowed":"Average expected points added by opponents per play. Lower is better.",
+"Passing Success Rate":"Percentage of passing plays considered successful. Higher is better.",
+"Defensive Pass Success Rate":"Percentage of opponent passing plays considered successful. Lower is better.",
+"Rushing Success Rate":"Percentage of rushing plays considered successful. Higher is better.",
+"Defensive Rush Success Rate":"Percentage of opponent rushing plays considered successful. Lower is better.",
+"Explosiveness":"Average EPA generated on successful offensive plays. Higher means successful plays are more damaging.",
+"Explosiveness Allowed":"Average EPA allowed on opponents' successful plays. Lower is better.",
+"Points per Opportunity":"Average points scored after creating a scoring opportunity. Higher is better.",
+"Points per Opportunity Allowed":"Average points allowed after opponents create scoring opportunities. Lower is better.",
+"Third Down Conversion":"Percentage of offensive third downs converted. Higher is better.",
+"Third Down Defense":"Percentage of opponent third downs converted. Lower is better.",
+"Red Zone Efficiency":"Percentage of red-zone opportunities converted according to the direct source field. Higher is better.",
+"Red Zone Defense":"Percentage of opponent red-zone opportunities converted. Lower is better."
+};
 function season(t,i){const f=t.form||{};return `<article class="season-team" style="--team-color:${color(t,i)}"><div class="season-team-head">${teamLogo(t,"season-team-logo")}<b>${esc(abbr(t))}</b></div><div class="season-stats"><span><strong>${esc(t.record||"—")}</strong><small>Record</small></span><span><strong>${f.avg_points??"—"}</strong><small>PPG</small></span><span><strong>${f.avg_allowed??"—"}</strong><small>PPG Allowed</small></span></div></article>`}
 function metricCard(m,type){
  const isOff=type==="offense";
