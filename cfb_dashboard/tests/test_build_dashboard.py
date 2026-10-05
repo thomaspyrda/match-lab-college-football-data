@@ -57,3 +57,21 @@ def test_build_trends_prioritizes_large_matchup_edges():
     assert trends[0]["metric"] == "Third Down Conversion"
     assert trends[0]["gap"] == 40
     assert any(x["type"]=="strength_gap" and x["team"]=="Away" for x in trends)
+
+def test_team_payload_prefers_current_ap_rank_and_keeps_form():
+    profile={"ap_rank":18,"recent_form":{"games":4,"wins":3,"losses":1},"advanced":{}}
+    ranking={"ap_rank":11,"record":"4-0"}
+    row=team_payload("Example",profile,ranking)
+    assert row["ap_rank"] == 11
+    assert row["form"]["games"] == 4
+
+
+def test_game_context_trends_are_bounded_and_explicit():
+    away={"name":"Away","team_strength_rank":20,"ap_rank":8,"form":{"coming_off_loss":True}}
+    home={"name":"Home","team_strength_rank":50,"ap_rank":None,"form":{"coming_off_loss":False}}
+    trends=build_trends(away,home,[],{"conference_game":True,"neutral_site":True})
+    types=[x["type"] for x in trends]
+    assert "ranked_context" in types
+    assert "bounce_back" in types
+    assert sum(x["type"]=="game_context" for x in trends) == 2
+    assert len(trends) <= 8
