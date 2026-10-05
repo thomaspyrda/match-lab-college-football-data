@@ -37,3 +37,11 @@ def test_team_payload_preserves_recent_form():
     assert row["form"]["avg_points"] == 31.2
     assert row["form"]["avg_allowed"] == 18.4
     assert row["form"]["coming_off_loss"] is False
+
+def test_v15_situational_metrics_override_empty_profile_slots():
+    ranking={"dashboard_situational":{"third_down_conversion":1.25,"defensive_third_down_conversion":0.75,"red_zone_td_rate":1.1}}
+    row=team_payload("Example",{"advanced":{"overall_success":80}},ranking)
+    assert row["metrics"]["third_down_conversion"] == 1.25
+    assert row["metrics"]["defensive_third_down_conversion"] == 0.75
+    assert row["metrics"]["red_zone_td_rate"] == 1.1
+    assert row["metrics"]["overall_success"] == 80
