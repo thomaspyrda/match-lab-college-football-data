@@ -82,7 +82,7 @@
         }
       }
     </script>
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=14" />
   </head>
   <body>
     <header class="site-header"><div class="header-inner">
@@ -113,11 +113,18 @@
           <p id="updated" class="updated">Loading data…</p>
         </div>
         <div id="demoFlag" class="demo-flag" hidden>DEMONSTRATION DATA — NOT CURRENT CFB INFORMATION</div>
+        <div class="game-browser-controls">
+          <div id="dayFilters" class="day-filters" aria-label="Filter games by day"></div>
+          <div class="game-rail-arrows" aria-label="Navigate matchup list">
+            <button id="gamesPrev" type="button" aria-label="Previous games">‹</button>
+            <button id="gamesNext" type="button" aria-label="Next games">›</button>
+          </div>
+        </div>
         <div id="games" class="game-rail" aria-label="Upcoming games"></div>
         <div id="gameDetail" class="game-detail"></div>
       </section>
     </main>
     <footer>BetWise research tools provide informational context only. Always verify current markets and player availability.</footer>
-    <script src="app.js?v=20"></script>
+    <script src="app.js?v=21"></script>
   </body>
 </html>

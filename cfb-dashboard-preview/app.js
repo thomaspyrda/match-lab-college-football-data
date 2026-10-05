@@ -1,6 +1,6 @@
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let dashboard,selectedGame;
+let dashboard,selectedGame,activeDay="all";
 const logo=t=>t.logo||(t.espn_id?`https://a.espncdn.com/i/teamlogos/ncaa/500/${t.espn_id}.png`:"");
 const abbr=t=>t.abbr||t.name.split(/\s+/).map(x=>x[0]).join("").slice(0,4).toUpperCase();
 const teamLogo=(t,cls="team-logo")=>logo(t)?`<img class="${cls}" src="${logo(t)}" alt="${esc(t.name)} logo" loading="lazy">`:"";
@@ -24,8 +24,8 @@ const HELP={
 "Points per Opportunity Allowed":"Average points allowed after opponents create scoring opportunities. Lower is better.",
 "Third Down Conversion":"Percentage of offensive third downs converted. Higher is better.",
 "Third Down Defense":"Percentage of opponent third downs converted. Lower is better.",
-"Red Zone Efficiency":"Percentage of red-zone opportunities converted according to the direct source field. Higher is better.",
-"Red Zone Defense":"Percentage of opponent red-zone opportunities converted. Lower is better."
+"Red Zone TD Rate":"Percentage of red-zone trips that end in touchdowns. Higher is better.",
+"Red Zone TD Defense":"Percentage of opponent red-zone trips that end in touchdowns. Lower is better."
 };
 function season(t,i){const f=t.form||{};return `<article class="season-team" style="--team-color:${color(t,i)}"><div class="season-team-head">${teamLogo(t,"season-team-logo")}<b>${esc(abbr(t))}</b></div><div class="season-stats"><span><strong>${esc(t.record||"—")}</strong><small>Record</small></span><span><strong>${f.avg_points??"—"}</strong><small>PPG</small></span><span><strong>${f.avg_allowed??"—"}</strong><small>PPG Allowed</small></span></div></article>`}
 function metricCard(m,type){
@@ -63,12 +63,34 @@ function playerOpportunity(){
 }
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
- const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+x.opponent).join(" · ")||"—";
+ const compactOpp=x=>x.opponent_abbr||String(x.opponent||"").split(/\s+/).filter(Boolean).map(w=>w[0]).join("").slice(0,5).toUpperCase();
+ const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+compactOpp(x)).join(" · ")||"—";
  const rest=t=>{const games=t.form?.last_five||[];if(!games.length||!selectedGame.week)return"—";const lastWeek=Math.max(...games.map(x=>Number(x.week)||0));const gap=Math.max(0,Number(selectedGame.week)-lastWeek-1);return gap>0?`${gap}-week bye`:"Standard week"};
  const row=(label,a,h,note,seq=false)=>`<article class="context-card${seq?" context-card--sequence":""}"><strong>${label}</strong><div class="context-sides"><span style="--team-color:${color(selectedGame.away,0)}"><small>${esc(abbr(selectedGame.away))}</small><b>${esc(a)}</b></span><i>VS</i><span style="--team-color:${color(selectedGame.home,1)}"><small>${esc(abbr(selectedGame.home))}</small><b>${esc(h)}</b></span></div><p>${note}</p></article>`;
  return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Derived from each team's most recent completed game week.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
 function feature(){const f=selectedGame.featured_mismatch;if(!f)return"";const off=f.side?.startsWith("away")?selectedGame.away:selectedGame.home,def=off===selectedGame.away?selectedGame.home:selectedGame.away;return `<section class="efficiency-feature"><div class="feature-head"><span>◎</span><div><p>FEATURED MATCHUP · LARGEST FBS-RANK GAP</p><h4>${esc(f.metric)}</h4></div></div><div class="feature-values"><span style="--team-color:${color(off,0)}">${teamLogo(off,"trend-logo")}<small>${esc(abbr(off))} · offense · FBS #${f.offense_rank??"—"}</small><b>${rawVal(f.offense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span><i>VS</i><span style="--team-color:${color(def,1)}">${teamLogo(def,"trend-logo")}<small>${esc(abbr(def))} · defense · FBS #${f.opponent_defense_rank??"—"}</small><b>${rawVal(f.opponent_defense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span></div><p><b>Why it matters:</b> This is the largest FBS-rank gap among the displayed source statistics. Rank gap: ${f.rank_gap} places.</p></section>`}
-function factors(){const items=(selectedGame.trends||[]).slice(0,8).map(t=>{let title=t.metric||"Game context",detail=t.detail||((t.team||"")+" has the stronger "+(t.metric||"matchup")+" profile.");return `<li><span>${t.type==="matchup_edge"?"↗":"!"}</span><p><small>${esc((t.type||"CONTEXT").replaceAll("_"," "))}</small><b>${esc(title)}</b>${esc(detail)}</p></li>`}).join("");return `<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>${items}</ul></section>`}
+function factorSentence(t){
+ if(t.type!=="matchup_edge")return t.detail||"This situational factor could influence the matchup.";
+ const row=(selectedGame.matchup_metrics||[]).find(m=>m.label===t.metric);
+ const team=t.team===selectedGame.away.name?selectedGame.away:selectedGame.home;
+ const opp=team===selectedGame.away?selectedGame.home:selectedGame.away;
+ if(!row)return `${team.name} owns the stronger ${t.metric} profile, which could create an efficiency advantage in this matchup.`;
+ const isAway=team===selectedGame.away;
+ const offRank=isAway?row.away_offense_rank:row.home_offense_rank;
+ const defRank=isAway?row.home_defense_rank:row.away_defense_rank;
+ const reason={
+  "Success Rate":"Sustaining a higher rate of successful plays can keep drives on schedule and reduce difficult down-and-distance situations.",
+  "EPA / Play":"A stronger EPA-per-play profile means the offense is creating more scoring value on each snap.",
+  "Passing Success Rate":"A passing-efficiency edge can help the offense stay ahead of the chains and attack favorable coverage matchups.",
+  "Rushing Success Rate":"A rushing-efficiency edge can improve down-and-distance control and keep the full playbook available.",
+  "Explosiveness":"More damaging successful plays increase the chance of chunk gains and faster scoring opportunities.",
+  "Points per Opportunity":"Finishing scoring opportunities efficiently can turn similar drive volume into a meaningful scoreboard edge.",
+  "Third Down Conversion":"A third-down edge can extend drives, increase possession volume and create additional scoring chances.",
+  "Red Zone TD Rate":"A red-zone touchdown edge can turn scoring opportunities into seven points instead of field-goal attempts."
+ }[t.metric]||"This efficiency gap could influence how consistently the offense moves and finishes drives.";
+ return `${team.name} ranks FBS #${offRank??"—"} in ${t.metric}, while ${opp.name} ranks FBS #${defRank??"—"} in the corresponding defensive metric. ${reason}`;
+}
+function factors(){const items=(selectedGame.trends||[]).slice(0,8).map(t=>{let title=t.metric||"Game context",detail=factorSentence(t);return `<li><span>${t.type==="matchup_edge"?"↗":"!"}</span><p><small>${esc((t.type||"CONTEXT").replaceAll("_"," "))}</small><b>${esc(title)}</b><span class="factor-detail">${esc(detail)}</span></p></li>`}).join("");return `<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>${items}</ul></section>`}
 function renderDetail(){
  const g=selectedGame,m=g.market||{},ml=(m.away_moneyline!=null||m.home_moneyline!=null)?`ML ${abbr(g.away)} ${m.away_moneyline??"—"} · ${abbr(g.home)} ${m.home_moneyline??"—"}`:"ML —",markets=[`Spread ${spreadLabel(g)}`,`Total ${m.total??"—"}`,ml,g.weather?.summary||"Weather unavailable"].map(x=>`<span class="pill">${esc(x)}</span>`).join("");
  $("#gameDetail").innerHTML=`<div class="matchup-title"><div><p class="eyebrow">${kickoff(g)}</p><div class="matchup-teams"><span>${teamLogo(g.away)}<b>${esc(g.away.name)}</b></span><i>at</i><span>${teamLogo(g.home)}<b>${esc(g.home.name)}</b></span></div></div><div class="market-strip">${markets}</div></div>
@@ -79,6 +101,19 @@ function renderDetail(){
  <section class="section">${factors()}</section>
  <section class="section"><div class="section-head section-head-solo"><div><p class="eyebrow">PLAYER OPPORTUNITY</p></div></div>${playerOpportunity()}</section>`}
 function selectGame(id){selectedGame=dashboard.games.find(g=>String(g.game_id)===String(id));document.querySelectorAll(".game-card").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===String(id))));$("#gameDetail").hidden=false;renderDetail()}
-function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});$("#games").innerHTML=dashboard.games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="false"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(g.away.name)}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(g.home.name)}</b></span></span><span class="markets"><span>${esc(spreadLabel(g))}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("");document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));$("#gameDetail").hidden=true}
+const dayKey=g=>{if(!g.kickoff)return"tbd";return new Intl.DateTimeFormat("en-US",{weekday:"long",timeZone:"America/New_York"}).format(new Date(g.kickoff))};
+function renderGameRail(){
+ const games=activeDay==="all"?dashboard.games:dashboard.games.filter(g=>dayKey(g)===activeDay);
+ $("#games").innerHTML=games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="${selectedGame&&String(selectedGame.game_id)===String(g.game_id)}"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(g.away.name)}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(g.home.name)}</b></span></span><span class="markets"><span>${esc(spreadLabel(g))}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("")||'<p class="empty game-rail-empty">No games scheduled for this day.</p>';
+ document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));
+ $("#games").scrollTo({left:0,behavior:"auto"});
+}
+function renderDayFilters(){
+ const days=[...new Set(dashboard.games.map(dayKey))];
+ $("#dayFilters").innerHTML=[["all","All"],...days.map(d=>[d,d.slice(0,3)])].map(([key,label])=>`<button type="button" class="day-filter${activeDay===key?" active":""}" data-day="${esc(key)}">${esc(label)}</button>`).join("");
+ document.querySelectorAll(".day-filter").forEach(b=>b.addEventListener("click",()=>{activeDay=b.dataset.day;renderDayFilters();renderGameRail()}));
+}
+function scrollGames(direction){const rail=$("#games");rail.scrollBy({left:direction*Math.max(280,rail.clientWidth*.72),behavior:"smooth"})}
+function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});renderDayFilters();renderGameRail();$("#gamesPrev").onclick=()=>scrollGames(-1);$("#gamesNext").onclick=()=>scrollGames(1);$("#gameDetail").hidden=true}
 document.addEventListener("click",e=>{const b=e.target.closest(".info");if(!b||!window.matchMedia("(max-width:760px)").matches)return;e.preventDefault();let d=document.querySelector(".definition-dialog");if(!d){d=document.createElement("dialog");d.className="definition-dialog";d.innerHTML='<div class="definition-dialog-head"><strong></strong><button type="button">✕</button></div><p></p>';d.querySelector("button").onclick=()=>d.close();document.body.appendChild(d)}d.querySelector("strong").textContent=b.getAttribute("aria-label")?.replace(/^About /,"")||"Definition";d.querySelector("p").textContent=b.dataset.tip||"";d.showModal()});
 fetch("data/dashboard.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Dashboard data unavailable");return r.json()}).then(x=>{dashboard=x;render()}).catch(e=>{$("#updated").textContent=e.message});

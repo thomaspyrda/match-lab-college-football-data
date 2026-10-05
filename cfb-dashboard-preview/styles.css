@@ -183,3 +183,22 @@ html,body{max-width:100%;overflow-x:hidden}
   .teams-entry-button{font-size:15px;padding:13px 22px;min-width:220px}
   .teams-entry-description{font-size:12px}
 }
+
+
+/* CFB matchup browser controls */
+.game-browser-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 22px 2px}
+.day-filters{display:flex;gap:7px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.day-filters::-webkit-scrollbar{display:none}
+.day-filter{flex:none;padding:8px 13px;border:1px solid #3b403b;border-radius:999px;background:#181b18;color:#b9c0ba;font:800 12px "DM Sans";cursor:pointer;transition:.18s ease}
+.day-filter:hover{border-color:#5a625a;color:#fff}
+.day-filter.active{border-color:rgba(0,255,65,.75);background:rgba(0,255,65,.11);color:#28ff59}
+.game-rail-arrows{display:flex;gap:7px;flex:none}
+.game-rail-arrows button{display:grid;place-items:center;width:38px;height:38px;border:1px solid #454b45;border-radius:9px;background:#1b1e1b;color:#f4f6f4;font:800 25px/1 "DM Sans";cursor:pointer}
+.game-rail-arrows button:hover{border-color:#00ff41;color:#00ff41}
+.game-rail-empty{padding:24px 0}
+.factor-detail{display:block;margin-top:4px;color:#d7ddd7;line-height:1.45}
+@media(max-width:760px){
+ .game-browser-controls{padding:11px 12px 0;gap:8px}
+ .day-filter{padding:7px 10px;font-size:11px}
+ .game-rail-arrows button{width:34px;height:34px;font-size:22px}
+}

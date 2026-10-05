@@ -2,7 +2,7 @@
   "slate": {
     "season": 2026,
     "week": 6,
-    "generated_at": "2026-10-05T17:40:17.283424+00:00",
+    "generated_at": "2026-10-05T18:00:52.991847+00:00",
     "model_version": "v15"
   },
   "games": [
@@ -39,7 +39,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -47,7 +48,8 @@
               "location": "A",
               "result": "L",
               "points": 8,
-              "allowed": 43
+              "allowed": 43,
+              "opponent_abbr": "AUB"
             },
             {
               "week": 3,
@@ -55,7 +57,8 @@
               "location": "H",
               "result": "L",
               "points": 20,
-              "allowed": 48
+              "allowed": 48,
+              "opponent_abbr": "CONN"
             },
             {
               "week": 4,
@@ -63,7 +66,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "TULN"
             }
           ]
         },
@@ -223,7 +227,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "SHSU"
             },
             {
               "week": 2,
@@ -231,7 +236,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -239,7 +245,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "MIZ"
             },
             {
               "week": 4,
@@ -247,7 +254,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "USU"
             }
           ]
         },
@@ -495,9 +503,9 @@
           "away_defense_rank": 110
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -823,7 +831,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "NDSU"
             },
             {
               "week": 1,
@@ -831,7 +840,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -839,7 +849,8 @@
               "location": "A",
               "result": "L",
               "points": 27,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": "OHIO"
             },
             {
               "week": 3,
@@ -847,7 +858,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "GASO"
             },
             {
               "week": 4,
@@ -855,7 +867,8 @@
               "location": "H",
               "result": "W",
               "points": 23,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "MTSU"
             }
           ]
         },
@@ -1015,7 +1028,8 @@
               "location": "H",
               "result": "W",
               "points": 47,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -1023,7 +1037,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "GAST"
             },
             {
               "week": 3,
@@ -1031,7 +1046,8 @@
               "location": "A",
               "result": "L",
               "points": 9,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "TENN"
             },
             {
               "week": 4,
@@ -1039,7 +1055,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ARST"
             }
           ]
         },
@@ -1287,9 +1304,9 @@
           "away_defense_rank": 118
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -1615,7 +1632,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "FSU"
             },
             {
               "week": 1,
@@ -1623,7 +1641,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -1631,7 +1650,8 @@
               "location": "A",
               "result": "L",
               "points": 19,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": "HAW"
             },
             {
               "week": 4,
@@ -1639,7 +1659,8 @@
               "location": "H",
               "result": "L",
               "points": 18,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "UNM"
             },
             {
               "week": 5,
@@ -1647,7 +1668,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "WKU"
             }
           ]
         },
@@ -1807,7 +1829,8 @@
               "location": "A",
               "result": "L",
               "points": 9,
-              "allowed": 19
+              "allowed": 19,
+              "opponent_abbr": "USF"
             },
             {
               "week": 2,
@@ -1815,7 +1838,8 @@
               "location": "H",
               "result": "W",
               "points": 33,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "BUF"
             },
             {
               "week": 3,
@@ -1823,7 +1847,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "FAU"
             },
             {
               "week": 4,
@@ -1831,7 +1856,8 @@
               "location": "H",
               "result": "W",
               "points": 20,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             }
           ]
         },
@@ -2079,9 +2105,9 @@
           "away_defense_rank": 103
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -2397,7 +2423,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 50
+              "allowed": 50,
+              "opponent_abbr": "TA&M"
             },
             {
               "week": 2,
@@ -2405,7 +2432,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -2413,7 +2441,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "MRSH"
             },
             {
               "week": 4,
@@ -2421,7 +2450,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "SMU"
             }
           ]
         },
@@ -2581,7 +2611,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "NEV"
             },
             {
               "week": 2,
@@ -2589,7 +2620,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 70
+              "allowed": 70,
+              "opponent_abbr": "UGA"
             },
             {
               "week": 3,
@@ -2597,7 +2629,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "IU"
             },
             {
               "week": 4,
@@ -2605,7 +2638,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -2613,7 +2647,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "NMSU"
             }
           ]
         },
@@ -2861,9 +2896,9 @@
           "away_defense_rank": 124
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -3189,7 +3224,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "TROY"
             },
             {
               "week": 2,
@@ -3197,7 +3233,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "TLSA"
             },
             {
               "week": 3,
@@ -3205,7 +3242,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -3213,7 +3251,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "TTU"
             }
           ]
         },
@@ -3373,7 +3412,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "JMU"
             },
             {
               "week": 2,
@@ -3381,7 +3421,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -3389,7 +3430,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 15
+              "allowed": 15,
+              "opponent_abbr": "BALL"
             },
             {
               "week": 4,
@@ -3397,7 +3439,8 @@
               "location": "A",
               "result": "W",
               "points": 34,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "CCU"
             },
             {
               "week": 5,
@@ -3405,7 +3448,8 @@
               "location": "A",
               "result": "W",
               "points": 30,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "DEL"
             }
           ]
         },
@@ -3653,9 +3697,9 @@
           "away_defense_rank": 13
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -3981,7 +4025,8 @@
               "location": "H",
               "result": "W",
               "points": 39,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -3989,7 +4034,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "TULN"
             },
             {
               "week": 3,
@@ -3997,7 +4043,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 36
+              "allowed": 36,
+              "opponent_abbr": "OHIO"
             },
             {
               "week": 4,
@@ -4005,7 +4052,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "UK"
             },
             {
               "week": 5,
@@ -4013,7 +4061,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "ULM"
             }
           ]
         },
@@ -4173,7 +4222,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "MEM"
             },
             {
               "week": 2,
@@ -4181,7 +4231,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -4189,7 +4240,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "TCU"
             },
             {
               "week": 4,
@@ -4197,7 +4249,8 @@
               "location": "H",
               "result": "W",
               "points": 17,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "KENN"
             },
             {
               "week": 5,
@@ -4205,7 +4258,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "UL"
             }
           ]
         },
@@ -4453,9 +4507,9 @@
           "away_defense_rank": 54
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -4776,7 +4830,8 @@
               "location": "H",
               "result": "W",
               "points": 19,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": "FIU"
             },
             {
               "week": 2,
@@ -4784,7 +4839,8 @@
               "location": "A",
               "result": "W",
               "points": 28,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "ARMY"
             },
             {
               "week": 3,
@@ -4792,7 +4848,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -4800,7 +4857,8 @@
               "location": "A",
               "result": "W",
               "points": 14,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "BGSU"
             },
             {
               "week": 5,
@@ -4808,7 +4866,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "TEM"
             }
           ]
         },
@@ -4968,7 +5027,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -4976,7 +5036,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "TXST"
             },
             {
               "week": 3,
@@ -4984,7 +5045,8 @@
               "location": "A",
               "result": "L",
               "points": 6,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "TEX"
             },
             {
               "week": 4,
@@ -4992,7 +5054,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "CSU"
             },
             {
               "week": 5,
@@ -5000,7 +5063,8 @@
               "location": "A",
               "result": "W",
               "points": 16,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "RICE"
             }
           ]
         },
@@ -5136,7 +5200,7 @@
       },
       "market": {
         "spread": -7.0,
-        "total": 52.5,
+        "total": 51.5,
         "home_moneyline": -260.0,
         "away_moneyline": 215.0,
         "provider": "Bovada"
@@ -5248,9 +5312,9 @@
           "away_defense_rank": 37
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -5571,7 +5635,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "NMSU"
             },
             {
               "week": 1,
@@ -5579,7 +5644,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "SMU"
             },
             {
               "week": 3,
@@ -5587,7 +5653,8 @@
               "location": "A",
               "result": "L",
               "points": 36,
-              "allowed": 50
+              "allowed": 50,
+              "opponent_abbr": "ALA"
             },
             {
               "week": 4,
@@ -5595,7 +5662,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -5603,7 +5671,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "UVA"
             }
           ]
         },
@@ -5763,7 +5832,8 @@
               "location": "A",
               "result": "L",
               "points": 38,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "MISS"
             },
             {
               "week": 2,
@@ -5771,7 +5841,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -5779,7 +5850,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "SMU"
             },
             {
               "week": 4,
@@ -5787,7 +5859,8 @@
               "location": "H",
               "result": "L",
               "points": 27,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "WAKE"
             },
             {
               "week": 5,
@@ -5795,7 +5868,8 @@
               "location": "A",
               "result": "L",
               "points": 28,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "NCSU"
             }
           ]
         },
@@ -6043,9 +6117,9 @@
           "away_defense_rank": 98
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -6366,7 +6440,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "CSU"
             },
             {
               "week": 2,
@@ -6374,7 +6449,8 @@
               "location": "H",
               "result": "W",
               "points": 21,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -6382,7 +6458,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "CMU"
             },
             {
               "week": 4,
@@ -6390,7 +6467,8 @@
               "location": "H",
               "result": "W",
               "points": 27,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "HAW"
             },
             {
               "week": 5,
@@ -6398,7 +6476,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "NDSU"
             }
           ]
         },
@@ -6558,7 +6637,8 @@
               "location": "A",
               "result": "L",
               "points": 26,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "USC"
             },
             {
               "week": 1,
@@ -6566,7 +6646,8 @@
               "location": "A",
               "result": "W",
               "points": 27,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "EMU"
             },
             {
               "week": 2,
@@ -6574,7 +6655,8 @@
               "location": "H",
               "result": "W",
               "points": 30,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -6582,7 +6664,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "FRES"
             },
             {
               "week": 5,
@@ -6590,7 +6673,8 @@
               "location": "A",
               "result": "W",
               "points": 20,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "HAW"
             }
           ]
         },
@@ -6838,9 +6922,9 @@
           "away_defense_rank": 95
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -7161,7 +7245,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "WASH"
             },
             {
               "week": 2,
@@ -7169,7 +7254,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "KSU"
             },
             {
               "week": 3,
@@ -7177,7 +7263,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -7185,7 +7272,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "ARIZ"
             },
             {
               "week": 5,
@@ -7193,7 +7281,8 @@
               "location": "H",
               "result": "L",
               "points": 6,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "FRES"
             }
           ]
         },
@@ -7353,7 +7442,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -7361,7 +7451,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "WASH"
             },
             {
               "week": 3,
@@ -7369,7 +7460,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "UTAH"
             },
             {
               "week": 4,
@@ -7377,7 +7469,8 @@
               "location": "H",
               "result": "W",
               "points": 21,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "TROY"
             },
             {
               "week": 5,
@@ -7385,7 +7478,8 @@
               "location": "A",
               "result": "L",
               "points": 18,
-              "allowed": 37
+              "allowed": 37,
+              "opponent_abbr": "BOIS"
             }
           ]
         },
@@ -7521,7 +7615,7 @@
       },
       "market": {
         "spread": -5.0,
-        "total": 43.5,
+        "total": 42.5,
         "home_moneyline": -180.0,
         "away_moneyline": 155.0,
         "provider": "Bovada"
@@ -7633,9 +7727,9 @@
           "away_defense_rank": 93
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -7961,7 +8055,8 @@
               "location": "H",
               "result": "W",
               "points": 40,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "NIU"
             },
             {
               "week": 2,
@@ -7969,7 +8064,8 @@
               "location": "H",
               "result": "W",
               "points": 16,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "ISU"
             },
             {
               "week": 3,
@@ -7977,7 +8073,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -7985,7 +8082,8 @@
               "location": "A",
               "result": "W",
               "points": 20,
-              "allowed": 19
+              "allowed": 19,
+              "opponent_abbr": "MICH"
             },
             {
               "week": 5,
@@ -7993,7 +8091,8 @@
               "location": "H",
               "result": "L",
               "points": 14,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "OSU"
             }
           ]
         },
@@ -8153,7 +8252,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "WSU"
             },
             {
               "week": 2,
@@ -8161,7 +8261,8 @@
               "location": "H",
               "result": "W",
               "points": 16,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "USU"
             },
             {
               "week": 3,
@@ -8169,7 +8270,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -8177,7 +8279,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "MINN"
             },
             {
               "week": 5,
@@ -8185,7 +8288,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 25
+              "allowed": 25,
+              "opponent_abbr": "USC"
             }
           ]
         },
@@ -8433,9 +8537,9 @@
           "away_defense_rank": 33
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -8762,7 +8866,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -8770,7 +8875,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "IOWA"
             },
             {
               "week": 3,
@@ -8778,7 +8884,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "BGSU"
             },
             {
               "week": 4,
@@ -8786,7 +8893,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "UTAH"
             },
             {
               "week": 5,
@@ -8794,7 +8902,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "WVU"
             }
           ]
         },
@@ -8954,7 +9063,8 @@
               "location": "H",
               "result": "W",
               "points": 63,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -8962,7 +9072,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ARIZ"
             },
             {
               "week": 3,
@@ -8970,7 +9081,8 @@
               "location": "A",
               "result": "W",
               "points": 41,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "CSU"
             },
             {
               "week": 5,
@@ -8978,7 +9090,8 @@
               "location": "A",
               "result": "W",
               "points": 17,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "TCU"
             }
           ]
         },
@@ -9226,9 +9339,9 @@
           "away_defense_rank": 24
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -9554,7 +9667,8 @@
               "location": "H",
               "result": "W",
               "points": 50,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "MOST"
             },
             {
               "week": 2,
@@ -9562,7 +9676,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ASU"
             },
             {
               "week": 3,
@@ -9570,7 +9685,8 @@
               "location": "H",
               "result": "L",
               "points": 21,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "UK"
             },
             {
               "week": 4,
@@ -9578,7 +9694,8 @@
               "location": "A",
               "result": "L",
               "points": 6,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "LSU"
             },
             {
               "week": 5,
@@ -9586,7 +9703,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "ARK"
             }
           ]
         },
@@ -9746,7 +9864,8 @@
               "location": "H",
               "result": "W",
               "points": 54,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -9754,7 +9873,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "KU"
             },
             {
               "week": 3,
@@ -9762,7 +9882,8 @@
               "location": "H",
               "result": "W",
               "points": 27,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "TROY"
             },
             {
               "week": 4,
@@ -9770,7 +9891,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "MSST"
             },
             {
               "week": 5,
@@ -9778,7 +9900,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "FLA"
             }
           ]
         },
@@ -10026,9 +10149,9 @@
           "away_defense_rank": 11
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -10349,7 +10472,8 @@
               "location": "H",
               "result": "W",
               "points": 73,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -10357,7 +10481,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 12
+              "allowed": 12,
+              "opponent_abbr": "PITT"
             },
             {
               "week": 3,
@@ -10365,7 +10490,8 @@
               "location": "H",
               "result": "W",
               "points": 44,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "GAST"
             },
             {
               "week": 4,
@@ -10373,7 +10499,8 @@
               "location": "H",
               "result": "W",
               "points": 21,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "TCU"
             },
             {
               "week": 5,
@@ -10381,7 +10508,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "HOU"
             }
           ]
         },
@@ -10541,7 +10669,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "TLSA"
             },
             {
               "week": 2,
@@ -10549,7 +10678,8 @@
               "location": "H",
               "result": "W",
               "points": 39,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "ORE"
             },
             {
               "week": 3,
@@ -10557,7 +10687,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -10565,7 +10696,8 @@
               "location": "A",
               "result": "W",
               "points": 41,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "WVU"
             }
           ]
         },
@@ -10813,9 +10945,9 @@
           "away_defense_rank": 74
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -11141,7 +11273,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "UNT"
             },
             {
               "week": 2,
@@ -11149,7 +11282,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -11157,7 +11291,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "WKU"
             },
             {
               "week": 4,
@@ -11165,7 +11300,8 @@
               "location": "H",
               "result": "W",
               "points": 29,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "NU"
             },
             {
               "week": 5,
@@ -11173,7 +11309,8 @@
               "location": "A",
               "result": "W",
               "points": 47,
-              "allowed": 15
+              "allowed": 15,
+              "opponent_abbr": "RUTG"
             }
           ]
         },
@@ -11333,7 +11470,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "OHIO"
             },
             {
               "week": 2,
@@ -11341,7 +11479,8 @@
               "location": "H",
               "result": "W",
               "points": 56,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "BGSU"
             },
             {
               "week": 3,
@@ -11349,7 +11488,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -11357,7 +11497,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "MSU"
             },
             {
               "week": 5,
@@ -11365,7 +11506,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "MD"
             }
           ]
         },
@@ -11613,9 +11755,9 @@
           "away_defense_rank": 14
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -11936,7 +12078,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -11944,7 +12087,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "BYU"
             },
             {
               "week": 3,
@@ -11952,7 +12096,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "NIU"
             },
             {
               "week": 4,
@@ -11960,7 +12105,8 @@
               "location": "A",
               "result": "W",
               "points": 34,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "WSU"
             },
             {
               "week": 5,
@@ -11968,7 +12114,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "CIN"
             }
           ]
         },
@@ -12128,7 +12275,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "CCU"
             },
             {
               "week": 2,
@@ -12136,7 +12284,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -12144,7 +12293,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "UVA"
             },
             {
               "week": 4,
@@ -12152,7 +12302,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "OKST"
             },
             {
               "week": 5,
@@ -12160,7 +12311,8 @@
               "location": "A",
               "result": "L",
               "points": 42,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "ISU"
             }
           ]
         },
@@ -12408,9 +12560,9 @@
           "away_defense_rank": 86
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -12736,7 +12888,8 @@
               "location": "A",
               "result": "W",
               "points": 15,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "TCU"
             },
             {
               "week": 2,
@@ -12744,7 +12897,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -12752,7 +12906,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "CLEM"
             },
             {
               "week": 5,
@@ -12760,7 +12915,8 @@
               "location": "H",
               "result": "L",
               "points": 26,
-              "allowed": 37
+              "allowed": 37,
+              "opponent_abbr": "ND"
             }
           ]
         },
@@ -12920,7 +13076,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "M-OH"
             },
             {
               "week": 2,
@@ -12928,7 +13085,8 @@
               "location": "H",
               "result": "W",
               "points": 12,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "UCF"
             },
             {
               "week": 3,
@@ -12936,7 +13094,8 @@
               "location": "H",
               "result": "W",
               "points": 27,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "SYR"
             },
             {
               "week": 4,
@@ -12944,7 +13103,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -12952,7 +13112,8 @@
               "location": "A",
               "result": "W",
               "points": 35,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "VT"
             }
           ]
         },
@@ -13200,9 +13361,9 @@
           "away_defense_rank": 109
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -13528,7 +13689,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "EMU"
             },
             {
               "week": 1,
@@ -13536,7 +13698,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -13544,7 +13707,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "FRES"
             },
             {
               "week": 3,
@@ -13552,7 +13716,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "NDSU"
             },
             {
               "week": 4,
@@ -13560,7 +13725,8 @@
               "location": "H",
               "result": "L",
               "points": 6,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "MASS"
             }
           ]
         },
@@ -13714,7 +13880,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -13722,7 +13889,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 56
+              "allowed": 56,
+              "opponent_abbr": "NEB"
             },
             {
               "week": 3,
@@ -13730,7 +13898,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 55
+              "allowed": 55,
+              "opponent_abbr": "ISU"
             },
             {
               "week": 4,
@@ -13738,7 +13907,8 @@
               "location": "H",
               "result": "L",
               "points": 6,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "USF"
             },
             {
               "week": 5,
@@ -13746,7 +13916,8 @@
               "location": "A",
               "result": "W",
               "points": 24,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "M-OH"
             }
           ]
         },
@@ -13994,9 +14165,9 @@
           "away_defense_rank": 39
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -14317,7 +14488,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "AKR"
             },
             {
               "week": 2,
@@ -14325,7 +14497,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 36
+              "allowed": 36,
+              "opponent_abbr": "PUR"
             },
             {
               "week": 3,
@@ -14333,7 +14506,8 @@
               "location": "H",
               "result": "L",
               "points": 20,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "MIA"
             },
             {
               "week": 4,
@@ -14341,7 +14515,8 @@
               "location": "A",
               "result": "W",
               "points": 30,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "LOU"
             },
             {
               "week": 5,
@@ -14349,7 +14524,8 @@
               "location": "H",
               "result": "W",
               "points": 57,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "STAN"
             }
           ]
         },
@@ -14509,7 +14685,8 @@
               "location": "A",
               "result": "L",
               "points": 8,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "UVA"
             },
             {
               "week": 2,
@@ -14517,7 +14694,8 @@
               "location": "H",
               "result": "W",
               "points": 73,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -14525,7 +14703,8 @@
               "location": "A",
               "result": "L",
               "points": 31,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "VAN"
             },
             {
               "week": 4,
@@ -14533,7 +14712,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "APP"
             },
             {
               "week": 5,
@@ -14541,7 +14721,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "LOU"
             }
           ]
         },
@@ -14789,9 +14970,9 @@
           "away_defense_rank": 113
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -15112,7 +15293,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "DUKE"
             },
             {
               "week": 2,
@@ -15120,7 +15302,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "USA"
             },
             {
               "week": 3,
@@ -15128,7 +15311,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "KSU"
             },
             {
               "week": 4,
@@ -15136,7 +15320,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "USM"
             }
           ]
         },
@@ -15296,7 +15481,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -15304,7 +15490,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "USF"
             },
             {
               "week": 4,
@@ -15312,7 +15499,8 @@
               "location": "A",
               "result": "W",
               "points": 21,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "TEM"
             },
             {
               "week": 5,
@@ -15320,7 +15508,8 @@
               "location": "A",
               "result": "L",
               "points": 29,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "LT"
             }
           ]
         },
@@ -15568,9 +15757,9 @@
           "away_defense_rank": 131
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -15891,7 +16080,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 56
+              "allowed": 56,
+              "opponent_abbr": "OSU"
             },
             {
               "week": 2,
@@ -15899,7 +16089,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -15907,7 +16098,8 @@
               "location": "A",
               "result": "L",
               "points": 15,
-              "allowed": 51
+              "allowed": 51,
+              "opponent_abbr": "LIB"
             },
             {
               "week": 4,
@@ -15915,7 +16107,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "KENT"
             },
             {
               "week": 5,
@@ -15923,7 +16116,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 39
+              "allowed": 39,
+              "opponent_abbr": "TOL"
             }
           ]
         },
@@ -16083,7 +16277,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 18
+              "allowed": 18,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -16091,7 +16286,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "COLO"
             },
             {
               "week": 4,
@@ -16099,7 +16295,8 @@
               "location": "A",
               "result": "L",
               "points": 23,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": "IU"
             },
             {
               "week": 5,
@@ -16107,7 +16304,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "PSU"
             }
           ]
         },
@@ -16355,9 +16553,9 @@
           "away_defense_rank": 126
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -16679,7 +16877,8 @@
               "location": "H",
               "result": "W",
               "points": 57,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "KENT"
             },
             {
               "week": 2,
@@ -16687,7 +16886,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -16695,7 +16895,8 @@
               "location": "H",
               "result": "L",
               "points": 34,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "MSST"
             },
             {
               "week": 4,
@@ -16703,7 +16904,8 @@
               "location": "A",
               "result": "L",
               "points": 18,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "ALA"
             },
             {
               "week": 5,
@@ -16711,7 +16913,8 @@
               "location": "H",
               "result": "L",
               "points": 34,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "UK"
             }
           ]
         },
@@ -16871,7 +17074,8 @@
               "location": "H",
               "result": "W",
               "points": 66,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "FAU"
             },
             {
               "week": 2,
@@ -16879,7 +17083,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -16887,7 +17092,8 @@
               "location": "A",
               "result": "W",
               "points": 44,
-              "allowed": 39
+              "allowed": 39,
+              "opponent_abbr": "AUB"
             },
             {
               "week": 4,
@@ -16895,7 +17101,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "MISS"
             },
             {
               "week": 5,
@@ -16903,7 +17110,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "MIZ"
             }
           ]
         },
@@ -17151,9 +17359,9 @@
           "away_defense_rank": 44
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -17480,7 +17688,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -17488,7 +17697,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 44
+              "allowed": 44,
+              "opponent_abbr": "VT"
             },
             {
               "week": 3,
@@ -17496,7 +17706,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ECU"
             },
             {
               "week": 4,
@@ -17504,7 +17715,8 @@
               "location": "H",
               "result": "L",
               "points": 20,
-              "allowed": 46
+              "allowed": 46,
+              "opponent_abbr": "JMU"
             },
             {
               "week": 5,
@@ -17512,7 +17724,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "GAST"
             }
           ]
         },
@@ -17672,7 +17885,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -17680,7 +17894,8 @@
               "location": "A",
               "result": "W",
               "points": 27,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "ECU"
             },
             {
               "week": 3,
@@ -17688,7 +17903,8 @@
               "location": "H",
               "result": "W",
               "points": 26,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "CLT"
             },
             {
               "week": 4,
@@ -17696,7 +17912,8 @@
               "location": "A",
               "result": "L",
               "points": 31,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "NCSU"
             }
           ]
         },
@@ -17944,9 +18161,9 @@
           "away_defense_rank": 69
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -18272,7 +18489,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 59
+              "allowed": 59,
+              "opponent_abbr": "PITT"
             },
             {
               "week": 2,
@@ -18280,7 +18498,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -18288,7 +18507,8 @@
               "location": "A",
               "result": "L",
               "points": 31,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "CIN"
             },
             {
               "week": 4,
@@ -18296,7 +18516,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "CONN"
             },
             {
               "week": 5,
@@ -18304,7 +18525,8 @@
               "location": "H",
               "result": "L",
               "points": 20,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "BGSU"
             }
           ]
         },
@@ -18464,7 +18686,8 @@
               "location": "A",
               "result": "W",
               "points": 37,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "RUTG"
             },
             {
               "week": 2,
@@ -18472,7 +18695,8 @@
               "location": "H",
               "result": "W",
               "points": 37,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -18480,7 +18704,8 @@
               "location": "H",
               "result": "W",
               "points": 36,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -18488,7 +18713,8 @@
               "location": "A",
               "result": "W",
               "points": 35,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "SAC"
             },
             {
               "week": 5,
@@ -18496,7 +18722,8 @@
               "location": "H",
               "result": "L",
               "points": 14,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "EMU"
             }
           ]
         },
@@ -18642,7 +18869,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 64\u00b0F \u00b7 Wind 10 mph \u00b7 Sunny \u00b7 0% precipitation"
+        "summary": "Outdoor \u00b7 63\u00b0F \u00b7 Wind 10 mph \u00b7 Sunny \u00b7 0% precipitation"
       },
       "matchup_metrics": [
         {
@@ -18744,9 +18971,9 @@
           "away_defense_rank": 127
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -19072,7 +19299,8 @@
               "location": "H",
               "result": "L",
               "points": 21,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "SJSU"
             },
             {
               "week": 2,
@@ -19080,7 +19308,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "MSU"
             },
             {
               "week": 3,
@@ -19088,7 +19317,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 54
+              "allowed": 54,
+              "opponent_abbr": "WIS"
             },
             {
               "week": 4,
@@ -19096,7 +19326,8 @@
               "location": "H",
               "result": "W",
               "points": 29,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -19104,7 +19335,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "MASS"
             }
           ]
         },
@@ -19264,7 +19496,8 @@
               "location": "A",
               "result": "L",
               "points": 16,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "WAKE"
             },
             {
               "week": 2,
@@ -19272,7 +19505,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -19280,7 +19514,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "MINN"
             },
             {
               "week": 4,
@@ -19288,7 +19523,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "UNLV"
             },
             {
               "week": 5,
@@ -19296,7 +19532,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "CMU"
             }
           ]
         },
@@ -19544,9 +19781,9 @@
           "away_defense_rank": 107
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -19867,7 +20104,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "LOU"
             },
             {
               "week": 2,
@@ -19875,7 +20113,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": "CLT"
             },
             {
               "week": 3,
@@ -19883,7 +20122,8 @@
               "location": "H",
               "result": "W",
               "points": 32,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "LSU"
             },
             {
               "week": 4,
@@ -19891,7 +20131,8 @@
               "location": "A",
               "result": "L",
               "points": 28,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "FLA"
             }
           ]
         },
@@ -20051,7 +20292,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -20059,7 +20301,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "DEL"
             },
             {
               "week": 3,
@@ -20067,7 +20310,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "NCSU"
             },
             {
               "week": 4,
@@ -20075,7 +20319,8 @@
               "location": "A",
               "result": "L",
               "points": 15,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "AUB"
             },
             {
               "week": 5,
@@ -20083,7 +20328,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "UGA"
             }
           ]
         },
@@ -20331,9 +20577,9 @@
           "away_defense_rank": 114
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -20660,7 +20906,8 @@
               "location": "H",
               "result": "L",
               "points": 41,
-              "allowed": 43
+              "allowed": 43,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -20668,7 +20915,8 @@
               "location": "A",
               "result": "L",
               "points": 9,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "MISS"
             },
             {
               "week": 3,
@@ -20676,7 +20924,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "APP"
             },
             {
               "week": 4,
@@ -20684,7 +20933,8 @@
               "location": "H",
               "result": "L",
               "points": 7,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "UL"
             },
             {
               "week": 5,
@@ -20692,7 +20942,8 @@
               "location": "H",
               "result": "L",
               "points": 8,
-              "allowed": 59
+              "allowed": 59,
+              "opponent_abbr": "MEM"
             }
           ]
         },
@@ -20852,7 +21103,8 @@
               "location": "A",
               "result": "L",
               "points": 16,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "IU"
             },
             {
               "week": 2,
@@ -20860,7 +21112,8 @@
               "location": "H",
               "result": "W",
               "points": 44,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "UNLV"
             },
             {
               "week": 3,
@@ -20868,7 +21121,8 @@
               "location": "A",
               "result": "L",
               "points": 35,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "TXST"
             },
             {
               "week": 4,
@@ -20876,7 +21130,8 @@
               "location": "H",
               "result": "W",
               "points": 63,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -20884,7 +21139,8 @@
               "location": "A",
               "result": "W",
               "points": 45,
-              "allowed": 44
+              "allowed": 44,
+              "opponent_abbr": "TLSA"
             }
           ]
         },
@@ -21019,7 +21275,7 @@
         "logo": "https://cdn.collegefootballdata.com/logos/500/249.png"
       },
       "market": {
-        "spread": -27.0,
+        "spread": -27.5,
         "total": 59.5,
         "home_moneyline": -5000.0,
         "away_moneyline": 1300.0,
@@ -21132,9 +21388,9 @@
           "away_defense_rank": 124
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -21460,7 +21716,8 @@
               "location": "H",
               "result": "W",
               "points": 33,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ORST"
             },
             {
               "week": 2,
@@ -21468,7 +21725,8 @@
               "location": "H",
               "result": "W",
               "points": 77,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -21476,7 +21734,8 @@
               "location": "A",
               "result": "L",
               "points": 26,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "TTU"
             },
             {
               "week": 4,
@@ -21484,7 +21743,8 @@
               "location": "A",
               "result": "W",
               "points": 42,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "GASO"
             },
             {
               "week": 5,
@@ -21492,7 +21752,8 @@
               "location": "H",
               "result": "W",
               "points": 27,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "UCF"
             }
           ]
         },
@@ -21652,7 +21913,8 @@
               "location": "H",
               "result": "W",
               "points": 71,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -21660,7 +21922,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "WSU"
             },
             {
               "week": 3,
@@ -21668,7 +21931,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "TULN"
             },
             {
               "week": 4,
@@ -21676,7 +21940,8 @@
               "location": "A",
               "result": "L",
               "points": 26,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "CIN"
             }
           ]
         },
@@ -21924,9 +22189,9 @@
           "away_defense_rank": 44
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -22252,7 +22517,8 @@
               "location": "H",
               "result": "W",
               "points": 73,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -22260,7 +22526,8 @@
               "location": "H",
               "result": "W",
               "points": 44,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "ODU"
             },
             {
               "week": 3,
@@ -22268,7 +22535,8 @@
               "location": "A",
               "result": "W",
               "points": 35,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "MD"
             },
             {
               "week": 4,
@@ -22276,7 +22544,8 @@
               "location": "A",
               "result": "W",
               "points": 21,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "BC"
             },
             {
               "week": 5,
@@ -22284,7 +22553,8 @@
               "location": "H",
               "result": "L",
               "points": 33,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "PITT"
             }
           ]
         },
@@ -22444,7 +22714,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "UCLA"
             },
             {
               "week": 2,
@@ -22452,7 +22723,8 @@
               "location": "A",
               "result": "W",
               "points": 21,
-              "allowed": 18
+              "allowed": 18,
+              "opponent_abbr": "SYR"
             },
             {
               "week": 3,
@@ -22460,7 +22732,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -22468,7 +22741,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "CLEM"
             },
             {
               "week": 5,
@@ -22476,7 +22750,8 @@
               "location": "A",
               "result": "L",
               "points": 31,
-              "allowed": 39
+              "allowed": 39,
+              "opponent_abbr": "UNLV"
             }
           ]
         },
@@ -22724,9 +22999,9 @@
           "away_defense_rank": 17
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -23052,7 +23327,8 @@
               "location": "H",
               "result": "W",
               "points": 17,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "TULN"
             },
             {
               "week": 2,
@@ -23060,7 +23336,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "ILL"
             },
             {
               "week": 3,
@@ -23068,7 +23345,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "STAN"
             },
             {
               "week": 4,
@@ -23076,7 +23354,8 @@
               "location": "H",
               "result": "W",
               "points": 62,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             }
           ]
         },
@@ -23236,7 +23515,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "COLO"
             },
             {
               "week": 2,
@@ -23244,7 +23524,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "TENN"
             },
             {
               "week": 3,
@@ -23252,7 +23533,8 @@
               "location": "H",
               "result": "W",
               "points": 44,
-              "allowed": 11
+              "allowed": 11,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -23260,7 +23542,8 @@
               "location": "A",
               "result": "L",
               "points": 27,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "STAN"
             }
           ]
         },
@@ -23508,9 +23791,9 @@
           "away_defense_rank": 8
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -23831,7 +24114,8 @@
               "location": "H",
               "result": "W",
               "points": 37,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "HAW"
             },
             {
               "week": 1,
@@ -23839,7 +24123,8 @@
               "location": "H",
               "result": "L",
               "points": 6,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "MIA"
             },
             {
               "week": 3,
@@ -23847,7 +24132,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "DUKE"
             },
             {
               "week": 4,
@@ -23855,7 +24141,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "GT"
             },
             {
               "week": 5,
@@ -23863,7 +24150,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 57
+              "allowed": 57,
+              "opponent_abbr": "WAKE"
             }
           ]
         },
@@ -24023,7 +24311,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "WIS"
             },
             {
               "week": 2,
@@ -24031,7 +24320,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "RICE"
             },
             {
               "week": 3,
@@ -24039,7 +24329,8 @@
               "location": "H",
               "result": "W",
               "points": 27,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "MSU"
             },
             {
               "week": 4,
@@ -24047,7 +24338,8 @@
               "location": "A",
               "result": "W",
               "points": 49,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "PUR"
             },
             {
               "week": 5,
@@ -24055,7 +24347,8 @@
               "location": "A",
               "result": "W",
               "points": 37,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "UNC"
             }
           ]
         },
@@ -24303,9 +24596,9 @@
           "away_defense_rank": 133
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -24632,7 +24925,8 @@
               "location": "A",
               "result": "W",
               "points": 45,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "CAL"
             },
             {
               "week": 2,
@@ -24640,7 +24934,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "SDSU"
             },
             {
               "week": 3,
@@ -24648,7 +24943,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "PUR"
             },
             {
               "week": 4,
@@ -24656,7 +24952,8 @@
               "location": "A",
               "result": "W",
               "points": 54,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "MD"
             }
           ]
         },
@@ -24816,7 +25113,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "BOIS"
             },
             {
               "week": 2,
@@ -24824,7 +25122,8 @@
               "location": "A",
               "result": "L",
               "points": 31,
-              "allowed": 39
+              "allowed": 39,
+              "opponent_abbr": "OKST"
             },
             {
               "week": 3,
@@ -24832,7 +25131,8 @@
               "location": "H",
               "result": "W",
               "points": 84,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -24840,7 +25140,8 @@
               "location": "A",
               "result": "W",
               "points": 41,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "USC"
             }
           ]
         },
@@ -25088,9 +25389,9 @@
           "away_defense_rank": 22
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -25406,7 +25707,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "OKST"
             },
             {
               "week": 2,
@@ -25414,7 +25716,8 @@
               "location": "A",
               "result": "W",
               "points": 23,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "SHSU"
             },
             {
               "week": 3,
@@ -25422,7 +25725,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -25430,7 +25734,8 @@
               "location": "A",
               "result": "L",
               "points": 6,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "ARK"
             },
             {
               "week": 5,
@@ -25438,7 +25743,8 @@
               "location": "H",
               "result": "L",
               "points": 44,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "UNT"
             }
           ]
         },
@@ -25598,7 +25904,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 15
+              "allowed": 15,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -25606,7 +25913,8 @@
               "location": "A",
               "result": "L",
               "points": 30,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "FAU"
             },
             {
               "week": 4,
@@ -25614,7 +25922,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "UAB"
             },
             {
               "week": 5,
@@ -25622,7 +25931,8 @@
               "location": "A",
               "result": "L",
               "points": 9,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "AF"
             }
           ]
         },
@@ -25870,9 +26180,9 @@
           "away_defense_rank": 70
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -26198,7 +26508,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "UAB"
             },
             {
               "week": 2,
@@ -26206,7 +26517,8 @@
               "location": "H",
               "result": "L",
               "points": 27,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "DUKE"
             },
             {
               "week": 3,
@@ -26214,7 +26526,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -26222,7 +26535,8 @@
               "location": "A",
               "result": "L",
               "points": 19,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "OSU"
             },
             {
               "week": 5,
@@ -26230,7 +26544,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "PUR"
             }
           ]
         },
@@ -26390,7 +26705,8 @@
               "location": "H",
               "result": "W",
               "points": 30,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "TOL"
             },
             {
               "week": 2,
@@ -26398,7 +26714,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "EMU"
             },
             {
               "week": 3,
@@ -26406,7 +26723,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "ND"
             },
             {
               "week": 4,
@@ -26414,7 +26732,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "NEB"
             },
             {
               "week": 5,
@@ -26422,7 +26741,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "WIS"
             }
           ]
         },
@@ -26670,9 +26990,9 @@
           "away_defense_rank": 106
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -26998,7 +27318,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "TXST"
             },
             {
               "week": 2,
@@ -27006,7 +27327,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "OSU"
             },
             {
               "week": 3,
@@ -27014,7 +27336,8 @@
               "location": "H",
               "result": "W",
               "points": 30,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "UTSA"
             },
             {
               "week": 4,
@@ -27022,7 +27345,8 @@
               "location": "A",
               "result": "W",
               "points": 20,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "TENN"
             }
           ]
         },
@@ -27182,7 +27506,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "UTEP"
             },
             {
               "week": 2,
@@ -27190,7 +27515,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "MICH"
             },
             {
               "week": 3,
@@ -27198,7 +27524,8 @@
               "location": "H",
               "result": "W",
               "points": 14,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "UNM"
             },
             {
               "week": 4,
@@ -27206,7 +27533,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "UGA"
             }
           ]
         },
@@ -27454,9 +27782,9 @@
           "away_defense_rank": 48
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -27782,7 +28110,8 @@
               "location": "H",
               "result": "W",
               "points": 21,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -27790,7 +28119,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "FIU"
             },
             {
               "week": 3,
@@ -27798,7 +28128,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 55
+              "allowed": 55,
+              "opponent_abbr": "PSU"
             },
             {
               "week": 4,
@@ -27806,7 +28137,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -27814,7 +28146,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "WMU"
             }
           ]
         },
@@ -27974,7 +28307,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "MSU"
             },
             {
               "week": 2,
@@ -27982,7 +28316,8 @@
               "location": "H",
               "result": "W",
               "points": 63,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -27990,7 +28325,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 48
+              "allowed": 48,
+              "opponent_abbr": "TEM"
             },
             {
               "week": 4,
@@ -27998,7 +28334,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "SDSU"
             },
             {
               "week": 5,
@@ -28006,7 +28343,8 @@
               "location": "A",
               "result": "W",
               "points": 39,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "BALL"
             }
           ]
         },
@@ -28254,9 +28592,9 @@
           "away_defense_rank": 57
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -28582,7 +28920,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "UNM"
             },
             {
               "week": 2,
@@ -28590,7 +28929,8 @@
               "location": "H",
               "result": "W",
               "points": 13,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -28598,7 +28938,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "WYO"
             },
             {
               "week": 4,
@@ -28606,7 +28947,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "MIA"
             },
             {
               "week": 5,
@@ -28614,7 +28956,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "AKR"
             }
           ]
         },
@@ -28774,7 +29117,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "NEB"
             },
             {
               "week": 2,
@@ -28782,7 +29126,8 @@
               "location": "H",
               "result": "W",
               "points": 29,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "JXST"
             },
             {
               "week": 3,
@@ -28790,7 +29135,8 @@
               "location": "A",
               "result": "L",
               "points": 36,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "USA"
             },
             {
               "week": 4,
@@ -28798,7 +29144,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -28806,7 +29153,8 @@
               "location": "A",
               "result": "W",
               "points": 13,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "KENT"
             }
           ]
         },
@@ -29054,9 +29402,9 @@
           "away_defense_rank": 130
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -29372,7 +29720,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 57
+              "allowed": 57,
+              "opponent_abbr": "SC"
             },
             {
               "week": 2,
@@ -29380,7 +29729,8 @@
               "location": "H",
               "result": "W",
               "points": 36,
-              "allowed": 15
+              "allowed": 15,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -29388,7 +29738,8 @@
               "location": "A",
               "result": "L",
               "points": 3,
-              "allowed": 59
+              "allowed": 59,
+              "opponent_abbr": "OSU"
             },
             {
               "week": 4,
@@ -29396,7 +29747,8 @@
               "location": "H",
               "result": "W",
               "points": 26,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "BALL"
             },
             {
               "week": 5,
@@ -29404,7 +29756,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "OHIO"
             }
           ]
         },
@@ -29564,7 +29917,8 @@
               "location": "A",
               "result": "L",
               "points": 12,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "MICH"
             },
             {
               "week": 2,
@@ -29572,7 +29926,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -29580,7 +29935,8 @@
               "location": "A",
               "result": "W",
               "points": 28,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "RICE"
             },
             {
               "week": 4,
@@ -29588,7 +29944,8 @@
               "location": "H",
               "result": "L",
               "points": 7,
-              "allowed": 32
+              "allowed": 32,
+              "opponent_abbr": "BOIS"
             },
             {
               "week": 5,
@@ -29596,7 +29953,8 @@
               "location": "A",
               "result": "W",
               "points": 20,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "BUF"
             }
           ]
         },
@@ -29844,9 +30202,9 @@
           "away_defense_rank": 36
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -30172,7 +30530,8 @@
               "location": "H",
               "result": "W",
               "points": 56,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -30180,7 +30539,8 @@
               "location": "H",
               "result": "L",
               "points": 14,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "MD"
             },
             {
               "week": 3,
@@ -30188,7 +30548,8 @@
               "location": "A",
               "result": "W",
               "points": 48,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "USM"
             },
             {
               "week": 4,
@@ -30196,7 +30557,8 @@
               "location": "A",
               "result": "L",
               "points": 21,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "M-OH"
             },
             {
               "week": 5,
@@ -30204,7 +30566,8 @@
               "location": "H",
               "result": "L",
               "points": 41,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "SYR"
             }
           ]
         },
@@ -30364,7 +30727,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -30372,7 +30736,8 @@
               "location": "H",
               "result": "L",
               "points": 9,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "PSU"
             },
             {
               "week": 3,
@@ -30380,7 +30745,8 @@
               "location": "A",
               "result": "L",
               "points": 48,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "TOL"
             },
             {
               "week": 4,
@@ -30388,7 +30754,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "ARMY"
             },
             {
               "week": 5,
@@ -30396,7 +30763,8 @@
               "location": "A",
               "result": "W",
               "points": 17,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "USF"
             }
           ]
         },
@@ -30644,9 +31012,9 @@
           "away_defense_rank": 112
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -30963,7 +31331,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -30971,7 +31340,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "ND"
             },
             {
               "week": 3,
@@ -30979,7 +31349,8 @@
               "location": "H",
               "result": "L",
               "points": 21,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "WMU"
             },
             {
               "week": 4,
@@ -30987,7 +31358,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "FRES"
             },
             {
               "week": 5,
@@ -30995,7 +31367,8 @@
               "location": "H",
               "result": "L",
               "points": 14,
-              "allowed": 16
+              "allowed": 16,
+              "opponent_abbr": "UTSA"
             }
           ]
         },
@@ -31155,7 +31528,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 48
+              "allowed": 48,
+              "opponent_abbr": "ALA"
             },
             {
               "week": 2,
@@ -31163,7 +31537,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "APP"
             },
             {
               "week": 3,
@@ -31171,7 +31546,8 @@
               "location": "A",
               "result": "W",
               "points": 20,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ODU"
             },
             {
               "week": 4,
@@ -31179,7 +31555,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": null
             }
           ]
         },
@@ -31325,7 +31702,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 77\u00b0F \u00b7 Wind 10 mph \u00b7 Partly Sunny \u00b7 10% precipitation"
+        "summary": "Outdoor \u00b7 74\u00b0F \u00b7 Wind 10 mph \u00b7 Partly Sunny \u00b7 12% precipitation"
       },
       "matchup_metrics": [
         {
@@ -31427,9 +31804,9 @@
           "away_defense_rank": 116
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -31755,7 +32132,8 @@
               "location": "H",
               "result": "W",
               "points": 56,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -31763,7 +32141,8 @@
               "location": "A",
               "result": "W",
               "points": 45,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "GT"
             },
             {
               "week": 3,
@@ -31771,7 +32150,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": "KENN"
             },
             {
               "week": 4,
@@ -31779,7 +32159,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "TEX"
             },
             {
               "week": 5,
@@ -31787,7 +32168,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "AUB"
             }
           ]
         },
@@ -31947,7 +32329,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -31955,7 +32338,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 43
+              "allowed": 43,
+              "opponent_abbr": "UTAH"
             },
             {
               "week": 3,
@@ -31963,7 +32347,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "UGA"
             },
             {
               "week": 4,
@@ -31971,7 +32356,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "TLSA"
             },
             {
               "week": 5,
@@ -31979,7 +32365,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "TA&M"
             }
           ]
         },
@@ -32227,9 +32614,9 @@
           "away_defense_rank": 58
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -32555,7 +32942,8 @@
               "location": "H",
               "result": "W",
               "points": 62,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -32563,7 +32951,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "CONN"
             },
             {
               "week": 3,
@@ -32571,7 +32960,8 @@
               "location": "H",
               "result": "L",
               "points": 26,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "VT"
             },
             {
               "week": 4,
@@ -32579,7 +32969,8 @@
               "location": "H",
               "result": "L",
               "points": 3,
-              "allowed": 54
+              "allowed": 54,
+              "opponent_abbr": "UCLA"
             },
             {
               "week": 5,
@@ -32587,7 +32978,8 @@
               "location": "A",
               "result": "L",
               "points": 23,
-              "allowed": 48
+              "allowed": 48,
+              "opponent_abbr": "NEB"
             }
           ]
         },
@@ -32747,7 +33139,8 @@
               "location": "H",
               "result": "W",
               "points": 56,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "BALL"
             },
             {
               "week": 2,
@@ -32755,7 +33148,8 @@
               "location": "A",
               "result": "L",
               "points": 23,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "TEX"
             },
             {
               "week": 3,
@@ -32763,7 +33157,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "KENT"
             },
             {
               "week": 4,
@@ -32771,7 +33166,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 19
+              "allowed": 19,
+              "opponent_abbr": "ILL"
             },
             {
               "week": 5,
@@ -32779,7 +33175,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "IOWA"
             }
           ]
         },
@@ -33027,9 +33424,9 @@
           "away_defense_rank": 82
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -33355,7 +33752,8 @@
               "location": "H",
               "result": "W",
               "points": 53,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -33363,7 +33761,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": "UCLA"
             },
             {
               "week": 3,
@@ -33371,7 +33770,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "JMU"
             },
             {
               "week": 4,
@@ -33379,7 +33779,8 @@
               "location": "A",
               "result": "L",
               "points": 16,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "TOL"
             },
             {
               "week": 5,
@@ -33387,7 +33788,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": "TXST"
             }
           ]
         },
@@ -33547,7 +33949,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "HOU"
             },
             {
               "week": 2,
@@ -33555,7 +33958,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "TTU"
             },
             {
               "week": 3,
@@ -33563,7 +33967,8 @@
               "location": "H",
               "result": "W",
               "points": 52,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -33571,7 +33976,8 @@
               "location": "A",
               "result": "W",
               "points": 33,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "UTEP"
             },
             {
               "week": 5,
@@ -33579,7 +33985,8 @@
               "location": "A",
               "result": "W",
               "points": 56,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "CSU"
             }
           ]
         },
@@ -33827,9 +34234,9 @@
           "away_defense_rank": 94
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -34150,7 +34557,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "WVU"
             },
             {
               "week": 2,
@@ -34158,7 +34566,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -34166,7 +34575,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 22
+              "allowed": 22,
+              "opponent_abbr": "DEL"
             },
             {
               "week": 4,
@@ -34174,7 +34584,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "LIB"
             },
             {
               "week": 5,
@@ -34182,7 +34593,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "GASO"
             }
           ]
         },
@@ -34342,7 +34754,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "PSU"
             },
             {
               "week": 2,
@@ -34350,7 +34763,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 26
+              "allowed": 26,
+              "opponent_abbr": "MTSU"
             },
             {
               "week": 3,
@@ -34358,7 +34772,8 @@
               "location": "A",
               "result": "W",
               "points": 30,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "MOST"
             },
             {
               "week": 4,
@@ -34366,7 +34781,8 @@
               "location": "H",
               "result": "W",
               "points": 36,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -34374,7 +34790,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "JMU"
             }
           ]
         },
@@ -34622,9 +35039,9 @@
           "away_defense_rank": 79
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -34950,7 +35367,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "WKU"
             },
             {
               "week": 2,
@@ -34958,7 +35376,8 @@
               "location": "H",
               "result": "L",
               "points": 7,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -34966,7 +35385,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "MTSU"
             },
             {
               "week": 4,
@@ -34974,7 +35394,8 @@
               "location": "H",
               "result": "L",
               "points": 33,
-              "allowed": 36
+              "allowed": 36,
+              "opponent_abbr": "AF"
             }
           ]
         },
@@ -35134,7 +35555,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 51
+              "allowed": 51,
+              "opponent_abbr": "OU"
             },
             {
               "week": 2,
@@ -35142,7 +35564,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -35150,7 +35573,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "MICH"
             },
             {
               "week": 4,
@@ -35158,7 +35582,8 @@
               "location": "H",
               "result": "L",
               "points": 7,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "ORST"
             },
             {
               "week": 5,
@@ -35166,7 +35591,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 61
+              "allowed": 61,
+              "opponent_abbr": "UNM"
             }
           ]
         },
@@ -35414,9 +35840,9 @@
           "away_defense_rank": 66
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -35742,7 +36168,8 @@
               "location": "H",
               "result": "W",
               "points": 33,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "JXST"
             },
             {
               "week": 1,
@@ -35750,7 +36177,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -35758,7 +36186,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 32
+              "allowed": 32,
+              "opponent_abbr": "AF"
             },
             {
               "week": 3,
@@ -35766,7 +36195,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "SAC"
             },
             {
               "week": 5,
@@ -35774,7 +36204,8 @@
               "location": "H",
               "result": "W",
               "points": 28,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "WYO"
             }
           ]
         },
@@ -35928,7 +36359,8 @@
               "location": "H",
               "result": "L",
               "points": 21,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "MEM"
             },
             {
               "week": 1,
@@ -35936,7 +36368,8 @@
               "location": "A",
               "result": "W",
               "points": 21,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "HAW"
             },
             {
               "week": 2,
@@ -35944,7 +36377,8 @@
               "location": "A",
               "result": "L",
               "points": 6,
-              "allowed": 44
+              "allowed": 44,
+              "opponent_abbr": "UNT"
             },
             {
               "week": 4,
@@ -35952,7 +36386,8 @@
               "location": "A",
               "result": "W",
               "points": 38,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "AKR"
             },
             {
               "week": 5,
@@ -35960,7 +36395,8 @@
               "location": "H",
               "result": "W",
               "points": 39,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "CAL"
             }
           ]
         },
@@ -36208,9 +36644,9 @@
           "away_defense_rank": 50
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -36526,7 +36962,8 @@
               "location": "A",
               "result": "L",
               "points": 23,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "ILL"
             },
             {
               "week": 2,
@@ -36534,7 +36971,8 @@
               "location": "H",
               "result": "W",
               "points": 26,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ULM"
             },
             {
               "week": 3,
@@ -36542,7 +36980,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "UL"
             },
             {
               "week": 4,
@@ -36550,7 +36989,8 @@
               "location": "H",
               "result": "W",
               "points": 24,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "NAVY"
             },
             {
               "week": 5,
@@ -36558,7 +36998,8 @@
               "location": "H",
               "result": "W",
               "points": 33,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             }
           ]
         },
@@ -36718,7 +37159,8 @@
               "location": "A",
               "result": "W",
               "points": 27,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "UNLV"
             },
             {
               "week": 1,
@@ -36726,7 +37168,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "ARST"
             },
             {
               "week": 2,
@@ -36734,7 +37177,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "BOIS"
             },
             {
               "week": 3,
@@ -36742,7 +37186,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": null
             },
             {
               "week": 5,
@@ -36750,7 +37195,8 @@
               "location": "A",
               "result": "W",
               "points": 59,
-              "allowed": 8
+              "allowed": 8,
+              "opponent_abbr": "CLT"
             }
           ]
         },
@@ -36998,9 +37444,9 @@
           "away_defense_rank": 68
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -37321,7 +37767,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "CLEM"
             },
             {
               "week": 2,
@@ -37329,7 +37776,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "LT"
             },
             {
               "week": 3,
@@ -37337,7 +37785,8 @@
               "location": "A",
               "result": "L",
               "points": 24,
-              "allowed": 32
+              "allowed": 32,
+              "opponent_abbr": "MISS"
             },
             {
               "week": 4,
@@ -37345,7 +37794,8 @@
               "location": "H",
               "result": "W",
               "points": 35,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "TA&M"
             },
             {
               "week": 5,
@@ -37353,7 +37803,8 @@
               "location": "H",
               "result": "W",
               "points": 63,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             }
           ]
         },
@@ -37513,7 +37964,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -37521,7 +37973,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "ALA"
             },
             {
               "week": 3,
@@ -37529,7 +37982,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "TA&M"
             },
             {
               "week": 4,
@@ -37537,7 +37991,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "USA"
             },
             {
               "week": 5,
@@ -37545,7 +38000,8 @@
               "location": "A",
               "result": "W",
               "points": 35,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "SC"
             }
           ]
         },
@@ -37680,7 +38136,7 @@
         "logo": "https://cdn.collegefootballdata.com/logos/500/96.png"
       },
       "market": {
-        "spread": 10.0,
+        "spread": 9.5,
         "total": 54.5,
         "home_moneyline": 295.0,
         "away_moneyline": -390.0,
@@ -37793,9 +38249,9 @@
           "away_defense_rank": 9
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -38121,7 +38577,8 @@
               "location": "H",
               "result": "W",
               "points": 63,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -38129,7 +38586,8 @@
               "location": "H",
               "result": "W",
               "points": 70,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "WKU"
             },
             {
               "week": 3,
@@ -38137,7 +38595,8 @@
               "location": "A",
               "result": "W",
               "points": 45,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ARK"
             },
             {
               "week": 4,
@@ -38145,7 +38604,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "OU"
             },
             {
               "week": 5,
@@ -38153,7 +38613,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "VAN"
             }
           ]
         },
@@ -38313,7 +38774,8 @@
               "location": "H",
               "result": "W",
               "points": 48,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "ECU"
             },
             {
               "week": 2,
@@ -38321,7 +38783,8 @@
               "location": "A",
               "result": "W",
               "points": 45,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "UK"
             },
             {
               "week": 3,
@@ -38329,7 +38792,8 @@
               "location": "H",
               "result": "W",
               "points": 50,
-              "allowed": 36
+              "allowed": 36,
+              "opponent_abbr": "FSU"
             },
             {
               "week": 4,
@@ -38337,7 +38801,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 18
+              "allowed": 18,
+              "opponent_abbr": "SC"
             },
             {
               "week": 5,
@@ -38345,7 +38810,8 @@
               "location": "A",
               "result": "W",
               "points": 56,
-              "allowed": 23
+              "allowed": 23,
+              "opponent_abbr": "MSST"
             }
           ]
         },
@@ -38593,9 +39059,9 @@
           "away_defense_rank": 43
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -38911,7 +39377,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -38919,7 +39386,8 @@
               "location": "H",
               "result": "L",
               "points": 32,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "NDSU"
             },
             {
               "week": 4,
@@ -38927,7 +39395,8 @@
               "location": "A",
               "result": "W",
               "points": 36,
-              "allowed": 33
+              "allowed": 33,
+              "opponent_abbr": "NEV"
             },
             {
               "week": 5,
@@ -38935,7 +39404,8 @@
               "location": "H",
               "result": "W",
               "points": 14,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": "NAVY"
             }
           ]
         },
@@ -39095,7 +39565,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 40
+              "allowed": 40,
+              "opponent_abbr": "IOWA"
             },
             {
               "week": 2,
@@ -39103,7 +39574,8 @@
               "location": "H",
               "result": "L",
               "points": 24,
-              "allowed": 28
+              "allowed": 28,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -39111,7 +39583,8 @@
               "location": "A",
               "result": "L",
               "points": 17,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "ARIZ"
             },
             {
               "week": 4,
@@ -39119,7 +39592,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "GAST"
             }
           ]
         },
@@ -39367,9 +39841,9 @@
           "away_defense_rank": 12
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -39695,7 +40169,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -39703,7 +40178,8 @@
               "location": "A",
               "result": "L",
               "points": 30,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "USC"
             },
             {
               "week": 3,
@@ -39711,7 +40187,8 @@
               "location": "H",
               "result": "W",
               "points": 21,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "UAB"
             },
             {
               "week": 4,
@@ -39719,7 +40196,8 @@
               "location": "A",
               "result": "W",
               "points": 34,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "CLT"
             },
             {
               "week": 5,
@@ -39727,7 +40205,8 @@
               "location": "H",
               "result": "W",
               "points": 23,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ARST"
             }
           ]
         },
@@ -39887,7 +40366,8 @@
               "location": "H",
               "result": "W",
               "points": 80,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -39895,7 +40375,8 @@
               "location": "A",
               "result": "L",
               "points": 14,
-              "allowed": 45
+              "allowed": 45,
+              "opponent_abbr": "LSU"
             },
             {
               "week": 3,
@@ -39903,7 +40384,8 @@
               "location": "A",
               "result": "L",
               "points": 19,
-              "allowed": 36
+              "allowed": 36,
+              "opponent_abbr": "BAY"
             },
             {
               "week": 5,
@@ -39911,7 +40393,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 29
+              "allowed": 29,
+              "opponent_abbr": "ARMY"
             }
           ]
         },
@@ -40047,7 +40530,7 @@
       },
       "market": {
         "spread": -3.0,
-        "total": 48.5,
+        "total": 48.0,
         "home_moneyline": -140.0,
         "away_moneyline": 120.0,
         "provider": "Bovada"
@@ -40159,9 +40642,9 @@
           "away_defense_rank": 104
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -40482,7 +40965,8 @@
               "location": "H",
               "result": "W",
               "points": 39,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "FRES"
             },
             {
               "week": 2,
@@ -40490,7 +40974,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 30
+              "allowed": 30,
+              "opponent_abbr": "UL"
             },
             {
               "week": 3,
@@ -40498,7 +40983,8 @@
               "location": "A",
               "result": "W",
               "points": 42,
-              "allowed": 35
+              "allowed": 35,
+              "opponent_abbr": "RUTG"
             },
             {
               "week": 4,
@@ -40506,7 +40992,8 @@
               "location": "H",
               "result": "L",
               "points": 27,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "ORE"
             },
             {
               "week": 5,
@@ -40514,7 +41001,8 @@
               "location": "H",
               "result": "W",
               "points": 25,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "WASH"
             }
           ]
         },
@@ -40674,7 +41162,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "MRSH"
             },
             {
               "week": 2,
@@ -40682,7 +41171,8 @@
               "location": "A",
               "result": "W",
               "points": 27,
-              "allowed": 9
+              "allowed": 9,
+              "opponent_abbr": "TEM"
             },
             {
               "week": 3,
@@ -40690,7 +41180,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "BUF"
             },
             {
               "week": 4,
@@ -40698,7 +41189,8 @@
               "location": "H",
               "result": "L",
               "points": 20,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "WIS"
             },
             {
               "week": 5,
@@ -40706,7 +41198,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "NU"
             }
           ]
         },
@@ -40954,9 +41447,9 @@
           "away_defense_rank": 49
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -41282,7 +41775,8 @@
               "location": "H",
               "result": "W",
               "points": 66,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -41290,7 +41784,8 @@
               "location": "H",
               "result": "L",
               "points": 18,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "CAL"
             },
             {
               "week": 3,
@@ -41298,7 +41793,8 @@
               "location": "A",
               "result": "L",
               "points": 13,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "PITT"
             },
             {
               "week": 5,
@@ -41306,7 +41802,8 @@
               "location": "A",
               "result": "W",
               "points": 42,
-              "allowed": 41
+              "allowed": 41,
+              "opponent_abbr": "CONN"
             }
           ]
         },
@@ -41466,7 +41963,8 @@
               "location": "H",
               "result": "W",
               "points": 34,
-              "allowed": 8
+              "allowed": 8,
+              "opponent_abbr": "NCSU"
             },
             {
               "week": 2,
@@ -41474,7 +41972,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -41482,7 +41981,8 @@
               "location": "H",
               "result": "L",
               "points": 27,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "WVU"
             },
             {
               "week": 4,
@@ -41490,7 +41990,8 @@
               "location": "H",
               "result": "W",
               "points": 42,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "DEL"
             },
             {
               "week": 5,
@@ -41498,7 +41999,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "FSU"
             }
           ]
         },
@@ -41746,9 +42248,9 @@
           "away_defense_rank": 47
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -42074,7 +42576,8 @@
               "location": "H",
               "result": "W",
               "points": 20,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "LIB"
             },
             {
               "week": 2,
@@ -42082,7 +42585,8 @@
               "location": "H",
               "result": "W",
               "points": 87,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": null
             },
             {
               "week": 3,
@@ -42090,7 +42594,8 @@
               "location": "A",
               "result": "W",
               "points": 26,
-              "allowed": 13
+              "allowed": 13,
+              "opponent_abbr": "SDSU"
             },
             {
               "week": 4,
@@ -42098,7 +42603,8 @@
               "location": "A",
               "result": "W",
               "points": 46,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "ODU"
             },
             {
               "week": 5,
@@ -42106,7 +42612,8 @@
               "location": "H",
               "result": "W",
               "points": 45,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "MRSH"
             }
           ]
         },
@@ -42266,7 +42773,8 @@
               "location": "H",
               "result": "W",
               "points": 31,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -42274,7 +42782,8 @@
               "location": "A",
               "result": "L",
               "points": 7,
-              "allowed": 22
+              "allowed": 22,
+              "opponent_abbr": "CLEM"
             },
             {
               "week": 3,
@@ -42282,7 +42791,8 @@
               "location": "A",
               "result": "L",
               "points": 27,
-              "allowed": 31
+              "allowed": 31,
+              "opponent_abbr": "JXST"
             },
             {
               "week": 4,
@@ -42290,7 +42800,8 @@
               "location": "H",
               "result": "L",
               "points": 28,
-              "allowed": 42
+              "allowed": 42,
+              "opponent_abbr": "HOU"
             },
             {
               "week": 5,
@@ -42298,7 +42809,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "CCU"
             }
           ]
         },
@@ -42546,9 +43058,9 @@
           "away_defense_rank": 79
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -42869,7 +43381,8 @@
               "location": "H",
               "result": "W",
               "points": 59,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -42877,7 +43390,8 @@
               "location": "H",
               "result": "L",
               "points": 13,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "MSST"
             },
             {
               "week": 3,
@@ -42885,7 +43399,8 @@
               "location": "H",
               "result": "W",
               "points": 41,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "AKR"
             },
             {
               "week": 4,
@@ -42893,7 +43408,8 @@
               "location": "A",
               "result": "W",
               "points": 27,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "WASH"
             },
             {
               "week": 5,
@@ -42901,7 +43417,8 @@
               "location": "H",
               "result": "W",
               "points": 20,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": "MICH"
             }
           ]
         },
@@ -43061,7 +43578,8 @@
               "location": "H",
               "result": "W",
               "points": 44,
-              "allowed": 19
+              "allowed": 19,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -43069,7 +43587,8 @@
               "location": "H",
               "result": "L",
               "points": 36,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "WAKE"
             },
             {
               "week": 3,
@@ -43077,7 +43596,8 @@
               "location": "A",
               "result": "L",
               "points": 38,
-              "allowed": 52
+              "allowed": 52,
+              "opponent_abbr": "UCLA"
             },
             {
               "week": 4,
@@ -43085,7 +43605,8 @@
               "location": "H",
               "result": "L",
               "points": 10,
-              "allowed": 49
+              "allowed": 49,
+              "opponent_abbr": "ND"
             },
             {
               "week": 5,
@@ -43093,7 +43614,8 @@
               "location": "A",
               "result": "W",
               "points": 24,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ILL"
             }
           ]
         },
@@ -43341,9 +43863,9 @@
           "away_defense_rank": 19
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -43664,7 +44186,8 @@
               "location": "A",
               "result": "L",
               "points": 27,
-              "allowed": 37
+              "allowed": 37,
+              "opponent_abbr": "STAN"
             },
             {
               "week": 1,
@@ -43672,7 +44195,8 @@
               "location": "H",
               "result": "L",
               "points": 6,
-              "allowed": 21
+              "allowed": 21,
+              "opponent_abbr": "UNLV"
             },
             {
               "week": 2,
@@ -43680,7 +44204,8 @@
               "location": "H",
               "result": "W",
               "points": 29,
-              "allowed": 19
+              "allowed": 19,
+              "opponent_abbr": "NMSU"
             },
             {
               "week": 4,
@@ -43688,7 +44213,8 @@
               "location": "A",
               "result": "L",
               "points": 10,
-              "allowed": 27
+              "allowed": 27,
+              "opponent_abbr": "WYO"
             },
             {
               "week": 5,
@@ -43696,7 +44222,8 @@
               "location": "H",
               "result": "L",
               "points": 16,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "SJSU"
             }
           ]
         },
@@ -43856,7 +44383,8 @@
               "location": "H",
               "result": "W",
               "points": 70,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -43864,7 +44392,8 @@
               "location": "A",
               "result": "L",
               "points": 20,
-              "allowed": 48
+              "allowed": 48,
+              "opponent_abbr": "TA&M"
             },
             {
               "week": 3,
@@ -43872,7 +44401,8 @@
               "location": "A",
               "result": "W",
               "points": 24,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "KU"
             },
             {
               "week": 5,
@@ -43880,7 +44410,8 @@
               "location": "H",
               "result": "L",
               "points": 19,
-              "allowed": 55
+              "allowed": 55,
+              "opponent_abbr": "BAY"
             }
           ]
         },
@@ -44128,9 +44659,9 @@
           "away_defense_rank": 100
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -44457,7 +44988,8 @@
               "location": "H",
               "result": "W",
               "points": 51,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -44465,7 +44997,8 @@
               "location": "H",
               "result": "L",
               "points": 21,
-              "allowed": 38
+              "allowed": 38,
+              "opponent_abbr": "MIZ"
             },
             {
               "week": 3,
@@ -44473,7 +45006,8 @@
               "location": "H",
               "result": "L",
               "points": 17,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "ASU"
             },
             {
               "week": 5,
@@ -44481,7 +45015,8 @@
               "location": "H",
               "result": "W",
               "points": 55,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "MTSU"
             }
           ]
         },
@@ -44641,7 +45176,8 @@
               "location": "H",
               "result": "W",
               "points": 66,
-              "allowed": 14
+              "allowed": 14,
+              "opponent_abbr": null
             },
             {
               "week": 2,
@@ -44649,7 +45185,8 @@
               "location": "H",
               "result": "W",
               "points": 43,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "ARK"
             },
             {
               "week": 3,
@@ -44657,7 +45194,8 @@
               "location": "H",
               "result": "W",
               "points": 33,
-              "allowed": 0
+              "allowed": 0,
+              "opponent_abbr": "USU"
             },
             {
               "week": 4,
@@ -44665,7 +45203,8 @@
               "location": "A",
               "result": "W",
               "points": 31,
-              "allowed": 17
+              "allowed": 17,
+              "opponent_abbr": "ISU"
             }
           ]
         },
@@ -44913,9 +45452,9 @@
           "away_defense_rank": 5
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
@@ -45241,7 +45780,8 @@
               "location": "A",
               "result": "L",
               "points": 27,
-              "allowed": 34
+              "allowed": 34,
+              "opponent_abbr": "ORE"
             },
             {
               "week": 2,
@@ -45249,7 +45789,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 20
+              "allowed": 20,
+              "opponent_abbr": "MEM"
             },
             {
               "week": 3,
@@ -45257,7 +45798,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": null
             },
             {
               "week": 4,
@@ -45265,7 +45807,8 @@
               "location": "A",
               "result": "W",
               "points": 32,
-              "allowed": 7
+              "allowed": 7,
+              "opponent_abbr": "WMU"
             },
             {
               "week": 5,
@@ -45273,7 +45816,8 @@
               "location": "H",
               "result": "W",
               "points": 37,
-              "allowed": 18
+              "allowed": 18,
+              "opponent_abbr": "USU"
             }
           ]
         },
@@ -45433,7 +45977,8 @@
               "location": "A",
               "result": "L",
               "points": 0,
-              "allowed": 39
+              "allowed": 39,
+              "opponent_abbr": "USC"
             },
             {
               "week": 2,
@@ -45441,7 +45986,8 @@
               "location": "H",
               "result": "W",
               "points": 49,
-              "allowed": 3
+              "allowed": 3,
+              "opponent_abbr": "SAC"
             },
             {
               "week": 3,
@@ -45449,7 +45995,8 @@
               "location": "A",
               "result": "W",
               "points": 26,
-              "allowed": 10
+              "allowed": 10,
+              "opponent_abbr": "SJSU"
             },
             {
               "week": 4,
@@ -45457,7 +46004,8 @@
               "location": "H",
               "result": "W",
               "points": 38,
-              "allowed": 24
+              "allowed": 24,
+              "opponent_abbr": "RICE"
             },
             {
               "week": 5,
@@ -45465,7 +46013,8 @@
               "location": "A",
               "result": "W",
               "points": 26,
-              "allowed": 6
+              "allowed": 6,
+              "opponent_abbr": "WSU"
             }
           ]
         },
@@ -45713,9 +46262,9 @@
           "away_defense_rank": 6
         },
         {
-          "label": "Red Zone Efficiency",
-          "offense_label": "Red Zone Efficiency",
-          "defense_label": "Red Zone Defense",
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
           "format": "percent",
           "away_offense": null,
           "home_defense": null,
