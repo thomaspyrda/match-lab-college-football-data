@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BetWise CFB Dashboard",
+  "type": "object",
+  "required": [
+    "slate",
+    "games"
+  ],
+  "properties": {
+    "slate": {
+      "type": "object",
+      "required": [
+        "season",
+        "week",
+        "generated_at"
+      ],
+      "properties": {
+        "season": {
+          "type": "integer"
+        },
+        "week": {
+          "type": "integer"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "model_version": {
+          "type": "string"
+        }
+      }
+    },
+    "games": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "game_id",
+          "season",
+          "week",
+          "away",
+          "home",
+          "matchup_metrics"
+        ],
+        "properties": {
+          "game_id": {},
+          "season": {
+            "type": "integer"
+          },
+          "week": {
+            "type": "integer"
+          },
+          "kickoff": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "venue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "away": {
+            "$ref": "#/$defs/team"
+          },
+          "home": {
+            "$ref": "#/$defs/team"
+          },
+          "market": {
+            "type": "object"
+          },
+          "weather": {
+            "type": "object"
+          },
+          "matchup_metrics": {
+            "type": "array"
+          },
+          "featured_mismatch": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "trends": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "team": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "conference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "record": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ap_rank": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "team_strength": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "team_strength_rank": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "offensive_strength": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "offensive_strength_rank": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "defensive_strength": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "defensive_strength_rank": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "sos_rank": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "form": {
+          "type": "object"
+        },
+        "metrics": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
