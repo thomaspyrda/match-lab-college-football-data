@@ -23,9 +23,13 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python cfb_dashboard/pipeline/refresh_venues.py
       - name: Run dashboard unit tests
+        env:
+          PYTHONPATH: .
         run: python -m pytest -q cfb_dashboard/tests
       - name: Build dashboard from checked-in artifacts
-        run: python cfb_dashboard/pipeline/build_dashboard.py
+        env:
+          PYTHONPATH: .
+        run: python -m cfb_dashboard.pipeline.build_dashboard
       - name: Validate generated dashboard contract
         run: |
           python - <<'PY'
