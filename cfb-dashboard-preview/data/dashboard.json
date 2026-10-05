@@ -2,7 +2,7 @@
   "slate": {
     "season": 2026,
     "week": 6,
-    "generated_at": "2026-10-05T17:26:06.971632+00:00",
+    "generated_at": "2026-10-05T17:40:17.283424+00:00",
     "model_version": "v15"
   },
   "games": [
@@ -183,14 +183,14 @@
           "defensive_ppa_rank": 96,
           "passing_success_rank": 92,
           "defensive_passing_success_rank": 38,
-          "rushing_success_rank": 65,
+          "rushing_success_rank": 64,
           "defensive_rushing_success_rank": 97,
           "explosiveness_rank": 105,
           "defensive_explosiveness_rank": 117,
           "points_per_opportunity_rank": 60,
           "defensive_points_per_opportunity_rank": 38,
-          "third_down_conversion_rank": 142,
-          "defensive_third_down_conversion_rank": 141
+          "third_down_conversion_rank": 114,
+          "defensive_third_down_conversion_rank": 110
         },
         "abbr": "USM",
         "color": "#ffc72c",
@@ -372,9 +372,9 @@
           "explosiveness_rank": 40,
           "defensive_explosiveness_rank": 98,
           "points_per_opportunity_rank": 120,
-          "defensive_points_per_opportunity_rank": 46,
-          "third_down_conversion_rank": 134,
-          "defensive_third_down_conversion_rank": 39
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 111,
+          "defensive_third_down_conversion_rank": 30
         },
         "abbr": "TROY",
         "color": "#862633",
@@ -447,7 +447,7 @@
           "home_defense": 0.36607142857142855,
           "home_offense": 0.3945578231292517,
           "away_defense": 0.44029850746268656,
-          "away_offense_rank": 65,
+          "away_offense_rank": 64,
           "home_defense_rank": 33,
           "home_offense_rank": 106,
           "away_defense_rank": 97
@@ -476,7 +476,7 @@
           "home_offense": 2.9583333333333335,
           "away_defense": 2.96,
           "away_offense_rank": 60,
-          "home_defense_rank": 46,
+          "home_defense_rank": 41,
           "home_offense_rank": 120,
           "away_defense_rank": 38
         },
@@ -489,10 +489,10 @@
           "home_defense": 0.32,
           "home_offense": 0.3389830508474576,
           "away_defense": 0.43103448275862066,
-          "away_offense_rank": 142,
-          "home_defense_rank": 39,
-          "home_offense_rank": 134,
-          "away_defense_rank": 141
+          "away_offense_rank": 114,
+          "home_defense_rank": 30,
+          "home_offense_rank": 111,
+          "away_defense_rank": 110
         },
         {
           "label": "Red Zone Efficiency",
@@ -510,13 +510,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
-        "side": "away_offense",
-        "rank_gap": 103,
-        "offense_rank": 142,
-        "opponent_defense_rank": 39,
-        "offense_value": 0.3333333333333333,
-        "opponent_defense_value": 0.32
+        "metric": "Passing Success Rate",
+        "side": "home_offense",
+        "rank_gap": 85,
+        "offense_rank": 123,
+        "opponent_defense_rank": 38,
+        "offense_value": 0.3669064748201439,
+        "opponent_defense_value": 0.3711340206185567
       },
       "market_trends": [
         {
@@ -741,17 +741,17 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Southern Miss",
-          "direction": "rank gap",
-          "gap": 103
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "Troy",
           "direction": "rank gap",
           "gap": 85
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Southern Miss",
+          "direction": "rank gap",
+          "gap": 84
         },
         {
           "type": "matchup_edge",
@@ -981,8 +981,8 @@
           "defensive_explosiveness_rank": 17,
           "points_per_opportunity_rank": 105,
           "defensive_points_per_opportunity_rank": 77,
-          "third_down_conversion_rank": 40,
-          "defensive_third_down_conversion_rank": 149
+          "third_down_conversion_rank": 31,
+          "defensive_third_down_conversion_rank": 118
         },
         "abbr": "JXST",
         "color": "#cc0000",
@@ -1158,15 +1158,15 @@
           "offensive_ppa_rank": 86,
           "defensive_ppa_rank": 120,
           "passing_success_rank": 88,
-          "defensive_passing_success_rank": 129,
+          "defensive_passing_success_rank": 128,
           "rushing_success_rank": 12,
           "defensive_rushing_success_rank": 93,
           "explosiveness_rank": 124,
           "defensive_explosiveness_rank": 16,
           "points_per_opportunity_rank": 57,
           "defensive_points_per_opportunity_rank": 101,
-          "third_down_conversion_rank": 74,
-          "defensive_third_down_conversion_rank": 38
+          "third_down_conversion_rank": 61,
+          "defensive_third_down_conversion_rank": 29
         },
         "abbr": "KENN",
         "color": "#fdbb30",
@@ -1226,7 +1226,7 @@
           "home_offense": 0.41414141414141414,
           "away_defense": 0.4049586776859504,
           "away_offense_rank": 21,
-          "home_defense_rank": 129,
+          "home_defense_rank": 128,
           "home_offense_rank": 88,
           "away_defense_rank": 67
         },
@@ -1281,10 +1281,10 @@
           "home_defense": 0.3191489361702128,
           "home_offense": 0.42857142857142855,
           "away_defense": 0.44285714285714284,
-          "away_offense_rank": 40,
-          "home_defense_rank": 38,
-          "home_offense_rank": 74,
-          "away_defense_rank": 149
+          "away_offense_rank": 31,
+          "home_defense_rank": 29,
+          "home_offense_rank": 61,
+          "away_defense_rank": 118
         },
         {
           "label": "Red Zone Efficiency",
@@ -1304,9 +1304,9 @@
       "featured_mismatch": {
         "metric": "Passing Success Rate",
         "side": "away_offense",
-        "rank_gap": 108,
+        "rank_gap": 107,
         "offense_rank": 21,
-        "opponent_defense_rank": 129,
+        "opponent_defense_rank": 128,
         "offense_value": 0.5083333333333333,
         "opponent_defense_value": 0.5
       },
@@ -1536,7 +1536,7 @@
           "metric": "Passing Success Rate",
           "team": "Jacksonville State",
           "direction": "rank gap",
-          "gap": 108
+          "gap": 107
         },
         {
           "type": "matchup_edge",
@@ -1561,10 +1561,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Kennesaw State",
+          "metric": "Explosiveness",
+          "team": "Jacksonville State",
           "direction": "rank gap",
-          "gap": 75
+          "gap": 69
         },
         {
           "type": "bounce_back",
@@ -1773,8 +1773,8 @@
           "defensive_explosiveness_rank": 73,
           "points_per_opportunity_rank": 86,
           "defensive_points_per_opportunity_rank": 113,
-          "third_down_conversion_rank": 63,
-          "defensive_third_down_conversion_rank": 129
+          "third_down_conversion_rank": 51,
+          "defensive_third_down_conversion_rank": 103
         },
         "abbr": "NMSU",
         "color": "#8c0b42",
@@ -1957,8 +1957,8 @@
           "defensive_explosiveness_rank": 39,
           "points_per_opportunity_rank": 129,
           "defensive_points_per_opportunity_rank": 24,
-          "third_down_conversion_rank": 46,
-          "defensive_third_down_conversion_rank": 29
+          "third_down_conversion_rank": 36,
+          "defensive_third_down_conversion_rank": 23
         },
         "abbr": "FIU",
         "color": "#091f3f",
@@ -2073,10 +2073,10 @@
           "home_defense": 0.3,
           "home_offense": 0.4626865671641791,
           "away_defense": 0.4166666666666667,
-          "away_offense_rank": 63,
-          "home_defense_rank": 29,
-          "home_offense_rank": 46,
-          "away_defense_rank": 129
+          "away_offense_rank": 51,
+          "home_defense_rank": 23,
+          "home_offense_rank": 36,
+          "away_defense_rank": 103
         },
         {
           "label": "Red Zone Efficiency",
@@ -2332,13 +2332,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Florida International",
-          "direction": "rank gap",
-          "gap": 83
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Rushing Success Rate",
           "team": "New Mexico State",
           "direction": "rank gap",
@@ -2357,6 +2350,13 @@
           "team": "New Mexico State",
           "direction": "rank gap",
           "gap": 71
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Florida International",
+          "direction": "rank gap",
+          "gap": 67
         },
         {
           "type": "game_context",
@@ -2547,8 +2547,8 @@
           "defensive_explosiveness_rank": 11,
           "points_per_opportunity_rank": 39,
           "defensive_points_per_opportunity_rank": 109,
-          "third_down_conversion_rank": 140,
-          "defensive_third_down_conversion_rank": 159
+          "third_down_conversion_rank": 114,
+          "defensive_third_down_conversion_rank": 124
         },
         "abbr": "MOST",
         "color": "#5e0009",
@@ -2733,14 +2733,14 @@
           "defensive_ppa_rank": 132,
           "passing_success_rank": 125,
           "defensive_passing_success_rank": 110,
-          "rushing_success_rank": 114,
+          "rushing_success_rank": 113,
           "defensive_rushing_success_rank": 100,
           "explosiveness_rank": 73,
           "defensive_explosiveness_rank": 136,
-          "points_per_opportunity_rank": 97,
+          "points_per_opportunity_rank": 96,
           "defensive_points_per_opportunity_rank": 132,
-          "third_down_conversion_rank": 106,
-          "defensive_third_down_conversion_rank": 75
+          "third_down_conversion_rank": 87,
+          "defensive_third_down_conversion_rank": 60
         },
         "abbr": "WKU",
         "color": "#c60c30",
@@ -2815,7 +2815,7 @@
           "away_defense": 0.4740740740740741,
           "away_offense_rank": 49,
           "home_defense_rank": 100,
-          "home_offense_rank": 114,
+          "home_offense_rank": 113,
           "away_defense_rank": 120
         },
         {
@@ -2843,7 +2843,7 @@
           "away_defense": 3.96875,
           "away_offense_rank": 39,
           "home_defense_rank": 132,
-          "home_offense_rank": 97,
+          "home_offense_rank": 96,
           "away_defense_rank": 109
         },
         {
@@ -2855,10 +2855,10 @@
           "home_defense": 0.36065573770491804,
           "home_offense": 0.38271604938271603,
           "away_defense": 0.46153846153846156,
-          "away_offense_rank": 140,
-          "home_defense_rank": 75,
-          "home_offense_rank": 106,
-          "away_defense_rank": 159
+          "away_offense_rank": 114,
+          "home_defense_rank": 60,
+          "home_offense_rank": 87,
+          "away_defense_rank": 124
         },
         {
           "label": "Red Zone Efficiency",
@@ -3114,13 +3114,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Missouri State",
-          "direction": "rank gap",
-          "gap": 65
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "Western Kentucky",
           "direction": "rank gap",
@@ -3129,9 +3122,9 @@
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
-          "team": "Western Kentucky",
+          "team": "Missouri State",
           "direction": "rank gap",
-          "gap": 53
+          "gap": 54
         },
         {
           "type": "matchup_edge",
@@ -3139,6 +3132,13 @@
           "team": "Missouri State",
           "direction": "rank gap",
           "gap": 51
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "EPA / Play",
+          "team": "Missouri State",
+          "direction": "rank gap",
+          "gap": 48
         },
         {
           "type": "bounce_back",
@@ -3339,8 +3339,8 @@
           "defensive_explosiveness_rank": 80,
           "points_per_opportunity_rank": 95,
           "defensive_points_per_opportunity_rank": 31,
-          "third_down_conversion_rank": 67,
-          "defensive_third_down_conversion_rank": 18
+          "third_down_conversion_rank": 56,
+          "defensive_third_down_conversion_rank": 13
         },
         "abbr": "SHSU",
         "color": "#f56423",
@@ -3531,8 +3531,8 @@
           "defensive_explosiveness_rank": 119,
           "points_per_opportunity_rank": 93,
           "defensive_points_per_opportunity_rank": 26,
-          "third_down_conversion_rank": 61,
-          "defensive_third_down_conversion_rank": 23
+          "third_down_conversion_rank": 51,
+          "defensive_third_down_conversion_rank": 18
         },
         "abbr": "LIB",
         "color": "#0a254e",
@@ -3647,10 +3647,10 @@
           "home_defense": 0.2833333333333333,
           "home_offense": 0.4393939393939394,
           "away_defense": 0.26785714285714285,
-          "away_offense_rank": 67,
-          "home_defense_rank": 23,
-          "home_offense_rank": 61,
-          "away_defense_rank": 18
+          "away_offense_rank": 56,
+          "home_defense_rank": 18,
+          "home_offense_rank": 51,
+          "away_defense_rank": 13
         },
         {
           "label": "Red Zone Efficiency",
@@ -4131,16 +4131,16 @@
           "defensive_success_rank": 128,
           "offensive_ppa_rank": 44,
           "defensive_ppa_rank": 125,
-          "passing_success_rank": 57,
+          "passing_success_rank": 56,
           "defensive_passing_success_rank": 125,
-          "rushing_success_rank": 86,
+          "rushing_success_rank": 85,
           "defensive_rushing_success_rank": 114,
           "explosiveness_rank": 26,
           "defensive_explosiveness_rank": 131,
           "points_per_opportunity_rank": 54,
           "defensive_points_per_opportunity_rank": 128,
-          "third_down_conversion_rank": 48,
-          "defensive_third_down_conversion_rank": 69
+          "third_down_conversion_rank": 38,
+          "defensive_third_down_conversion_rank": 54
         },
         "abbr": "USA",
         "color": "#00205b",
@@ -4331,8 +4331,8 @@
           "defensive_explosiveness_rank": 55,
           "points_per_opportunity_rank": 92,
           "defensive_points_per_opportunity_rank": 80,
-          "third_down_conversion_rank": 54,
-          "defensive_third_down_conversion_rank": 185
+          "third_down_conversion_rank": 44,
+          "defensive_third_down_conversion_rank": 134
         },
         "abbr": "ARST",
         "color": "#cc092f",
@@ -4391,7 +4391,7 @@
           "home_defense": 0.47058823529411764,
           "home_offense": 0.45985401459854014,
           "away_defense": 0.4892086330935252,
-          "away_offense_rank": 57,
+          "away_offense_rank": 56,
           "home_defense_rank": 117,
           "home_offense_rank": 49,
           "away_defense_rank": 125
@@ -4405,7 +4405,7 @@
           "home_defense": 0.4858757062146893,
           "home_offense": 0.4573643410852713,
           "away_defense": 0.464,
-          "away_offense_rank": 86,
+          "away_offense_rank": 85,
           "home_defense_rank": 124,
           "home_offense_rank": 61,
           "away_defense_rank": 114
@@ -4447,10 +4447,10 @@
           "home_defense": 0.5081967213114754,
           "home_offense": 0.45454545454545453,
           "away_defense": 0.35294117647058826,
-          "away_offense_rank": 48,
-          "home_defense_rank": 185,
-          "home_offense_rank": 54,
-          "away_defense_rank": 69
+          "away_offense_rank": 38,
+          "home_defense_rank": 134,
+          "home_offense_rank": 44,
+          "away_defense_rank": 54
         },
         {
           "label": "Red Zone Efficiency",
@@ -4470,9 +4470,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "away_offense",
-        "rank_gap": 137,
-        "offense_rank": 48,
-        "opponent_defense_rank": 185,
+        "rank_gap": 96,
+        "offense_rank": 38,
+        "opponent_defense_rank": 134,
         "offense_value": 0.4605263157894737,
         "opponent_defense_value": 0.5081967213114754
       },
@@ -4702,7 +4702,7 @@
           "metric": "Third Down Conversion",
           "team": "South Alabama",
           "direction": "rank gap",
-          "gap": 137
+          "gap": 96
         },
         {
           "type": "matchup_edge",
@@ -4730,7 +4730,7 @@
           "metric": "Passing Success Rate",
           "team": "South Alabama",
           "direction": "rank gap",
-          "gap": 60
+          "gap": 61
         },
         {
           "type": "bounce_back",
@@ -4926,16 +4926,16 @@
           "defensive_success_rank": 71,
           "offensive_ppa_rank": 72,
           "defensive_ppa_rank": 40,
-          "passing_success_rank": 35,
+          "passing_success_rank": 34,
           "defensive_passing_success_rank": 91,
           "rushing_success_rank": 30,
           "defensive_rushing_success_rank": 55,
           "explosiveness_rank": 130,
           "defensive_explosiveness_rank": 4,
-          "points_per_opportunity_rank": 31,
+          "points_per_opportunity_rank": 30,
           "defensive_points_per_opportunity_rank": 50,
-          "third_down_conversion_rank": 56,
-          "defensive_third_down_conversion_rank": 46
+          "third_down_conversion_rank": 44,
+          "defensive_third_down_conversion_rank": 37
         },
         "abbr": "USF",
         "color": "#006747",
@@ -5119,15 +5119,15 @@
           "offensive_ppa_rank": 56,
           "defensive_ppa_rank": 55,
           "passing_success_rank": 104,
-          "defensive_passing_success_rank": 69,
-          "rushing_success_rank": 20,
+          "defensive_passing_success_rank": 68,
+          "rushing_success_rank": 14,
           "defensive_rushing_success_rank": 81,
           "explosiveness_rank": 113,
           "defensive_explosiveness_rank": 43,
           "points_per_opportunity_rank": 108,
           "defensive_points_per_opportunity_rank": 69,
-          "third_down_conversion_rank": 145,
-          "defensive_third_down_conversion_rank": 93
+          "third_down_conversion_rank": 118,
+          "defensive_third_down_conversion_rank": 74
         },
         "abbr": "UTSA",
         "color": "#0c2340",
@@ -5186,8 +5186,8 @@
           "home_defense": 0.40606060606060607,
           "home_offense": 0.38926174496644295,
           "away_defense": 0.4253731343283582,
-          "away_offense_rank": 35,
-          "home_defense_rank": 69,
+          "away_offense_rank": 34,
+          "home_defense_rank": 68,
           "home_offense_rank": 104,
           "away_defense_rank": 91
         },
@@ -5202,7 +5202,7 @@
           "away_defense": 0.3987730061349693,
           "away_offense_rank": 30,
           "home_defense_rank": 81,
-          "home_offense_rank": 20,
+          "home_offense_rank": 14,
           "away_defense_rank": 55
         },
         {
@@ -5228,7 +5228,7 @@
           "home_defense": 3.3714285714285714,
           "home_offense": 3.2580645161290325,
           "away_defense": 3.0454545454545454,
-          "away_offense_rank": 31,
+          "away_offense_rank": 30,
           "home_defense_rank": 69,
           "home_offense_rank": 108,
           "away_defense_rank": 50
@@ -5242,10 +5242,10 @@
           "home_defense": 0.3780487804878049,
           "home_offense": 0.3283582089552239,
           "away_defense": 0.3283582089552239,
-          "away_offense_rank": 56,
-          "home_defense_rank": 93,
-          "home_offense_rank": 145,
-          "away_defense_rank": 46
+          "away_offense_rank": 44,
+          "home_defense_rank": 74,
+          "home_offense_rank": 118,
+          "away_defense_rank": 37
         },
         {
           "label": "Red Zone Efficiency",
@@ -5501,17 +5501,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "UTSA",
-          "direction": "rank gap",
-          "gap": 99
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "South Florida",
           "direction": "rank gap",
           "gap": 87
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "UTSA",
+          "direction": "rank gap",
+          "gap": 81
         },
         {
           "type": "matchup_edge",
@@ -5728,9 +5728,9 @@
           "explosiveness_rank": 6,
           "defensive_explosiveness_rank": 90,
           "points_per_opportunity_rank": 12,
-          "defensive_points_per_opportunity_rank": 42,
-          "third_down_conversion_rank": 77,
-          "defensive_third_down_conversion_rank": 123
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 64,
+          "defensive_third_down_conversion_rank": 98
         },
         "abbr": "FSU",
         "color": "#782f40",
@@ -5921,8 +5921,8 @@
           "defensive_explosiveness_rank": 79,
           "points_per_opportunity_rank": 52,
           "defensive_points_per_opportunity_rank": 76,
-          "third_down_conversion_rank": 53,
-          "defensive_third_down_conversion_rank": 81
+          "third_down_conversion_rank": 43,
+          "defensive_third_down_conversion_rank": 67
         },
         "abbr": "LOU",
         "color": "#c9001f",
@@ -6026,7 +6026,7 @@
           "away_offense_rank": 12,
           "home_defense_rank": 76,
           "home_offense_rank": 52,
-          "away_defense_rank": 42
+          "away_defense_rank": 41
         },
         {
           "label": "Third Down Conversion",
@@ -6037,10 +6037,10 @@
           "home_defense": 0.36619718309859156,
           "home_offense": 0.45614035087719296,
           "away_defense": 0.40540540540540543,
-          "away_offense_rank": 77,
-          "home_defense_rank": 81,
-          "home_offense_rank": 53,
-          "away_defense_rank": 123
+          "away_offense_rank": 64,
+          "home_defense_rank": 67,
+          "home_offense_rank": 43,
+          "away_defense_rank": 98
         },
         {
           "label": "Red Zone Efficiency",
@@ -6524,8 +6524,8 @@
           "defensive_explosiveness_rank": 13,
           "points_per_opportunity_rank": 123,
           "defensive_points_per_opportunity_rank": 60,
-          "third_down_conversion_rank": 133,
-          "defensive_third_down_conversion_rank": 119
+          "third_down_conversion_rank": 110,
+          "defensive_third_down_conversion_rank": 95
         },
         "abbr": "WYO",
         "color": "#492f24",
@@ -6716,8 +6716,8 @@
           "defensive_explosiveness_rank": 19,
           "points_per_opportunity_rank": 101,
           "defensive_points_per_opportunity_rank": 51,
-          "third_down_conversion_rank": 147,
-          "defensive_third_down_conversion_rank": 109
+          "third_down_conversion_rank": 120,
+          "defensive_third_down_conversion_rank": 86
         },
         "abbr": "SJSU",
         "color": "#0055a2",
@@ -6832,10 +6832,10 @@
           "home_defense": 0.3888888888888889,
           "home_offense": 0.323943661971831,
           "away_defense": 0.40298507462686567,
-          "away_offense_rank": 133,
-          "home_defense_rank": 109,
-          "home_offense_rank": 147,
-          "away_defense_rank": 119
+          "away_offense_rank": 110,
+          "home_defense_rank": 86,
+          "home_offense_rank": 120,
+          "away_defense_rank": 95
         },
         {
           "label": "Red Zone Efficiency",
@@ -7312,15 +7312,15 @@
           "offensive_ppa_rank": 135,
           "defensive_ppa_rank": 83,
           "passing_success_rank": 128,
-          "defensive_passing_success_rank": 97,
+          "defensive_passing_success_rank": 94,
           "rushing_success_rank": 130,
           "defensive_rushing_success_rank": 84,
           "explosiveness_rank": 80,
           "defensive_explosiveness_rank": 62,
           "points_per_opportunity_rank": 110,
           "defensive_points_per_opportunity_rank": 54,
-          "third_down_conversion_rank": 180,
-          "defensive_third_down_conversion_rank": 114
+          "third_down_conversion_rank": 133,
+          "defensive_third_down_conversion_rank": 93
         },
         "abbr": "WSU",
         "color": "#a60f2d",
@@ -7511,8 +7511,8 @@
           "defensive_explosiveness_rank": 51,
           "points_per_opportunity_rank": 134,
           "defensive_points_per_opportunity_rank": 74,
-          "third_down_conversion_rank": 88,
-          "defensive_third_down_conversion_rank": 146
+          "third_down_conversion_rank": 73,
+          "defensive_third_down_conversion_rank": 115
         },
         "abbr": "USU",
         "color": "#0f2439",
@@ -7574,7 +7574,7 @@
           "away_offense_rank": 128,
           "home_defense_rank": 86,
           "home_offense_rank": 130,
-          "away_defense_rank": 97
+          "away_defense_rank": 94
         },
         {
           "label": "Rushing Success Rate",
@@ -7627,10 +7627,10 @@
           "home_defense": 0.44,
           "home_offense": 0.4090909090909091,
           "away_defense": 0.3972602739726027,
-          "away_offense_rank": 180,
-          "home_defense_rank": 146,
-          "home_offense_rank": 88,
-          "away_defense_rank": 114
+          "away_offense_rank": 133,
+          "home_defense_rank": 115,
+          "home_offense_rank": 73,
+          "away_defense_rank": 93
         },
         {
           "label": "Red Zone Efficiency",
@@ -8113,14 +8113,14 @@
           "defensive_ppa_rank": 53,
           "passing_success_rank": 37,
           "defensive_passing_success_rank": 58,
-          "rushing_success_rank": 109,
+          "rushing_success_rank": 108,
           "defensive_rushing_success_rank": 32,
           "explosiveness_rank": 76,
           "defensive_explosiveness_rank": 36,
           "points_per_opportunity_rank": 80,
           "defensive_points_per_opportunity_rank": 25,
-          "third_down_conversion_rank": 91,
-          "defensive_third_down_conversion_rank": 42
+          "third_down_conversion_rank": 78,
+          "defensive_third_down_conversion_rank": 33
         },
         "abbr": "IOWA",
         "color": "#000000",
@@ -8311,8 +8311,8 @@
           "defensive_explosiveness_rank": 44,
           "points_per_opportunity_rank": 65,
           "defensive_points_per_opportunity_rank": 30,
-          "third_down_conversion_rank": 166,
-          "defensive_third_down_conversion_rank": 32
+          "third_down_conversion_rank": 130,
+          "defensive_third_down_conversion_rank": 24
         },
         "abbr": "WASH",
         "color": "#33006f",
@@ -8385,7 +8385,7 @@
           "home_defense": 0.35,
           "home_offense": 0.4186046511627907,
           "away_defense": 0.3602941176470588,
-          "away_offense_rank": 109,
+          "away_offense_rank": 108,
           "home_defense_rank": 28,
           "home_offense_rank": 91,
           "away_defense_rank": 32
@@ -8427,10 +8427,10 @@
           "home_defense": 0.30303030303030304,
           "home_offense": 0.2903225806451613,
           "away_defense": 0.323943661971831,
-          "away_offense_rank": 91,
-          "home_defense_rank": 32,
-          "home_offense_rank": 166,
-          "away_defense_rank": 42
+          "away_offense_rank": 78,
+          "home_defense_rank": 24,
+          "home_offense_rank": 130,
+          "away_defense_rank": 33
         },
         {
           "label": "Red Zone Efficiency",
@@ -8450,9 +8450,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 124,
-        "offense_rank": 166,
-        "opponent_defense_rank": 42,
+        "rank_gap": 97,
+        "offense_rank": 130,
+        "opponent_defense_rank": 33,
         "offense_value": 0.2903225806451613,
         "opponent_defense_value": 0.323943661971831
       },
@@ -8682,14 +8682,14 @@
           "metric": "Third Down Conversion",
           "team": "Washington",
           "direction": "rank gap",
-          "gap": 124
+          "gap": 97
         },
         {
           "type": "matchup_edge",
           "metric": "Rushing Success Rate",
           "team": "Iowa",
           "direction": "rank gap",
-          "gap": 81
+          "gap": 80
         },
         {
           "type": "matchup_edge",
@@ -8703,7 +8703,7 @@
           "metric": "Third Down Conversion",
           "team": "Iowa",
           "direction": "rank gap",
-          "gap": 59
+          "gap": 54
         },
         {
           "type": "matchup_edge",
@@ -8920,8 +8920,8 @@
           "defensive_explosiveness_rank": 72,
           "points_per_opportunity_rank": 15,
           "defensive_points_per_opportunity_rank": 32,
-          "third_down_conversion_rank": 130,
-          "defensive_third_down_conversion_rank": 31
+          "third_down_conversion_rank": 107,
+          "defensive_third_down_conversion_rank": 24
         },
         "abbr": "ISU",
         "color": "#c8102e",
@@ -9104,8 +9104,8 @@
           "defensive_explosiveness_rank": 71,
           "points_per_opportunity_rank": 3,
           "defensive_points_per_opportunity_rank": 75,
-          "third_down_conversion_rank": 5,
-          "defensive_third_down_conversion_rank": 121
+          "third_down_conversion_rank": 4,
+          "defensive_third_down_conversion_rank": 97
         },
         "abbr": "BYU",
         "color": "#003da5",
@@ -9220,10 +9220,10 @@
           "home_defense": 0.40384615384615385,
           "home_offense": 0.574468085106383,
           "away_defense": 0.30303030303030304,
-          "away_offense_rank": 130,
-          "home_defense_rank": 121,
-          "home_offense_rank": 5,
-          "away_defense_rank": 31
+          "away_offense_rank": 107,
+          "home_defense_rank": 97,
+          "home_offense_rank": 4,
+          "away_defense_rank": 24
         },
         {
           "label": "Red Zone Efficiency",
@@ -9712,8 +9712,8 @@
           "defensive_explosiveness_rank": 89,
           "points_per_opportunity_rank": 33,
           "defensive_points_per_opportunity_rank": 28,
-          "third_down_conversion_rank": 68,
-          "defensive_third_down_conversion_rank": 16
+          "third_down_conversion_rank": 57,
+          "defensive_third_down_conversion_rank": 11
         },
         "abbr": "TA&M",
         "color": "#500000",
@@ -9904,8 +9904,8 @@
           "defensive_explosiveness_rank": 125,
           "points_per_opportunity_rank": 71,
           "defensive_points_per_opportunity_rank": 59,
-          "third_down_conversion_rank": 62,
-          "defensive_third_down_conversion_rank": 53
+          "third_down_conversion_rank": 51,
+          "defensive_third_down_conversion_rank": 39
         },
         "abbr": "MIZ",
         "color": "#f1b82d",
@@ -10020,10 +10020,10 @@
           "home_defense": 0.3333333333333333,
           "home_offense": 0.4393939393939394,
           "away_defense": 0.2641509433962264,
-          "away_offense_rank": 68,
-          "home_defense_rank": 53,
-          "home_offense_rank": 62,
-          "away_defense_rank": 16
+          "away_offense_rank": 57,
+          "home_defense_rank": 39,
+          "home_offense_rank": 51,
+          "away_defense_rank": 11
         },
         {
           "label": "Red Zone Efficiency",
@@ -10506,9 +10506,9 @@
           "explosiveness_rank": 79,
           "defensive_explosiveness_rank": 32,
           "points_per_opportunity_rank": 16,
-          "defensive_points_per_opportunity_rank": 14,
-          "third_down_conversion_rank": 143,
-          "defensive_third_down_conversion_rank": 94
+          "defensive_points_per_opportunity_rank": 13,
+          "third_down_conversion_rank": 114,
+          "defensive_third_down_conversion_rank": 74
         },
         "abbr": "UCF",
         "color": "#000000",
@@ -10689,10 +10689,10 @@
           "defensive_rushing_success_rank": 86,
           "explosiveness_rank": 119,
           "defensive_explosiveness_rank": 49,
-          "points_per_opportunity_rank": 78,
-          "defensive_points_per_opportunity_rank": 44,
-          "third_down_conversion_rank": 148,
-          "defensive_third_down_conversion_rank": 21
+          "points_per_opportunity_rank": 77,
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 121,
+          "defensive_third_down_conversion_rank": 16
         },
         "abbr": "OKST",
         "color": "#fe5c00",
@@ -10794,9 +10794,9 @@
           "home_offense": 3.75,
           "away_defense": 2.5,
           "away_offense_rank": 16,
-          "home_defense_rank": 44,
-          "home_offense_rank": 78,
-          "away_defense_rank": 14
+          "home_defense_rank": 41,
+          "home_offense_rank": 77,
+          "away_defense_rank": 13
         },
         {
           "label": "Third Down Conversion",
@@ -10807,10 +10807,10 @@
           "home_defense": 0.2777777777777778,
           "home_offense": 0.32,
           "away_defense": 0.3780487804878049,
-          "away_offense_rank": 143,
-          "home_defense_rank": 21,
-          "home_offense_rank": 148,
-          "away_defense_rank": 94
+          "away_offense_rank": 114,
+          "home_defense_rank": 16,
+          "home_offense_rank": 121,
+          "away_defense_rank": 74
         },
         {
           "label": "Red Zone Efficiency",
@@ -10828,13 +10828,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
+        "metric": "Passing Success Rate",
         "side": "away_offense",
-        "rank_gap": 122,
-        "offense_rank": 143,
-        "opponent_defense_rank": 21,
-        "offense_value": 0.3333333333333333,
-        "opponent_defense_value": 0.2777777777777778
+        "rank_gap": 110,
+        "offense_rank": 117,
+        "opponent_defense_rank": 7,
+        "offense_value": 0.37209302325581395,
+        "opponent_defense_value": 0.31313131313131315
       },
       "market_trends": [
         {
@@ -11059,17 +11059,17 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "UCF",
-          "direction": "rank gap",
-          "gap": 122
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "UCF",
           "direction": "rank gap",
           "gap": 110
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "UCF",
+          "direction": "rank gap",
+          "gap": 98
         },
         {
           "type": "matchup_edge",
@@ -11299,8 +11299,8 @@
           "defensive_explosiveness_rank": 126,
           "points_per_opportunity_rank": 5,
           "defensive_points_per_opportunity_rank": 52,
-          "third_down_conversion_rank": 18,
-          "defensive_third_down_conversion_rank": 19
+          "third_down_conversion_rank": 13,
+          "defensive_third_down_conversion_rank": 14
         },
         "abbr": "IU",
         "color": "#990000",
@@ -11485,14 +11485,14 @@
           "defensive_ppa_rank": 9,
           "passing_success_rank": 33,
           "defensive_passing_success_rank": 10,
-          "rushing_success_rank": 17,
+          "rushing_success_rank": 14,
           "defensive_rushing_success_rank": 26,
           "explosiveness_rank": 16,
           "defensive_explosiveness_rank": 93,
           "points_per_opportunity_rank": 6,
           "defensive_points_per_opportunity_rank": 8,
-          "third_down_conversion_rank": 14,
-          "defensive_third_down_conversion_rank": 4
+          "third_down_conversion_rank": 9,
+          "defensive_third_down_conversion_rank": 2
         },
         "abbr": "NEB",
         "color": "#d00000",
@@ -11567,7 +11567,7 @@
           "away_defense": 0.29411764705882354,
           "away_offense_rank": 34,
           "home_defense_rank": 26,
-          "home_offense_rank": 17,
+          "home_offense_rank": 14,
           "away_defense_rank": 5
         },
         {
@@ -11607,10 +11607,10 @@
           "home_defense": 0.21311475409836064,
           "home_offense": 0.5238095238095238,
           "away_defense": 0.26865671641791045,
-          "away_offense_rank": 18,
-          "home_defense_rank": 4,
-          "home_offense_rank": 14,
-          "away_defense_rank": 19
+          "away_offense_rank": 13,
+          "home_defense_rank": 2,
+          "home_offense_rank": 9,
+          "away_defense_rank": 14
         },
         {
           "label": "Red Zone Efficiency",
@@ -12094,8 +12094,8 @@
           "defensive_explosiveness_rank": 122,
           "points_per_opportunity_rank": 36,
           "defensive_points_per_opportunity_rank": 13,
-          "third_down_conversion_rank": 4,
-          "defensive_third_down_conversion_rank": 107
+          "third_down_conversion_rank": 3,
+          "defensive_third_down_conversion_rank": 86
         },
         "abbr": "ARIZ",
         "color": "#cc0033",
@@ -12284,10 +12284,10 @@
           "defensive_rushing_success_rank": 61,
           "explosiveness_rank": 42,
           "defensive_explosiveness_rank": 66,
-          "points_per_opportunity_rank": 43,
+          "points_per_opportunity_rank": 42,
           "defensive_points_per_opportunity_rank": 100,
-          "third_down_conversion_rank": 23,
-          "defensive_third_down_conversion_rank": 65
+          "third_down_conversion_rank": 18,
+          "defensive_third_down_conversion_rank": 50
         },
         "abbr": "WVU",
         "color": "#eaaa00",
@@ -12390,7 +12390,7 @@
           "away_defense": 2.5,
           "away_offense_rank": 36,
           "home_defense_rank": 100,
-          "home_offense_rank": 43,
+          "home_offense_rank": 42,
           "away_defense_rank": 13
         },
         {
@@ -12402,10 +12402,10 @@
           "home_defense": 0.3492063492063492,
           "home_offense": 0.5066666666666667,
           "away_defense": 0.3888888888888889,
-          "away_offense_rank": 4,
-          "home_defense_rank": 65,
-          "home_offense_rank": 23,
-          "away_defense_rank": 107
+          "away_offense_rank": 3,
+          "home_defense_rank": 50,
+          "home_offense_rank": 18,
+          "away_defense_rank": 86
         },
         {
           "label": "Red Zone Efficiency",
@@ -12682,10 +12682,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
+          "metric": "Explosiveness",
           "team": "West Virginia",
           "direction": "rank gap",
-          "gap": 84
+          "gap": 80
         },
         {
           "type": "bounce_back",
@@ -12880,14 +12880,14 @@
           "defensive_ppa_rank": 61,
           "passing_success_rank": 65,
           "defensive_passing_success_rank": 83,
-          "rushing_success_rank": 18,
+          "rushing_success_rank": 14,
           "defensive_rushing_success_rank": 119,
           "explosiveness_rank": 129,
           "defensive_explosiveness_rank": 8,
           "points_per_opportunity_rank": 34,
           "defensive_points_per_opportunity_rank": 70,
-          "third_down_conversion_rank": 86,
-          "defensive_third_down_conversion_rank": 140
+          "third_down_conversion_rank": 73,
+          "defensive_third_down_conversion_rank": 109
         },
         "abbr": "UNC",
         "color": "#7bafd4",
@@ -13078,8 +13078,8 @@
           "defensive_explosiveness_rank": 134,
           "points_per_opportunity_rank": 48,
           "defensive_points_per_opportunity_rank": 15,
-          "third_down_conversion_rank": 47,
-          "defensive_third_down_conversion_rank": 26
+          "third_down_conversion_rank": 37,
+          "defensive_third_down_conversion_rank": 20
         },
         "abbr": "PITT",
         "color": "#003594",
@@ -13152,7 +13152,7 @@
           "home_defense": 0.308411214953271,
           "home_offense": 0.43795620437956206,
           "away_defense": 0.47058823529411764,
-          "away_offense_rank": 18,
+          "away_offense_rank": 14,
           "home_defense_rank": 12,
           "home_offense_rank": 79,
           "away_defense_rank": 119
@@ -13194,10 +13194,10 @@
           "home_defense": 0.2898550724637681,
           "home_offense": 0.46153846153846156,
           "away_defense": 0.42857142857142855,
-          "away_offense_rank": 86,
-          "home_defense_rank": 26,
-          "home_offense_rank": 47,
-          "away_defense_rank": 140
+          "away_offense_rank": 73,
+          "home_defense_rank": 20,
+          "home_offense_rank": 37,
+          "away_defense_rank": 109
         },
         {
           "label": "Red Zone Efficiency",
@@ -13217,9 +13217,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 93,
-        "offense_rank": 47,
-        "opponent_defense_rank": 140,
+        "rank_gap": 72,
+        "offense_rank": 37,
+        "opponent_defense_rank": 109,
         "offense_value": 0.46153846153846156,
         "opponent_defense_value": 0.42857142857142855
       },
@@ -13449,14 +13449,14 @@
           "metric": "Third Down Conversion",
           "team": "Pittsburgh",
           "direction": "rank gap",
-          "gap": 93
+          "gap": 72
         },
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
           "team": "North Carolina",
           "direction": "rank gap",
-          "gap": 60
+          "gap": 53
         },
         {
           "type": "matchup_edge",
@@ -13680,8 +13680,8 @@
           "defensive_explosiveness_rank": 128,
           "points_per_opportunity_rank": 128,
           "defensive_points_per_opportunity_rank": 99,
-          "third_down_conversion_rank": 108,
-          "defensive_third_down_conversion_rank": 54
+          "third_down_conversion_rank": 90,
+          "defensive_third_down_conversion_rank": 39
         },
         "abbr": "SAC",
         "color": "#00573c",
@@ -13872,8 +13872,8 @@
           "defensive_explosiveness_rank": 97,
           "points_per_opportunity_rank": 136,
           "defensive_points_per_opportunity_rank": 111,
-          "third_down_conversion_rank": 146,
-          "defensive_third_down_conversion_rank": 44
+          "third_down_conversion_rank": 119,
+          "defensive_third_down_conversion_rank": 35
         },
         "abbr": "BGSU",
         "color": "#fd5000",
@@ -13988,10 +13988,10 @@
           "home_defense": 0.32653061224489793,
           "home_offense": 0.328125,
           "away_defense": 0.3333333333333333,
-          "away_offense_rank": 108,
-          "home_defense_rank": 44,
-          "home_offense_rank": 146,
-          "away_defense_rank": 54
+          "away_offense_rank": 90,
+          "home_defense_rank": 35,
+          "home_offense_rank": 119,
+          "away_defense_rank": 39
         },
         {
           "label": "Red Zone Efficiency",
@@ -14257,14 +14257,14 @@
           "metric": "Third Down Conversion",
           "team": "Bowling Green",
           "direction": "rank gap",
-          "gap": 92
+          "gap": 80
         },
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
           "team": "Sacramento State",
           "direction": "rank gap",
-          "gap": 64
+          "gap": 55
         },
         {
           "type": "matchup_edge",
@@ -14473,10 +14473,10 @@
           "defensive_rushing_success_rank": 44,
           "explosiveness_rank": 49,
           "defensive_explosiveness_rank": 21,
-          "points_per_opportunity_rank": 50,
+          "points_per_opportunity_rank": 49,
           "defensive_points_per_opportunity_rank": 53,
-          "third_down_conversion_rank": 51,
-          "defensive_third_down_conversion_rank": 144
+          "third_down_conversion_rank": 41,
+          "defensive_third_down_conversion_rank": 113
         },
         "abbr": "WAKE",
         "color": "#ceb888",
@@ -14667,8 +14667,8 @@
           "defensive_explosiveness_rank": 99,
           "points_per_opportunity_rank": 51,
           "defensive_points_per_opportunity_rank": 83,
-          "third_down_conversion_rank": 11,
-          "defensive_third_down_conversion_rank": 34
+          "third_down_conversion_rank": 8,
+          "defensive_third_down_conversion_rank": 27
         },
         "abbr": "NCSU",
         "color": "#cc0000",
@@ -14769,7 +14769,7 @@
           "home_defense": 3.5714285714285716,
           "home_offense": 4.2368421052631575,
           "away_defense": 3.1379310344827585,
-          "away_offense_rank": 50,
+          "away_offense_rank": 49,
           "home_defense_rank": 83,
           "home_offense_rank": 51,
           "away_defense_rank": 53
@@ -14783,10 +14783,10 @@
           "home_defense": 0.3064516129032258,
           "home_offense": 0.5342465753424658,
           "away_defense": 0.43661971830985913,
-          "away_offense_rank": 51,
-          "home_defense_rank": 34,
-          "home_offense_rank": 11,
-          "away_defense_rank": 144
+          "away_offense_rank": 41,
+          "home_defense_rank": 27,
+          "home_offense_rank": 8,
+          "away_defense_rank": 113
         },
         {
           "label": "Red Zone Efficiency",
@@ -14806,9 +14806,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 133,
-        "offense_rank": 11,
-        "opponent_defense_rank": 144,
+        "rank_gap": 105,
+        "offense_rank": 8,
+        "opponent_defense_rank": 113,
         "offense_value": 0.5342465753424658,
         "opponent_defense_value": 0.43661971830985913
       },
@@ -15038,7 +15038,7 @@
           "metric": "Third Down Conversion",
           "team": "NC State",
           "direction": "rank gap",
-          "gap": 133
+          "gap": 105
         },
         {
           "type": "matchup_edge",
@@ -15261,9 +15261,9 @@
           "explosiveness_rank": 3,
           "defensive_explosiveness_rank": 92,
           "points_per_opportunity_rank": 132,
-          "defensive_points_per_opportunity_rank": 63,
-          "third_down_conversion_rank": 109,
-          "defensive_third_down_conversion_rank": 172
+          "defensive_points_per_opportunity_rank": 62,
+          "third_down_conversion_rank": 90,
+          "defensive_third_down_conversion_rank": 131
         },
         "abbr": "TULN",
         "color": "#006747",
@@ -15446,8 +15446,8 @@
           "defensive_explosiveness_rank": 106,
           "points_per_opportunity_rank": 53,
           "defensive_points_per_opportunity_rank": 20,
-          "third_down_conversion_rank": 24,
-          "defensive_third_down_conversion_rank": 79
+          "third_down_conversion_rank": 19,
+          "defensive_third_down_conversion_rank": 64
         },
         "abbr": "ARMY",
         "color": "#000000",
@@ -15551,7 +15551,7 @@
           "away_offense_rank": 132,
           "home_defense_rank": 20,
           "home_offense_rank": 53,
-          "away_defense_rank": 63
+          "away_defense_rank": 62
         },
         {
           "label": "Third Down Conversion",
@@ -15562,10 +15562,10 @@
           "home_defense": 0.36363636363636365,
           "home_offense": 0.5,
           "away_defense": 0.484375,
-          "away_offense_rank": 109,
-          "home_defense_rank": 79,
-          "home_offense_rank": 24,
-          "away_defense_rank": 172
+          "away_offense_rank": 90,
+          "home_defense_rank": 64,
+          "home_offense_rank": 19,
+          "away_defense_rank": 131
         },
         {
           "label": "Red Zone Efficiency",
@@ -15583,13 +15583,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
-        "side": "home_offense",
-        "rank_gap": 148,
-        "offense_rank": 24,
-        "opponent_defense_rank": 172,
-        "offense_value": 0.5,
-        "opponent_defense_value": 0.484375
+        "metric": "Points per Opportunity",
+        "side": "away_offense",
+        "rank_gap": 112,
+        "offense_rank": 132,
+        "opponent_defense_rank": 20,
+        "offense_value": 2.473684210526316,
+        "opponent_defense_value": 2.6842105263157894
       },
       "market_trends": [
         {
@@ -15814,15 +15814,15 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Army",
+          "metric": "Points per Opportunity",
+          "team": "Tulane",
           "direction": "rank gap",
-          "gap": 148
+          "gap": 112
         },
         {
           "type": "matchup_edge",
-          "metric": "Points per Opportunity",
-          "team": "Tulane",
+          "metric": "Third Down Conversion",
+          "team": "Army",
           "direction": "rank gap",
           "gap": 112
         },
@@ -16049,8 +16049,8 @@
           "defensive_explosiveness_rank": 129,
           "points_per_opportunity_rank": 89,
           "defensive_points_per_opportunity_rank": 134,
-          "third_down_conversion_rank": 167,
-          "defensive_third_down_conversion_rank": 162
+          "third_down_conversion_rank": 131,
+          "defensive_third_down_conversion_rank": 126
         },
         "abbr": "BALL",
         "color": "#ba0c2f",
@@ -16227,14 +16227,14 @@
           "defensive_ppa_rank": 80,
           "passing_success_rank": 16,
           "defensive_passing_success_rank": 79,
-          "rushing_success_rank": 19,
+          "rushing_success_rank": 14,
           "defensive_rushing_success_rank": 116,
           "explosiveness_rank": 70,
           "defensive_explosiveness_rank": 27,
           "points_per_opportunity_rank": 22,
           "defensive_points_per_opportunity_rank": 21,
-          "third_down_conversion_rank": 80,
-          "defensive_third_down_conversion_rank": 138
+          "third_down_conversion_rank": 67,
+          "defensive_third_down_conversion_rank": 108
         },
         "abbr": "NU",
         "color": "#582c83",
@@ -16309,7 +16309,7 @@
           "away_defense": 0.4110429447852761,
           "away_offense_rank": 138,
           "home_defense_rank": 116,
-          "home_offense_rank": 19,
+          "home_offense_rank": 14,
           "away_defense_rank": 66
         },
         {
@@ -16349,10 +16349,10 @@
           "home_defense": 0.4262295081967213,
           "home_offense": 0.41304347826086957,
           "away_defense": 0.4647887323943662,
-          "away_offense_rank": 167,
-          "home_defense_rank": 138,
-          "home_offense_rank": 80,
-          "away_defense_rank": 162
+          "away_offense_rank": 131,
+          "home_defense_rank": 108,
+          "home_offense_rank": 67,
+          "away_defense_rank": 126
         },
         {
           "label": "Red Zone Efficiency",
@@ -16629,10 +16629,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Northwestern",
+          "metric": "Points per Opportunity",
+          "team": "Ball State",
           "direction": "rank gap",
-          "gap": 82
+          "gap": 68
         },
         {
           "type": "bounce_back",
@@ -16837,8 +16837,8 @@
           "defensive_explosiveness_rank": 105,
           "points_per_opportunity_rank": 44,
           "defensive_points_per_opportunity_rank": 131,
-          "third_down_conversion_rank": 58,
-          "defensive_third_down_conversion_rank": 60
+          "third_down_conversion_rank": 48,
+          "defensive_third_down_conversion_rank": 44
         },
         "abbr": "SC",
         "color": "#73000a",
@@ -17028,9 +17028,9 @@
           "explosiveness_rank": 48,
           "defensive_explosiveness_rank": 69,
           "points_per_opportunity_rank": 4,
-          "defensive_points_per_opportunity_rank": 115,
-          "third_down_conversion_rank": 52,
-          "defensive_third_down_conversion_rank": 142
+          "defensive_points_per_opportunity_rank": 114,
+          "third_down_conversion_rank": 42,
+          "defensive_third_down_conversion_rank": 111
         },
         "abbr": "FLA",
         "color": "#0021a5",
@@ -17049,7 +17049,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 79\u00b0F \u00b7 Wind 14 mph \u00b7 Chance Rain Showers \u00b7 51% precipitation"
+        "summary": "Outdoor \u00b7 79\u00b0F \u00b7 Wind 13 mph \u00b7 Showers And Thunderstorms Likely \u00b7 56% precipitation"
       },
       "matchup_metrics": [
         {
@@ -17132,7 +17132,7 @@
           "home_offense": 5.352941176470588,
           "away_defense": 4.52,
           "away_offense_rank": 44,
-          "home_defense_rank": 115,
+          "home_defense_rank": 114,
           "home_offense_rank": 4,
           "away_defense_rank": 131
         },
@@ -17145,10 +17145,10 @@
           "home_defense": 0.4342105263157895,
           "home_offense": 0.4576271186440678,
           "away_defense": 0.3384615384615385,
-          "away_offense_rank": 58,
-          "home_defense_rank": 142,
-          "home_offense_rank": 52,
-          "away_defense_rank": 60
+          "away_offense_rank": 48,
+          "home_defense_rank": 111,
+          "home_offense_rank": 42,
+          "away_defense_rank": 44
         },
         {
           "label": "Red Zone Efficiency",
@@ -17411,13 +17411,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "South Carolina",
-          "direction": "rank gap",
-          "gap": 84
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "Florida",
           "direction": "rank gap",
@@ -17428,7 +17421,14 @@
           "metric": "Points per Opportunity",
           "team": "South Carolina",
           "direction": "rank gap",
-          "gap": 71
+          "gap": 70
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Rushing Success Rate",
+          "team": "South Carolina",
+          "direction": "rank gap",
+          "gap": 67
         },
         {
           "type": "ranked_context",
@@ -17636,10 +17636,10 @@
           "defensive_rushing_success_rank": 31,
           "explosiveness_rank": 4,
           "defensive_explosiveness_rank": 63,
-          "points_per_opportunity_rank": 131,
-          "defensive_points_per_opportunity_rank": 97,
-          "third_down_conversion_rank": 144,
-          "defensive_third_down_conversion_rank": 83
+          "points_per_opportunity_rank": 129,
+          "defensive_points_per_opportunity_rank": 96,
+          "third_down_conversion_rank": 117,
+          "defensive_third_down_conversion_rank": 69
         },
         "abbr": "ODU",
         "color": "#043657",
@@ -17822,8 +17822,8 @@
           "defensive_explosiveness_rank": 20,
           "points_per_opportunity_rank": 82,
           "defensive_points_per_opportunity_rank": 94,
-          "third_down_conversion_rank": 110,
-          "defensive_third_down_conversion_rank": 78
+          "third_down_conversion_rank": 92,
+          "defensive_third_down_conversion_rank": 64
         },
         "abbr": "APP",
         "color": "#000000",
@@ -17924,10 +17924,10 @@
           "home_defense": 3.7272727272727275,
           "home_offense": 3.694444444444444,
           "away_defense": 3.75,
-          "away_offense_rank": 131,
+          "away_offense_rank": 129,
           "home_defense_rank": 94,
           "home_offense_rank": 82,
-          "away_defense_rank": 97
+          "away_defense_rank": 96
         },
         {
           "label": "Third Down Conversion",
@@ -17938,10 +17938,10 @@
           "home_defense": 0.36363636363636365,
           "home_offense": 0.37254901960784315,
           "away_defense": 0.37037037037037035,
-          "away_offense_rank": 144,
-          "home_defense_rank": 78,
-          "home_offense_rank": 110,
-          "away_defense_rank": 83
+          "away_offense_rank": 117,
+          "home_defense_rank": 64,
+          "home_offense_rank": 92,
+          "away_defense_rank": 69
         },
         {
           "label": "Red Zone Efficiency",
@@ -18204,13 +18204,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Old Dominion",
-          "direction": "rank gap",
-          "gap": 66
-        },
-        {
-          "type": "matchup_edge",
           "metric": "EPA / Play",
           "team": "Old Dominion",
           "direction": "rank gap",
@@ -18222,6 +18215,13 @@
           "team": "App State",
           "direction": "rank gap",
           "gap": 54
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Old Dominion",
+          "direction": "rank gap",
+          "gap": 53
         },
         {
           "type": "bounce_back",
@@ -18419,7 +18419,7 @@
           "red_zone_td_rate": null,
           "defensive_red_zone_td_rate": null,
           "overall_success_rank": 80,
-          "defensive_success_rank": 107,
+          "defensive_success_rank": 106,
           "offensive_ppa_rank": 49,
           "defensive_ppa_rank": 103,
           "passing_success_rank": 38,
@@ -18430,8 +18430,8 @@
           "defensive_explosiveness_rank": 91,
           "points_per_opportunity_rank": 77,
           "defensive_points_per_opportunity_rank": 120,
-          "third_down_conversion_rank": 100,
-          "defensive_third_down_conversion_rank": 163
+          "third_down_conversion_rank": 84,
+          "defensive_third_down_conversion_rank": 127
         },
         "abbr": "M-OH",
         "color": "#c41230",
@@ -18622,8 +18622,8 @@
           "defensive_explosiveness_rank": 9,
           "points_per_opportunity_rank": 81,
           "defensive_points_per_opportunity_rank": 19,
-          "third_down_conversion_rank": 102,
-          "defensive_third_down_conversion_rank": 92
+          "third_down_conversion_rank": 86,
+          "defensive_third_down_conversion_rank": 73
         },
         "abbr": "MASS",
         "color": "#881c1c",
@@ -18657,7 +18657,7 @@
           "away_offense_rank": 80,
           "home_defense_rank": 74,
           "home_offense_rank": 43,
-          "away_defense_rank": 107
+          "away_defense_rank": 106
         },
         {
           "label": "EPA / Play",
@@ -18738,10 +18738,10 @@
           "home_defense": 0.37681159420289856,
           "home_offense": 0.38461538461538464,
           "away_defense": 0.4666666666666667,
-          "away_offense_rank": 100,
-          "home_defense_rank": 92,
-          "home_offense_rank": 102,
-          "away_defense_rank": 163
+          "away_offense_rank": 84,
+          "home_defense_rank": 73,
+          "home_offense_rank": 86,
+          "away_defense_rank": 127
         },
         {
           "label": "Red Zone Efficiency",
@@ -18997,13 +18997,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Success Rate",
-          "team": "Massachusetts",
-          "direction": "rank gap",
-          "gap": 64
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "Massachusetts",
           "direction": "rank gap",
@@ -19011,10 +19004,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
+          "metric": "Success Rate",
           "team": "Massachusetts",
           "direction": "rank gap",
-          "gap": 61
+          "gap": 63
         },
         {
           "type": "matchup_edge",
@@ -19022,6 +19015,13 @@
           "team": "Miami (OH)",
           "direction": "rank gap",
           "gap": 59
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Rushing Success Rate",
+          "team": "Massachusetts",
+          "direction": "rank gap",
+          "gap": 58
         },
         {
           "type": "bounce_back",
@@ -19230,8 +19230,8 @@
           "defensive_explosiveness_rank": 67,
           "points_per_opportunity_rank": 79,
           "defensive_points_per_opportunity_rank": 65,
-          "third_down_conversion_rank": 72,
-          "defensive_third_down_conversion_rank": 137
+          "third_down_conversion_rank": 61,
+          "defensive_third_down_conversion_rank": 107
         },
         "abbr": "EMU",
         "color": "#046a38",
@@ -19422,8 +19422,8 @@
           "defensive_explosiveness_rank": 118,
           "points_per_opportunity_rank": 83,
           "defensive_points_per_opportunity_rank": 114,
-          "third_down_conversion_rank": 98,
-          "defensive_third_down_conversion_rank": 112
+          "third_down_conversion_rank": 83,
+          "defensive_third_down_conversion_rank": 91
         },
         "abbr": "AKR",
         "color": "#041e42",
@@ -19538,10 +19538,10 @@
           "home_defense": 0.3968253968253968,
           "home_offense": 0.390625,
           "away_defense": 0.425,
-          "away_offense_rank": 72,
-          "home_defense_rank": 112,
-          "home_offense_rank": 98,
-          "away_defense_rank": 137
+          "away_offense_rank": 61,
+          "home_defense_rank": 91,
+          "home_offense_rank": 83,
+          "away_defense_rank": 107
         },
         {
           "label": "Red Zone Efficiency",
@@ -19811,17 +19811,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
+          "metric": "Passing Success Rate",
           "team": "Eastern Michigan",
           "direction": "rank gap",
-          "gap": 40
+          "gap": 37
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Akron",
+          "metric": "Points per Opportunity",
+          "team": "Eastern Michigan",
           "direction": "rank gap",
-          "gap": 39
+          "gap": 35
         },
         {
           "type": "bounce_back",
@@ -20017,8 +20017,8 @@
           "defensive_explosiveness_rank": 37,
           "points_per_opportunity_rank": 19,
           "defensive_points_per_opportunity_rank": 110,
-          "third_down_conversion_rank": 64,
-          "defensive_third_down_conversion_rank": 145
+          "third_down_conversion_rank": 54,
+          "defensive_third_down_conversion_rank": 114
         },
         "abbr": "MISS",
         "color": "#13294b",
@@ -20209,8 +20209,8 @@
           "defensive_explosiveness_rank": 77,
           "points_per_opportunity_rank": 116,
           "defensive_points_per_opportunity_rank": 79,
-          "third_down_conversion_rank": 135,
-          "defensive_third_down_conversion_rank": 96
+          "third_down_conversion_rank": 112,
+          "defensive_third_down_conversion_rank": 77
         },
         "abbr": "VAN",
         "color": "#000000",
@@ -20325,10 +20325,10 @@
           "home_defense": 0.3787878787878788,
           "home_offense": 0.3382352941176471,
           "away_defense": 0.43859649122807015,
-          "away_offense_rank": 64,
-          "home_defense_rank": 96,
-          "home_offense_rank": 135,
-          "away_defense_rank": 145
+          "away_offense_rank": 54,
+          "home_defense_rank": 77,
+          "home_offense_rank": 112,
+          "away_defense_rank": 114
         },
         {
           "label": "Red Zone Efficiency",
@@ -20818,8 +20818,8 @@
           "defensive_explosiveness_rank": 50,
           "points_per_opportunity_rank": 135,
           "defensive_points_per_opportunity_rank": 130,
-          "third_down_conversion_rank": 176,
-          "defensive_third_down_conversion_rank": 157
+          "third_down_conversion_rank": 132,
+          "defensive_third_down_conversion_rank": 124
         },
         "abbr": "CLT",
         "color": "#005035",
@@ -20999,7 +20999,7 @@
           "red_zone_td_rate": null,
           "defensive_red_zone_td_rate": null,
           "overall_success_rank": 34,
-          "defensive_success_rank": 120,
+          "defensive_success_rank": 119,
           "offensive_ppa_rank": 12,
           "defensive_ppa_rank": 109,
           "passing_success_rank": 8,
@@ -21010,8 +21010,8 @@
           "defensive_explosiveness_rank": 56,
           "points_per_opportunity_rank": 32,
           "defensive_points_per_opportunity_rank": 125,
-          "third_down_conversion_rank": 20,
-          "defensive_third_down_conversion_rank": 68
+          "third_down_conversion_rank": 15,
+          "defensive_third_down_conversion_rank": 54
         },
         "abbr": "UNT",
         "color": "#00853e",
@@ -21043,7 +21043,7 @@
           "home_offense": 0.47706422018348627,
           "away_defense": 0.4878048780487805,
           "away_offense_rank": 129,
-          "home_defense_rank": 120,
+          "home_defense_rank": 119,
           "home_offense_rank": 34,
           "away_defense_rank": 131
         },
@@ -21126,10 +21126,10 @@
           "home_defense": 0.35294117647058826,
           "home_offense": 0.5142857142857142,
           "away_defense": 0.46153846153846156,
-          "away_offense_rank": 176,
-          "home_defense_rank": 68,
-          "home_offense_rank": 20,
-          "away_defense_rank": 157
+          "away_offense_rank": 132,
+          "home_defense_rank": 54,
+          "home_offense_rank": 15,
+          "away_defense_rank": 124
         },
         {
           "label": "Red Zone Efficiency",
@@ -21147,13 +21147,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
+        "metric": "Passing Success Rate",
         "side": "home_offense",
-        "rank_gap": 137,
-        "offense_rank": 20,
-        "opponent_defense_rank": 157,
-        "offense_value": 0.5142857142857142,
-        "opponent_defense_value": 0.46153846153846156
+        "rank_gap": 126,
+        "offense_rank": 8,
+        "opponent_defense_rank": 134,
+        "offense_value": 0.5588235294117647,
+        "opponent_defense_value": 0.5314685314685315
       },
       "market_trends": [
         {
@@ -21378,13 +21378,6 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "North Texas",
-          "direction": "rank gap",
-          "gap": 137
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "North Texas",
           "direction": "rank gap",
@@ -21393,9 +21386,9 @@
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
-          "team": "Charlotte",
+          "team": "North Texas",
           "direction": "rank gap",
-          "gap": 108
+          "gap": 109
         },
         {
           "type": "matchup_edge",
@@ -21410,6 +21403,13 @@
           "team": "North Texas",
           "direction": "rank gap",
           "gap": 98
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Success Rate",
+          "team": "North Texas",
+          "direction": "rank gap",
+          "gap": 97
         },
         {
           "type": "bounce_back",
@@ -21619,7 +21619,7 @@
           "points_per_opportunity_rank": 25,
           "defensive_points_per_opportunity_rank": 136,
           "third_down_conversion_rank": 1,
-          "defensive_third_down_conversion_rank": 59
+          "defensive_third_down_conversion_rank": 44
         },
         "abbr": "HOU",
         "color": "#c8102e",
@@ -21803,7 +21803,7 @@
           "points_per_opportunity_rank": 11,
           "defensive_points_per_opportunity_rank": 104,
           "third_down_conversion_rank": 2,
-          "defensive_third_down_conversion_rank": 52
+          "defensive_third_down_conversion_rank": 39
         },
         "abbr": "KSU",
         "color": "#512888",
@@ -21919,9 +21919,9 @@
           "home_offense": 0.65,
           "away_defense": 0.3384615384615385,
           "away_offense_rank": 1,
-          "home_defense_rank": 52,
+          "home_defense_rank": 39,
           "home_offense_rank": 2,
-          "away_defense_rank": 59
+          "away_defense_rank": 44
         },
         {
           "label": "Red Zone Efficiency",
@@ -22184,13 +22184,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Kansas State",
-          "direction": "rank gap",
-          "gap": 57
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "Kansas State",
           "direction": "rank gap",
@@ -22198,10 +22191,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Houston",
+          "metric": "EPA / Play",
+          "team": "Kansas State",
           "direction": "rank gap",
-          "gap": 51
+          "gap": 49
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Kansas State",
+          "direction": "rank gap",
+          "gap": 42
         },
         {
           "type": "ranked_context",
@@ -22409,9 +22409,9 @@
           "explosiveness_rank": 36,
           "defensive_explosiveness_rank": 114,
           "points_per_opportunity_rank": 28,
-          "defensive_points_per_opportunity_rank": 48,
-          "third_down_conversion_rank": 65,
-          "defensive_third_down_conversion_rank": 22
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 55,
+          "defensive_third_down_conversion_rank": 17
         },
         "abbr": "VT",
         "color": "#861f41",
@@ -22597,13 +22597,13 @@
           "passing_success_rank": 108,
           "defensive_passing_success_rank": 8,
           "rushing_success_rank": 121,
-          "defensive_rushing_success_rank": 57,
+          "defensive_rushing_success_rank": 56,
           "explosiveness_rank": 31,
           "defensive_explosiveness_rank": 132,
           "points_per_opportunity_rank": 126,
           "defensive_points_per_opportunity_rank": 40,
-          "third_down_conversion_rank": 129,
-          "defensive_third_down_conversion_rank": 122
+          "third_down_conversion_rank": 106,
+          "defensive_third_down_conversion_rank": 98
         },
         "abbr": "CAL",
         "color": "#041e42",
@@ -22677,7 +22677,7 @@
           "home_offense": 0.36585365853658536,
           "away_defense": 0.336283185840708,
           "away_offense_rank": 58,
-          "home_defense_rank": 57,
+          "home_defense_rank": 56,
           "home_offense_rank": 121,
           "away_defense_rank": 21
         },
@@ -22707,7 +22707,7 @@
           "away_offense_rank": 28,
           "home_defense_rank": 40,
           "home_offense_rank": 126,
-          "away_defense_rank": 48
+          "away_defense_rank": 41
         },
         {
           "label": "Third Down Conversion",
@@ -22718,10 +22718,10 @@
           "home_defense": 0.40540540540540543,
           "home_offense": 0.3472222222222222,
           "away_defense": 0.27941176470588236,
-          "away_offense_rank": 65,
-          "home_defense_rank": 122,
-          "home_offense_rank": 129,
-          "away_defense_rank": 22
+          "away_offense_rank": 55,
+          "home_defense_rank": 98,
+          "home_offense_rank": 106,
+          "away_defense_rank": 17
         },
         {
           "label": "Red Zone Efficiency",
@@ -22739,13 +22739,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
+        "metric": "Rushing Success Rate",
         "side": "home_offense",
-        "rank_gap": 107,
-        "offense_rank": 129,
-        "opponent_defense_rank": 22,
-        "offense_value": 0.3472222222222222,
-        "opponent_defense_value": 0.27941176470588236
+        "rank_gap": 100,
+        "offense_rank": 121,
+        "opponent_defense_rank": 21,
+        "offense_value": 0.36585365853658536,
+        "opponent_defense_value": 0.336283185840708
       },
       "market_trends": [
         {
@@ -22970,13 +22970,6 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "California",
-          "direction": "rank gap",
-          "gap": 107
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Rushing Success Rate",
           "team": "California",
           "direction": "rank gap",
@@ -22998,10 +22991,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Explosiveness",
+          "metric": "Third Down Conversion",
           "team": "California",
           "direction": "rank gap",
-          "gap": 83
+          "gap": 89
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Points per Opportunity",
+          "team": "California",
+          "direction": "rank gap",
+          "gap": 85
         },
         {
           "type": "bounce_back",
@@ -23202,8 +23202,8 @@
           "defensive_explosiveness_rank": 14,
           "points_per_opportunity_rank": 21,
           "defensive_points_per_opportunity_rank": 17,
-          "third_down_conversion_rank": 70,
-          "defensive_third_down_conversion_rank": 13
+          "third_down_conversion_rank": 59,
+          "defensive_third_down_conversion_rank": 8
         },
         "abbr": "DUKE",
         "color": "#00539b",
@@ -23386,8 +23386,8 @@
           "defensive_explosiveness_rank": 82,
           "points_per_opportunity_rank": 98,
           "defensive_points_per_opportunity_rank": 88,
-          "third_down_conversion_rank": 125,
-          "defensive_third_down_conversion_rank": 126
+          "third_down_conversion_rank": 103,
+          "defensive_third_down_conversion_rank": 102
         },
         "abbr": "GT",
         "color": "#b3a369",
@@ -23406,7 +23406,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 15 mph \u00b7 Chance Showers And Thunderstorms \u00b7 36% precipitation"
+        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 15 mph \u00b7 Chance Rain Showers \u00b7 39% precipitation"
       },
       "matchup_metrics": [
         {
@@ -23502,10 +23502,10 @@
           "home_defense": 0.41379310344827586,
           "home_offense": 0.3541666666666667,
           "away_defense": 0.26,
-          "away_offense_rank": 70,
-          "home_defense_rank": 126,
-          "home_offense_rank": 125,
-          "away_defense_rank": 13
+          "away_offense_rank": 59,
+          "home_defense_rank": 102,
+          "home_offense_rank": 103,
+          "away_defense_rank": 8
         },
         {
           "label": "Red Zone Efficiency",
@@ -23525,9 +23525,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 112,
-        "offense_rank": 125,
-        "opponent_defense_rank": 13,
+        "rank_gap": 95,
+        "offense_rank": 103,
+        "opponent_defense_rank": 8,
         "offense_value": 0.3541666666666667,
         "opponent_defense_value": 0.26
       },
@@ -23757,7 +23757,7 @@
           "metric": "Third Down Conversion",
           "team": "Georgia Tech",
           "direction": "rank gap",
-          "gap": 112
+          "gap": 95
         },
         {
           "type": "matchup_edge",
@@ -23987,10 +23987,10 @@
           "defensive_rushing_success_rank": 136,
           "explosiveness_rank": 61,
           "defensive_explosiveness_rank": 101,
-          "points_per_opportunity_rank": 119,
+          "points_per_opportunity_rank": 118,
           "defensive_points_per_opportunity_rank": 138,
-          "third_down_conversion_rank": 131,
-          "defensive_third_down_conversion_rank": 184
+          "third_down_conversion_rank": 108,
+          "defensive_third_down_conversion_rank": 133
         },
         "abbr": "STAN",
         "color": "#8c1515",
@@ -24181,8 +24181,8 @@
           "defensive_explosiveness_rank": 53,
           "points_per_opportunity_rank": 7,
           "defensive_points_per_opportunity_rank": 12,
-          "third_down_conversion_rank": 90,
-          "defensive_third_down_conversion_rank": 88
+          "third_down_conversion_rank": 77,
+          "defensive_third_down_conversion_rank": 70
         },
         "abbr": "ND",
         "color": "#0c2340",
@@ -24283,7 +24283,7 @@
           "home_defense": 2.473684210526316,
           "home_offense": 5.166666666666667,
           "away_defense": 5.162162162162162,
-          "away_offense_rank": 119,
+          "away_offense_rank": 118,
           "home_defense_rank": 12,
           "home_offense_rank": 7,
           "away_defense_rank": 138
@@ -24297,10 +24297,10 @@
           "home_defense": 0.375,
           "home_offense": 0.40384615384615385,
           "away_defense": 0.5076923076923077,
-          "away_offense_rank": 131,
-          "home_defense_rank": 88,
-          "home_offense_rank": 90,
-          "away_defense_rank": 184
+          "away_offense_rank": 108,
+          "home_defense_rank": 70,
+          "home_offense_rank": 77,
+          "away_defense_rank": 133
         },
         {
           "label": "Red Zone Efficiency",
@@ -24781,9 +24781,9 @@
           "explosiveness_rank": 67,
           "defensive_explosiveness_rank": 112,
           "points_per_opportunity_rank": 42,
-          "defensive_points_per_opportunity_rank": 47,
-          "third_down_conversion_rank": 31,
-          "defensive_third_down_conversion_rank": 28
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 19,
+          "defensive_third_down_conversion_rank": 22
         },
         "abbr": "UCLA",
         "color": "#2774ae",
@@ -24965,9 +24965,9 @@
           "explosiveness_rank": 2,
           "defensive_explosiveness_rank": 60,
           "points_per_opportunity_rank": 8,
-          "defensive_points_per_opportunity_rank": 67,
-          "third_down_conversion_rank": 28,
-          "defensive_third_down_conversion_rank": 3
+          "defensive_points_per_opportunity_rank": 66,
+          "third_down_conversion_rank": 19,
+          "defensive_third_down_conversion_rank": 1
         },
         "abbr": "ORE",
         "color": "#007030",
@@ -25069,9 +25069,9 @@
           "home_offense": 5.0285714285714285,
           "away_defense": 3.0,
           "away_offense_rank": 42,
-          "home_defense_rank": 67,
+          "home_defense_rank": 66,
           "home_offense_rank": 8,
-          "away_defense_rank": 47
+          "away_defense_rank": 41
         },
         {
           "label": "Third Down Conversion",
@@ -25082,10 +25082,10 @@
           "home_defense": 0.21153846153846154,
           "home_offense": 0.5,
           "away_defense": 0.2982456140350877,
-          "away_offense_rank": 31,
-          "home_defense_rank": 3,
-          "home_offense_rank": 28,
-          "away_defense_rank": 28
+          "away_offense_rank": 19,
+          "home_defense_rank": 1,
+          "home_offense_rank": 19,
+          "away_defense_rank": 22
         },
         {
           "label": "Red Zone Efficiency",
@@ -25558,14 +25558,14 @@
           "defensive_ppa_rank": 37,
           "passing_success_rank": 121,
           "defensive_passing_success_rank": 74,
-          "rushing_success_rank": 84,
+          "rushing_success_rank": 83,
           "defensive_rushing_success_rank": 40,
           "explosiveness_rank": 107,
           "defensive_explosiveness_rank": 40,
           "points_per_opportunity_rank": 84,
           "defensive_points_per_opportunity_rank": 36,
-          "third_down_conversion_rank": 200,
-          "defensive_third_down_conversion_rank": 89
+          "third_down_conversion_rank": 137,
+          "defensive_third_down_conversion_rank": 70
         },
         "abbr": "TLSA",
         "color": "#003595",
@@ -25743,13 +25743,13 @@
           "passing_success_rank": 136,
           "defensive_passing_success_rank": 124,
           "rushing_success_rank": 9,
-          "defensive_rushing_success_rank": 19,
+          "defensive_rushing_success_rank": 18,
           "explosiveness_rank": 99,
           "defensive_explosiveness_rank": 113,
           "points_per_opportunity_rank": 46,
           "defensive_points_per_opportunity_rank": 87,
-          "third_down_conversion_rank": 113,
-          "defensive_third_down_conversion_rank": 168
+          "third_down_conversion_rank": 95,
+          "defensive_third_down_conversion_rank": 129
         },
         "abbr": "NAVY",
         "color": "#00225b",
@@ -25768,7 +25768,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 70\u00b0F \u00b7 Wind 7 mph \u00b7 Mostly Sunny \u00b7 1% precipitation"
+        "summary": "Outdoor \u00b7 68\u00b0F \u00b7 Wind 8 mph \u00b7 Mostly Sunny \u00b7 1% precipitation"
       },
       "matchup_metrics": [
         {
@@ -25822,8 +25822,8 @@
           "home_defense": 0.33093525179856115,
           "home_offense": 0.5321637426900585,
           "away_defense": 0.37349397590361444,
-          "away_offense_rank": 84,
-          "home_defense_rank": 19,
+          "away_offense_rank": 83,
+          "home_defense_rank": 18,
           "home_offense_rank": 9,
           "away_defense_rank": 40
         },
@@ -25864,10 +25864,10 @@
           "home_defense": 0.4716981132075472,
           "home_offense": 0.3673469387755102,
           "away_defense": 0.375,
-          "away_offense_rank": 200,
-          "home_defense_rank": 168,
-          "home_offense_rank": 113,
-          "away_defense_rank": 89
+          "away_offense_rank": 137,
+          "home_defense_rank": 129,
+          "home_offense_rank": 95,
+          "away_defense_rank": 70
         },
         {
           "label": "Red Zone Efficiency",
@@ -26356,8 +26356,8 @@
           "defensive_explosiveness_rank": 87,
           "points_per_opportunity_rank": 70,
           "defensive_points_per_opportunity_rank": 93,
-          "third_down_conversion_rank": 55,
-          "defensive_third_down_conversion_rank": 136
+          "third_down_conversion_rank": 44,
+          "defensive_third_down_conversion_rank": 106
         },
         "abbr": "ILL",
         "color": "#ff5f05",
@@ -26548,8 +26548,8 @@
           "defensive_explosiveness_rank": 107,
           "points_per_opportunity_rank": 118,
           "defensive_points_per_opportunity_rank": 92,
-          "third_down_conversion_rank": 93,
-          "defensive_third_down_conversion_rank": 120
+          "third_down_conversion_rank": 79,
+          "defensive_third_down_conversion_rank": 96
         },
         "abbr": "MSU",
         "color": "#173f35",
@@ -26664,10 +26664,10 @@
           "home_defense": 0.4032258064516129,
           "home_offense": 0.4,
           "away_defense": 0.42424242424242425,
-          "away_offense_rank": 55,
-          "home_defense_rank": 120,
-          "home_offense_rank": 93,
-          "away_defense_rank": 136
+          "away_offense_rank": 44,
+          "home_defense_rank": 96,
+          "home_offense_rank": 79,
+          "away_defense_rank": 106
         },
         {
           "label": "Red Zone Efficiency",
@@ -26930,15 +26930,15 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Illinois",
+          "metric": "Passing Success Rate",
+          "team": "Michigan State",
           "direction": "rank gap",
-          "gap": 65
+          "gap": 52
         },
         {
           "type": "matchup_edge",
-          "metric": "Passing Success Rate",
-          "team": "Michigan State",
+          "metric": "Third Down Conversion",
+          "team": "Illinois",
           "direction": "rank gap",
           "gap": 52
         },
@@ -27148,8 +27148,8 @@
           "defensive_explosiveness_rank": 26,
           "points_per_opportunity_rank": 49,
           "defensive_points_per_opportunity_rank": 7,
-          "third_down_conversion_rank": 30,
-          "defensive_third_down_conversion_rank": 62
+          "third_down_conversion_rank": 19,
+          "defensive_third_down_conversion_rank": 48
         },
         "abbr": "TEX",
         "color": "#bf5700",
@@ -27332,8 +27332,8 @@
           "defensive_explosiveness_rank": 41,
           "points_per_opportunity_rank": 99,
           "defensive_points_per_opportunity_rank": 4,
-          "third_down_conversion_rank": 132,
-          "defensive_third_down_conversion_rank": 6
+          "third_down_conversion_rank": 109,
+          "defensive_third_down_conversion_rank": 3
         },
         "abbr": "OU",
         "color": "#841617",
@@ -27448,10 +27448,10 @@
           "home_defense": 0.23076923076923078,
           "home_offense": 0.33962264150943394,
           "away_defense": 0.34545454545454546,
-          "away_offense_rank": 30,
-          "home_defense_rank": 6,
-          "home_offense_rank": 132,
-          "away_defense_rank": 62
+          "away_offense_rank": 19,
+          "home_defense_rank": 3,
+          "home_offense_rank": 109,
+          "away_defense_rank": 48
         },
         {
           "label": "Red Zone Efficiency",
@@ -27940,8 +27940,8 @@
           "defensive_explosiveness_rank": 102,
           "points_per_opportunity_rank": 72,
           "defensive_points_per_opportunity_rank": 85,
-          "third_down_conversion_rank": 126,
-          "defensive_third_down_conversion_rank": 71
+          "third_down_conversion_rank": 104,
+          "defensive_third_down_conversion_rank": 57
         },
         "abbr": "BUF",
         "color": "#005bbb",
@@ -28125,15 +28125,15 @@
           "offensive_ppa_rank": 30,
           "defensive_ppa_rank": 43,
           "passing_success_rank": 62,
-          "defensive_passing_success_rank": 96,
+          "defensive_passing_success_rank": 94,
           "rushing_success_rank": 68,
           "defensive_rushing_success_rank": 8,
           "explosiveness_rank": 7,
           "defensive_explosiveness_rank": 115,
-          "points_per_opportunity_rank": 45,
+          "points_per_opportunity_rank": 44,
           "defensive_points_per_opportunity_rank": 39,
-          "third_down_conversion_rank": 33,
-          "defensive_third_down_conversion_rank": 73
+          "third_down_conversion_rank": 25,
+          "defensive_third_down_conversion_rank": 59
         },
         "abbr": "TOL",
         "color": "#0b2240",
@@ -28193,7 +28193,7 @@
           "home_offense": 0.4489795918367347,
           "away_defense": 0.3860759493670886,
           "away_offense_rank": 131,
-          "home_defense_rank": 96,
+          "home_defense_rank": 94,
           "home_offense_rank": 62,
           "away_defense_rank": 48
         },
@@ -28236,7 +28236,7 @@
           "away_defense": 3.606060606060606,
           "away_offense_rank": 72,
           "home_defense_rank": 39,
-          "home_offense_rank": 45,
+          "home_offense_rank": 44,
           "away_defense_rank": 85
         },
         {
@@ -28248,10 +28248,10 @@
           "home_defense": 0.36,
           "home_offense": 0.4925373134328358,
           "away_defense": 0.35714285714285715,
-          "away_offense_rank": 126,
-          "home_defense_rank": 73,
-          "home_offense_rank": 33,
-          "away_defense_rank": 71
+          "away_offense_rank": 104,
+          "home_defense_rank": 59,
+          "home_offense_rank": 25,
+          "away_defense_rank": 57
         },
         {
           "label": "Red Zone Efficiency",
@@ -28740,8 +28740,8 @@
           "defensive_explosiveness_rank": 29,
           "points_per_opportunity_rank": 88,
           "defensive_points_per_opportunity_rank": 61,
-          "third_down_conversion_rank": 128,
-          "defensive_third_down_conversion_rank": 169
+          "third_down_conversion_rank": 105,
+          "defensive_third_down_conversion_rank": 130
         },
         "abbr": "CMU",
         "color": "#6a0032",
@@ -28921,7 +28921,7 @@
           "red_zone_td_rate": null,
           "defensive_red_zone_td_rate": null,
           "overall_success_rank": 50,
-          "defensive_success_rank": 96,
+          "defensive_success_rank": 95,
           "offensive_ppa_rank": 65,
           "defensive_ppa_rank": 119,
           "passing_success_rank": 100,
@@ -28932,8 +28932,8 @@
           "defensive_explosiveness_rank": 94,
           "points_per_opportunity_rank": 66,
           "defensive_points_per_opportunity_rank": 123,
-          "third_down_conversion_rank": 32,
-          "defensive_third_down_conversion_rank": 155
+          "third_down_conversion_rank": 25,
+          "defensive_third_down_conversion_rank": 121
         },
         "abbr": "OHIO",
         "color": "#024230",
@@ -28965,7 +28965,7 @@
           "home_offense": 0.45307443365695793,
           "away_defense": 0.4552238805970149,
           "away_offense_rank": 112,
-          "home_defense_rank": 96,
+          "home_defense_rank": 95,
           "home_offense_rank": 50,
           "away_defense_rank": 116
         },
@@ -29048,10 +29048,10 @@
           "home_defense": 0.45588235294117646,
           "home_offense": 0.4925373134328358,
           "away_defense": 0.47619047619047616,
-          "away_offense_rank": 128,
-          "home_defense_rank": 155,
-          "home_offense_rank": 32,
-          "away_defense_rank": 169
+          "away_offense_rank": 105,
+          "home_defense_rank": 121,
+          "home_offense_rank": 25,
+          "away_defense_rank": 130
         },
         {
           "label": "Red Zone Efficiency",
@@ -29071,9 +29071,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 137,
-        "offense_rank": 32,
-        "opponent_defense_rank": 169,
+        "rank_gap": 105,
+        "offense_rank": 25,
+        "opponent_defense_rank": 130,
         "offense_value": 0.4925373134328358,
         "opponent_defense_value": 0.47619047619047616
       },
@@ -29303,7 +29303,7 @@
           "metric": "Third Down Conversion",
           "team": "Ohio",
           "direction": "rank gap",
-          "gap": 137
+          "gap": 105
         },
         {
           "type": "matchup_edge",
@@ -29528,10 +29528,10 @@
           "defensive_rushing_success_rank": 94,
           "explosiveness_rank": 38,
           "defensive_explosiveness_rank": 30,
-          "points_per_opportunity_rank": 130,
+          "points_per_opportunity_rank": 129,
           "defensive_points_per_opportunity_rank": 133,
-          "third_down_conversion_rank": 97,
-          "defensive_third_down_conversion_rank": 45
+          "third_down_conversion_rank": 82,
+          "defensive_third_down_conversion_rank": 36
         },
         "abbr": "KENT",
         "color": "#002664",
@@ -29722,8 +29722,8 @@
           "defensive_explosiveness_rank": 15,
           "points_per_opportunity_rank": 47,
           "defensive_points_per_opportunity_rank": 64,
-          "third_down_conversion_rank": 81,
-          "defensive_third_down_conversion_rank": 148
+          "third_down_conversion_rank": 68,
+          "defensive_third_down_conversion_rank": 116
         },
         "abbr": "WMU",
         "color": "#532e1f",
@@ -29824,7 +29824,7 @@
           "home_defense": 3.32,
           "home_offense": 4.296296296296297,
           "away_defense": 4.620689655172414,
-          "away_offense_rank": 130,
+          "away_offense_rank": 129,
           "home_defense_rank": 64,
           "home_offense_rank": 47,
           "away_defense_rank": 133
@@ -29838,10 +29838,10 @@
           "home_defense": 0.4411764705882353,
           "home_offense": 0.4126984126984127,
           "away_defense": 0.3269230769230769,
-          "away_offense_rank": 97,
-          "home_defense_rank": 148,
-          "home_offense_rank": 81,
-          "away_defense_rank": 45
+          "away_offense_rank": 82,
+          "home_defense_rank": 116,
+          "home_offense_rank": 68,
+          "away_defense_rank": 36
         },
         {
           "label": "Red Zone Efficiency",
@@ -30107,14 +30107,7 @@
           "metric": "Points per Opportunity",
           "team": "Kent State",
           "direction": "rank gap",
-          "gap": 66
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Kent State",
-          "direction": "rank gap",
-          "gap": 51
+          "gap": 65
         },
         {
           "type": "matchup_edge",
@@ -30122,6 +30115,13 @@
           "team": "Kent State",
           "direction": "rank gap",
           "gap": 36
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Kent State",
+          "direction": "rank gap",
+          "gap": 34
         },
         {
           "type": "bounce_back",
@@ -30330,8 +30330,8 @@
           "defensive_explosiveness_rank": 85,
           "points_per_opportunity_rank": 41,
           "defensive_points_per_opportunity_rank": 41,
-          "third_down_conversion_rank": 79,
-          "defensive_third_down_conversion_rank": 143
+          "third_down_conversion_rank": 66,
+          "defensive_third_down_conversion_rank": 112
         },
         "abbr": "CONN",
         "color": "#000e2f",
@@ -30514,7 +30514,7 @@
           "defensive_success_rank": 105,
           "offensive_ppa_rank": 51,
           "defensive_ppa_rank": 108,
-          "passing_success_rank": 114,
+          "passing_success_rank": 113,
           "defensive_passing_success_rank": 108,
           "rushing_success_rank": 71,
           "defensive_rushing_success_rank": 96,
@@ -30522,8 +30522,8 @@
           "defensive_explosiveness_rank": 57,
           "points_per_opportunity_rank": 107,
           "defensive_points_per_opportunity_rank": 68,
-          "third_down_conversion_rank": 96,
-          "defensive_third_down_conversion_rank": 181
+          "third_down_conversion_rank": 79,
+          "defensive_third_down_conversion_rank": 132
         },
         "abbr": "TEM",
         "color": "#a41e35",
@@ -30584,7 +30584,7 @@
           "away_defense": 0.43902439024390244,
           "away_offense_rank": 77,
           "home_defense_rank": 108,
-          "home_offense_rank": 114,
+          "home_offense_rank": 113,
           "away_defense_rank": 104
         },
         {
@@ -30638,10 +30638,10 @@
           "home_defense": 0.5,
           "home_offense": 0.4,
           "away_defense": 0.4358974358974359,
-          "away_offense_rank": 79,
-          "home_defense_rank": 181,
-          "home_offense_rank": 96,
-          "away_defense_rank": 143
+          "away_offense_rank": 66,
+          "home_defense_rank": 132,
+          "home_offense_rank": 79,
+          "away_defense_rank": 112
         },
         {
           "label": "Red Zone Efficiency",
@@ -30659,13 +30659,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
-        "side": "away_offense",
-        "rank_gap": 102,
-        "offense_rank": 79,
-        "opponent_defense_rank": 181,
-        "offense_value": 0.41935483870967744,
-        "opponent_defense_value": 0.5
+        "metric": "Points per Opportunity",
+        "side": "home_offense",
+        "rank_gap": 66,
+        "offense_rank": 107,
+        "opponent_defense_rank": 41,
+        "offense_value": 3.259259259259259,
+        "opponent_defense_value": 3.0
       },
       "market_trends": [
         {
@@ -30890,15 +30890,15 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "UConn",
+          "metric": "Points per Opportunity",
+          "team": "Temple",
           "direction": "rank gap",
-          "gap": 102
+          "gap": 66
         },
         {
           "type": "matchup_edge",
-          "metric": "Points per Opportunity",
-          "team": "Temple",
+          "metric": "Third Down Conversion",
+          "team": "UConn",
           "direction": "rank gap",
           "gap": 66
         },
@@ -30911,17 +30911,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Temple",
-          "direction": "rank gap",
-          "gap": 47
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "UConn",
           "direction": "rank gap",
           "gap": 42
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Explosiveness",
+          "team": "Temple",
+          "direction": "rank gap",
+          "gap": 39
         },
         {
           "type": "bounce_back",
@@ -31114,15 +31114,15 @@
           "offensive_ppa_rank": 116,
           "defensive_ppa_rank": 89,
           "passing_success_rank": 134,
-          "defensive_passing_success_rank": 65,
-          "rushing_success_rank": 56,
+          "defensive_passing_success_rank": 64,
+          "rushing_success_rank": 55,
           "defensive_rushing_success_rank": 91,
           "explosiveness_rank": 116,
           "defensive_explosiveness_rank": 100,
           "points_per_opportunity_rank": 103,
           "defensive_points_per_opportunity_rank": 103,
-          "third_down_conversion_rank": 150,
-          "defensive_third_down_conversion_rank": 147
+          "third_down_conversion_rank": 123,
+          "defensive_third_down_conversion_rank": 116
         },
         "abbr": "RICE",
         "color": "#00205b",
@@ -31305,8 +31305,8 @@
           "defensive_explosiveness_rank": 111,
           "points_per_opportunity_rank": 109,
           "defensive_points_per_opportunity_rank": 29,
-          "third_down_conversion_rank": 190,
-          "defensive_third_down_conversion_rank": 74
+          "third_down_conversion_rank": 136,
+          "defensive_third_down_conversion_rank": 60
         },
         "abbr": "ECU",
         "color": "#592a8a",
@@ -31368,7 +31368,7 @@
           "away_offense_rank": 134,
           "home_defense_rank": 14,
           "home_offense_rank": 51,
-          "away_defense_rank": 65
+          "away_defense_rank": 64
         },
         {
           "label": "Rushing Success Rate",
@@ -31379,7 +31379,7 @@
           "home_defense": 0.36923076923076925,
           "home_offense": 0.3838383838383838,
           "away_defense": 0.4342105263157895,
-          "away_offense_rank": 56,
+          "away_offense_rank": 55,
           "home_defense_rank": 36,
           "home_offense_rank": 112,
           "away_defense_rank": 91
@@ -31421,10 +31421,10 @@
           "home_defense": 0.36065573770491804,
           "home_offense": 0.2553191489361702,
           "away_defense": 0.4411764705882353,
-          "away_offense_rank": 150,
-          "home_defense_rank": 74,
-          "home_offense_rank": 190,
-          "away_defense_rank": 147
+          "away_offense_rank": 123,
+          "home_defense_rank": 60,
+          "home_offense_rank": 136,
+          "away_defense_rank": 116
         },
         {
           "label": "Red Zone Efficiency",
@@ -31680,13 +31680,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Rice",
-          "direction": "rank gap",
-          "gap": 76
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Points per Opportunity",
           "team": "Rice",
           "direction": "rank gap",
@@ -31705,6 +31698,13 @@
           "team": "Rice",
           "direction": "rank gap",
           "gap": 69
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Rice",
+          "direction": "rank gap",
+          "gap": 63
         },
         {
           "type": "bounce_back",
@@ -31913,8 +31913,8 @@
           "defensive_explosiveness_rank": 18,
           "points_per_opportunity_rank": 20,
           "defensive_points_per_opportunity_rank": 9,
-          "third_down_conversion_rank": 112,
-          "defensive_third_down_conversion_rank": 72
+          "third_down_conversion_rank": 94,
+          "defensive_third_down_conversion_rank": 58
         },
         "abbr": "TENN",
         "color": "#ff8200",
@@ -32105,8 +32105,8 @@
           "defensive_explosiveness_rank": 23,
           "points_per_opportunity_rank": 106,
           "defensive_points_per_opportunity_rank": 137,
-          "third_down_conversion_rank": 57,
-          "defensive_third_down_conversion_rank": 151
+          "third_down_conversion_rank": 47,
+          "defensive_third_down_conversion_rank": 119
         },
         "abbr": "ARK",
         "color": "#a32136",
@@ -32221,10 +32221,10 @@
           "home_defense": 0.45,
           "home_offense": 0.4444444444444444,
           "away_defense": 0.3582089552238806,
-          "away_offense_rank": 112,
-          "home_defense_rank": 151,
-          "home_offense_rank": 57,
-          "away_defense_rank": 72
+          "away_offense_rank": 94,
+          "home_defense_rank": 119,
+          "home_offense_rank": 47,
+          "away_defense_rank": 58
         },
         {
           "label": "Red Zone Efficiency",
@@ -32713,8 +32713,8 @@
           "defensive_explosiveness_rank": 68,
           "points_per_opportunity_rank": 117,
           "defensive_points_per_opportunity_rank": 129,
-          "third_down_conversion_rank": 121,
-          "defensive_third_down_conversion_rank": 103
+          "third_down_conversion_rank": 100,
+          "defensive_third_down_conversion_rank": 82
         },
         "abbr": "MD",
         "color": "#ce1126",
@@ -32904,9 +32904,9 @@
           "explosiveness_rank": 63,
           "defensive_explosiveness_rank": 83,
           "points_per_opportunity_rank": 14,
-          "defensive_points_per_opportunity_rank": 43,
-          "third_down_conversion_rank": 45,
-          "defensive_third_down_conversion_rank": 97
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 35,
+          "defensive_third_down_conversion_rank": 78
         },
         "abbr": "OSU",
         "color": "#ba0c2f",
@@ -33008,7 +33008,7 @@
           "home_offense": 4.909090909090909,
           "away_defense": 4.464285714285714,
           "away_offense_rank": 117,
-          "home_defense_rank": 43,
+          "home_defense_rank": 41,
           "home_offense_rank": 14,
           "away_defense_rank": 129
         },
@@ -33021,10 +33021,10 @@
           "home_defense": 0.38028169014084506,
           "home_offense": 0.4666666666666667,
           "away_defense": 0.38461538461538464,
-          "away_offense_rank": 121,
-          "home_defense_rank": 97,
-          "home_offense_rank": 45,
-          "away_defense_rank": 103
+          "away_offense_rank": 100,
+          "home_defense_rank": 78,
+          "home_offense_rank": 35,
+          "away_defense_rank": 82
         },
         {
           "label": "Red Zone Efficiency",
@@ -33513,8 +33513,8 @@
           "defensive_explosiveness_rank": 28,
           "points_per_opportunity_rank": 111,
           "defensive_points_per_opportunity_rank": 62,
-          "third_down_conversion_rank": 165,
-          "defensive_third_down_conversion_rank": 118
+          "third_down_conversion_rank": 129,
+          "defensive_third_down_conversion_rank": 94
         },
         "abbr": "SDSU",
         "color": "#a6192e",
@@ -33698,15 +33698,15 @@
           "offensive_ppa_rank": 18,
           "defensive_ppa_rank": 76,
           "passing_success_rank": 28,
-          "defensive_passing_success_rank": 95,
+          "defensive_passing_success_rank": 94,
           "rushing_success_rank": 31,
-          "defensive_rushing_success_rank": 65,
+          "defensive_rushing_success_rank": 64,
           "explosiveness_rank": 21,
           "defensive_explosiveness_rank": 33,
           "points_per_opportunity_rank": 18,
           "defensive_points_per_opportunity_rank": 82,
-          "third_down_conversion_rank": 84,
-          "defensive_third_down_conversion_rank": 134
+          "third_down_conversion_rank": 71,
+          "defensive_third_down_conversion_rank": 105
         },
         "abbr": "ORST",
         "color": "#dc4405",
@@ -33766,7 +33766,7 @@
           "home_offense": 0.4948453608247423,
           "away_defense": 0.4645161290322581,
           "away_offense_rank": 135,
-          "home_defense_rank": 95,
+          "home_defense_rank": 94,
           "home_offense_rank": 28,
           "away_defense_rank": 115
         },
@@ -33780,7 +33780,7 @@
           "home_offense": 0.4897959183673469,
           "away_defense": 0.45263157894736844,
           "away_offense_rank": 122,
-          "home_defense_rank": 65,
+          "home_defense_rank": 64,
           "home_offense_rank": 31,
           "away_defense_rank": 109
         },
@@ -33821,10 +33821,10 @@
           "home_defense": 0.421875,
           "home_offense": 0.4107142857142857,
           "away_defense": 0.4025974025974026,
-          "away_offense_rank": 165,
-          "home_defense_rank": 134,
-          "home_offense_rank": 84,
-          "away_defense_rank": 118
+          "away_offense_rank": 129,
+          "home_defense_rank": 105,
+          "home_offense_rank": 71,
+          "away_defense_rank": 94
         },
         {
           "label": "Red Zone Efficiency",
@@ -34104,7 +34104,7 @@
           "metric": "Rushing Success Rate",
           "team": "San Diego State",
           "direction": "rank gap",
-          "gap": 57
+          "gap": 58
         },
         {
           "type": "game_context",
@@ -34308,8 +34308,8 @@
           "defensive_explosiveness_rank": 5,
           "points_per_opportunity_rank": 91,
           "defensive_points_per_opportunity_rank": 66,
-          "third_down_conversion_rank": 124,
-          "defensive_third_down_conversion_rank": 98
+          "third_down_conversion_rank": 102,
+          "defensive_third_down_conversion_rank": 79
         },
         "abbr": "CCU",
         "color": "#006f71",
@@ -34500,8 +34500,8 @@
           "defensive_explosiveness_rank": 104,
           "points_per_opportunity_rank": 127,
           "defensive_points_per_opportunity_rank": 126,
-          "third_down_conversion_rank": 118,
-          "defensive_third_down_conversion_rank": 166
+          "third_down_conversion_rank": 98,
+          "defensive_third_down_conversion_rank": 128
         },
         "abbr": "MRSH",
         "color": "#00b140",
@@ -34616,10 +34616,10 @@
           "home_defense": 0.46875,
           "home_offense": 0.359375,
           "away_defense": 0.38095238095238093,
-          "away_offense_rank": 124,
-          "home_defense_rank": 166,
-          "home_offense_rank": 118,
-          "away_defense_rank": 98
+          "away_offense_rank": 102,
+          "home_defense_rank": 128,
+          "home_offense_rank": 98,
+          "away_defense_rank": 79
         },
         {
           "label": "Red Zone Efficiency",
@@ -35100,8 +35100,8 @@
           "defensive_explosiveness_rank": 31,
           "points_per_opportunity_rank": 63,
           "defensive_points_per_opportunity_rank": 57,
-          "third_down_conversion_rank": 111,
-          "defensive_third_down_conversion_rank": 80
+          "third_down_conversion_rank": 92,
+          "defensive_third_down_conversion_rank": 66
         },
         "abbr": "NEV",
         "color": "#041e42",
@@ -35292,8 +35292,8 @@
           "defensive_explosiveness_rank": 74,
           "points_per_opportunity_rank": 138,
           "defensive_points_per_opportunity_rank": 124,
-          "third_down_conversion_rank": 179,
-          "defensive_third_down_conversion_rank": 188
+          "third_down_conversion_rank": 133,
+          "defensive_third_down_conversion_rank": 137
         },
         "abbr": "UTEP",
         "color": "#ff8200",
@@ -35408,10 +35408,10 @@
           "home_defense": 0.5245901639344263,
           "home_offense": 0.2711864406779661,
           "away_defense": 0.36507936507936506,
-          "away_offense_rank": 111,
-          "home_defense_rank": 188,
-          "home_offense_rank": 179,
-          "away_defense_rank": 80
+          "away_offense_rank": 92,
+          "home_defense_rank": 137,
+          "home_offense_rank": 133,
+          "away_defense_rank": 66
         },
         {
           "label": "Red Zone Efficiency",
@@ -35429,13 +35429,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
-        "side": "home_offense",
-        "rank_gap": 99,
-        "offense_rank": 179,
-        "opponent_defense_rank": 80,
-        "offense_value": 0.2711864406779661,
-        "opponent_defense_value": 0.36507936507936506
+        "metric": "Rushing Success Rate",
+        "side": "away_offense",
+        "rank_gap": 87,
+        "offense_rank": 24,
+        "opponent_defense_rank": 111,
+        "offense_value": 0.49606299212598426,
+        "opponent_defense_value": 0.45454545454545453
       },
       "market_trends": [
         {
@@ -35660,13 +35660,6 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "UTEP",
-          "direction": "rank gap",
-          "gap": 99
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Rushing Success Rate",
           "team": "Nevada",
           "direction": "rank gap",
@@ -35682,9 +35675,9 @@
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
-          "team": "Nevada",
+          "team": "UTEP",
           "direction": "rank gap",
-          "gap": 77
+          "gap": 67
         },
         {
           "type": "matchup_edge",
@@ -35692,6 +35685,13 @@
           "team": "Nevada",
           "direction": "rank gap",
           "gap": 61
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Success Rate",
+          "team": "UTEP",
+          "direction": "rank gap",
+          "gap": 52
         },
         {
           "type": "bounce_back",
@@ -35892,10 +35892,10 @@
           "defensive_rushing_success_rank": 52,
           "explosiveness_rank": 35,
           "defensive_explosiveness_rank": 2,
-          "points_per_opportunity_rank": 58,
+          "points_per_opportunity_rank": 57,
           "defensive_points_per_opportunity_rank": 2,
-          "third_down_conversion_rank": 71,
-          "defensive_third_down_conversion_rank": 64
+          "third_down_conversion_rank": 60,
+          "defensive_third_down_conversion_rank": 50
         },
         "abbr": "NDSU",
         "color": "#00583d",
@@ -36079,15 +36079,15 @@
           "offensive_ppa_rank": 95,
           "defensive_ppa_rank": 57,
           "passing_success_rank": 111,
-          "defensive_passing_success_rank": 15,
+          "defensive_passing_success_rank": 14,
           "rushing_success_rank": 120,
           "defensive_rushing_success_rank": 128,
           "explosiveness_rank": 32,
           "defensive_explosiveness_rank": 78,
           "points_per_opportunity_rank": 104,
           "defensive_points_per_opportunity_rank": 56,
-          "third_down_conversion_rank": 107,
-          "defensive_third_down_conversion_rank": 105
+          "third_down_conversion_rank": 89,
+          "defensive_third_down_conversion_rank": 84
         },
         "abbr": "UNLV",
         "color": "#cf0a2c",
@@ -36147,7 +36147,7 @@
           "home_offense": 0.3793103448275862,
           "away_defense": 0.3404255319148936,
           "away_offense_rank": 36,
-          "home_defense_rank": 15,
+          "home_defense_rank": 14,
           "home_offense_rank": 111,
           "away_defense_rank": 20
         },
@@ -36188,7 +36188,7 @@
           "home_defense": 3.2333333333333334,
           "home_offense": 3.2962962962962963,
           "away_defense": 1.631578947368421,
-          "away_offense_rank": 58,
+          "away_offense_rank": 57,
           "home_defense_rank": 56,
           "home_offense_rank": 104,
           "away_defense_rank": 2
@@ -36202,10 +36202,10 @@
           "home_defense": 0.38666666666666666,
           "home_offense": 0.3815789473684211,
           "away_defense": 0.3492063492063492,
-          "away_offense_rank": 71,
-          "home_defense_rank": 105,
-          "home_offense_rank": 107,
-          "away_defense_rank": 64
+          "away_offense_rank": 60,
+          "home_defense_rank": 84,
+          "home_offense_rank": 89,
+          "away_defense_rank": 50
         },
         {
           "label": "Red Zone Efficiency",
@@ -36676,16 +36676,16 @@
           "defensive_success_rank": 100,
           "offensive_ppa_rank": 99,
           "defensive_ppa_rank": 48,
-          "passing_success_rank": 115,
+          "passing_success_rank": 113,
           "defensive_passing_success_rank": 50,
           "rushing_success_rank": 42,
           "defensive_rushing_success_rank": 118,
           "explosiveness_rank": 100,
           "defensive_explosiveness_rank": 7,
-          "points_per_opportunity_rank": 122,
+          "points_per_opportunity_rank": 121,
           "defensive_points_per_opportunity_rank": 102,
-          "third_down_conversion_rank": 42,
-          "defensive_third_down_conversion_rank": 82
+          "third_down_conversion_rank": 32,
+          "defensive_third_down_conversion_rank": 68
         },
         "abbr": "UAB",
         "color": "#1a5632",
@@ -36874,10 +36874,10 @@
           "defensive_rushing_success_rank": 105,
           "explosiveness_rank": 37,
           "defensive_explosiveness_rank": 133,
-          "points_per_opportunity_rank": 13,
+          "points_per_opportunity_rank": 12,
           "defensive_points_per_opportunity_rank": 55,
-          "third_down_conversion_rank": 36,
-          "defensive_third_down_conversion_rank": 70
+          "third_down_conversion_rank": 28,
+          "defensive_third_down_conversion_rank": 56
         },
         "abbr": "MEM",
         "color": "#00498f",
@@ -36936,7 +36936,7 @@
           "home_defense": 0.3680555555555556,
           "home_offense": 0.5343511450381679,
           "away_defense": 0.3867924528301887,
-          "away_offense_rank": 115,
+          "away_offense_rank": 113,
           "home_defense_rank": 33,
           "home_offense_rank": 15,
           "away_defense_rank": 50
@@ -36978,9 +36978,9 @@
           "home_defense": 3.2142857142857144,
           "home_offense": 4.9375,
           "away_defense": 3.84,
-          "away_offense_rank": 122,
+          "away_offense_rank": 121,
           "home_defense_rank": 55,
-          "home_offense_rank": 13,
+          "home_offense_rank": 12,
           "away_defense_rank": 102
         },
         {
@@ -36992,10 +36992,10 @@
           "home_defense": 0.3548387096774194,
           "home_offense": 0.49122807017543857,
           "away_defense": 0.36666666666666664,
-          "away_offense_rank": 42,
-          "home_defense_rank": 70,
-          "home_offense_rank": 36,
-          "away_defense_rank": 82
+          "away_offense_rank": 32,
+          "home_defense_rank": 56,
+          "home_offense_rank": 28,
+          "away_defense_rank": 68
         },
         {
           "label": "Red Zone Efficiency",
@@ -37254,7 +37254,7 @@
           "metric": "Points per Opportunity",
           "team": "Memphis",
           "direction": "rank gap",
-          "gap": 89
+          "gap": 90
         },
         {
           "type": "matchup_edge",
@@ -37268,14 +37268,14 @@
           "metric": "Passing Success Rate",
           "team": "UAB",
           "direction": "rank gap",
-          "gap": 82
+          "gap": 80
         },
         {
           "type": "matchup_edge",
           "metric": "Points per Opportunity",
           "team": "UAB",
           "direction": "rank gap",
-          "gap": 67
+          "gap": 66
         },
         {
           "type": "game_context",
@@ -37471,16 +37471,16 @@
           "defensive_success_rank": 1,
           "offensive_ppa_rank": 33,
           "defensive_ppa_rank": 5,
-          "passing_success_rank": 23,
+          "passing_success_rank": 22,
           "defensive_passing_success_rank": 2,
           "rushing_success_rank": 45,
           "defensive_rushing_success_rank": 2,
           "explosiveness_rank": 75,
           "defensive_explosiveness_rank": 108,
           "points_per_opportunity_rank": 37,
-          "defensive_points_per_opportunity_rank": 105,
-          "third_down_conversion_rank": 17,
-          "defensive_third_down_conversion_rank": 14
+          "defensive_points_per_opportunity_rank": 104,
+          "third_down_conversion_rank": 12,
+          "defensive_third_down_conversion_rank": 9
         },
         "abbr": "LSU",
         "color": "#461d7c",
@@ -37671,8 +37671,8 @@
           "defensive_explosiveness_rank": 42,
           "points_per_opportunity_rank": 30,
           "defensive_points_per_opportunity_rank": 96,
-          "third_down_conversion_rank": 201,
-          "defensive_third_down_conversion_rank": 156
+          "third_down_conversion_rank": 138,
+          "defensive_third_down_conversion_rank": 123
         },
         "abbr": "UK",
         "color": "#0033a0",
@@ -37731,7 +37731,7 @@
           "home_defense": 0.4508670520231214,
           "home_offense": 0.45517241379310347,
           "away_defense": 0.2975206611570248,
-          "away_offense_rank": 23,
+          "away_offense_rank": 22,
           "home_defense_rank": 107,
           "home_offense_rank": 55,
           "away_defense_rank": 2
@@ -37776,7 +37776,7 @@
           "away_offense_rank": 37,
           "home_defense_rank": 96,
           "home_offense_rank": 30,
-          "away_defense_rank": 105
+          "away_defense_rank": 104
         },
         {
           "label": "Third Down Conversion",
@@ -37787,10 +37787,10 @@
           "home_defense": 0.4594594594594595,
           "home_offense": 0.24528301886792453,
           "away_defense": 0.2608695652173913,
-          "away_offense_rank": 17,
-          "home_defense_rank": 156,
-          "home_offense_rank": 201,
-          "away_defense_rank": 14
+          "away_offense_rank": 12,
+          "home_defense_rank": 123,
+          "home_offense_rank": 138,
+          "away_defense_rank": 9
         },
         {
           "label": "Red Zone Efficiency",
@@ -37810,9 +37810,9 @@
       "featured_mismatch": {
         "metric": "Third Down Conversion",
         "side": "home_offense",
-        "rank_gap": 187,
-        "offense_rank": 201,
-        "opponent_defense_rank": 14,
+        "rank_gap": 129,
+        "offense_rank": 138,
+        "opponent_defense_rank": 9,
         "offense_value": 0.24528301886792453,
         "opponent_defense_value": 0.2608695652173913
       },
@@ -38042,21 +38042,21 @@
           "metric": "Third Down Conversion",
           "team": "Kentucky",
           "direction": "rank gap",
-          "gap": 187
+          "gap": 129
         },
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
           "team": "LSU",
           "direction": "rank gap",
-          "gap": 139
+          "gap": 111
         },
         {
           "type": "matchup_edge",
           "metric": "Passing Success Rate",
           "team": "LSU",
           "direction": "rank gap",
-          "gap": 84
+          "gap": 85
         },
         {
           "type": "matchup_edge",
@@ -38070,7 +38070,7 @@
           "metric": "Points per Opportunity",
           "team": "Kentucky",
           "direction": "rank gap",
-          "gap": 75
+          "gap": 74
         },
         {
           "type": "ranked_context",
@@ -38279,8 +38279,8 @@
           "defensive_explosiveness_rank": 81,
           "points_per_opportunity_rank": 1,
           "defensive_points_per_opportunity_rank": 33,
-          "third_down_conversion_rank": 8,
-          "defensive_third_down_conversion_rank": 57
+          "third_down_conversion_rank": 6,
+          "defensive_third_down_conversion_rank": 43
         },
         "abbr": "UGA",
         "color": "#ba0c2f",
@@ -38471,8 +38471,8 @@
           "defensive_explosiveness_rank": 127,
           "points_per_opportunity_rank": 2,
           "defensive_points_per_opportunity_rank": 106,
-          "third_down_conversion_rank": 35,
-          "defensive_third_down_conversion_rank": 20
+          "third_down_conversion_rank": 28,
+          "defensive_third_down_conversion_rank": 15
         },
         "abbr": "ALA",
         "color": "#9e1b32",
@@ -38587,10 +38587,10 @@
           "home_defense": 0.2753623188405797,
           "home_offense": 0.49122807017543857,
           "away_defense": 0.33783783783783783,
-          "away_offense_rank": 8,
-          "home_defense_rank": 20,
-          "home_offense_rank": 35,
-          "away_defense_rank": 57
+          "away_offense_rank": 6,
+          "home_defense_rank": 15,
+          "home_offense_rank": 28,
+          "away_defense_rank": 43
         },
         {
           "label": "Red Zone Efficiency",
@@ -39061,8 +39061,8 @@
           "defensive_explosiveness_rank": 120,
           "points_per_opportunity_rank": 40,
           "defensive_points_per_opportunity_rank": 84,
-          "third_down_conversion_rank": 34,
-          "defensive_third_down_conversion_rank": 17
+          "third_down_conversion_rank": 27,
+          "defensive_third_down_conversion_rank": 12
         },
         "abbr": "AF",
         "color": "#003594",
@@ -39245,8 +39245,8 @@
           "defensive_explosiveness_rank": 109,
           "points_per_opportunity_rank": 137,
           "defensive_points_per_opportunity_rank": 95,
-          "third_down_conversion_rank": 156,
-          "defensive_third_down_conversion_rank": 205
+          "third_down_conversion_rank": 126,
+          "defensive_third_down_conversion_rank": 138
         },
         "abbr": "NIU",
         "color": "#c8102e",
@@ -39361,10 +39361,10 @@
           "home_defense": 0.5882352941176471,
           "home_offense": 0.3103448275862069,
           "away_defense": 0.2653061224489796,
-          "away_offense_rank": 34,
-          "home_defense_rank": 205,
-          "home_offense_rank": 156,
-          "away_defense_rank": 17
+          "away_offense_rank": 27,
+          "home_defense_rank": 138,
+          "home_offense_rank": 126,
+          "away_defense_rank": 12
         },
         {
           "label": "Red Zone Efficiency",
@@ -39383,12 +39383,12 @@
       ],
       "featured_mismatch": {
         "metric": "Third Down Conversion",
-        "side": "away_offense",
-        "rank_gap": 171,
-        "offense_rank": 34,
-        "opponent_defense_rank": 205,
-        "offense_value": 0.49230769230769234,
-        "opponent_defense_value": 0.5882352941176471
+        "side": "home_offense",
+        "rank_gap": 114,
+        "offense_rank": 126,
+        "opponent_defense_rank": 12,
+        "offense_value": 0.3103448275862069,
+        "opponent_defense_value": 0.2653061224489796
       },
       "market_trends": [
         {
@@ -39614,16 +39614,16 @@
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
-          "team": "Air Force",
+          "team": "Northern Illinois",
           "direction": "rank gap",
-          "gap": 171
+          "gap": 114
         },
         {
           "type": "matchup_edge",
           "metric": "Third Down Conversion",
-          "team": "Northern Illinois",
+          "team": "Air Force",
           "direction": "rank gap",
-          "gap": 139
+          "gap": 111
         },
         {
           "type": "matchup_edge",
@@ -39842,7 +39842,7 @@
           "red_zone_td_rate": null,
           "defensive_red_zone_td_rate": null,
           "overall_success_rank": 73,
-          "defensive_success_rank": 64,
+          "defensive_success_rank": 63,
           "offensive_ppa_rank": 77,
           "defensive_ppa_rank": 18,
           "passing_success_rank": 69,
@@ -39851,10 +39851,10 @@
           "defensive_rushing_success_rank": 74,
           "explosiveness_rank": 114,
           "defensive_explosiveness_rank": 6,
-          "points_per_opportunity_rank": 73,
+          "points_per_opportunity_rank": 72,
           "defensive_points_per_opportunity_rank": 121,
-          "third_down_conversion_rank": 115,
-          "defensive_third_down_conversion_rank": 133
+          "third_down_conversion_rank": 97,
+          "defensive_third_down_conversion_rank": 104
         },
         "abbr": "UL",
         "color": "#ce181e",
@@ -40037,8 +40037,8 @@
           "defensive_explosiveness_rank": 121,
           "points_per_opportunity_rank": 59,
           "defensive_points_per_opportunity_rank": 89,
-          "third_down_conversion_rank": 82,
-          "defensive_third_down_conversion_rank": 106
+          "third_down_conversion_rank": 69,
+          "defensive_third_down_conversion_rank": 85
         },
         "abbr": "LT",
         "color": "#003087",
@@ -40072,7 +40072,7 @@
           "away_offense_rank": 73,
           "home_defense_rank": 57,
           "home_offense_rank": 117,
-          "away_defense_rank": 64
+          "away_defense_rank": 63
         },
         {
           "label": "EPA / Play",
@@ -40139,7 +40139,7 @@
           "home_defense": 3.6666666666666665,
           "home_offense": 4.111111111111111,
           "away_defense": 4.3125,
-          "away_offense_rank": 73,
+          "away_offense_rank": 72,
           "home_defense_rank": 89,
           "home_offense_rank": 59,
           "away_defense_rank": 121
@@ -40153,10 +40153,10 @@
           "home_defense": 0.3870967741935484,
           "home_offense": 0.4117647058823529,
           "away_defense": 0.41935483870967744,
-          "away_offense_rank": 115,
-          "home_defense_rank": 106,
-          "home_offense_rank": 82,
-          "away_defense_rank": 133
+          "away_offense_rank": 97,
+          "home_defense_rank": 85,
+          "home_offense_rank": 69,
+          "away_defense_rank": 104
         },
         {
           "label": "Red Zone Efficiency",
@@ -40422,7 +40422,7 @@
           "metric": "Success Rate",
           "team": "Louisiana Tech",
           "direction": "rank gap",
-          "gap": 53
+          "gap": 54
         },
         {
           "type": "matchup_edge",
@@ -40433,10 +40433,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Louisiana Tech",
+          "metric": "Rushing Success Rate",
+          "team": "Louisiana",
           "direction": "rank gap",
-          "gap": 51
+          "gap": 39
         },
         {
           "type": "game_context",
@@ -40640,8 +40640,8 @@
           "defensive_explosiveness_rank": 110,
           "points_per_opportunity_rank": 29,
           "defensive_points_per_opportunity_rank": 119,
-          "third_down_conversion_rank": 16,
-          "defensive_third_down_conversion_rank": 63
+          "third_down_conversion_rank": 11,
+          "defensive_third_down_conversion_rank": 49
         },
         "abbr": "USC",
         "color": "#990000",
@@ -40832,8 +40832,8 @@
           "defensive_explosiveness_rank": 70,
           "points_per_opportunity_rank": 64,
           "defensive_points_per_opportunity_rank": 91,
-          "third_down_conversion_rank": 94,
-          "defensive_third_down_conversion_rank": 7
+          "third_down_conversion_rank": 79,
+          "defensive_third_down_conversion_rank": 4
         },
         "abbr": "PSU",
         "color": "#001e44",
@@ -40948,10 +40948,10 @@
           "home_defense": 0.234375,
           "home_offense": 0.4,
           "away_defense": 0.3484848484848485,
-          "away_offense_rank": 16,
-          "home_defense_rank": 7,
-          "home_offense_rank": 94,
-          "away_defense_rank": 63
+          "away_offense_rank": 11,
+          "home_defense_rank": 4,
+          "home_offense_rank": 79,
+          "away_defense_rank": 49
         },
         {
           "label": "Red Zone Efficiency",
@@ -41431,9 +41431,9 @@
           "explosiveness_rank": 43,
           "defensive_explosiveness_rank": 58,
           "points_per_opportunity_rank": 87,
-          "defensive_points_per_opportunity_rank": 45,
-          "third_down_conversion_rank": 29,
-          "defensive_third_down_conversion_rank": 61
+          "defensive_points_per_opportunity_rank": 41,
+          "third_down_conversion_rank": 19,
+          "defensive_third_down_conversion_rank": 47
         },
         "abbr": "SYR",
         "color": "#f76900",
@@ -41623,9 +41623,9 @@
           "explosiveness_rank": 125,
           "defensive_explosiveness_rank": 12,
           "points_per_opportunity_rank": 62,
-          "defensive_points_per_opportunity_rank": 98,
-          "third_down_conversion_rank": 136,
-          "defensive_third_down_conversion_rank": 67
+          "defensive_points_per_opportunity_rank": 96,
+          "third_down_conversion_rank": 112,
+          "defensive_third_down_conversion_rank": 53
         },
         "abbr": "UVA",
         "color": "#232d4b",
@@ -41644,7 +41644,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 67\u00b0F \u00b7 Wind 3 mph \u00b7 Partly Cloudy \u00b7 3% precipitation"
+        "summary": "Outdoor \u00b7 64\u00b0F \u00b7 Wind 3 mph \u00b7 Mostly Cloudy \u00b7 2% precipitation"
       },
       "matchup_metrics": [
         {
@@ -41727,9 +41727,9 @@
           "home_offense": 4.057142857142857,
           "away_defense": 3.0,
           "away_offense_rank": 87,
-          "home_defense_rank": 98,
+          "home_defense_rank": 96,
           "home_offense_rank": 62,
-          "away_defense_rank": 45
+          "away_defense_rank": 41
         },
         {
           "label": "Third Down Conversion",
@@ -41740,10 +41740,10 @@
           "home_defense": 0.352112676056338,
           "home_offense": 0.3382352941176471,
           "away_defense": 0.3404255319148936,
-          "away_offense_rank": 29,
-          "home_defense_rank": 67,
-          "home_offense_rank": 136,
-          "away_defense_rank": 61
+          "away_offense_rank": 19,
+          "home_defense_rank": 53,
+          "home_offense_rank": 112,
+          "away_defense_rank": 47
         },
         {
           "label": "Red Zone Efficiency",
@@ -41999,17 +41999,17 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Virginia",
-          "direction": "rank gap",
-          "gap": 75
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "Virginia",
           "direction": "rank gap",
           "gap": 67
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Virginia",
+          "direction": "rank gap",
+          "gap": 65
         },
         {
           "type": "matchup_edge",
@@ -42232,8 +42232,8 @@
           "defensive_explosiveness_rank": 86,
           "points_per_opportunity_rank": 23,
           "defensive_points_per_opportunity_rank": 16,
-          "third_down_conversion_rank": 85,
-          "defensive_third_down_conversion_rank": 99
+          "third_down_conversion_rank": 72,
+          "defensive_third_down_conversion_rank": 79
         },
         "abbr": "JMU",
         "color": "#450084",
@@ -42424,8 +42424,8 @@
           "defensive_explosiveness_rank": 10,
           "points_per_opportunity_rank": 74,
           "defensive_points_per_opportunity_rank": 86,
-          "third_down_conversion_rank": 83,
-          "defensive_third_down_conversion_rank": 58
+          "third_down_conversion_rank": 70,
+          "defensive_third_down_conversion_rank": 44
         },
         "abbr": "GASO",
         "color": "#041e42",
@@ -42540,10 +42540,10 @@
           "home_defense": 0.3384615384615385,
           "home_offense": 0.410958904109589,
           "away_defense": 0.38095238095238093,
-          "away_offense_rank": 85,
-          "home_defense_rank": 58,
-          "home_offense_rank": 83,
-          "away_defense_rank": 99
+          "away_offense_rank": 72,
+          "home_defense_rank": 44,
+          "home_offense_rank": 70,
+          "away_defense_rank": 79
         },
         {
           "label": "Red Zone Efficiency",
@@ -43016,7 +43016,7 @@
           "red_zone_td_rate": null,
           "defensive_red_zone_td_rate": null,
           "overall_success_rank": 70,
-          "defensive_success_rank": 55,
+          "defensive_success_rank": 54,
           "offensive_ppa_rank": 114,
           "defensive_ppa_rank": 33,
           "passing_success_rank": 52,
@@ -43027,8 +43027,8 @@
           "defensive_explosiveness_rank": 46,
           "points_per_opportunity_rank": 114,
           "defensive_points_per_opportunity_rank": 108,
-          "third_down_conversion_rank": 101,
-          "defensive_third_down_conversion_rank": 25
+          "third_down_conversion_rank": 85,
+          "defensive_third_down_conversion_rank": 19
         },
         "abbr": "MINN",
         "color": "#7a0019",
@@ -43219,8 +43219,8 @@
           "defensive_explosiveness_rank": 103,
           "points_per_opportunity_rank": 90,
           "defensive_points_per_opportunity_rank": 135,
-          "third_down_conversion_rank": 50,
-          "defensive_third_down_conversion_rank": 186
+          "third_down_conversion_rank": 39,
+          "defensive_third_down_conversion_rank": 135
         },
         "abbr": "PUR",
         "color": "#ceb888",
@@ -43254,7 +43254,7 @@
           "away_offense_rank": 70,
           "home_defense_rank": 133,
           "home_offense_rank": 39,
-          "away_defense_rank": 55
+          "away_defense_rank": 54
         },
         {
           "label": "EPA / Play",
@@ -43335,10 +43335,10 @@
           "home_defense": 0.5172413793103449,
           "home_offense": 0.4603174603174603,
           "away_defense": 0.2857142857142857,
-          "away_offense_rank": 101,
-          "home_defense_rank": 186,
-          "home_offense_rank": 50,
-          "away_defense_rank": 25
+          "away_offense_rank": 85,
+          "home_defense_rank": 135,
+          "home_offense_rank": 39,
+          "away_defense_rank": 19
         },
         {
           "label": "Red Zone Efficiency",
@@ -43356,13 +43356,13 @@
         }
       ],
       "featured_mismatch": {
-        "metric": "Third Down Conversion",
+        "metric": "Success Rate",
         "side": "away_offense",
-        "rank_gap": 85,
-        "offense_rank": 101,
-        "opponent_defense_rank": 186,
-        "offense_value": 0.38571428571428573,
-        "opponent_defense_value": 0.5172413793103449
+        "rank_gap": 63,
+        "offense_rank": 70,
+        "opponent_defense_rank": 133,
+        "offense_value": 0.4332129963898917,
+        "opponent_defense_value": 0.49122807017543857
       },
       "market_trends": [
         {
@@ -43587,13 +43587,6 @@
       "trends": [
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Minnesota",
-          "direction": "rank gap",
-          "gap": 85
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Success Rate",
           "team": "Minnesota",
           "direction": "rank gap",
@@ -43608,6 +43601,13 @@
         },
         {
           "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Minnesota",
+          "direction": "rank gap",
+          "gap": 50
+        },
+        {
+          "type": "matchup_edge",
           "metric": "Rushing Success Rate",
           "team": "Minnesota",
           "direction": "rank gap",
@@ -43615,10 +43615,10 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Purdue",
+          "metric": "Explosiveness",
+          "team": "Minnesota",
           "direction": "rank gap",
-          "gap": 25
+          "gap": 23
         },
         {
           "type": "game_context",
@@ -43822,8 +43822,8 @@
           "defensive_explosiveness_rank": 59,
           "points_per_opportunity_rank": 124,
           "defensive_points_per_opportunity_rank": 90,
-          "third_down_conversion_rank": 105,
-          "defensive_third_down_conversion_rank": 124
+          "third_down_conversion_rank": 87,
+          "defensive_third_down_conversion_rank": 100
         },
         "abbr": "HAW",
         "color": "#024731",
@@ -44006,8 +44006,8 @@
           "defensive_explosiveness_rank": 130,
           "points_per_opportunity_rank": 100,
           "defensive_points_per_opportunity_rank": 71,
-          "third_down_conversion_rank": 162,
-          "defensive_third_down_conversion_rank": 100
+          "third_down_conversion_rank": 128,
+          "defensive_third_down_conversion_rank": 81
         },
         "abbr": "ASU",
         "color": "#ffc627",
@@ -44122,10 +44122,10 @@
           "home_defense": 0.38181818181818183,
           "home_offense": 0.2962962962962963,
           "away_defense": 0.4117647058823529,
-          "away_offense_rank": 105,
-          "home_defense_rank": 100,
-          "home_offense_rank": 162,
-          "away_defense_rank": 124
+          "away_offense_rank": 87,
+          "home_defense_rank": 81,
+          "home_offense_rank": 128,
+          "away_defense_rank": 100
         },
         {
           "label": "Red Zone Efficiency",
@@ -44405,7 +44405,7 @@
           "metric": "Third Down Conversion",
           "team": "Arizona State",
           "direction": "rank gap",
-          "gap": 38
+          "gap": 28
         },
         {
           "type": "bounce_back",
@@ -44601,14 +44601,14 @@
           "defensive_ppa_rank": 6,
           "passing_success_rank": 97,
           "defensive_passing_success_rank": 9,
-          "rushing_success_rank": 15,
+          "rushing_success_rank": 14,
           "defensive_rushing_success_rank": 3,
           "explosiveness_rank": 24,
           "defensive_explosiveness_rank": 95,
           "points_per_opportunity_rank": 67,
           "defensive_points_per_opportunity_rank": 37,
-          "third_down_conversion_rank": 73,
-          "defensive_third_down_conversion_rank": 8
+          "third_down_conversion_rank": 61,
+          "defensive_third_down_conversion_rank": 5
         },
         "abbr": "KU",
         "color": "#0051ba",
@@ -44791,8 +44791,8 @@
           "defensive_explosiveness_rank": 84,
           "points_per_opportunity_rank": 10,
           "defensive_points_per_opportunity_rank": 10,
-          "third_down_conversion_rank": 9,
-          "defensive_third_down_conversion_rank": 27
+          "third_down_conversion_rank": 7,
+          "defensive_third_down_conversion_rank": 21
         },
         "abbr": "UTAH",
         "color": "#be0000",
@@ -44865,7 +44865,7 @@
           "home_defense": 0.3466666666666667,
           "home_offense": 0.49473684210526314,
           "away_defense": 0.2641509433962264,
-          "away_offense_rank": 15,
+          "away_offense_rank": 14,
           "home_defense_rank": 27,
           "home_offense_rank": 26,
           "away_defense_rank": 3
@@ -44907,10 +44907,10 @@
           "home_defense": 0.29310344827586204,
           "home_offense": 0.5416666666666666,
           "away_defense": 0.24561403508771928,
-          "away_offense_rank": 73,
-          "home_defense_rank": 27,
-          "home_offense_rank": 9,
-          "away_defense_rank": 8
+          "away_offense_rank": 61,
+          "home_defense_rank": 21,
+          "home_offense_rank": 7,
+          "away_defense_rank": 5
         },
         {
           "label": "Red Zone Efficiency",
@@ -45190,7 +45190,7 @@
           "metric": "Third Down Conversion",
           "team": "Kansas",
           "direction": "rank gap",
-          "gap": 46
+          "gap": 40
         },
         {
           "type": "ranked_context",
@@ -45399,8 +45399,8 @@
           "defensive_explosiveness_rank": 138,
           "points_per_opportunity_rank": 35,
           "defensive_points_per_opportunity_rank": 18,
-          "third_down_conversion_rank": 15,
-          "defensive_third_down_conversion_rank": 9
+          "third_down_conversion_rank": 10,
+          "defensive_third_down_conversion_rank": 6
         },
         "abbr": "BOIS",
         "color": "#0033a0",
@@ -45591,8 +45591,8 @@
           "defensive_explosiveness_rank": 25,
           "points_per_opportunity_rank": 85,
           "defensive_points_per_opportunity_rank": 34,
-          "third_down_conversion_rank": 117,
-          "defensive_third_down_conversion_rank": 51
+          "third_down_conversion_rank": 98,
+          "defensive_third_down_conversion_rank": 39
         },
         "abbr": "FRES",
         "color": "#c41230",
@@ -45707,10 +45707,10 @@
           "home_defense": 0.3333333333333333,
           "home_offense": 0.359375,
           "away_defense": 0.25,
-          "away_offense_rank": 15,
-          "home_defense_rank": 51,
-          "home_offense_rank": 117,
-          "away_defense_rank": 9
+          "away_offense_rank": 10,
+          "home_defense_rank": 39,
+          "home_offense_rank": 98,
+          "away_defense_rank": 6
         },
         {
           "label": "Red Zone Efficiency",
@@ -45966,13 +45966,6 @@
         },
         {
           "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Fresno State",
-          "direction": "rank gap",
-          "gap": 108
-        },
-        {
-          "type": "matchup_edge",
           "metric": "Explosiveness",
           "team": "Fresno State",
           "direction": "rank gap",
@@ -45984,6 +45977,13 @@
           "team": "Fresno State",
           "direction": "rank gap",
           "gap": 96
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Fresno State",
+          "direction": "rank gap",
+          "gap": 92
         },
         {
           "type": "matchup_edge",
