@@ -26,12 +26,12 @@ def mismatch(rows):
  e=edges(rows)
  if not e:return None
  x=e[0];return {"metric":x["metric"],"side":x["side"],"percentile_gap":x["magnitude"],"offense_percentile":x["offense_value"],"opponent_defense_percentile":x["opponent_defense_value"]}
-def build_trends(a,h,rows):
+def build_trends(a,h,rows,context=None):
  out=[]; names={"away_offense":a["name"],"home_offense":h["name"]}
  for x in edges(rows):
   if len(out)>=5:break
   if x["magnitude"]>=12:out.append({"type":"matchup_edge","metric":x["metric"],"team":names[x["side"]],"direction":"advantage" if x["gap"]>0 else "disadvantage","gap":x["magnitude"]})
- ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
+ context=context or {}\n if a.get("ap_rank") and not h.get("ap_rank"):out.append({"type":"ranked_context","team":a["name"],"detail":"ranked road team vs unranked home opponent"})\n elif h.get("ap_rank") and not a.get("ap_rank"):out.append({"type":"ranked_context","team":h["name"],"detail":"ranked home team vs unranked road opponent"})\n if (a.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":a["name"],"detail":"coming off a loss"})\n if (h.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":h["name"],"detail":"coming off a loss"})\n ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
  if isinstance(ar,int) and isinstance(hr,int) and abs(ar-hr)>=20:out.append({"type":"strength_gap","team":a["name"] if ar<hr else h["name"],"rank_gap":abs(ar-hr)})
  return out[:6]
 def load_map(path,key):
@@ -47,6 +47,6 @@ def main():
   ap=g.get("away_profile") or {}; hp=g.get("home_profile") or {}; ar=by.get(canon(g["away"]),{}); hr=by.get(canon(g["home"]),{})
   away=team_payload(g["away"],ap,ar)|{"conference":g.get("away_conference")}|tm.get(canon(g["away"]),{}); home=team_payload(g["home"],hp,hr)|{"conference":g.get("home_conference")}|tm.get(canon(g["home"]),{})
   rows=metric_rows(away,home); venue=vm.get(str(g.get("venue_id"))) or vm.get(str(g.get("venue"))) or {}; ko=parse_kickoff(g.get("start_date")); weather={"summary":game_weather(venue,ko,bool(g.get("neutral_site")))} if ko else {"summary":"Forecast unavailable"}
-  games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"trends":build_trends(away,home,rows)})
+  games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
  payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}; (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8");print(f"Built {len(games)} CFB Dashboard matchups")
 if __name__=="__main__":main()
