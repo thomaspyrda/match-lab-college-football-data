@@ -2,7 +2,7 @@
 MODEL="v15"; UNIT_MODEL="validated_v15_recursive_dominance"
 def index_rankings(payload):
  model=payload.get("model") or {}
- if model.get("version")!=MODEL:return {}
+ if model.get("version")!=MODEL: raise ValueError("CFB Dashboard requires frozen V15 rankings")
  return {r["team"]:r for r in payload.get("teams",[]) if r.get("team") and r.get("unit_strength_model")==UNIT_MODEL}
 def team_card(r):
  return {"name":r.get("team"),"record":r.get("record"),"ap_rank":r.get("ap_rank"),"team_strength":r.get("strength_score"),"team_strength_rank":r.get("national_strength_rank"),"team_strength_sd":r.get("team_strength_sd"),"offensive_strength":r.get("offensive_strength"),"offensive_strength_rank":r.get("offensive_strength_rank"),"defensive_strength":r.get("defensive_strength"),"defensive_strength_rank":r.get("defensive_strength_rank"),"sos_rank":r.get("schedule_strength_rank"),"sos_score":r.get("schedule_strength_score"),"advanced":r.get("advanced") or {}}
