@@ -10,6 +10,9 @@ name: Validate CFB Dashboard foundation
       - ".github/workflows/validate-cfb-dashboard.yml"
 permissions:
   contents: write
+concurrency:
+  group: cfb-dashboard-preview
+  cancel-in-progress: true
 jobs:
   validate:
     runs-on: ubuntu-latest
