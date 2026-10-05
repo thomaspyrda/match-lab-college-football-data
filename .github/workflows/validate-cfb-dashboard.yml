@@ -8,6 +8,7 @@ on:
       - "cfb_dashboard/**"
       - "promote_v15_live.py"
       - "refresh_match_lab.py"
+      - ".github/workflows/validate-cfb-dashboard.yml"
 permissions:
   contents: read
 jobs:
