@@ -9,7 +9,7 @@ name: Validate CFB Dashboard foundation
       - "refresh_match_lab.py"
       - ".github/workflows/validate-cfb-dashboard.yml"
 permissions:
-  contents: read
+  contents: write
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -57,3 +57,15 @@ jobs:
           name: cfb-dashboard-preview
           path: cfb-dashboard-preview
           retention-days: 7
+      - name: Publish isolated browser preview
+        run: |
+          git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/matchlab-main
+          rm -rf /tmp/matchlab-main/cfb-dashboard-preview
+          cp -R cfb-dashboard-preview /tmp/matchlab-main/cfb-dashboard-preview
+          cd /tmp/matchlab-main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cfb-dashboard-preview
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish isolated CFB Dashboard preview"
+          git push origin main
