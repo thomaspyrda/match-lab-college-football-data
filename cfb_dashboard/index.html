@@ -1,10 +1,123 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Compare college football matchups using BetWise V15 team strength, advanced offense and defense metrics, schedule strength, recent form and market context.">
-<title>CFB Dashboard | BetWise</title><link rel="stylesheet" href="styles.css">
-</head><body>
-<header><a href="https://parlaycalculator.bet/"><img class="brand" src="../assets/betwise-logo.png" alt="BetWise"></a><nav><a href="/">CFB Match Lab</a><a class="active" href="./">CFB Dashboard</a><a href="https://nfl.parlaycalculator.bet/">NFL Dashboard</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a></nav></header>
-<main><section class="hero"><p>CFB DASHBOARD</p><h1>Understand what is shaping <em>this week’s college football games.</em></h1><span>V15 strength · opponent-adjusted metrics · schedule context · markets</span></section>
-<section class="dashboard"><div class="head"><div><p>UPCOMING SLATE</p><h2>Choose a matchup</h2></div><small id="updated">Loading…</small></div><div id="games" class="rail"></div><div id="detail"></div></section></main>
-<footer>BetWise research tools provide informational context only. Verify current markets and team availability.</footer><script src="app.js"></script></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Compare every college football matchup using advanced efficiency rankings, player usage, injuries, ATS trends, totals, rest, market context and outdoor weather."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#111311" />
+    <link rel="canonical" href="./" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://matchlab.parlaycalculator.bet/assets/betwise-logo.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://matchlab.parlaycalculator.bet/assets/betwise-logo.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://a.espncdn.com" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ParlayCalculator.bet" />
+    <meta
+      property="og:title"
+      content="CFB Matchup Dashboard: Advanced Stats, Trends & Player Usage"
+    />
+    <meta
+      property="og:description"
+      content="Research every college football matchup with efficiency rankings, player usage, injuries, situational trends, market context and outdoor weather."
+    />
+    <meta property="og:url" content="./" />
+    <meta
+      property="og:image"
+      content="https://matchlab.parlaycalculator.bet/assets/betwise-logo.png"
+    />
+    <meta property="og:image:alt" content="CFB Dashboard hero featuring NFL stars and team imagery" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="CFB Matchup Dashboard: Advanced Stats, Trends & Player Usage"
+    />
+    <meta
+      name="twitter:description"
+      content="Research college football matchups with advanced efficiency rankings, player usage, injuries, trends, market context and weather."
+    />
+    <meta
+      name="twitter:image"
+      content="/nfl-dashboard-hero.png?v=4"
+    />
+
+    <title>CFB Matchup Dashboard: Advanced Stats & Trends | BetWise</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "@id": "./#application",
+        "name": "BetWise CFB Matchup Dashboard",
+        "url": "./",
+        "description": "A free college football matchup research dashboard comparing advanced efficiency rankings, player usage, injuries, situational trends, market context and outdoor weather.",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BetWise Sports",
+          "url": "https://betwisesportspicks.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://matchlab.parlaycalculator.bet/assets/betwise-logo.png"
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=12" />
+  </head>
+  <body>
+    <header class="site-header"><div class="header-inner">
+      <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="BetWise and ParlayCalculator.bet home"><img src="https://matchlab.parlaycalculator.bet/assets/betwise-logo.png" alt="BetWise Sports Picks" width="240" height="240" /></a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a>
+        <a href="https://matchlab.parlaycalculator.bet/">CFB Match Lab</a><a class="active" href="./" aria-current="page">CFB Dashboard</a>
+        <a href="./">NFL Dashboard</a>
+        <a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a>
+        <a href="https://parlaycalculator.bet/resources/">Resources</a>
+      </nav>
+      <details class="mobile-menu"><summary aria-label="Open navigation menu">Menu</summary><nav aria-label="Mobile navigation"><a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a><a href="https://matchlab.parlaycalculator.bet/">CFB Match Lab</a><a class="active" href="./" aria-current="page">CFB Dashboard</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a><a href="https://parlaycalculator.bet/resources/">Resources</a></nav></details>
+    </div>
+    </header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">CFB DASHBOARD</p>
+        <h1>Understand what is shaping<br /><em>this week’s college football games.</em></h1>
+        <p><strong>Put every matchup into perspective.</strong> Compare efficiency, recent form, player opportunity, ATS and total trends, rest, market context and weather—all in one readable research view.</p>
+        <div class="notice">Research context · Not a prediction or betting recommendation</div>
+        </section>
+
+      
+
+      <section class="dashboard" aria-labelledby="slateTitle">
+        <div class="dashboard-head">
+          <div><p class="eyebrow">UPCOMING SLATE</p><h2 id="slateTitle">Choose a matchup</h2></div>
+          <p id="updated" class="updated">Loading data…</p>
+        </div>
+        <div id="demoFlag" class="demo-flag" hidden>DEMONSTRATION DATA — NOT CURRENT NFL INFORMATION</div>
+        <div id="games" class="game-rail rail" aria-label="Upcoming games"></div>
+        <div id="detail" class="game-detail"></div>
+      </section>
+    </main>
+    <footer>BetWise research tools provide informational context only. Always verify current markets and player availability.</footer>
+    <script src="app.js?v=12"></script>
+  </body>
+</html>
