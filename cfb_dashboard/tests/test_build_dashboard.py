@@ -11,25 +11,29 @@ def test_team_payload_prefers_frozen_v15_values():
     assert row["record"] == "5-0"
 
 
-def test_metric_rows_compare_corresponding_units():
-    away={"advanced":{"overall_success":90,"defensive_success":40}}
-    home={"advanced":{"overall_success":60,"defensive_success":20}}
+def test_metric_rows_compare_raw_source_stats_and_fbs_ranks():
+    away={"raw_metrics":{"overall_success":0.44,"overall_success_rank":78,"defensive_success":0.36,"defensive_success_rank":22}}
+    home={"raw_metrics":{"overall_success":0.51,"overall_success_rank":31,"defensive_success":0.42,"defensive_success_rank":83}}
     rows=metric_rows(away,home)
-    success=next(r for r in rows if r["label"]=="Overall Success Rate")
-    assert success["away_offense"] == 90
-    assert success["home_defense"] == 20
-    assert success["home_offense"] == 60
-    assert success["away_defense"] == 40
+    success=next(r for r in rows if r["label"]=="Success Rate")
+    assert success["away_offense"] == 0.44
+    assert success["away_offense_rank"] == 78
+    assert success["home_defense"] == 0.42
+    assert success["home_defense_rank"] == 83
+    assert success["home_offense"] == 0.51
+    assert success["away_defense"] == 0.36
 
 
-def test_featured_mismatch_selects_largest_gap():
+def test_featured_mismatch_selects_largest_fbs_rank_gap():
     best=mismatch([
-        {"label":"A","away_offense":90,"home_defense":10,"home_offense":60,"away_defense":50},
-        {"label":"B","away_offense":80,"home_defense":40,"home_offense":70,"away_defense":60},
+        {"label":"A","away_offense":0.44,"home_defense":0.39,"home_offense":0.51,"away_defense":0.36,
+         "away_offense_rank":78,"home_defense_rank":15,"home_offense_rank":31,"away_defense_rank":22},
+        {"label":"B","away_offense":0.12,"home_defense":0.08,"home_offense":0.20,"away_defense":0.10,
+         "away_offense_rank":40,"home_defense_rank":55,"home_offense_rank":30,"away_defense_rank":45},
     ])
     assert best["metric"] == "A"
     assert best["side"] == "away_offense"
-    assert best["percentile_gap"] == 80
+    assert best["rank_gap"] == 63
 
 def test_team_payload_preserves_recent_form():
     profile={"recent_form":{"games":5,"wins":4,"losses":1,"avg_points":31.2,"avg_allowed":18.4,"coming_off_loss":False},"advanced":{}}
@@ -38,24 +42,30 @@ def test_team_payload_preserves_recent_form():
     assert row["form"]["avg_allowed"] == 18.4
     assert row["form"]["coming_off_loss"] is False
 
-def test_v15_situational_metrics_override_empty_profile_slots():
-    ranking={"dashboard_situational":{"third_down_conversion":1.25,"defensive_third_down_conversion":0.75,"red_zone_td_rate":1.1}}
-    row=team_payload("Example",{"advanced":{"overall_success":80}},ranking)
+def test_dashboard_cards_do_not_require_v15_situational_values():
+    row=team_payload("Example",{"advanced":{"overall_success":80}},{"dashboard_situational":{"third_down_conversion":1.25}})
     assert row["metrics"]["third_down_conversion"] == 1.25
-    assert row["metrics"]["defensive_third_down_conversion"] == 0.75
-    assert row["metrics"]["red_zone_td_rate"] == 1.1
-    assert row["metrics"]["overall_success"] == 80
+    # metric_rows ignores model diagnostics and reads raw_metrics only.
+    rows=metric_rows({"raw_metrics":{"third_down_conversion":0.42,"third_down_conversion_rank":57}},
+                     {"raw_metrics":{"defensive_third_down_conversion":0.36,"defensive_third_down_conversion_rank":24}})
+    third=next(r for r in rows if r["label"]=="Third Down Conversion")
+    assert third["away_offense"] == 0.42
+    assert third["away_offense_rank"] == 57
+    assert third["home_defense"] == 0.36
+    assert third["home_defense_rank"] == 24
 
-def test_build_trends_prioritizes_large_matchup_edges():
+def test_build_trends_prioritizes_large_fbs_rank_edges():
     away={"name":"Away","team_strength_rank":10}
     home={"name":"Home","team_strength_rank":40}
     rows=[
-      {"label":"Third Down Conversion","away_offense":90,"home_defense":50,"home_offense":55,"away_defense":52},
-      {"label":"Explosiveness","away_offense":60,"home_defense":55,"home_offense":80,"away_defense":50},
+      {"label":"Third Down Conversion","away_offense":0.50,"home_defense":0.35,"home_offense":0.40,"away_defense":0.38,
+       "away_offense_rank":8,"home_defense_rank":72,"home_offense_rank":60,"away_defense_rank":55},
+      {"label":"Explosiveness","away_offense":1.30,"home_defense":1.20,"home_offense":1.25,"away_defense":1.15,
+       "away_offense_rank":30,"home_defense_rank":40,"home_offense_rank":45,"away_defense_rank":50},
     ]
     trends=build_trends(away,home,rows)
     assert trends[0]["metric"] == "Third Down Conversion"
-    assert trends[0]["gap"] == 40
+    assert trends[0]["gap"] == 64
     assert any(x["type"]=="strength_gap" and x["team"]=="Away" for x in trends)
 
 def test_team_payload_prefers_current_ap_rank_and_keeps_form():
@@ -77,11 +87,13 @@ def test_game_context_trends_are_bounded_and_explicit():
     assert len(trends) <= 8
 
 
-def test_metric_grid_has_eight_pairs():
-    rows=metric_rows({"advanced":{}},{"advanced":{}})
+def test_metric_grid_has_eight_raw_stat_pairs():
+    rows=metric_rows({"raw_metrics":{}},{"raw_metrics":{}})
     assert len(rows) == 8
-    assert rows[0]["offense_label"] == "Overall Success Rate"
+    assert rows[0]["offense_label"] == "Success Rate"
     assert rows[0]["defense_label"] == "Defensive Success Rate"
+    assert rows[0]["format"] == "percent"
+    assert rows[-1]["offense_label"] == "Red Zone Efficiency"
 
 
 def test_market_record_ats_and_ou():
