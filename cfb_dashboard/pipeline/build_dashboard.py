@@ -9,7 +9,7 @@ TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboar
 ALIASES={"UConn":"Connecticut","Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","Appalachian State":"App State","FIU":"Florida International","San Jose State":"San José State"}
 def canon(x):return ALIASES.get(x,x)
 METRICS=[("Overall Success Rate","overall_success","defensive_success"),("Offensive Efficiency","offensive_efficiency","defensive_efficiency"),("Passing Success","passing_success","defensive_passing_success"),("Rushing Success","rushing_success","defensive_rushing_success"),("Passing PPA","passing_ppa","defensive_passing_ppa"),("Rushing PPA","rushing_ppa","defensive_rushing_ppa"),("Explosiveness","explosiveness","defensive_explosiveness"),("Finishing Drives","finishing_drives","defensive_finishing_drives"),("Standard Down Success","standard_down_success","defensive_standard_down_success"),("Passing Down Success","passing_down_success","defensive_passing_down_success"),("Line Yards","line_yards","defensive_line_yards"),("Stuff Rate","stuff_rate","defensive_stuff_rate"),("Power Success","power_success","defensive_power_success"),("Third Down Conversion","third_down_conversion","defensive_third_down_conversion"),("Red Zone TD Rate","red_zone_td_rate","defensive_red_zone_td_rate"),("Red Zone Points / Trip","red_zone_points_per_trip","defensive_red_zone_points_per_trip")]
-def pct(p,k):return (p.get("advanced") or {}).get(k)
+def pct(p,k):return (p.get("metrics") or p.get("advanced") or {}).get(k)
 def team_payload(name,p,r):
  recent=p.get("recent_form") or {}; rec=r.get("record") or p.get("record")
  if not rec and recent.get("wins") is not None:rec=f"{recent.get('wins',0)}-{recent.get('losses',0)}"
