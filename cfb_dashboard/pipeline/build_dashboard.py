@@ -8,14 +8,23 @@ ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/"data"; OUT=ROOT/"cfb_dashbo
 TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboard_venues.json"
 ALIASES={"UConn":"Connecticut","Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","Appalachian State":"App State","FIU":"Florida International","San Jose State":"San José State"}
 def canon(x):return ALIASES.get(x,x)
-METRICS=[("Overall Success Rate","overall_success","defensive_success"),("Offensive Efficiency","offensive_efficiency","defensive_efficiency"),("Passing Success","passing_success","defensive_passing_success"),("Rushing Success","rushing_success","defensive_rushing_success"),("Passing PPA","passing_ppa","defensive_passing_ppa"),("Rushing PPA","rushing_ppa","defensive_rushing_ppa"),("Explosiveness","explosiveness","defensive_explosiveness"),("Finishing Drives","finishing_drives","defensive_finishing_drives"),("Standard Down Success","standard_down_success","defensive_standard_down_success"),("Passing Down Success","passing_down_success","defensive_passing_down_success"),("Line Yards","line_yards","defensive_line_yards"),("Stuff Rate","stuff_rate","defensive_stuff_rate"),("Power Success","power_success","defensive_power_success"),("Third Down Conversion","third_down_conversion","defensive_third_down_conversion"),("Red Zone TD Rate","red_zone_td_rate","defensive_red_zone_td_rate"),("Red Zone Points / Trip","red_zone_points_per_trip","defensive_red_zone_points_per_trip")]
+METRICS=[
+ ("Overall Success Rate","Defensive Success Rate","overall_success","defensive_success"),
+ ("Offensive Efficiency","Defensive Efficiency","offensive_efficiency","defensive_efficiency"),
+ ("Passing Success","Defensive Passing Success","passing_success","defensive_passing_success"),
+ ("Rushing Success","Defensive Rushing Success","rushing_success","defensive_rushing_success"),
+ ("Explosiveness","Explosiveness Prevention","explosiveness","defensive_explosiveness"),
+ ("Finishing Drives","Defensive Finishing Drives","finishing_drives","defensive_finishing_drives"),
+ ("Third Down Conversion","Third Down Defense","third_down_conversion","defensive_third_down_conversion"),
+ ("Red Zone TD Rate","Red Zone TD Defense","red_zone_td_rate","defensive_red_zone_td_rate"),
+]
 def pct(p,k):return (p.get("metrics") or p.get("advanced") or {}).get(k)
 def team_payload(name,p,r):
  recent=p.get("recent_form") or {}; rec=r.get("record") or p.get("record")
  if not rec and recent.get("wins") is not None:rec=f"{recent.get('wins',0)}-{recent.get('losses',0)}"
  return {"name":name,"record":rec,"ap_rank":r.get("ap_rank",p.get("ap_rank")),"team_strength":r.get("strength_score",p.get("strength_score")),"team_strength_rank":r.get("national_strength_rank",p.get("national_strength_rank")),"team_strength_sd":r.get("team_strength_sd",p.get("team_strength_sd")),"offensive_strength":r.get("offensive_strength"),"offensive_strength_rank":r.get("offensive_strength_rank"),"defensive_strength":r.get("defensive_strength"),"defensive_strength_rank":r.get("defensive_strength_rank"),"sos_rank":r.get("schedule_strength_rank",p.get("schedule_strength_rank")),"form":recent,"metrics":(p.get("advanced") or {})|(r.get("dashboard_situational") or {})}
 def metric_rows(a,h):
- return [{"label":label,"away_offense":pct(a,off),"home_defense":pct(h,de),"home_offense":pct(h,off),"away_defense":pct(a,de)} for label,off,de in METRICS]
+ return [{"label":off_label,"offense_label":off_label,"defense_label":def_label,"away_offense":pct(a,off),"home_defense":pct(h,de),"home_offense":pct(h,off),"away_defense":pct(a,de)} for off_label,def_label,off,de in METRICS]
 def edges(rows):
  out=[]
  for r in rows:
