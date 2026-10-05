@@ -69,15 +69,33 @@ def metric_rows(away,home):
         })
     return rows
 
-def mismatch(rows):
+def matchup_edges(rows):
     candidates=[]
     for r in rows:
         for side,a,b in (("away_offense",r["away_offense"],r["home_defense"]),("home_offense",r["home_offense"],r["away_defense"])):
             if isinstance(a,(int,float)) and isinstance(b,(int,float)):
-                candidates.append((abs(a-b),side,r["label"],a,b))
-    if not candidates:return None
-    edge,side,label,a,b=max(candidates)
-    return {"metric":label,"side":side,"percentile_gap":round(edge,1),"offense_percentile":a,"opponent_defense_percentile":b}
+                candidates.append({"metric":r["label"],"side":side,"gap":round(a-b,1),"magnitude":round(abs(a-b),1),"offense_value":a,"opponent_defense_value":b})
+    return sorted(candidates,key=lambda x:x["magnitude"],reverse=True)
+
+def mismatch(rows):
+    edges=matchup_edges(rows)
+    if not edges:return None
+    x=edges[0]
+    return {"metric":x["metric"],"side":x["side"],"percentile_gap":x["magnitude"],"offense_percentile":x["offense_value"],"opponent_defense_percentile":x["opponent_defense_value"]}
+
+def build_trends(away,home,rows):
+    edges=matchup_edges(rows); out=[]
+    names={"away_offense":away["name"],"home_offense":home["name"]}
+    for x in edges:
+        if len(out)>=5:break
+        if x["magnitude"]<12:continue
+        direction="advantage" if x["gap"]>0 else "disadvantage"
+        out.append({"type":"matchup_edge","metric":x["metric"],"team":names[x["side"]],"direction":direction,"gap":x["magnitude"]})
+    ar,hr=away.get("team_strength_rank"),home.get("team_strength_rank")
+    if isinstance(ar,int) and isinstance(hr,int) and abs(ar-hr)>=20:
+        stronger=away["name"] if ar<hr else home["name"]; diff=abs(ar-hr)
+        out.append({"type":"strength_gap","team":stronger,"rank_gap":diff})
+    return out[:6]
 
 def main():
     upcoming=json.loads((DATA/"upcoming.json").read_text())
@@ -95,7 +113,7 @@ def main():
           "home":team_payload(g["home"],homep,homer)|{"conference":g.get("home_conference")},
           "market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},
           "context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},
-          "weather":{},"matchup_metrics":metrics,"featured_mismatch":mismatch(metrics),"trends":[]
+          "weather":{},"matchup_metrics":metrics,"featured_mismatch":mismatch(metrics),"trends":build_trends(away,home,metrics)
         })
     payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}
     (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8")
