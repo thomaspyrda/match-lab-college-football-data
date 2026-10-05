@@ -16,7 +16,7 @@ METRICS=[
  ("Explosiveness","Explosiveness Allowed","explosiveness","defensive_explosiveness","decimal"),
  ("Points per Opportunity","Points per Opportunity Allowed","points_per_opportunity","defensive_points_per_opportunity","decimal"),
  ("Third Down Conversion","Third Down Defense","third_down_conversion","defensive_third_down_conversion","percent"),
- ("Red Zone TD Rate","Red Zone TD Defense","red_zone_td_rate","defensive_red_zone_td_rate","percent"),
+ ("Red Zone Efficiency","Red Zone Defense","red_zone_td_rate","defensive_red_zone_td_rate","percent"),
 ]
 def team_payload(name,p,r):
  recent=p.get("recent_form") or {}; rec=r.get("record") or p.get("record")
