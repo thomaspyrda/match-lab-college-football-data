@@ -329,14 +329,20 @@ for row in usage_rows:
  team=canon_team(row.get("team"))
  if not team:continue
  u=row.get("usage") or {}
- player_usage.setdefault(team,[]).append({
+ item={
   "id":row.get("id"),"name":row.get("name"),"position":row.get("position"),
   "overall":u.get("overall"),"pass":u.get("pass"),"rush":u.get("rush"),
   "first_down":u.get("firstDown"),"second_down":u.get("secondDown"),
   "third_down":u.get("thirdDown"),"standard_downs":u.get("standardDowns"),
   "passing_downs":u.get("passingDowns"),
- })
-for team,rows in player_usage.items():
+ }
+ key=str(item.get("id") or "") or (str(item.get("name") or "").strip().lower()+"|"+str(item.get("position") or "").strip().lower())
+ bucket=player_usage.setdefault(team,{})
+ prior=bucket.get(key)
+ if prior is None or float(item.get("overall") or 0)>float(prior.get("overall") or 0):
+  bucket[key]=item
+for team,bucket in player_usage.items():
+ rows=list(bucket.values())
  rows.sort(key=lambda x:float(x.get("overall") or 0),reverse=True)
  player_usage[team]=rows[:4]
 (DATA/"cfb_dashboard_player_usage.json").write_text(json.dumps({"season":now.year,"generated_at":now.isoformat(),"teams":player_usage},indent=2),encoding="utf-8")
