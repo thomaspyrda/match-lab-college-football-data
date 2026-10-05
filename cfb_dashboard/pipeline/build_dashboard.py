@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from cfb_dashboard.pipeline.weather import game_weather
 ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/"data"; OUT=ROOT/"cfb_dashboard"/"data"; OUT.mkdir(parents=True,exist_ok=True)
-TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboard_venues.json"
+TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboard_venues.json"; PLAYER_USAGE=DATA/"cfb_dashboard_player_usage.json"
 ALIASES={"UConn":"Connecticut","Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","Appalachian State":"App State","FIU":"Florida International","San Jose State":"San José State"}
 def canon(x):return ALIASES.get(x,x)
 METRICS=[
@@ -53,17 +53,52 @@ def build_trends(a,h,rows,context=None):
 def load_map(path,key):
  if not path.exists():return {}
  return json.loads(path.read_text(encoding="utf-8")).get(key) or {}
+def market_record(team,games,kind,location=None):
+ w=l=p=0
+ for g in games:
+  r=g.get("result") or {}
+  if not r:continue
+  home=canon(g.get("home")); away=canon(g.get("away")); key=canon(team)
+  if key not in (home,away):continue
+  side="home" if key==home else "away"
+  if location and side!=location:continue
+  if kind=="ats":
+   outcome=r.get("ats")
+   if outcome=="push":p+=1
+   elif outcome=="home_cover":w+=1 if side=="home" else 0;l+=1 if side=="away" else 0
+   elif outcome=="away_cover":w+=1 if side=="away" else 0;l+=1 if side=="home" else 0
+  else:
+   outcome=r.get("total")
+   if outcome=="push":p+=1
+   elif outcome=="over":w+=1
+   elif outcome=="under":l+=1
+ return f"{w}-{l}-{p}"
+def market_trends(away,home,games):
+ return [
+  {"label":"ATS this season","away":market_record(away["name"],games,"ats"),"home":market_record(home["name"],games,"ats"),"note":"Current-season ATS record using available closing lines."},
+  {"label":"ATS by location","away":"Road · "+market_record(away["name"],games,"ats","away"),"home":"Home · "+market_record(home["name"],games,"ats","home"),"note":"Current-season ATS record in the same home/road role as this matchup."},
+  {"label":"O/U this season","away":market_record(away["name"],games,"ou"),"home":market_record(home["name"],games,"ou"),"note":"Current-season over-under record. Format is Over-Under-Push."},
+  {"label":"O/U by location","away":"Road · "+market_record(away["name"],games,"ou","away"),"home":"Home · "+market_record(home["name"],games,"ou","home"),"note":"Current-season over-under record in the same home/road role as this matchup."},
+ ]
+def player_cards(team,usage_map):
+ rows=usage_map.get(canon(team["name"]),[])[:4]
+ out=[]
+ for i,row in enumerate(rows):
+  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":[{"label":"Overall usage","value":row.get("overall")},{"label":"Pass usage","value":row.get("pass")},{"label":"Rush usage","value":row.get("rush")},{"label":"3rd-down usage","value":row.get("third_down")}],"placeholder":False})
+ while len(out)<4:
+  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":"Usage data pending","position":"—","usage":[],"placeholder":True})
+ return out
 def parse_kickoff(v):
  try:return datetime.fromisoformat(str(v).replace("Z","+00:00")) if v else None
  except ValueError:return None
 def main():
  upcoming=json.loads((DATA/"upcoming.json").read_text()); rankings=json.loads((DATA/"current_rankings.json").read_text())
- by={canon(x["team"]):x for x in rankings.get("teams",[])}; tm={canon(k):v for k,v in load_map(TEAM_META,"teams").items()}; vm=load_map(VENUE_META,"venues"); games=[]
+ by={canon(x["team"]):x for x in rankings.get("teams",[])}; tm={canon(k):v for k,v in load_map(TEAM_META,"teams").items()}; vm=load_map(VENUE_META,"venues"); usage={canon(k):v for k,v in load_map(PLAYER_USAGE,"teams").items()}; hist_path=DATA/"historical"/f"{rankings.get('season')}.json"; season_games=(json.loads(hist_path.read_text(encoding="utf-8")).get("games") or []) if hist_path.exists() else []; games=[]
  for g in upcoming.get("games",[]):
   ap=g.get("away_profile") or {}; hp=g.get("home_profile") or {}; ar=by.get(canon(g["away"]),{}); hr=by.get(canon(g["home"]),{})
   away=team_payload(g["away"],ap,ar)|{"conference":g.get("away_conference"),"espn_id":g.get("away_id")}|tm.get(canon(g["away"]),{})
   home=team_payload(g["home"],hp,hr)|{"conference":g.get("home_conference"),"espn_id":g.get("home_id")}|tm.get(canon(g["home"]),{})
   rows=metric_rows(away,home); venue=vm.get(str(g.get("venue_id"))) or vm.get(str(g.get("venue"))) or {}; ko=parse_kickoff(g.get("start_date")); weather={"summary":game_weather(venue,ko,bool(g.get("neutral_site")))} if ko else {"summary":"Forecast unavailable"}
-  games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
+  games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"market_trends":market_trends(away,home,season_games),"players":player_cards(away,usage)+player_cards(home,usage),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
  payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}; (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8");print(f"Built {len(games)} CFB Dashboard matchups")
 if __name__=="__main__":main()
