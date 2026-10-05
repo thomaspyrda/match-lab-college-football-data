@@ -108,7 +108,29 @@ def player_cards(team,usage_map):
  rows=usage_map.get(canon(team["name"]),[])[:4]
  out=[]
  for i,row in enumerate(rows):
-  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":[{"label":"Overall usage","value":row.get("overall")},{"label":"Pass usage","value":row.get("pass")},{"label":"Rush usage","value":row.get("rush")},{"label":"3rd-down usage","value":row.get("third_down")}],"placeholder":False})
+  pos=str(row.get("position") or "").upper()
+  if pos=="QB":
+   usage=[
+    {"label":"Overall usage","value":row.get("overall")},
+    {"label":"Pass usage","value":row.get("pass")},
+    {"label":"Rush usage","value":row.get("rush")},
+    {"label":"3rd Down Completion %","value":row.get("third_down_completion_rate")},
+   ]
+  elif pos in ("RB","WR"):
+   usage=[
+    {"label":"Overall usage","value":row.get("overall")},
+    {"label":"Rush usage","value":row.get("rush")},
+    {"label":"Air Yards %","value":row.get("air_yards_share")},
+    {"label":"3rd-down usage","value":row.get("third_down")},
+   ]
+  else:
+   usage=[
+    {"label":"Overall usage","value":row.get("overall")},
+    {"label":"Pass usage","value":row.get("pass")},
+    {"label":"Rush usage","value":row.get("rush")},
+    {"label":"3rd-down usage","value":row.get("third_down")},
+   ]
+  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":usage,"placeholder":False})
  while len(out)<4:
   out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":"Usage data pending","position":"—","usage":[],"placeholder":True})
  return out
