@@ -36,6 +36,8 @@ def build_trends(a,h,rows,context=None):
  elif h.get("ap_rank") and not a.get("ap_rank"):out.append({"type":"ranked_context","team":h["name"],"detail":"ranked home team vs unranked road opponent"})
  if (a.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":a["name"],"detail":"coming off a loss"})
  if (h.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":h["name"],"detail":"coming off a loss"})
+ if context.get("conference_game") is True:out.append({"type":"game_context","detail":"conference matchup"})
+ if context.get("neutral_site") is True:out.append({"type":"game_context","detail":"neutral-site matchup"})
  ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
  if isinstance(ar,int) and isinstance(hr,int) and abs(ar-hr)>=20:out.append({"type":"strength_gap","team":a["name"] if ar<hr else h["name"],"rank_gap":abs(ar-hr)})
  return out[:8]
