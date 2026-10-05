@@ -11,6 +11,10 @@ for g in d["games"]:
     assert g.get("away",{}).get("espn_id"), g["away"]["name"]
     assert g.get("home",{}).get("espn_id"), g["home"]["name"]
     assert isinstance(g.get("matchup_metrics"),list)
+    assert len(g["matchup_metrics"]) == 11
+    for metric in g["matchup_metrics"][:3]:
+        for side in ("away_offense", "home_defense", "home_offense", "away_defense"):
+            assert isinstance(metric.get(side), (int, float)), (g["game_id"], metric["label"], side)
     assert isinstance(g.get("market"),dict)
     assert isinstance(g.get("context"),dict)
     assert isinstance(g.get("weather"),dict)

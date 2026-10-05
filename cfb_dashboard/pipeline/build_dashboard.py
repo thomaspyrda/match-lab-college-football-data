@@ -9,6 +9,9 @@ TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboar
 ALIASES={"UConn":"Connecticut","Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","Appalachian State":"App State","FIU":"Florida International","San Jose State":"San José State"}
 def canon(x):return ALIASES.get(x,x)
 METRICS=[
+ ("Sack Rate Allowed","Sack Rate","sack_rate_allowed","sack_rate","percent"),
+ ("Havoc Allowed","Havoc","havoc_allowed","havoc","percent"),
+ ("Turnovers","Turnovers Forced","turnovers","turnovers_forced","count"),
  ("Success Rate","Defensive Success Rate","overall_success","defensive_success","percent"),
  ("EPA / Play","EPA / Play Allowed","offensive_ppa","defensive_ppa","decimal"),
  ("Passing Success Rate","Defensive Pass Success Rate","passing_success","defensive_passing_success","percent"),

@@ -87,11 +87,11 @@ def test_game_context_trends_are_bounded_and_explicit():
     assert len(trends) <= 8
 
 
-def test_metric_grid_has_eight_raw_stat_pairs():
+def test_metric_grid_has_eleven_raw_stat_pairs():
     rows=metric_rows({"raw_metrics":{}},{"raw_metrics":{}})
-    assert len(rows) == 8
-    assert rows[0]["offense_label"] == "Success Rate"
-    assert rows[0]["defense_label"] == "Defensive Success Rate"
+    assert len(rows) == 11
+    assert rows[3]["offense_label"] == "Success Rate"
+    assert rows[3]["defense_label"] == "Defensive Success Rate"
     assert rows[0]["format"] == "percent"
     assert rows[-1]["offense_label"] == "Red Zone TD Rate"
 
@@ -166,3 +166,4 @@ def test_player_cards_use_position_specific_opportunity_metrics():
     assert "Pass usage" not in wr
     assert rb["Air Yards %"] == 0.08
     assert "Pass usage" not in rb
+

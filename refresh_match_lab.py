@@ -324,6 +324,8 @@ for row in team_rows:
  }
 (DATA/"cfb_dashboard_team_metadata.json").write_text(json.dumps({"schema_version":"1.1","updated":now.date().isoformat(),"source":"CFBD /teams/fbs","teams":team_meta},indent=2),encoding="utf-8")
 
+from cfb_dashboard.pipeline.disruption import accumulate_boxes, season_metrics
+
 # Cache direct current-season dashboard metrics from CFBD.
 # These values are source statistics only; no opponent adjustment, z-score,
 # percentile transform, or Team Strength model output enters the matchup cards.
@@ -358,6 +360,8 @@ for row in direct_adv:
  if not team:continue
  off=row.get("offense") or {}; deff=row.get("defense") or {}
  raw_dashboard[team]={
+  "havoc_allowed":num((off.get("havoc") or {}).get("total")),
+  "havoc":num((deff.get("havoc") or {}).get("total")),
   "overall_success":num(off.get("successRate")),
   "defensive_success":num(deff.get("successRate")),
   "offensive_ppa":num(off.get("ppa")),
@@ -378,9 +382,11 @@ for row in direct_adv:
 # Red-zone TD rate comes from official CFBD play-by-play: a red-zone trip is a drive
 # with at least one offensive snap at or inside the opponent 20, and a TD trip ends
 # with an offensive touchdown play. No opponent adjustment or modeled value is used.
+disruption_totals={}
 for week_no in range(1,last_completed+1):
  try: box_games=api("/games/teams",year=now.year,week=week_no,seasonType="regular",classification="fbs")
  except Exception: box_games=[]
+ accumulate_boxes(box_games,disruption_totals,canon_team)
  for game in box_games:
   teams=game.get("teams") or []
   parsed=[]
@@ -430,12 +436,16 @@ for week_no in range(1,last_completed+1):
    raw_dashboard[defense]["red_zone_allowed_td"]=raw_dashboard[defense].get("red_zone_allowed_td",0)+1
 
 for team,row in raw_dashboard.items():
+ row.update(season_metrics(disruption_totals[team]) if team in disruption_totals else {"sack_rate":None,"sack_rate_allowed":None,"turnovers":None,"turnovers_forced":None})
  row["third_down_conversion"]=(row.get("third_down_made",0)/row.get("third_down_att")) if row.get("third_down_att") else None
  row["defensive_third_down_conversion"]=(row.get("third_down_allowed_made",0)/row.get("third_down_allowed_att")) if row.get("third_down_allowed_att") else None
  row["red_zone_td_rate"]=(row.get("red_zone_td",0)/row.get("red_zone_att")) if row.get("red_zone_att") else None
  row["defensive_red_zone_td_rate"]=(row.get("red_zone_allowed_td",0)/row.get("red_zone_allowed_att")) if row.get("red_zone_allowed_att") else None
 
 rank_specs={
+ "sack_rate_allowed":False,"sack_rate":True,
+ "havoc_allowed":False,"havoc":True,
+ "turnovers":False,"turnovers_forced":True,
  "overall_success":True,"defensive_success":False,
  "offensive_ppa":True,"defensive_ppa":False,
  "passing_success":True,"defensive_passing_success":False,

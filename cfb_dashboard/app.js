@@ -12,6 +12,12 @@ const rawVal=(v,fmt)=>{if(v==null)return"—";const n=Number(v);if(!Number.isFin
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
 const spreadLabel=g=>{const s=Number(g.market?.spread);if(!Number.isFinite(s))return "—";if(s===0)return "PK";const team=s<0?abbr(g.home):abbr(g.away);return `${team} ${s>0?"+":""}${s}`};
 const HELP={
+"Sack Rate Allowed":"Sacks allowed divided by pass attempts plus sacks allowed. Lower is better.",
+"Sack Rate":"Defensive sacks divided by opponent pass attempts plus sacks. Higher is better.",
+"Havoc Allowed":"CFBD season havoc events allowed per offensive play: tackles for loss, passes defended and forced fumbles. Lower is better.",
+"Havoc":"CFBD season havoc events created per opponent play: tackles for loss, passes defended and forced fumbles. Higher is better.",
+"Turnovers":"Season giveaways (interceptions and lost fumbles) from official team box scores. Lower is better.",
+"Turnovers Forced":"Season takeaways (opponent interceptions and lost fumbles) from official team box scores. Higher is better.",
 "Success Rate":"Percentage of offensive plays considered successful by down and distance. Higher is better.",
 "Defensive Success Rate":"Percentage of opponent plays considered successful by down and distance. Lower is better.",
 "EPA / Play":"Average expected points added per offensive play. Higher is better.",
