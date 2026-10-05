@@ -10,13 +10,18 @@ const val=v=>v==null?"—":(Math.abs(Number(v))<=3?Number(v).toFixed(2):Math.rou
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
 const HELP={"Overall Success Rate":"Share of plays graded successful by down and distance.","Offensive Efficiency":"Opponent-adjusted offensive efficiency percentile.","Passing Success":"Passing-play success relative to the FBS field.","Rushing Success":"Rushing-play success relative to the FBS field.","Passing PPA":"Passing points-per-attempt performance relative to FBS.","Rushing PPA":"Rushing points-per-attempt performance relative to FBS.","Explosiveness":"Ability to generate or prevent high-value explosive plays.","Finishing Drives":"Performance after creating scoring opportunities.","Standard Down Success":"Success on standard downs.","Passing Down Success":"Success in obvious passing situations.","Line Yards":"Line-adjusted rushing performance.","Stuff Rate":"Rate of runs stopped at or behind the line.","Power Success":"Short-yardage rushing conversion performance.","Third Down Conversion":"Opponent-adjusted third-down performance in standard deviations.","Red Zone TD Rate":"Opponent-adjusted red-zone touchdown performance in standard deviations.","Red Zone Points / Trip":"Opponent-adjusted points per red-zone trip in standard deviations."};
 function season(t,i){const f=t.form||{};return `<article class="season-team" style="--team-color:${color(t,i)}"><div class="season-team-head">${teamLogo(t,"season-team-logo")}<b>${esc(abbr(t))}</b></div><div class="season-stats"><span><strong>${esc(t.record||"—")}</strong><small>Record</small></span><span><strong>${f.avg_points??"—"}</strong><small>PPG</small></span><span><strong>${f.avg_allowed??"—"}</strong><small>PPG Allowed</small></span></div></article>`}
-function metricCard(m,side){
- const off=side==="away"?selectedGame.away:selectedGame.home,def=side==="away"?selectedGame.home:selectedGame.away,oi=side==="away"?0:1,di=side==="away"?1:0;
- const ov=side==="away"?m.away_offense:m.home_offense,dv=side==="away"?m.home_defense:m.away_defense;
- const z=Math.abs(Number(ov))<=3&&["Third Down Conversion","Red Zone TD Rate","Red Zone Points / Trip"].includes(m.label);
- const row=(t,i,v,unit)=>`<div class="metric-team" style="--team-color:${color(t,i)}"><span class="metric-team-name">${teamLogo(t,"metric-logo")}<b>${esc(abbr(t))}</b></span><span class="metric-number">${val(v)}${z?" SD":""}</span><span class="metric-rank"><b>${z?"—":"#"+rank(v)}</b><small>CFB rank</small></span><span class="metric-track"><i style="width:${z?50:Math.max(2,Math.min(100,Number(v)||0))}%"></i></span></div>`;
- return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${side==="away"?"OFFENSE":"DEFENSE"} METRIC</small><span class="metric-name">${esc(m.label)}<button class="info" aria-label="About ${esc(m.label)}" data-tip="${esc(HELP[m.label]||"Opponent-adjusted CFB performance.")}">?</button></span></span></div>${side==="away"?row(off,oi,ov):row(def,di,dv)}</article>`}
-function pair(m){return metricCard(m,"away")+metricCard(m,"home")}
+function metricCard(m,type){
+ const isOff=type==="offense";
+ const kicker=isOff?"OFFENSE":"DEFENSE";
+ const values=[
+   [selectedGame.away,0,isOff?m.away_offense:m.away_defense],
+   [selectedGame.home,1,isOff?m.home_offense:m.home_defense]
+ ];
+ const isSd=["Third Down Conversion","Red Zone TD Rate","Red Zone Points / Trip"].includes(m.label);
+ const line=([t,i,v])=>`<div class="metric-team" style="--team-color:${color(t,i)}"><span class="metric-team-name">${teamLogo(t,"metric-logo")}<b>${esc(abbr(t))}</b></span><span class="metric-number">${val(v)}${isSd?" SD":""}</span><span class="metric-rank"><b>${isSd?"—":"#"+rank(v)}</b><small>CFB rank</small></span><span class="metric-track"><i style="width:${isSd?50:Math.max(2,Math.min(100,Number(v)||0))}%"></i></span></div>`;
+ return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(m.label)}<button class="info" aria-label="About ${esc(m.label)}" data-tip="${esc(HELP[m.label]||"Opponent-adjusted CFB performance.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>CFB RANK</b></span></div>${values.map(line).join("")}</article>`
+}
+function pair(m){return metricCard(m,"offense")+metricCard(m,"defense")}
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
  const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+x.opponent).join(" · ")||"—";
