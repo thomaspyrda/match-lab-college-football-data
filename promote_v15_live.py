@@ -57,6 +57,17 @@ for r in cur["teams"]:
     r["offensive_strength_rank"]=x["offense_rank"]; r["offensive_strength"]=score_from_sd(r["offensive_strength_sd"]); r["offensive_strength_tier"]=tier(r["offensive_strength"])
     r["defensive_strength_rank"]=x["defense_rank"]; r["defensive_strength"]=score_from_sd(r["defensive_strength_sd"]); r["defensive_strength_tier"]=tier(r["defensive_strength"])
     r["games_modeled"]=x["games"]; r["preseason_weight"]=x["preseason_weight"]; r["unit_strength_model"]="validated_v15_recursive_dominance"
+    # Dashboard-only situational unit ratings. These are already produced by the
+    # frozen V15 solve; exposing them does not alter Team Strength or rankings.
+    diag=x.get("diagnostics") or {}; offm=diag.get("offense_metrics") or {}; defm=diag.get("defense_metrics") or {}
+    r["dashboard_situational"]={
+      "third_down_conversion":offm.get("third_down_conversion"),
+      "defensive_third_down_conversion":defm.get("third_down_conversion"),
+      "red_zone_td_rate":offm.get("red_zone_td_rate"),
+      "defensive_red_zone_td_rate":defm.get("red_zone_td_rate"),
+      "red_zone_points_per_trip":offm.get("red_zone_points_per_trip"),
+      "defensive_red_zone_points_per_trip":defm.get("red_zone_points_per_trip"),
+    }
 cur["teams"].sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 cur["fbs_field_size"]=n
 cur["model"]={
