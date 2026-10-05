@@ -13,13 +13,14 @@ function season(t,i){const f=t.form||{};return `<article class="season-team" sty
 function metricCard(m,type){
  const isOff=type==="offense";
  const kicker=isOff?"OFFENSE":"DEFENSE";
+ const label=isOff?(m.offense_label||m.label):(m.defense_label||m.label);
  const values=[
    [selectedGame.away,0,isOff?m.away_offense:m.away_defense],
    [selectedGame.home,1,isOff?m.home_offense:m.home_defense]
  ];
  const isSd=["Third Down Conversion","Red Zone TD Rate","Red Zone Points / Trip"].includes(m.label);
  const line=([t,i,v])=>`<div class="metric-team" style="--team-color:${color(t,i)}"><span class="metric-team-name">${teamLogo(t,"metric-logo")}<b>${esc(abbr(t))}</b></span><span class="metric-number">${val(v)}${isSd?" SD":""}</span><span class="metric-rank"><b>${isSd?"—":"#"+rank(v)}</b><small>CFB rank</small></span><span class="metric-track"><i style="width:${isSd?50:Math.max(2,Math.min(100,Number(v)||0))}%"></i></span></div>`;
- return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(m.label)}<button class="info" aria-label="About ${esc(m.label)}" data-tip="${esc(HELP[m.label]||"Opponent-adjusted CFB performance.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>CFB RANK</b></span></div>${values.map(line).join("")}</article>`
+ return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(label)}<button class="info" aria-label="About ${esc(label)}" data-tip="${esc(HELP[label]||"Opponent-adjusted CFB performance.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>CFB RANK</b></span></div>${values.map(line).join("")}</article>`
 }
 function pair(m){return metricCard(m,"offense")+metricCard(m,"defense")}
 function formSchedule(){
