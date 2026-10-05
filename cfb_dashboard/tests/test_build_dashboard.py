@@ -1,4 +1,4 @@
-from cfb_dashboard.pipeline.build_dashboard import metric_rows, mismatch, team_payload, build_trends
+from cfb_dashboard.pipeline.build_dashboard import metric_rows, mismatch, team_payload, build_trends, market_record, market_trends, player_cards
 
 
 def test_team_payload_prefers_frozen_v15_values():
@@ -75,3 +75,53 @@ def test_game_context_trends_are_bounded_and_explicit():
     assert "bounce_back" in types
     assert sum(x["type"]=="game_context" for x in trends) == 2
     assert len(trends) <= 8
+
+
+def test_metric_grid_has_eight_pairs():
+    rows=metric_rows({"advanced":{}},{"advanced":{}})
+    assert len(rows) == 8
+    assert rows[0]["offense_label"] == "Overall Success Rate"
+    assert rows[0]["defense_label"] == "Defensive Success Rate"
+
+
+def test_market_record_ats_and_ou():
+    games=[
+      {"home":"A","away":"B","neutral_site":False,"result":{"ats":"home_cover","total":"over"}},
+      {"home":"C","away":"A","neutral_site":False,"result":{"ats":"away_cover","total":"under"}},
+      {"home":"A","away":"D","neutral_site":False,"result":{"ats":"push","total":"push"}},
+    ]
+    assert market_record("A",games,"ats") == "2-0-1"
+    assert market_record("A",games,"ou") == "1-1-1"
+    assert market_record("A",games,"ats","home") == "1-0-1"
+    assert market_record("A",games,"ats","away") == "1-0-0"
+
+
+def test_location_market_record_excludes_neutral_site():
+    games=[
+      {"home":"A","away":"B","neutral_site":True,"result":{"ats":"home_cover","total":"over"}},
+      {"home":"A","away":"C","neutral_site":False,"result":{"ats":"away_cover","total":"under"}},
+    ]
+    assert market_record("A",games,"ats","home") == "0-1-0"
+    assert market_record("A",games,"ou","home") == "0-1-0"
+
+
+def test_market_trends_builds_four_nfl_style_rows():
+    games=[{"home":"Home","away":"Away","neutral_site":False,"result":{"ats":"home_cover","total":"over"}}]
+    rows=market_trends({"name":"Away"},{"name":"Home"},games)
+    assert [r["label"] for r in rows] == ["ATS this season","ATS by location","O/U this season","O/U by location"]
+    assert rows[0]["away"] == "0-1-0"
+    assert rows[0]["home"] == "1-0-0"
+
+
+def test_player_cards_always_returns_top_four_or_placeholders():
+    team={"name":"Example","abbr":"EX"}
+    usage={"Example":[
+      {"name":"P1","position":"RB","overall":0.45},
+      {"name":"P2","position":"WR","overall":0.35},
+    ]}
+    cards=player_cards(team,usage)
+    assert len(cards) == 4
+    assert cards[0]["name"] == "P1"
+    assert cards[1]["name"] == "P2"
+    assert cards[2]["placeholder"] is True
+    assert cards[3]["placeholder"] is True
