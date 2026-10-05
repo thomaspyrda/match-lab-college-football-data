@@ -30,3 +30,10 @@ def test_featured_mismatch_selects_largest_gap():
     assert best["metric"] == "A"
     assert best["side"] == "away_offense"
     assert best["percentile_gap"] == 80
+
+def test_team_payload_preserves_recent_form():
+    profile={"recent_form":{"games":5,"wins":4,"losses":1,"avg_points":31.2,"avg_allowed":18.4,"coming_off_loss":False},"advanced":{}}
+    row=team_payload("Example",profile,{"record":"4-1"})
+    assert row["form"]["avg_points"] == 31.2
+    assert row["form"]["avg_allowed"] == 18.4
+    assert row["form"]["coming_off_loss"] is False
