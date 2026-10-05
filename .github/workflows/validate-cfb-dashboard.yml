@@ -1,6 +1,6 @@
 name: Validate CFB Dashboard foundation
-on:
-  workflow_dispatch:
+'on':
+  workflow_dispatch: {}
   push:
     branches: [cfb-dashboard-foundation]
     paths:
