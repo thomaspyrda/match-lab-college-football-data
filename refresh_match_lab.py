@@ -361,8 +361,8 @@ for week_no in range(1,last_completed+1):
    for item in tr.get("stats") or []:
     key="".join(ch.lower() for ch in str(item.get("category") or "") if ch.isalnum())
     stats[key]=item.get("stat")
-   third=parse_eff(stats.get("thirddowneff") or stats.get("thirddownefficiency"))
-   red=parse_eff(stats.get("redzoneeff") or stats.get("redzoneefficiency") or stats.get("redzone"))
+   third=parse_eff(stats.get("thirddowneff") or stats.get("thirddownefficiency") or next((v for k,v in stats.items() if "thirddown" in k and parse_eff(v)),None))
+   red=parse_eff(stats.get("redzoneeff") or stats.get("redzoneefficiency") or stats.get("redzone") or next((v for k,v in stats.items() if "redzone" in k and parse_eff(v)),None))
    parsed.append((team,third,red))
    raw_dashboard.setdefault(team,{
     "third_down_made":0.0,"third_down_att":0.0,"third_down_allowed_made":0.0,"third_down_allowed_att":0.0,
