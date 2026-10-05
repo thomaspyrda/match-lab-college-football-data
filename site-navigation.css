@@ -1,0 +1,14 @@
+/* Shared NFL / CFB sport navigation. */
+.site-header{z-index:100;overflow:visible}.header-inner{max-width:1360px;gap:20px}
+.site-nav{overflow:visible;gap:2px}.site-nav>a{padding:10px 12px}
+.sport-menu{position:relative;min-width:0}.sport-menu>summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:999px;list-style:none;cursor:pointer;color:#b7b7b7;font:800 12px/1.5 var(--font,system-ui);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.sport-menu>summary::-webkit-details-marker{display:none}.sport-menu>summary::marker{content:""}.sport-menu>summary:hover,.sport-menu>summary:focus-visible,.sport-menu[open]>summary,.sport-menu.active-sport>summary{color:#00ff41;background:rgba(0,255,65,.08)}
+.sport-menu>summary:focus-visible,.sport-dropdown a:focus-visible{outline:2px solid #00ff41;outline-offset:2px}
+.sport-dropdown{position:absolute;top:calc(100% + 9px);left:0;width:220px;padding:8px;border:1px solid #303030;border-radius:12px;background:#181818;box-shadow:0 16px 35px #0008;z-index:101;display:grid;gap:4px}
+.site-nav .sport-dropdown a,.mobile-menu .sport-dropdown a{display:block;min-height:44px;padding:12px;border-radius:8px;text-decoration:none;color:#b7b7b7;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:normal}
+.sport-dropdown a:hover,.sport-dropdown a.active{color:#00ff41;background:rgba(0,255,65,.08)}
+.mobile-menu>nav{width:min(330px,calc(100vw - 32px));max-height:calc(100dvh - 110px);overflow:auto;z-index:102}.mobile-menu .sport-menu>summary{width:100%;min-height:44px;min-width:0;display:flex;border:0;border-radius:8px;background:transparent;padding:12px;justify-content:space-between}
+.mobile-menu .sport-dropdown{position:static;width:100%;box-shadow:none;border:0;border-left:2px solid #303030;border-radius:0;margin:0 0 6px;padding:0 0 0 12px}
+@media(min-width:1051px){.site-nav{display:flex}.mobile-menu{display:none}}
+@media(max-width:1050px){.site-nav{display:none}.mobile-menu{display:block}.header-inner{padding:8px 16px}}
+.conference-directory{display:grid;gap:30px;margin:30px 0 60px}.conference-group>h2{font-size:22px;margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid #303030}.conference-teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.conference-team{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid #303030;border-radius:12px;background:#191919}.conference-team img{width:48px;height:48px;object-fit:contain}.conference-team strong{display:block;font-size:16px}.conference-team small{display:block;color:#b7b7b7;font-size:12px;margin-top:4px}.directory-jumps{display:flex;flex-wrap:wrap;gap:8px}.directory-jumps a{border:1px solid #303030;border-radius:8px;padding:8px 12px;text-decoration:none;font-size:12px}.directory-jumps a:hover{color:#00ff41;border-color:#00ff41}
