@@ -268,7 +268,7 @@ for year in sorted(strength):
   ou=None
   if completed and total is not None:
    s=float(hp)+float(ap);ou="over" if s>total else ("under" if s<total else "push")
-  rec={"game_id":gid,"season":year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":spread,"over_under":total,"home_moneyline":hml,"away_moneyline":aml,"provider":line.get("provider"),"home_profile":hs|{"recent_form":hf,"advanced":adv(year,week,home)},"away_profile":as_|{"recent_form":af,"advanced":adv(year,week,away)},"favorite_side":fav_side,"result":{"home_points":hp,"away_points":ap,"ats":ats,"total":ou} if completed else None}
+  rec={"game_id":gid,"season":year,"week":week,"start_date":g.get("startDate"),"venue":g.get("venue"),"venue_id":g.get("venueId"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":spread,"over_under":total,"home_moneyline":hml,"away_moneyline":aml,"provider":line.get("provider"),"home_profile":hs|{"recent_form":hf,"advanced":adv(year,week,home)},"away_profile":as_|{"recent_form":af,"advanced":adv(year,week,away)},"favorite_side":fav_side,"result":{"home_points":hp,"away_points":ap,"ats":ats,"total":ou} if completed else None}
   records.append(rec)
   kickoff=dt(g.get("startDate"))
   if year==now.year and now<=kickoff<=end: all_upcoming.append(rec|{"result":None})
@@ -321,7 +321,7 @@ for week in candidate_weeks:
   ap["classification"]="FBS" if ap.get("national_strength_rank") is not None else "FCS/Other"
   home_prior=[x for x in games if (x.get("homeTeam")==home or x.get("awayTeam")==home) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
-  all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
+  all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"venue":g.get("venue"),"venue_id":g.get("venueId"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
 
 # Publish a current-to-date full-FBS strength snapshot.
@@ -378,145 +378,3 @@ VALIDATED_BREAKOUT_GAME_CAP=14.0
 
 def safe_float(v):
  try:return float(v) if v is not None else None
- except:return None
-
-def mean_or_none(values):
- vals=[float(v) for v in values if v is not None]
- return sum(vals)/len(vals) if vals else None
-
-def std_or_one(values):
- vals=[float(v) for v in values if v is not None]
- if len(vals)<2:return 1.0
- m=sum(vals)/len(vals)
- var=sum((v-m)**2 for v in vals)/(len(vals)-1)
- return max(var**0.5,1e-6)
-
-def pct_rank_desc(values):
- vals=[float(v) for v in values if v is not None]
- out={}
- if len(vals)<2:return out
- ordered=sorted(vals)
- for v in vals:
-  below=sum(x<v for x in ordered)
-  tied=sum(x==v for x in ordered)
-  out[v]=max(1,min(100,int(100*(below+(tied-1)/2)/(len(ordered)-1)+0.5)))
- return out
-
-def game_metric_row(row,points):
- offense=row.get("offense") or {}
- drives=safe_float(offense.get("drives"))
- passing=offense.get("passingPlays") or {}
- rushing=offense.get("rushingPlays") or {}
- return {
-  "ppa":safe_float(offense.get("ppa")),
-  "success_rate":safe_float(offense.get("successRate")),
-  "explosiveness":safe_float(offense.get("explosiveness")),
-  "finishing":(float(points)/drives) if points is not None and drives and drives>0 else None,
-  "passing_success":safe_float(passing.get("successRate")),
-  "rushing_success":safe_float(rushing.get("successRate")),
-  "scoring":safe_float(points),
- }
-
-# Fetch all current-season game-level advanced rows in one request. CFBD's
-# game-advanced endpoint supplies PPA, success rate and explosiveness per team/game.
-game_advanced=api(
- "/stats/game/advanced",
- year=now.year,
- seasonType="regular",
- excludeGarbageTime="true",
-)
-game_results={str(g.get("game_id")):g for g in current_records if g.get("result")}
-rows_by_game=defaultdict(dict)
-for row in game_advanced:
- gid=str(row.get("gameId"))
- team=canon_team(row.get("team"))
- if gid not in game_results or not team:continue
- rows_by_game[gid][team]=row
-
-# Week-local distributions provide a neutral expectation and normalization scale
-# without borrowing information from future weeks.
-week_values=defaultdict(lambda:defaultdict(list))
-for gid,team_rows in rows_by_game.items():
- g=game_results.get(gid)
- if not g:continue
- week=int(g.get("week") or 0)
- for team,row in team_rows.items():
-  result_data=g.get("result") or {}
-  points=result_data.get("home_points") if canon_team(g.get("home"))==team else result_data.get("away_points")
-  metrics=game_metric_row(row,points)
-  for key,value in metrics.items():
-   if value is not None:week_values[week][key].append(value)
-
-# Histories contain only games already processed. That means each expectation uses
-# what was known before that game rather than end-of-season opponent statistics.
-off_history=defaultdict(lambda:defaultdict(list))
-def_allowed_history=defaultdict(lambda:defaultdict(list))
-off_game_scores=defaultdict(list)
-def_game_scores=defaultdict(list)
-opponent_def_quality_log=defaultdict(list)
-opponent_off_quality_log=defaultdict(list)
-off_multiplier_log=defaultdict(list)
-def_multiplier_log=defaultdict(list)
-off_scoring_percentiles=defaultdict(list)
-off_points_log=defaultdict(list)
-off_validated_targets=defaultdict(list)
-off_rank_metric_grades=defaultdict(lambda:defaultdict(list))
-def_rank_metric_grades=defaultdict(lambda:defaultdict(list))
-
-# Offensive and defensive power ratings begin at the real preseason team-strength
-# prior and evolve game by game. This preserves preseason information early while
-# allowing sustained current-season evidence to take over.
-preseason_ratings=preseason_board(now.year)
-off_strength_entering={team:preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH) for team in current_board}
-def_strength_entering={team:preseason_ratings.get(team,NEUTRAL_UNIT_STRENGTH) for team in current_board}
-
-def expectation(team,opponent,key,week):
- own=mean_or_none(off_history[team][key])
- opp=mean_or_none(def_allowed_history[opponent][key])
- neutral=mean_or_none(week_values[week][key])
- candidates=[v for v in (own,opp) if v is not None]
- if len(candidates)==2:return 0.5*candidates[0]+0.5*candidates[1]
- if len(candidates)==1 and neutral is not None:return 0.65*candidates[0]+0.35*neutral
- if len(candidates)==1:return candidates[0]
- return neutral
-
-def current_evidence_strength(team,unit="overall"):
- off=off_strength_entering.get(team)
- deff=def_strength_entering.get(team)
- if unit=="offense":return off
- if unit=="defense":return deff
- if off is None and deff is None:return None
- if off is None:return deff
- if deff is None:return off
- return OVERALL_OFFENSE_WEIGHT*float(off)+OVERALL_DEFENSE_WEIGHT*float(deff)
-
-def competition_current_weight(week):
- # Preseason ranking is the competition anchor early, then actual season
- # evidence is allowed to take over gradually.
- if week<=3:return 0.0
- if week==4:return 0.15
- if week==5:return 0.30
- if week==6:return 0.45
- if week==7:return 0.60
- return 0.75
-
-def competition_strength(opponent,week,unit="overall"):
- # Unit-specific opponent quality is critical. An offense is graded against the
- # defense it actually faced; a defense is graded against the offense it faced.
- # The shared preseason prior supplies the early-season talent/competition
- # baseline, then current unit evidence progressively takes over.
- preseason=preseason_ratings.get(opponent,FCS_UNIT_STRENGTH)
- current=current_evidence_strength(opponent,unit)
- if current is None:return preseason
- cw=competition_current_weight(week)
- return (1.0-cw)*float(preseason)+cw*float(current)
-
-def quality_multiplier(opponent_strength,residual):
- # Strong competition amplifies positive performances and softens poor ones.
- # Weak competition does the opposite. Competition is preseason-anchored.
- q=(max(0.0,min(100.0,float(opponent_strength)))-50.0)/50.0
- factor=(1.0+COMPETITION_ADJUSTMENT*q) if residual>=0 else (1.0-COMPETITION_ADJUSTMENT*q)
- return max(0.75,min(1.25,factor))
-
-def result_score(team,opp,is_home,points,opp_points,opp_quality):
- team_quality=current_evidence_strength(team)
