@@ -45,3 +45,15 @@ def test_v15_situational_metrics_override_empty_profile_slots():
     assert row["metrics"]["defensive_third_down_conversion"] == 0.75
     assert row["metrics"]["red_zone_td_rate"] == 1.1
     assert row["metrics"]["overall_success"] == 80
+
+def test_build_trends_prioritizes_large_matchup_edges():
+    away={"name":"Away","team_strength_rank":10}
+    home={"name":"Home","team_strength_rank":40}
+    rows=[
+      {"label":"Third Down Conversion","away_offense":90,"home_defense":50,"home_offense":55,"away_defense":52},
+      {"label":"Explosiveness","away_offense":60,"home_defense":55,"home_offense":80,"away_defense":50},
+    ]
+    trends=build_trends(away,home,rows)
+    assert trends[0]["metric"] == "Third Down Conversion"
+    assert trends[0]["gap"] == 40
+    assert any(x["type"]=="strength_gap" and x["team"]=="Away" for x in trends)
