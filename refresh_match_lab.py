@@ -455,6 +455,38 @@ for key,higher in rank_specs.items():
  "teams":raw_dashboard,
 },indent=2),encoding="utf-8")
 
+# Cache pass-level opportunity detail for the player cards.
+# Air Yards % = player's intended air yards / team's intended air yards.
+# QB 3rd Down Completion % = completions / pass attempts on third down.
+team_air_yards={}
+player_air_yards={}
+third_down_passing={}
+for week_no in range(1,last_completed+1):
+ try: pass_plays=api("/passing/plays",year=now.year,week=week_no,seasonType="regular",classification="fbs")
+ except Exception: pass_plays=[]
+ for play in pass_plays:
+  team=canon_team(play.get("offense"))
+  if not team:continue
+  air=play.get("airYards")
+  target_id=str(play.get("targetId") or "")
+  target_name=str(play.get("target") or "").strip().lower()
+  if air is not None and (target_id or target_name):
+   try:
+    air=float(air)
+    team_air_yards[team]=team_air_yards.get(team,0.0)+air
+    if target_id:player_air_yards[(team,"id",target_id)]=player_air_yards.get((team,"id",target_id),0.0)+air
+    if target_name:player_air_yards[(team,"name",target_name)]=player_air_yards.get((team,"name",target_name),0.0)+air
+   except Exception:pass
+  if int(play.get("down") or 0)==3:
+   passer_id=str(play.get("passerId") or "")
+   passer_name=str(play.get("passer") or "").strip().lower()
+   outcome=str(play.get("outcome") or "").lower()
+   if outcome in ("completion","incompletion","interception") and (passer_id or passer_name):
+    for k in ([(team,"id",passer_id)] if passer_id else [])+([(team,"name",passer_name)] if passer_name else []):
+     row=third_down_passing.setdefault(k,{"att":0,"cmp":0})
+     row["att"]+=1
+     if outcome=="completion":row["cmp"]+=1
+
 # Cache current-season player usage once per refresh. Dashboard selects each team's top four.
 usage_rows=api("/player/usage",year=now.year,excludeGarbageTime="true")
 player_usage={}
@@ -462,12 +494,25 @@ for row in usage_rows:
  team=canon_team(row.get("team"))
  if not team:continue
  u=row.get("usage") or {}
+ player_id=str(row.get("id") or "")
+ player_name=str(row.get("name") or "").strip().lower()
+ air_value=None
+ team_total_air=team_air_yards.get(team)
+ if team_total_air not in (None,0):
+  player_air=(player_air_yards.get((team,"id",player_id)) if player_id else None)
+  if player_air is None and player_name:player_air=player_air_yards.get((team,"name",player_name))
+  if player_air is not None:air_value=player_air/team_total_air
+ third=None
+ third_row=(third_down_passing.get((team,"id",player_id)) if player_id else None)
+ if third_row is None and player_name:third_row=third_down_passing.get((team,"name",player_name))
+ if third_row and third_row.get("att"):third=third_row.get("cmp",0)/third_row["att"]
  item={
   "id":row.get("id"),"name":row.get("name"),"position":row.get("position"),
   "overall":u.get("overall"),"pass":u.get("pass"),"rush":u.get("rush"),
   "first_down":u.get("firstDown"),"second_down":u.get("secondDown"),
   "third_down":u.get("thirdDown"),"standard_downs":u.get("standardDowns"),
   "passing_downs":u.get("passingDowns"),
+  "air_yards_share":air_value,"third_down_completion_rate":third,
  }
  key=str(item.get("id") or "") or (str(item.get("name") or "").strip().lower()+"|"+str(item.get("position") or "").strip().lower())
  bucket=player_usage.setdefault(team,{})
