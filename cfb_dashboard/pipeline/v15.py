@@ -13,7 +13,7 @@ def matchup_metrics(away,home):
 def featured_mismatch(rows):
  out=[]
  for r in rows:
-  for side,a,b in (("away_offense",r.get("away_offense"),r.get("home_defense")),("home_offense",r.get("home_offense"),r.get("away_defense"))):
+  for side,a,b in (("away_offense",r.get("away_offense"),r.get("away_defense")),("home_offense",r.get("home_offense"),r.get("home_defense"))):
    if isinstance(a,(int,float)) and isinstance(b,(int,float)):out.append((abs(a-b),r["label"],side,a,b))
  if not out:return None
  gap,label,side,a,b=max(out,key=lambda x:x[0])
