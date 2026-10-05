@@ -93,7 +93,7 @@ def test_metric_grid_has_eight_raw_stat_pairs():
     assert rows[0]["offense_label"] == "Success Rate"
     assert rows[0]["defense_label"] == "Defensive Success Rate"
     assert rows[0]["format"] == "percent"
-    assert rows[-1]["offense_label"] == "Red Zone Efficiency"
+    assert rows[-1]["offense_label"] == "Red Zone TD Rate"
 
 
 def test_market_record_ats_and_ou():
