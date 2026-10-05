@@ -1,4 +1,4 @@
-from cfb_dashboard.pipeline.build_dashboard import metric_rows, mismatch, team_payload
+from cfb_dashboard.pipeline.build_dashboard import metric_rows, mismatch, team_payload, build_trends
 
 
 def test_team_payload_prefers_frozen_v15_values():
