@@ -319,10 +319,19 @@ def parse_eff(value):
    except:return None
  return None
 
-def rank_values(team_rows,key,higher_better=True):
- vals={team:row.get(key) for team,row in team_rows.items() if isinstance(row.get(key),(int,float))}
+def rank_values(team_rows,key,higher_better=True,eligible=None):
+ vals={
+  team:row.get(key) for team,row in team_rows.items()
+  if isinstance(row.get(key),(int,float)) and (eligible is None or team in eligible)
+ }
  ordered=sorted(vals,key=lambda t:((-vals[t]) if higher_better else vals[t],t))
- return {team:i for i,team in enumerate(ordered,1)}
+ ranks={};last_value=None;current_rank=0
+ for pos,team in enumerate(ordered,1):
+  value=vals[team]
+  if last_value is None or value!=last_value:current_rank=pos
+  ranks[team]=current_rank
+  last_value=value
+ return ranks
 
 direct_adv=api("/stats/season/advanced",year=now.year,classification="fbs",excludeGarbageTime="true",endWeek=last_completed)
 raw_dashboard={}
@@ -394,7 +403,7 @@ rank_specs={
  "red_zone_td_rate":True,"defensive_red_zone_td_rate":False,
 }
 for key,higher in rank_specs.items():
- ranks=rank_values(raw_dashboard,key,higher)
+ ranks=rank_values(raw_dashboard,key,higher,fbs_teams)
  for team,rank_no in ranks.items():raw_dashboard[team][key+"_rank"]=rank_no
 (DATA/"cfb_dashboard_raw_metrics.json").write_text(json.dumps({
  "season":now.year,"through_week":last_completed,"generated_at":now.isoformat(),
@@ -405,6 +414,7 @@ for key,higher in rank_specs.items():
 
 # Cache current FBS branding from CFBD so dashboard builds never depend on a second provider.
 team_rows=api("/teams/fbs",year=now.year)
+fbs_teams={canon_team(row.get("school")) for row in team_rows if row.get("school")}
 team_meta={}
 for row in team_rows:
  school=canon_team(row.get("school"))
