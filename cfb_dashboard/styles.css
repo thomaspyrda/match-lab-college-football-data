@@ -202,3 +202,12 @@ html,body{max-width:100%;overflow-x:hidden}
  .day-filter{padding:7px 10px;font-size:11px}
  .game-rail-arrows button{width:34px;height:34px;font-size:22px}
 }
+
+/* Improve visibility for teams whose primary mark/color is too dark on the dashboard. */
+.recolor-logo{display:inline-block;background:var(--logo-color);-webkit-mask:var(--logo-url) center/contain no-repeat;mask:var(--logo-url) center/contain no-repeat}
+.metric-logo.recolor-logo{width:28px;height:28px}
+.rail-logo.recolor-logo{width:26px;height:26px}
+.team-logo.recolor-logo{width:44px;height:44px}
+.season-team-logo.recolor-logo{width:25px;height:25px}
+.trend-logo.recolor-logo{width:30px;height:30px}
+.player-team-logo.recolor-logo{width:40px;height:40px}
