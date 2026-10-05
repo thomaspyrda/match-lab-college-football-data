@@ -19,6 +19,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check pytest
       - name: Refresh venue metadata
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
