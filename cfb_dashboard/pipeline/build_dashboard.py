@@ -61,6 +61,7 @@ def market_record(team,games,kind,location=None):
   home=canon(g.get("home")); away=canon(g.get("away")); key=canon(team)
   if key not in (home,away):continue
   side="home" if key==home else "away"
+  if location and g.get("neutral_site"):continue
   if location and side!=location:continue
   if kind=="ats":
    outcome=r.get("ats")
