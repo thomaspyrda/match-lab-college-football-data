@@ -38,7 +38,7 @@ def build_trends(a,h,rows,context=None):
  if (h.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":h["name"],"detail":"coming off a loss"})
  ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
  if isinstance(ar,int) and isinstance(hr,int) and abs(ar-hr)>=20:out.append({"type":"strength_gap","team":a["name"] if ar<hr else h["name"],"rank_gap":abs(ar-hr)})
- return out[:6]
+ return out[:8]
 def load_map(path,key):
  if not path.exists():return {}
  return json.loads(path.read_text(encoding="utf-8")).get(key) or {}
