@@ -1,0 +1,42 @@
+name: Validate CFB Dashboard foundation
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cfb-dashboard-foundation
+    paths:
+      - "cfb_dashboard/**"
+      - "promote_v15_live.py"
+      - "refresh_match_lab.py"
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run dashboard unit tests
+        run: python -m pytest -q cfb_dashboard/tests
+      - name: Build dashboard from checked-in artifacts
+        run: python cfb_dashboard/pipeline/build_dashboard.py
+      - name: Validate generated dashboard contract
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("cfb_dashboard/data/dashboard.json")
+          d=json.loads(p.read_text())
+          assert isinstance(d.get("games"),list)
+          assert d.get("slate",{}).get("model_version")=="v15", d.get("slate")
+          for g in d["games"]:
+              assert g.get("away",{}).get("name")
+              assert g.get("home",{}).get("name")
+              assert isinstance(g.get("matchup_metrics"),list)
+              assert "trends" in g
+              assert "market" in g
+              assert "context" in g
+          print(f'Validated {len(d["games"])} CFB Dashboard matchups')
+          PY
