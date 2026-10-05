@@ -2,7 +2,7 @@
   "slate": {
     "season": 2026,
     "week": 6,
-    "generated_at": "2026-10-05T16:48:08.476076+00:00",
+    "generated_at": "2026-10-05T16:52:49.072452+00:00",
     "model_version": "v15"
   },
   "games": [
@@ -545,30 +545,6 @@
         },
         {
           "team": "TROY",
-          "name": "Will Crowder",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.538
-            },
-            {
-              "label": "Pass usage",
-              "value": 0.986
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.136
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.644
-            }
-          ],
-          "placeholder": false
-        },
-        {
-          "team": "TROY",
           "name": "Gavin Griffin",
           "position": "RB",
           "usage": [
@@ -593,24 +569,48 @@
         },
         {
           "team": "TROY",
-          "name": "Gavin Griffin",
+          "name": "Jaheim Merriweather",
           "position": "RB",
           "usage": [
             {
               "label": "Overall usage",
-              "value": 0.195
+              "value": 0.127
             },
             {
               "label": "Pass usage",
-              "value": 0.022
+              "value": 0.014
             },
             {
               "label": "Rush usage",
-              "value": 0.367
+              "value": 0.238
             },
             {
               "label": "3rd-down usage",
-              "value": 0.119
+              "value": 0.153
+            }
+          ],
+          "placeholder": false
+        },
+        {
+          "team": "TROY",
+          "name": "Jordan Lovett",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.12
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.029
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.211
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.085
             }
           ],
           "placeholder": false
@@ -17914,30 +17914,6 @@
         },
         {
           "team": "CLT",
-          "name": "Cole Gonzales",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.553
-            },
-            {
-              "label": "Pass usage",
-              "value": 0.899
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.127
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.709
-            }
-          ],
-          "placeholder": false
-        },
-        {
-          "team": "CLT",
           "name": "Conner Harrell",
           "position": "QB",
           "usage": [
@@ -17962,24 +17938,48 @@
         },
         {
           "team": "CLT",
-          "name": "Conner Harrell",
-          "position": "QB",
+          "name": "Chance Williams",
+          "position": "RB",
           "usage": [
             {
               "label": "Overall usage",
-              "value": 0.318
+              "value": 0.211
             },
             {
               "label": "Pass usage",
-              "value": 0.448
+              "value": 0.095
             },
             {
               "label": "Rush usage",
-              "value": 0.071
+              "value": 0.357
             },
             {
               "label": "3rd-down usage",
-              "value": 0.273
+              "value": 0.148
+            }
+          ],
+          "placeholder": false
+        },
+        {
+          "team": "CLT",
+          "name": "Khamani Alexander",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.2
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.065
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.382
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.2
             }
           ],
           "placeholder": false
@@ -20461,7 +20461,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 71\u00b0F \u00b7 Wind 10 mph \u00b7 Sunny \u00b7 1% precipitation"
+        "summary": "Outdoor \u00b7 71\u00b0F \u00b7 Wind 10 mph \u00b7 Sunny \u00b7 0% precipitation"
       },
       "matchup_metrics": [
         {
@@ -24480,7 +24480,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 73\u00b0F \u00b7 Wind 5 mph \u00b7 Sunny \u00b7 0% precipitation"
+        "summary": "Outdoor \u00b7 73\u00b0F \u00b7 Wind 5 mph \u00b7 Sunny \u00b7 1% precipitation"
       },
       "matchup_metrics": [
         {
@@ -28511,7 +28511,7 @@
       },
       "market": {
         "spread": -14.0,
-        "total": 56.0,
+        "total": 55.5,
         "home_moneyline": -625.0,
         "away_moneyline": 430.0,
         "provider": "Bovada"
@@ -38566,7 +38566,7 @@
         "logo": "https://cdn.collegefootballdata.com/logos/500/278.png"
       },
       "market": {
-        "spread": 6.0,
+        "spread": 6.5,
         "total": 48.5,
         "home_moneyline": 205.0,
         "away_moneyline": -245.0,

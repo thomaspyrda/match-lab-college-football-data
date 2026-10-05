@@ -42,8 +42,7 @@ function collegePlayerCard(player,team){
 }
 function playerOpportunity(){
  const players=selectedGame.players||[];
- const away=players.slice(0,4),home=players.slice(4,8);
- return `<div class="player-team-group"><div class="section-head section-head-solo"><div><p class="eyebrow">${esc(selectedGame.away.name)} · TOP 4 USAGE</p></div></div><div class="players">${away.map(p=>collegePlayerCard(p,selectedGame.away)).join("")}</div></div><div class="player-team-group"><div class="section-head section-head-solo"><div><p class="eyebrow">${esc(selectedGame.home.name)} · TOP 4 USAGE</p></div></div><div class="players">${home.map(p=>collegePlayerCard(p,selectedGame.home)).join("")}</div></div>`;
+ return `<div class="players">${players.map((p,i)=>collegePlayerCard(p,i<4?selectedGame.away:selectedGame.home)).join("")}</div>`;
 }
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
@@ -61,7 +60,7 @@ function renderDetail(){
  <section class="section">${feature()}</section>
  <section class="section"><div class="section-head"><div><p class="eyebrow">TRENDS & SITUATIONAL CONTEXT</p><h3>The matchup at a glance</h3></div><span class="subtle">Tap ? for definitions</span></div><div class="trend-groups">${marketResults()}${formSchedule()}</div></section>
  <section class="section">${factors()}</section>
- <section class="section"><div class="section-head section-head-solo"><div><p class="eyebrow">PLAYER OPPORTUNITY</p><h3>Top usage players</h3></div><span class="subtle">Top 4 per team · current season</span></div>${playerOpportunity()}</section>`}
+ <section class="section"><div class="section-head section-head-solo"><div><p class="eyebrow">PLAYER OPPORTUNITY</p></div></div>${playerOpportunity()}</section>`}
 function selectGame(id){selectedGame=dashboard.games.find(g=>String(g.game_id)===String(id));document.querySelectorAll(".game-card").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===String(id))));$("#gameDetail").hidden=false;renderDetail()}
 function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});$("#games").innerHTML=dashboard.games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="false"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(abbr(g.away))}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(abbr(g.home))}</b></span></span><span class="markets"><span>${esc(g.market?.spread??"")}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("");document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));$("#gameDetail").hidden=true}
 document.addEventListener("click",e=>{const b=e.target.closest(".info");if(!b||!window.matchMedia("(max-width:760px)").matches)return;e.preventDefault();let d=document.querySelector(".definition-dialog");if(!d){d=document.createElement("dialog");d.className="definition-dialog";d.innerHTML='<div class="definition-dialog-head"><strong></strong><button type="button">✕</button></div><p></p>';d.querySelector("button").onclick=()=>d.close();document.body.appendChild(d)}d.querySelector("strong").textContent=b.getAttribute("aria-label")?.replace(/^About /,"")||"Definition";d.querySelector("p").textContent=b.dataset.tip||"";d.showModal()});
