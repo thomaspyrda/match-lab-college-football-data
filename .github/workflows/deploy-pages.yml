@@ -8,6 +8,8 @@ on:
       - styles.css
       - app.js
       - data/**
+      - cfb-dashboard-preview/**
+      - ".github/workflows/deploy-pages.yml"
 permissions:
   contents: read
   pages: write
