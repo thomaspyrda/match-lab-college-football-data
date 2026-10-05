@@ -1,10 +1,12 @@
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let dashboard,selectedGame,activeDay="all";
-const logo=t=>t.logo||(t.espn_id?`https://a.espncdn.com/i/teamlogos/ncaa/500/${t.espn_id}.png`:"");
+const hexRgb=h=>{const x=String(h||"").replace("#","");if(!/^[0-9a-f]{6}$/i.test(x))return null;return [0,2,4].map(i=>parseInt(x.slice(i,i+2),16))};
+const isDark=h=>{const rgb=hexRgb(h);if(!rgb)return false;const [r,g,b]=rgb.map(v=>v/255);const lin=[r,g,b].map(v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*lin[0]+.7152*lin[1]+.0722*lin[2]<.16};
+const color=(t,i)=>{const primary=t.color,alt=t.alternate_color;if(primary&&isDark(primary)&&alt&&!isDark(alt))return alt;return primary||alt||(i===0?"#4aa8ff":"#9a78ff")};
+const logo=t=>(isDark(t.color)&&t.alternate_logo)||t.logo||(t.espn_id?`https://a.espncdn.com/i/teamlogos/ncaa/500/${t.espn_id}.png`:"");
 const abbr=t=>t.abbr||t.name.split(/\s+/).map(x=>x[0]).join("").slice(0,4).toUpperCase();
-const teamLogo=(t,cls="team-logo")=>logo(t)?`<img class="${cls}" src="${logo(t)}" alt="${esc(t.name)} logo" loading="lazy">`:"";
-const color=(t,i)=>t.color||(i===0?"#4aa8ff":"#9a78ff");
+const teamLogo=(t,cls="team-logo")=>{const src=logo(t);if(!src)return"";if(isDark(t.color)&&!t.alternate_logo)return `<span class="${cls} recolor-logo" role="img" aria-label="${esc(t.name)} logo" style="--logo-url:url('${src}');--logo-color:${color(t,0)}"></span>`;return `<img class="${cls}" src="${src}" alt="${esc(t.name)} logo" loading="lazy">`};
 const rank=v=>v==null?"—":"#"+Number(v);
 const rawVal=(v,fmt)=>{if(v==null)return"—";const n=Number(v);if(!Number.isFinite(n))return"—";if(fmt==="percent")return (n*100).toFixed(1)+"%";if(fmt==="decimal")return n.toFixed(3);return String(v)};
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
@@ -65,30 +67,38 @@ function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
  const compactOpp=x=>x.opponent_abbr||String(x.opponent||"").split(/\s+/).filter(Boolean).map(w=>w[0]).join("").slice(0,5).toUpperCase();
  const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+compactOpp(x)).join(" · ")||"—";
- const rest=t=>{const games=t.form?.last_five||[];if(!games.length||!selectedGame.week)return"—";const lastWeek=Math.max(...games.map(x=>Number(x.week)||0));const gap=Math.max(0,Number(selectedGame.week)-lastWeek-1);return gap>0?`${gap}-week bye`:"Standard week"};
+ const rest=t=>{const games=(t.form?.last_five||[]).filter(x=>x.start_date);if(!games.length||!selectedGame.kickoff)return"—";const last=games.map(x=>new Date(x.start_date)).filter(d=>!Number.isNaN(d.getTime())).sort((a,b)=>b-a)[0];if(!last)return"—";const days=Math.max(0,Math.round((new Date(selectedGame.kickoff)-last)/86400000));return `${days} days`};
  const row=(label,a,h,note,seq=false)=>`<article class="context-card${seq?" context-card--sequence":""}"><strong>${label}</strong><div class="context-sides"><span style="--team-color:${color(selectedGame.away,0)}"><small>${esc(abbr(selectedGame.away))}</small><b>${esc(a)}</b></span><i>VS</i><span style="--team-color:${color(selectedGame.home,1)}"><small>${esc(abbr(selectedGame.home))}</small><b>${esc(h)}</b></span></div><p>${note}</p></article>`;
- return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Derived from each team's most recent completed game week.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
+ return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Days between each team's most recent completed game and kickoff.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
 function feature(){const f=selectedGame.featured_mismatch;if(!f)return"";const off=f.side?.startsWith("away")?selectedGame.away:selectedGame.home,def=off===selectedGame.away?selectedGame.home:selectedGame.away;return `<section class="efficiency-feature"><div class="feature-head"><span>◎</span><div><p>FEATURED MATCHUP · LARGEST FBS-RANK GAP</p><h4>${esc(f.metric)}</h4></div></div><div class="feature-values"><span style="--team-color:${color(off,0)}">${teamLogo(off,"trend-logo")}<small>${esc(abbr(off))} · offense · FBS #${f.offense_rank??"—"}</small><b>${rawVal(f.offense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span><i>VS</i><span style="--team-color:${color(def,1)}">${teamLogo(def,"trend-logo")}<small>${esc(abbr(def))} · defense · FBS #${f.opponent_defense_rank??"—"}</small><b>${rawVal(f.opponent_defense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span></div><p><b>Why it matters:</b> This is the largest FBS-rank gap among the displayed source statistics. Rank gap: ${f.rank_gap} places.</p></section>`}
 function factorSentence(t){
- if(t.type!=="matchup_edge")return t.detail||"This situational factor could influence the matchup.";
+ if(t.type!=="matchup_edge"){
+  if(t.type==="bounce_back")return `${t.team} is coming off a loss, making response and early-game execution an important situational factor.`;
+  if(t.type==="ranked_context")return `${t.team} enters as the ranked team, increasing the importance of handling the road environment without giving away early possessions.`;
+  if(t.type==="game_context")return t.detail==="conference matchup"?"Conference familiarity can reduce schematic surprises and make execution in high-leverage downs more important.":t.detail||"This game context could influence the matchup.";
+  return t.detail||"This situational factor could influence the matchup.";
+ }
  const row=(selectedGame.matchup_metrics||[]).find(m=>m.label===t.metric);
- const team=t.team===selectedGame.away.name?selectedGame.away:selectedGame.home;
- const opp=team===selectedGame.away?selectedGame.home:selectedGame.away;
- if(!row)return `${team.name} owns the stronger ${t.metric} profile, which could create an efficiency advantage in this matchup.`;
- const isAway=team===selectedGame.away;
- const offRank=isAway?row.away_offense_rank:row.home_offense_rank;
- const defRank=isAway?row.home_defense_rank:row.away_defense_rank;
- const reason={
-  "Success Rate":"Sustaining a higher rate of successful plays can keep drives on schedule and reduce difficult down-and-distance situations.",
-  "EPA / Play":"A stronger EPA-per-play profile means the offense is creating more scoring value on each snap.",
-  "Passing Success Rate":"A passing-efficiency edge can help the offense stay ahead of the chains and attack favorable coverage matchups.",
-  "Rushing Success Rate":"A rushing-efficiency edge can improve down-and-distance control and keep the full playbook available.",
-  "Explosiveness":"More damaging successful plays increase the chance of chunk gains and faster scoring opportunities.",
-  "Points per Opportunity":"Finishing scoring opportunities efficiently can turn similar drive volume into a meaningful scoreboard edge.",
-  "Third Down Conversion":"A third-down edge can extend drives, increase possession volume and create additional scoring chances.",
-  "Red Zone TD Rate":"A red-zone touchdown edge can turn scoring opportunities into seven points instead of field-goal attempts."
- }[t.metric]||"This efficiency gap could influence how consistently the offense moves and finishes drives.";
- return `${team.name} ranks FBS #${offRank??"—"} in ${t.metric}, while ${opp.name} ranks FBS #${defRank??"—"} in the corresponding defensive metric. ${reason}`;
+ const edgeTeam=t.team===selectedGame.away.name?selectedGame.away:selectedGame.home;
+ const other=edgeTeam===selectedGame.away?selectedGame.home:selectedGame.away;
+ if(!row)return `${edgeTeam.name}'s ${t.metric} advantage could help it control efficiency in this matchup.`;
+ const offenseIsAway=t.offense_side==="away";
+ const offenseTeam=offenseIsAway?selectedGame.away:selectedGame.home;
+ const defenseTeam=offenseIsAway?selectedGame.home:selectedGame.away;
+ const offRank=offenseIsAway?row.away_offense_rank:row.home_offense_rank;
+ const defRank=offenseIsAway?row.home_defense_rank:row.away_defense_rank;
+ const impact={
+  "Success Rate":t.edge_unit==="offense"?"stay ahead of the chains and avoid obvious passing downs":"force more unsuccessful early-down plays and create longer conversion situations",
+  "EPA / Play":t.edge_unit==="offense"?"create more scoring value per snap and punish inefficient possessions":"limit scoring value per snap and force the offense to sustain longer drives",
+  "Passing Success Rate":t.edge_unit==="offense"?"complete efficient passes often enough to sustain drives and attack favorable coverage":"disrupt the passing game and force more low-efficiency throws or difficult third downs",
+  "Rushing Success Rate":t.edge_unit==="offense"?"keep manageable down-and-distance situations and preserve play-action options":"make the run game inefficient and push the offense toward more predictable passing situations",
+  "Explosiveness":t.edge_unit==="offense"?"generate chunk plays that shorten drives and create faster scoring opportunities":"limit chunk gains and make the offense execute consistently over longer drives",
+  "Points per Opportunity":t.edge_unit==="offense"?"turn scoring chances into more points and capitalize when drives cross into scoring territory":"hold scoring opportunities to fewer points and keep drives from becoming touchdowns",
+  "Third Down Conversion":t.edge_unit==="offense"?"extend drives and create additional possession and scoring volume":"get off the field more often and reduce the opponent's total scoring opportunities",
+  "Red Zone TD Rate":t.edge_unit==="offense"?"finish red-zone possessions with touchdowns instead of settling for field goals":"force more red-zone possessions to end without touchdowns and compress the scoring margin"
+ }[t.metric]||"turn that efficiency advantage into better down-and-distance outcomes";
+ if(t.edge_unit==="offense")return `${edgeTeam.name}'s FBS #${offRank??"—"} ${t.metric} faces ${defenseTeam.name}'s FBS #${defRank??"—"} corresponding defense, an edge that could help ${edgeTeam.name} ${impact}.`;
+ return `${edgeTeam.name}'s FBS #${defRank??"—"} corresponding defense faces ${offenseTeam.name}'s FBS #${offRank??"—"} ${t.metric}, an edge that could help ${edgeTeam.name} ${impact}.`;
 }
 function factors(){const items=(selectedGame.trends||[]).slice(0,8).map(t=>{let title=t.metric||"Game context",detail=factorSentence(t);return `<li><span>${t.type==="matchup_edge"?"↗":"!"}</span><p><small>${esc((t.type||"CONTEXT").replaceAll("_"," "))}</small><b>${esc(title)}</b><span class="factor-detail">${esc(detail)}</span></p></li>`}).join("");return `<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>${items}</ul></section>`}
 function renderDetail(){
