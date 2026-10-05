@@ -16,7 +16,7 @@ METRICS=[
  ("Explosiveness","Explosiveness Allowed","explosiveness","defensive_explosiveness","decimal"),
  ("Points per Opportunity","Points per Opportunity Allowed","points_per_opportunity","defensive_points_per_opportunity","decimal"),
  ("Third Down Conversion","Third Down Defense","third_down_conversion","defensive_third_down_conversion","percent"),
- ("Red Zone Efficiency","Red Zone Defense","red_zone_td_rate","defensive_red_zone_td_rate","percent"),
+ ("Red Zone TD Rate","Red Zone TD Defense","red_zone_td_rate","defensive_red_zone_td_rate","percent"),
 ]
 def team_payload(name,p,r):
  recent=p.get("recent_form") or {}; rec=r.get("record") or p.get("record")
@@ -106,6 +106,12 @@ def player_cards(team,usage_map):
  while len(out)<4:
   out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":"Usage data pending","position":"—","usage":[],"placeholder":True})
  return out
+def enrich_form_abbreviations(team,team_meta):
+ form=team.get("form") or {}
+ for game in form.get("last_five") or []:
+  meta=team_meta.get(canon(game.get("opponent"))) or {}
+  game["opponent_abbr"]=meta.get("abbr") or meta.get("abbreviation")
+ return team
 def parse_kickoff(v):
  try:return datetime.fromisoformat(str(v).replace("Z","+00:00")) if v else None
  except ValueError:return None
@@ -116,6 +122,7 @@ def main():
   ap=g.get("away_profile") or {}; hp=g.get("home_profile") or {}; ar=by.get(canon(g["away"]),{}); hr=by.get(canon(g["home"]),{})
   away=team_payload(g["away"],ap,ar)|{"conference":g.get("away_conference"),"espn_id":g.get("away_id"),"raw_metrics":raw.get(canon(g["away"]),{})}|tm.get(canon(g["away"]),{})
   home=team_payload(g["home"],hp,hr)|{"conference":g.get("home_conference"),"espn_id":g.get("home_id"),"raw_metrics":raw.get(canon(g["home"]),{})}|tm.get(canon(g["home"]),{})
+  away=enrich_form_abbreviations(away,tm); home=enrich_form_abbreviations(home,tm)
   rows=metric_rows(away,home); venue=vm.get(str(g.get("venue_id"))) or vm.get(str(g.get("venue"))) or {}; ko=parse_kickoff(g.get("start_date")); weather={"summary":game_weather(venue,ko,bool(g.get("neutral_site")))} if ko else {"summary":"Forecast unavailable"}
   games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"market_trends":market_trends(away,home,season_games),"players":player_cards(away,usage)+player_cards(home,usage),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
  payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}; (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8");print(f"Built {len(games)} CFB Dashboard matchups")
