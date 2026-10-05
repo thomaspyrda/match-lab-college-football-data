@@ -49,6 +49,15 @@ jobs:
               assert "trends" in g
               assert "market" in g
               assert "context" in g
+              assert g.get("away",{}).get("espn_id"), g.get("away",{}).get("name")
+              assert g.get("home",{}).get("espn_id"), g.get("home",{}).get("name")
+              assert "weather" in g
+              assert g.get("market",{}).get("provider") or g.get("market",{}).get("spread") is not None or g.get("market",{}).get("total") is not None
+          missing_metrics=sum(1 for g in d["games"] if not any(
+              isinstance(v,(int,float)) for m in g["matchup_metrics"] for v in
+              (m.get("away_offense"),m.get("home_defense"),m.get("home_offense"),m.get("away_defense"))
+          ))
+          assert missing_metrics==0, f"{missing_metrics} games have no usable matchup metrics"
           print(f'Validated {len(d["games"])} CFB Dashboard matchups')
           PY
       - name: Assemble preview artifact
