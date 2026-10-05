@@ -19,6 +19,14 @@ for g in d["games"]:
     assert isinstance(g.get("context"),dict)
     assert isinstance(g.get("weather"),dict)
     assert isinstance(g.get("trends"),list)
+    assert len(g.get("players", [])) == 10, g["game_id"]
+    for group in (g["players"][:5],g["players"][5:]):
+        assert [p["position"] for p in group[:4]] == ["QB","RB","WR","TE"]
+        ids=[str(p.get("player_id") or p.get("name")) for p in group if not p.get("placeholder")]
+        assert len(ids)==len(set(ids)), (g["game_id"],ids)
+        metric=group[0].get("efficiency")
+        if metric and metric.get("rank"):
+            assert metric["qualified"] and metric["sample_size"] >= metric["minimum"]
 missing=sum(1 for g in d["games"] if not any(
     isinstance(v,(int,float))
     for m in g["matchup_metrics"]

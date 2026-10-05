@@ -125,18 +125,19 @@ def test_market_trends_builds_four_nfl_style_rows():
     assert rows[0]["home"] == "1-0-0"
 
 
-def test_player_cards_always_returns_top_four_or_placeholders():
+def test_player_cards_preserve_five_role_slots():
     team={"name":"Example","abbr":"EX"}
     usage={"Example":[
       {"name":"P1","position":"RB","overall":0.45},
       {"name":"P2","position":"WR","overall":0.35},
     ]}
     cards=player_cards(team,usage)
-    assert len(cards) == 4
-    assert cards[0]["name"] == "P1"
-    assert cards[1]["name"] == "P2"
-    assert cards[2]["placeholder"] is True
+    assert len(cards) == 5
+    assert cards[0]["placeholder"] is True
+    assert cards[1]["name"] == "P1"
+    assert cards[2]["name"] == "P2"
     assert cards[3]["placeholder"] is True
+    assert cards[4]["placeholder"] is True
 
 
 def test_raw_metric_rows_use_explicit_source_ranks_without_recalculation():
@@ -158,12 +159,13 @@ def test_player_cards_use_position_specific_opportunity_metrics():
     ]}
     cards=player_cards(team,usage)
     qb={x["label"]:x["value"] for x in cards[0]["usage"]}
-    wr={x["label"]:x["value"] for x in cards[1]["usage"]}
-    rb={x["label"]:x["value"] for x in cards[2]["usage"]}
+    wr={x["label"]:x["value"] for x in cards[2]["usage"]}
+    rb={x["label"]:x["value"] for x in cards[1]["usage"]}
     assert qb["3rd Down Completion %"] == 0.625
     assert "3rd-down usage" not in qb
     assert wr["Air Yards %"] == 0.38
     assert "Pass usage" not in wr
     assert rb["Air Yards %"] == 0.08
     assert "Pass usage" not in rb
+
 

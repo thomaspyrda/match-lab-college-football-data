@@ -1,6 +1,8 @@
 name: Validate CFB Dashboard foundation
 'on':
   workflow_dispatch: {}
+  schedule:
+    - cron: "37 */6 * * *"
   push:
     branches: [cfb-dashboard-foundation]
     paths:
@@ -18,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: cfb-dashboard-foundation
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -72,3 +76,4 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Publish isolated CFB Dashboard preview"
           git push origin main
+

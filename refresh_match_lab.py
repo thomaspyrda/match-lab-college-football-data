@@ -471,6 +471,9 @@ for key,higher in rank_specs.items():
 team_air_yards={}
 player_air_yards={}
 third_down_passing={}
+passing_attempts={}
+passing_team_games={}
+recent_passing={}
 for week_no in range(1,last_completed+1):
  try: pass_plays=api("/passing/plays",year=now.year,week=week_no,seasonType="regular",classification="fbs")
  except Exception: pass_plays=[]
@@ -487,6 +490,13 @@ for week_no in range(1,last_completed+1):
     if target_id:player_air_yards[(team,"id",target_id)]=player_air_yards.get((team,"id",target_id),0.0)+air
     if target_name:player_air_yards[(team,"name",target_name)]=player_air_yards.get((team,"name",target_name),0.0)+air
    except Exception:pass
+  passer_id=str(play.get("passerId") or "")
+  if passer_id and str(play.get("outcome") or "").lower() in ("completion","incompletion","interception"):
+   key=(team,passer_id)
+   passing_attempts[key]=passing_attempts.get(key,0)+1
+   passing_team_games.setdefault(team,set()).add(week_no)
+   previous_week,attempts=recent_passing.get(key,(week_no,0))
+   recent_passing[key]=(week_no,attempts+1 if previous_week==week_no else 1)
   if int(play.get("down") or 0)==3:
    passer_id=str(play.get("passerId") or "")
    passer_name=str(play.get("passer") or "").strip().lower()
@@ -497,7 +507,7 @@ for week_no in range(1,last_completed+1):
      row["att"]+=1
      if outcome=="completion":row["cmp"]+=1
 
-# Cache current-season player usage once per refresh. Dashboard selects each team's top four.
+# Retain the full usage pool so role slots and injury replacements are available.
 usage_rows=api("/player/usage",year=now.year,excludeGarbageTime="true")
 player_usage={}
 for row in usage_rows:
@@ -532,7 +542,16 @@ for row in usage_rows:
 for team,bucket in player_usage.items():
  rows=list(bucket.values())
  rows.sort(key=lambda x:float(x.get("overall") or 0),reverse=True)
- player_usage[team]=rows[:4]
+ player_usage[team]=rows
+from cfb_dashboard.pipeline.players import enrich_players
+from cfb_dashboard.pipeline.availability import fetch_reports
+try: qb_ppa=api("/ppa/players/season",year=now.year,position="QB",excludeGarbageTime="true")
+except Exception as exc:
+ print("QB PPA unavailable:",type(exc).__name__)
+ qb_ppa=[]
+# CFBD team aliases must match the usage pool.
+for row in qb_ppa:row["team"]=canon_team(row.get("team"))
+enrich_players(player_usage,qb_ppa,passing_attempts,passing_team_games,recent_passing,team_meta,fetch_reports("college-football",now),fbs_teams)
 (DATA/"cfb_dashboard_player_usage.json").write_text(json.dumps({"season":now.year,"generated_at":now.isoformat(),"teams":player_usage},indent=2),encoding="utf-8")
 
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
@@ -1135,3 +1154,4 @@ current_teams.sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]
  encoding="utf-8",
 )
 print(f"Published {len(all_upcoming)} upcoming games, {len(current_teams)} performance-vs-expectation FBS strength rows, and historical indexes for {len(strength)} seasons")
+

@@ -59,17 +59,27 @@ function marketResults(){
  return `<section class="trend-group"><div class="trend-group-title"><span>↗</span><h4>Market Results</h4></div><div class="trend-grid">${rows.map(marketTrendRow).join("")}</div></section>`;
 }
 const usagePct=v=>v==null?"—":`${Math.round((Number(v)<=1?Number(v)*100:Number(v))*10)/10}%`;
+function qbEfficiency(player){
+ const metric=player.efficiency;
+ if(player.position!=="QB")return "";
+ const value=metric?.value==null?"—":`${Number(metric.value)>=0?"+":""}${Number(metric.value).toFixed(3)}`;
+ const rank=metric?.qualified&&metric.rank?`#${metric.rank} / ${metric.qualifying_count}`:"Not qualified";
+ return `<div class="qb-efficiency"><div><small>${esc(metric?.label||"Passing PPA")}</small><strong>${value}</strong></div><div><small>QB RANK <button class="info" data-tip="${esc(metric?.help||"Rank appears after the quarterback meets the qualifying sample.")}" aria-label="About QB rank">?</button></small><strong>${rank}</strong></div></div>`;
+}
+
 function collegePlayerCard(player,team){
  const items=(player.usage||[]).map(item=>`<div class="usage"><b>${usagePct(item.value)}</b><span>${esc(item.label)}</span></div>`).join("");
  const pos=String(player.position||"").toUpperCase();
  const statLabels=pos==="QB"?["CMP","ATT","PASS YDS","PASS TD","INT","RUSH YDS"]:pos==="RB"?["RUSH","RUSH YDS","RUSH TD","REC","REC YDS","REC TD"]:["REC","REC YDS","REC TD","RUSH","RUSH YDS","RUSH TD"];
  const production=statLabels.map(label=>`<span><b>—</b><small>${label}</small><em>season stats pending</em></span>`).join("");
  const pending=player.placeholder?`<div class="availability-note"><b>Usage data:</b> Player usage will populate on the next successful season refresh.</div>`:"";
- return `<article class="player-card" style="--team-color:${color(team,team===selectedGame.away?0:1)}"><div class="player-top"><div class="player-identity">${teamLogo(team,"player-team-logo")}<div><span class="position">${esc(player.position||"—")} · ${esc(abbr(team))}</span><h3>${esc(player.name||"Usage data pending")}</h3></div></div><span class="subtle">2026 usage</span></div>${pending}<div class="production-line">${production}</div><div class="usage-label"><b>Opportunity share</b><button class="info" data-tip="Position-specific season opportunity metrics from CFBD. Skill players include Air Yards %; quarterbacks include 3rd Down Completion %." aria-label="About opportunity share">?</button></div><div class="usage-grid">${items||'<div class="usage"><b>—</b><span>Pending</span></div>'}</div></article>`;
+ return `<article class="player-card" style="--team-color:${color(team,team===selectedGame.away?0:1)}"><div class="player-top"><div class="player-identity">${teamLogo(team,"player-team-logo")}<div><span class="position">${esc(player.position||"—")} · ${esc(abbr(team))}</span><h3>${esc(player.name||"Usage data pending")}</h3></div></div><span class="subtle">${esc(player.slot||"Season usage")}</span></div>${pending}${player.availability_note?`<div class="availability-note">${esc(player.availability_note)}</div>`:""}${qbEfficiency(player)}<div class="production-line">${production}</div><div class="usage-label"><b>Opportunity share</b><button class="info" data-tip="Position-specific season opportunity metrics from CFBD. Skill players include Air Yards %; quarterbacks include 3rd Down Completion %." aria-label="About opportunity share">?</button></div><div class="usage-grid">${items||'<div class="usage"><b>—</b><span>Pending</span></div>'}</div></article>`;
 }
 function playerOpportunity(){
  const players=selectedGame.players||[];
- return `<div class="players">${players.map((p,i)=>collegePlayerCard(p,i<4?selectedGame.away:selectedGame.home)).join("")}</div>`;
+ const half=players.length/2;
+ const ordered=Array.from({length:half},(_,i)=>[collegePlayerCard(players[i],selectedGame.away),collegePlayerCard(players[i+half],selectedGame.home)]).flat();
+ return `<div class="players">${ordered.join("")}</div>`;
 }
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
@@ -135,3 +145,4 @@ function scrollGames(direction){const rail=$("#games");rail.scrollBy({left:direc
 function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});renderDayFilters();renderGameRail();$("#gamesPrev").onclick=()=>scrollGames(-1);$("#gamesNext").onclick=()=>scrollGames(1);$("#gameDetail").hidden=true}
 document.addEventListener("click",e=>{const b=e.target.closest(".info");if(!b||!window.matchMedia("(max-width:760px)").matches)return;e.preventDefault();let d=document.querySelector(".definition-dialog");if(!d){d=document.createElement("dialog");d.className="definition-dialog";d.innerHTML='<div class="definition-dialog-head"><strong></strong><button type="button">✕</button></div><p></p>';d.querySelector("button").onclick=()=>d.close();document.body.appendChild(d)}d.querySelector("strong").textContent=b.getAttribute("aria-label")?.replace(/^About /,"")||"Definition";d.querySelector("p").textContent=b.dataset.tip||"";d.showModal()});
 fetch("data/dashboard.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Dashboard data unavailable");return r.json()}).then(x=>{dashboard=x;render()}).catch(e=>{$("#updated").textContent=e.message});
+

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from cfb_dashboard.pipeline.players import select_players
 from cfb_dashboard.pipeline.weather import game_weather
 ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/"data"; OUT=ROOT/"cfb_dashboard"/"data"; OUT.mkdir(parents=True,exist_ok=True)
 TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboard_venues.json"; PLAYER_USAGE=DATA/"cfb_dashboard_player_usage.json"; RAW_METRICS=DATA/"cfb_dashboard_raw_metrics.json"
@@ -108,9 +109,12 @@ def market_trends(away,home,games):
   {"label":"O/U by location","away":"Road · "+market_record(away["name"],games,"ou","away"),"home":"Home · "+market_record(home["name"],games,"ou","home"),"note":"Current-season over-under record in the same home/road role as this matchup."},
  ]
 def player_cards(team,usage_map):
- rows=usage_map.get(canon(team["name"]),[])[:4]
+ rows=select_players(usage_map.get(canon(team["name"]),[]))
  out=[]
  for i,row in enumerate(rows):
+  if row is None:
+   out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":"Player data pending","position":["QB","RB","WR","TE","Skill"][i],"usage":[],"placeholder":True,"slot":["Projected starting QB","Top usage RB","Top usage WR","Top usage TE","Next skill player"][i]})
+   continue
   pos=str(row.get("position") or "").upper()
   if pos=="QB":
    usage=[
@@ -119,7 +123,7 @@ def player_cards(team,usage_map):
     {"label":"Rush usage","value":row.get("rush")},
     {"label":"3rd Down Completion %","value":row.get("third_down_completion_rate")},
    ]
-  elif pos in ("RB","WR"):
+  elif pos in ("RB","WR","TE"):
    usage=[
     {"label":"Overall usage","value":row.get("overall")},
     {"label":"Rush usage","value":row.get("rush")},
@@ -133,9 +137,7 @@ def player_cards(team,usage_map):
     {"label":"Rush usage","value":row.get("rush")},
     {"label":"3rd-down usage","value":row.get("third_down")},
    ]
-  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":usage,"placeholder":False})
- while len(out)<4:
-  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":"Usage data pending","position":"—","usage":[],"placeholder":True})
+  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":usage,"placeholder":False,"player_id":row.get("id"),"slot":["Projected starting QB","Top usage RB","Top usage WR","Top usage TE","Next skill player"][i],"efficiency":row.get("efficiency"),"availability_note":row.get("availability_note"),"availability_updated":row.get("availability_updated"),"projection_note":"Projected from recent passing role" if pos=="QB" else None})
  return out
 def enrich_form_abbreviations(team,team_meta):
  form=team.get("form") or {}
@@ -158,3 +160,4 @@ def main():
   games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"market_trends":market_trends(away,home,season_games),"players":player_cards(away,usage)+player_cards(home,usage),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
  payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}; (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8");print(f"Built {len(games)} CFB Dashboard matchups")
 if __name__=="__main__":main()
+
