@@ -316,6 +316,7 @@ for row in team_rows:
  logos=row.get("logos") or []
  team_meta[school]={
   "espn_id":row.get("id"),
+  "conference":row.get("conference"),
   "abbr":row.get("abbreviation"),
   "color":("#"+str(row.get("color")).lstrip("#")) if row.get("color") else None,
   "alternate_color":("#"+str(row.get("alternateColor")).lstrip("#")) if row.get("alternateColor") else None,

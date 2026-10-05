@@ -47,6 +47,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python -m cfb_dashboard.pipeline.build_dashboard
+      - name: Build conference team directory
+        env:
+          PYTHONPATH: .
+        run: python -m cfb_dashboard.pipeline.build_teams
       - name: Validate generated dashboard contract
         run: python cfb_dashboard/pipeline/validate_launch.py
       - name: Assemble preview artifact
@@ -69,10 +73,11 @@ jobs:
           git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/matchlab-main
           rm -rf /tmp/matchlab-main/cfb-dashboard-preview
           cp -R cfb-dashboard-preview /tmp/matchlab-main/cfb-dashboard-preview
+          cp teams.html /tmp/matchlab-main/teams.html
           cd /tmp/matchlab-main
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cfb-dashboard-preview
+          git add cfb-dashboard-preview teams.html
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Publish isolated CFB Dashboard preview"
           git push origin main
