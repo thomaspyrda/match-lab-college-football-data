@@ -28,7 +28,8 @@
               assert g.get("away",{}).get("espn_id"), g.get("away",{}).get("name")
               assert g.get("home",{}).get("espn_id"), g.get("home",{}).get("name")
               assert "weather" in g
-              # Some games legitimately have no posted market yet; structure must exist, values may be pending.\n              assert isinstance(g.get("market"),dict)
+              # Some games legitimately have no posted market yet; structure must exist, values may be pending.
+              assert isinstance(g.get("market"),dict)
           missing_metrics=sum(1 for g in d["games"] if not any(
               isinstance(v,(int,float)) for m in g["matchup_metrics"] for v in
               (m.get("away_offense"),m.get("home_defense"),m.get("home_offense"),m.get("away_defense"))
