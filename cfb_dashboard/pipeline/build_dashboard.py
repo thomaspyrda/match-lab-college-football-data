@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 from cfb_dashboard.pipeline.weather import game_weather
+from cfb_dashboard.pipeline.branding import fetch_current_branding, resolve as resolve_branding
 ROOT=Path(__file__).resolve().parents[2]; DATA=ROOT/"data"; OUT=ROOT/"cfb_dashboard"/"data"; OUT.mkdir(parents=True,exist_ok=True)
 TEAM_META=DATA/"cfb_dashboard_team_metadata.json"; VENUE_META=DATA/"cfb_dashboard_venues.json"
 ALIASES={"UConn":"Connecticut","Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","Appalachian State":"App State","FIU":"Florida International","San Jose State":"San José State"}
@@ -59,9 +60,13 @@ def parse_kickoff(v):
 def main():
  upcoming=json.loads((DATA/"upcoming.json").read_text()); rankings=json.loads((DATA/"current_rankings.json").read_text())
  by={canon(x["team"]):x for x in rankings.get("teams",[])}; tm={canon(k):v for k,v in load_map(TEAM_META,"teams").items()}; vm=load_map(VENUE_META,"venues"); games=[]
+ try: branding=fetch_current_branding()
+ except Exception: branding={}
  for g in upcoming.get("games",[]):
   ap=g.get("away_profile") or {}; hp=g.get("home_profile") or {}; ar=by.get(canon(g["away"]),{}); hr=by.get(canon(g["home"]),{})
-  away=team_payload(g["away"],ap,ar)|{"conference":g.get("away_conference"),"espn_id":g.get("away_id")}|tm.get(canon(g["away"]),{}); home=team_payload(g["home"],hp,hr)|{"conference":g.get("home_conference"),"espn_id":g.get("home_id")}|tm.get(canon(g["home"]),{})
+  away_brand=resolve_branding(g["away"],branding); home_brand=resolve_branding(g["home"],branding)
+  away=team_payload(g["away"],ap,ar)|{"conference":g.get("away_conference"),"espn_id":g.get("away_id")}|tm.get(canon(g["away"]),{})|{k:v for k,v in away_brand.items() if v is not None}
+  home=team_payload(g["home"],hp,hr)|{"conference":g.get("home_conference"),"espn_id":g.get("home_id")}|tm.get(canon(g["home"]),{})|{k:v for k,v in home_brand.items() if v is not None}
   rows=metric_rows(away,home); venue=vm.get(str(g.get("venue_id"))) or vm.get(str(g.get("venue"))) or {}; ko=parse_kickoff(g.get("start_date")); weather={"summary":game_weather(venue,ko,bool(g.get("neutral_site")))} if ko else {"summary":"Forecast unavailable"}
   games.append({"game_id":g.get("game_id"),"season":g.get("season"),"week":g.get("week"),"kickoff":g.get("start_date"),"venue":g.get("venue"),"venue_id":g.get("venue_id"),"away":away,"home":home,"market":{"spread":g.get("spread"),"total":g.get("over_under"),"home_moneyline":g.get("home_moneyline"),"away_moneyline":g.get("away_moneyline"),"provider":g.get("provider")},"context":{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")},"weather":weather,"matchup_metrics":rows,"featured_mismatch":mismatch(rows),"trends":build_trends(away,home,rows,{"conference_game":g.get("conference_game"),"neutral_site":g.get("neutral_site")})})
  payload={"slate":{"season":rankings.get("season"),"week":rankings.get("week"),"generated_at":datetime.now(timezone.utc).isoformat(),"model_version":(rankings.get("model") or {}).get("version")},"games":games}; (OUT/"dashboard.json").write_text(json.dumps(payload,indent=2),encoding="utf-8");print(f"Built {len(games)} CFB Dashboard matchups")
