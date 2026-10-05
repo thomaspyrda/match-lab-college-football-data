@@ -41,22 +41,28 @@ def edges(rows):
  out=[]
  for r in rows:
   pairs=[
-   ("away_offense",r.get("away_offense_rank"),r.get("home_defense_rank"),r.get("away_offense"),r.get("home_defense")),
-   ("home_offense",r.get("home_offense_rank"),r.get("away_defense_rank"),r.get("home_offense"),r.get("away_defense")),
+   ("away","home",r.get("away_offense_rank"),r.get("home_defense_rank"),r.get("away_offense"),r.get("home_defense")),
+   ("home","away",r.get("home_offense_rank"),r.get("away_defense_rank"),r.get("home_offense"),r.get("away_defense")),
   ]
-  for side,off_rank,def_rank,off_value,def_value in pairs:
+  for offense_side,defense_side,off_rank,def_rank,off_value,def_value in pairs:
    if isinstance(off_rank,int) and isinstance(def_rank,int):
-    out.append({"metric":r["label"],"side":side,"rank_gap":abs(off_rank-def_rank),"offense_rank":off_rank,"opponent_defense_rank":def_rank,"offense_value":off_value,"opponent_defense_value":def_value})
+    offense_has_edge=off_rank<def_rank
+    out.append({
+     "metric":r["label"],"side":offense_side+"_offense","edge_side":offense_side if offense_has_edge else defense_side,
+     "edge_unit":"offense" if offense_has_edge else "defense","rank_gap":abs(off_rank-def_rank),
+     "offense_rank":off_rank,"opponent_defense_rank":def_rank,
+     "offense_value":off_value,"opponent_defense_value":def_value
+    })
  return sorted(out,key=lambda x:x["rank_gap"],reverse=True)
 def mismatch(rows):
  e=edges(rows)
  if not e:return None
  x=e[0];return {"metric":x["metric"],"side":x["side"],"rank_gap":x["rank_gap"],"offense_rank":x["offense_rank"],"opponent_defense_rank":x["opponent_defense_rank"],"offense_value":x["offense_value"],"opponent_defense_value":x["opponent_defense_value"]}
 def build_trends(a,h,rows,context=None):
- out=[]; names={"away_offense":a["name"],"home_offense":h["name"]}
+ out=[]; side_names={"away":a["name"],"home":h["name"]}
  for x in edges(rows):
   if len(out)>=5:break
-  if x["rank_gap"]>=12:out.append({"type":"matchup_edge","metric":x["metric"],"team":names[x["side"]],"direction":"rank gap","gap":x["rank_gap"]})
+  if x["rank_gap"]>=12:out.append({"type":"matchup_edge","metric":x["metric"],"team":side_names[x["edge_side"]],"edge_unit":x["edge_unit"],"offense_side":x["side"].split("_")[0],"direction":"rank gap","gap":x["rank_gap"]})
  context=context or {}
  if a.get("ap_rank") and not h.get("ap_rank"):out.append({"type":"ranked_context","team":a["name"],"detail":"ranked road team vs unranked home opponent"})
  elif h.get("ap_rank") and not a.get("ap_rank"):out.append({"type":"ranked_context","team":h["name"],"detail":"ranked home team vs unranked road opponent"})
