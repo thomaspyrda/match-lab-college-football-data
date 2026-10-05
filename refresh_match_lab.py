@@ -306,6 +306,103 @@ for week in candidate_weeks:
   home_prior=[x for x in games if (x.get("homeTeam")==home or x.get("awayTeam")==home) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"venue":g.get("venue"),"venue_id":g.get("venueId"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
+# Cache direct current-season dashboard metrics from CFBD.
+# These values are source statistics only; no opponent adjustment, z-score,
+# percentile transform, or Team Strength model output enters the matchup cards.
+def parse_eff(value):
+ if value is None:return None
+ text=str(value).strip()
+ for sep in ("-","/"):
+  if sep in text:
+   left,right=text.split(sep,1)
+   try:return (float(left),float(right))
+   except:return None
+ return None
+
+def rank_values(team_rows,key,higher_better=True):
+ vals={team:row.get(key) for team,row in team_rows.items() if isinstance(row.get(key),(int,float))}
+ ordered=sorted(vals,key=lambda t:((-vals[t]) if higher_better else vals[t],t))
+ return {team:i for i,team in enumerate(ordered,1)}
+
+direct_adv=api("/stats/season/advanced",year=now.year,classification="fbs",excludeGarbageTime="true",endWeek=last_completed)
+raw_dashboard={}
+for row in direct_adv:
+ team=canon_team(row.get("team"))
+ if not team:continue
+ off=row.get("offense") or {}; deff=row.get("defense") or {}
+ raw_dashboard[team]={
+  "overall_success":safe_float(off.get("successRate")),
+  "defensive_success":safe_float(deff.get("successRate")),
+  "offensive_ppa":safe_float(off.get("ppa")),
+  "defensive_ppa":safe_float(deff.get("ppa")),
+  "passing_success":safe_float((off.get("passingPlays") or {}).get("successRate")),
+  "defensive_passing_success":safe_float((deff.get("passingPlays") or {}).get("successRate")),
+  "rushing_success":safe_float((off.get("rushingPlays") or {}).get("successRate")),
+  "defensive_rushing_success":safe_float((deff.get("rushingPlays") or {}).get("successRate")),
+  "explosiveness":safe_float(off.get("explosiveness")),
+  "defensive_explosiveness":safe_float(deff.get("explosiveness")),
+  "points_per_opportunity":safe_float(off.get("pointsPerOpportunity")),
+  "defensive_points_per_opportunity":safe_float(deff.get("pointsPerOpportunity")),
+  "third_down_made":0.0,"third_down_att":0.0,"third_down_allowed_made":0.0,"third_down_allowed_att":0.0,
+  "red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0,
+ }
+
+# CFBD game box scores expose third-down and red-zone efficiency as made-attempted.
+# Aggregate only the official counts to season totals; no model adjustment is applied.
+for week_no in range(1,last_completed+1):
+ try: box_games=api("/games/teams",year=now.year,week=week_no,seasonType="regular",classification="fbs")
+ except Exception: box_games=[]
+ for game in box_games:
+  teams=game.get("teams") or []
+  parsed=[]
+  for tr in teams:
+   team=canon_team(tr.get("team"))
+   stats={}
+   for item in tr.get("stats") or []:
+    key="".join(ch.lower() for ch in str(item.get("category") or "") if ch.isalnum())
+    stats[key]=item.get("stat")
+   third=parse_eff(stats.get("thirddowneff") or stats.get("thirddownefficiency"))
+   red=parse_eff(stats.get("redzoneeff") or stats.get("redzoneefficiency") or stats.get("redzone"))
+   parsed.append((team,third,red))
+   raw_dashboard.setdefault(team,{
+    "third_down_made":0.0,"third_down_att":0.0,"third_down_allowed_made":0.0,"third_down_allowed_att":0.0,
+    "red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0,
+   })
+   rr=raw_dashboard[team]
+   if third:rr["third_down_made"]+=third[0];rr["third_down_att"]+=third[1]
+   if red:rr["red_zone_td"]+=red[0];rr["red_zone_att"]+=red[1]
+  if len(parsed)==2:
+   for idx,(team,third,red) in enumerate(parsed):
+    opp_third=parsed[1-idx][1];opp_red=parsed[1-idx][2];rr=raw_dashboard[team]
+    if opp_third:rr["third_down_allowed_made"]+=opp_third[0];rr["third_down_allowed_att"]+=opp_third[1]
+    if opp_red:rr["red_zone_allowed_td"]+=opp_red[0];rr["red_zone_allowed_att"]+=opp_red[1]
+
+for team,row in raw_dashboard.items():
+ row["third_down_conversion"]=(row.get("third_down_made",0)/row.get("third_down_att")) if row.get("third_down_att") else None
+ row["defensive_third_down_conversion"]=(row.get("third_down_allowed_made",0)/row.get("third_down_allowed_att")) if row.get("third_down_allowed_att") else None
+ row["red_zone_td_rate"]=(row.get("red_zone_td",0)/row.get("red_zone_att")) if row.get("red_zone_att") else None
+ row["defensive_red_zone_td_rate"]=(row.get("red_zone_allowed_td",0)/row.get("red_zone_allowed_att")) if row.get("red_zone_allowed_att") else None
+
+rank_specs={
+ "overall_success":True,"defensive_success":False,
+ "offensive_ppa":True,"defensive_ppa":False,
+ "passing_success":True,"defensive_passing_success":False,
+ "rushing_success":True,"defensive_rushing_success":False,
+ "explosiveness":True,"defensive_explosiveness":False,
+ "points_per_opportunity":True,"defensive_points_per_opportunity":False,
+ "third_down_conversion":True,"defensive_third_down_conversion":False,
+ "red_zone_td_rate":True,"defensive_red_zone_td_rate":False,
+}
+for key,higher in rank_specs.items():
+ ranks=rank_values(raw_dashboard,key,higher)
+ for team,rank_no in ranks.items():raw_dashboard[team][key+"_rank"]=rank_no
+(DATA/"cfb_dashboard_raw_metrics.json").write_text(json.dumps({
+ "season":now.year,"through_week":last_completed,"generated_at":now.isoformat(),
+ "source":"CollegeFootballData /stats/season/advanced and /games/teams",
+ "note":"Displayed metrics are direct season statistics; ranks are ordinal FBS ranks from those raw values.",
+ "teams":raw_dashboard,
+},indent=2),encoding="utf-8")
+
 # Cache current FBS branding from CFBD so dashboard builds never depend on a second provider.
 team_rows=api("/teams/fbs",year=now.year)
 team_meta={}
