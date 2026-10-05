@@ -39,9 +39,9 @@ def form(team,prior):
   r=result(team,g)
   if not r:continue
   home=g.get("homeTeam")==team
-  completed.append(r|{"opponent":g.get("awayTeam") if home else g.get("homeTeam"),"location":"H" if home else "A","week":int(g.get("week") or 0)})
+  completed.append(r|{"opponent":g.get("awayTeam") if home else g.get("homeTeam"),"location":"H" if home else "A","week":int(g.get("week") or 0),"start_date":g.get("startDate")})
  rr=completed
- return {"games":len(rr),"wins":sum(x["won"] for x in rr),"losses":sum(not x["won"] for x in rr),"avg_points":round(sum(x["points"] for x in rr)/len(rr),1) if rr else None,"avg_allowed":round(sum(x["allowed"] for x in rr)/len(rr),1) if rr else None,"coming_off_loss":(not rr[-1]["won"]) if rr else None,"last_five":[{"week":x["week"],"opponent":x["opponent"],"location":x["location"],"result":"W" if x["won"] else "L","points":x["points"],"allowed":x["allowed"]} for x in rr[-5:]]}
+ return {"games":len(rr),"wins":sum(x["won"] for x in rr),"losses":sum(not x["won"] for x in rr),"avg_points":round(sum(x["points"] for x in rr)/len(rr),1) if rr else None,"avg_allowed":round(sum(x["allowed"] for x in rr)/len(rr),1) if rr else None,"coming_off_loss":(not rr[-1]["won"]) if rr else None,"last_five":[{"week":x["week"],"opponent":x["opponent"],"location":x["location"],"start_date":x.get("start_date"),"result":"W" if x["won"] else "L","points":x["points"],"allowed":x["allowed"]} for x in rr[-5:]]}
 strength={}
 for p in (DATA/"weekly").glob("*.json"):
  d=json.loads(p.read_text());strength[int(d["season"])]=d["weeks"]
@@ -320,6 +320,7 @@ for row in team_rows:
   "color":("#"+str(row.get("color")).lstrip("#")) if row.get("color") else None,
   "alternate_color":("#"+str(row.get("alternateColor")).lstrip("#")) if row.get("alternateColor") else None,
   "logo":logos[0] if logos else None,
+  "alternate_logo":logos[1] if len(logos)>1 else None,
  }
 (DATA/"cfb_dashboard_team_metadata.json").write_text(json.dumps({"schema_version":"1.1","updated":now.date().isoformat(),"source":"CFBD /teams/fbs","teams":team_meta},indent=2),encoding="utf-8")
 
@@ -373,8 +374,10 @@ for row in direct_adv:
   "red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0,
  }
 
-# CFBD game box scores expose third-down and red-zone efficiency as made-attempted.
-# Aggregate only the official counts to season totals; no model adjustment is applied.
+# Third-down rates come from official game box-score made/attempted counts.
+# Red-zone TD rate comes from official CFBD play-by-play: a red-zone trip is a drive
+# with at least one offensive snap at or inside the opponent 20, and a TD trip ends
+# with an offensive touchdown play. No opponent adjustment or modeled value is used.
 for week_no in range(1,last_completed+1):
  try: box_games=api("/games/teams",year=now.year,week=week_no,seasonType="regular",classification="fbs")
  except Exception: box_games=[]
@@ -388,23 +391,43 @@ for week_no in range(1,last_completed+1):
     key="".join(ch.lower() for ch in str(item.get("category") or "") if ch.isalnum())
     stats[key]=item.get("stat")
    third=parse_eff(stats.get("thirddowneff") or stats.get("thirddownefficiency") or next((v for k,v in stats.items() if "thirddown" in k and parse_eff(v)),None))
-   red=parse_eff(
-    stats.get("redzonetd") or stats.get("redzonetds") or stats.get("redzonetouchdown") or stats.get("redzonetouchdowns")
-    or next((v for k,v in stats.items() if "redzone" in k and ("td" in k or "touchdown" in k) and parse_eff(v)),None)
-   )
-   parsed.append((team,third,red))
+   parsed.append((team,third))
    raw_dashboard.setdefault(team,{
     "third_down_made":0.0,"third_down_att":0.0,"third_down_allowed_made":0.0,"third_down_allowed_att":0.0,
     "red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0,
    })
    rr=raw_dashboard[team]
    if third:rr["third_down_made"]+=third[0];rr["third_down_att"]+=third[1]
-   if red:rr["red_zone_td"]+=red[0];rr["red_zone_att"]+=red[1]
   if len(parsed)==2:
-   for idx,(team,third,red) in enumerate(parsed):
-    opp_third=parsed[1-idx][1];opp_red=parsed[1-idx][2];rr=raw_dashboard[team]
+   for idx,(team,third) in enumerate(parsed):
+    opp_third=parsed[1-idx][1];rr=raw_dashboard[team]
     if opp_third:rr["third_down_allowed_made"]+=opp_third[0];rr["third_down_allowed_att"]+=opp_third[1]
-    if opp_red:rr["red_zone_allowed_td"]+=opp_red[0];rr["red_zone_allowed_att"]+=opp_red[1]
+
+ try: week_plays=api("/plays",year=now.year,week=week_no,seasonType="regular",classification="fbs")
+ except Exception: week_plays=[]
+ drives={}
+ for play in week_plays:
+  offense=canon_team(play.get("offense")); defense=canon_team(play.get("defense"))
+  drive_id=str(play.get("driveId") or "")
+  if not offense or not defense or not drive_id:continue
+  key=(str(play.get("gameId") or ""),drive_id,offense,defense)
+  d=drives.setdefault(key,{"red_zone":False,"touchdown":False})
+  ytg=play.get("yardsToGoal")
+  try:
+   if ytg is not None and 0<float(ytg)<=20:d["red_zone"]=True
+  except Exception:pass
+  text=(str(play.get("playType") or "")+" "+str(play.get("playText") or "")).lower()
+  offensive_td=("touchdown" in text and "interception return" not in text and "fumble return" not in text and "blocked" not in text)
+  if offensive_td:d["touchdown"]=True
+ for (_,_,offense,defense),d in drives.items():
+  if not d["red_zone"]:continue
+  raw_dashboard.setdefault(offense,{"red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0})
+  raw_dashboard.setdefault(defense,{"red_zone_td":0.0,"red_zone_att":0.0,"red_zone_allowed_td":0.0,"red_zone_allowed_att":0.0})
+  raw_dashboard[offense]["red_zone_att"]=raw_dashboard[offense].get("red_zone_att",0)+1
+  raw_dashboard[defense]["red_zone_allowed_att"]=raw_dashboard[defense].get("red_zone_allowed_att",0)+1
+  if d["touchdown"]:
+   raw_dashboard[offense]["red_zone_td"]=raw_dashboard[offense].get("red_zone_td",0)+1
+   raw_dashboard[defense]["red_zone_allowed_td"]=raw_dashboard[defense].get("red_zone_allowed_td",0)+1
 
 for team,row in raw_dashboard.items():
  row["third_down_conversion"]=(row.get("third_down_made",0)/row.get("third_down_att")) if row.get("third_down_att") else None
