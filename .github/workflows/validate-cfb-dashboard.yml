@@ -20,6 +20,14 @@ jobs:
           python-version: "3.12"
       - name: Install validation dependencies
         run: python -m pip install --disable-pip-version-check pytest
+      - name: Refresh current Match Lab source data
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python refresh_match_lab.py
+      - name: Promote frozen V15 into refreshed profiles
+        env:
+          PYTHONPATH: .
+        run: python promote_v15_live.py
       - name: Refresh venue metadata
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
