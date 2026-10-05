@@ -78,8 +78,7 @@ function collegePlayerCard(player,team){
 function playerOpportunity(){
  const players=selectedGame.players||[];
  const half=players.length/2;
- const ordered=Array.from({length:half},(_,i)=>[collegePlayerCard(players[i],selectedGame.away),collegePlayerCard(players[i+half],selectedGame.home)]).flat();
- return `<div class="players">${ordered.join("")}</div>`;
+ return `<div class="players">${players.map((player,i)=>collegePlayerCard(player,i<half?selectedGame.away:selectedGame.home)).join("")}</div>`;
 }
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";

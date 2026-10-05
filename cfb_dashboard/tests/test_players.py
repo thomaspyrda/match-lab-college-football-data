@@ -21,3 +21,12 @@ def test_qualified_rank_ties_and_small_sample():
 def test_stale_out_report_is_ignored():
     payload={'injuries':[{'id':'1','injuries':[{'date':'2020-10-01T00:00:00Z','status':'Out','athlete':{'id':'a'}}]}]}
     assert current_reports(payload,datetime(2026,10,5,tzinfo=timezone.utc),'college-football')=={}
+
+
+def test_ten_attempt_qualification_boundary():
+    teams={'A':[{'id':'a','position':'QB'},{'id':'b','position':'QB'}]}
+    ppa=[{'team':'A','id':pid,'averagePPA':{'pass':value}} for pid,value in [('a',.4),('b',.9)]]
+    enrich_players(teams,ppa,{('A','a'):10,('A','b'):9},{'A':{1,2,3,4,5,6}}, {}, {}, {}, {'A'})
+    assert teams['A'][0]['efficiency']['rank']==1
+    assert teams['A'][1]['efficiency']['rank'] is None
+    assert teams['A'][0]['efficiency']['qualifying_count']==1

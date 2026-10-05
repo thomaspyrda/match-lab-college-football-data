@@ -11,11 +11,11 @@ def enrich_players(teams, ppa_rows, passing, team_games, recent, metadata, repor
             if row.get('position') != 'QB': continue
             attempts = passing.get((team, str(row.get('id'))), 0)
             value = ppa.get((team, str(row.get('id'))))
-            minimum = max(25, 14 * len(team_games.get(team, set())))
+            minimum = 10
             row['recent_passing_role'] = recent.get((team, str(row.get('id'))), (0, 0))
             row['efficiency'] = {'label':'Passing PPA', 'value':value, 'rank':None, 'sample_size':attempts,
                 'minimum':minimum, 'qualified':value is not None and attempts >= minimum and team in fbs_teams,
-                'help':'CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires 14 pass attempts per completed team game, minimum 25. Passing PPA differs from NFL EPA per Dropback.'}
+                'help':'CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.'}
             if row['efficiency']['qualified']: qualified.append(row)
     for rows in teams.values():
         for row in rows:
