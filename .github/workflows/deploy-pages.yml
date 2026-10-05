@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: ["Validate CFB Dashboard foundation"]
-    branches: [cfb-dashboard-foundation]
+    branches: [cfb-dashboard-foundation, main]
     types: [completed]
   push:
     branches: [main]

@@ -1,0 +1,79 @@
+name: Validate CFB Dashboard foundation
+'on':
+  workflow_dispatch: {}
+  schedule:
+    - cron: "37 */6 * * *"
+  push:
+    branches: [cfb-dashboard-foundation]
+    paths:
+      - "cfb_dashboard/**"
+      - "promote_v15_live.py"
+      - "refresh_match_lab.py"
+      - ".github/workflows/validate-cfb-dashboard.yml"
+permissions:
+  contents: write
+concurrency:
+  group: cfb-dashboard-preview
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cfb-dashboard-foundation
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Refresh current Match Lab source data
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python refresh_match_lab.py
+      - name: Promote frozen V15 into refreshed profiles
+        env:
+          PYTHONPATH: .
+        run: python promote_v15_live.py
+      - name: Refresh venue metadata
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python cfb_dashboard/pipeline/refresh_venues.py
+      - name: Run dashboard unit tests
+        env:
+          PYTHONPATH: .
+        run: python -m pytest -q cfb_dashboard/tests
+      - name: Build dashboard
+        env:
+          PYTHONPATH: .
+        run: python -m cfb_dashboard.pipeline.build_dashboard
+      - name: Validate generated dashboard contract
+        run: python cfb_dashboard/pipeline/validate_launch.py
+      - name: Assemble preview artifact
+        run: |
+          rm -rf cfb-dashboard-preview
+          mkdir -p cfb-dashboard-preview/data cfb-dashboard-preview/assets
+          cp cfb_dashboard/index.html cfb-dashboard-preview/
+          cp cfb_dashboard/styles.css cfb-dashboard-preview/
+          cp cfb_dashboard/app.js cfb-dashboard-preview/
+          cp cfb_dashboard/data/dashboard.json cfb-dashboard-preview/data/
+          if [ -f assets/betwise-logo.png ]; then cp assets/betwise-logo.png cfb-dashboard-preview/assets/; fi
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfb-dashboard-preview
+          path: cfb-dashboard-preview
+          retention-days: 7
+      - name: Publish isolated browser preview
+        run: |
+          git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/matchlab-main
+          rm -rf /tmp/matchlab-main/cfb-dashboard-preview
+          cp -R cfb-dashboard-preview /tmp/matchlab-main/cfb-dashboard-preview
+          cd /tmp/matchlab-main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cfb-dashboard-preview
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Publish isolated CFB Dashboard preview"
+          git push origin main
+
