@@ -1,6 +1,10 @@
 name: Deploy Match Lab
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Validate CFB Dashboard foundation"]
+    branches: [cfb-dashboard-foundation]
+    types: [completed]
   push:
     branches: [main]
     paths:
@@ -19,6 +23,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
