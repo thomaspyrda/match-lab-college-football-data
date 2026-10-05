@@ -51,3 +51,18 @@ jobs:
               assert "context" in g
           print(f'Validated {len(d["games"])} CFB Dashboard matchups')
           PY
+      - name: Assemble preview artifact
+        run: |
+          rm -rf cfb-dashboard-preview
+          mkdir -p cfb-dashboard-preview/data cfb-dashboard-preview/assets
+          cp cfb_dashboard/index.html cfb-dashboard-preview/
+          cp cfb_dashboard/styles.css cfb-dashboard-preview/
+          cp cfb_dashboard/app.js cfb-dashboard-preview/
+          cp cfb_dashboard/data/dashboard.json cfb-dashboard-preview/data/
+          if [ -f assets/betwise-logo.png ]; then cp assets/betwise-logo.png cfb-dashboard-preview/assets/; fi
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfb-dashboard-preview
+          path: cfb-dashboard-preview
+          retention-days: 7
