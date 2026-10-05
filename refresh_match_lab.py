@@ -388,7 +388,10 @@ for week_no in range(1,last_completed+1):
     key="".join(ch.lower() for ch in str(item.get("category") or "") if ch.isalnum())
     stats[key]=item.get("stat")
    third=parse_eff(stats.get("thirddowneff") or stats.get("thirddownefficiency") or next((v for k,v in stats.items() if "thirddown" in k and parse_eff(v)),None))
-   red=parse_eff(stats.get("redzoneeff") or stats.get("redzoneefficiency") or stats.get("redzone") or next((v for k,v in stats.items() if "redzone" in k and parse_eff(v)),None))
+   red=parse_eff(
+    stats.get("redzonetd") or stats.get("redzonetds") or stats.get("redzonetouchdown") or stats.get("redzonetouchdowns")
+    or next((v for k,v in stats.items() if "redzone" in k and ("td" in k or "touchdown" in k) and parse_eff(v)),None)
+   )
    parsed.append((team,third,red))
    raw_dashboard.setdefault(team,{
     "third_down_made":0.0,"third_down_att":0.0,"third_down_allowed_made":0.0,"third_down_allowed_att":0.0,
