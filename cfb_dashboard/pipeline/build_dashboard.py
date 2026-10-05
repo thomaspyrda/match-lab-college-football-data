@@ -31,7 +31,12 @@ def build_trends(a,h,rows,context=None):
  for x in edges(rows):
   if len(out)>=5:break
   if x["magnitude"]>=12:out.append({"type":"matchup_edge","metric":x["metric"],"team":names[x["side"]],"direction":"advantage" if x["gap"]>0 else "disadvantage","gap":x["magnitude"]})
- context=context or {}\n if a.get("ap_rank") and not h.get("ap_rank"):out.append({"type":"ranked_context","team":a["name"],"detail":"ranked road team vs unranked home opponent"})\n elif h.get("ap_rank") and not a.get("ap_rank"):out.append({"type":"ranked_context","team":h["name"],"detail":"ranked home team vs unranked road opponent"})\n if (a.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":a["name"],"detail":"coming off a loss"})\n if (h.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":h["name"],"detail":"coming off a loss"})\n ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
+ context=context or {}
+ if a.get("ap_rank") and not h.get("ap_rank"):out.append({"type":"ranked_context","team":a["name"],"detail":"ranked road team vs unranked home opponent"})
+ elif h.get("ap_rank") and not a.get("ap_rank"):out.append({"type":"ranked_context","team":h["name"],"detail":"ranked home team vs unranked road opponent"})
+ if (a.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":a["name"],"detail":"coming off a loss"})
+ if (h.get("form") or {}).get("coming_off_loss") is True:out.append({"type":"bounce_back","team":h["name"],"detail":"coming off a loss"})
+ ar,hr=a.get("team_strength_rank"),h.get("team_strength_rank")
  if isinstance(ar,int) and isinstance(hr,int) and abs(ar-hr)>=20:out.append({"type":"strength_gap","team":a["name"] if ar<hr else h["name"],"rank_gap":abs(ar-hr)})
  return out[:6]
 def load_map(path,key):
