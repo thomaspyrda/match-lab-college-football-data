@@ -23,6 +23,25 @@ function metricCard(m,type){
  return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(label)}<button class="info" aria-label="About ${esc(label)}" data-tip="${esc(HELP[label]||"Opponent-adjusted CFB performance.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>CFB RANK</b></span></div>${values.map(line).join("")}</article>`
 }
 function pair(m){return metricCard(m,"offense")+metricCard(m,"defense")}
+function marketTrendRow(t){
+ return `<article class="trend-card"><div class="trend-card-head"><strong>${esc(t.label)}</strong><button class="info" data-tip="${esc(t.note||"Current-season betting result.")}" aria-label="About ${esc(t.label)}">?</button></div><div class="trend-values"><span style="--team-color:${color(selectedGame.away,0)}">${teamLogo(selectedGame.away,"trend-logo")}<b>${esc(t.away)}</b></span><i>VS</i><span style="--team-color:${color(selectedGame.home,1)}">${teamLogo(selectedGame.home,"trend-logo")}<b>${esc(t.home)}</b></span></div></article>`;
+}
+function marketResults(){
+ const rows=selectedGame.market_trends||[];
+ if(!rows.length)return"";
+ return `<section class="trend-group"><div class="trend-group-title"><span>↗</span><h4>Market Results</h4></div><div class="trend-grid">${rows.map(marketTrendRow).join("")}</div></section>`;
+}
+const usagePct=v=>v==null?"—":`${Math.round((Number(v)<=1?Number(v)*100:Number(v))*10)/10}%`;
+function collegePlayerCard(player,team){
+ const items=(player.usage||[]).map(item=>`<div class="usage"><b>${usagePct(item.value)}</b><span>${esc(item.label)}</span></div>`).join("");
+ const pending=player.placeholder?`<div class="availability-note"><b>Usage data:</b> Player usage will populate on the next successful season refresh.</div>`:"";
+ return `<article class="player-card" style="--team-color:${color(team,team===selectedGame.away?0:1)}"><div class="player-top"><div class="player-identity">${teamLogo(team,"player-team-logo")}<div><span class="position">${esc(player.position||"—")} · ${esc(abbr(team))}</span><h3>${esc(player.name||"Usage data pending")}</h3></div></div><span class="subtle">2026 usage</span></div>${pending}<div class="usage-label"><b>Opportunity share</b><button class="info" data-tip="Season usage share from CFBD, including overall, pass, rush and third-down involvement." aria-label="About opportunity share">?</button></div><div class="usage-grid">${items||'<div class="usage"><b>—</b><span>Pending</span></div>'}</div></article>`;
+}
+function playerOpportunity(){
+ const players=selectedGame.players||[];
+ const away=players.slice(0,4),home=players.slice(4,8);
+ return `<div class="player-team-group"><div class="section-head section-head-solo"><div><p class="eyebrow">${esc(selectedGame.away.name)} · TOP 4 USAGE</p></div></div><div class="players">${away.map(p=>collegePlayerCard(p,selectedGame.away)).join("")}</div></div><div class="player-team-group"><div class="section-head section-head-solo"><div><p class="eyebrow">${esc(selectedGame.home.name)} · TOP 4 USAGE</p></div></div><div class="players">${home.map(p=>collegePlayerCard(p,selectedGame.home)).join("")}</div></div>`;
+}
 function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
  const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+x.opponent).join(" · ")||"—";
@@ -37,8 +56,9 @@ function renderDetail(){
  <section class="season-overview"><p>SEASON SNAPSHOT · COMPLETED GAMES</p><div class="season-overview-grid">${season(g.away,0)}${season(g.home,1)}</div></section>
  <section class="section"><div class="section-head"><div><p class="eyebrow">EFFICIENCY & CFB RANK</p><h3>How the teams compare</h3></div><span class="subtle">#1 = best in FBS</span></div><details class="reading-guide"><summary>How to read these numbers</summary><div><p><b>Stat</b> shows the opponent-adjusted metric value.</p><p><b>CFB Rank</b> translates percentile position across the FBS field.</p><p><b>Each row</b> pairs an offensive metric with its corresponding defensive metric.</p></div></details><div class="metric-columns-head"><span>OFFENSIVE METRICS</span><span>DEFENSIVE METRICS</span></div><div class="grid">${(g.matchup_metrics||[]).map(pair).join("")}</div></section>
  <section class="section">${feature()}</section>
- <section class="section"><div class="section-head"><div><p class="eyebrow">TRENDS & SITUATIONAL CONTEXT</p><h3>The matchup at a glance</h3></div><span class="subtle">Tap ? for definitions</span></div><div class="trend-groups">${formSchedule()}</div></section>
- <section class="section">${factors()}</section>`}
+ <section class="section"><div class="section-head"><div><p class="eyebrow">TRENDS & SITUATIONAL CONTEXT</p><h3>The matchup at a glance</h3></div><span class="subtle">Tap ? for definitions</span></div><div class="trend-groups">${marketResults()}${formSchedule()}</div></section>
+ <section class="section">${factors()}</section>
+ <section class="section"><div class="section-head section-head-solo"><div><p class="eyebrow">PLAYER OPPORTUNITY</p><h3>Top usage players</h3></div><span class="subtle">Top 4 per team · current season</span></div>${playerOpportunity()}</section>`}
 function selectGame(id){selectedGame=dashboard.games.find(g=>String(g.game_id)===String(id));document.querySelectorAll(".game-card").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===String(id))));$("#gameDetail").hidden=false;renderDetail()}
 function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});$("#games").innerHTML=dashboard.games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="false"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(abbr(g.away))}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(abbr(g.home))}</b></span></span><span class="markets"><span>${esc(g.market?.spread??"")}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("");document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));$("#gameDetail").hidden=true}
 document.addEventListener("click",e=>{const b=e.target.closest(".info");if(!b||!window.matchMedia("(max-width:760px)").matches)return;e.preventDefault();let d=document.querySelector(".definition-dialog");if(!d){d=document.createElement("dialog");d.className="definition-dialog";d.innerHTML='<div class="definition-dialog-head"><strong></strong><button type="button">✕</button></div><p></p>';d.querySelector("button").onclick=()=>d.close();document.body.appendChild(d)}d.querySelector("strong").textContent=b.getAttribute("aria-label")?.replace(/^About /,"")||"Definition";d.querySelector("p").textContent=b.dataset.tip||"";d.showModal()});
