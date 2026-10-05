@@ -54,7 +54,7 @@ def team_payload(name, profile, ranking):
       "defensive_strength_rank":ranking.get("defensive_strength_rank"),
       "sos_rank":ranking.get("schedule_strength_rank",profile.get("schedule_strength_rank")),
       "form":recent,
-      "metrics":profile.get("advanced") or {},
+      "metrics":(profile.get("advanced") or {}) | (ranking.get("dashboard_situational") or {}),
     }
 
 def metric_rows(away,home):
