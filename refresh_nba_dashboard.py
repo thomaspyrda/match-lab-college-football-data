@@ -52,7 +52,7 @@ def players_box(row):
             athlete=entry['athlete'];fg=pair(values.get('fieldGoalsMade-fieldGoalsAttempted'));th=pair(values.get('threePointFieldGoalsMade-threePointFieldGoalsAttempted'));ft=pair(values.get('freeThrowsMade-freeThrowsAttempted'))
             result.append({'id':'nba:espn:player:'+athlete['id'],'name':athlete['displayName'],'position':athlete.get('position',{}).get('abbreviation','—'),
               'headshot':athlete.get('headshot',{}).get('href'),'minutes':played,'points':num(values.get('points')),'rebounds':num(values.get('rebounds')),
-              'assists':num(values.get('assists')),'turnovers':num(values.get('turnovers')),'plus_minus':num(values.get('plusMinus')),
+              'blocks':num(values.get('blocks')),'steals':num(values.get('steals')),'assists':num(values.get('assists')),'turnovers':num(values.get('turnovers')),'plus_minus':num(values.get('plusMinus')),
               'fgm':fg[0],'fga':fg[1],'tpm':th[0],'tpa':th[1],'ftm':ft[0],'fta':ft[1]})
     return result
 
@@ -71,7 +71,7 @@ def completed(event):
         market={'home_spread':home_spread,'total':num(quote.get('overUnder')),'provider':quote.get('provider',{}).get('name'),'line_type':'published; closing not verified','observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/game/_/gameId/'+event['id']}
     return {'id':event['id'],'date':event['date'],'season':event['season']['year'],'phase':event['season']['type'],
       'observed_complete_at':datetime.now(UTC).isoformat(),'teams':boxes,'players':players,'home':next(c['team']['id'] for c in comp['competitors'] if c['homeAway']=='home'),
-      'neutral':comp.get('neutralSite',False),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,
+      'neutral':comp.get('neutralSite',False),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,'player_stats_version':2,
       'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None
@@ -91,10 +91,11 @@ def profile(team_id,history,cutoff):
         won=own['points']>opp['points'];wins+=won;losses+=not won
         results.append({'date':game['date'],'opponent_id':oid,'location':'Neutral' if game.get('neutral') else ('Home' if game['home']==team_id else 'Away'),'result':'W' if won else 'L','score':f"{int(own['points'])}–{int(opp['points'])}"})
         for p in game.get('players',{}).get(team_id,[]):
-            target=player_totals.setdefault(p['id'],{'id':p['id'],'name':p['name'],'position':p['position'],'headshot':p['headshot'],'games':0,'totals':defaultdict(float),'pm_games':0})
+            target=player_totals.setdefault(p['id'],{'id':p['id'],'name':p['name'],'position':p['position'],'headshot':p['headshot'],'games':0,'totals':defaultdict(float),'stat_games':defaultdict(int),'pm_games':0})
             target['games']+=1
-            for k in ['minutes','points','rebounds','assists','turnovers','plus_minus','fgm','fga','tpm','tpa','ftm','fta']:
-                if p.get(k) is not None:target['totals'][k]+=p[k]
+            for k in ['minutes','points','rebounds','assists','turnovers','plus_minus','fgm','fga','tpm','tpa','ftm','fta','blocks','steals']:
+                if p.get(k) is not None:
+                    target['totals'][k]+=p[k];target['stat_games'][k]+=1
             if p.get('plus_minus') is not None:target['pm_games']+=1
     n=len(games);valid_poss=n>0 and poss_games==n
     values={'ortg':ratio(totals.get('points'),possessions,100) if valid_poss else None,'drtg':ratio(other.get('points'),possessions,100) if valid_poss else None,
@@ -108,8 +109,11 @@ def profile(team_id,history,cutoff):
     players=[]
     for p in player_totals.values():
         t=p.pop('totals');count=p['games'];p['per_game']={k:round(t[k]/count,1) for k in ['minutes','points','rebounds','assists','turnovers']};p['plus_minus']=round(t['plus_minus']/p['pm_games'],1) if p['pm_games'] else None
+        coverage=p.pop('stat_games');p['totals']={k:t[k] if coverage[k]==count else None for k in ['fgm','fga','ftm','fta','tpm','tpa','blocks','steals']}
+        for k in ['blocks','steals']:p['per_game'][k]=round(t[k]/count,1) if coverage[k]==count else None
+        p['final_two_minutes_fg_pct']=None
         p['fg_pct']=ratio(t['fgm'],t['fga'],100);p['three_pct']=ratio(t['tpm'],t['tpa'],100);p['bpm']=None;p['vorp']=None;p['vorp_percentile']=None;players.append(p)
-    players.sort(key=lambda p:(p['per_game']['minutes'],p['per_game']['points']),reverse=True)
+    players.sort(key=lambda p:(p['per_game']['points'],p['per_game']['minutes']),reverse=True)
     values.update({'fg_pct':ratio(totals.get('fgm'),totals.get('fga'),100),'opp_fg_pct':ratio(other.get('fgm'),other.get('fga'),100),
       'two_pct':ratio(totals.get('fgm',0)-totals.get('tpm',0),totals.get('fga',0)-totals.get('tpa',0),100) if n else None,
       'opp_two_pct':ratio(other.get('fgm',0)-other.get('tpm',0),other.get('fga',0)-other.get('tpa',0),100) if n else None,
@@ -152,7 +156,7 @@ def main():
     dates=[start+timedelta(days=i) for i in range((today+timedelta(days=7)-start).days+1)]
     boards=list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?dates='+d.strftime('%Y%m%d')),dates))
     events={e['id']:e for b in boards for e in b.get('events',[]) if e.get('season',{}).get('year')==season and all(c['team']['id'] in teams for c in e['competitions'][0]['competitors'])}
-    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
+    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
     for g in ThreadPoolExecutor(8).map(completed,new):
         if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
         old[g['id']]=g
@@ -174,7 +178,7 @@ def main():
             t=teams[i];sample={p['id']:p for p in profiles[i]['players']};full=[]
             for p in rosters[i]['players']:
                 item=dict(p);item.update(sample.get(p['id'],{'games':0,'per_game':{},'plus_minus':None,'pm_games':0,'fg_pct':None,'three_pct':None,'bpm':None,'vorp':None,'vorp_percentile':None}));full.append(item)
-            full.sort(key=lambda p:((p.get('per_game') or {}).get('minutes',-1),p['name']),reverse=True)
+            full.sort(key=lambda p:((p.get('per_game') or {}).get('points',-1),p['name']),reverse=True)
             return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+sides['away' if i==away else 'home']['team'].get('color','666666'),'profile':profiles[i],'roster':full,'roster_source':rosters[i]['source'],'roster_updated_at':rosters[i]['observed_at']}
         metrics=[]
         for key,label,unit,high,suffix in METRICS:

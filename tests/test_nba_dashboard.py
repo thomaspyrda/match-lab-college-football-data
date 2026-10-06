@@ -25,6 +25,22 @@ class NBADataTests(unittest.TestCase):
     def test_player_plus_minus_is_averaged_from_available_games(self):
         g=self.game();g['players']={'1':[{'id':'player:1','name':'Fixture','position':'G','headshot':None,'minutes':20,'points':10,'rebounds':2,'assists':3,'turnovers':1,'plus_minus':6,'fgm':4,'fga':8,'tpm':1,'tpa':3,'ftm':1,'fta':2}]}
         p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(p['players'][0]['plus_minus'],6);self.assertIsNone(p['players'][0]['vorp'])
+    def test_player_totals_rates_and_scoring_order(self):
+        g=self.game()
+        base={'position':'G','headshot':None,'rebounds':2,'assists':3,'turnovers':1,'plus_minus':0,'fgm':4,'fga':8,'tpm':1,'tpa':3,'ftm':1,'fta':2,'blocks':2,'steals':3}
+        g['players']={'1':[dict(base,id='a',name='A',minutes=30,points=10),dict(base,id='b',name='B',minutes=15,points=20)]}
+        p=nba.profile('1',[g,g],datetime(2026,10,5,tzinfo=timezone.utc))
+        self.assertEqual([r['id'] for r in p['players']],['b','a'])
+        self.assertEqual(p['players'][0]['totals']['fgm'],8)
+        self.assertEqual(p['players'][0]['totals']['blocks'],4)
+        self.assertEqual(p['players'][0]['per_game']['blocks'],2)
+        self.assertEqual(p['players'][0]['per_game']['steals'],3)
+        self.assertIsNone(p['players'][0]['final_two_minutes_fg_pct'])
+    def test_missing_defensive_player_stats_stay_missing(self):
+        g=self.game();g['players']={'1':[dict(id='a',name='A',position='G',headshot=None,minutes=10,points=5)]}
+        p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc))
+        self.assertIsNone(p['players'][0]['totals']['blocks'])
+        self.assertIsNone(p['players'][0]['per_game']['steals'])
     def test_zero_attempt_shooting_is_missing(self):self.assertIsNone(nba.ratio(0,0,100))
     def test_seasons_and_preseason_never_mix(self):
         games=[{'id':'pre','season':2027,'phase':1},{'id':'reg','season':2027,'phase':2},{'id':'old','season':2026,'phase':2}]
