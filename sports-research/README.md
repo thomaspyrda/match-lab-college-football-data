@@ -98,4 +98,6 @@ dedicated season URLs can be added with canonical and redirect rules.
 
 ## Shared team-page section order
 
-All future CFB, NBA, MLB and CBB team pages must place Leadership/Coaches immediately after Season Snapshot and before Advanced Metrics. Match the NFL reference order: Season Snapshot → Leadership/Coaches → Advanced Metrics → remaining sport-specific sections. Section navigation must follow the same order. Coaching names and roles remain season-specific and sourced; do not invent staff for missing seasons.
+All future CFB, NBA, MLB and CBB team pages must place Leadership/Coaches immediately after Season Snapshot. Match the NFL reference order: Season Snapshot → Leadership/Coaches → Draft Class (for sports with drafts) → Advanced Metrics → remaining sport-specific sections. Section navigation must follow the same order. Coaching names and roles remain season-specific and sourced; do not invent staff for missing seasons.
+
+Draft Class must appear directly below Season Leadership on NFL and future draft-applicable sports (NBA and MLB). Do not add a professional draft-class section to CFB or CBB team pages without a separately defined college-specific purpose.
