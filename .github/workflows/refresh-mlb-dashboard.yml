@@ -1,0 +1,40 @@
+name: Refresh MLB Dashboard
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - refresh_mlb_dashboard.py
+      - dashboard_snapshot.py
+      - tests/test_new_sport_dashboards.py
+      - .github/workflows/refresh-mlb-dashboard.yml
+permissions:
+  contents: write
+concurrency:
+  group: mlb-dashboard-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify season boundaries and rankings
+        run: python -m unittest discover -s tests -p test_new_sport_dashboards.py
+      - name: Refresh sourced games and roster data
+        run: python refresh_mlb_dashboard.py
+      - name: Publish dashboard snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/dashboard/data
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh MLB Dashboard snapshot'
+          git pull --rebase -X theirs origin main
+          git push origin main
