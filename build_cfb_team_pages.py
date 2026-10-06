@@ -87,13 +87,15 @@ def snapshot(s):
 def schedule(s,registry):
  if not s:return '<tr><td colspan="10">No verified regular-season results loaded.</td></tr>'
  rows=[]
- for g in s['games']:
+ for g in s.get('schedule',s['games']):
   opp=registry.get(g['opponent_id']);name=esc(g['opponent'])
   if opp:name=f'<a href="{BASE}/cfb/teams/{slug(opp["name"])}/">{name}</a>'
   spread='—' if g['spread'] is None else f"{g['spread']:+g}"
   total='—' if g['total'] is None else f"{g['total']:g}"
-  vals=[g['week'],g['date'][:10],g['site'],name,g['result'],f"{g['points']:g}–{g['allowed']:g}",spread,g['ats'] or '—',total,g['ou'] or '—']
-  rows.append('<tr>'+''.join(f'<td>{v if i==3 else esc(v)}</td>' for i,v in enumerate(vals))+'</tr>')
+  from cfb_team_sections import cls
+  score='—' if g['points'] is None else f"{g['points']:g}–{g['allowed']:g}"
+  vals=['Post' if g.get('season_type')=='postseason' else g['week'],g['date'][:10],g['site'],name,g['result'] or '—',score,spread,g['ats'] or '—',total,g['ou'] or '—']
+  rows.append('<tr>'+''.join(f'<td class="{cls(v) if i in [4,7,9] else ""}">{v if i==3 else esc(v)}</td>' for i,v in enumerate(vals))+'</tr>')
  return ''.join(rows)
 
 def notes(s):
@@ -107,22 +109,24 @@ def notes(s):
 
 def page(team,seasons,registry,current):
  default=current if str(current) in seasons else max(map(int,seasons),default=current)
- s=seasons.get(str(default));name=team['name'];path=f'/cfb/teams/{slug(name)}/'
+ s=seasons.get(str(default));section=(s or {}).get('sections',{});name=team['name'];path=f'/cfb/teams/{slug(name)}/'
  options=''.join(f'<option value="{y}"{" selected" if y==default else ""}>{y}{" · no FBS data" if str(y) not in seasons else ""}</option>' for y in range(current,FIRST-1,-1))
  payload=json.dumps({'team':team,'seasons':seasons},separators=(',',':')).replace('<','\\u003c')
  robots='index,follow' if seasons else 'noindex,follow'
  return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(name)} Stats &amp; Season History | BetWise CFB</title><meta name="description" content="{esc(name)} college football regular-season records, scoring, schedule results and betting-line records from 2015 forward."><meta name="robots" content="{robots}"><link rel="canonical" href="{BASE}{path}">
-<link rel="stylesheet" href="/cfb-dashboard-preview/styles.css?v=27"><link rel="stylesheet" href="/cfb/team-page.css?v=1"><link rel="stylesheet" href="/site-navigation.css?v=2"><script src="/site-navigation.js?v=2" defer></script></head>
+<title>{esc(name)} Stats &amp; Season History | BetWise CFB</title><meta name="description" content="{esc(name)} college football season records, coaches, recruiting ranks, advanced metrics, player leaders and schedule results from 2015 forward."><meta name="robots" content="{robots}"><link rel="canonical" href="{BASE}{path}">
+<link rel="stylesheet" href="/cfb-dashboard-preview/styles.css?v=27"><link rel="stylesheet" href="/cfb/team-page.css?v=2"><link rel="stylesheet" href="/site-navigation.css?v=2"><script src="/site-navigation.js?v=2" defer></script></head>
 <body class="team-page"><header class="site-header"><div class="header-inner"><a class="betwise-brand" href="https://parlaycalculator.bet/"><img src="/assets/betwise-logo.png" alt="BetWise" width="240" height="240"></a><nav class="site-nav" aria-label="Primary navigation"><a href="/cfb-dashboard-preview/">CFB Dashboard</a><a href="/teams.html">CFB Teams</a></nav></div></header>
-<main class="team-shell"><section class="team-hero"><div class="team-hero-logo-wrap"><img class="team-hero-logo" src="https://a.espncdn.com/i/teamlogos/ncaa/500/{team['id']}.png" alt="{esc(name)} logo"></div><div class="team-hero-copy"><p class="team-kicker">CFB TEAM RESEARCH · {esc(team['conference'])}</p><h1>{esc(name)}</h1><p>Season records, scoring, schedule results and market history.</p><div class="season-control"><label for="seasonSelect">Season</label><select id="seasonSelect" aria-label="Choose {esc(name)} season">{options}</select></div></div></section>
-<nav class="team-subnav" aria-label="Team sections"><a href="#snapshot">Snapshot</a><a href="#coaches">Leadership</a><a href="#metrics">Metrics</a><a href="#schedule">Schedule</a><a href="/teams.html">All CFB Teams</a></nav>
-<section id="snapshot" class="team-section"><div class="team-section-head"><p>SEASON SNAPSHOT</p><h2 id="snapshotTitle">{default} regular season</h2></div><div id="snapshotGrid" class="snapshot-grid">{snapshot(s)}</div><p id="seasonNote" class="archive-note">{notes(s)}</p></section>
-<section id="coaches" class="team-section"><div class="team-section-head"><p>SEASON LEADERSHIP</p><h2>Coaching staff</h2></div><p class="archive-note">Historical coaching data has not yet been loaded.</p></section>
-<section id="metrics" class="team-section"><div class="team-section-head"><p>ADVANCED METRICS</p><h2>Offense and defense</h2></div><p class="archive-note">Final-season advanced statistics and player leaders are being collected separately. Pregame matchup profiles are not used as final-season totals.</p></section>
-<section id="schedule" class="team-section"><div class="team-section-head"><p>REGULAR-SEASON SCHEDULE</p><h2>Completed results and market lines</h2></div><div class="schedule-wrap"><table class="team-schedule"><thead><tr><th>Wk</th><th>Date</th><th>Site</th><th>Opponent</th><th>Result</th><th>Score</th><th>Spread</th><th>ATS</th><th>Total</th><th>O/U</th></tr></thead><tbody id="scheduleBody">{schedule(s,registry)}</tbody></table></div><p class="archive-note">H = home · A = away · N = neutral. Source-reported spreads and totals; unverified closing status. Conference championships follow the source's regular-season classification.</p></section>
+<main class="team-shell"><section class="team-hero"><div class="team-hero-logo-wrap"><img class="team-hero-logo" src="https://a.espncdn.com/i/teamlogos/ncaa/500/{team['id']}.png" alt="{esc(name)} logo"></div><div class="team-hero-copy"><p class="team-kicker">CFB TEAM RESEARCH · {esc(team['conference'])}</p><h1>{esc(name)}</h1><p>Season leadership, recruiting classes, advanced metrics, player leaders and results.</p><div class="season-control"><label for="seasonSelect">Season</label><select id="seasonSelect" aria-label="Choose {esc(name)} season">{options}</select></div></div></section>
+<nav class="team-subnav" aria-label="Team sections"><a href="#snapshot">Snapshot</a><a href="#coaches">Leadership</a><a href="#recruiting">Recruiting Class</a><a href="#metrics">Metrics</a><a href="#seasonLeaders">Players</a><a href="#schedule">Schedule</a><a href="/teams.html">All CFB Teams</a></nav>
+<section id="snapshot" class="team-section"><div class="team-section-head"><p>SEASON SNAPSHOT</p><h2 id="snapshotTitle">{default} regular season</h2></div><div id="snapshotGrid" class="snapshot-grid">{snapshot(s)}</div><p id="seasonNote" class="archive-note">{notes(s)}</p><div id="seasonResult">{section.get("seasonResult","")}</div></section>
+<section id="coaches" class="team-section"><div class="team-section-head"><p>SEASON LEADERSHIP</p><h2>Coaching staff</h2></div><div id="coachingGrid" class="coaching-grid">{section.get("coachingGrid","")}</div></section>
+<section id="recruiting" class="team-section"><div class="team-section-head"><p>RECRUITING CLASS</p><h2>Incoming signing class</h2></div><div id="recruitingContent">{section.get("recruitingContent","")}</div></section>
+<section id="metrics" class="team-section"><div class="team-section-head"><p>ADVANCED METRICS</p><h2>Offense and defense</h2></div><div id="metricsGrid" class="team-metrics-grid">{section.get("metricsGrid","")}</div></section>
+<section id="seasonLeaders" class="team-section"><div class="team-section-head"><p>SEASON LEADERS</p><h2>Players who led the team</h2></div><div id="seasonLeadersContent">{section.get("seasonLeadersContent","")}</div></section>
+<section id="schedule" class="team-section"><div class="team-section-head"><p>FULL SEASON SCHEDULE</p><h2>Results and market lines</h2></div><div class="schedule-wrap"><table class="team-schedule"><thead><tr><th>Wk</th><th>Date</th><th>Site</th><th>Opponent</th><th>Result</th><th>Score</th><th>Spread</th><th>ATS</th><th>Total</th><th>O/U</th></tr></thead><tbody id="scheduleBody">{schedule(s,registry)}</tbody></table></div><p class="archive-note">H = home · A = away · N = neutral · Post = postseason. Source-reported spreads and totals; unverified closing status. Conference championships follow the source's regular-season classification.</p></section>
 <p class="archive-note">Sources: <a href="https://collegefootballdata.com/">CollegeFootballData</a>; logos and team identity: ESPN. Historical conferences follow each season's game records.</p></main><footer>BetWise CFB research tools</footer>
-<script type="application/json" id="teamSeasonData">{payload}</script><script src="/cfb/team-page.js?v=1" defer></script></body></html>'''
+<script type="application/json" id="teamSeasonData">{payload}</script><script src="/cfb/team-page.js?v=2" defer></script></body></html>'''
 
 def main():
  teams=json.loads((ROOT/'data/cfb/team-registry.json').read_text())['teams'];registry={str(t['id']):t for t in teams}
@@ -133,7 +137,12 @@ def main():
   year=int(path.stem)
   if year<FIRST:continue
   d=json.loads(path.read_text());assert d['season']==year
-  for tid,s in build_season(d['games'],year).items():
+  rows=build_season(d['games'],year)
+  detail_path=ROOT/'data/cfb/details'/f'{year}.json'
+  if detail_path.exists():
+   from cfb_team_sections import attach_details
+   rows=attach_details(rows,json.loads(detail_path.read_text()),registry,build_season,current)
+  for tid,s in rows.items():
    if tid in registry:histories[tid][str(year)]=s
  for tid,seasons in histories.items():
   for season in seasons.values():

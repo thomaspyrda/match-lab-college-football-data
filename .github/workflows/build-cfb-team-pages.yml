@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - cfb_team_sections.py
       - refresh_cfb_team_details.py
       - build_cfb_team_pages.py
       - test_cfb_team_pages.py

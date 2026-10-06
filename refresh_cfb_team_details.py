@@ -77,6 +77,13 @@ def metric_pairs(advanced,stats):
  pairs.append({'label':'Havoc rate','offense':num((off.get('havoc') or {}).get('total')),'defense':num((defense.get('havoc') or {}).get('total')),'percent':True})
  for key,other,label in [('totalYards','opponentTotalYards','Total yards'),('netPassingYards','opponentNetPassingYards','Passing yards'),('rushingYards','opponentRushingYards','Rushing yards'),('turnovers','turnoversOpponent','Turnovers / turnovers forced'),('thirdDownConversions','opponentThirdDownConversions','3rd-down conversions')]:
   pairs.append({'label':label,'offense':stats.get(key),'defense':stats.get(other),'percent':False})
+ for prefix,label in [('thirdDown','3rd-down conversion rate')]:
+  values=[]
+  for side in ['', 'opponent']:
+   made=stats.get(side+prefix[0].upper()+prefix[1:]+'Conversions') if side else stats.get(prefix+'Conversions')
+   attempts=stats.get(side+prefix[0].upper()+prefix[1:]+'Attempts') if side else stats.get(prefix+'Attempts')
+   values.append(made/attempts if made is not None and attempts and attempts>0 else None)
+  pairs.append({'label':label,'offense':values[0],'defense':values[1],'percent':True})
  return [p for p in pairs if p['offense'] is not None or p['defense'] is not None]
 
 def collect(year,force=False):
@@ -116,10 +123,20 @@ def collect(year,force=False):
    'spread':line.get('spread'),'over_under':line.get('overUnder'),'provider':line.get('provider'),
    'result':{'home_points':g['homePoints'],'away_points':g['awayPoints']} if g.get('completed') and g.get('homePoints') is not None and g.get('awayPoints') is not None else None})
  details={team:{'coaches':coaches.get(team,[]),'recruiting':recruiting.get(team),'metrics':metric_pairs(advanced.get(team,{}),basic.get(team,{})),'leaders':leaders.get(team,{})} for team in fbs}
+ played=defaultdict(int)
+ for g in games:
+  if g['result']:
+   played[canon(g['home'])]+=1;played[canon(g['away'])]+=1
+ for team,d in details.items():
+  for pair in d['metrics']:
+   if pair['label'] in ['Total yards','Passing yards','Rushing yards'] and played[team]>0:
+    pair['label']+=' per game'
+    for side in ['offense','defense']:
+     if pair[side] is not None:pair[side]/=played[team]
  assert len(details)>=120,f'{year}: incomplete FBS detail pool'
  assert sum(bool(d['leaders'].get('passing')) for d in details.values())>=100,f'{year}: missing passing leaders'
  out.parent.mkdir(parents=True,exist_ok=True)
- out.write_text(json.dumps({'year':year,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':sources,'games':games,'teams':details,'player_stat_catalog':sorted({str(r.get('category'))+':'+str(r.get('statType')) for r in fetched['players']})},separators=(',',':')))
+ out.write_text(json.dumps({'year':year,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':sources,'games':games,'teams':details,'player_stat_catalog':sorted({str(r.get('category'))+':'+str(r.get('statType')) for r in fetched['players']}),'team_stat_catalog':sorted({str(r.get('statName')) for r in fetched['stats']})},separators=(',',':')))
  print(f'{year}: {len(details)} FBS detail records; {len(games)} games; player categories '+str(sorted({r.get('category') for r in fetched['players']})),flush=True)
 
 def main():
