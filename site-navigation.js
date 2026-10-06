@@ -4,10 +4,11 @@
   const site = location.hostname.startsWith("nfl.") ? "NFL" : (["MLB", "NBA", "CBB"].includes(sportPath) ? sportPath : "CFB");
   const sports = {
     NFL: [["NFL Dashboard", "https://nfl.parlaycalculator.bet/"], ["NFL Teams", "https://nfl.parlaycalculator.bet/teams.html"]],
+    NBA: [["NBA Dashboard", "https://matchlab.parlaycalculator.bet/nba/dashboard/"], ["NBA Teams", "https://matchlab.parlaycalculator.bet/nba/teams/"]],
     CFB: [["CFB Dashboard", "https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"], ["CFB Teams", "https://matchlab.parlaycalculator.bet/teams.html"], ["CFB Match Lab", "https://matchlab.parlaycalculator.bet/"]]
   };
   const menu = label => `<details class="sport-menu${site===label?' active-sport':''}"><summary>${label}<span aria-hidden="true">⌄</span></summary><div class="sport-dropdown">${sports[label].map(([text,url]) => `<a href="${url}">${text}</a>`).join("")}</div></details>`;
-  const links = `<a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a>${menu("NFL")}${menu("CFB")}<a href="https://matchlab.parlaycalculator.bet/mlb/teams/">MLB</a><a href="https://matchlab.parlaycalculator.bet/nba/teams/">NBA</a><a href="https://matchlab.parlaycalculator.bet/cbb/teams/">CBB</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a><a href="https://parlaycalculator.bet/resources/">All Resources</a>`;
+  const links = `<a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a>${menu("NFL")}${menu("CFB")}<a href="https://matchlab.parlaycalculator.bet/mlb/teams/">MLB</a>${menu("NBA")}<a href="https://matchlab.parlaycalculator.bet/cbb/teams/">CBB</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a><a href="https://parlaycalculator.bet/resources/">All Resources</a>`;
   document.querySelectorAll('.site-nav, .mobile-menu > nav').forEach(nav => {
     nav.innerHTML = links;
     nav.querySelectorAll('a').forEach(link => {

@@ -1,0 +1,37 @@
+name: Refresh NBA Dashboard
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '11 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - refresh_nba_dashboard.py
+      - tests/test_nba_dashboard.py
+      - .github/workflows/refresh-nba-dashboard.yml
+permissions:
+  contents: write
+concurrency:
+  group: nba-dashboard-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test season boundaries and pregame isolation
+        run: python -m unittest discover -s tests -p test_nba_dashboard.py
+      - name: Refresh NBA games and player box scores
+        run: python refresh_nba_dashboard.py
+      - name: Publish NBA snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nba/dashboard/data
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh NBA Dashboard snapshot'
+          git pull --rebase origin main
+          git push origin main
