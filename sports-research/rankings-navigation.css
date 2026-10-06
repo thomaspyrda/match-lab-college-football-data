@@ -1,0 +1,40 @@
+.ranking-links {
+  margin: 0 0 22px;
+}
+.ranking-links-label {
+  margin: 0 0 7px;
+  color: #9d9d9d;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ranking-links-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.ranking-links-grid a {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border: 1px solid #2b2b2b;
+  border-radius: 12px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.ranking-links-grid a:hover,
+.ranking-links-grid a:focus-visible {
+  border-color: var(--green);
+  background: #0d170f;
+  color: var(--green);
+}
+
+@media(max-width:700px){.ranking-links-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.ranking-links-grid a{min-height:42px;padding:8px 9px;font-size:12px}}

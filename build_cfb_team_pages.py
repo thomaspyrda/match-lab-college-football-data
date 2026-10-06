@@ -128,6 +128,9 @@ def page(team,seasons,registry,current):
 <p class="archive-note">Sources: <a href="https://collegefootballdata.com/">CollegeFootballData</a>; logos and team identity: ESPN. Historical conferences follow each season's game records.</p></main><footer>BetWise CFB research tools</footer>
 <script type="application/json" id="teamSeasonData">{payload}</script><script src="/cfb/team-page.js?v=2" defer></script></body></html>'''
 
+RANKING_LINKS="<section class=\"ranking-links\" aria-labelledby=\"rankingLinksTitle\">\n        <p id=\"rankingLinksTitle\" class=\"ranking-links-label\">Explore CFB Rankings</p>\n        <div class=\"ranking-links-grid\">\n          <a href=\"https://matchlab.parlaycalculator.bet/college-football-team-strength-rankings/\">Team Strength</a>\n          <a href=\"https://matchlab.parlaycalculator.bet/college-football-strength-of-schedule-rankings/\">SOS Rankings</a>\n          <a href=\"https://matchlab.parlaycalculator.bet/college-football-offensive-strength-rankings/\">Offensive Strength</a>\n          <a href=\"https://matchlab.parlaycalculator.bet/college-football-defensive-strength-rankings/\">Defensive Strength</a>\n        </div>\n      </section>"
+RANKING_STYLE="<link rel=\"stylesheet\" href=\"/sports-research/rankings-navigation.css?v=1\">"
+
 def main():
  teams=json.loads((ROOT/'data/cfb/team-registry.json').read_text())['teams'];registry={str(t['id']):t for t in teams}
  assert len(registry)==len(teams)==138
@@ -157,6 +160,8 @@ def main():
  directory=ROOT/'teams.html'
  if directory.exists():
   content=directory.read_text()
+  if 'id="rankingLinksTitle"' not in content:content=content.replace('<main>','<main>'+RANKING_LINKS,1)
+  if 'rankings-navigation.css' not in content:content=content.replace('</head>',RANKING_STYLE+'</head>',1)
   def link(m):
    body=m.group(1);idmatch=re.search(r'/([0-9]+)\.png',body)
    if not idmatch or idmatch[1] not in registry:return m.group(0)
