@@ -8,6 +8,7 @@ on:
       - cfb_team_sections.py
       - refresh_cfb_team_details.py
       - build_cfb_team_pages.py
+      - verify_cfb_team_pages.py
       - test_cfb_team_pages.py
       - cfb/team-page.js
       - cfb/team-page.css
@@ -44,6 +45,8 @@ jobs:
           python supplement_cfb_2015_defense.py
       - name: Build all CFB team pages
         run: python build_cfb_team_pages.py
+      - name: Verify every populated team-season
+        run: python verify_cfb_team_pages.py
       - name: Publish generated team archives
         run: |
           git config user.name "github-actions[bot]"
