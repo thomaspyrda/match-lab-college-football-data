@@ -161,7 +161,7 @@ def main():
  if directory.exists():
   content=directory.read_text()
   content=re.sub(r'<section class="ranking-links".*?</section>','',content,flags=re.S)
-  ranking_anchor=r'<a href="https://matchlab\\.parlaycalculator\\.bet/college-football-team-strength-rankings/">View all Team Strength rankings →</a>'
+  ranking_anchor=r'<a href="https://matchlab[.]parlaycalculator[.]bet/college-football-team-strength-rankings/">View all Team Strength rankings →</a>'
   if re.search(ranking_anchor,content):content=re.sub(ranking_anchor,lambda m:RANKING_LINKS,content,count=1)
   else:content=content.replace('</section><nav class="directory-jumps"',RANKING_LINKS+'</section><nav class="directory-jumps"',1)
   if 'rankings-navigation.css' not in content:content=content.replace('</head>',RANKING_STYLE+'</head>',1)
