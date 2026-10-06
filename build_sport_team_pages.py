@@ -52,7 +52,7 @@ def write(path, title, description, body, indexable=True):
 
 def card(team, group):
     name = ' '.join([team['name'], *team['aliases']]).lower()
-    return f'''<a class="conference-team" href="{BASE}/{team['sport']}/teams/{team['slug']}/" data-team-name="{esc(name)}" data-group="{esc(group)}"><img src="{esc(team['logo'])}" alt="" loading="lazy" width="48" height="48"><div><strong>{esc(team['name'])}</strong><small>Team history &amp; season archive</small></div><span class="team-arrow" aria-hidden="true">→</span></a>'''
+    return f'''<a class="conference-team" href="{BASE}/{team['sport']}/teams/{team['slug']}/" data-team-name="{esc(name)}" data-group="{esc(group)}"><img src="{esc(team['logo'])}" alt="" loading="lazy" width="48" height="48"><div><strong>{esc(team['name'])}</strong><small>Team history &amp; season archive</small></div></a>'''
 
 def directory(sport, teams, checked):
     info = SPORTS[sport]; grouped = defaultdict(list)
@@ -72,6 +72,7 @@ def directory(sport, teams, checked):
         sections += f'<section class="conference-group" id="{key}"><h2>{esc(group)} <small>{len(rows)} teams</small></h2><div class="conference-teams">' + ''.join(card(t,key) for t in sorted(rows,key=lambda t:t['name'])) + '</div></section>'
     sections += '</div>'
     group_name = 'conference' if sport == 'cbb' else 'division'
+    jump_nav = '' if sport == 'cbb' else f'{jump_nav}'
     body = f'''<section class="research-intro"><p class="research-kicker">BetWise · {info['label']} teams</p><h1>Explore {"college basketball" if sport == 'cbb' else info['label']}<br>{group_name} by {group_name}.</h1><p>Choose a team to open its season research page. Historical results and statistics will be added gradually, starting with {'2015' if sport == 'mlb' else '2015–16'}.</p><div class="research-meta"><span>{len(teams)} teams</span><span>{len(grouped)} {group_name}s</span><span>{'2026' if sport == 'mlb' else '2026–27'} membership</span></div></section>
 <div class="directory-controls"><label for="team-search">Find a team<input id="team-search" type="search" placeholder="Search team name or abbreviation" autocomplete="off"></label><label for="group-filter">Choose a {group_name}<select id="group-filter">{options}</select></label></div><p class="search-status" id="search-status" role="status" aria-live="polite">{len(teams)} teams shown</p><nav class="directory-jumps" aria-label="Jump to {group_name}">{jumps}</nav><p class="empty-search" id="empty-search" hidden>No teams match your search. Try another name or choose all {group_name}s.</p><div class="conference-directory">{sections}</div><p class="research-source">Membership checked {esc(checked[:10])} using ESPN's sport-specific team and conference directories. <a href="https://www.espn.com/{'mens-college-basketball' if sport == 'cbb' else sport}/teams">View source directory</a>.</p>'''
     write(f'/{sport}/teams/', f'{info["label"]} Teams by {group_name.title()}', f'Browse {len(teams)} {info["name"]} teams grouped by {group_name}, with individual team pages and season research archives.', body)
