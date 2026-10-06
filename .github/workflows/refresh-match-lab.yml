@@ -6,6 +6,20 @@ on:
   push:
     branches:
       - main
+    paths:
+      - refresh_match_lab.py
+      - build_seo_pages.py
+      - build_sport_team_pages.py
+      - build_advanced_profiles.py
+      - promote_v15_live.py
+      - experiment_dominance_v15.py
+      - data/weekly/**
+      - data/preseason/**
+      - site-navigation.js
+      - site-navigation.css
+      - styles.css
+      - app.js
+      - .github/workflows/refresh-match-lab.yml
 permissions:
   contents: write
 jobs:

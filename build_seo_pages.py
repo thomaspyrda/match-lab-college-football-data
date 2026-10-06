@@ -540,11 +540,9 @@ def main():
     sm.append(f"<sitemap><loc>{BASE}/sitemap-sports.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
     for filename,_,_ in season_sitemap_files:
         sm.append(f"<sitemap><loc>{BASE}/{filename}</loc><lastmod>{now.date()}</lastmod></sitemap>")
+    sm.append(f"<sitemap><loc>{BASE}/sitemap-cfb-teams.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
     sm.append("</sitemapindex>")
     (ROOT/"sitemap.xml").write_text("\n".join(sm),encoding="utf-8")
-
-    from build_cfb_team_pages import main as build_cfb_teams
-    build_cfb_teams()
 
     print(f"Built {len(all_archive)} eligible matchup pages across {len(season_sitemap_files)} seasons")
     for filename,season,count in season_sitemap_files:
