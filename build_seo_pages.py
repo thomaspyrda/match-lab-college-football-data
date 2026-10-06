@@ -154,7 +154,7 @@ h2{{margin-top:2rem}}
  .help-pop{{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}}
 }}
 </style>
-<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=1"><script src="https://matchlab.parlaycalculator.bet/site-navigation.js?v=1" defer></script>
+<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation.js?v=2" defer></script>
 </head><body>
 <header class="site-header">
   <div class="header-inner">
@@ -435,6 +435,9 @@ def write_live_data_pages(now):
     unit_strength_page("defensive_strength","defensive_strength_rank","Defensive Strength","college-football-defensive-strength-rankings","Avg Offense Faced","defensive_multiplier","opponent_offensive_quality")
 
 def main():
+    # Retain multi-sport team directories and refresh any newly collected seasons.
+    from build_sport_team_pages import main as build_sport_teams
+    build_sport_teams()
     now=datetime.now(timezone.utc)
     year=now.year
     upcoming_path=DATA/"upcoming.json"
@@ -534,6 +537,7 @@ def main():
     write_urlset(ROOT/"sitemap-core.xml",core,now.date())
     sm=['<?xml version="1.0" encoding="UTF-8"?>','<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm.append(f"<sitemap><loc>{BASE}/sitemap-core.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
+    sm.append(f"<sitemap><loc>{BASE}/sitemap-sports.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
     for filename,_,_ in season_sitemap_files:
         sm.append(f"<sitemap><loc>{BASE}/{filename}</loc><lastmod>{now.date()}</lastmod></sitemap>")
     sm.append("</sitemapindex>")

@@ -1,12 +1,13 @@
 /* Shared sport navigation. Native details support touch and keyboard toggling. */
 (() => {
-  const site = location.hostname.startsWith("nfl.") ? "NFL" : "CFB";
+  const sportPath = location.pathname.split("/")[1].toUpperCase();
+  const site = location.hostname.startsWith("nfl.") ? "NFL" : (["MLB", "NBA", "CBB"].includes(sportPath) ? sportPath : "CFB");
   const sports = {
     NFL: [["NFL Dashboard", "https://nfl.parlaycalculator.bet/"], ["NFL Teams", "https://nfl.parlaycalculator.bet/teams.html"]],
     CFB: [["CFB Dashboard", "https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"], ["CFB Teams", "https://matchlab.parlaycalculator.bet/teams.html"], ["CFB Match Lab", "https://matchlab.parlaycalculator.bet/"]]
   };
   const menu = label => `<details class="sport-menu${site===label?' active-sport':''}"><summary>${label}<span aria-hidden="true">⌄</span></summary><div class="sport-dropdown">${sports[label].map(([text,url]) => `<a href="${url}">${text}</a>`).join("")}</div></details>`;
-  const links = `<a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a>${menu("NFL")}${menu("CFB")}<a href="https://parlaycalculator.bet/resources/mlb-betting-research-guide/">MLB</a><a href="https://parlaycalculator.bet/resources/nba-betting-research-guide/">NBA</a><a href="https://parlaycalculator.bet/resources/college-basketball-betting-research-guide/">CBB</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a><a href="https://parlaycalculator.bet/resources/">All Resources</a>`;
+  const links = `<a href="https://parlaycalculator.bet/betwise/">Why BetWise?</a>${menu("NFL")}${menu("CFB")}<a href="https://matchlab.parlaycalculator.bet/mlb/teams/">MLB</a><a href="https://matchlab.parlaycalculator.bet/nba/teams/">NBA</a><a href="https://matchlab.parlaycalculator.bet/cbb/teams/">CBB</a><a href="https://parlaycalculator.bet/#calculator">Parlay Calculator</a><a href="https://parlaycalculator.bet/resources/">All Resources</a>`;
   document.querySelectorAll('.site-nav, .mobile-menu > nav').forEach(nav => {
     nav.innerHTML = links;
     nav.querySelectorAll('a').forEach(link => {
@@ -14,6 +15,10 @@
       if (url.origin===location.origin && url.pathname.replace(/\/$/,'')===location.pathname.replace(/\/$/,'')) {
         link.classList.add('active'); link.setAttribute('aria-current','page');
       }
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      const url = new URL(link.href);
+      if (url.origin === location.origin && ['MLB', 'NBA', 'CBB'].includes(site) && url.pathname === `/${site.toLowerCase()}/teams/`) link.classList.add('active');
     });
     nav.querySelectorAll('.sport-menu').forEach(details => details.addEventListener('toggle', () => {
       if (details.open) nav.querySelectorAll('.sport-menu').forEach(other => { if (other!==details) other.open=false; });
