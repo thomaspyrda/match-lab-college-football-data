@@ -36,8 +36,10 @@ formula. Missing individual statistics are shown as dashes.
 Run `python refresh_cfb_team_details.py` with the existing `CFBD_API_KEY`
 environment secret. Cache historical details and refresh the current year.
 Run `python supplement_cfb_2015_defense.py` to fill the primary provider's
-2015 defensive-stat gap from ESPN regular-season and postseason leader pools
-and player statistics. This supplement is cached and carries provenance.
+2015 defensive-stat gap from ESPN cumulative season leaders and player
+statistics. ESPN type 3 already includes the regular season, so it must never
+be added to type 2. Bowl teams use type 3; other teams use type 2. The
+supplement is cached and carries provenance.
 
 The SEO builder and dedicated CFB archive workflow rebuild these pages from
 committed source data. The dashboard preview publisher also invokes the

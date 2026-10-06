@@ -32,9 +32,22 @@ class ArchiveTests(unittest.TestCase):
   self.assertEqual(record_label(d['61']['record']),'0-0-1');self.assertEqual(d['61']['games_played'],1)
 class DetailTests(unittest.TestCase):
  def test_espn_postseason_feed_is_cumulative_not_added_to_regular(self):
-  from supplement_cfb_2015_defense import season_phase
-  self.assertEqual(season_phase('Georgia',{'Georgia'}),3)
-  self.assertEqual(season_phase('Other',{'Georgia'}),2)
+  import supplement_cfb_2015_defense as module
+  import tempfile,json,io
+  from pathlib import Path
+  from unittest.mock import patch
+  from contextlib import redirect_stdout
+  with tempfile.TemporaryDirectory() as folder:
+   root=Path(folder);path=root/'data/cfb/details/2015.json';path.parent.mkdir(parents=True)
+   path.write_text(json.dumps(dict(teams={'Georgia':{'leaders':{}}},sources=[],games=[dict(home='Georgia',away='Other',home_id=61,away_id=333,season_type='postseason',result={'home_points':24,'away_points':17})])))
+   def provider(url,missing=False):
+    total=102 if '/types/3/' in url else 96
+    if '/leaders?' in url:return {'categories':[{'name':'totalTackles','leaders':[{'value':total,'athlete':{'$ref':'https://example.test/athletes/1'}}]}]}
+    if '/statistics/' in url:return {'splits':{'categories':[{'stats':[{'name':'totalTackles','value':total}]}]}}
+    return {'displayName':'Fixture linebacker','position':{'abbreviation':'LB'}}
+   with patch.object(module,'ROOT',root),patch.object(module,'get',side_effect=provider),redirect_stdout(io.StringIO()):module.main()
+   player=json.loads(path.read_text())['teams']['Georgia']['leaders']['tackles']
+   self.assertEqual(player['stats']['combined_tackles'],102);self.assertEqual(player['league_total'],102)
  def test_multi_category_leader_keeps_independent_ranks(self):
   from supplement_cfb_2015_defense import ranked_copy
   p=dict(id='a',stats=dict(combined_tackles=100,sacks=5))
