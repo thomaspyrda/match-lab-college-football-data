@@ -2,197 +2,9 @@
   "schema_version": 1,
   "season": "2026\u201327",
   "season_type": "Preseason",
-  "updated_at": "2026-10-06T01:29:57.656336+00:00",
-  "completed_games": 4,
+  "updated_at": "2026-10-06T01:33:25.798385+00:00",
+  "completed_games": 5,
   "games": [
-    {
-      "id": "401898388",
-      "date": "2026-10-05T23:00Z",
-      "label": "Mon Oct 5 \u00b7 7:00 PM ET",
-      "status": "In Progress",
-      "away": {
-        "id": "29",
-        "team_id": "nba:espn:29",
-        "name": "Memphis Grizzlies",
-        "abbr": "MEM",
-        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png",
-        "color": "#5d76a9",
-        "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
-          "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
-          },
-          "players": [],
-          "results": [],
-          "last_game_date": null
-        }
-      },
-      "home": {
-        "id": "1",
-        "team_id": "nba:espn:1",
-        "name": "Atlanta Hawks",
-        "abbr": "ATL",
-        "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
-        "color": "#c8102e",
-        "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
-          "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
-          },
-          "players": [],
-          "results": [],
-          "last_game_date": null
-        }
-      },
-      "metrics": [
-        {
-          "key": "ortg",
-          "label": "Offensive rating",
-          "unit": "OFFENSE",
-          "high": true,
-          "suffix": "",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "drtg",
-          "label": "Defensive rating",
-          "unit": "DEFENSE",
-          "high": false,
-          "suffix": "",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "efg",
-          "label": "Effective FG%",
-          "unit": "OFFENSE",
-          "high": true,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "opp_efg",
-          "label": "Effective FG% allowed",
-          "unit": "DEFENSE",
-          "high": false,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "three_pct",
-          "label": "Three-point FG%",
-          "unit": "OFFENSE",
-          "high": true,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "opp_three_pct",
-          "label": "Three-point FG% allowed",
-          "unit": "DEFENSE",
-          "high": false,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "orb_pct",
-          "label": "Offensive rebound rate",
-          "unit": "OFFENSE",
-          "high": true,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "opp_orb_pct",
-          "label": "Offensive rebound rate allowed",
-          "unit": "DEFENSE",
-          "high": false,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "tov_pct",
-          "label": "Turnover rate",
-          "unit": "OFFENSE",
-          "high": false,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "forced_tov_pct",
-          "label": "Turnovers forced rate",
-          "unit": "DEFENSE",
-          "high": true,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "ft_rate",
-          "label": "Free-throw attempt rate",
-          "unit": "OFFENSE",
-          "high": true,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        },
-        {
-          "key": "opp_ft_rate",
-          "label": "Free-throw attempt rate allowed",
-          "unit": "DEFENSE",
-          "high": false,
-          "suffix": "%",
-          "away": null,
-          "home": null
-        }
-      ],
-      "venue": "State Farm Arena",
-      "neutral": false,
-      "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
-      },
-      "source": "https://www.espn.com/nba/game/_/gameId/401898388",
-      "profile_cutoff": "2026-10-05T23:00:00+00:00"
-    },
     {
       "id": "401908947",
       "date": "2026-10-05T23:00Z",
@@ -385,7 +197,7 @@
       "id": "401914102",
       "date": "2026-10-06T00:00Z",
       "label": "Mon Oct 5 \u00b7 8:00 PM ET",
-      "status": "Halftime",
+      "status": "In Progress",
       "away": {
         "id": "16",
         "team_id": "nba:espn:16",
@@ -752,10 +564,10 @@
         "spread": "LAL -4.5",
         "total": 227.5,
         "provider": "DraftKings",
-        "observed_at": "2026-10-06T01:29:57.656336+00:00"
+        "observed_at": "2026-10-06T01:33:25.798385+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898716",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401901820",
@@ -940,10 +752,10 @@
         "spread": "CHA -3.5",
         "total": 212.5,
         "provider": "DraftKings",
-        "observed_at": "2026-10-06T01:29:57.656336+00:00"
+        "observed_at": "2026-10-06T01:33:25.798385+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901820",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898389",
@@ -1128,10 +940,10 @@
         "spread": "OKC -3.5",
         "total": 224.5,
         "provider": "DraftKings",
-        "observed_at": "2026-10-06T01:29:57.656336+00:00"
+        "observed_at": "2026-10-06T01:33:25.798385+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898389",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401914128",
@@ -1437,15 +1249,15 @@
           "suffix": "",
           "away": {
             "value": 99.0,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": {
             "value": 111.2,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -1456,15 +1268,15 @@
           "suffix": "",
           "away": {
             "value": 111.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": {
             "value": 99.0,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -1475,15 +1287,15 @@
           "suffix": "%",
           "away": {
             "value": 46.6,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": {
             "value": 50.0,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -1495,14 +1307,14 @@
           "away": {
             "value": 50.0,
             "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "population": 10,
+            "percentile": 44
           },
           "home": {
             "value": 46.6,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -1513,15 +1325,15 @@
           "suffix": "%",
           "away": {
             "value": 28.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": {
             "value": 33.3,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -1532,15 +1344,15 @@
           "suffix": "%",
           "away": {
             "value": 33.3,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": {
             "value": 28.2,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -1551,15 +1363,15 @@
           "suffix": "%",
           "away": {
             "value": 23.1,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": {
             "value": 28.6,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -1570,15 +1382,15 @@
           "suffix": "%",
           "away": {
             "value": 28.6,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           },
           "home": {
             "value": 23.1,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -1590,14 +1402,14 @@
           "away": {
             "value": 11.2,
             "rank": 2,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           },
           "home": {
             "value": 11.2,
             "rank": 2,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -1608,15 +1420,15 @@
           "suffix": "%",
           "away": {
             "value": 11.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 11
           },
           "home": {
             "value": 11.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -1627,14 +1439,14 @@
           "suffix": "%",
           "away": {
             "value": 23.6,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           },
           "home": {
             "value": 21.5,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -1647,14 +1459,14 @@
           "away": {
             "value": 21.5,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": {
             "value": 23.6,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         }
       ],
@@ -1664,10 +1476,10 @@
         "spread": "DEN -1.5",
         "total": 230.5,
         "provider": "DraftKings",
-        "observed_at": "2026-10-06T01:29:57.656336+00:00"
+        "observed_at": "2026-10-06T01:33:25.798385+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914128",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898390",
@@ -1860,9 +1672,9 @@
           "away": null,
           "home": {
             "value": 91.7,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -1875,8 +1687,8 @@
           "home": {
             "value": 94.4,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -1888,8 +1700,8 @@
           "away": null,
           "home": {
             "value": 42.1,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -1903,8 +1715,8 @@
           "home": {
             "value": 46.9,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -1916,8 +1728,8 @@
           "away": null,
           "home": {
             "value": 18.2,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -1931,8 +1743,8 @@
           "home": {
             "value": 30.6,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -1944,9 +1756,9 @@
           "away": null,
           "home": {
             "value": 23.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -1959,8 +1771,8 @@
           "home": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -1973,8 +1785,8 @@
           "home": {
             "value": 14.5,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -1987,8 +1799,8 @@
           "home": {
             "value": 20.0,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -2000,9 +1812,9 @@
           "away": null,
           "home": {
             "value": 32.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -2014,8 +1826,8 @@
           "away": null,
           "home": {
             "value": 47.5,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         }
@@ -2029,7 +1841,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898390",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401914123",
@@ -2217,7 +2029,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914123",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898391",
@@ -2263,27 +2075,141 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png",
         "color": "#5d76a9",
         "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
+          "games": 1,
+          "record": "1\u20130",
+          "ppg": 132.0,
+          "allowed": 123.0,
           "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
+            "ortg": 119.02614968440035,
+            "drtg": 110.91073038773669,
+            "efg": 61.904761904761905,
+            "opp_efg": 53.191489361702125,
+            "three_pct": 41.86046511627907,
+            "opp_three_pct": 32.55813953488372,
+            "orb_pct": 24.390243902439025,
+            "opp_orb_pct": 31.11111111111111,
+            "tov_pct": 17.132551848512172,
+            "forced_tov_pct": 16.23083859332732,
+            "ft_rate": 44.047619047619044,
+            "opp_ft_rate": 35.1063829787234
           },
-          "players": [],
-          "results": [],
-          "last_game_date": null
+          "players": [
+            {
+              "id": "nba:espn:player:4684806",
+              "name": "Taylor Hendricks",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4684806.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 19.0,
+                "points": 7.0,
+                "rebounds": 6.0,
+                "assists": 1.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -1.0,
+              "fg_pct": 60.0,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5041935",
+              "name": "Cameron Boozer",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5041935.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 11.0,
+                "rebounds": 5.0,
+                "assists": 4.0,
+                "turnovers": 1.0
+              },
+              "plus_minus": 5.0,
+              "fg_pct": 55.55555555555556,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4903027",
+              "name": "Cedric Coward",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4903027.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 9.0,
+                "rebounds": 5.0,
+                "assists": 4.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": 5.0,
+              "fg_pct": 50.0,
+              "three_pct": 33.33333333333333,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5112087",
+              "name": "Jaylen Wells",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5112087.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 17.0,
+                "points": 12.0,
+                "rebounds": 0.0,
+                "assists": 0.0,
+                "turnovers": 0.0
+              },
+              "plus_minus": 3.0,
+              "fg_pct": 57.14285714285714,
+              "three_pct": 66.66666666666666,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5105550",
+              "name": "GG Jackson",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105550.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 16.0,
+                "points": 14.0,
+                "rebounds": 2.0,
+                "assists": 1.0,
+                "turnovers": 0.0
+              },
+              "plus_minus": 9.0,
+              "fg_pct": 71.42857142857143,
+              "three_pct": 50.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            }
+          ],
+          "results": [
+            {
+              "date": "2026-10-05T23:00Z",
+              "opponent_id": "1",
+              "location": "Away",
+              "result": "W",
+              "score": "132\u2013123"
+            }
+          ],
+          "last_game_date": "2026-10-05T23:00Z"
         }
       },
       "metrics": [
@@ -2294,7 +2220,12 @@
           "high": true,
           "suffix": "",
           "away": null,
-          "home": null
+          "home": {
+            "value": 119.0,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          }
         },
         {
           "key": "drtg",
@@ -2303,7 +2234,12 @@
           "high": false,
           "suffix": "",
           "away": null,
-          "home": null
+          "home": {
+            "value": 110.9,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          }
         },
         {
           "key": "efg",
@@ -2312,7 +2248,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 61.9,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          }
         },
         {
           "key": "opp_efg",
@@ -2321,7 +2262,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 53.2,
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
+          }
         },
         {
           "key": "three_pct",
@@ -2330,7 +2276,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 41.9,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          }
         },
         {
           "key": "opp_three_pct",
@@ -2339,7 +2290,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 32.6,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          }
         },
         {
           "key": "orb_pct",
@@ -2348,7 +2304,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 24.4,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          }
         },
         {
           "key": "opp_orb_pct",
@@ -2357,7 +2318,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 31.1,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          }
         },
         {
           "key": "tov_pct",
@@ -2366,7 +2332,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 17.1,
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
+          }
         },
         {
           "key": "forced_tov_pct",
@@ -2375,7 +2346,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 16.2,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          }
         },
         {
           "key": "ft_rate",
@@ -2384,7 +2360,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 44.0,
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
+          }
         },
         {
           "key": "opp_ft_rate",
@@ -2393,7 +2374,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 35.1,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          }
         }
       ],
       "venue": "FedExForum",
@@ -2405,7 +2391,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898391",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401908620",
@@ -2593,7 +2579,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908620",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401908939",
@@ -2781,7 +2767,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908939",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401914129",
@@ -2973,9 +2959,9 @@
           "suffix": "",
           "away": {
             "value": 91.7,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": null
         },
@@ -2988,8 +2974,8 @@
           "away": {
             "value": 94.4,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           },
           "home": null
         },
@@ -3001,8 +2987,8 @@
           "suffix": "%",
           "away": {
             "value": 42.1,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           },
           "home": null
@@ -3016,8 +3002,8 @@
           "away": {
             "value": 46.9,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           },
           "home": null
         },
@@ -3029,8 +3015,8 @@
           "suffix": "%",
           "away": {
             "value": 18.2,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           },
           "home": null
@@ -3044,8 +3030,8 @@
           "away": {
             "value": 30.6,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           },
           "home": null
         },
@@ -3057,9 +3043,9 @@
           "suffix": "%",
           "away": {
             "value": 23.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": null
         },
@@ -3072,8 +3058,8 @@
           "away": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3086,8 +3072,8 @@
           "away": {
             "value": 14.5,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           },
           "home": null
         },
@@ -3100,8 +3086,8 @@
           "away": {
             "value": 20.0,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3113,9 +3099,9 @@
           "suffix": "%",
           "away": {
             "value": 32.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": null
         },
@@ -3127,8 +3113,8 @@
           "suffix": "%",
           "away": {
             "value": 47.5,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           },
           "home": null
@@ -3143,7 +3129,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914129",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898392",
@@ -3331,7 +3317,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898392",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898393",
@@ -3524,9 +3510,9 @@
           "away": null,
           "home": {
             "value": 112.2,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -3539,7 +3525,7 @@
           "home": {
             "value": 91.3,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           }
         },
@@ -3552,9 +3538,9 @@
           "away": null,
           "home": {
             "value": 57.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -3567,8 +3553,8 @@
           "home": {
             "value": 45.7,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -3580,9 +3566,9 @@
           "away": null,
           "home": {
             "value": 35.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -3595,8 +3581,8 @@
           "home": {
             "value": 29.3,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -3608,9 +3594,9 @@
           "away": null,
           "home": {
             "value": 25.0,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -3623,8 +3609,8 @@
           "home": {
             "value": 22.4,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -3636,8 +3622,8 @@
           "away": null,
           "home": {
             "value": 21.7,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -3650,9 +3636,9 @@
           "away": null,
           "home": {
             "value": 16.5,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -3664,9 +3650,9 @@
           "away": null,
           "home": {
             "value": 41.9,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -3679,8 +3665,8 @@
           "home": {
             "value": 31.9,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         }
       ],
@@ -3693,7 +3679,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898393",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401901823",
@@ -3885,9 +3871,9 @@
           "suffix": "",
           "away": {
             "value": 113.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3900,8 +3886,8 @@
           "away": {
             "value": 91.3,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3913,9 +3899,9 @@
           "suffix": "%",
           "away": {
             "value": 50.5,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           },
           "home": null
         },
@@ -3928,8 +3914,8 @@
           "away": {
             "value": 42.9,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3941,9 +3927,9 @@
           "suffix": "%",
           "away": {
             "value": 34.8,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           },
           "home": null
         },
@@ -3956,8 +3942,8 @@
           "away": {
             "value": 19.5,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -3969,8 +3955,8 @@
           "suffix": "%",
           "away": {
             "value": 21.7,
-            "rank": 7,
-            "population": 8,
+            "rank": 9,
+            "population": 10,
             "percentile": 0
           },
           "home": null
@@ -3983,9 +3969,9 @@
           "suffix": "%",
           "away": {
             "value": 25.9,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": null
         },
@@ -3998,7 +3984,7 @@
           "away": {
             "value": 9.4,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": null
@@ -4011,9 +3997,9 @@
           "suffix": "%",
           "away": {
             "value": 12.2,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": null
         },
@@ -4025,9 +4011,9 @@
           "suffix": "%",
           "away": {
             "value": 28.9,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": null
         },
@@ -4039,9 +4025,9 @@
           "suffix": "%",
           "away": {
             "value": 35.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": null
         }
@@ -4055,7 +4041,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901823",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401906508",
@@ -4248,9 +4234,9 @@
           "away": null,
           "home": {
             "value": 91.3,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -4262,9 +4248,9 @@
           "away": null,
           "home": {
             "value": 113.0,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -4276,9 +4262,9 @@
           "away": null,
           "home": {
             "value": 42.9,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -4291,8 +4277,8 @@
           "home": {
             "value": 50.5,
             "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -4304,9 +4290,9 @@
           "away": null,
           "home": {
             "value": 19.5,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -4318,9 +4304,9 @@
           "away": null,
           "home": {
             "value": 34.8,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -4332,9 +4318,9 @@
           "away": null,
           "home": {
             "value": 25.9,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -4347,8 +4333,8 @@
           "home": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -4361,8 +4347,8 @@
           "home": {
             "value": 12.2,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -4374,8 +4360,8 @@
           "away": null,
           "home": {
             "value": 9.4,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -4388,9 +4374,9 @@
           "away": null,
           "home": {
             "value": 35.2,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -4403,8 +4389,8 @@
           "home": {
             "value": 28.9,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         }
       ],
@@ -4417,7 +4403,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401906508",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898394",
@@ -4432,27 +4418,141 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
         "color": "#c8102e",
         "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
+          "games": 1,
+          "record": "0\u20131",
+          "ppg": 123.0,
+          "allowed": 132.0,
           "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
+            "ortg": 110.9107303877367,
+            "drtg": 119.02614968440037,
+            "efg": 53.191489361702125,
+            "opp_efg": 61.904761904761905,
+            "three_pct": 32.55813953488372,
+            "opp_three_pct": 41.86046511627907,
+            "orb_pct": 31.11111111111111,
+            "opp_orb_pct": 24.390243902439025,
+            "tov_pct": 16.230838593327324,
+            "forced_tov_pct": 17.132551848512175,
+            "ft_rate": 35.1063829787234,
+            "opp_ft_rate": 44.047619047619044
           },
-          "players": [],
-          "results": [],
-          "last_game_date": null
+          "players": [
+            {
+              "id": "nba:espn:player:5149077",
+              "name": "Kingston Flemings",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5149077.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 25.0,
+                "points": 11.0,
+                "rebounds": 0.0,
+                "assists": 2.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": -12.0,
+              "fg_pct": 36.36363636363637,
+              "three_pct": 33.33333333333333,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4873201",
+              "name": "Asa Newell",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4873201.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 22.0,
+                "points": 12.0,
+                "rebounds": 12.0,
+                "assists": 2.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -5.0,
+              "fg_pct": 55.55555555555556,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4280151",
+              "name": "Corey Kispert",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4280151.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 20.0,
+                "points": 19.0,
+                "rebounds": 4.0,
+                "assists": 2.0,
+                "turnovers": 1.0
+              },
+              "plus_minus": -9.0,
+              "fg_pct": 63.63636363636363,
+              "three_pct": 57.14285714285714,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4431941",
+              "name": "RayJ Dennis",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431941.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 12.0,
+                "rebounds": 3.0,
+                "assists": 3.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": 12.0,
+              "fg_pct": 50.0,
+              "three_pct": 40.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4701230",
+              "name": "Jalen Johnson",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701230.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 8.0,
+                "rebounds": 5.0,
+                "assists": 3.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -8.0,
+              "fg_pct": 14.285714285714285,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            }
+          ],
+          "results": [
+            {
+              "date": "2026-10-05T23:00Z",
+              "opponent_id": "29",
+              "location": "Home",
+              "result": "L",
+              "score": "123\u2013132"
+            }
+          ],
+          "last_game_date": "2026-10-05T23:00Z"
         }
       },
       "home": {
@@ -4493,7 +4593,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 110.9,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -4502,7 +4607,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 119.0,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -4511,7 +4621,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 53.2,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          },
           "home": null
         },
         {
@@ -4520,7 +4635,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 61.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -4529,7 +4649,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 32.6,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -4538,7 +4663,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 41.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -4547,7 +4677,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 31.1,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          },
           "home": null
         },
         {
@@ -4556,7 +4691,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 24.4,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -4565,7 +4705,12 @@
           "unit": "OFFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 16.2,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -4574,7 +4719,12 @@
           "unit": "DEFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 17.1,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          },
           "home": null
         },
         {
@@ -4583,7 +4733,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 35.1,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -4592,7 +4747,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 44.0,
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
+          },
           "home": null
         }
       ],
@@ -4605,7 +4765,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898394",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898717",
@@ -4793,7 +4953,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898717",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898395",
@@ -4981,7 +5141,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898395",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401908940",
@@ -4996,27 +5156,141 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png",
         "color": "#5d76a9",
         "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
+          "games": 1,
+          "record": "1\u20130",
+          "ppg": 132.0,
+          "allowed": 123.0,
           "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
+            "ortg": 119.02614968440035,
+            "drtg": 110.91073038773669,
+            "efg": 61.904761904761905,
+            "opp_efg": 53.191489361702125,
+            "three_pct": 41.86046511627907,
+            "opp_three_pct": 32.55813953488372,
+            "orb_pct": 24.390243902439025,
+            "opp_orb_pct": 31.11111111111111,
+            "tov_pct": 17.132551848512172,
+            "forced_tov_pct": 16.23083859332732,
+            "ft_rate": 44.047619047619044,
+            "opp_ft_rate": 35.1063829787234
           },
-          "players": [],
-          "results": [],
-          "last_game_date": null
+          "players": [
+            {
+              "id": "nba:espn:player:4684806",
+              "name": "Taylor Hendricks",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4684806.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 19.0,
+                "points": 7.0,
+                "rebounds": 6.0,
+                "assists": 1.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -1.0,
+              "fg_pct": 60.0,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5041935",
+              "name": "Cameron Boozer",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5041935.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 11.0,
+                "rebounds": 5.0,
+                "assists": 4.0,
+                "turnovers": 1.0
+              },
+              "plus_minus": 5.0,
+              "fg_pct": 55.55555555555556,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4903027",
+              "name": "Cedric Coward",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4903027.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 9.0,
+                "rebounds": 5.0,
+                "assists": 4.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": 5.0,
+              "fg_pct": 50.0,
+              "three_pct": 33.33333333333333,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5112087",
+              "name": "Jaylen Wells",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5112087.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 17.0,
+                "points": 12.0,
+                "rebounds": 0.0,
+                "assists": 0.0,
+                "turnovers": 0.0
+              },
+              "plus_minus": 3.0,
+              "fg_pct": 57.14285714285714,
+              "three_pct": 66.66666666666666,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:5105550",
+              "name": "GG Jackson",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5105550.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 16.0,
+                "points": 14.0,
+                "rebounds": 2.0,
+                "assists": 1.0,
+                "turnovers": 0.0
+              },
+              "plus_minus": 9.0,
+              "fg_pct": 71.42857142857143,
+              "three_pct": 50.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            }
+          ],
+          "results": [
+            {
+              "date": "2026-10-05T23:00Z",
+              "opponent_id": "1",
+              "location": "Away",
+              "result": "W",
+              "score": "132\u2013123"
+            }
+          ],
+          "last_game_date": "2026-10-05T23:00Z"
         }
       },
       "home": {
@@ -5057,7 +5331,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 119.0,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          },
           "home": null
         },
         {
@@ -5066,7 +5345,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 110.9,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -5075,7 +5359,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 61.9,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          },
           "home": null
         },
         {
@@ -5084,7 +5373,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 53.2,
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
+          },
           "home": null
         },
         {
@@ -5093,7 +5387,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 41.9,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          },
           "home": null
         },
         {
@@ -5102,7 +5401,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 32.6,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -5111,7 +5415,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 24.4,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -5120,7 +5429,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 31.1,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -5129,7 +5443,12 @@
           "unit": "OFFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 17.1,
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
+          },
           "home": null
         },
         {
@@ -5138,7 +5457,12 @@
           "unit": "DEFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 16.2,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -5147,7 +5471,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 44.0,
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
+          },
           "home": null
         },
         {
@@ -5156,7 +5485,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 35.1,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         }
       ],
@@ -5169,7 +5503,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908940",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401902645",
@@ -5475,14 +5809,14 @@
           "suffix": "",
           "away": {
             "value": 94.4,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": {
             "value": 91.3,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -5495,14 +5829,14 @@
           "away": {
             "value": 91.7,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           },
           "home": {
             "value": 112.2,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -5513,15 +5847,15 @@
           "suffix": "%",
           "away": {
             "value": 46.9,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": {
             "value": 45.7,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -5533,14 +5867,14 @@
           "away": {
             "value": 42.1,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": {
             "value": 57.0,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -5551,15 +5885,15 @@
           "suffix": "%",
           "away": {
             "value": 30.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": {
             "value": 29.3,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -5571,14 +5905,14 @@
           "away": {
             "value": 18.2,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": {
             "value": 35.0,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -5589,15 +5923,15 @@
           "suffix": "%",
           "away": {
             "value": 21.7,
-            "rank": 7,
-            "population": 8,
+            "rank": 9,
+            "population": 10,
             "percentile": 0
           },
           "home": {
             "value": 22.4,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -5609,14 +5943,14 @@
           "away": {
             "value": 23.6,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           },
           "home": {
             "value": 25.0,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -5627,15 +5961,15 @@
           "suffix": "%",
           "away": {
             "value": 20.0,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           },
           "home": {
             "value": 16.5,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -5646,14 +5980,14 @@
           "suffix": "%",
           "away": {
             "value": 14.5,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           },
           "home": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           }
         },
@@ -5666,14 +6000,14 @@
           "away": {
             "value": 47.5,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": {
             "value": 31.9,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -5685,14 +6019,14 @@
           "away": {
             "value": 32.6,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           },
           "home": {
             "value": 41.9,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         }
       ],
@@ -5705,7 +6039,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401902645",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898396",
@@ -5720,27 +6054,141 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
         "color": "#c8102e",
         "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
+          "games": 1,
+          "record": "0\u20131",
+          "ppg": 123.0,
+          "allowed": 132.0,
           "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
+            "ortg": 110.9107303877367,
+            "drtg": 119.02614968440037,
+            "efg": 53.191489361702125,
+            "opp_efg": 61.904761904761905,
+            "three_pct": 32.55813953488372,
+            "opp_three_pct": 41.86046511627907,
+            "orb_pct": 31.11111111111111,
+            "opp_orb_pct": 24.390243902439025,
+            "tov_pct": 16.230838593327324,
+            "forced_tov_pct": 17.132551848512175,
+            "ft_rate": 35.1063829787234,
+            "opp_ft_rate": 44.047619047619044
           },
-          "players": [],
-          "results": [],
-          "last_game_date": null
+          "players": [
+            {
+              "id": "nba:espn:player:5149077",
+              "name": "Kingston Flemings",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5149077.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 25.0,
+                "points": 11.0,
+                "rebounds": 0.0,
+                "assists": 2.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": -12.0,
+              "fg_pct": 36.36363636363637,
+              "three_pct": 33.33333333333333,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4873201",
+              "name": "Asa Newell",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4873201.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 22.0,
+                "points": 12.0,
+                "rebounds": 12.0,
+                "assists": 2.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -5.0,
+              "fg_pct": 55.55555555555556,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4280151",
+              "name": "Corey Kispert",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4280151.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 20.0,
+                "points": 19.0,
+                "rebounds": 4.0,
+                "assists": 2.0,
+                "turnovers": 1.0
+              },
+              "plus_minus": -9.0,
+              "fg_pct": 63.63636363636363,
+              "three_pct": 57.14285714285714,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4431941",
+              "name": "RayJ Dennis",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431941.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 12.0,
+                "rebounds": 3.0,
+                "assists": 3.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": 12.0,
+              "fg_pct": 50.0,
+              "three_pct": 40.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4701230",
+              "name": "Jalen Johnson",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701230.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 8.0,
+                "rebounds": 5.0,
+                "assists": 3.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -8.0,
+              "fg_pct": 14.285714285714285,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            }
+          ],
+          "results": [
+            {
+              "date": "2026-10-05T23:00Z",
+              "opponent_id": "29",
+              "location": "Home",
+              "result": "L",
+              "score": "123\u2013132"
+            }
+          ],
+          "last_game_date": "2026-10-05T23:00Z"
         }
       },
       "home": {
@@ -5781,7 +6229,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 110.9,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -5790,7 +6243,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "",
-          "away": null,
+          "away": {
+            "value": 119.0,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -5799,7 +6257,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 53.2,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          },
           "home": null
         },
         {
@@ -5808,7 +6271,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 61.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -5817,7 +6285,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 32.6,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -5826,7 +6299,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 41.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          },
           "home": null
         },
         {
@@ -5835,7 +6313,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 31.1,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          },
           "home": null
         },
         {
@@ -5844,7 +6327,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 24.4,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -5853,7 +6341,12 @@
           "unit": "OFFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 16.2,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          },
           "home": null
         },
         {
@@ -5862,7 +6355,12 @@
           "unit": "DEFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 17.1,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          },
           "home": null
         },
         {
@@ -5871,7 +6369,12 @@
           "unit": "OFFENSE",
           "high": true,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 35.1,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          },
           "home": null
         },
         {
@@ -5880,7 +6383,12 @@
           "unit": "DEFENSE",
           "high": false,
           "suffix": "%",
-          "away": null,
+          "away": {
+            "value": 44.0,
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
+          },
           "home": null
         }
       ],
@@ -5893,7 +6401,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898396",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401906510",
@@ -6081,7 +6589,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401906510",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898397",
@@ -6274,9 +6782,9 @@
           "away": null,
           "home": {
             "value": 112.2,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -6289,7 +6797,7 @@
           "home": {
             "value": 91.3,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           }
         },
@@ -6302,9 +6810,9 @@
           "away": null,
           "home": {
             "value": 57.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -6317,8 +6825,8 @@
           "home": {
             "value": 45.7,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -6330,9 +6838,9 @@
           "away": null,
           "home": {
             "value": 35.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -6345,8 +6853,8 @@
           "home": {
             "value": 29.3,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -6358,9 +6866,9 @@
           "away": null,
           "home": {
             "value": 25.0,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -6373,8 +6881,8 @@
           "home": {
             "value": 22.4,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -6386,8 +6894,8 @@
           "away": null,
           "home": {
             "value": 21.7,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -6400,9 +6908,9 @@
           "away": null,
           "home": {
             "value": 16.5,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -6414,9 +6922,9 @@
           "away": null,
           "home": {
             "value": 41.9,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -6429,8 +6937,8 @@
           "home": {
             "value": 31.9,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         }
       ],
@@ -6443,7 +6951,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898397",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898398",
@@ -6635,9 +7143,9 @@
           "suffix": "",
           "away": {
             "value": 113.0,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -6650,8 +7158,8 @@
           "away": {
             "value": 91.3,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -6663,9 +7171,9 @@
           "suffix": "%",
           "away": {
             "value": 50.5,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           },
           "home": null
         },
@@ -6678,8 +7186,8 @@
           "away": {
             "value": 42.9,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -6691,9 +7199,9 @@
           "suffix": "%",
           "away": {
             "value": 34.8,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           },
           "home": null
         },
@@ -6706,8 +7214,8 @@
           "away": {
             "value": 19.5,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           },
           "home": null
         },
@@ -6719,8 +7227,8 @@
           "suffix": "%",
           "away": {
             "value": 21.7,
-            "rank": 7,
-            "population": 8,
+            "rank": 9,
+            "population": 10,
             "percentile": 0
           },
           "home": null
@@ -6733,9 +7241,9 @@
           "suffix": "%",
           "away": {
             "value": 25.9,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": null
         },
@@ -6748,7 +7256,7 @@
           "away": {
             "value": 9.4,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           },
           "home": null
@@ -6761,9 +7269,9 @@
           "suffix": "%",
           "away": {
             "value": 12.2,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": null
         },
@@ -6775,9 +7283,9 @@
           "suffix": "%",
           "away": {
             "value": 28.9,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           },
           "home": null
         },
@@ -6789,9 +7297,9 @@
           "suffix": "%",
           "away": {
             "value": 35.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           },
           "home": null
         }
@@ -6805,7 +7313,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898398",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898399",
@@ -6998,9 +7506,9 @@
           "away": null,
           "home": {
             "value": 91.7,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -7013,8 +7521,8 @@
           "home": {
             "value": 94.4,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -7026,8 +7534,8 @@
           "away": null,
           "home": {
             "value": 42.1,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -7041,8 +7549,8 @@
           "home": {
             "value": 46.9,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -7054,8 +7562,8 @@
           "away": null,
           "home": {
             "value": 18.2,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -7069,8 +7577,8 @@
           "home": {
             "value": 30.6,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -7082,9 +7590,9 @@
           "away": null,
           "home": {
             "value": 23.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -7097,8 +7605,8 @@
           "home": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -7111,8 +7619,8 @@
           "home": {
             "value": 14.5,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -7125,8 +7633,8 @@
           "home": {
             "value": 20.0,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -7138,9 +7646,9 @@
           "away": null,
           "home": {
             "value": 32.6,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -7152,8 +7660,8 @@
           "away": null,
           "home": {
             "value": 47.5,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         }
@@ -7167,7 +7675,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898399",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898720",
@@ -7355,7 +7863,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898720",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898400",
@@ -7543,7 +8051,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898400",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898401",
@@ -7731,7 +8239,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898401",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401901821",
@@ -7919,7 +8427,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901821",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401908941",
@@ -8112,9 +8620,9 @@
           "away": null,
           "home": {
             "value": 99.0,
-            "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -8126,9 +8634,9 @@
           "away": null,
           "home": {
             "value": 111.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -8140,9 +8648,9 @@
           "away": null,
           "home": {
             "value": 46.6,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -8155,8 +8663,8 @@
           "home": {
             "value": 50.0,
             "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "population": 10,
+            "percentile": 44
           }
         },
         {
@@ -8168,9 +8676,9 @@
           "away": null,
           "home": {
             "value": 28.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -8182,9 +8690,9 @@
           "away": null,
           "home": {
             "value": 33.3,
-            "rank": 6,
-            "population": 8,
-            "percentile": 29
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -8196,9 +8704,9 @@
           "away": null,
           "home": {
             "value": 23.1,
-            "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "rank": 7,
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -8210,9 +8718,9 @@
           "away": null,
           "home": {
             "value": 28.6,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8225,8 +8733,8 @@
           "home": {
             "value": 11.2,
             "rank": 2,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -8238,9 +8746,9 @@
           "away": null,
           "home": {
             "value": 11.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8252,9 +8760,9 @@
           "away": null,
           "home": {
             "value": 23.6,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8267,7 +8775,7 @@
           "home": {
             "value": 21.5,
             "rank": 1,
-            "population": 8,
+            "population": 10,
             "percentile": 100
           }
         }
@@ -8281,7 +8789,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908941",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898402",
@@ -8327,27 +8835,141 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
         "color": "#c8102e",
         "profile": {
-          "games": 0,
-          "record": "\u2014",
-          "ppg": null,
-          "allowed": null,
+          "games": 1,
+          "record": "0\u20131",
+          "ppg": 123.0,
+          "allowed": 132.0,
           "metrics": {
-            "ortg": null,
-            "drtg": null,
-            "efg": null,
-            "opp_efg": null,
-            "three_pct": null,
-            "opp_three_pct": null,
-            "orb_pct": null,
-            "opp_orb_pct": null,
-            "tov_pct": null,
-            "forced_tov_pct": null,
-            "ft_rate": null,
-            "opp_ft_rate": null
+            "ortg": 110.9107303877367,
+            "drtg": 119.02614968440037,
+            "efg": 53.191489361702125,
+            "opp_efg": 61.904761904761905,
+            "three_pct": 32.55813953488372,
+            "opp_three_pct": 41.86046511627907,
+            "orb_pct": 31.11111111111111,
+            "opp_orb_pct": 24.390243902439025,
+            "tov_pct": 16.230838593327324,
+            "forced_tov_pct": 17.132551848512175,
+            "ft_rate": 35.1063829787234,
+            "opp_ft_rate": 44.047619047619044
           },
-          "players": [],
-          "results": [],
-          "last_game_date": null
+          "players": [
+            {
+              "id": "nba:espn:player:5149077",
+              "name": "Kingston Flemings",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/5149077.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 25.0,
+                "points": 11.0,
+                "rebounds": 0.0,
+                "assists": 2.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": -12.0,
+              "fg_pct": 36.36363636363637,
+              "three_pct": 33.33333333333333,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4873201",
+              "name": "Asa Newell",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4873201.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 22.0,
+                "points": 12.0,
+                "rebounds": 12.0,
+                "assists": 2.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -5.0,
+              "fg_pct": 55.55555555555556,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4280151",
+              "name": "Corey Kispert",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4280151.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 20.0,
+                "points": 19.0,
+                "rebounds": 4.0,
+                "assists": 2.0,
+                "turnovers": 1.0
+              },
+              "plus_minus": -9.0,
+              "fg_pct": 63.63636363636363,
+              "three_pct": 57.14285714285714,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4431941",
+              "name": "RayJ Dennis",
+              "position": "G",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4431941.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 12.0,
+                "rebounds": 3.0,
+                "assists": 3.0,
+                "turnovers": 3.0
+              },
+              "plus_minus": 12.0,
+              "fg_pct": 50.0,
+              "three_pct": 40.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            },
+            {
+              "id": "nba:espn:player:4701230",
+              "name": "Jalen Johnson",
+              "position": "F",
+              "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4701230.png",
+              "games": 1,
+              "pm_games": 1,
+              "per_game": {
+                "minutes": 18.0,
+                "points": 8.0,
+                "rebounds": 5.0,
+                "assists": 3.0,
+                "turnovers": 2.0
+              },
+              "plus_minus": -8.0,
+              "fg_pct": 14.285714285714285,
+              "three_pct": 0.0,
+              "bpm": null,
+              "vorp": null,
+              "vorp_percentile": null
+            }
+          ],
+          "results": [
+            {
+              "date": "2026-10-05T23:00Z",
+              "opponent_id": "29",
+              "location": "Home",
+              "result": "L",
+              "score": "123\u2013132"
+            }
+          ],
+          "last_game_date": "2026-10-05T23:00Z"
         }
       },
       "metrics": [
@@ -8358,7 +8980,12 @@
           "high": true,
           "suffix": "",
           "away": null,
-          "home": null
+          "home": {
+            "value": 110.9,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          }
         },
         {
           "key": "drtg",
@@ -8367,7 +8994,12 @@
           "high": false,
           "suffix": "",
           "away": null,
-          "home": null
+          "home": {
+            "value": 119.0,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          }
         },
         {
           "key": "efg",
@@ -8376,7 +9008,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 53.2,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          }
         },
         {
           "key": "opp_efg",
@@ -8385,7 +9022,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 61.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          }
         },
         {
           "key": "three_pct",
@@ -8394,7 +9036,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 32.6,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          }
         },
         {
           "key": "opp_three_pct",
@@ -8403,7 +9050,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 41.9,
+            "rank": 10,
+            "population": 10,
+            "percentile": 0
+          }
         },
         {
           "key": "orb_pct",
@@ -8412,7 +9064,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 31.1,
+            "rank": 1,
+            "population": 10,
+            "percentile": 100
+          }
         },
         {
           "key": "opp_orb_pct",
@@ -8421,7 +9078,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 24.4,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          }
         },
         {
           "key": "tov_pct",
@@ -8430,7 +9092,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 16.2,
+            "rank": 6,
+            "population": 10,
+            "percentile": 44
+          }
         },
         {
           "key": "forced_tov_pct",
@@ -8439,7 +9106,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 17.1,
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
+          }
         },
         {
           "key": "ft_rate",
@@ -8448,7 +9120,12 @@
           "high": true,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 35.1,
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
+          }
         },
         {
           "key": "opp_ft_rate",
@@ -8457,7 +9134,12 @@
           "high": false,
           "suffix": "%",
           "away": null,
-          "home": null
+          "home": {
+            "value": 44.0,
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
+          }
         }
       ],
       "venue": "State Farm Arena",
@@ -8469,7 +9151,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898402",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401901824",
@@ -8657,7 +9339,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901824",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401914124",
@@ -8850,9 +9532,9 @@
           "away": null,
           "home": {
             "value": 91.3,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8864,9 +9546,9 @@
           "away": null,
           "home": {
             "value": 113.0,
-            "rank": 8,
-            "population": 8,
-            "percentile": 0
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8878,9 +9560,9 @@
           "away": null,
           "home": {
             "value": 42.9,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8893,8 +9575,8 @@
           "home": {
             "value": 50.5,
             "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "population": 10,
+            "percentile": 33
           }
         },
         {
@@ -8906,9 +9588,9 @@
           "away": null,
           "home": {
             "value": 19.5,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 9,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -8920,9 +9602,9 @@
           "away": null,
           "home": {
             "value": 34.8,
-            "rank": 7,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 22
           }
         },
         {
@@ -8934,9 +9616,9 @@
           "away": null,
           "home": {
             "value": 25.9,
-            "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "rank": 3,
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -8949,8 +9631,8 @@
           "home": {
             "value": 21.7,
             "rank": 1,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -8963,8 +9645,8 @@
           "home": {
             "value": 12.2,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -8976,8 +9658,8 @@
           "away": null,
           "home": {
             "value": 9.4,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -8990,9 +9672,9 @@
           "away": null,
           "home": {
             "value": 35.2,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -9005,8 +9687,8 @@
           "home": {
             "value": 28.9,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         }
       ],
@@ -9019,7 +9701,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914124",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     },
     {
       "id": "401898721",
@@ -9212,9 +9894,9 @@
           "away": null,
           "home": {
             "value": 111.2,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -9227,8 +9909,8 @@
           "home": {
             "value": 99.0,
             "rank": 5,
-            "population": 8,
-            "percentile": 43
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -9240,9 +9922,9 @@
           "away": null,
           "home": {
             "value": 50.0,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 5,
+            "population": 10,
+            "percentile": 56
           }
         },
         {
@@ -9255,8 +9937,8 @@
           "home": {
             "value": 46.6,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -9268,9 +9950,9 @@
           "away": null,
           "home": {
             "value": 33.3,
-            "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "rank": 4,
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -9283,8 +9965,8 @@
           "home": {
             "value": 28.2,
             "rank": 3,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -9296,9 +9978,9 @@
           "away": null,
           "home": {
             "value": 28.6,
-            "rank": 1,
-            "population": 8,
-            "percentile": 100
+            "rank": 2,
+            "population": 10,
+            "percentile": 89
           }
         },
         {
@@ -9311,8 +9993,8 @@
           "home": {
             "value": 23.1,
             "rank": 4,
-            "population": 8,
-            "percentile": 57
+            "population": 10,
+            "percentile": 67
           }
         },
         {
@@ -9325,8 +10007,8 @@
           "home": {
             "value": 11.2,
             "rank": 2,
-            "population": 8,
-            "percentile": 71
+            "population": 10,
+            "percentile": 78
           }
         },
         {
@@ -9338,9 +10020,9 @@
           "away": null,
           "home": {
             "value": 11.2,
-            "rank": 6,
-            "population": 8,
-            "percentile": 14
+            "rank": 8,
+            "population": 10,
+            "percentile": 11
           }
         },
         {
@@ -9352,8 +10034,8 @@
           "away": null,
           "home": {
             "value": 21.5,
-            "rank": 8,
-            "population": 8,
+            "rank": 10,
+            "population": 10,
             "percentile": 0
           }
         },
@@ -9367,8 +10049,8 @@
           "home": {
             "value": 23.6,
             "rank": 2,
-            "population": 8,
-            "percentile": 86
+            "population": 10,
+            "percentile": 89
           }
         }
       ],
@@ -9381,7 +10063,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898721",
-      "profile_cutoff": "2026-10-06T01:29:57.656336+00:00"
+      "profile_cutoff": "2026-10-06T01:33:25.798385+00:00"
     }
   ],
   "coverage": {
