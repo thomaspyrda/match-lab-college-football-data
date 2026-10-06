@@ -38,11 +38,11 @@ FIELDS={
  'receiving':[('receptions','REC'),('receiving_yards','Yards'),('receiving_tds','TD'),('yards_per_reception','Yards/REC')],
  'tackles':[('combined_tackles','Total'),('solo_tackles','Solo'),('assists','Assists'),('tfl','TFL'),('sacks','Sacks')],
  'sacks':[('sacks','Sacks'),('tfl','TFL'),('qb_hits','QB hurries'),('combined_tackles','Tackles')],
- 'interceptions':[('def_interceptions','INT'),('passes_defended','Passes defended'),('defensive_tds','INT TDs'),('interception_yards','Return yards'),('combined_tackles','Tackles')]
+ 'interceptions':[('def_interceptions','INT'),('passes_defended','Passes defended'),('defensive_tds','Defensive TDs'),('interception_yards','Return yards'),('combined_tackles','Tackles')]
 }
 def sections(s):
  d=s.get('details') or {};coaches=d.get('coaches') or []
- coaching=''.join(f'<article class="coach-card"><small>HEAD COACH</small><b>{esc(c["name"])}</b><span>{esc(c.get("wins"))}–{esc(c.get("losses"))} · {esc(c.get("games"))} games credited</span></article>' for c in coaches)
+ coaching=''.join(f'<article class="coach-card"><small>HEAD COACH</small><b>{esc(c["name"])}</b><span>'+ (f'{esc(c.get("wins"))}–{esc(c.get("losses"))} · {esc(c.get("games"))} games credited' if c.get('games') else 'Season head coach · coaching record not supplied')+'</span></article>' for c in coaches)
  coaching=coaching or '<p class="archive-note">No head-coaching record returned by the source for this season.</p>'
  coaching+='<p class="archive-note">Head-coaching records: CollegeFootballData. Coordinator history is not supplied by this source. Multiple coaches are shown when credited with games.</p>'
  recruiting=d.get('recruiting')
@@ -65,10 +65,10 @@ def sections(s):
  for category,fields in FIELDS.items():
   p=(d.get('leaders') or {}).get(category);title='Defensive Interceptions' if category=='interceptions' else category.title()
   if p:
-   stats=p['stats'];content=f'<div class="season-leader-person"><div class="season-leader-identity"><div><h3>{esc(p["name"])}</h3></div></div><p class="season-leader-rank">FBS #{p["rank"]} · {fmt(p["league_total"])} season total</p><div class="season-leader-stats">'+''.join(f'<span><b>{fmt(stats.get(k))+("%" if k=="completion_pct" and stats.get(k) is not None else "")}</b><small>{esc(label)}</small></span>' for k,label in fields)+'</div></div>'
+   stats=p['stats'];content=f'<div class="season-leader-person"><div class="season-leader-identity"><div><h3>{esc(p["name"])}</h3></div></div><p class="season-leader-rank">FBS #{p["rank"]} · {fmt(p["league_total"])} season total</p><div class="season-leader-stats">'+''.join(f'<span><b>{fmt(stats.get(k))+("%" if k=="completion_pct" and stats.get(k) is not None else "")}</b><small>{esc(label)}</small></span>' for k,label in fields)+'</div>'+ (f'<p class="archive-note"><a href="{esc(p["source_url"])}">ESPN season statistics</a></p>' if p.get('source_url') else '')+'</div>'
   else:content='<p class="season-leader-empty">No positive total returned for this category.</p>'
   leaders.append(f'<article class="season-leader-card"><p class="season-leader-category">{title} Leader</p>{content}</article>')
- playerhtml='<div class="season-leader-grid">'+''.join(leaders)+'</div><p class="season-leader-note">Full-season player totals include bowls and playoffs. Each category starts with its main metric and uses secondary statistics only to break team ties. FBS ranks use combined player totals across FBS teams; tied totals share ranks. INT TDs are interception-return touchdowns. A dash means the provider did not return that statistic.</p>'
+ playerhtml='<div class="season-leader-grid">'+''.join(leaders)+'</div><p class="season-leader-note">Full-season player totals include bowls and playoffs. Each category starts with its main metric and uses secondary statistics only to break team ties. FBS ranks use combined player totals across FBS teams; tied totals share ranks. Defensive TDs follow the provider’s defensive-return touchdown totals. A dash means the provider did not return that statistic. CFBD is the primary source; 2015 defensive statistics are supplemented from ESPN.</p>'
  return {'coachingGrid':coaching,'recruitingContent':recruitment,'metricsGrid':metrics,'seasonLeadersContent':playerhtml,'seasonResult':s.get('season_result_html','')}
 
 def attach_details(seasons,details_file,registry,build_season,current):

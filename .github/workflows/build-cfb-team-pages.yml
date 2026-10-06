@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - supplement_cfb_2015_defense.py
       - cfb_team_sections.py
       - refresh_cfb_team_details.py
       - build_cfb_team_pages.py
@@ -38,7 +39,9 @@ jobs:
       - name: Collect full-season CFB detail sources
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python refresh_cfb_team_details.py
+        run: |
+          python refresh_cfb_team_details.py
+          python supplement_cfb_2015_defense.py
       - name: Build all CFB team pages
         run: python build_cfb_team_pages.py
       - name: Publish generated team archives
