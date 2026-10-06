@@ -543,6 +543,9 @@ def main():
     sm.append("</sitemapindex>")
     (ROOT/"sitemap.xml").write_text("\n".join(sm),encoding="utf-8")
 
+    from build_cfb_team_pages import main as build_cfb_teams
+    build_cfb_teams()
+
     print(f"Built {len(all_archive)} eligible matchup pages across {len(season_sitemap_files)} seasons")
     for filename,season,count in season_sitemap_files:
         print(f"{season}: {count} matchup pages -> {filename}")

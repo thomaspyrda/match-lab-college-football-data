@@ -1,0 +1,62 @@
+:root{--team-red:#a71930;--team-black:#000;--team-silver:#a5acaf}
+.team-page{background:radial-gradient(circle at 18% 0,rgba(167,25,48,.22),transparent 32%),#111}
+.team-shell{max-width:1180px;margin:auto;padding:34px 22px 70px}
+.team-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:180px 1fr;gap:34px;align-items:center;padding:34px;border:1px solid rgba(167,25,48,.7);border-radius:24px;background:linear-gradient(120deg,#050505 0%,#111 55%,rgba(167,25,48,.45) 100%);box-shadow:0 20px 50px #0008}
+.team-hero:after{content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid rgba(255,255,255,.08);border-radius:50%;box-shadow:0 0 0 40px rgba(255,255,255,.025),0 0 0 80px rgba(255,255,255,.018)}
+.team-hero-logo-wrap{position:relative;z-index:1;display:grid;place-items:center;width:170px;height:170px;border-radius:32px;background:#000;border:1px solid rgba(255,255,255,.08)}
+.team-hero-logo{width:138px;height:138px;object-fit:contain}
+.team-hero-copy{position:relative;z-index:1}.team-kicker{margin:0;color:#f0b7c1;font-size:11px;font-weight:900;letter-spacing:.13em}.team-hero h1{margin:5px 0 8px;font:900 clamp(42px,7vw,76px)/.95 "DM Sans",sans-serif;letter-spacing:-.045em}.team-hero-copy>p:not(.team-kicker){max-width:700px;color:#d0d0d0;font-size:17px}
+.season-control{display:flex;align-items:center;gap:10px;margin-top:22px}.season-control label{font-weight:800}.season-control select{min-width:130px;padding:10px 14px;border:1px solid #555;border-radius:10px;background:#090909;color:#fff;font:700 14px inherit}
+.team-subnav{position:sticky;top:0;z-index:10;display:flex;gap:8px;overflow-x:auto;margin:18px 0 0;padding:8px;border:1px solid #333;border-radius:14px;background:rgba(17,17,17,.92);backdrop-filter:blur(12px)}
+.team-subnav a{white-space:nowrap;padding:9px 13px;border-radius:9px;color:#bbb;text-decoration:none;font-weight:800;font-size:12px}.team-subnav a:hover{background:rgba(167,25,48,.18);color:#fff}
+.team-status{margin:28px 0;padding:18px;border:1px solid #333;border-radius:14px;background:#181818;color:#aaa}
+.team-section{margin-top:34px}.team-section-head p{margin:0;color:#d25b70;font-weight:900;letter-spacing:.12em;font-size:11px}.team-section-head h2{margin:5px 0 14px}
+.snapshot-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.snapshot-card,.metric-box,.coach-card{border:1px solid #333;border-radius:14px;background:#1b1b1b;padding:16px}.snapshot-card b{display:block;font:900 25px "DM Sans"}.snapshot-card span{color:#999;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.team-metrics-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric-box{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-left:3px solid var(--team-red)}.metric-box span{color:#bbb;font-weight:700}.metric-box strong{font:900 22px "DM Sans"}.metric-box small{grid-column:1/-1;color:#888}.coaching-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.coach-card small{display:block;color:#d25b70;font-size:10px;font-weight:900;letter-spacing:.1em}.coach-card b{display:block;margin-top:4px;font-size:18px}.coach-card span{color:#888;font-size:12px}
+.schedule-wrap{overflow-x:auto;border:1px solid #333;border-radius:14px}.team-schedule{width:100%;min-width:850px;border-collapse:collapse;background:#181818}.team-schedule th,.team-schedule td{padding:11px 12px;border-bottom:1px solid #2d2d2d;text-align:left;font-size:12px}.team-schedule th{position:sticky;top:0;background:#111;color:#aaa;text-transform:uppercase;letter-spacing:.08em}.team-schedule tr:last-child td{border-bottom:0}.result-w{color:#4de170;font-weight:900}.result-l{color:#ff8585;font-weight:900}.result-p{color:#aaa;font-weight:900}
+@media(max-width:850px){.team-hero{grid-template-columns:110px 1fr;padding:24px;gap:18px}.team-hero-logo-wrap{width:105px;height:105px;border-radius:22px}.team-hero-logo{width:86px;height:86px}.snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.coaching-grid{grid-template-columns:1fr}.team-metrics-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.team-hero{grid-template-columns:1fr;text-align:center}.team-hero-logo-wrap{margin:auto}.season-control{justify-content:center}.snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.team-shell{padding-left:14px;padding-right:14px}}
+/* Shared franchise branding */
+.team-page{background:radial-gradient(circle at 18% 0,color-mix(in srgb,var(--team-primary) 24%,transparent),transparent 34%),#111}
+.team-page .team-hero{border-color:color-mix(in srgb,var(--team-primary) 70%,#333);background:linear-gradient(120deg,#050505 0%,#111 55%,color-mix(in srgb,var(--team-primary) 48%,#111) 100%)}
+.team-page .team-kicker,.team-page .team-section-head p,.team-page .coach-card small{color:color-mix(in srgb,var(--team-primary) 72%,white)}
+.team-page .metric-box{border-left-color:var(--team-primary)}
+.team-page .team-subnav a:hover{background:color-mix(in srgb,var(--team-primary) 18%,transparent)}
+.division-group{margin-top:28px}.division-title{margin-bottom:10px;color:#8e9690;font-size:11px;font-weight:900;letter-spacing:.12em}
+.team-directory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.team-directory-card{display:grid;grid-template-columns:58px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border:1px solid #333;border-left:3px solid var(--team-primary);border-radius:14px;background:#1b1b1b;color:#fff;text-decoration:none;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.team-directory-card:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--team-primary) 75%,#555);background:color-mix(in srgb,var(--team-primary) 8%,#1b1b1b)}
+.team-directory-card img{width:54px;height:54px;object-fit:contain}
+.team-directory-card span{display:flex;flex-direction:column;min-width:0}.team-directory-card strong{font:900 16px "DM Sans",var(--font)}.team-directory-card small{margin-top:2px;color:#8d948f;font-size:10px;font-weight:800;letter-spacing:.06em}
+.team-directory-card>b{font:900 22px "DM Sans",var(--font);color:#e5e5e5}
+@media(max-width:700px){.team-directory-grid{grid-template-columns:1fr}.team-directory-card{grid-template-columns:52px 1fr auto}.team-directory-card img{width:48px;height:48px}}
+
+/* Paired offensive/defensive metrics */
+.team-metrics-grid{display:block}
+.metric-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.metric-box--offense{border-left:3px solid var(--team-primary)}
+.metric-box--defense{border-left:3px solid var(--team-secondary)}
+.metric-box--offense:before,.metric-box--defense:before{display:block;grid-column:1/-1;margin-bottom:1px;font-size:9px;font-weight:900;letter-spacing:.12em;color:#858b87}
+.metric-box--offense:before{content:"OFFENSE"}
+.metric-box--defense:before{content:"DEFENSE"}
+@media(max-width:700px){.metric-pair{grid-template-columns:1fr 1fr;gap:7px}.metric-box{padding:13px}.metric-box span{font-size:12px}.metric-box strong{font-size:19px}.metric-box small{font-size:10px}}
+
+/* Playoff result + draft class */
+.playoff-result-card{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:10px;padding:15px 18px;border:1px solid #333;border-left:3px solid var(--team-primary);border-radius:14px;background:#1b1b1b}
+.playoff-result-card span{color:#999;font-size:11px;font-weight:900;letter-spacing:.1em}
+.playoff-result-card strong{font:900 20px "DM Sans",sans-serif;text-align:right}
+.draft-wrap{overflow-x:auto;border:1px solid #333;border-radius:14px;background:#181818}
+.draft-table{width:100%;min-width:660px;border-collapse:collapse}
+.draft-table th,.draft-table td{padding:13px 14px;border-bottom:1px solid #2d2d2d;text-align:left;font-size:12px}
+.draft-table th{background:#111;color:#999;text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+.draft-table tr:last-child td{border-bottom:0}
+.draft-table td:nth-child(1),.draft-table td:nth-child(2),.draft-table td:nth-child(4){white-space:nowrap}
+.draft-table strong{font-size:13px}
+.draft-empty{padding:18px;color:#999}
+@media(max-width:560px){.playoff-result-card{align-items:flex-start;flex-direction:column;gap:5px}.playoff-result-card strong{text-align:left}}
+
+.season-leader-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.season-leader-card{background:#191919;border:1px solid #333;border-top:3px solid var(--team-primary);border-radius:12px;padding:16px;min-width:0}.season-leader-category{color:#00ff46;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px}.season-leader-identity{display:flex;gap:10px;align-items:center}.season-leader-identity img{width:65px;height:65px;object-fit:contain}.season-leader-identity h3{margin:0;font-size:18px}.season-leader-identity small,.season-leader-note{color:#aaa;font-size:12px}.season-leader-rank{font-size:11px;color:#d5ad55;line-height:1.5}.season-leader-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.season-leader-stats span{display:grid;gap:4px;background:#111;padding:9px;border-radius:7px}.season-leader-stats b{font-size:17px}.season-leader-stats small{color:#aaa;font-size:10px}.season-leader-person+.season-leader-person{border-top:1px solid #333;margin-top:16px;padding-top:16px}.season-leader-note{line-height:1.6}.season-leader-empty{color:#aaa;font-size:13px}@media(max-width:1000px){.season-leader-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.season-leader-grid{grid-template-columns:1fr}}
+
+/* CFB archive uses the shared NFL team-page format. */
+.team-page{--team-primary:#00b832;--team-secondary:#676767}.team-kicker,.team-section-head p{color:#00ff41!important}.archive-note{color:#999;font-size:12px;line-height:1.6}.team-subnav{scrollbar-color:#474747 #1b1b1b}.schedule-wrap{scrollbar-color:#474747 #1b1b1b}.schedule-wrap::-webkit-scrollbar{height:9px}.schedule-wrap::-webkit-scrollbar-thumb{background:#474747;border-radius:8px}.schedule-wrap::-webkit-scrollbar-track{background:#1b1b1b}.season-control select:focus-visible{outline:2px solid #00ff41}.team-directory-card{grid-template-columns:58px 1fr}.team-schedule td a{color:inherit;text-decoration:none}.team-schedule td a:hover{text-decoration:underline}
+
