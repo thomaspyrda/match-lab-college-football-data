@@ -62,9 +62,16 @@ def completed(event):
     boxes={r['team']['id']:team_box(r,scores[r['team']['id']]) for r in summary.get('boxscore',{}).get('teams',[]) if r['team']['id'] in scores}
     if len(boxes)!=2:raise ValueError('Incomplete team box score '+event['id'])
     players={r['team']['id']:players_box(r) for r in summary.get('boxscore',{}).get('players',[])}
+    quotes=summary.get('pickcenter') or comp.get('odds',[])
+    quote=quotes[0] if quotes else None
+    market=None
+    if quote:
+        spread=num(quote.get('spread'));home_fav=quote.get('homeTeamOdds',{}).get('favorite');away_fav=quote.get('awayTeamOdds',{}).get('favorite')
+        home_spread=(-abs(spread) if home_fav else abs(spread) if away_fav else 0 if spread==0 else None) if spread is not None else None
+        market={'home_spread':home_spread,'total':num(quote.get('overUnder')),'provider':quote.get('provider',{}).get('name'),'line_type':'published; closing not verified','observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/game/_/gameId/'+event['id']}
     return {'id':event['id'],'date':event['date'],'season':event['season']['year'],'phase':event['season']['type'],
       'observed_complete_at':datetime.now(UTC).isoformat(),'teams':boxes,'players':players,'home':next(c['team']['id'] for c in comp['competitors'] if c['homeAway']=='home'),
-      'neutral':comp.get('neutralSite',False),'game_id':'nba:espn:game:'+event['id'],
+      'neutral':comp.get('neutralSite',False),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,
       'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None
@@ -103,14 +110,35 @@ def profile(team_id,history,cutoff):
         t=p.pop('totals');count=p['games'];p['per_game']={k:round(t[k]/count,1) for k in ['minutes','points','rebounds','assists','turnovers']};p['plus_minus']=round(t['plus_minus']/p['pm_games'],1) if p['pm_games'] else None
         p['fg_pct']=ratio(t['fgm'],t['fga'],100);p['three_pct']=ratio(t['tpm'],t['tpa'],100);p['bpm']=None;p['vorp']=None;p['vorp_percentile']=None;players.append(p)
     players.sort(key=lambda p:(p['per_game']['minutes'],p['per_game']['points']),reverse=True)
+    values.update({'fg_pct':ratio(totals.get('fgm'),totals.get('fga'),100),'opp_fg_pct':ratio(other.get('fgm'),other.get('fga'),100),
+      'two_pct':ratio(totals.get('fgm',0)-totals.get('tpm',0),totals.get('fga',0)-totals.get('tpa',0),100) if n else None,
+      'opp_two_pct':ratio(other.get('fgm',0)-other.get('tpm',0),other.get('fga',0)-other.get('tpa',0),100) if n else None,
+      'ft_pct':ratio(totals.get('ftm'),totals.get('fta'),100),'opp_ft_pct':ratio(other.get('ftm'),other.get('fta'),100),
+      'ast_rate':ratio(totals.get('ast'),possessions,100) if valid_poss else None,'opp_ast_rate':ratio(other.get('ast'),possessions,100) if valid_poss else None})
+    market_records={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':min(n,5)}
+    for g in games[-5:]:
+        market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
+        if not market or stamp(market['observed_at'])>cutoff:continue
+        spread=market.get('home_spread')
+        if spread is not None:
+            margin=own['points']-opp['points']+(spread if g['home']==team_id else -spread);r=market_records['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+        total=market.get('total')
+        if total is not None:
+            margin=own['points']+opp['points']-total;r=market_records['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
     return {'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
-      'metrics':values,'players':players[:5],'results':results[-5:],'last_game_date':games[-1]['date'] if games else None}
+      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'last_game_date':games[-1]['date'] if games else None}
 
 def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
     return {i:{'value':round(v,1),'rank':1+sum((x>v if high else x<v) for _,x in values),'population':len(values),'percentile':round(100*sum((x<v if high else x>v) for _,x in values)/max(len(values)-1,1))} for i,v in values}
 
 METRICS=[('ortg','Offensive rating','OFFENSE',True,''),('drtg','Defensive rating','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
+METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
+
+def roster(team_id):
+    d=get('teams/'+team_id+'/roster');assert d.get('athletes'),'Empty roster '+team_id
+    return {'team_id':team_id,'observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/team/roster/_/id/'+team_id,
+      'players':[{'id':'nba:espn:player:'+p['id'],'name':p.get('displayName',p.get('fullName')),'position':p.get('position',{}).get('abbreviation','—'),'jersey':p.get('jersey','—'),'headshot':p.get('headshot',{}).get('href')} for p in d['athletes']]}
 
 def season_history(games,season,phase):return [g for g in games if g['season']==season and g['phase']==phase]
 
@@ -124,8 +152,11 @@ def main():
     dates=[start+timedelta(days=i) for i in range((today+timedelta(days=7)-start).days+1)]
     boards=list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?dates='+d.strftime('%Y%m%d')),dates))
     events={e['id']:e for b in boards for e in b.get('events',[]) if e.get('season',{}).get('year')==season and all(c['team']['id'] in teams for c in e['competitions'][0]['competitors'])}
-    new=[e for e in events.values() if e['status']['type'].get('completed') and e['id'] not in old]
-    for g in ThreadPoolExecutor(8).map(completed,new):old[g['id']]=g
+    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
+    for g in ThreadPoolExecutor(8).map(completed,new):
+        if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
+        old[g['id']]=g
+    rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,teams)}
     for g in old.values():
         g['game_id']='nba:espn:game:'+g['id']
         if g['id'] in events:g['neutral']=events[g['id']]['competitions'][0].get('neutralSite',False)
@@ -140,7 +171,11 @@ def main():
         tip=stamp(event['date']);cutoff=min(tip,refreshed);profiles={i:profile(i,history,cutoff) for i in teams}
         comp=event['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};away=sides['away']['team']['id'];home=sides['home']['team']['id']
         def team(i):
-            t=teams[i];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+sides['away' if i==away else 'home']['team'].get('color','666666'),'profile':profiles[i]}
+            t=teams[i];sample={p['id']:p for p in profiles[i]['players']};full=[]
+            for p in rosters[i]['players']:
+                item=dict(p);item.update(sample.get(p['id'],{'games':0,'per_game':{},'plus_minus':None,'pm_games':0,'fg_pct':None,'three_pct':None,'bpm':None,'vorp':None,'vorp_percentile':None}));full.append(item)
+            full.sort(key=lambda p:((p.get('per_game') or {}).get('minutes',-1),p['name']),reverse=True)
+            return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+sides['away' if i==away else 'home']['team'].get('color','666666'),'profile':profiles[i],'roster':full,'roster_source':rosters[i]['source'],'roster_updated_at':rosters[i]['observed_at']}
         metrics=[]
         for key,label,unit,high,suffix in METRICS:
             ranks=rank(profiles,key,high);metrics.append({'key':key,'label':label,'unit':unit,'high':high,'suffix':suffix,'away':ranks.get(away),'home':ranks.get(home)})

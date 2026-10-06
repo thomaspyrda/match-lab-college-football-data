@@ -606,9 +606,11 @@
         ]
       },
       "home": "28",
-      "source": "https://www.espn.com/nba/boxscore/_/gameId/401902644",
+      "neutral": false,
       "game_id": "nba:espn:game:401902644",
-      "neutral": false
+      "market": null,
+      "market_checked": true,
+      "source": "https://www.espn.com/nba/boxscore/_/gameId/401902644"
     },
     {
       "id": "401914127",
@@ -1287,9 +1289,11 @@
         ]
       },
       "home": "7",
-      "source": "https://www.espn.com/nba/boxscore/_/gameId/401914127",
+      "neutral": false,
       "game_id": "nba:espn:game:401914127",
-      "neutral": false
+      "market": null,
+      "market_checked": true,
+      "source": "https://www.espn.com/nba/boxscore/_/gameId/401914127"
     },
     {
       "id": "401918010",
@@ -1950,9 +1954,11 @@
         ]
       },
       "home": "12",
-      "source": "https://www.espn.com/nba/boxscore/_/gameId/401918010",
+      "neutral": true,
       "game_id": "nba:espn:game:401918010",
-      "neutral": true
+      "market": null,
+      "market_checked": true,
+      "source": "https://www.espn.com/nba/boxscore/_/gameId/401918010"
     },
     {
       "id": "401914101",
@@ -2615,6 +2621,15 @@
       "home": "20",
       "neutral": false,
       "game_id": "nba:espn:game:401914101",
+      "market": {
+        "home_spread": 4.5,
+        "total": 228.5,
+        "provider": "DraftKings",
+        "line_type": "published; closing not verified",
+        "observed_at": "2026-10-06T01:47:46.188831+00:00",
+        "source": "https://www.espn.com/nba/game/_/gameId/401914101"
+      },
+      "market_checked": true,
       "source": "https://www.espn.com/nba/boxscore/_/gameId/401914101"
     },
     {
@@ -2622,18 +2637,18 @@
       "date": "2026-10-05T23:00Z",
       "season": 2027,
       "phase": 1,
-      "observed_complete_at": "2026-10-06T01:33:25.797755+00:00",
+      "observed_complete_at": "2026-10-06T01:47:46.130643+00:00",
       "teams": {
         "29": {
           "points": 132.0,
           "fgm": 43.0,
-          "fga": 84.0,
+          "fga": 83.0,
           "tpm": 18.0,
           "tpa": 43.0,
           "ftm": 28.0,
           "fta": 37.0,
-          "oreb": 10.0,
-          "dreb": 31.0,
+          "oreb": 9.0,
+          "dreb": 32.0,
           "reb": 41.0,
           "ast": 32.0,
           "tov": 19.0,
@@ -2654,7 +2669,7 @@
           "ast": 25.0,
           "tov": 18.0,
           "stl": 11.0,
-          "blk": 2.0
+          "blk": 1.0
         }
       },
       "players": {
@@ -2882,7 +2897,7 @@
             "headshot": null,
             "minutes": 15.0,
             "points": 8.0,
-            "rebounds": 3.0,
+            "rebounds": 4.0,
             "assists": 1.0,
             "turnovers": 0.0,
             "plus_minus": -3.0,
@@ -2936,12 +2951,12 @@
             "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4683934.png",
             "minutes": 8.0,
             "points": 2.0,
-            "rebounds": 2.0,
+            "rebounds": 1.0,
             "assists": 1.0,
             "turnovers": 1.0,
             "plus_minus": -6.0,
             "fgm": 1.0,
-            "fga": 2.0,
+            "fga": 1.0,
             "tpm": 0.0,
             "tpa": 0.0,
             "ftm": 0.0,
@@ -3278,6 +3293,15 @@
       "home": "1",
       "neutral": false,
       "game_id": "nba:espn:game:401898388",
+      "market": {
+        "home_spread": -3.5,
+        "total": 232.5,
+        "provider": "DraftKings",
+        "line_type": "published; closing not verified",
+        "observed_at": "2026-10-06T01:47:46.130621+00:00",
+        "source": "https://www.espn.com/nba/game/_/gameId/401898388"
+      },
+      "market_checked": true,
       "source": "https://www.espn.com/nba/boxscore/_/gameId/401898388"
     }
   ]

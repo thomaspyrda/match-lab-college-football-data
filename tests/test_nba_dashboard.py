@@ -29,5 +29,14 @@ class NBADataTests(unittest.TestCase):
     def test_seasons_and_preseason_never_mix(self):
         games=[{'id':'pre','season':2027,'phase':1},{'id':'reg','season':2027,'phase':2},{'id':'old','season':2026,'phase':2}]
         self.assertEqual([g['id'] for g in nba.season_history(games,2027,2)],['reg'])
+    def test_last_five_ats_ou_and_pushes(self):
+        g=self.game();g['market']={'home_spread':10,'total':190,'observed_at':'2026-10-04T03:00:00+00:00'}
+        p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(p['last5_market']['ats']['pushes'],1);self.assertEqual(p['last5_market']['ou']['pushes'],1)
+        self.assertEqual(p['last5_market']['ats']['lined_games'],1)
+    def test_missing_lines_excluded_not_assumed_losses(self):
+        p=nba.profile('1',[self.game()],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(p['last5_market']['ats']['lined_games'],0);self.assertEqual(p['last5_market']['ats']['losses'],0)
+    def test_line_observed_after_cutoff_is_excluded(self):
+        g=self.game();g['market']={'home_spread':0,'total':185,'observed_at':'2026-10-06T03:00:00+00:00'}
+        p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(p['last5_market']['ats']['lined_games'],0)
 
 if __name__=='__main__':unittest.main()
