@@ -19,7 +19,7 @@
     });
     nav.querySelectorAll('a').forEach(link => {
       const url = new URL(link.href);
-      if (url.origin === location.origin && ['MLB', 'NBA', 'CBB'].includes(site) && url.pathname === `/${site.toLowerCase()}/teams/`) link.classList.add('active');
+      if (url.origin === location.origin && ['MLB', 'NBA', 'CBB'].includes(site) && location.pathname.startsWith(`/${site.toLowerCase()}/teams/`) && url.pathname === `/${site.toLowerCase()}/teams/`) link.classList.add('active');
     });
     nav.querySelectorAll('.sport-menu').forEach(details => details.addEventListener('toggle', () => {
       if (details.open) nav.querySelectorAll('.sport-menu').forEach(other => { if (other!==details) other.open=false; });
