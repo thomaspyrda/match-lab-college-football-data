@@ -89,7 +89,8 @@ def metric_pairs(advanced,stats):
 
 def collect(year,force=False):
  out=ROOT/'data/cfb/details'/f'{year}.json'
- if out.exists() and year<datetime.now(timezone.utc).year and not force:
+ # Reuse a recent current-season snapshot during overlapping publication checks.
+ if out.exists() and not force and (year<datetime.now(timezone.utc).year or (datetime.now(timezone.utc)-datetime.fromisoformat(json.loads(out.read_text())['updated_at'])).total_seconds()<900):
   cached=json.loads(out.read_text())
   if cached.get('basic_stats_version')!=2:
    rows,url=api('/stats/season',year=year);basic=defaultdict(dict)
