@@ -38,3 +38,5 @@
 }
 
 @media(max-width:700px){.ranking-links-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.ranking-links-grid a{min-height:42px;padding:8px 9px;font-size:12px}}
+
+.hero .ranking-links{margin-top:20px}.hero .ranking-links-label{margin:0 0 7px;color:#9d9d9d;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
