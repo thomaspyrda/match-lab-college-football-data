@@ -2,7 +2,7 @@
   "slate": {
     "season": 2026,
     "week": 6,
-    "generated_at": "2026-10-06T22:45:47.143576+00:00",
+    "generated_at": "2026-10-06T23:41:18.165550+00:00",
     "model_version": "v15"
   },
   "games": [
@@ -428,11 +428,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2653.png"
       },
       "market": {
-        "spread": -10.0,
+        "spread": -9.5,
         "total": 51.5,
-        "home_moneyline": -410.0,
-        "away_moneyline": 320.0,
-        "provider": "DraftKings"
+        "home_moneyline": -420.0,
+        "away_moneyline": 315.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
@@ -13698,7 +13698,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/197.png"
       },
       "market": {
-        "spread": -8.5,
+        "spread": -10.0,
         "total": 53.0,
         "home_moneyline": -430.0,
         "away_moneyline": 320.0,
@@ -14726,11 +14726,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/158.png"
       },
       "market": {
-        "spread": 7.5,
-        "total": 50.5,
-        "home_moneyline": 245.0,
-        "away_moneyline": -305.0,
-        "provider": "DraftKings"
+        "spread": 7.0,
+        "total": 50.0,
+        "home_moneyline": 270.0,
+        "away_moneyline": -340.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
@@ -28993,7 +28993,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/25.png"
       },
       "market": {
-        "spread": 9.5,
+        "spread": 10.0,
         "total": 53.0,
         "home_moneyline": 285.0,
         "away_moneyline": -370.0,
@@ -30002,7 +30002,7 @@
       },
       "market": {
         "spread": 6.5,
-        "total": 49.0,
+        "total": 48.5,
         "home_moneyline": 225.0,
         "away_moneyline": -275.0,
         "provider": "Bovada"
@@ -35077,10 +35077,10 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/201.png"
       },
       "market": {
-        "spread": 8.5,
+        "spread": 7.5,
         "total": 39.5,
-        "home_moneyline": 270.0,
-        "away_moneyline": -340.0,
+        "home_moneyline": 260.0,
+        "away_moneyline": -325.0,
         "provider": "DraftKings"
       },
       "context": {
@@ -47354,7 +47354,7 @@
       },
       "market": {
         "spread": -14.0,
-        "total": 57.5,
+        "total": 56.5,
         "home_moneyline": -600.0,
         "away_moneyline": 440.0,
         "provider": "DraftKings"
@@ -59145,6 +59145,1034 @@
           "type": "strength_gap",
           "team": "Boise State",
           "rank_gap": 53
+        }
+      ]
+    },
+    {
+      "game_id": "401871067",
+      "season": 2026,
+      "week": 7,
+      "kickoff": "2026-10-13T23:00:00.000Z",
+      "venue": "Johnny \"Red\" Floyd Stadium",
+      "venue_id": 3725,
+      "away": {
+        "name": "Delaware",
+        "record": "2-3",
+        "ap_rank": null,
+        "team_strength": 24.2,
+        "team_strength_rank": 117,
+        "team_strength_sd": -1.039,
+        "offensive_strength": 19.9,
+        "offensive_strength_rank": 120,
+        "defensive_strength": 30.0,
+        "defensive_strength_rank": 103,
+        "sos_rank": 65,
+        "form": {
+          "games": 5,
+          "wins": 2,
+          "losses": 3,
+          "avg_points": 21.4,
+          "avg_allowed": 25.6,
+          "coming_off_loss": true,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Merrimack",
+              "location": "H",
+              "start_date": "2026-09-03T23:00:00.000Z",
+              "result": "W",
+              "points": 42,
+              "allowed": 7,
+              "opponent_abbr": null
+            },
+            {
+              "week": 2,
+              "opponent": "Vanderbilt",
+              "location": "A",
+              "start_date": "2026-09-12T20:15:00.000Z",
+              "result": "L",
+              "points": 26,
+              "allowed": 35,
+              "opponent_abbr": "VAN"
+            },
+            {
+              "week": 3,
+              "opponent": "Coastal Carolina",
+              "location": "H",
+              "start_date": "2026-09-19T15:30:00.000Z",
+              "result": "W",
+              "points": 22,
+              "allowed": 14,
+              "opponent_abbr": "CCU"
+            },
+            {
+              "week": 4,
+              "opponent": "Virginia",
+              "location": "A",
+              "start_date": "2026-09-26T22:00:00.000Z",
+              "result": "L",
+              "points": 3,
+              "allowed": 42,
+              "opponent_abbr": "UVA"
+            },
+            {
+              "week": 5,
+              "opponent": "Liberty",
+              "location": "H",
+              "start_date": "2026-10-02T23:00:00.000Z",
+              "result": "L",
+              "points": 14,
+              "allowed": 30,
+              "opponent_abbr": "LIB"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 25,
+          "defensive_efficiency": 33,
+          "rushing_success": 27,
+          "passing_success": 39,
+          "explosiveness": 57,
+          "finishing_drives": 31,
+          "defensive_rushing_success": 28,
+          "defensive_passing_success": 31,
+          "defensive_explosiveness": 56,
+          "defensive_finishing_drives": 80,
+          "havoc": 68,
+          "overall_success": 24,
+          "defensive_success": 31,
+          "standard_down_success": 45,
+          "defensive_standard_down_success": 21,
+          "passing_down_success": 12,
+          "defensive_passing_down_success": 64,
+          "line_yards": 8,
+          "defensive_line_yards": 41,
+          "stuff_rate": 10,
+          "defensive_stuff_rate": 27,
+          "power_success": 8,
+          "defensive_power_success": 11,
+          "second_level_yards": 28,
+          "defensive_second_level_yards": 26,
+          "open_field_yards": 7,
+          "defensive_open_field_yards": 46,
+          "passing_ppa": 49,
+          "defensive_passing_ppa": 27,
+          "rushing_ppa": 12,
+          "defensive_rushing_ppa": 36,
+          "passing_explosiveness": 73,
+          "defensive_passing_explosiveness": 57,
+          "rushing_explosiveness": 9,
+          "defensive_rushing_explosiveness": 52,
+          "raw": {
+            "offensive_efficiency": 0.06748454684224496,
+            "defensive_efficiency": 0.13501002170020499,
+            "rushing_success": 0.4017857142857143,
+            "passing_success": 0.4154929577464789,
+            "explosiveness": 1.271481454766747,
+            "finishing_drives": 3.4347826086956523,
+            "defensive_rushing_success": 0.4460431654676259,
+            "defensive_passing_success": 0.4338235294117647,
+            "defensive_explosiveness": 1.21135582132228,
+            "defensive_finishing_drives": 2.735294117647059,
+            "havoc": 0.179,
+            "overall_success": 0.4,
+            "defensive_success": 0.4295774647887324,
+            "standard_down_success": 0.4797687861271676,
+            "defensive_standard_down_success": 0.5025380710659898,
+            "passing_down_success": 0.2413793103448276,
+            "defensive_passing_down_success": 0.26436781609195403,
+            "line_yards": 2.505357142857143,
+            "defensive_line_yards": 2.970503597122302,
+            "stuff_rate": 0.24107142857142858,
+            "defensive_stuff_rate": 0.16546762589928057,
+            "power_success": 0.5555555555555556,
+            "defensive_power_success": 0.8571428571428571,
+            "second_level_yards": 0.9732142857142857,
+            "defensive_second_level_yards": 1.1151079136690647,
+            "open_field_yards": 0.5178571428571429,
+            "defensive_open_field_yards": 1.0863309352517987,
+            "passing_ppa": 0.2400507946796453,
+            "defensive_passing_ppa": 0.2807230933831353,
+            "rushing_ppa": -0.04493886633390345,
+            "defensive_rushing_ppa": 0.09680610445066365,
+            "passing_explosiveness": 1.6975771454025905,
+            "defensive_passing_explosiveness": 1.5050345713376398,
+            "rushing_explosiveness": 0.7128226603775302,
+            "defensive_rushing_explosiveness": 0.9127179464418278
+          },
+          "games_played": 5,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -1.446,
+          "defensive_third_down_conversion": -0.607,
+          "red_zone_td_rate": -1.842,
+          "defensive_red_zone_td_rate": -0.442,
+          "red_zone_points_per_trip": -1.5,
+          "defensive_red_zone_points_per_trip": -0.159
+        },
+        "conference": "Conference USA",
+        "espn_id": 48,
+        "raw_metrics": {
+          "havoc_allowed": 0.212,
+          "havoc": 0.178,
+          "overall_success": 0.4,
+          "defensive_success": 0.4280701754385965,
+          "offensive_ppa": 0.06748454684224496,
+          "defensive_ppa": 0.13273439666151732,
+          "passing_success": 0.4154929577464789,
+          "defensive_passing_success": 0.4306569343065693,
+          "rushing_success": 0.4017857142857143,
+          "defensive_rushing_success": 0.4460431654676259,
+          "explosiveness": 1.271481454766747,
+          "defensive_explosiveness": 1.21135582132228,
+          "points_per_opportunity": 3.4347826086956523,
+          "defensive_points_per_opportunity": 2.8181818181818183,
+          "third_down_made": 20.0,
+          "third_down_att": 67.0,
+          "third_down_allowed_made": 28.0,
+          "third_down_allowed_att": 74.0,
+          "red_zone_td": 8.0,
+          "red_zone_att": 16.0,
+          "red_zone_allowed_td": 12.0,
+          "red_zone_allowed_att": 19.0,
+          "sack_rate_allowed": 0.07103825136612021,
+          "sack_rate": 0.09042553191489362,
+          "turnovers": 7,
+          "turnovers_forced": 6,
+          "third_down_conversion": 0.29850746268656714,
+          "defensive_third_down_conversion": 0.3783783783783784,
+          "red_zone_td_rate": 0.5,
+          "defensive_red_zone_td_rate": 0.631578947368421,
+          "sack_rate_allowed_rank": 101,
+          "sack_rate_rank": 19,
+          "havoc_allowed_rank": 136,
+          "havoc_rank": 43,
+          "turnovers_rank": 85,
+          "turnovers_forced_rank": 62,
+          "overall_success_rank": 106,
+          "defensive_success_rank": 94,
+          "offensive_ppa_rank": 107,
+          "defensive_ppa_rank": 91,
+          "passing_success_rank": 87,
+          "defensive_passing_success_rank": 100,
+          "rushing_success_rank": 103,
+          "defensive_rushing_success_rank": 102,
+          "explosiveness_rank": 59,
+          "defensive_explosiveness_rank": 61,
+          "points_per_opportunity_rank": 96,
+          "defensive_points_per_opportunity_rank": 27,
+          "third_down_conversion_rank": 127,
+          "defensive_third_down_conversion_rank": 76,
+          "red_zone_td_rate_rank": 114,
+          "defensive_red_zone_td_rate_rank": 84
+        },
+        "abbr": "DEL",
+        "color": "#00539f",
+        "alternate_color": "#ffd200",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/48.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/48.png"
+      },
+      "home": {
+        "name": "Middle Tennessee",
+        "record": "2-3",
+        "ap_rank": null,
+        "team_strength": 17.8,
+        "team_strength_rank": 124,
+        "team_strength_sd": -1.36,
+        "offensive_strength": 17.3,
+        "offensive_strength_rank": 124,
+        "defensive_strength": 20.2,
+        "defensive_strength_rank": 121,
+        "sos_rank": 119,
+        "form": {
+          "games": 5,
+          "wins": 2,
+          "losses": 3,
+          "avg_points": 20.8,
+          "avg_allowed": 28.0,
+          "coming_off_loss": true,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Murray State",
+              "location": "H",
+              "start_date": "2026-09-05T23:00:00.000Z",
+              "result": "W",
+              "points": 38,
+              "allowed": 14,
+              "opponent_abbr": null
+            },
+            {
+              "week": 2,
+              "opponent": "Marshall",
+              "location": "A",
+              "start_date": "2026-09-12T23:00:00.000Z",
+              "result": "L",
+              "points": 26,
+              "allowed": 28,
+              "opponent_abbr": "MRSH"
+            },
+            {
+              "week": 3,
+              "opponent": "Nevada",
+              "location": "H",
+              "start_date": "2026-09-19T23:00:00.000Z",
+              "result": "W",
+              "points": 27,
+              "allowed": 20,
+              "opponent_abbr": "NEV"
+            },
+            {
+              "week": 4,
+              "opponent": "Jacksonville State",
+              "location": "A",
+              "start_date": "2026-09-26T23:00:00.000Z",
+              "result": "L",
+              "points": 13,
+              "allowed": 23,
+              "opponent_abbr": "JXST"
+            },
+            {
+              "week": 5,
+              "opponent": "Kansas",
+              "location": "A",
+              "start_date": "2026-10-03T16:00:00.000Z",
+              "result": "L",
+              "points": 0,
+              "allowed": 55,
+              "opponent_abbr": "KU"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 58,
+          "defensive_efficiency": 44,
+          "rushing_success": 53,
+          "passing_success": 38,
+          "explosiveness": 28,
+          "finishing_drives": 60,
+          "defensive_rushing_success": 15,
+          "defensive_passing_success": 30,
+          "defensive_explosiveness": 74,
+          "defensive_finishing_drives": 83,
+          "havoc": 7,
+          "overall_success": 42,
+          "defensive_success": 23,
+          "standard_down_success": 54,
+          "defensive_standard_down_success": 17,
+          "passing_down_success": 28,
+          "defensive_passing_down_success": 68,
+          "line_yards": 85,
+          "defensive_line_yards": 28,
+          "stuff_rate": 80,
+          "defensive_stuff_rate": 36,
+          "power_success": 46,
+          "defensive_power_success": 47,
+          "second_level_yards": 95,
+          "defensive_second_level_yards": 23,
+          "open_field_yards": 36,
+          "defensive_open_field_yards": 52,
+          "passing_ppa": 48,
+          "defensive_passing_ppa": 46,
+          "rushing_ppa": 61,
+          "defensive_rushing_ppa": 49,
+          "passing_explosiveness": 26,
+          "defensive_passing_explosiveness": 86,
+          "rushing_explosiveness": 34,
+          "defensive_rushing_explosiveness": 31,
+          "raw": {
+            "offensive_efficiency": 0.19766982808572664,
+            "defensive_efficiency": 0.09086985322029938,
+            "rushing_success": 0.44761904761904764,
+            "passing_success": 0.4148148148148148,
+            "explosiveness": 1.1708755822401458,
+            "finishing_drives": 4.181818181818182,
+            "defensive_rushing_success": 0.4626865671641791,
+            "defensive_passing_success": 0.43478260869565216,
+            "defensive_explosiveness": 1.1340870451578597,
+            "defensive_finishing_drives": 2.6666666666666665,
+            "havoc": 0.117,
+            "overall_success": 0.4251012145748988,
+            "defensive_success": 0.44396551724137934,
+            "standard_down_success": 0.49404761904761907,
+            "defensive_standard_down_success": 0.5086705202312138,
+            "passing_down_success": 0.27848101265822783,
+            "defensive_passing_down_success": 0.2542372881355932,
+            "line_yards": 3.497142857142857,
+            "defensive_line_yards": 3.0791044776119403,
+            "stuff_rate": 0.13333333333333333,
+            "defensive_stuff_rate": 0.1791044776119403,
+            "power_success": 0.7333333333333333,
+            "defensive_power_success": 0.7241379310344828,
+            "second_level_yards": 1.4285714285714286,
+            "defensive_second_level_yards": 1.1417910447761195,
+            "open_field_yards": 1.0,
+            "defensive_open_field_yards": 0.9850746268656716,
+            "passing_ppa": 0.2393480496181623,
+            "defensive_passing_ppa": 0.1682507725400904,
+            "rushing_ppa": 0.16465819502823664,
+            "defensive_rushing_ppa": 0.04669201245503979,
+            "passing_explosiveness": 1.4329121766626332,
+            "defensive_passing_explosiveness": 1.3469885854959602,
+            "rushing_explosiveness": 0.8804191572891243,
+            "defensive_rushing_explosiveness": 1.0114515040378773
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -1.867,
+          "defensive_third_down_conversion": -1.077,
+          "red_zone_td_rate": -0.543,
+          "defensive_red_zone_td_rate": -0.448,
+          "red_zone_points_per_trip": -0.278,
+          "defensive_red_zone_points_per_trip": -0.473
+        },
+        "conference": "Conference USA",
+        "espn_id": 2393,
+        "raw_metrics": {
+          "havoc_allowed": 0.145,
+          "havoc": 0.102,
+          "overall_success": 0.39568345323741005,
+          "defensive_success": 0.47766323024054985,
+          "offensive_ppa": 0.11931470579394285,
+          "defensive_ppa": 0.15956964772758078,
+          "passing_success": 0.38311688311688313,
+          "defensive_passing_success": 0.4298245614035088,
+          "rushing_success": 0.4224137931034483,
+          "defensive_rushing_success": 0.5176470588235295,
+          "explosiveness": 1.1696579298913121,
+          "defensive_explosiveness": 1.114089913590944,
+          "points_per_opportunity": 3.8333333333333335,
+          "defensive_points_per_opportunity": 3.5,
+          "third_down_made": 15.0,
+          "third_down_att": 56.0,
+          "third_down_allowed_made": 22.0,
+          "third_down_allowed_att": 56.0,
+          "red_zone_td": 7.0,
+          "red_zone_att": 11.0,
+          "red_zone_allowed_td": 14.0,
+          "red_zone_allowed_att": 22.0,
+          "sack_rate_allowed": 0.037037037037037035,
+          "sack_rate": 0.016129032258064516,
+          "turnovers": 2,
+          "turnovers_forced": 7,
+          "third_down_conversion": 0.26785714285714285,
+          "defensive_third_down_conversion": 0.39285714285714285,
+          "red_zone_td_rate": 0.6363636363636364,
+          "defensive_red_zone_td_rate": 0.6363636363636364,
+          "sack_rate_allowed_rank": 36,
+          "sack_rate_rank": 137,
+          "havoc_allowed_rank": 70,
+          "havoc_rank": 138,
+          "turnovers_rank": 4,
+          "turnovers_forced_rank": 42,
+          "overall_success_rank": 109,
+          "defensive_success_rank": 127,
+          "offensive_ppa_rank": 83,
+          "defensive_ppa_rank": 102,
+          "passing_success_rank": 109,
+          "defensive_passing_success_rank": 98,
+          "rushing_success_rank": 88,
+          "defensive_rushing_success_rank": 135,
+          "explosiveness_rank": 98,
+          "defensive_explosiveness_rank": 24,
+          "points_per_opportunity_rank": 68,
+          "defensive_points_per_opportunity_rank": 77,
+          "third_down_conversion_rank": 135,
+          "defensive_third_down_conversion_rank": 90,
+          "red_zone_td_rate_rank": 69,
+          "defensive_red_zone_td_rate_rank": 88
+        },
+        "abbr": "MTSU",
+        "color": "#036eb7",
+        "alternate_color": "#ffffff",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/2393.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2393.png"
+      },
+      "market": {
+        "spread": null,
+        "total": null,
+        "home_moneyline": null,
+        "away_moneyline": null,
+        "provider": null
+      },
+      "context": {
+        "conference_game": true,
+        "neutral_site": false
+      },
+      "weather": {
+        "summary": "Outdoor \u00b7 forecast not yet available"
+      },
+      "matchup_metrics": [
+        {
+          "label": "Sack Rate Allowed",
+          "offense_label": "Sack Rate Allowed",
+          "defense_label": "Sack Rate",
+          "format": "percent",
+          "away_offense": 0.07103825136612021,
+          "home_defense": 0.016129032258064516,
+          "home_offense": 0.037037037037037035,
+          "away_defense": 0.09042553191489362,
+          "away_offense_rank": 101,
+          "home_defense_rank": 137,
+          "home_offense_rank": 36,
+          "away_defense_rank": 19
+        },
+        {
+          "label": "Havoc Allowed",
+          "offense_label": "Havoc Allowed",
+          "defense_label": "Havoc",
+          "format": "percent",
+          "away_offense": 0.212,
+          "home_defense": 0.102,
+          "home_offense": 0.145,
+          "away_defense": 0.178,
+          "away_offense_rank": 136,
+          "home_defense_rank": 138,
+          "home_offense_rank": 70,
+          "away_defense_rank": 43
+        },
+        {
+          "label": "Turnovers",
+          "offense_label": "Turnovers",
+          "defense_label": "Turnovers Forced",
+          "format": "count",
+          "away_offense": 7,
+          "home_defense": 7,
+          "home_offense": 2,
+          "away_defense": 6,
+          "away_offense_rank": 85,
+          "home_defense_rank": 42,
+          "home_offense_rank": 4,
+          "away_defense_rank": 62
+        },
+        {
+          "label": "Success Rate",
+          "offense_label": "Success Rate",
+          "defense_label": "Defensive Success Rate",
+          "format": "percent",
+          "away_offense": 0.4,
+          "home_defense": 0.47766323024054985,
+          "home_offense": 0.39568345323741005,
+          "away_defense": 0.4280701754385965,
+          "away_offense_rank": 106,
+          "home_defense_rank": 127,
+          "home_offense_rank": 109,
+          "away_defense_rank": 94
+        },
+        {
+          "label": "EPA / Play",
+          "offense_label": "EPA / Play",
+          "defense_label": "EPA / Play Allowed",
+          "format": "decimal",
+          "away_offense": 0.06748454684224496,
+          "home_defense": 0.15956964772758078,
+          "home_offense": 0.11931470579394285,
+          "away_defense": 0.13273439666151732,
+          "away_offense_rank": 107,
+          "home_defense_rank": 102,
+          "home_offense_rank": 83,
+          "away_defense_rank": 91
+        },
+        {
+          "label": "Passing Success Rate",
+          "offense_label": "Passing Success Rate",
+          "defense_label": "Defensive Pass Success Rate",
+          "format": "percent",
+          "away_offense": 0.4154929577464789,
+          "home_defense": 0.4298245614035088,
+          "home_offense": 0.38311688311688313,
+          "away_defense": 0.4306569343065693,
+          "away_offense_rank": 87,
+          "home_defense_rank": 98,
+          "home_offense_rank": 109,
+          "away_defense_rank": 100
+        },
+        {
+          "label": "Rushing Success Rate",
+          "offense_label": "Rushing Success Rate",
+          "defense_label": "Defensive Rush Success Rate",
+          "format": "percent",
+          "away_offense": 0.4017857142857143,
+          "home_defense": 0.5176470588235295,
+          "home_offense": 0.4224137931034483,
+          "away_defense": 0.4460431654676259,
+          "away_offense_rank": 103,
+          "home_defense_rank": 135,
+          "home_offense_rank": 88,
+          "away_defense_rank": 102
+        },
+        {
+          "label": "Explosiveness",
+          "offense_label": "Explosiveness",
+          "defense_label": "Explosiveness Allowed",
+          "format": "decimal",
+          "away_offense": 1.271481454766747,
+          "home_defense": 1.114089913590944,
+          "home_offense": 1.1696579298913121,
+          "away_defense": 1.21135582132228,
+          "away_offense_rank": 59,
+          "home_defense_rank": 24,
+          "home_offense_rank": 98,
+          "away_defense_rank": 61
+        },
+        {
+          "label": "Points per Opportunity",
+          "offense_label": "Points per Opportunity",
+          "defense_label": "Points per Opportunity Allowed",
+          "format": "decimal",
+          "away_offense": 3.4347826086956523,
+          "home_defense": 3.5,
+          "home_offense": 3.8333333333333335,
+          "away_defense": 2.8181818181818183,
+          "away_offense_rank": 96,
+          "home_defense_rank": 77,
+          "home_offense_rank": 68,
+          "away_defense_rank": 27
+        },
+        {
+          "label": "Third Down Conversion",
+          "offense_label": "Third Down Conversion",
+          "defense_label": "Third Down Defense",
+          "format": "percent",
+          "away_offense": 0.29850746268656714,
+          "home_defense": 0.39285714285714285,
+          "home_offense": 0.26785714285714285,
+          "away_defense": 0.3783783783783784,
+          "away_offense_rank": 127,
+          "home_defense_rank": 90,
+          "home_offense_rank": 135,
+          "away_defense_rank": 76
+        },
+        {
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
+          "format": "percent",
+          "away_offense": 0.5,
+          "home_defense": 0.6363636363636364,
+          "home_offense": 0.6363636363636364,
+          "away_defense": 0.631578947368421,
+          "away_offense_rank": 114,
+          "home_defense_rank": 88,
+          "home_offense_rank": 69,
+          "away_defense_rank": 84
+        }
+      ],
+      "featured_mismatch": {
+        "metric": "Third Down Conversion",
+        "side": "home_offense",
+        "rank_gap": 59,
+        "offense_rank": 135,
+        "opponent_defense_rank": 76,
+        "offense_value": 0.26785714285714285,
+        "opponent_defense_value": 0.3783783783783784
+      },
+      "market_trends": [
+        {
+          "label": "ATS this season",
+          "away": "3-2-0",
+          "home": "3-2-0",
+          "note": "Current-season ATS record using available closing lines."
+        },
+        {
+          "label": "ATS by location",
+          "away": "Road \u00b7 1-1-0",
+          "home": "Home \u00b7 2-0-0",
+          "note": "Current-season ATS record in the same home/road role as this matchup."
+        },
+        {
+          "label": "O/U this season",
+          "away": "1-4-0",
+          "home": "1-4-0",
+          "note": "Current-season over-under record. Format is Over-Under-Push."
+        },
+        {
+          "label": "O/U by location",
+          "away": "Road \u00b7 1-1-0",
+          "home": "Home \u00b7 0-2-0",
+          "note": "Current-season over-under record in the same home/road role as this matchup."
+        }
+      ],
+      "players": [
+        {
+          "team": "DEL",
+          "name": "EJ Archield Jr.",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.489
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.731
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.222
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.0
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5296312",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.319,
+            "rank": 71,
+            "sample_size": 19,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "DEL",
+          "name": "Jo'Nathan Silver",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.215
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.455
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.005148005148005148
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.182
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5086952",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "DEL",
+          "name": "Sean Wilson",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.127
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.3063063063063063
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.073
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5224764",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "DEL",
+          "name": "Elijah Sessoms",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.031
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.04182754182754183
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.036
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5086956",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "DEL",
+          "name": "Kaderris Roberts",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.112
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.188
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.025096525096525095
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.036
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4887640",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MTSU",
+          "name": "Roman Gagliano",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.597
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.994
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.112
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.45
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5194626",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.174,
+            "rank": 115,
+            "sample_size": 156,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "MTSU",
+          "name": "Brooklen Davis",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.072
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.081
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.0032599837000814994
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.2
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5210055",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MTSU",
+          "name": "Cam'Ron Lacy",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.18
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.017
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.31377343113284434
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.309
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5091830",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MTSU",
+          "name": "Tayvion Galloway",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.042
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.03667481662591687
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.048
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5079435",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MTSU",
+          "name": "Terrence Brown",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.072
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.009779951100244499
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.1
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5383050",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        }
+      ],
+      "trends": [
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Delaware",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 59
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Turnovers",
+          "team": "Middle Tennessee",
+          "edge_unit": "offense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 58
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Turnovers",
+          "team": "Middle Tennessee",
+          "edge_unit": "defense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 43
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Points per Opportunity",
+          "team": "Delaware",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 41
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Explosiveness",
+          "team": "Delaware",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 37
+        },
+        {
+          "type": "bounce_back",
+          "team": "Delaware",
+          "detail": "coming off a loss"
+        },
+        {
+          "type": "bounce_back",
+          "team": "Middle Tennessee",
+          "detail": "coming off a loss"
+        },
+        {
+          "type": "game_context",
+          "detail": "conference matchup"
         }
       ]
     }
