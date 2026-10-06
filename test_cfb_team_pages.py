@@ -31,6 +31,10 @@ class ArchiveTests(unittest.TestCase):
   self.assertEqual(d['61']['ppg_rank'],1);self.assertEqual(d['333']['ppg_rank'],1)
   self.assertEqual(record_label(d['61']['record']),'0-0-1');self.assertEqual(d['61']['games_played'],1)
 class DetailTests(unittest.TestCase):
+ def test_espn_postseason_feed_is_cumulative_not_added_to_regular(self):
+  from supplement_cfb_2015_defense import season_phase
+  self.assertEqual(season_phase('Georgia',{'Georgia'}),3)
+  self.assertEqual(season_phase('Other',{'Georgia'}),2)
  def test_multi_category_leader_keeps_independent_ranks(self):
   from supplement_cfb_2015_defense import ranked_copy
   p=dict(id='a',stats=dict(combined_tackles=100,sacks=5))

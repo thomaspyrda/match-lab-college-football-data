@@ -1,4 +1,4 @@
-"""Fill CFBD's 2015 defensive-stat gap with ESPN season-type totals."""
+"""Fill CFBD's 2015 defensive-stat gap with ESPN cumulative season totals."""
 import json, re, time, urllib.request, urllib.error
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -12,6 +12,9 @@ STAT_KEYS={'totalTackles':'combined_tackles','soloTackles':'solo_tackles','assis
 def ranked_copy(player,key,league):
  total=league[key][player['id']]
  return dict(player,rank=1+sum(v>total for v in league[key].values()),league_total=total,rank_field_size=sum(v>0 for v in league[key].values()))
+def season_phase(team,postseason_teams):
+ # ESPN's type 3 feed is cumulative through postseason, not a postseason split.
+ return 3 if team in postseason_teams else 2
 def get(url,missing=False):
  url=url.replace('http:','https:')
  for attempt in range(3):
@@ -27,7 +30,7 @@ def get(url,missing=False):
 def main():
  path=ROOT/'data/cfb/details/2015.json'
  data=json.loads(path.read_text())
- if data.get('defense_supplement_version')==2:return
+ if data.get('defense_supplement_version')==3:return
  ids={}
  for g in data['games']:
   for side in ['home','away']:
@@ -36,7 +39,7 @@ def main():
  post={canon(g[side]) for g in data['games'] if g['season_type']=='postseason' and g.get('result') for side in ['home','away']}
  def team_pool(item):
   team,tid=item;players={}
-  for phase in [2]+([3] if team in post else []):
+  for phase in [season_phase(team,post)]:
    d=get(f'{BASE}/types/{phase}/teams/{tid}/leaders?lang=en&region=us',missing=phase==3) or {}
    for category in d.get('categories',[]):
     if category['name'] not in KEYS:continue
@@ -60,7 +63,7 @@ def main():
      if p['totals'].get(key,0)==maximum:candidates[(team,p['id'])]=p
  def player_detail(item):
   (team,pid),p=item;stats=defaultdict(float);observed=set()
-  for phase in [2]+([3] if team in post else []):
+  for phase in [season_phase(team,post)]:
    url=f'{BASE}/types/{phase}/teams/{p["team_id"]}/athletes/{pid}/statistics/0?lang=en&region=us'
    d=get(url,missing=True) or {}
    for category in d.get('splits',{}).get('categories',[]):
@@ -81,8 +84,8 @@ def main():
    keys=[key]+BREAKERS[category]
    p=sorted(eligible,key=lambda p:(tuple(-p['stats'].get(k,0) for k in keys),p['name'],p['id']))[0]
    data['teams'][team]['leaders'][category]=ranked_copy(p,key,league)
- data['sources'].append({'name':'2015 defensive leaders and player season statistics (regular + postseason)','url':BASE})
- data['defense_supplement_version']=2;data['defense_supplement_teams']=len(team_players)
+ data['sources']=[s for s in data['sources'] if s['url']!=BASE]+[{'name':'2015 defensive leaders and cumulative full-season player statistics','url':BASE}]
+ data['defense_supplement_version']=3;data['defense_supplement_teams']=len(team_players)
  data['updated_at']=datetime.now(timezone.utc).isoformat();path.write_text(json.dumps(data,separators=(',',':')))
  print(f'Filled 2015 defensive leaders from ESPN for {len(team_players)} FBS teams',flush=True)
 if __name__=='__main__':main()
