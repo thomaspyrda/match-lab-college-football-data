@@ -2,7 +2,7 @@ name: Deploy Match Lab
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Validate CFB Dashboard foundation", "Refresh NBA Dashboard"]
+    workflows: ["Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build CFB team history"]
     branches: [cfb-dashboard-foundation, main]
     types: [completed]
   push:
