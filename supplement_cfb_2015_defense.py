@@ -9,6 +9,9 @@ ROOT=Path(__file__).resolve().parent
 BASE='https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/2015'
 KEYS={'totalTackles':('tackles','combined_tackles'),'sacks':('sacks','sacks'),'interceptions':('interceptions','def_interceptions')}
 STAT_KEYS={'totalTackles':'combined_tackles','soloTackles':'solo_tackles','assistTackles':'assists','sacks':'sacks','tacklesForLoss':'tfl','hurries':'qb_hits','passesDefended':'passes_defended','interceptions':'def_interceptions','interceptionYards':'interception_yards','interceptionTouchdowns':'interception_tds','defensiveFumblesTouchdowns':'fumble_tds'}
+def ranked_copy(player,key,league):
+ total=league[key][player['id']]
+ return dict(player,rank=1+sum(v>total for v in league[key].values()),league_total=total,rank_field_size=sum(v>0 for v in league[key].values()))
 def get(url,missing=False):
  url=url.replace('http:','https:')
  for attempt in range(3):
@@ -24,7 +27,7 @@ def get(url,missing=False):
 def main():
  path=ROOT/'data/cfb/details/2015.json'
  data=json.loads(path.read_text())
- if data.get('defense_supplement_version')==1:return
+ if data.get('defense_supplement_version')==2:return
  ids={}
  for g in data['games']:
   for side in ['home','away']:
@@ -77,11 +80,9 @@ def main():
    eligible=[full[(team,p['id'])] for p in players.values() if p['totals'].get(key,0)==maximum]
    keys=[key]+BREAKERS[category]
    p=sorted(eligible,key=lambda p:(tuple(-p['stats'].get(k,0) for k in keys),p['name'],p['id']))[0]
-   total=league[key][p['id']]
-   p.update(rank=1+sum(v>total for v in league[key].values()),league_total=total,rank_field_size=sum(v>0 for v in league[key].values()))
-   data['teams'][team]['leaders'][category]=p
+   data['teams'][team]['leaders'][category]=ranked_copy(p,key,league)
  data['sources'].append({'name':'2015 defensive leaders and player season statistics (regular + postseason)','url':BASE})
- data['defense_supplement_version']=1;data['defense_supplement_teams']=len(team_players)
+ data['defense_supplement_version']=2;data['defense_supplement_teams']=len(team_players)
  data['updated_at']=datetime.now(timezone.utc).isoformat();path.write_text(json.dumps(data,separators=(',',':')))
  print(f'Filled 2015 defensive leaders from ESPN for {len(team_players)} FBS teams',flush=True)
 if __name__=='__main__':main()

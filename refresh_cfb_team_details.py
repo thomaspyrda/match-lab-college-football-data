@@ -82,7 +82,7 @@ def metric_pairs(advanced,stats):
   values=[]
   for side in ['', 'opponent']:
    made=stats.get(prefix+'ConversionsOpponent',stats.get(side+prefix[0].upper()+prefix[1:]+'Conversions')) if side else stats.get(prefix+'Conversions')
-   attempts=stats.get(prefix+'AttemptsOpponent',stats.get(side+prefix[0].upper()+prefix[1:]+'Attempts')) if side else stats.get(prefix+'Attempts')
+   attempts=stats.get(prefix+'AttemptsOpponent',stats.get(prefix+'sOpponent',stats.get(side+prefix[0].upper()+prefix[1:]+'Attempts'))) if side else stats.get(prefix+'Attempts',stats.get(prefix+'s'))
    values.append(made/attempts if made is not None and attempts and attempts>0 else None)
   pairs.append({'label':label,'offense':values[0],'defense':values[1],'percent':True})
  return [p for p in pairs if p['offense'] is not None or p['defense'] is not None]
@@ -91,7 +91,7 @@ def collect(year,force=False):
  out=ROOT/'data/cfb/details'/f'{year}.json'
  if out.exists() and year<datetime.now(timezone.utc).year and not force:
   cached=json.loads(out.read_text())
-  if not cached.get('basic_stats_collected'):
+  if cached.get('basic_stats_version')!=2:
    rows,url=api('/stats/season',year=year);basic=defaultdict(dict)
    for r in rows:
     value=num(r.get('statValue'))
@@ -99,7 +99,8 @@ def collect(year,force=False):
    oldlabels={'Total yards','Total yards per game','Passing yards','Passing yards per game','Rushing yards','Rushing yards per game','Turnovers / turnovers forced','3rd-down conversions','3rd-down conversion rate'}
    for team,d in cached['teams'].items():
     d['metrics']=[p for p in d['metrics'] if p['label'] not in oldlabels]+metric_pairs({},basic.get(team,{}))
-   cached['basic_stats_collected']=True;cached['team_stat_catalog']=sorted({r['statName'] for r in rows})
+    d['basic_totals']=basic.get(team,{})
+   cached['basic_stats_collected']=True;cached['basic_stats_version']=2;cached['team_stat_catalog']=sorted({r['statName'] for r in rows})
    cached['updated_at']=datetime.now(timezone.utc).isoformat();out.write_text(json.dumps(cached,separators=(',',':')))
   if cached.get('leader_schema_version')!=2:
    rows,url=api('/stats/player/season',year=year,seasonType='both')
@@ -141,7 +142,7 @@ def collect(year,force=False):
    'home_profile':{'classification':'FBS' if canon(g.get('homeTeam')) in fbs else 'FCS/Other'},'away_profile':{'classification':'FBS' if canon(g.get('awayTeam')) in fbs else 'FCS/Other'},
    'spread':line.get('spread'),'over_under':line.get('overUnder'),'provider':line.get('provider'),
    'result':{'home_points':g['homePoints'],'away_points':g['awayPoints']} if g.get('completed') and g.get('homePoints') is not None and g.get('awayPoints') is not None else None})
- details={team:{'coaches':coaches.get(team,[]),'recruiting':recruiting.get(team),'metrics':metric_pairs(advanced.get(team,{}),basic.get(team,{})),'leaders':leaders.get(team,{})} for team in fbs}
+ details={team:{'coaches':coaches.get(team,[]),'recruiting':recruiting.get(team),'metrics':metric_pairs(advanced.get(team,{}),basic.get(team,{})),'basic_totals':basic.get(team,{}),'leaders':leaders.get(team,{})} for team in fbs}
  played=defaultdict(int)
  for g in games:
   if g['result']:
@@ -155,7 +156,7 @@ def collect(year,force=False):
  assert len(details)>=120,f'{year}: incomplete FBS detail pool'
  assert sum(bool(d['leaders'].get('passing')) for d in details.values())>=100,f'{year}: missing passing leaders'
  out.parent.mkdir(parents=True,exist_ok=True)
- out.write_text(json.dumps({'year':year,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':sources,'games':games,'teams':details,'basic_stats_collected':True,'leader_schema_version':2,'player_stat_catalog':sorted({str(r.get('category'))+':'+str(r.get('statType')) for r in fetched['players']}),'team_stat_catalog':sorted({str(r.get('statName')) for r in fetched['stats']})},separators=(',',':')))
+ out.write_text(json.dumps({'year':year,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':sources,'games':games,'teams':details,'basic_stats_collected':True,'basic_stats_version':2,'leader_schema_version':2,'player_stat_catalog':sorted({str(r.get('category'))+':'+str(r.get('statType')) for r in fetched['players']}),'team_stat_catalog':sorted({str(r.get('statName')) for r in fetched['stats']})},separators=(',',':')))
  print(f'{year}: {len(details)} FBS detail records; {len(games)} games; player categories '+str(sorted({r.get('category') for r in fetched['players']})),flush=True)
 
 def main():

@@ -31,6 +31,19 @@ class ArchiveTests(unittest.TestCase):
   self.assertEqual(d['61']['ppg_rank'],1);self.assertEqual(d['333']['ppg_rank'],1)
   self.assertEqual(record_label(d['61']['record']),'0-0-1');self.assertEqual(d['61']['games_played'],1)
 class DetailTests(unittest.TestCase):
+ def test_multi_category_leader_keeps_independent_ranks(self):
+  from supplement_cfb_2015_defense import ranked_copy
+  p=dict(id='a',stats=dict(combined_tackles=100,sacks=5))
+  league={'combined_tackles':{'a':100,'b':120},'sacks':{'a':5,'b':4}}
+  tackles=ranked_copy(p,'combined_tackles',league);sacks=ranked_copy(p,'sacks',league)
+  self.assertEqual(tackles['league_total'],100);self.assertEqual(tackles['rank'],2)
+  self.assertEqual(sacks['league_total'],5);self.assertEqual(sacks['rank'],1)
+  self.assertNotIn('rank',p)
+ def test_provider_third_down_denominators(self):
+  from refresh_cfb_team_details import metric_pairs
+  pairs=metric_pairs({},dict(thirdDownConversions=5,thirdDowns=10,thirdDownConversionsOpponent=3,thirdDownsOpponent=12))
+  rate=next(p for p in pairs if p['label']=='3rd-down conversion rate')
+  self.assertEqual(rate['offense'],.5);self.assertEqual(rate['defense'],.25)
  def player(self,pid,category,stat,value):
   return dict(team='Georgia',playerId=pid,player=pid,category=category,statType=stat,stat=value)
  def test_interceptions_primary_then_pd_then_touchdowns(self):
