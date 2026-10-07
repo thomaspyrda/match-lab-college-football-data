@@ -137,7 +137,7 @@ def player_cards(team,usage_map):
     {"label":"Rush usage","value":row.get("rush")},
     {"label":"3rd-down usage","value":row.get("third_down")},
    ]
-  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":usage,"placeholder":False,"player_id":row.get("id"),"slot":["Projected starting QB","Top usage RB","Top usage WR","Top usage TE","Next skill player"][i],"efficiency":row.get("efficiency"),"availability_note":row.get("availability_note"),"availability_updated":row.get("availability_updated"),"projection_note":"Projected from recent passing role" if pos=="QB" else None})
+  out.append({"team":team.get("abbr") or team.get("abbreviation") or team["name"],"name":row.get("name") or f"Usage player {i+1}","position":row.get("position") or "—","usage":usage,"placeholder":False,"player_id":row.get("id"),"slot":["Projected starting QB","Top usage RB","Top usage WR","Top usage TE","Next skill player"][i],"efficiency":row.get("efficiency"),"production":row.get("production"),"availability_note":row.get("availability_note"),"availability_updated":row.get("availability_updated"),"projection_note":"Projected from recent passing role" if pos=="QB" else None})
  return out
 def enrich_form_abbreviations(team,team_meta):
  form=team.get("form") or {}

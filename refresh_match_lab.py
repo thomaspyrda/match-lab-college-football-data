@@ -544,7 +544,7 @@ for team,bucket in player_usage.items():
  rows=list(bucket.values())
  rows.sort(key=lambda x:float(x.get("overall") or 0),reverse=True)
  player_usage[team]=rows
-from cfb_dashboard.pipeline.players import enrich_players
+from cfb_dashboard.pipeline.players import enrich_players, enrich_production
 from cfb_dashboard.pipeline.availability import fetch_reports
 try: qb_ppa=api("/ppa/players/season",year=now.year,position="QB",excludeGarbageTime="true")
 except Exception as exc:
@@ -553,6 +553,10 @@ except Exception as exc:
 # CFBD team aliases must match the usage pool.
 for row in qb_ppa:row["team"]=canon_team(row.get("team"))
 enrich_players(player_usage,qb_ppa,passing_attempts,passing_team_games,recent_passing,team_meta,fetch_reports("college-football",now),fbs_teams)
+season_player_stats=api("/stats/player/season",year=now.year,seasonType="regular",endWeek=last_completed)
+if not season_player_stats and last_completed:
+ raise ValueError("Season player production source returned no rows")
+enrich_production(player_usage,season_player_stats,current_records,canon_team)
 (DATA/"cfb_dashboard_player_usage.json").write_text(json.dumps({"season":now.year,"generated_at":now.isoformat(),"teams":player_usage},indent=2),encoding="utf-8")
 
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")

@@ -30,3 +30,31 @@ def test_ten_attempt_qualification_boundary():
     assert teams['A'][0]['efficiency']['rank']==1
     assert teams['A'][1]['efficiency']['rank'] is None
     assert teams['A'][0]['efficiency']['qualifying_count']==1
+
+def test_season_production_join_and_team_game_averages():
+    from cfb_dashboard.pipeline.players import enrich_production
+    teams={'A':[{'id':'1','name':'Same Name'},{'id':'2','name':'Missing Player'}],
+           'B':[{'id':'1','name':'Same Name'}]}
+    stats=[{'team':'A','playerId':'1','player':'Same Name','category':'passing','statType':'C/ATT','stat':'18/25'},
+           {'team':'A','playerId':'1','category':'passing','statType':'YDS','stat':'1,200'},
+           {'team':'A','playerId':'1','category':'passing','statType':'INT','stat':'0'},
+           {'team':'B','playerId':'1','category':'receiving','statType':'YDS','stat':'300'}]
+    games=[{'game_id':1,'home':'A','away':'B','result':{'home_points':10}},
+           {'game_id':2,'home':'A','away':'C','result':{'home_points':20}},
+           {'game_id':3,'home':'A','away':'B','result':None}]
+    enrich_production(teams,stats,games)
+    a=teams['A'][0]['production']
+    assert a['totals']['completions']==18 and a['totals']['attempts']==25
+    assert a['totals']['interceptions']==0
+    assert a['per_game']['passing_yards']==600 and a['team_games']==2
+    assert teams['B'][0]['production']['per_game']['receiving_yards']==300
+    assert teams['A'][1]['production']['totals']['passing_yards'] is None
+    assert a['totals']['rushing_yards'] is None
+
+
+def test_conflicting_player_stat_is_rejected():
+    import pytest
+    from cfb_dashboard.pipeline.players import enrich_production
+    stats=[{'team':'A','playerId':'1','category':'rushing','statType':'YDS','stat':n} for n in (100,200)]
+    with pytest.raises(ValueError,match='Conflicting season player stat'):
+        enrich_production({},stats,[])
