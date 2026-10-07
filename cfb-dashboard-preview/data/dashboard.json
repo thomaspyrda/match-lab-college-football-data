@@ -2,1018 +2,10 @@
   "slate": {
     "season": 2026,
     "week": 6,
-    "generated_at": "2026-10-06T23:52:08.930363+00:00",
+    "generated_at": "2026-10-07T00:14:25.712482+00:00",
     "model_version": "v15"
   },
   "games": [
-    {
-      "game_id": "401871090",
-      "season": 2026,
-      "week": 6,
-      "kickoff": "2026-10-07T00:00:00.000Z",
-      "venue": "Veterans Memorial Stadium (AL)",
-      "venue_id": 3975,
-      "away": {
-        "name": "Southern Miss",
-        "record": "1-3",
-        "ap_rank": null,
-        "team_strength": 8.6,
-        "team_strength_rank": 131,
-        "team_strength_sd": -1.858,
-        "offensive_strength": 9.3,
-        "offensive_strength_rank": 131,
-        "defensive_strength": 10.1,
-        "defensive_strength_rank": 131,
-        "sos_rank": 100,
-        "form": {
-          "games": 4,
-          "wins": 1,
-          "losses": 3,
-          "avg_points": 24.5,
-          "avg_allowed": 29.5,
-          "coming_off_loss": true,
-          "last_five": [
-            {
-              "week": 1,
-              "opponent": "Alcorn State",
-              "location": "H",
-              "start_date": "2026-09-05T21:00:00.000Z",
-              "result": "W",
-              "points": 49,
-              "allowed": 3,
-              "opponent_abbr": null
-            },
-            {
-              "week": 2,
-              "opponent": "Auburn",
-              "location": "A",
-              "start_date": "2026-09-12T23:45:00.000Z",
-              "result": "L",
-              "points": 8,
-              "allowed": 43,
-              "opponent_abbr": "AUB"
-            },
-            {
-              "week": 3,
-              "opponent": "UConn",
-              "location": "H",
-              "start_date": "2026-09-19T23:00:00.000Z",
-              "result": "L",
-              "points": 20,
-              "allowed": 48,
-              "opponent_abbr": "CONN"
-            },
-            {
-              "week": 4,
-              "opponent": "Tulane",
-              "location": "A",
-              "start_date": "2026-09-26T23:00:00.000Z",
-              "result": "L",
-              "points": 21,
-              "allowed": 24,
-              "opponent_abbr": "TULN"
-            }
-          ]
-        },
-        "metrics": {
-          "offensive_efficiency": 26,
-          "defensive_efficiency": 30,
-          "rushing_success": 55,
-          "passing_success": 35,
-          "explosiveness": 23,
-          "finishing_drives": 58,
-          "defensive_rushing_success": 34,
-          "defensive_passing_success": 73,
-          "defensive_explosiveness": 17,
-          "defensive_finishing_drives": 68,
-          "havoc": 19,
-          "overall_success": 41,
-          "defensive_success": 47,
-          "standard_down_success": 61,
-          "defensive_standard_down_success": 67,
-          "passing_down_success": 13,
-          "defensive_passing_down_success": 19,
-          "line_yards": 88,
-          "defensive_line_yards": 24,
-          "stuff_rate": 92,
-          "defensive_stuff_rate": 32,
-          "power_success": 61,
-          "defensive_power_success": 27,
-          "second_level_yards": 55,
-          "defensive_second_level_yards": 36,
-          "open_field_yards": 10,
-          "defensive_open_field_yards": 9,
-          "passing_ppa": 14,
-          "defensive_passing_ppa": 36,
-          "rushing_ppa": 69,
-          "defensive_rushing_ppa": 9,
-          "passing_explosiveness": 28,
-          "defensive_passing_explosiveness": 15,
-          "rushing_explosiveness": 26,
-          "defensive_rushing_explosiveness": 11,
-          "raw": {
-            "offensive_efficiency": 0.06934644450245363,
-            "defensive_efficiency": 0.15001712198694592,
-            "rushing_success": 0.45454545454545453,
-            "passing_success": 0.41025641025641024,
-            "explosiveness": 1.1560589132033754,
-            "finishing_drives": 4.090909090909091,
-            "defensive_rushing_success": 0.44029850746268656,
-            "defensive_passing_success": 0.3711340206185567,
-            "defensive_explosiveness": 1.3883050756440223,
-            "defensive_finishing_drives": 2.96,
-            "havoc": 0.131,
-            "overall_success": 0.4246575342465753,
-            "defensive_success": 0.40082644628099173,
-            "standard_down_success": 0.5032679738562091,
-            "defensive_standard_down_success": 0.42592592592592593,
-            "passing_down_success": 0.24242424242424243,
-            "defensive_passing_down_success": 0.35,
-            "line_yards": 3.5505050505050506,
-            "defensive_line_yards": 3.114179104477612,
-            "stuff_rate": 0.1111111111111111,
-            "defensive_stuff_rate": 0.17164179104477612,
-            "power_success": 0.7692307692307693,
-            "defensive_power_success": 0.8,
-            "second_level_yards": 1.1313131313131313,
-            "defensive_second_level_yards": 1.0522388059701493,
-            "open_field_yards": 0.5555555555555556,
-            "defensive_open_field_yards": 1.8432835820895521,
-            "passing_ppa": 0.020746224665953977,
-            "defensive_passing_ppa": 0.21464831651294822,
-            "rushing_ppa": 0.18898029651063325,
-            "defensive_rushing_ppa": 0.22232365325909492,
-            "passing_explosiveness": 1.4519144043041927,
-            "defensive_passing_explosiveness": 1.7875254956261932,
-            "rushing_explosiveness": 0.840479722695837,
-            "defensive_rushing_explosiveness": 1.1567867066918085
-          },
-          "games_played": 4,
-          "metrics_available": 35,
-          "through_week": 5,
-          "third_down_conversion": -1.92,
-          "defensive_third_down_conversion": -1.826,
-          "red_zone_td_rate": -0.823,
-          "defensive_red_zone_td_rate": -0.898,
-          "red_zone_points_per_trip": -0.745,
-          "defensive_red_zone_points_per_trip": -0.822
-        },
-        "conference": "Sun Belt",
-        "espn_id": 2572,
-        "raw_metrics": {
-          "havoc_allowed": 0.157,
-          "havoc": 0.131,
-          "overall_success": 0.4246575342465753,
-          "defensive_success": 0.40082644628099173,
-          "offensive_ppa": 0.06934644450245363,
-          "defensive_ppa": 0.15001712198694592,
-          "passing_success": 0.41025641025641024,
-          "defensive_passing_success": 0.3711340206185567,
-          "rushing_success": 0.45454545454545453,
-          "defensive_rushing_success": 0.44029850746268656,
-          "explosiveness": 1.1560589132033754,
-          "defensive_explosiveness": 1.3883050756440223,
-          "points_per_opportunity": 4.090909090909091,
-          "defensive_points_per_opportunity": 2.96,
-          "third_down_made": 18.0,
-          "third_down_att": 54.0,
-          "third_down_allowed_made": 25.0,
-          "third_down_allowed_att": 58.0,
-          "red_zone_td": 12.0,
-          "red_zone_att": 17.0,
-          "red_zone_allowed_td": 7.0,
-          "red_zone_allowed_att": 15.0,
-          "sack_rate_allowed": 0.06,
-          "sack_rate": 0.06779661016949153,
-          "turnovers": 5,
-          "turnovers_forced": 7,
-          "third_down_conversion": 0.3333333333333333,
-          "defensive_third_down_conversion": 0.43103448275862066,
-          "red_zone_td_rate": 0.7058823529411765,
-          "defensive_red_zone_td_rate": 0.4666666666666667,
-          "sack_rate_allowed_rank": 83,
-          "sack_rate_rank": 59,
-          "havoc_allowed_rank": 94,
-          "havoc_rank": 109,
-          "turnovers_rank": 52,
-          "turnovers_forced_rank": 42,
-          "overall_success_rank": 83,
-          "defensive_success_rank": 67,
-          "offensive_ppa_rank": 105,
-          "defensive_ppa_rank": 96,
-          "passing_success_rank": 92,
-          "defensive_passing_success_rank": 38,
-          "rushing_success_rank": 64,
-          "defensive_rushing_success_rank": 97,
-          "explosiveness_rank": 105,
-          "defensive_explosiveness_rank": 117,
-          "points_per_opportunity_rank": 60,
-          "defensive_points_per_opportunity_rank": 38,
-          "third_down_conversion_rank": 114,
-          "defensive_third_down_conversion_rank": 110,
-          "red_zone_td_rate_rank": 40,
-          "defensive_red_zone_td_rate_rank": 27
-        },
-        "abbr": "USM",
-        "color": "#ffc72c",
-        "alternate_color": "#231f20",
-        "logo": "https://cdn.collegefootballdata.com/logos/500/2572.png",
-        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2572.png"
-      },
-      "home": {
-        "name": "Troy",
-        "record": "2-2",
-        "ap_rank": null,
-        "team_strength": 33.1,
-        "team_strength_rank": 96,
-        "team_strength_sd": -0.596,
-        "offensive_strength": 26.7,
-        "offensive_strength_rank": 110,
-        "defensive_strength": 43.0,
-        "defensive_strength_rank": 83,
-        "sos_rank": 117,
-        "form": {
-          "games": 4,
-          "wins": 2,
-          "losses": 2,
-          "avg_points": 21.2,
-          "avg_allowed": 21.5,
-          "coming_off_loss": true,
-          "last_five": [
-            {
-              "week": 1,
-              "opponent": "Sam Houston",
-              "location": "H",
-              "start_date": "2026-09-05T23:00:00.000Z",
-              "result": "W",
-              "points": 24,
-              "allowed": 21,
-              "opponent_abbr": "SHSU"
-            },
-            {
-              "week": 2,
-              "opponent": "Alabama State",
-              "location": "H",
-              "start_date": "2026-09-12T20:00:00.000Z",
-              "result": "W",
-              "points": 34,
-              "allowed": 17,
-              "opponent_abbr": null
-            },
-            {
-              "week": 3,
-              "opponent": "Missouri",
-              "location": "A",
-              "start_date": "2026-09-19T23:00:00.000Z",
-              "result": "L",
-              "points": 17,
-              "allowed": 27,
-              "opponent_abbr": "MIZ"
-            },
-            {
-              "week": 4,
-              "opponent": "Utah State",
-              "location": "A",
-              "start_date": "2026-09-26T23:30:00.000Z",
-              "result": "L",
-              "points": 10,
-              "allowed": 21,
-              "opponent_abbr": "USU"
-            }
-          ]
-        },
-        "metrics": {
-          "offensive_efficiency": 15,
-          "defensive_efficiency": 58,
-          "rushing_success": 20,
-          "passing_success": 14,
-          "explosiveness": 70,
-          "finishing_drives": 12,
-          "defensive_rushing_success": 72,
-          "defensive_passing_success": 68,
-          "defensive_explosiveness": 31,
-          "defensive_finishing_drives": 66,
-          "havoc": 70,
-          "overall_success": 13,
-          "defensive_success": 69,
-          "standard_down_success": 12,
-          "defensive_standard_down_success": 57,
-          "passing_down_success": 31,
-          "defensive_passing_down_success": 80,
-          "line_yards": 14,
-          "defensive_line_yards": 88,
-          "stuff_rate": 12,
-          "defensive_stuff_rate": 88,
-          "power_success": 19,
-          "defensive_power_success": 82,
-          "second_level_yards": 59,
-          "defensive_second_level_yards": 53,
-          "open_field_yards": 64,
-          "defensive_open_field_yards": 14,
-          "passing_ppa": 17,
-          "defensive_passing_ppa": 66,
-          "rushing_ppa": 34,
-          "defensive_rushing_ppa": 72,
-          "passing_explosiveness": 55,
-          "defensive_passing_explosiveness": 58,
-          "rushing_explosiveness": 75,
-          "defensive_rushing_explosiveness": 29,
-          "raw": {
-            "offensive_efficiency": 0.02316723069395238,
-            "defensive_efficiency": 0.03576781868285299,
-            "rushing_success": 0.3945578231292517,
-            "passing_success": 0.3669064748201439,
-            "explosiveness": 1.3132704234201762,
-            "finishing_drives": 2.9583333333333335,
-            "defensive_rushing_success": 0.36607142857142855,
-            "defensive_passing_success": 0.3790322580645161,
-            "defensive_explosiveness": 1.3182035990042773,
-            "defensive_finishing_drives": 3.0,
-            "havoc": 0.182,
-            "overall_success": 0.3801369863013699,
-            "defensive_success": 0.371900826446281,
-            "standard_down_success": 0.4263959390862944,
-            "defensive_standard_down_success": 0.445859872611465,
-            "passing_down_success": 0.28421052631578947,
-            "defensive_passing_down_success": 0.23529411764705882,
-            "line_yards": 2.673469387755102,
-            "defensive_line_yards": 2.34375,
-            "stuff_rate": 0.23809523809523808,
-            "defensive_stuff_rate": 0.25892857142857145,
-            "power_success": 0.631578947368421,
-            "defensive_power_success": 0.6,
-            "second_level_yards": 1.1496598639455782,
-            "defensive_second_level_yards": 1.0,
-            "open_field_yards": 1.380952380952381,
-            "defensive_open_field_yards": 1.6607142857142858,
-            "passing_ppa": 0.035406746231412094,
-            "defensive_passing_ppa": 0.07482056155888335,
-            "rushing_ppa": 0.04682505864774512,
-            "defensive_rushing_ppa": -0.03531208129978451,
-            "passing_explosiveness": 1.571000122563346,
-            "defensive_passing_explosiveness": 1.50370212992187,
-            "rushing_explosiveness": 1.0742758716142133,
-            "defensive_rushing_explosiveness": 1.0234673439209188
-          },
-          "games_played": 4,
-          "metrics_available": 35,
-          "through_week": 5,
-          "third_down_conversion": -0.382,
-          "defensive_third_down_conversion": 0.175,
-          "red_zone_td_rate": -1.392,
-          "defensive_red_zone_td_rate": -0.769,
-          "red_zone_points_per_trip": -1.157,
-          "defensive_red_zone_points_per_trip": -0.589
-        },
-        "conference": "Sun Belt",
-        "espn_id": 2653,
-        "raw_metrics": {
-          "havoc_allowed": 0.202,
-          "havoc": 0.182,
-          "overall_success": 0.3801369863013699,
-          "defensive_success": 0.371900826446281,
-          "offensive_ppa": 0.02316723069395238,
-          "defensive_ppa": 0.03576781868285299,
-          "passing_success": 0.3669064748201439,
-          "defensive_passing_success": 0.3790322580645161,
-          "rushing_success": 0.3945578231292517,
-          "defensive_rushing_success": 0.36607142857142855,
-          "explosiveness": 1.3132704234201762,
-          "defensive_explosiveness": 1.3182035990042773,
-          "points_per_opportunity": 2.9583333333333335,
-          "defensive_points_per_opportunity": 3.0,
-          "third_down_made": 20.0,
-          "third_down_att": 59.0,
-          "third_down_allowed_made": 16.0,
-          "third_down_allowed_att": 50.0,
-          "red_zone_td": 6.0,
-          "red_zone_att": 11.0,
-          "red_zone_allowed_td": 8.0,
-          "red_zone_allowed_att": 14.0,
-          "sack_rate_allowed": 0.056338028169014086,
-          "sack_rate": 0.064,
-          "turnovers": 5,
-          "turnovers_forced": 4,
-          "third_down_conversion": 0.3389830508474576,
-          "defensive_third_down_conversion": 0.32,
-          "red_zone_td_rate": 0.5454545454545454,
-          "defensive_red_zone_td_rate": 0.5714285714285714,
-          "sack_rate_allowed_rank": 75,
-          "sack_rate_rank": 64,
-          "havoc_allowed_rank": 135,
-          "havoc_rank": 35,
-          "turnovers_rank": 52,
-          "turnovers_forced_rank": 98,
-          "overall_success_rank": 121,
-          "defensive_success_rank": 41,
-          "offensive_ppa_rank": 115,
-          "defensive_ppa_rank": 54,
-          "passing_success_rank": 123,
-          "defensive_passing_success_rank": 43,
-          "rushing_success_rank": 106,
-          "defensive_rushing_success_rank": 33,
-          "explosiveness_rank": 40,
-          "defensive_explosiveness_rank": 98,
-          "points_per_opportunity_rank": 120,
-          "defensive_points_per_opportunity_rank": 41,
-          "third_down_conversion_rank": 111,
-          "defensive_third_down_conversion_rank": 30,
-          "red_zone_td_rate_rank": 105,
-          "defensive_red_zone_td_rate_rank": 64
-        },
-        "abbr": "TROY",
-        "color": "#862633",
-        "alternate_color": "#b1b1b1",
-        "logo": "https://cdn.collegefootballdata.com/logos/500/2653.png",
-        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2653.png"
-      },
-      "market": {
-        "spread": -9.5,
-        "total": 51.5,
-        "home_moneyline": -420.0,
-        "away_moneyline": 315.0,
-        "provider": "Bovada"
-      },
-      "context": {
-        "conference_game": true,
-        "neutral_site": false
-      },
-      "weather": {
-        "summary": "Outdoor \u00b7 70\u00b0F \u00b7 Wind 5 mph \u00b7 Mostly Cloudy \u00b7 0% precipitation"
-      },
-      "matchup_metrics": [
-        {
-          "label": "Sack Rate Allowed",
-          "offense_label": "Sack Rate Allowed",
-          "defense_label": "Sack Rate",
-          "format": "percent",
-          "away_offense": 0.06,
-          "home_defense": 0.064,
-          "home_offense": 0.056338028169014086,
-          "away_defense": 0.06779661016949153,
-          "away_offense_rank": 83,
-          "home_defense_rank": 64,
-          "home_offense_rank": 75,
-          "away_defense_rank": 59
-        },
-        {
-          "label": "Havoc Allowed",
-          "offense_label": "Havoc Allowed",
-          "defense_label": "Havoc",
-          "format": "percent",
-          "away_offense": 0.157,
-          "home_defense": 0.182,
-          "home_offense": 0.202,
-          "away_defense": 0.131,
-          "away_offense_rank": 94,
-          "home_defense_rank": 35,
-          "home_offense_rank": 135,
-          "away_defense_rank": 109
-        },
-        {
-          "label": "Turnovers",
-          "offense_label": "Turnovers",
-          "defense_label": "Turnovers Forced",
-          "format": "count",
-          "away_offense": 5,
-          "home_defense": 4,
-          "home_offense": 5,
-          "away_defense": 7,
-          "away_offense_rank": 52,
-          "home_defense_rank": 98,
-          "home_offense_rank": 52,
-          "away_defense_rank": 42
-        },
-        {
-          "label": "Success Rate",
-          "offense_label": "Success Rate",
-          "defense_label": "Defensive Success Rate",
-          "format": "percent",
-          "away_offense": 0.4246575342465753,
-          "home_defense": 0.371900826446281,
-          "home_offense": 0.3801369863013699,
-          "away_defense": 0.40082644628099173,
-          "away_offense_rank": 83,
-          "home_defense_rank": 41,
-          "home_offense_rank": 121,
-          "away_defense_rank": 67
-        },
-        {
-          "label": "EPA / Play",
-          "offense_label": "EPA / Play",
-          "defense_label": "EPA / Play Allowed",
-          "format": "decimal",
-          "away_offense": 0.06934644450245363,
-          "home_defense": 0.03576781868285299,
-          "home_offense": 0.02316723069395238,
-          "away_defense": 0.15001712198694592,
-          "away_offense_rank": 105,
-          "home_defense_rank": 54,
-          "home_offense_rank": 115,
-          "away_defense_rank": 96
-        },
-        {
-          "label": "Passing Success Rate",
-          "offense_label": "Passing Success Rate",
-          "defense_label": "Defensive Pass Success Rate",
-          "format": "percent",
-          "away_offense": 0.41025641025641024,
-          "home_defense": 0.3790322580645161,
-          "home_offense": 0.3669064748201439,
-          "away_defense": 0.3711340206185567,
-          "away_offense_rank": 92,
-          "home_defense_rank": 43,
-          "home_offense_rank": 123,
-          "away_defense_rank": 38
-        },
-        {
-          "label": "Rushing Success Rate",
-          "offense_label": "Rushing Success Rate",
-          "defense_label": "Defensive Rush Success Rate",
-          "format": "percent",
-          "away_offense": 0.45454545454545453,
-          "home_defense": 0.36607142857142855,
-          "home_offense": 0.3945578231292517,
-          "away_defense": 0.44029850746268656,
-          "away_offense_rank": 64,
-          "home_defense_rank": 33,
-          "home_offense_rank": 106,
-          "away_defense_rank": 97
-        },
-        {
-          "label": "Explosiveness",
-          "offense_label": "Explosiveness",
-          "defense_label": "Explosiveness Allowed",
-          "format": "decimal",
-          "away_offense": 1.1560589132033754,
-          "home_defense": 1.3182035990042773,
-          "home_offense": 1.3132704234201762,
-          "away_defense": 1.3883050756440223,
-          "away_offense_rank": 105,
-          "home_defense_rank": 98,
-          "home_offense_rank": 40,
-          "away_defense_rank": 117
-        },
-        {
-          "label": "Points per Opportunity",
-          "offense_label": "Points per Opportunity",
-          "defense_label": "Points per Opportunity Allowed",
-          "format": "decimal",
-          "away_offense": 4.090909090909091,
-          "home_defense": 3.0,
-          "home_offense": 2.9583333333333335,
-          "away_defense": 2.96,
-          "away_offense_rank": 60,
-          "home_defense_rank": 41,
-          "home_offense_rank": 120,
-          "away_defense_rank": 38
-        },
-        {
-          "label": "Third Down Conversion",
-          "offense_label": "Third Down Conversion",
-          "defense_label": "Third Down Defense",
-          "format": "percent",
-          "away_offense": 0.3333333333333333,
-          "home_defense": 0.32,
-          "home_offense": 0.3389830508474576,
-          "away_defense": 0.43103448275862066,
-          "away_offense_rank": 114,
-          "home_defense_rank": 30,
-          "home_offense_rank": 111,
-          "away_defense_rank": 110
-        },
-        {
-          "label": "Red Zone TD Rate",
-          "offense_label": "Red Zone TD Rate",
-          "defense_label": "Red Zone TD Defense",
-          "format": "percent",
-          "away_offense": 0.7058823529411765,
-          "home_defense": 0.5714285714285714,
-          "home_offense": 0.5454545454545454,
-          "away_defense": 0.4666666666666667,
-          "away_offense_rank": 40,
-          "home_defense_rank": 64,
-          "home_offense_rank": 105,
-          "away_defense_rank": 27
-        }
-      ],
-      "featured_mismatch": {
-        "metric": "Passing Success Rate",
-        "side": "home_offense",
-        "rank_gap": 85,
-        "offense_rank": 123,
-        "opponent_defense_rank": 38,
-        "offense_value": 0.3669064748201439,
-        "opponent_defense_value": 0.3711340206185567
-      },
-      "market_trends": [
-        {
-          "label": "ATS this season",
-          "away": "2-2-0",
-          "home": "1-3-0",
-          "note": "Current-season ATS record using available closing lines."
-        },
-        {
-          "label": "ATS by location",
-          "away": "Road \u00b7 1-1-0",
-          "home": "Home \u00b7 0-2-0",
-          "note": "Current-season ATS record in the same home/road role as this matchup."
-        },
-        {
-          "label": "O/U this season",
-          "away": "2-2-0",
-          "home": "0-4-0",
-          "note": "Current-season over-under record. Format is Over-Under-Push."
-        },
-        {
-          "label": "O/U by location",
-          "away": "Road \u00b7 0-2-0",
-          "home": "Home \u00b7 0-2-0",
-          "note": "Current-season over-under record in the same home/road role as this matchup."
-        }
-      ],
-      "players": [
-        {
-          "team": "USM",
-          "name": "Landy Lyddy",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.402
-            },
-            {
-              "label": "Pass usage",
-              "value": 0.618
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.102
-            },
-            {
-              "label": "3rd Down Completion %",
-              "value": 0.47058823529411764
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4833635",
-          "slot": "Projected starting QB",
-          "efficiency": {
-            "label": "Passing PPA",
-            "value": 0.097,
-            "rank": 138,
-            "sample_size": 62,
-            "minimum": 10,
-            "qualified": true,
-            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
-            "qualifying_count": 196
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": "Projected from recent passing role"
-        },
-        {
-          "team": "USM",
-          "name": "Steven Robinson",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.269
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.545
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.002081165452653486
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.1
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5394596",
-          "slot": "Top usage RB",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "USM",
-          "name": "Mario Sanders II",
-          "position": "WR",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.114
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.14984391259105098
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.125
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5218891",
-          "slot": "Top usage WR",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "USM",
-          "name": "Jeremiah Beck Jr.",
-          "position": "TE",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.052
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.047866805411030174
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5293671",
-          "slot": "Top usage TE",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "USM",
-          "name": "Jamarice Wilder",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.169
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.313
-            },
-            {
-              "label": "Air Yards %",
-              "value": -0.006243496357960458
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.15
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5156440",
-          "slot": "Next skill player",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "TROY",
-          "name": "Will Crowder",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.538
-            },
-            {
-              "label": "Pass usage",
-              "value": 0.986
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.136
-            },
-            {
-              "label": "3rd Down Completion %",
-              "value": 0.3793103448275862
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4431633",
-          "slot": "Projected starting QB",
-          "efficiency": {
-            "label": "Passing PPA",
-            "value": 0.067,
-            "rank": 150,
-            "sample_size": 133,
-            "minimum": 10,
-            "qualified": true,
-            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
-            "qualifying_count": 196
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": "Projected from recent passing role"
-        },
-        {
-          "team": "TROY",
-          "name": "Gavin Griffin",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.195
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.367
-            },
-            {
-              "label": "Air Yards %",
-              "value": -0.006683375104427736
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.119
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5388754",
-          "slot": "Top usage RB",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "TROY",
-          "name": "Howard Kinchen",
-          "position": "WR",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.111
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.16374269005847952
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.2
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5388762",
-          "slot": "Top usage WR",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "TROY",
-          "name": "Fabian Rogosch",
-          "position": "TE",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.029
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.022556390977443608
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.034
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5091753",
-          "slot": "Top usage TE",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "TROY",
-          "name": "Jaheim Merriweather",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.127
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.238
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.002506265664160401
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.153
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5086097",
-          "slot": "Next skill player",
-          "efficiency": null,
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        }
-      ],
-      "trends": [
-        {
-          "type": "matchup_edge",
-          "metric": "Passing Success Rate",
-          "team": "Southern Miss",
-          "edge_unit": "defense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 85
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Third Down Conversion",
-          "team": "Troy",
-          "edge_unit": "defense",
-          "offense_side": "away",
-          "direction": "rank gap",
-          "gap": 84
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Points per Opportunity",
-          "team": "Southern Miss",
-          "edge_unit": "defense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 82
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Red Zone TD Rate",
-          "team": "Southern Miss",
-          "edge_unit": "defense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 78
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Explosiveness",
-          "team": "Troy",
-          "edge_unit": "offense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 77
-        },
-        {
-          "type": "bounce_back",
-          "team": "Southern Miss",
-          "detail": "coming off a loss"
-        },
-        {
-          "type": "bounce_back",
-          "team": "Troy",
-          "detail": "coming off a loss"
-        },
-        {
-          "type": "game_context",
-          "detail": "conference matchup"
-        }
-      ]
-    },
     {
       "game_id": "401871051",
       "season": 2026,
@@ -60169,6 +59161,1014 @@
           "type": "bounce_back",
           "team": "Middle Tennessee",
           "detail": "coming off a loss"
+        },
+        {
+          "type": "game_context",
+          "detail": "conference matchup"
+        }
+      ]
+    },
+    {
+      "game_id": "401871053",
+      "season": 2026,
+      "week": 7,
+      "kickoff": "2026-10-14T00:00:00.000Z",
+      "venue": "AmFirst Stadium",
+      "venue_id": 3662,
+      "away": {
+        "name": "Florida International",
+        "record": "2-2",
+        "ap_rank": null,
+        "team_strength": 25.4,
+        "team_strength_rank": 114,
+        "team_strength_sd": -0.981,
+        "offensive_strength": 17.0,
+        "offensive_strength_rank": 125,
+        "defensive_strength": 35.3,
+        "defensive_strength_rank": 90,
+        "sos_rank": 130,
+        "form": {
+          "games": 4,
+          "wins": 2,
+          "losses": 2,
+          "avg_points": 18.0,
+          "avg_allowed": 14.5,
+          "coming_off_loss": false,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "South Florida",
+              "location": "A",
+              "start_date": "2026-09-05T23:00:00.000Z",
+              "result": "L",
+              "points": 9,
+              "allowed": 19,
+              "opponent_abbr": "USF"
+            },
+            {
+              "week": 2,
+              "opponent": "Buffalo",
+              "location": "H",
+              "start_date": "2026-09-12T22:00:00.000Z",
+              "result": "W",
+              "points": 33,
+              "allowed": 20,
+              "opponent_abbr": "BUF"
+            },
+            {
+              "week": 3,
+              "opponent": "Florida Atlantic",
+              "location": "A",
+              "start_date": "2026-09-19T22:00:00.000Z",
+              "result": "L",
+              "points": 10,
+              "allowed": 16,
+              "opponent_abbr": "FAU"
+            },
+            {
+              "week": 4,
+              "opponent": "Long Island University",
+              "location": "H",
+              "start_date": "2026-09-26T22:00:00.000Z",
+              "result": "W",
+              "points": 20,
+              "allowed": 3,
+              "opponent_abbr": null
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 13,
+          "defensive_efficiency": 70,
+          "rushing_success": 9,
+          "passing_success": 53,
+          "explosiveness": 37,
+          "finishing_drives": 6,
+          "defensive_rushing_success": 93,
+          "defensive_passing_success": 78,
+          "defensive_explosiveness": 69,
+          "defensive_finishing_drives": 78,
+          "havoc": 63,
+          "overall_success": 18,
+          "defensive_success": 88,
+          "standard_down_success": 18,
+          "defensive_standard_down_success": 79,
+          "passing_down_success": 42,
+          "defensive_passing_down_success": 81,
+          "line_yards": 26,
+          "defensive_line_yards": 92,
+          "stuff_rate": 37,
+          "defensive_stuff_rate": 72,
+          "power_success": 71,
+          "defensive_power_success": 66,
+          "second_level_yards": 14,
+          "defensive_second_level_yards": 85,
+          "open_field_yards": 1,
+          "defensive_open_field_yards": 99,
+          "passing_ppa": 27,
+          "defensive_passing_ppa": 74,
+          "rushing_ppa": 5,
+          "defensive_rushing_ppa": 77,
+          "passing_explosiveness": 58,
+          "defensive_passing_explosiveness": 85,
+          "rushing_explosiveness": 2,
+          "defensive_rushing_explosiveness": 56,
+          "raw": {
+            "offensive_efficiency": 0.009160633238520852,
+            "defensive_efficiency": -0.003786046049119338,
+            "rushing_success": 0.3458646616541353,
+            "passing_success": 0.4444444444444444,
+            "explosiveness": 1.2069907538933642,
+            "finishing_drives": 2.5,
+            "defensive_rushing_success": 0.3025210084033613,
+            "defensive_passing_success": 0.3629032258064516,
+            "defensive_explosiveness": 1.1588398912972853,
+            "defensive_finishing_drives": 2.761904761904762,
+            "havoc": 0.177,
+            "overall_success": 0.391156462585034,
+            "defensive_success": 0.3373493975903614,
+            "standard_down_success": 0.44148936170212766,
+            "defensive_standard_down_success": 0.4025974025974026,
+            "passing_down_success": 0.3018867924528302,
+            "defensive_passing_down_success": 0.23157894736842105,
+            "line_yards": 2.8263157894736843,
+            "defensive_line_yards": 2.23109243697479,
+            "stuff_rate": 0.18045112781954886,
+            "defensive_stuff_rate": 0.2184873949579832,
+            "power_success": 0.7894736842105263,
+            "defensive_power_success": 0.6666666666666666,
+            "second_level_yards": 0.8646616541353384,
+            "defensive_second_level_yards": 0.7563025210084033,
+            "open_field_yards": 0.3082706766917293,
+            "defensive_open_field_yards": 0.24369747899159663,
+            "passing_ppa": 0.12291467973450634,
+            "defensive_passing_ppa": 0.04778446156223633,
+            "rushing_ppa": -0.07868830054229561,
+            "defensive_rushing_ppa": -0.05787938507310011,
+            "passing_explosiveness": 1.5936328460798472,
+            "defensive_passing_explosiveness": 1.360902376295488,
+            "rushing_explosiveness": 0.6001577925161052,
+            "defensive_rushing_explosiveness": 0.8956158643739676
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -0.64,
+          "defensive_third_down_conversion": -0.177,
+          "red_zone_td_rate": -1.429,
+          "defensive_red_zone_td_rate": -0.68,
+          "red_zone_points_per_trip": -1.227,
+          "defensive_red_zone_points_per_trip": -1.056
+        },
+        "conference": "Conference USA",
+        "espn_id": 2229,
+        "raw_metrics": {
+          "havoc_allowed": 0.153,
+          "havoc": 0.177,
+          "overall_success": 0.391156462585034,
+          "defensive_success": 0.3373493975903614,
+          "offensive_ppa": 0.009160633238520852,
+          "defensive_ppa": -0.003786046049119338,
+          "passing_success": 0.4444444444444444,
+          "defensive_passing_success": 0.3629032258064516,
+          "rushing_success": 0.3458646616541353,
+          "defensive_rushing_success": 0.3025210084033613,
+          "explosiveness": 1.2069907538933642,
+          "defensive_explosiveness": 1.1588398912972853,
+          "points_per_opportunity": 2.5,
+          "defensive_points_per_opportunity": 2.761904761904762,
+          "third_down_made": 31.0,
+          "third_down_att": 67.0,
+          "third_down_allowed_made": 18.0,
+          "third_down_allowed_att": 60.0,
+          "red_zone_td": 5.0,
+          "red_zone_att": 14.0,
+          "red_zone_allowed_td": 5.0,
+          "red_zone_allowed_att": 12.0,
+          "sack_rate_allowed": 0.01948051948051948,
+          "sack_rate": 0.08,
+          "turnovers": 8,
+          "turnovers_forced": 4,
+          "third_down_conversion": 0.4626865671641791,
+          "defensive_third_down_conversion": 0.3,
+          "red_zone_td_rate": 0.35714285714285715,
+          "defensive_red_zone_td_rate": 0.4166666666666667,
+          "sack_rate_allowed_rank": 7,
+          "sack_rate_rank": 31,
+          "havoc_allowed_rank": 86,
+          "havoc_rank": 45,
+          "turnovers_rank": 100,
+          "turnovers_forced_rank": 98,
+          "overall_success_rank": 113,
+          "defensive_success_rank": 13,
+          "offensive_ppa_rank": 120,
+          "defensive_ppa_rank": 39,
+          "passing_success_rank": 68,
+          "defensive_passing_success_rank": 31,
+          "rushing_success_rank": 126,
+          "defensive_rushing_success_rank": 9,
+          "explosiveness_rank": 84,
+          "defensive_explosiveness_rank": 39,
+          "points_per_opportunity_rank": 129,
+          "defensive_points_per_opportunity_rank": 24,
+          "third_down_conversion_rank": 36,
+          "defensive_third_down_conversion_rank": 23,
+          "red_zone_td_rate_rank": 135,
+          "defensive_red_zone_td_rate_rank": 14
+        },
+        "abbr": "FIU",
+        "color": "#091f3f",
+        "alternate_color": "#c3993f",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/2229.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2229.png"
+      },
+      "home": {
+        "name": "Jacksonville State",
+        "record": "3-2",
+        "ap_rank": null,
+        "team_strength": 33.5,
+        "team_strength_rank": 95,
+        "team_strength_sd": -0.575,
+        "offensive_strength": 33.8,
+        "offensive_strength_rank": 95,
+        "defensive_strength": 34.0,
+        "defensive_strength_rank": 93,
+        "sos_rank": 134,
+        "form": {
+          "games": 5,
+          "wins": 3,
+          "losses": 2,
+          "avg_points": 27.4,
+          "avg_allowed": 21.8,
+          "coming_off_loss": false,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "North Dakota State",
+              "location": "A",
+              "start_date": "2026-08-29T21:30:00.000Z",
+              "result": "L",
+              "points": 7,
+              "allowed": 33,
+              "opponent_abbr": "NDSU"
+            },
+            {
+              "week": 1,
+              "opponent": "Eastern Kentucky",
+              "location": "H",
+              "start_date": "2026-09-05T23:00:00.000Z",
+              "result": "W",
+              "points": 49,
+              "allowed": 7,
+              "opponent_abbr": null
+            },
+            {
+              "week": 2,
+              "opponent": "Ohio",
+              "location": "A",
+              "start_date": "2026-09-12T22:00:00.000Z",
+              "result": "L",
+              "points": 27,
+              "allowed": 29,
+              "opponent_abbr": "OHIO"
+            },
+            {
+              "week": 3,
+              "opponent": "Georgia Southern",
+              "location": "H",
+              "start_date": "2026-09-19T23:00:00.000Z",
+              "result": "W",
+              "points": 31,
+              "allowed": 27,
+              "opponent_abbr": "GASO"
+            },
+            {
+              "week": 4,
+              "opponent": "Middle Tennessee",
+              "location": "H",
+              "start_date": "2026-09-26T23:00:00.000Z",
+              "result": "W",
+              "points": 23,
+              "allowed": 13,
+              "opponent_abbr": "MTSU"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 58,
+          "defensive_efficiency": 50,
+          "rushing_success": 70,
+          "passing_success": 82,
+          "explosiveness": 36,
+          "finishing_drives": 22,
+          "defensive_rushing_success": 31,
+          "defensive_passing_success": 47,
+          "defensive_explosiveness": 86,
+          "defensive_finishing_drives": 43,
+          "havoc": 40,
+          "overall_success": 77,
+          "defensive_success": 36,
+          "standard_down_success": 74,
+          "defensive_standard_down_success": 26,
+          "passing_down_success": 69,
+          "defensive_passing_down_success": 66,
+          "line_yards": 43,
+          "defensive_line_yards": 39,
+          "stuff_rate": 31,
+          "defensive_stuff_rate": 22,
+          "power_success": 76,
+          "defensive_power_success": 6,
+          "second_level_yards": 69,
+          "defensive_second_level_yards": 45,
+          "open_field_yards": 42,
+          "defensive_open_field_yards": 38,
+          "passing_ppa": 73,
+          "defensive_passing_ppa": 77,
+          "rushing_ppa": 46,
+          "defensive_rushing_ppa": 26,
+          "passing_explosiveness": 42,
+          "defensive_passing_explosiveness": 80,
+          "rushing_explosiveness": 49,
+          "defensive_rushing_explosiveness": 53,
+          "raw": {
+            "offensive_efficiency": 0.19710724490232945,
+            "defensive_efficiency": 0.06389973408572343,
+            "rushing_success": 0.47368421052631576,
+            "passing_success": 0.5083333333333333,
+            "explosiveness": 1.206591455665459,
+            "finishing_drives": 3.2857142857142856,
+            "defensive_rushing_success": 0.44171779141104295,
+            "defensive_passing_success": 0.4049586776859504,
+            "defensive_explosiveness": 1.094007671797357,
+            "defensive_finishing_drives": 3.5,
+            "havoc": 0.155,
+            "overall_success": 0.48214285714285715,
+            "defensive_success": 0.4261168384879725,
+            "standard_down_success": 0.5238095238095238,
+            "defensive_standard_down_success": 0.49282296650717705,
+            "passing_down_success": 0.35714285714285715,
+            "defensive_passing_down_success": 0.25609756097560976,
+            "line_yards": 3.0407894736842107,
+            "defensive_line_yards": 2.992638036809816,
+            "stuff_rate": 0.19078947368421054,
+            "defensive_stuff_rate": 0.15950920245398773,
+            "power_success": 0.8076923076923077,
+            "defensive_power_success": 0.9047619047619048,
+            "second_level_yards": 1.2105263157894737,
+            "defensive_second_level_yards": 1.01840490797546,
+            "open_field_yards": 1.0723684210526316,
+            "defensive_open_field_yards": 1.177914110429448,
+            "passing_ppa": 0.3857942793875486,
+            "defensive_passing_ppa": 0.03851846766279937,
+            "rushing_ppa": 0.09808066976039406,
+            "defensive_rushing_ppa": 0.14285519444368097,
+            "passing_explosiveness": 1.522778778547443,
+            "defensive_passing_explosiveness": 1.3958048672250492,
+            "rushing_explosiveness": 0.9516026501731336,
+            "defensive_rushing_explosiveness": 0.9094756427105326
+          },
+          "games_played": 5,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -0.6,
+          "defensive_third_down_conversion": -0.908,
+          "red_zone_td_rate": -1.308,
+          "defensive_red_zone_td_rate": -0.734,
+          "red_zone_points_per_trip": -1.107,
+          "defensive_red_zone_points_per_trip": -0.517
+        },
+        "conference": "Conference USA",
+        "espn_id": 55,
+        "raw_metrics": {
+          "havoc_allowed": 0.132,
+          "havoc": 0.155,
+          "overall_success": 0.48214285714285715,
+          "defensive_success": 0.4261168384879725,
+          "offensive_ppa": 0.19710724490232945,
+          "defensive_ppa": 0.06389973408572343,
+          "passing_success": 0.5083333333333333,
+          "defensive_passing_success": 0.4049586776859504,
+          "rushing_success": 0.47368421052631576,
+          "defensive_rushing_success": 0.44171779141104295,
+          "explosiveness": 1.206591455665459,
+          "defensive_explosiveness": 1.094007671797357,
+          "points_per_opportunity": 3.2857142857142856,
+          "defensive_points_per_opportunity": 3.5,
+          "third_down_made": 27.0,
+          "third_down_att": 56.0,
+          "third_down_allowed_made": 31.0,
+          "third_down_allowed_att": 70.0,
+          "red_zone_td": 10.0,
+          "red_zone_att": 21.0,
+          "red_zone_allowed_td": 7.0,
+          "red_zone_allowed_att": 16.0,
+          "sack_rate_allowed": 0.037037037037037035,
+          "sack_rate": 0.06818181818181818,
+          "turnovers": 7,
+          "turnovers_forced": 4,
+          "third_down_conversion": 0.48214285714285715,
+          "defensive_third_down_conversion": 0.44285714285714284,
+          "red_zone_td_rate": 0.47619047619047616,
+          "defensive_red_zone_td_rate": 0.4375,
+          "sack_rate_allowed_rank": 36,
+          "sack_rate_rank": 57,
+          "havoc_allowed_rank": 45,
+          "havoc_rank": 78,
+          "turnovers_rank": 85,
+          "turnovers_forced_rank": 98,
+          "overall_success_rank": 32,
+          "defensive_success_rank": 91,
+          "offensive_ppa_rank": 54,
+          "defensive_ppa_rank": 65,
+          "passing_success_rank": 21,
+          "defensive_passing_success_rank": 67,
+          "rushing_success_rank": 47,
+          "defensive_rushing_success_rank": 98,
+          "explosiveness_rank": 85,
+          "defensive_explosiveness_rank": 17,
+          "points_per_opportunity_rank": 105,
+          "defensive_points_per_opportunity_rank": 77,
+          "third_down_conversion_rank": 31,
+          "defensive_third_down_conversion_rank": 118,
+          "red_zone_td_rate_rank": 123,
+          "defensive_red_zone_td_rate_rank": 20
+        },
+        "abbr": "JXST",
+        "color": "#cc0000",
+        "alternate_color": "#000000",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/55.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/55.png"
+      },
+      "market": {
+        "spread": null,
+        "total": null,
+        "home_moneyline": null,
+        "away_moneyline": null,
+        "provider": null
+      },
+      "context": {
+        "conference_game": true,
+        "neutral_site": false
+      },
+      "weather": {
+        "summary": "Outdoor \u00b7 forecast not yet available"
+      },
+      "matchup_metrics": [
+        {
+          "label": "Sack Rate Allowed",
+          "offense_label": "Sack Rate Allowed",
+          "defense_label": "Sack Rate",
+          "format": "percent",
+          "away_offense": 0.01948051948051948,
+          "home_defense": 0.06818181818181818,
+          "home_offense": 0.037037037037037035,
+          "away_defense": 0.08,
+          "away_offense_rank": 7,
+          "home_defense_rank": 57,
+          "home_offense_rank": 36,
+          "away_defense_rank": 31
+        },
+        {
+          "label": "Havoc Allowed",
+          "offense_label": "Havoc Allowed",
+          "defense_label": "Havoc",
+          "format": "percent",
+          "away_offense": 0.153,
+          "home_defense": 0.155,
+          "home_offense": 0.132,
+          "away_defense": 0.177,
+          "away_offense_rank": 86,
+          "home_defense_rank": 78,
+          "home_offense_rank": 45,
+          "away_defense_rank": 45
+        },
+        {
+          "label": "Turnovers",
+          "offense_label": "Turnovers",
+          "defense_label": "Turnovers Forced",
+          "format": "count",
+          "away_offense": 8,
+          "home_defense": 4,
+          "home_offense": 7,
+          "away_defense": 4,
+          "away_offense_rank": 100,
+          "home_defense_rank": 98,
+          "home_offense_rank": 85,
+          "away_defense_rank": 98
+        },
+        {
+          "label": "Success Rate",
+          "offense_label": "Success Rate",
+          "defense_label": "Defensive Success Rate",
+          "format": "percent",
+          "away_offense": 0.391156462585034,
+          "home_defense": 0.4261168384879725,
+          "home_offense": 0.48214285714285715,
+          "away_defense": 0.3373493975903614,
+          "away_offense_rank": 113,
+          "home_defense_rank": 91,
+          "home_offense_rank": 32,
+          "away_defense_rank": 13
+        },
+        {
+          "label": "EPA / Play",
+          "offense_label": "EPA / Play",
+          "defense_label": "EPA / Play Allowed",
+          "format": "decimal",
+          "away_offense": 0.009160633238520852,
+          "home_defense": 0.06389973408572343,
+          "home_offense": 0.19710724490232945,
+          "away_defense": -0.003786046049119338,
+          "away_offense_rank": 120,
+          "home_defense_rank": 65,
+          "home_offense_rank": 54,
+          "away_defense_rank": 39
+        },
+        {
+          "label": "Passing Success Rate",
+          "offense_label": "Passing Success Rate",
+          "defense_label": "Defensive Pass Success Rate",
+          "format": "percent",
+          "away_offense": 0.4444444444444444,
+          "home_defense": 0.4049586776859504,
+          "home_offense": 0.5083333333333333,
+          "away_defense": 0.3629032258064516,
+          "away_offense_rank": 68,
+          "home_defense_rank": 67,
+          "home_offense_rank": 21,
+          "away_defense_rank": 31
+        },
+        {
+          "label": "Rushing Success Rate",
+          "offense_label": "Rushing Success Rate",
+          "defense_label": "Defensive Rush Success Rate",
+          "format": "percent",
+          "away_offense": 0.3458646616541353,
+          "home_defense": 0.44171779141104295,
+          "home_offense": 0.47368421052631576,
+          "away_defense": 0.3025210084033613,
+          "away_offense_rank": 126,
+          "home_defense_rank": 98,
+          "home_offense_rank": 47,
+          "away_defense_rank": 9
+        },
+        {
+          "label": "Explosiveness",
+          "offense_label": "Explosiveness",
+          "defense_label": "Explosiveness Allowed",
+          "format": "decimal",
+          "away_offense": 1.2069907538933642,
+          "home_defense": 1.094007671797357,
+          "home_offense": 1.206591455665459,
+          "away_defense": 1.1588398912972853,
+          "away_offense_rank": 84,
+          "home_defense_rank": 17,
+          "home_offense_rank": 85,
+          "away_defense_rank": 39
+        },
+        {
+          "label": "Points per Opportunity",
+          "offense_label": "Points per Opportunity",
+          "defense_label": "Points per Opportunity Allowed",
+          "format": "decimal",
+          "away_offense": 2.5,
+          "home_defense": 3.5,
+          "home_offense": 3.2857142857142856,
+          "away_defense": 2.761904761904762,
+          "away_offense_rank": 129,
+          "home_defense_rank": 77,
+          "home_offense_rank": 105,
+          "away_defense_rank": 24
+        },
+        {
+          "label": "Third Down Conversion",
+          "offense_label": "Third Down Conversion",
+          "defense_label": "Third Down Defense",
+          "format": "percent",
+          "away_offense": 0.4626865671641791,
+          "home_defense": 0.44285714285714284,
+          "home_offense": 0.48214285714285715,
+          "away_defense": 0.3,
+          "away_offense_rank": 36,
+          "home_defense_rank": 118,
+          "home_offense_rank": 31,
+          "away_defense_rank": 23
+        },
+        {
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
+          "format": "percent",
+          "away_offense": 0.35714285714285715,
+          "home_defense": 0.4375,
+          "home_offense": 0.47619047619047616,
+          "away_defense": 0.4166666666666667,
+          "away_offense_rank": 135,
+          "home_defense_rank": 20,
+          "home_offense_rank": 123,
+          "away_defense_rank": 14
+        }
+      ],
+      "featured_mismatch": {
+        "metric": "Red Zone TD Rate",
+        "side": "away_offense",
+        "rank_gap": 115,
+        "offense_rank": 135,
+        "opponent_defense_rank": 20,
+        "offense_value": 0.35714285714285715,
+        "opponent_defense_value": 0.4375
+      },
+      "market_trends": [
+        {
+          "label": "ATS this season",
+          "away": "2-2-0",
+          "home": "3-1-1",
+          "note": "Current-season ATS record using available closing lines."
+        },
+        {
+          "label": "ATS by location",
+          "away": "Road \u00b7 1-1-0",
+          "home": "Home \u00b7 3-0-0",
+          "note": "Current-season ATS record in the same home/road role as this matchup."
+        },
+        {
+          "label": "O/U this season",
+          "away": "1-3-0",
+          "home": "3-2-0",
+          "note": "Current-season over-under record. Format is Over-Under-Push."
+        },
+        {
+          "label": "O/U by location",
+          "away": "Road \u00b7 0-2-0",
+          "home": "Home \u00b7 2-1-0",
+          "note": "Current-season over-under record in the same home/road role as this matchup."
+        }
+      ],
+      "players": [
+        {
+          "team": "FIU",
+          "name": "J.J. Kohl",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.544
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.935
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.12
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.6285714285714286
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4870883",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.238,
+            "rank": 96,
+            "sample_size": 141,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "FIU",
+          "name": "Anthony Carrie",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.211
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.414
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.01347068145800317
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.147
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5079372",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "FIU",
+          "name": "Maguire Anderson",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.133
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.008
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.3676703645007924
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.176
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4879999",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "FIU",
+          "name": "James Resar",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.075
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.008
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.10301109350237718
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.059
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5079684",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "FIU",
+          "name": "Devonte Lyons",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.122
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.263
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.000792393026941363
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.103
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5146722",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "JXST",
+          "name": "Caden Creel",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.655
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.992
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.421
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.7142857142857143
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5122157",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.397,
+            "rank": 51,
+            "sample_size": 126,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "JXST",
+          "name": "Jalen Likely",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.153
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.243
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.04361370716510903
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.179
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5226551",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "JXST",
+          "name": "Jamill Williams",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.085
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.026
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.10072689511941849
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.018
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5087930",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "JXST",
+          "name": "Luke Gilbert",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.028
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.06334371754932502
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.036
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5265478",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "JXST",
+          "name": "Lucas Farrington",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.139
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.189
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.032191069574247146
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.191
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5257214",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        }
+      ],
+      "trends": [
+        {
+          "type": "matchup_edge",
+          "metric": "Red Zone TD Rate",
+          "team": "Jacksonville State",
+          "edge_unit": "defense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 115
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Red Zone TD Rate",
+          "team": "Florida International",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 109
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Florida International",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 82
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Points per Opportunity",
+          "team": "Florida International",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 81
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Explosiveness",
+          "team": "Jacksonville State",
+          "edge_unit": "defense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 67
         },
         {
           "type": "game_context",
