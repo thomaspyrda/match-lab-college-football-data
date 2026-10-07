@@ -31,6 +31,14 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python refresh_match_lab.py
+      - name: Build missing frozen V15 week output
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          MODEL_WEEK=$(python -c 'import json; print(int(json.load(open("data/current_rankings.json"))["week"]))')
+          if [ ! -f "data/experiments/recursive_unit_strength_v15_2026_week_${MODEL_WEEK}.json" ]; then
+            MODEL_WEEK="$MODEL_WEEK" python experiment_dominance_v15.py
+          fi
       - name: Promote frozen V15 into refreshed profiles
         env:
           PYTHONPATH: .
