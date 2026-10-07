@@ -40,3 +40,10 @@
   });
 })();
 
+
+/* Match each individual archive to its own team-color gradient. */
+(() => {
+  const individual=document.body.classList.contains("team-page")||document.getElementById("team-season-data")||document.getElementById("teamSeasonData");
+  if(!individual||document.getElementById("team-color-script"))return;
+  const script=document.createElement("script");script.id="team-color-script";script.src="https://matchlab.parlaycalculator.bet/sports-research/team-theme.js?v=1";document.head.appendChild(script);
+})();
