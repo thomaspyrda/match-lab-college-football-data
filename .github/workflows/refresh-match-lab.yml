@@ -71,4 +71,5 @@ jobs:
           git add -A
           git diff --cached --quiet && exit 0
           git commit -m "Refresh Match Lab production output"
+          git pull --rebase -X theirs origin main
           git push
