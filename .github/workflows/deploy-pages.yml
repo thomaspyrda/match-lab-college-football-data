@@ -9,6 +9,10 @@ on:
     branches: [main]
     paths:
       - index.html
+      - college-football-defensive-strength-rankings/**
+      - college-football-offensive-strength-rankings/**
+      - college-football-strength-of-schedule-rankings/**
+      - college-football-team-strength-rankings/**
       - styles.css
       - app.js
       - data/**
