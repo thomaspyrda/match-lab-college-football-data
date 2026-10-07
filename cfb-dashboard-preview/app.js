@@ -74,7 +74,12 @@ function collegePlayerCard(player,team){
  const items=(player.usage||[]).map(item=>`<div class="usage"><b>${usagePct(item.value)}</b><span>${esc(item.label)}</span></div>`).join("");
  const pos=String(player.position||"").toUpperCase();
  const statLabels=pos==="QB"?["CMP","ATT","PASS YDS","PASS TD","INT","RUSH YDS"]:pos==="RB"?["RUSH","RUSH YDS","RUSH TD","REC","REC YDS","REC TD"]:["REC","REC YDS","REC TD","RUSH","RUSH YDS","RUSH TD"];
- const production=statLabels.map(label=>`<span><b>—</b><small>${label}</small><em>season stats pending</em></span>`).join("");
+ const fields={"CMP":"completions","ATT":"attempts","PASS YDS":"passing_yards","PASS TD":"passing_tds","INT":"interceptions","RUSH":"carries","RUSH YDS":"rushing_yards","RUSH TD":"rushing_tds","REC":"receptions","REC YDS":"receiving_yards","REC TD":"receiving_tds"};
+ const production=statLabels.map(label=>{
+  const key=fields[label],total=player.production?.totals?.[key],average=player.production?.per_game?.[key];
+  const reported=total!==null&&total!==undefined&&Number.isFinite(Number(total));
+  return `<span><b>${reported?esc(Number(total).toLocaleString()):"—"}</b><small>${label}</small><em>${reported&&average!==null&&average!==undefined?esc(Number(average).toFixed(1))+" / team game":"Not reported"}</em></span>`;
+ }).join("");
  const pending=player.placeholder?`<div class="availability-note"><b>Usage data:</b> Player usage will populate on the next successful season refresh.</div>`:"";
  return `<article class="player-card" style="--team-color:${color(team,team===selectedGame.away?0:1)}"><div class="player-top"><div class="player-identity">${teamLogo(team,"player-team-logo")}<div><span class="position">${esc(player.position||"—")} · ${esc(abbr(team))}</span><h3>${esc(player.name||"Usage data pending")}</h3></div></div><span class="subtle">${esc(player.slot||"Season usage")}</span></div>${pending}${player.availability_note?`<div class="availability-note">${esc(player.availability_note)}</div>`:""}${qbEfficiency(player)}<div class="production-line">${production}</div><div class="usage-label"><b>Opportunity share</b><button class="info" data-tip="Position-specific season opportunity metrics from CFBD. Skill players include Air Yards %; quarterbacks include 3rd Down Completion %." aria-label="About opportunity share">?</button></div><div class="usage-grid">${items||'<div class="usage"><b>—</b><span>Pending</span></div>'}</div></article>`;
 }
