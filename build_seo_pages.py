@@ -153,6 +153,7 @@ h2{{margin-top:2rem}}
  .data-table td{{font-size:.62rem}}
  .help-pop{{position:fixed;left:12px;right:auto;top:auto;width:min(280px,calc(100vw - 24px));max-width:none;transform:none}}
 }}
+.ranking-team-link{{color:inherit;text-decoration:none;font-weight:700}}.ranking-team-link:hover,.ranking-team-link:focus-visible{{color:#00ff41;text-decoration:underline}}
 </style>
 <link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation.js?v=2" defer></script>
 </head><body>
@@ -306,6 +307,17 @@ def ranking_hero():
 <img src="{BASE}/assets/betwise-cfb-vip-collage.webp" alt="College football players and mascots in a stadium collage">
 </div>"""
 
+_TEAM_ARCHIVE_URLS=None
+def team_archive_link(name):
+    global _TEAM_ARCHIVE_URLS
+    if _TEAM_ARCHIVE_URLS is None:
+        path=ROOT/"data/cfb/team-registry.json"
+        teams=json.loads(path.read_text()).get("teams",[]) if path.exists() else []
+        _TEAM_ARCHIVE_URLS={re.sub(r"[^a-z0-9]","",t["name"].lower()):BASE+"/cfb/teams/"+re.sub(r"[^a-z0-9]+","-",t["name"].lower()).strip("-")+"/" for t in teams}
+        if "connecticut" in _TEAM_ARCHIVE_URLS:_TEAM_ARCHIVE_URLS["uconn"]=_TEAM_ARCHIVE_URLS["connecticut"]
+    url=_TEAM_ARCHIVE_URLS.get(re.sub(r"[^a-z0-9]","",str(name).lower()))
+    return f'<a class="ranking-team-link" href="{esc(url)}" aria-label="{esc(name)} team history">{esc(name)}</a>' if url else esc(name)
+
 def ranking_table(rows,columns):
     head=[]
     for key,label in columns:
@@ -322,7 +334,8 @@ def ranking_table(rows,columns):
             value=row.get(key)
             if key=="rank":
                 value=idx
-            cells.append(f"<td data-label='{esc(label)}'>{esc(value)}</td>")
+            cell=team_archive_link(value) if key=="team" else esc(value)
+            cells.append(f"<td data-label='{esc(label)}'>{cell}</td>")
         body.append("<tr>"+"".join(cells)+"</tr>")
     return f"<div class='data-table-wrap'><table class='data-table'><thead><tr>{''.join(head)}</tr></thead><tbody>{''.join(body)}</tbody></table></div>"
 
