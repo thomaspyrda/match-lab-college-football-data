@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 colors=json.loads((ROOT/'data/sports/team-colors.json').read_text())['teams']
-css='''body.team-color-theme{background:radial-gradient(ellipse at 15% 0,color-mix(in srgb,var(--team-primary) 28%,transparent),transparent 65%),radial-gradient(ellipse at 95% 8%,color-mix(in srgb,var(--team-secondary) 17%,transparent),transparent 58%),#111!important}body.team-color-theme .team-hero,body.team-color-theme .team-research-heading{background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--team-secondary) 25%,transparent),transparent 70%),linear-gradient(120deg,#080808 0%,#111 48%,color-mix(in srgb,var(--team-primary) 48%,#111) 100%)!important;border-color:color-mix(in srgb,var(--team-primary) 65%,#555)!important}body.team-color-theme .team-research-heading{border-radius:18px}'''
+css='''.team-section:not(#snapshot) .team-section-head h2{display:none!important}body.team-color-theme{background:radial-gradient(ellipse at 15% 0,color-mix(in srgb,var(--team-primary) 28%,transparent),transparent 65%),radial-gradient(ellipse at 95% 8%,color-mix(in srgb,var(--team-secondary) 17%,transparent),transparent 58%),#111!important}body.team-color-theme .team-hero,body.team-color-theme .team-research-heading{background:radial-gradient(ellipse at 100% 0,color-mix(in srgb,var(--team-secondary) 25%,transparent),transparent 70%),linear-gradient(120deg,#080808 0%,#111 48%,color-mix(in srgb,var(--team-primary) 48%,#111) 100%)!important;border-color:color-mix(in srgb,var(--team-primary) 65%,#555)!important}body.team-color-theme .team-research-heading{border-radius:18px}'''
 js='''/* Team-page gradients only. Shared branding and semantic result colors remain intact. */
 (() => {
  const themes=PALETTE;
