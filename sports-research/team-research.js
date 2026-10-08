@@ -73,7 +73,7 @@
       .then(remote=>{
         if(!Array.isArray(remote.seasons))return;
         const byKey=new Map(remote.seasons.map(row=>[String(row.key),row]));
-        data={...data,seasons:data.seasons.map(row=>byKey.get(String(row.key))||row)};
+        data={...data,franchise_accolades:remote.franchise_accolades||data.franchise_accolades,seasons:data.seasons.map(row=>byKey.get(String(row.key))||row)};
         document.dispatchEvent(new CustomEvent('betwise-nba-archive-loaded',{detail:data}));
         render();
       }).catch(()=>{});
@@ -96,6 +96,7 @@
   let data;
   try { data = JSON.parse(seed.textContent); } catch { return; }
   let allSeasons = Array.isArray(data.seasons) ? data.seasons : [];
+  let franchiseAccolades=data.franchise_accolades||{};
   const stylesheet = document.createElement('style');
   stylesheet.textContent = `
     .nba-team-section{margin:22px 0;padding:24px;background:#171b18;border:1px solid #353d35;border-radius:16px}
@@ -181,7 +182,7 @@
     const roster=season.players||season.roster||[];
     if(Array.isArray(roster)&&roster.length) table(players,['Player','GP','MIN','PPG','RPG','APG','TOV','FG%','3P%','STL','BLK','+/-'],roster.map(p=>[p.name,p.games,value(p.per_game?.minutes),value(p.per_game?.points),value(p.per_game?.rebounds),value(p.per_game?.assists),value(p.per_game?.turnovers),p.per_game?.fg_pct==null?'—':value(p.per_game.fg_pct*100)+'%',p.per_game?.three_pct==null?'—':value(p.per_game.three_pct*100)+'%',value(p.per_game?.steals),value(p.per_game?.blocks),value(p.plus_minus)]));
     else empty(players,'No verified season player-statistics dataset is attached for '+season.label+'.');
-    const awards=data.franchise_accolades||{};
+    const awards=franchiseAccolades;
     const honors=Array.isArray(awards.honors)?awards.honors:[];
     const categories=['NBA Champions','Conference Champions','Most Valuable Player','All-NBA First Team','Defensive Player of the Year','Rookie of the Year','Sixth Man of the Year','Most Improved Player','Finals MVP','Coach of the Year'];
     if(honors.length) {
@@ -198,6 +199,7 @@
   select.addEventListener('change', draw);
   document.addEventListener('betwise-nba-archive-loaded', event => {
     allSeasons=event.detail.seasons||[];
+    franchiseAccolades=event.detail.franchise_accolades||{};
     draw();
   });
   draw();
