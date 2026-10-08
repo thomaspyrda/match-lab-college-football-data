@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build verified NBA regular-season game logs and team averages, 2015-16 onward.
+Scheduled data collection entrypoint (archive build v1).
 Outputs are staged in nba/teams/data; frontend consumes only these validated files.
 Requires: pip install nba_api requests
 """
