@@ -277,3 +277,5 @@
  };
  select.addEventListener('change',seasonLabels);seasonLabels();
 })();
+
+// Team-page section standards: Season Snapshot → Schedule & Results → Advanced Team Metrics → Player Statistics → Franchise Accolades.
