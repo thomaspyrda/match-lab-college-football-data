@@ -299,3 +299,32 @@
 })();
 
 // Team-page section standards: Season Snapshot → Schedule & Results → Advanced Team Metrics → Player Statistics → Franchise Accolades.
+
+
+/* NBA: verified season-by-season coaches from separate audited archive.
+   Multiple coaches in a season remain visible instead of overwriting interims. */
+(() => {
+ if(!location.pathname.includes('/nba/teams/'))return;
+ const slug=location.pathname.split('/').filter(Boolean).at(-1);
+ const select=document.querySelector('#season-select');
+ if(!select)return;
+ let archive=null;
+ const draw=()=>{
+  const panel=document.querySelector('#nba-team-leadership');
+  if(!panel||!archive)return;
+  const coaches=archive.teams?.[slug]?.[select.value];
+  if(!coaches?.length)return;
+  panel.querySelectorAll('.bw-leadership-row').forEach(el=>el.remove());
+  const placeholder=panel.querySelector('.bw-not-loaded');if(placeholder)placeholder.remove();
+  coaches.forEach((coach,i)=>{
+   const p=document.createElement('p');p.className='bw-leadership-row';
+   const strong=document.createElement('strong');strong.textContent=coaches.length>1?(i===0?'Head Coach: ':'Head Coach (midseason): '):'Head Coach: ';
+   p.append(strong,document.createTextNode(coach.name+' · '+coach.games+' games ('+coach.wins+'–'+coach.losses+')'));
+   panel.append(p);
+  });
+ };
+ fetch('https://matchlab.parlaycalculator.bet/nba/teams/data/coaching-history.json',{cache:'no-cache'})
+  .then(r=>{if(!r.ok)throw Error('Coaching history not yet published');return r.json()})
+  .then(data=>{archive=data;draw()}).catch(()=>{});
+ select.addEventListener('change',()=>queueMicrotask(draw));
+})();
