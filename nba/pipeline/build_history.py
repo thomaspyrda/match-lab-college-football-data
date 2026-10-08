@@ -81,6 +81,14 @@ def collect(year):
           "metrics":metrics,"games":public,
           "metric_method":"estimated possessions from traditional box scores; regular season",
           "sources":[{"name":"NBA Stats via nba_api: LeagueGameFinder","url":"https://www.nba.com/stats/"}]}
+    if len(result)!=30: raise ValueError(f"{name}: expected 30 teams, got {len(result)}")
+    allids=defaultdict(list)
+    for slug,row in result.items():
+        ids=[g["id"] for g in row["games"]]
+        if len(ids)!=len(set(ids)): raise ValueError(f"{name}: duplicate team games for {slug}")
+        if len(ids)<55 or len(ids)>83: raise ValueError(f"{name}: implausible regular-season game count {len(ids)} for {slug}")
+        for game_id in ids: allids[game_id].append(slug)
+    if any(len(teams)!=2 for teams in allids.values()): raise ValueError(f"{name}: unpaired game records")
     print(f"{name}: {len(valid)} source rows, {len(result)} teams, {sum(len(v['games']) for v in result.values())} team-games")
     return result
 
@@ -153,6 +161,7 @@ def main():
             # A season with no games can legitimately have no regular-season rows.
             print(f"Player averages for {year} unavailable: {error}")
     for slug,data in existing.items():
+        data["seasons"].sort(key=lambda row:row["key"])
         if data["seasons"]:
             (ROOT/(slug+".json")).write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
     print("Validated JSON ready for all 30 teams")
