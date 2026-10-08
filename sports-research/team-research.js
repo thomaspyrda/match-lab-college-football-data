@@ -130,8 +130,8 @@
   const overview = block('nba-team-overview', 'Season Snapshot', 'Verified team results and per-game production for the selected NBA season.');
   const schedule = block('nba-team-schedule', 'Schedule & Results', 'Completed games, opponent, venue and final score. Schedules are kept separate from advanced metrics.');
   const metrics = block('nba-team-metrics', 'Advanced Metrics', 'Possession-adjusted efficiency, shooting, rebounding and turnover metrics when supported by verified records.');
-  const players = block('nba-team-players', 'Player Statistics', 'Season player averages and production when a verified team roster dataset is available.');
-  const franchise = block('nba-team-franchise', 'Franchise History', 'Season achievements and awards require source-verified historical records.');
+  const players = block('nba-team-players', 'Player Statistics', 'Current-season player chart with the same core columns as the NBA Matchup Dashboard. Regular season only; preseason excluded.');
+  const franchise = block('nba-team-franchise', 'Franchise Accolades', 'Franchise-wide championships, conference titles and major individual awards across the team’s history.');
   historyPanel.before(overview);
   historyPanel.after(schedule, metrics, players, franchise);
   [
@@ -139,7 +139,7 @@
     ['#nba-team-schedule','Schedule'],
     ['#nba-team-metrics','Advanced Metrics'],
     ['#nba-team-players','Players'],
-    ['#nba-team-franchise','Franchise History']
+    ['#nba-team-franchise','Franchise Accolades']
   ].forEach(([href,label]) => {
     const link = make('a','',label); link.href=href;
     tabs.insertBefore(link, tabs.querySelector('a[href$="/nba/teams/"]'));
@@ -179,11 +179,21 @@
       metrics.append(cells);
     } else empty(metrics,'Verified advanced statistics are not yet loaded for '+season.label+'. No placeholder rankings or estimated efficiency figures are shown.');
     const roster=season.players||season.roster||[];
-    if(Array.isArray(roster)&&roster.length) table(players,['Player','GP','PPG','RPG','APG'],roster.map(p=>[p.name,p.games,value(first(p,['ppg','points_per_game'])??p.per_game?.points),value(first(p,['rpg','rebounds_per_game'])??p.per_game?.rebounds),value(first(p,['apg','assists_per_game'])??p.per_game?.assists)]));
+    if(Array.isArray(roster)&&roster.length) table(players,['Player','GP','MIN','PPG','RPG','APG','TOV','FG%','3P%','STL','BLK','+/-'],roster.map(p=>[p.name,p.games,value(p.per_game?.minutes),value(p.per_game?.points),value(p.per_game?.rebounds),value(p.per_game?.assists),value(p.per_game?.turnovers),p.per_game?.fg_pct==null?'—':value(p.per_game.fg_pct*100)+'%',p.per_game?.three_pct==null?'—':value(p.per_game.three_pct*100)+'%',value(p.per_game?.steals),value(p.per_game?.blocks),value(p.plus_minus)]));
     else empty(players,'No verified season player-statistics dataset is attached for '+season.label+'.');
-    const honors=season.honors||season.awards||[];
-    if(Array.isArray(honors)&&honors.length) table(franchise,['Achievement','Details'],honors.map(x=>[x.title||x.name,x.detail||x.year||season.label]));
-    else empty(franchise,'Franchise titles, playoff achievements, and player awards will be shown after their source records are verified.');
+    const awards=data.franchise_accolades||{};
+    const honors=Array.isArray(awards.honors)?awards.honors:[];
+    const categories=['NBA Champions','Conference Champions','Most Valuable Player','All-NBA First Team','Defensive Player of the Year','Rookie of the Year','Sixth Man of the Year','Most Improved Player','Finals MVP','Coach of the Year'];
+    if(honors.length) {
+      const tally=make('div','nba-kpi-grid');
+      categories.forEach(category=>{
+        const wins=honors.filter(h=>h.category===category);
+        const card=make('div','nba-kpi');
+        card.append(make('strong','',wins.length),make('small','',category));tally.append(card);
+      });
+      franchise.append(tally);
+      table(franchise,['Year / Season','Accolade','Player / Team','Source'],honors.slice().sort((a,b)=>String(b.year).localeCompare(String(a.year))).map(h=>[h.year,h.category,h.recipient||'Team',h.source_name||'Verified record']));
+    } else empty(franchise,'Franchise accolades will be displayed when the historical awards registry has been validated. This section covers franchise-wide honors, not just the selected season.');
   };
   select.addEventListener('change', draw);
   document.addEventListener('betwise-nba-archive-loaded', event => {
