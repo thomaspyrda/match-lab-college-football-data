@@ -37,3 +37,14 @@ body.nba-nfl-format{background:linear-gradient(115deg,#091b39 0%,#181728 48%,#3b
 .nba-nfl-format .nba-source-line a{color:#91bdfa}
 @media(max-width:840px){.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.nba-nfl-format .nba-coaches{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:570px){.nba-nfl-format .nba-shell{padding:20px 14px 55px}.nba-nfl-format .nba-navigation{flex-wrap:nowrap;overflow-x:auto}.nba-nfl-format .nba-navigation a{white-space:nowrap}.nba-nfl-format .nba-season-controls{align-items:stretch;flex-direction:column}.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nba-nfl-format .nba-coaches{grid-template-columns:1fr}.nba-nfl-format .nba-heading img{width:58px;height:58px}.nba-nfl-format .nba-heading{gap:12px}.nba-nfl-format .nba-tile{padding:14px 12px}.nba-nfl-format .nba-tile strong{font-size:21px}}
+
+/* Shared NFL-equivalent team hero; season selector belongs inside hero */
+.nba-nfl-format .nba-hero{display:flex;align-items:center;gap:42px;min-height:280px;padding:35px;background:radial-gradient(circle at 88% 10%,#29234588,transparent 36%),linear-gradient(120deg,#080808 0%,#181020 58%,#11274a 100%);border:1px solid #365da5;border-radius:23px;margin-bottom:18px}
+.nba-nfl-format .nba-hero-logo{flex:0 0 170px;height:170px;border-radius:28px;background:#030303;border:1px solid #202027;display:flex;align-items:center;justify-content:center}
+.nba-nfl-format .nba-hero-logo img{width:130px;height:130px;object-fit:contain}
+.nba-nfl-format .nba-hero-copy h1{color:#fff;font-size:clamp(36px,5vw,70px);line-height:1.05;margin:7px 0 16px;font-weight:850;letter-spacing:-.04em}
+.nba-nfl-format .nba-hero-copy>p:not(.nba-kicker){color:#c8c8cf;font-size:16px;line-height:1.6;margin:0 0 20px}
+.nba-nfl-format .nba-hero-season{display:flex;gap:12px;align-items:center;color:#fff;font-weight:750;font-size:14px}
+.nba-nfl-format #nbaUnifiedSeason{min-width:130px;max-width:220px}
+.nba-nfl-format .nba-navigation{margin-bottom:30px}
+@media(max-width:670px){.nba-nfl-format .nba-hero{gap:14px;min-height:0;padding:21px 15px;align-items:flex-start}.nba-nfl-format .nba-hero-logo{flex:0 0 78px;height:78px;border-radius:16px}.nba-nfl-format .nba-hero-logo img{width:67px;height:67px}.nba-nfl-format .nba-hero-copy h1{font-size:32px}.nba-nfl-format .nba-hero-copy>p:not(.nba-kicker){font-size:13px}.nba-nfl-format .nba-hero-season{flex-wrap:wrap}}
