@@ -4,10 +4,10 @@ Updated: 2026-10-08
 
 ## Canonical display order
 1. Season Snapshot
-2. Schedule & Results
-3. Advanced Team Metrics
-4. Player Statistics
-5. Leadership / Coaches
+2. Leadership / Coaches
+3. Schedule & Results
+4. Advanced Team Metrics
+5. Player Statistics
 6. Franchise Accolades
 
 A single selected season must control sections 1–4. Franchise accolades are all-time and are not filtered to the selected year. NFL, CFB, MLB, NBA and CBB must have identical heading hierarchy, select placement, tabs, mobile navigation, spacing, color handling, and incomplete-data messages. Each sport has its own statistical columns.
