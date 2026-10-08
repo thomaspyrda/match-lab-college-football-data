@@ -6,6 +6,9 @@ This is a PARTIAL archive; do not label 2020-21 onward complete.
 import csv,io,json,urllib.request
 from collections import defaultdict
 from pathlib import Path
+from nba_api.stats.endpoints import commonteamroster
+from nba_api.stats.static import teams as nba_teams
+import time
 SOURCE="https://raw.githubusercontent.com/spoonertaylor/NBA_Coaches/master/coaches_long.csv"
 OUT=Path(__file__).resolve().parents[1]/"teams"/"data"/"coaching-history.json"
 ABBR={"PHO":"PHX","NYK":"NYK","BRK":"BKN","NJN":"BKN","NOH":"NOP","NOK":"NOP","SEA":"OKC","WSB":"WAS","CHH":"CHA","CHO":"CHA"}
@@ -33,9 +36,30 @@ def main():
             coaches.sort(key=lambda c:c["order"])
             total=sum(c["games"] for c in coaches)
             if not 55<=total<=83:raise ValueError(f"Invalid games {year}: {total}")
-    out={"coverage":{"start":2016,"end":2020,"complete_through":2020,"note":"2015-16 to 2019-20 only; 2020-21 onward pending verification"},
+    # For later seasons use official NBA team coaching rosters, but do not
+    # silently infer that a single roster contains midseason departures.
+    ids={t["abbreviation"]:t["id"] for t in nba_teams.get_teams()}
+    for year in range(2021,2028):
+        season=f"{year-1}-{str(year)[-2:]}"
+        for ab,slug in NAMES.items():
+            try:
+                ep=commonteamroster.CommonTeamRoster(team_id=ids[ab],season=season,timeout=30)
+                rows=ep.coaches.get_data_frame().to_dict("records")
+                coaches=[r for r in rows if not bool(r.get("IS_ASSISTANT")) and
+                         (str(r.get("COACH_TYPE","")).strip().lower() in ("head coach","headcoach","hc") or
+                          str(r.get("COACH_TYPE","")).strip().lower().startswith("head"))]
+                if coaches:
+                    result[slug][str(year)]=[{"name":r.get("COACH_NAME") or
+                       (str(r.get("FIRST_NAME",""))+" "+str(r.get("LAST_NAME",""))).strip(),
+                       "games":None,"wins":None,"losses":None,
+                       "order":i+1,"status":"staff_roster_not_game_validated"}
+                       for i,r in enumerate(coaches)]
+                time.sleep(0.2)
+            except Exception as exc:
+                print(f"Coach roster unavailable: {slug} {season}: {exc}")
+    out={"coverage":{"start":2016,"end":2027,"complete_through":2020,"note":"2015-16 to 2019-20 game-based records; 2020-21 onward staff roster snapshots only, may omit interims and departures"},
          "source":SOURCE,"teams":dict(result)}
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n")
-    print(f"Validated {sum(len(x) for x in result.values())} team-season coaching records across {len(result)} teams")
+    print(f"Produced {sum(len(x) for x in result.values())} team-season records across {len(result)} teams; 2021+ not certified complete")
 if __name__=="__main__":main()
