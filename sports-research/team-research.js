@@ -318,8 +318,8 @@
   const placeholder=panel.querySelector('.bw-not-loaded');if(placeholder)placeholder.remove();
   coaches.forEach((coach,i)=>{
    const p=document.createElement('p');p.className='bw-leadership-row';
-   const strong=document.createElement('strong');strong.textContent=coaches.length>1?(i===0?'Head Coach: ':'Head Coach (midseason): '):'Head Coach: ';
-   p.append(strong,document.createTextNode(coach.name+(coach.games!=null?' · '+coach.games+' games ('+coach.wins+'–'+coach.losses+')':' · official coaching staff listing; midseason coverage unverified')));
+   const strong=document.createElement('strong');strong.textContent=coaches.length>1?'Head Coach '+(i+1)+': ':'Head Coach: ';
+   p.append(strong,document.createTextNode(coach.name));
    panel.append(p);
   });
  };
