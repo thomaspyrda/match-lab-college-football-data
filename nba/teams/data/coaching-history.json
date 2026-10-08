@@ -3,9 +3,10 @@
     "start": 2016,
     "end": 2020,
     "complete_through": 2020,
-    "note": "Historical game-level coaching: 2015-16 through 2019-20. Current 2026-27 coach listing verified against NBA Coaches Association on 2026-10-08. Seasons 2020-21 through 2025-26 still being assembled.",
+    "note": "2016–2020 game-record validated; 2021–2026 team-season coach assignments entered with row-level verification pending; 2027 current coaches separately sourced. Interim and replacement assignments included; individual games W/L not yet verified.",
     "current_season_coaches": 2027,
-    "current_season_coaches_source": "https://nbacoaches.com/nba-head-coaches/"
+    "current_season_coaches_source": "https://nbacoaches.com/nba-head-coaches/",
+    "provisional_team_seasons": 180
   },
   "source": "https://github.com/spoonertaylor/NBA_Coaches/blob/master/coaches_long.csv",
   "source_note": "Derived from Basketball-Reference seasonal coaching records",
@@ -59,6 +60,98 @@
           "losses": 47,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Lloyd Pierce",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        },
+        {
+          "name": "Nate McMillan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Nate McMillan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Nate McMillan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        },
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -124,6 +217,78 @@
           "losses": 24,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Brad Stevens",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Ime Udoka",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Joe Mazzulla",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Joe Mazzulla",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Joe Mazzulla",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Joe Mazzulla",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -207,6 +372,98 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Steve Nash",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Steve Nash",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Steve Nash",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        },
+        {
+          "name": "Jacque Vaughn",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Jacque Vaughn",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        },
+        {
+          "name": "Kevin Ollie",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Jordi Fernández",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Jordi Fernández",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Jordi Fernández",
@@ -280,6 +537,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Billy Donovan",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Tiago Splitter",
@@ -343,6 +672,78 @@
           "losses": 42,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "James Borrego",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "James Borrego",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Steve Clifford",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Steve Clifford",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Charles Lee",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Charles Lee",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -434,6 +835,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Kenny Atkinson",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Kenny Atkinson",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Kenny Atkinson",
@@ -497,6 +970,78 @@
           "losses": 32,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Jason Kidd",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Jason Kidd",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Jason Kidd",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Jason Kidd",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Jason Kidd",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -564,6 +1109,88 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Michael Malone",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Michael Malone",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Michael Malone",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Michael Malone",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Michael Malone",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        },
+        {
+          "name": "David Adelman",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "David Adelman",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "David Adelman",
@@ -629,6 +1256,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Dwane Casey",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Dwane Casey",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Dwane Casey",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Monty Williams",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "J.B. Bickerstaff",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "J.B. Bickerstaff",
@@ -692,6 +1391,78 @@
           "losses": 50,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Steve Kerr",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -767,6 +1538,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Stephen Silas",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Stephen Silas",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Stephen Silas",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Ime Udoka",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Ime Udoka",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Ime Udoka",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Ime Udoka",
@@ -830,6 +1673,78 @@
           "losses": 28,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Nate Bjorkgren",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Rick Carlisle",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -897,6 +1812,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Tyronn Lue",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Tyronn Lue",
@@ -960,6 +1947,78 @@
           "losses": 19,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Frank Vogel",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Frank Vogel",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Darvin Ham",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Darvin Ham",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "JJ Redick",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "JJ Redick",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1035,6 +2094,88 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Taylor Jenkins",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Taylor Jenkins",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Taylor Jenkins",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Taylor Jenkins",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Taylor Jenkins",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        },
+        {
+          "name": "Tuomas Iisalo",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Tuomas Iisalo",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Tuomas Iisalo",
@@ -1098,6 +2239,78 @@
           "losses": 29,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Erik Spoelstra",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1173,6 +2386,88 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Mike Budenholzer",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Mike Budenholzer",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Mike Budenholzer",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Adrian Griffin",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        },
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Taylor Jenkins",
@@ -1246,6 +2541,88 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Ryan Saunders",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        },
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Chris Finch",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Chris Finch",
@@ -1309,6 +2686,88 @@
           "losses": 42,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Stan Van Gundy",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Willie Green",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Willie Green",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Willie Green",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Willie Green",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Willie Green",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        },
+        {
+          "name": "James Borrego",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1400,6 +2859,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Tom Thibodeau",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Tom Thibodeau",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Tom Thibodeau",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Tom Thibodeau",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Tom Thibodeau",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Mike Brown",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Mike Brown",
@@ -1463,6 +2994,78 @@
           "losses": 28,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Mark Daigneault",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1530,6 +3133,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Steve Clifford",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Jamahl Mosley",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Jamahl Mosley",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Jamahl Mosley",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Jamahl Mosley",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Jamahl Mosley",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Sean Sweeney",
@@ -1593,6 +3268,78 @@
           "losses": 30,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Doc Rivers",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1676,6 +3423,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Monty Williams",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Monty Williams",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Monty Williams",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Frank Vogel",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Mike Budenholzer",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Jordan Ott",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Jordan Ott",
@@ -1739,6 +3558,88 @@
           "losses": 39,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Terry Stotts",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Chauncey Billups",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Chauncey Billups",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Chauncey Billups",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Chauncey Billups",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Chauncey Billups",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        },
+        {
+          "name": "Tiago Splitter",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1806,6 +3707,98 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Luke Walton",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Luke Walton",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        },
+        {
+          "name": "Alvin Gentry",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Mike Brown",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Mike Brown",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Mike Brown",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        },
+        {
+          "name": "Doug Christie",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Doug Christie",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Doug Christie",
@@ -1869,6 +3862,88 @@
           "losses": 39,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Gregg Popovich",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Gregg Popovich",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Gregg Popovich",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Gregg Popovich",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Gregg Popovich",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        },
+        {
+          "name": "Mitch Johnson",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Mitch Johnson",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
@@ -1936,6 +4011,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Nick Nurse",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Darko Rajaković",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Darko Rajaković",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Darko Rajaković",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Darko Rajaković",
@@ -2001,6 +4148,78 @@
           "status": "game_record_verified"
         }
       ],
+      "2021": [
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Quin Snyder",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Will Hardy",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Will Hardy",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Will Hardy",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Will Hardy",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
+        }
+      ],
       "2027": [
         {
           "name": "Will Hardy",
@@ -2064,6 +4283,88 @@
           "losses": 47,
           "order": 1,
           "status": "game_record_verified"
+        }
+      ],
+      "2021": [
+        {
+          "name": "Scott Brooks",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2021_coaches.html"
+        }
+      ],
+      "2022": [
+        {
+          "name": "Wes Unseld Jr.",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2022_coaches.html"
+        }
+      ],
+      "2023": [
+        {
+          "name": "Wes Unseld Jr.",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2023_coaches.html"
+        }
+      ],
+      "2024": [
+        {
+          "name": "Wes Unseld Jr.",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        },
+        {
+          "name": "Brian Keefe",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 2,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2024_coaches.html"
+        }
+      ],
+      "2025": [
+        {
+          "name": "Brian Keefe",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2025_coaches.html"
+        }
+      ],
+      "2026": [
+        {
+          "name": "Brian Keefe",
+          "games": null,
+          "wins": null,
+          "losses": null,
+          "order": 1,
+          "status": "team_season_assignment",
+          "verification_status": "requires_row_level_crosscheck",
+          "verification_source": "https://www.basketball-reference.com/leagues/NBA_2026_coaches.html"
         }
       ],
       "2027": [
