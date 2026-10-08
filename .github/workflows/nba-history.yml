@@ -1,5 +1,8 @@
 name: NBA historical team data
 on:
+  push:
+    paths:
+      - 'nba/pipeline/build_history.py'
   workflow_dispatch:
     inputs:
       from_season:
