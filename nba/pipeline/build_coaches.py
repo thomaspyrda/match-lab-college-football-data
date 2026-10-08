@@ -64,6 +64,18 @@ def main():
             for coach in coaches:
                 coach["verification_source"]="https://www.nba.com/"
                 coach["verification_status"]=("historical_source_checked" if int(year)<=2020 else "requires_nba_com_historical_crosscheck")
+    # Preserve already published current-year coach assignments and historical
+    # entries when rebuilding partial ranges. Missing source years do not erase data.
+    if OUT.exists():
+        try:
+            previous=json.loads(OUT.read_text())
+            for slug,by_year in previous.get("teams",{}).items():
+                if slug not in result: result[slug]={}
+                for year,coaches in by_year.items():
+                    if year=="2027" or year not in result[slug]:
+                        result[slug][year]=coaches
+        except (OSError,ValueError,TypeError) as exc:
+            raise RuntimeError(f"Existing published coaching history cannot be read safely: {exc}")
     out={"coverage":{"start":2016,"end":2027,"complete_through":2020,"note":"2015-16 to 2019-20 game-based records; 2020-21 through 2025-26 official staff roster snapshots only, may omit interims and departures. 2026-27 separately maintained."},
          "source":SOURCE,"secondary_source":"https://www.basketball-reference.com/coaches/","nba_official_source":"https://www.nba.com/","teams":dict(result)}
     OUT.parent.mkdir(parents=True,exist_ok=True)
