@@ -31,7 +31,7 @@
   const select = document.querySelector('#season-select');
   const seed = document.querySelector('#team-season-data');
   if (!select || !seed) return;
-  const data = JSON.parse(seed.textContent);
+  let data = JSON.parse(seed.textContent);
   const container = document.querySelector('#season-content');
   const requested = new URL(location.href).searchParams.get('season');
   if (requested && data.seasons.some(s => s.key === requested)) select.value = requested;
@@ -66,6 +66,18 @@
     }
     orderTeamSections();
   };
+  if (location.pathname.includes('/nba/teams/')) {
+    const slug=location.pathname.split('/').filter(Boolean).at(-1);
+    fetch('https://matchlab.parlaycalculator.bet/nba/teams/data/'+encodeURIComponent(slug)+'.json',{cache:'no-cache'})
+      .then(res=>{if(!res.ok)throw new Error('No verified archive');return res.json()})
+      .then(remote=>{
+        if(!Array.isArray(remote.seasons))return;
+        const byKey=new Map(remote.seasons.map(row=>[String(row.key),row]));
+        data={...data,seasons:data.seasons.map(row=>byKey.get(String(row.key))||row)};
+        document.dispatchEvent(new CustomEvent('betwise-nba-archive-loaded',{detail:data}));
+        render();
+      }).catch(()=>{});
+  }
   select.addEventListener('change', () => {
     const url = new URL(location.href); url.searchParams.set('season', select.value);url.hash='history';history.replaceState(null,'',url);render();
   }); render();
@@ -83,7 +95,7 @@
   if (!select || !historyPanel || !tabs || document.querySelector('#nba-team-overview')) return;
   let data;
   try { data = JSON.parse(seed.textContent); } catch { return; }
-  const allSeasons = Array.isArray(data.seasons) ? data.seasons : [];
+  let allSeasons = Array.isArray(data.seasons) ? data.seasons : [];
   const stylesheet = document.createElement('style');
   stylesheet.textContent = `
     .nba-team-section{margin:22px 0;padding:24px;background:#171b18;border:1px solid #353d35;border-radius:16px}
@@ -174,5 +186,9 @@
     else empty(franchise,'Franchise titles, playoff achievements, and player awards will be shown after their source records are verified.');
   };
   select.addEventListener('change', draw);
+  document.addEventListener('betwise-nba-archive-loaded', event => {
+    allSeasons=event.detail.seasons||[];
+    draw();
+  });
   draw();
 })();
