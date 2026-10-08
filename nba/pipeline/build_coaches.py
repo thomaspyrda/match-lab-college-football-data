@@ -39,7 +39,7 @@ def main():
     # For later seasons use official NBA team coaching rosters, but do not
     # silently infer that a single roster contains midseason departures.
     ids={t["abbreviation"]:t["id"] for t in nba_teams.get_teams()}
-    for year in range(2021,2028):
+    for year in range(2021,2027):
         season=f"{year-1}-{str(year)[-2:]}"
         for ab,slug in NAMES.items():
             try:
@@ -64,8 +64,8 @@ def main():
             for coach in coaches:
                 coach["verification_source"]="https://www.nba.com/"
                 coach["verification_status"]=("historical_source_checked" if int(year)<=2020 else "requires_nba_com_historical_crosscheck")
-    out={"coverage":{"start":2016,"end":2027,"complete_through":2020,"note":"2015-16 to 2019-20 game-based records; 2020-21 onward staff roster snapshots only, may omit interims and departures"},
-         "source":SOURCE,"teams":dict(result)}
+    out={"coverage":{"start":2016,"end":2027,"complete_through":2020,"note":"2015-16 to 2019-20 game-based records; 2020-21 through 2025-26 official staff roster snapshots only, may omit interims and departures. 2026-27 separately maintained."},
+         "source":SOURCE,"secondary_source":"https://www.basketball-reference.com/coaches/","nba_official_source":"https://www.nba.com/","teams":dict(result)}
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(out,ensure_ascii=False,separators=(",",":"))+"\n")
     print(f"Produced {sum(len(x) for x in result.values())} team-season records across {len(result)} teams; 2021+ not certified complete")
