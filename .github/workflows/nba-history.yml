@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install nba_api pandas requests
-      - run: python nba/pipeline/build_history.py --from-season ${{ inputs.from_season }} --through-season ${{ inputs.through_season }}
+      - run: python nba/pipeline/build_history.py --from-season "${{ inputs.from_season || '2016' }}" --through-season "${{ inputs.through_season || '2026' }}"
       - name: Publish validated generated JSON
         run: |
           git config user.name "betwise-data-bot"
