@@ -1,0 +1,25 @@
+name: NBA draft archive 2015–2026
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nba/pipeline/build_draft.py'
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install nba_api pandas requests
+      - run: python nba/pipeline/build_draft.py
+      - name: Publish draft classes
+        run: |
+          git config user.name "betwise-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add nba/teams/data/*-draft.json nba/teams/data/draft-audit.json
+          if ! git diff --cached --quiet; then git commit -m "Publish verified NBA draft classes 2015-2026"; git push; fi
