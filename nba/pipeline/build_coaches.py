@@ -45,7 +45,7 @@ def main():
             try:
                 ep=commonteamroster.CommonTeamRoster(team_id=ids[ab],season=season,timeout=30)
                 rows=ep.coaches.get_data_frame().to_dict("records")
-                coaches=[r for r in rows if not bool(r.get("IS_ASSISTANT")) and
+                coaches=[r for r in rows if str(r.get("IS_ASSISTANT","0")).strip().lower() in ("0","false","no") and
                          (str(r.get("COACH_TYPE","")).strip().lower() in ("head coach","headcoach","hc") or
                           str(r.get("COACH_TYPE","")).strip().lower().startswith("head"))]
                 if coaches:
@@ -54,7 +54,7 @@ def main():
                        "games":None,"wins":None,"losses":None,
                        "order":i+1,"status":"staff_roster_not_game_validated"}
                        for i,r in enumerate(coaches)]
-                time.sleep(0.2)
+                time.sleep(0.7)
             except Exception as exc:
                 print(f"Coach roster unavailable: {slug} {season}: {exc}")
     # Keep NBA.com as the canonical verification destination for every entry.
