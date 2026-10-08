@@ -193,13 +193,22 @@
         card.append(make('strong','',wins.length),make('small','',category));tally.append(card);
       });
       franchise.append(tally);
+      franchise.append(make('p','nba-muted',awards.scope||'Verified awards currently available; additional franchise history is being collected.'));
       table(franchise,['Year / Season','Accolade','Player / Team','Source'],honors.slice().sort((a,b)=>String(b.year).localeCompare(String(a.year))).map(h=>[h.year,h.category,h.recipient||'Team',h.source_name||'Verified record']));
     } else empty(franchise,'Franchise accolades will be displayed when the historical awards registry has been validated. This section covers franchise-wide honors, not just the selected season.');
   };
+  const slug=location.pathname.split('/').filter(Boolean).at(-1);
+  fetch('https://matchlab.parlaycalculator.bet/nba/teams/data/franchise-accolades.json',{cache:'no-cache'})
+    .then(response=>{if(!response.ok)throw Error('Accolades registry unavailable');return response.json()})
+    .then(registry=>{
+      const honors=registry.teams?.[slug]||[];
+      franchiseAccolades={honors,scope:registry.scope,source_updated:registry.source_updated};
+      draw();
+    }).catch(()=>{});
   select.addEventListener('change', draw);
   document.addEventListener('betwise-nba-archive-loaded', event => {
     allSeasons=event.detail.seasons||[];
-    franchiseAccolades=event.detail.franchise_accolades||{};
+    if (event.detail.franchise_accolades) franchiseAccolades=event.detail.franchise_accolades;
     draw();
   });
   draw();
