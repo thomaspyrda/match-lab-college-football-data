@@ -85,7 +85,7 @@
   try { data = JSON.parse(seed.textContent); } catch { return; }
   const allSeasons = Array.isArray(data.seasons) ? data.seasons : [];
   const stylesheet = document.createElement('style');
-  stylesheet.textContent = \`
+  stylesheet.textContent = `
     .nba-team-section{margin:22px 0;padding:24px;background:#171b18;border:1px solid #353d35;border-radius:16px}
     .nba-team-section h2{font-size:23px;margin:0 0 8px;color:#fff}
     .nba-team-section .nba-muted{font-size:13px;color:#aab4aa;line-height:1.55;margin:0 0 16px}
@@ -101,7 +101,7 @@
     .nba-data-table td{color:#f2f4f2}
     .research-tabs a[href^="#nba-"]{white-space:nowrap}
     @media(max-width:680px){.nba-team-section{padding:16px}.nba-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nba-kpi strong{font-size:21px}}
-  \`;
+  `;
   document.head.append(stylesheet);
   const make = (tag, cls, value) => {
     const el = document.createElement(tag);
@@ -157,7 +157,7 @@
     kpis.forEach(([label,v])=>{const card=make('div','nba-kpi');card.append(make('strong','',value(v)),make('small','',label));grid.append(card)});
     overview.append(grid);
     const games=Array.isArray(season.games)?season.games:[];
-    if (games.length) table(schedule,['Date','Opponent','H/A','Result','Score'],games.map(g=>[g.date,g.opponent_name,g.location,g.result,g.score_for!=null&&g.score_against!=null?\`\${g.score_for}–\${g.score_against}\`:null]));
+    if (games.length) table(schedule,['Date','Opponent','H/A','Result','Score'],games.map(g=>[g.date,g.opponent_name,g.location,g.result,g.score_for!=null&&g.score_against!=null?`${g.score_for}–${g.score_against}`:null]));
     else empty(schedule,'No verified game-by-game results are loaded for '+season.label+'. Games and upcoming schedules will appear once validated.');
     const metricNames={ortg:'Offensive Rating',drtg:'Defensive Rating',net_rating:'Net Rating',pace:'Pace',efg_pct:'Effective FG%',ts_pct:'True Shooting%',tov_pct:'Turnover Rate',orb_pct:'Offensive Rebound%',three_pct:'3-Point%',ft_rate:'Free Throw Rate',opp_efg_pct:'Opponent eFG%'};
     const entries=Object.entries(season.metrics||{}).filter(([key,v])=>Object.hasOwn(metricNames,key)&&typeof v==='number'&&Number.isFinite(v));
