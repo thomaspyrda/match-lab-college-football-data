@@ -1,0 +1,32 @@
+name: NBA TeamRankings historical archives
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nba/pipeline/build_teamrankings.py'
+      - 'nba/pipeline/build_teamrankings_games.py'
+      - '.github/workflows/nba-teamrankings.yml'
+permissions:
+  contents: write
+jobs:
+  historical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pandas lxml html5lib requests
+      - name: Collect metrics
+        run: python nba/pipeline/build_teamrankings.py
+      - name: Collect historical results and betting lines
+        if: success()
+        run: python nba/pipeline/build_teamrankings_games.py
+      - name: Publish collected data and coverage
+        if: always()
+        run: |
+          git config user.name "betwise-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add nba/teams/data/ || true
+          if ! git diff --cached --quiet; then git commit -m "Collect historical NBA TeamRankings metrics and schedules"; git push; fi
