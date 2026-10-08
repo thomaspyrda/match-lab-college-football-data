@@ -225,10 +225,10 @@
  if(!history||!tabs)return;
  const labels=[
   ['overview','Season Snapshot'],
+  ['leadership','Leadership / Coaches'],
   ['schedule','Schedule & Results'],
   ['metrics','Advanced Team Metrics'],
   ['players','Player Statistics'],
-  ['leadership','Leadership / Coaches'],
   ['franchise','Franchise Accolades']
  ];
  const prefix=sport==='nba'?'nba-team-':'bw-unified-';
@@ -275,7 +275,7 @@
    label.textContent=chosen.replace(/\s*·\s*Data pending/i,'').trim()+' Season';
   }
   sections.forEach(el=>el.dataset.selectedSeason=select.value);
-  const leadership=sections[4];
+  const leadership=sections[1];
   const old=leadership.querySelector('.bw-not-loaded');
   if(old)old.remove();
   leadership.querySelectorAll('.bw-leadership-row').forEach(el=>el.remove());
