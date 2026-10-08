@@ -7,7 +7,8 @@ Updated: 2026-10-08
 2. Schedule & Results
 3. Advanced Team Metrics
 4. Player Statistics
-5. Franchise Accolades
+5. Leadership / Coaches
+6. Franchise Accolades
 
 A single selected season must control sections 1–4. Franchise accolades are all-time and are not filtered to the selected year. NFL, CFB, MLB, NBA and CBB must have identical heading hierarchy, select placement, tabs, mobile navigation, spacing, color handling, and incomplete-data messages. Each sport has its own statistical columns.
 
@@ -32,3 +33,10 @@ A single selected season must control sections 1–4. Franchise accolades are al
 - Missing market records stay unavailable, not counted as losses or pushes.
 - Mobile and desktop render verification on representative teams across all five sports.
 - GitHub commit **is not evidence** of live deployment; confirm published pages independently.
+
+## Leadership role rules
+- NBA: Head Coach only.
+- CBB: Head Coach only.
+- MLB: Manager and Pitching Coach only.
+- NFL and CFB: retain Head Coach, Offensive Coordinator, and Defensive Coordinator per existing football design.
+- Staff assignments must reflect the selected season, not automatically carry current coaches into previous seasons. Missing records remain unverified.
