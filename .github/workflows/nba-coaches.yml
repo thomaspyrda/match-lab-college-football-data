@@ -1,0 +1,25 @@
+name: NBA coaching history
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nba/pipeline/build_coaches.py'
+permissions:
+  contents: write
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install nba_api pandas requests
+      - run: python nba/pipeline/build_coaches.py
+      - name: Publish coaching registry
+        run: |
+          git config user.name "betwise-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add nba/teams/data/coaching-history.json
+          if ! git diff --cached --quiet; then git commit -m "Update NBA historical coaching records"; git push; fi
