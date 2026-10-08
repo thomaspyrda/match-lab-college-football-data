@@ -86,6 +86,10 @@ def gather(session,slug,year):
  games=[g for g in games if int(g["date"][:4]) in (year-1,year)]
  # A complete NBA season normally has at least 60 games. Some include playoffs.
  if not 60<=len(games)<=115:raise RuntimeError(f"Implausible {year} game count {len(games)}")
+ # Validate that a late-season row exists for the requested season, rather
+ # than accepting a present-day game log returned after an ignored date.
+ if max(g["date"] for g in games)[:4] != str(year):
+  raise RuntimeError(f"Response does not contain requested season {year}")
  dates=[(g["date"],g["opponent_slug"],g["location"]) for g in games]
  if len(set(dates))!=len(dates):raise RuntimeError("Duplicate games")
  return url, games
