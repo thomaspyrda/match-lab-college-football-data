@@ -10,7 +10,7 @@ def main():
  by_id={str(t['id']):t for t in registry}
  for team in registry:
   page=(ROOT/'cfb/teams'/slug(team['name'])/'index.html').read_text()
-  order=['snapshot','coaches','recruiting','metrics','seasonLeaders','schedule']
+  order=['snapshot','coaches','recruiting','schedule','metrics','seasonLeaders']
   positions=[page.index(f'id="{key}"') for key in order];assert positions==sorted(positions)
   d=json.loads(re.search(r'id="teamSeasonData">(.*?)</script>',page,re.S)[1])
   for year,s in d['seasons'].items():
