@@ -15,6 +15,13 @@ def update_page(content,team_id,data):
  content=re.sub(r'site-navigation\.js\?v=[^"\s]+','site-navigation-v3.js',content)
  assert content.count('id="programAccolades"')==1
  assert content.index('id="programAccolades"')>content.index('id="schedule"')
+ schedule=re.search(r'(<section id="schedule".*?</section>)\s*',content,flags=re.S)
+ if not schedule:raise ValueError(f'Missing schedule for {team_id}')
+ content=content[:schedule.start()]+content[schedule.end():]
+ content=content.replace('<section id="metrics"',schedule.group(1)+'\n<section id="metrics"',1)
+ link='<a href="#schedule">Schedule</a>'
+ content=content.replace(link,'',1).replace('<a href="#metrics">',link+'<a href="#metrics">',1)
+ assert content.index('id="schedule"')<content.index('id="metrics"')
  return content
 
 def main():

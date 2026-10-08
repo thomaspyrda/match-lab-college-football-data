@@ -1,4 +1,15 @@
 (() => {
+  // Use the NFL/CFB order as the other sports' archive sections are added.
+  const orderTeamSections = () => {
+    const schedule = document.querySelector('#schedule');
+    const metrics = document.querySelector('#metrics');
+    if (schedule && metrics && schedule.parentElement === metrics.parentElement && schedule.nextElementSibling !== metrics) metrics.before(schedule);
+    const nav = document.querySelector('.team-subnav');
+    const scheduleLink = nav?.querySelector('a[href="#schedule"]');
+    const metricsLink = nav?.querySelector('a[href="#metrics"]');
+    if (scheduleLink && metricsLink && scheduleLink.nextElementSibling !== metricsLink) metricsLink.before(scheduleLink);
+  };
+  orderTeamSections();
   const input = document.querySelector('#team-search');
   const group = document.querySelector('#group-filter');
   if (input && group) {
@@ -53,6 +64,7 @@
       const sources=node('p','Sources: ');sources.className='research-source';
       season.sources.forEach(source=>{try{const url=new URL(source.url);if(url.protocol!=='https:')return;const a=node('a',source.name);a.href=url.href;sources.append(a,document.createTextNode(' '));}catch{}});container.append(sources);
     }
+    orderTeamSections();
   };
   select.addEventListener('change', () => {
     const url = new URL(location.href); url.searchParams.set('season', select.value);url.hash='history';history.replaceState(null,'',url);render();
