@@ -228,6 +228,7 @@
   ['schedule','Schedule & Results'],
   ['metrics','Advanced Team Metrics'],
   ['players','Player Statistics'],
+  ['leadership','Leadership / Coaches'],
   ['franchise','Franchise Accolades']
  ];
  const prefix=sport==='nba'?'nba-team-':'bw-unified-';
@@ -253,9 +254,9 @@
  // Use the existing season dropdown; move it into the same position for every sport.
  history.before(sections[0]);
  if(details)sections[0].before(details);
- sections[0].after(sections[1],sections[2],sections[3],sections[4]);
+ sections[0].after(sections[1],sections[2],sections[3],sections[4],sections[5]);
  // Preserve season history and its selector directly after the canonical sections.
- sections[4].after(history);
+ sections[5].after(history);
  const research=document.querySelector('#research');
  if(research)history.after(research); // Put archive beneath the main research sections.
  const newTabs=document.createDocumentFragment();
@@ -274,6 +275,25 @@
    label.textContent=chosen.replace(/\s*·\s*Data pending/i,'').trim()+' Season';
   }
   sections.forEach(el=>el.dataset.selectedSeason=select.value);
+  const leadership=sections[4];
+  const old=leadership.querySelector('.bw-not-loaded');
+  if(old)old.remove();
+  leadership.querySelectorAll('.bw-leadership-row').forEach(el=>el.remove());
+  let seasonData=null;
+  try {
+    const seed=JSON.parse(document.querySelector('#team-season-data')?.textContent||'{}');
+    seasonData=seed.seasons?.find(item=>String(item.key)===String(select.value));
+  } catch {}
+  const roles=sport==='mlb'?['Manager','Pitching Coach']:['Head Coach'];
+  for(const role of roles) {
+    const item=document.createElement('p');item.className='bw-leadership-row';
+    const label=document.createElement('strong');label.textContent=role+': ';
+    const coaches=seasonData?.leadership||seasonData?.coaches||{};
+    const key=role==='Head Coach'?'head_coach':role==='Pitching Coach'?'pitching_coach':'manager';
+    const coach=coaches[key]||coaches[role]||null;
+    item.append(label,document.createTextNode(typeof coach==='string'?coach:(coach?.name||'Not verified for this season')));
+    leadership.append(item);
+  }
  };
  select.addEventListener('change',seasonLabels);seasonLabels();
 })();
