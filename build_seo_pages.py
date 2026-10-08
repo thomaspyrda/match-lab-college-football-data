@@ -105,7 +105,7 @@ h2{{margin-top:2rem}}
 .mobile-menu nav a{{min-height:44px;display:flex;align-items:center;padding:11px 13px;border-radius:9px}}
 .rank-hero{{margin:16px 0 22px;border:1px solid #1f6f34;border-radius:18px;overflow:hidden;background:#0d0d0d}}
 .rank-hero img{{display:block;width:100%;height:auto;aspect-ratio:3.15/1;object-fit:cover}}
-.rank-tabs{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 20px}}
+.rank-tabs{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:14px 0 20px}}
 .rank-tabs a{{display:flex;align-items:center;justify-content:center;min-height:46px;border:1px solid #2b2b2b;background:#111;border-radius:12px;padding:10px 12px;text-decoration:none;font-size:.9rem;font-weight:800;text-align:center}}
 .rank-tabs a.active{{border-color:#00ff41;color:#00ff41;background:#0d170f;box-shadow:0 0 0 1px rgba(0,255,65,.08)}}
 .rank-tabs a:hover,.rank-tabs a:focus-visible{{border-color:#555;background:#161616}}
@@ -155,7 +155,7 @@ h2{{margin-top:2rem}}
 }}
 .ranking-team-link{{color:inherit;text-decoration:none;font-weight:700}}.ranking-team-link:hover,.ranking-team-link:focus-visible{{color:#00ff41;text-decoration:underline}}
 </style>
-<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation.js?v=2" defer></script>
+<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation-v3.js" defer></script>
 </head><body>
 <header class="site-header">
   <div class="header-inner">
@@ -296,6 +296,7 @@ def ranking_tabs(active):
         ("sos","SOS Rankings",f"{BASE}/college-football-strength-of-schedule-rankings/"),
         ("offense","Offensive Strength",f"{BASE}/college-football-offensive-strength-rankings/"),
         ("defense","Defensive Strength",f"{BASE}/college-football-defensive-strength-rankings/"),
+        ("leaders","FBS Season Leaders",f"{BASE}/college-football-season-leaders/"),
     ]
     return "<p class='rank-tabs-label'>Explore CFB Rankings</p><div class='rank-tabs' aria-label='CFB ranking categories'>"+"".join(
         f"<a href='{url}' class='{'active' if key==active else ''}'{' aria-current=\"page\"' if key==active else ''}>{label}</a>"
@@ -373,8 +374,8 @@ def write_live_data_pages(now):
     table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("sd","SD"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
-{ranking_tabs("team")}
 {ranking_hero()}
+{ranking_tabs("team")}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Team Strength Rankings | CFB Match Lab",f"Current {season} college football Team Strength rankings for the full FBS field from CFB Match Lab, updated weekly using opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
 
@@ -396,8 +397,8 @@ def write_live_data_pages(now):
     table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Strength of Schedule Rankings</h1>
 <p class="page-intro">{context}. Current strength-of-schedule rankings based only on opponents already faced, not future schedule projections. Tap or click any <b>?</b> for metric definitions.</p>
-{ranking_tabs("sos")}
 {ranking_hero()}
+{ranking_tabs("sos")}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Strength of Schedule Rankings | CFB Match Lab",f"Current {season} college football strength of schedule rankings based on opponent strength already faced, with full-FBS SOS percentiles from CFB Match Lab.",f"{BASE}/college-football-strength-of-schedule-rankings/",body),encoding="utf-8")
 
@@ -432,8 +433,8 @@ def write_live_data_pages(now):
         table=ranking_table(rows_for_table,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),(sd_key,"SD"),("opp_quality",opponent_label),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
-{ranking_tabs("offense" if field=="offensive_strength" else "defense")}
 {ranking_hero()}
+{ranking_tabs("offense" if field=="offensive_strength" else "defense")}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
         (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab, adjusted for the quality of opposing units faced.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
 
@@ -542,6 +543,7 @@ def main():
         (f"{BASE}/","1.0","daily"),
         (f"{BASE}/college-football-matchup-tool/","0.9","weekly"),
         (f"{BASE}/college-football-team-strength-rankings/","0.9","daily"),
+        (f"{BASE}/college-football-season-leaders/","0.9","daily"),
         (f"{BASE}/college-football-strength-of-schedule-rankings/","0.9","daily"),
         (f"{BASE}/college-football-offensive-strength-rankings/","0.85","daily"),
         (f"{BASE}/college-football-defensive-strength-rankings/","0.85","daily"),
@@ -563,3 +565,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
