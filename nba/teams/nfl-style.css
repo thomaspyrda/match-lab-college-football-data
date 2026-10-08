@@ -48,3 +48,17 @@ body.nba-nfl-format{background:linear-gradient(115deg,#091b39 0%,#181728 48%,#3b
 .nba-nfl-format #nbaUnifiedSeason{min-width:130px;max-width:220px}
 .nba-nfl-format .nba-navigation{margin-bottom:30px}
 @media(max-width:670px){.nba-nfl-format .nba-hero{gap:14px;min-height:0;padding:21px 15px;align-items:flex-start}.nba-nfl-format .nba-hero-logo{flex:0 0 78px;height:78px;border-radius:16px}.nba-nfl-format .nba-hero-logo img{width:67px;height:67px}.nba-nfl-format .nba-hero-copy h1{font-size:32px}.nba-nfl-format .nba-hero-copy>p:not(.nba-kicker){font-size:13px}.nba-nfl-format .nba-hero-season{flex-wrap:wrap}}
+
+/* Exact NFL typography and franchise-controlled background treatments */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap");
+body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;background:radial-gradient(circle at 18% 0,color-mix(in srgb,var(--nba-primary) 26%,transparent),transparent 42%),radial-gradient(circle at 92% 35%,color-mix(in srgb,var(--nba-secondary) 20%,transparent),transparent 50%),#101014!important}
+.nba-nfl-format .nba-shell,.nba-nfl-format .nba-shell *{font-family:"Outfit",system-ui,sans-serif}
+.nba-nfl-format .nba-hero{position:relative;overflow:hidden;border-color:color-mix(in srgb,var(--nba-primary) 72%,#333);background:linear-gradient(120deg,#050505 0%,#111 53%,color-mix(in srgb,var(--nba-primary) 35%,#111) 100%)!important;box-shadow:0 20px 50px #0008}
+.nba-nfl-format .nba-hero::after{content:"";pointer-events:none;position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid rgba(255,255,255,.08);border-radius:50%;box-shadow:0 0 0 40px rgba(255,255,255,.025),0 0 0 80px rgba(255,255,255,.018)}
+.nba-nfl-format .nba-hero-copy,.nba-nfl-format .nba-hero-logo{position:relative;z-index:1}
+.nba-nfl-format .nba-hero-copy h1{font-family:"DM Sans",sans-serif!important;font-weight:900;font-size:clamp(42px,7vw,76px);line-height:.95;letter-spacing:-.045em}
+.nba-nfl-format .nba-section-title,.nba-nfl-format .nba-tile strong,.nba-nfl-format .nba-playoff-strip strong{font-family:"DM Sans",sans-serif!important;font-weight:900}
+.nba-nfl-format .nba-kicker,.nba-nfl-format .nba-section-kicker,.nba-nfl-format .nba-coach-card small{color:color-mix(in srgb,var(--nba-primary) 65%,white)}
+.nba-nfl-format .nba-playoff-strip{border-left-color:var(--nba-primary)}
+.nba-nfl-format .nba-navigation a:hover{background:color-mix(in srgb,var(--nba-primary) 18%,#111)}
+@media(max-width:670px){.nba-nfl-format .nba-hero-copy h1{font-size:clamp(30px,7vw,46px)}.nba-nfl-format .nba-hero::after{right:-240px}}
