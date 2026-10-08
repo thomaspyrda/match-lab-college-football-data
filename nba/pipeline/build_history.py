@@ -7,7 +7,7 @@ Requires: pip install nba_api requests
 import json, time, argparse, datetime
 from collections import defaultdict
 from pathlib import Path
-from nba_api.stats.endpoints import leaguegamefinder
+from nba_api.stats.endpoints import leaguegamefinder, leaguedashplayerstats
 
 ROOT=Path(__file__).resolve().parents[1]/"teams"/"data"
 SLUGS={"ATL":"atlanta-hawks","BOS":"boston-celtics","BKN":"brooklyn-nets","CHA":"charlotte-hornets","CHI":"chicago-bulls","CLE":"cleveland-cavaliers","DAL":"dallas-mavericks","DEN":"denver-nuggets","DET":"detroit-pistons","GSW":"golden-state-warriors","HOU":"houston-rockets","IND":"indiana-pacers","LAC":"la-clippers","LAL":"los-angeles-lakers","MEM":"memphis-grizzlies","MIA":"miami-heat","MIL":"milwaukee-bucks","MIN":"minnesota-timberwolves","NOP":"new-orleans-pelicans","NYK":"new-york-knicks","OKC":"oklahoma-city-thunder","ORL":"orlando-magic","PHI":"philadelphia-76ers","PHX":"phoenix-suns","POR":"portland-trail-blazers","SAC":"sacramento-kings","SAS":"san-antonio-spurs","TOR":"toronto-raptors","UTA":"utah-jazz","WAS":"washington-wizards"}
@@ -84,8 +84,35 @@ def collect(year):
     print(f"{name}: {len(valid)} source rows, {len(result)} teams, {sum(len(v['games']) for v in result.values())} team-games")
     return result
 
+
+def collect_players(year):
+    """NBA Stats regular-season per-game roster averages, keyed by NBA team."""
+    name=f"{year-1}-{str(year)[-2:]}"
+    endpoint=leaguedashplayerstats.LeagueDashPlayerStats(
+        season=name,season_type_all_star="Regular Season",per_mode_detailed="PerGame",
+        measure_type_detailed_defense="Base",timeout=120)
+    rows=endpoint.get_data_frames()[0].to_dict("records")
+    grouped=defaultdict(list)
+    for r in rows:
+        ab=abbr(r.get("TEAM_ABBREVIATION"))
+        if ab not in SLUGS or not r.get("GP"):continue
+        def n(k):
+            v=clean(r.get(k))
+            return round(float(v),2) if isinstance(v,(int,float)) else None
+        grouped[SLUGS[ab]].append({
+          "name":r.get("PLAYER_NAME"),"player_id":r.get("PLAYER_ID"),"games":int(r["GP"]),
+          "per_game":{"minutes":n("MIN"),"points":n("PTS"),"rebounds":n("REB"),
+           "assists":n("AST"),"turnovers":n("TOV"),"steals":n("STL"),
+           "blocks":n("BLK"),"fg_pct":n("FG_PCT"),"three_pct":n("FG3_PCT"),
+           "ft_pct":n("FT_PCT")},
+          "plus_minus":n("PLUS_MINUS"),
+          "source":"NBA Stats: LeagueDashPlayerStats"})
+    for players in grouped.values():
+        players.sort(key=lambda p:(-(p["per_game"]["points"] or 0),p["name"] or ""))
+    return grouped
+
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument("--from-season",type=int,default=2016);parser.add_argument("--through-season",type=int,default=2026);args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument("--from-season",type=int,default=2016);parser.add_argument("--through-season",type=int,default=2026);parser.add_argument("--players-season",type=int,default=2027);args=parser.parse_args()
     ROOT.mkdir(parents=True,exist_ok=True)
     existing={}
     for slug in SLUGS.values():
@@ -107,6 +134,24 @@ def main():
             prior=[s for s in existing[slug]["seasons"] if s["key"]!=str(year)]
             existing[slug]["seasons"]=sorted(prior+[row],key=lambda r:r["key"])
         time.sleep(1)
+    # Player stats from the 2026-27 regular season are not fabricated from preseason games.
+    # The requested current season is sampled separately, even before any regular games.
+    for year in sorted(set([args.players_season,args.through_season])):
+        try:
+            players=collect_players(year)
+            for slug,roster in players.items():
+                match=next((v for v in existing[slug]["seasons"] if v["key"]==str(year)),None)
+                if match is None:
+                    match={"key":str(year),"label":f"{year-1}–{str(year)[-2:]}",
+                           "coverage":"players_only","record":None,"metrics":{},"games":[],"sources":[]}
+                    existing[slug]["seasons"].append(match)
+                match["players"]=roster
+                match["players_season_type"]="Regular Season"
+                match["sources"].append({"name":"NBA Stats player averages","url":"https://www.nba.com/stats/players/traditional"})
+            print(f"{year}: {sum(map(len,players.values()))} player-team rows")
+        except Exception as error:
+            # A season with no games can legitimately have no regular-season rows.
+            print(f"Player averages for {year} unavailable: {error}")
     for slug,data in existing.items():
         if data["seasons"]:
             (ROOT/(slug+".json")).write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
