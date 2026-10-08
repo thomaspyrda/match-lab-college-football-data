@@ -213,3 +213,66 @@
   });
   draw();
 })();
+
+
+/* Cross-sport canonical archive order and season selector: CFB, MLB, NBA, CBB. */
+(() => {
+ const main=document.querySelector('.research-main'),select=document.querySelector('#season-select');
+ if(!main||!select)return;
+ const sport=location.pathname.split('/').filter(Boolean)[0];
+ if(!['nba','mlb','cbb'].includes(sport))return;
+ const history=document.querySelector('#history'), tabs=document.querySelector('.research-tabs');
+ if(!history||!tabs)return;
+ const labels=[
+  ['overview','Season Snapshot'],
+  ['schedule','Schedule & Results'],
+  ['metrics','Advanced Team Metrics'],
+  ['players','Player Statistics'],
+  ['franchise','Franchise Accolades']
+ ];
+ const prefix=sport==='nba'?'nba-team-':'bw-unified-';
+ const details=history.querySelector('.history-heading');
+ if(details){
+  details.classList.add('bw-season-header');
+  const label=details.querySelector('.season-control label');
+  if(label)label.childNodes.forEach(n=>{if(n.nodeType===Node.TEXT_NODE && n.textContent.trim())n.textContent='Select Season '});
+ }
+ let sections=labels.map(([id,title])=>{
+  const targetId=prefix+id;
+  let element=document.getElementById(targetId);
+  if(!element){
+   element=document.createElement('section');element.id=targetId;
+   element.className='research-panel bw-unified-section';
+   const h=document.createElement('h2');h.textContent=title;element.append(h);
+   const p=document.createElement('p');p.className='bw-not-loaded';
+   p.textContent='Verified '+title.toLowerCase()+' data for this season is not available yet.';
+   element.append(p);
+  }
+  return element;
+ });
+ // Use the existing season dropdown; move it into the same position for every sport.
+ history.before(sections[0]);
+ sections[0].after(sections[1],sections[2],sections[3],sections[4]);
+ // Preserve season history and its selector directly after the canonical sections.
+ sections[4].after(history);
+ const research=document.querySelector('#research');
+ if(research)research.after(history); // Keep source and coverage notes below data.
+ const newTabs=document.createDocumentFragment();
+ sections.forEach((section,i)=>{
+  let link=tabs.querySelector('a[href="#'+section.id+'"]');
+  if(!link){link=document.createElement('a');link.href='#'+section.id}
+  link.textContent=labels[i][1];newTabs.append(link);
+ });
+ const old=[...tabs.querySelectorAll('a')].filter(a=>!a.getAttribute('href')?.startsWith('#'));
+ tabs.replaceChildren(newTabs,...old);
+ // Visible synchronized season labeling, preserving the original URL state handler.
+ const seasonLabels=()=>{
+  let label=document.querySelector('#selected-season-label');
+  if(label){
+   const chosen=select.selectedOptions[0]?.textContent||'';
+   label.textContent=chosen.replace(/\s*·\s*Data pending/i,'').trim()+' Season';
+  }
+  sections.forEach(el=>el.dataset.selectedSeason=select.value);
+ };
+ select.addEventListener('change',seasonLabels);seasonLabels();
+})();
