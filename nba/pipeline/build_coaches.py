@@ -57,6 +57,13 @@ def main():
                 time.sleep(0.2)
             except Exception as exc:
                 print(f"Coach roster unavailable: {slug} {season}: {exc}")
+    # Keep NBA.com as the canonical verification destination for every entry.
+    # Staff roster snapshots are NOT deemed fully verified season histories.
+    for slug,seasons in result.items():
+        for year,coaches in seasons.items():
+            for coach in coaches:
+                coach["verification_source"]="https://www.nba.com/"
+                coach["verification_status"]=("historical_source_checked" if int(year)<=2020 else "requires_nba_com_historical_crosscheck")
     out={"coverage":{"start":2016,"end":2027,"complete_through":2020,"note":"2015-16 to 2019-20 game-based records; 2020-21 onward staff roster snapshots only, may omit interims and departures"},
          "source":SOURCE,"teams":dict(result)}
     OUT.parent.mkdir(parents=True,exist_ok=True)
