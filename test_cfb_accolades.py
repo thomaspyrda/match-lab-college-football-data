@@ -1,6 +1,7 @@
 import json,unittest
 from refresh_cfb_accolades import awards,bowl_wins,conferences,resolver
 from cfb_program_accolades import render
+from apply_cfb_program_accolades import update_page
 from build_cfb_team_pages import ROOT,page
 class AccoladeTests(unittest.TestCase):
  @classmethod
@@ -29,6 +30,9 @@ class AccoladeTests(unittest.TestCase):
  def test_section_follows_schedule(self):
   t=next(t for t in self.teams if t['name']=='Georgia');html=page(t,{}, {},2026)
   self.assertGreater(html.index('id="programAccolades"'),html.index('id="schedule"'));self.assertIn('href="#programAccolades"',html)
+ def test_patch_is_idempotent_and_preserves_season_data(self):
+  t=next(t for t in self.teams if t['name']=='Georgia');before=page(t,{}, {},2026);updated=update_page(before,t['id'],self.data)
+  self.assertEqual(updated,update_page(updated,t['id'],self.data));self.assertIn('id="teamSeasonData"',updated)
  def test_former_fcs_titles(self):
   t=next(t for t in self.data['teams'].values() if t['name']=='App State');self.assertEqual([r['year'] for r in t['national_titles'] if r['level']=='FCS'],[2007,2006,2005])
 if __name__=='__main__':unittest.main()

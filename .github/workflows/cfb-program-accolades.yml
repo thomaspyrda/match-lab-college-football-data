@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - cfb_program_accolades.py
+      - apply_cfb_program_accolades.py
       - refresh_cfb_accolades.py
       - test_cfb_accolades.py
       - data/cfb/program-accolades.json
@@ -14,7 +15,7 @@ permissions:
   contents: write
 concurrency:
   group: cfb-program-accolades
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +29,7 @@ jobs:
       - name: Verify program history and existing season calculations
         run: python -m unittest test_cfb_accolades.py test_cfb_team_pages.py
       - name: Build all CFB team pages from existing season data
-        run: python build_cfb_team_pages.py
+        run: python apply_cfb_program_accolades.py
       - name: Verify all generated archives
         run: python verify_cfb_team_pages.py
       - name: Verify honors on every program page

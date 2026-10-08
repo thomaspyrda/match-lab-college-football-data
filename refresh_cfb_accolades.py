@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 SOURCE='https://s3.amazonaws.com/fs.ncaa.org/Docs/stats/football_records/'
-ALIASES={'southern california':'USC','miami fl':'Miami','army west point':'Army','ole miss':'Mississippi','uconn':'Connecticut','appalachian state':'App State','fla atlantic':'Florida Atlantic','fiu':'Florida International','utsa':'Texas-San Antonio','niu':'Northern Illinois','middle tenn':'Middle Tennessee','southern mississippi':'Southern Miss','southern miss':'Southern Miss','ulm':'UL Monroe','louisiana monroe':'UL Monroe','hawaii':"Hawai'i",'ga southern':'Georgia Southern','ga state':'Georgia State','miami':'Miami (OH)','north carolina state':'NC State'}
+ALIASES={'southern california':'USC','miami fl':'Miami','army west point':'Army','ole miss':'Mississippi','uconn':'Connecticut','appalachian state':'App State','fla atlantic':'Florida Atlantic','fiu':'Florida International','utsa':'Texas-San Antonio','niu':'Northern Illinois','middle tenn':'Middle Tennessee','southern mississippi':'Southern Miss','southern miss':'Southern Miss','ulm':'UL Monroe','louisiana monroe':'UL Monroe','hawaii':"Hawai'i",'ga southern':'Georgia Southern','ga state':'Georgia State','miami':'Miami (OH)','north carolina state':'NC State','coastal caro':'Coastal Carolina','jacksonville':'Jacksonville State','southwest mo state':'Missouri State','southwest missouri state':'Missouri State','southwest texas state':'Texas State'}
 def norm(s):
  s=unicodedata.normalize('NFKD',s).encode('ascii','ignore').decode().lower()
  s=re.sub(r'\bst\.?\b','state',s);s=re.sub(r'\bmich\.?\b','michigan',s);s=re.sub(r'\bky\.?\b','kentucky',s)
@@ -67,7 +67,7 @@ def conferences(cols,resolve):
    elif year and (resolve(line.split(' (')[0]) or re.search(r'\(\d+-\d+',line)):rest=line
    else:continue
    if not 1890<=year<=2025:continue
-   name=re.sub(r'\s*\(\d[\d-]*\).*','',rest).strip();name=re.sub(r'\s+\d+$','',name)
+   name=re.sub(r'\s*\(\d.*','',rest).strip();name=re.sub(r'\s+\d+$','',name)
    tid=resolve(name.lstrip('*#^@'))
    if tid or re.search(r'\(\d[\d-]*\)',rest):all_groups[(year,current)]+=1
    if tid:out.append({'team_id':tid,'year':year,'conference':current,'shared':False,'level':level,'source':'Standings','page':page})
