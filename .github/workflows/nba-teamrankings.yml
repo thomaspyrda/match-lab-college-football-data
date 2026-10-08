@@ -21,7 +21,7 @@ jobs:
       - name: Collect metrics
         run: python nba/pipeline/build_teamrankings.py
       - name: Collect historical results and betting lines
-        if: success()
+        if: always()
         run: python nba/pipeline/build_teamrankings_games.py
       - name: Publish collected data and coverage
         if: always()
