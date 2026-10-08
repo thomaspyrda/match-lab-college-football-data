@@ -12,8 +12,8 @@ OUT = Path(__file__).resolve().parents[1] / "teams" / "data"
 STATS = {
     "points-per-game": "ppg",
     "opponent-points-per-game": "points_allowed_per_game",
-    "offensive-efficiency": "ortg",
-    "defensive-efficiency": "drtg",
+    "offensive-efficiency": "tr_offensive_efficiency_per_possession",
+    "defensive-efficiency": "tr_defensive_efficiency_per_possession",
     "effective-field-goal-pct": "efg_pct",
     "true-shooting-percentage": "ts_pct",
     "opponent-effective-field-goal-pct": "opp_efg_pct",
@@ -47,7 +47,8 @@ def fetch(stat, year, session):
     response.raise_for_status()
     tables=pd.read_html(response.text)
     for df in tables:
-        columns=[str(c) for c in df.columns]
+        columns=[str(c).strip() for c in df.columns]
+        df.columns=columns
         if "Team" not in columns or str(year-1) not in columns: continue
         entries={}
         for _, row in df.iterrows():
@@ -84,8 +85,9 @@ def main():
                 coverage[f"{year}:{key}"]={"error":str(ex)}
                 print(f"Unavailable {year} {key}: {ex}",flush=True)
             time.sleep(1)
-        # Do not publish a season unless all configured metrics cover all teams.
-        if any(len(vals)!=len(STATS) for vals in rows.values()): continue
+        # Persist individually sourced metrics; report missing fields clearly.
+        # Do not let one inaccessible endpoint discard nine valid metric tables.
+        if any(not vals for vals in rows.values()): continue
         for slug,metrics in rows.items():
             output.setdefault(slug,{})[str(year)]={
                 "metrics":metrics, "as_of":snapshot(year),
@@ -93,7 +95,7 @@ def main():
                 "scope":"dated historical snapshot; may include postseason",
                 "regular_season_only":False
             }
-        coverage[str(year)]={"teams":30,"metrics":len(STATS)}
+        coverage[str(year)]={"teams":30,"metrics_requested":len(STATS),"metrics_complete":len(sources)}
     OUT.mkdir(parents=True,exist_ok=True)
     for slug, seasons in output.items():
         (OUT/f"{slug}-teamrankings.json").write_text(
