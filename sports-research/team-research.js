@@ -252,11 +252,12 @@
  });
  // Use the existing season dropdown; move it into the same position for every sport.
  history.before(sections[0]);
+ if(details)sections[0].before(details);
  sections[0].after(sections[1],sections[2],sections[3],sections[4]);
  // Preserve season history and its selector directly after the canonical sections.
  sections[4].after(history);
  const research=document.querySelector('#research');
- if(research)research.after(history); // Keep source and coverage notes below data.
+ if(research)history.after(research); // Put archive beneath the main research sections.
  const newTabs=document.createDocumentFragment();
  sections.forEach((section,i)=>{
   let link=tabs.querySelector('a[href="#'+section.id+'"]');
