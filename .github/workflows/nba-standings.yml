@@ -1,0 +1,27 @@
+name: NBA historical league standings
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nba/pipeline/build_standings.py'
+      - '.github/workflows/nba-standings.yml'
+permissions:
+  contents: write
+jobs:
+  standings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests beautifulsoup4
+      - run: python nba/pipeline/build_standings.py --first 2016 --last 2024
+      - name: Commit validated historical standings
+        if: always()
+        run: |
+          git config user.name betwise-data-bot
+          git config user.email actions@users.noreply.github.com
+          git add nba/teams/data/standings-history.json nba/teams/data/standings-history-coverage.json
+          if ! git diff --cached --quiet; then git commit -m "Publish collected 2015-2024 NBA historical standings"; git pull --rebase; git push; fi
