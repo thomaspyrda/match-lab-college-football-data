@@ -1,0 +1,120 @@
+{
+  "season": "2024-25",
+  "started_at": "2026-10-09T18:05:43.663034+00:00",
+  "sources": {
+    "team_games": {
+      "status": "failed",
+      "seconds": 25.2,
+      "error": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=25)"
+    },
+    "team_base": {
+      "status": "failed",
+      "seconds": 25.1,
+      "error": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=25)"
+    },
+    "team_advanced": {
+      "status": "failed",
+      "seconds": 25.1,
+      "error": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=25)"
+    },
+    "player_games": {
+      "status": "failed",
+      "seconds": 25.2,
+      "error": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=25)"
+    },
+    "betting": {
+      "status": "source_probe_failed",
+      "teams": {
+        "new-york-knicks": {
+          "status": "failed",
+          "error": "[Errno 2] No such file or directory: <!doctype html>\n<html id=\"html\" class=\"no-js\" lang=\"en\">\n    <head>\n\t\t<script> \n\twindow.dataLayer = window.dataLayer || []; \n\tfunction gtag(){dataLayer.push(arguments);} \n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'denied',\n\t  'wait_for_update': 500\n\t});\n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'granted',\n\t  'region': ['US']\n\t});\n</script>\n\n\n\n\t<!-- OneTrust Cookies Consent Notice start for teamrankings.com -->\n\t<script src=\"https://cdn.cookielaw.org/consent/cd78aa8e-f100-463b-a2c3-a63709bcb84d/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"cd78aa8e-f100-463b-a2c3-a63709bcb84d\" ></script>\n\t<script type"
+        },
+        "boston-celtics": {
+          "status": "failed",
+          "error": "[Errno 2] No such file or directory: <!doctype html>\n<html id=\"html\" class=\"no-js\" lang=\"en\">\n    <head>\n\t\t<script> \n\twindow.dataLayer = window.dataLayer || []; \n\tfunction gtag(){dataLayer.push(arguments);} \n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'denied',\n\t  'wait_for_update': 500\n\t});\n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'granted',\n\t  'region': ['US']\n\t});\n</script>\n\n\n\n\t<!-- OneTrust Cookies Consent Notice start for teamrankings.com -->\n\t<script src=\"https://cdn.cookielaw.org/consent/cd78aa8e-f100-463b-a2c3-a63709bcb84d/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"cd78aa8e-f100-463b-a2c3-a63709bcb84d\" ></script>\n\t<script type"
+        }
+      },
+      "expected_teams": 30,
+      "source": "https://www.teamrankings.com/",
+      "remaining_teams_not_requested": 28
+    }
+  },
+  "checks": {
+    "team_game_coverage": {
+      "passed": false,
+      "details": {
+        "teams": 0,
+        "games": 0,
+        "team_game_rows": 0,
+        "expected_games": 1230
+      }
+    },
+    "paired_games_and_regular_season": {
+      "passed": false,
+      "details": {
+        "paired_games": 0
+      }
+    },
+    "team_totals_match_game_logs": {
+      "passed": false,
+      "details": {
+        "team_rows": 0,
+        "mismatched_teams": []
+      }
+    },
+    "official_advanced_metric_coverage": {
+      "passed": false,
+      "details": {
+        "team_rows": 0,
+        "missing": {},
+        "columns": [
+          "OFF_RATING",
+          "DEF_RATING",
+          "NET_RATING",
+          "PACE",
+          "EFG_PCT",
+          "TS_PCT",
+          "TM_TOV_PCT",
+          "OREB_PCT"
+        ]
+      }
+    },
+    "player_game_coverage": {
+      "passed": false,
+      "details": {
+        "rows": 0,
+        "teams": 0,
+        "player_team_stints": 0,
+        "duplicate_rows": 0,
+        "unmatched_games": 0
+      }
+    },
+    "player_points_match_team_scores": {
+      "passed": false,
+      "details": {
+        "mismatched_team_games": 0,
+        "sample": []
+      }
+    },
+    "traded_player_stints_preserved": {
+      "passed": false,
+      "details": {
+        "multi_team_players": 0,
+        "sample_ids": [],
+        "method": "Aggregate by PLAYER_ID and TEAM_ID, never assign combined season totals to a final team."
+      }
+    },
+    "betting_full_season_coverage": {
+      "passed": false,
+      "details": {
+        "downloaded_teams": 0,
+        "attempted_teams": 2,
+        "expected_teams": 30
+      }
+    }
+  },
+  "live_data_changed": false,
+  "finished_at": "2026-10-09T18:07:34.608516+00:00",
+  "basketball_passed": false,
+  "all_sources_passed": false
+}
