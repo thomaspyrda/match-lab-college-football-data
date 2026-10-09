@@ -7,6 +7,7 @@ from datetime import datetime,timezone
 from nba_api.stats.endpoints import leaguegamelog,leaguedashteamstats
 import requests
 import build_teamrankings_games as betting
+from build_history import SLUGS, abbr
 
 SEASON="2024-25"
 YEAR=2025
@@ -99,7 +100,7 @@ def probe(slug):
         matches=set()
         for g in rows:
             for tid,gg in source_rows.items():
-                if gg and betting.ALIASES.get(betting.norm(gg[0]["TEAM_NAME"]))==slug:
+                if gg and SLUGS.get(abbr(gg[0]["TEAM_ABBREVIATION"]))==slug:
                     for x in gg:
                         if str(x["GAME_DATE"])[:10]==g["date"]:
                             matches.add(g["date"])
