@@ -80,3 +80,15 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 .nba-nfl-format #metrics .nba-source-line{line-height:1.7;max-width:900px}
 @media(max-width:840px){.nba-nfl-format .nba-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:570px){.nba-nfl-format .nba-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* NFL-style offense and defense cards remain paired in row order. */
+.nba-nfl-format .nba-paired-metrics{display:grid;gap:10px}
+.nba-nfl-format .nba-metric-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.nba-nfl-format .nba-paired-card{background:#1e1e1e;border:1px solid #34343a;border-left:3px solid var(--nba-primary,#347fdd);border-radius:15px;padding:16px;min-width:0;min-height:112px;box-sizing:border-box}
+.nba-nfl-format .nba-paired-card>small{display:block;color:#909694;font-size:10px;font-weight:800;letter-spacing:.1em;margin-bottom:11px}
+.nba-nfl-format .nba-paired-value{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.nba-nfl-format .nba-paired-value>span{color:#bfc0c3;font-size:15px;font-weight:700;line-height:1.35}
+.nba-nfl-format .nba-paired-value>strong{color:#fff;font:900 23px/1.15 "DM Sans",sans-serif;white-space:nowrap;font-variant-numeric:tabular-nums}
+.nba-nfl-format .nba-metric-rank{color:#929297;font-size:12px;margin:12px 0 0}
+.nba-nfl-format .nba-metric-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+@media(max-width:570px){.nba-nfl-format .nba-metric-pair{grid-template-columns:1fr}.nba-nfl-format .nba-paired-card{padding:15px;min-height:105px}.nba-nfl-format .nba-metric-context{grid-template-columns:1fr}}
