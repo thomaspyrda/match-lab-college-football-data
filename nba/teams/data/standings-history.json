@@ -1,5 +1,371 @@
 {
   "seasons": {
+    "2021": {
+      "source": "https://basketball.realgm.com/nba/standings/league/2021",
+      "season_key": "2021",
+      "teams": {
+        "utah-jazz": {
+          "record": {
+            "wins": 52,
+            "losses": 20,
+            "overall": "52-20",
+            "home": "31-5",
+            "away": "21-15"
+          },
+          "metrics": {
+            "points_allowed_per_game": 107.2
+          }
+        },
+        "phoenix-suns": {
+          "record": {
+            "wins": 51,
+            "losses": 21,
+            "overall": "51-21",
+            "home": "27-9",
+            "away": "24-12"
+          },
+          "metrics": {
+            "points_allowed_per_game": 109.5
+          }
+        },
+        "philadelphia-76ers": {
+          "record": {
+            "wins": 49,
+            "losses": 23,
+            "overall": "49-23",
+            "home": "29-7",
+            "away": "20-16"
+          },
+          "metrics": {
+            "points_allowed_per_game": 108.1
+          }
+        },
+        "brooklyn-nets": {
+          "record": {
+            "wins": 48,
+            "losses": 24,
+            "overall": "48-24",
+            "home": "28-8",
+            "away": "20-16"
+          },
+          "metrics": {
+            "points_allowed_per_game": 114.1
+          }
+        },
+        "denver-nuggets": {
+          "record": {
+            "wins": 47,
+            "losses": 25,
+            "overall": "47-25",
+            "home": "25-11",
+            "away": "22-14"
+          },
+          "metrics": {
+            "points_allowed_per_game": 110.1
+          }
+        },
+        "la-clippers": {
+          "record": {
+            "wins": 47,
+            "losses": 25,
+            "overall": "47-25",
+            "home": "26-10",
+            "away": "21-15"
+          },
+          "metrics": {
+            "points_allowed_per_game": 107.8
+          }
+        },
+        "milwaukee-bucks": {
+          "record": {
+            "wins": 46,
+            "losses": 26,
+            "overall": "46-26",
+            "home": "26-10",
+            "away": "20-16"
+          },
+          "metrics": {
+            "points_allowed_per_game": 114.2
+          }
+        },
+        "dallas-mavericks": {
+          "record": {
+            "wins": 42,
+            "losses": 30,
+            "overall": "42-30",
+            "home": "21-15",
+            "away": "21-15"
+          },
+          "metrics": {
+            "points_allowed_per_game": 110.2
+          }
+        },
+        "portland-trail-blazers": {
+          "record": {
+            "wins": 42,
+            "losses": 30,
+            "overall": "42-30",
+            "home": "20-16",
+            "away": "22-14"
+          },
+          "metrics": {
+            "points_allowed_per_game": 114.3
+          }
+        },
+        "los-angeles-lakers": {
+          "record": {
+            "wins": 42,
+            "losses": 30,
+            "overall": "42-30",
+            "home": "21-15",
+            "away": "21-15"
+          },
+          "metrics": {
+            "points_allowed_per_game": 106.8
+          }
+        },
+        "atlanta-hawks": {
+          "record": {
+            "wins": 41,
+            "losses": 31,
+            "overall": "41-31",
+            "home": "25-11",
+            "away": "16-20"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.4
+          }
+        },
+        "new-york-knicks": {
+          "record": {
+            "wins": 41,
+            "losses": 31,
+            "overall": "41-31",
+            "home": "25-11",
+            "away": "16-20"
+          },
+          "metrics": {
+            "points_allowed_per_game": 104.7
+          }
+        },
+        "miami-heat": {
+          "record": {
+            "wins": 40,
+            "losses": 32,
+            "overall": "40-32",
+            "home": "21-15",
+            "away": "19-17"
+          },
+          "metrics": {
+            "points_allowed_per_game": 108
+          }
+        },
+        "memphis-grizzlies": {
+          "record": {
+            "wins": 38,
+            "losses": 34,
+            "overall": "38-34",
+            "home": "18-18",
+            "away": "20-16"
+          },
+          "metrics": {
+            "points_allowed_per_game": 112.3
+          }
+        },
+        "boston-celtics": {
+          "record": {
+            "wins": 36,
+            "losses": 36,
+            "overall": "36-36",
+            "home": "21-15",
+            "away": "15-21"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.2
+          }
+        },
+        "washington-wizards": {
+          "record": {
+            "wins": 34,
+            "losses": 38,
+            "overall": "34-38",
+            "home": "19-17",
+            "away": "15-21"
+          },
+          "metrics": {
+            "points_allowed_per_game": 118.5
+          }
+        },
+        "golden-state-warriors": {
+          "record": {
+            "wins": 39,
+            "losses": 33,
+            "overall": "39-33",
+            "home": "25-11",
+            "away": "14-22"
+          },
+          "metrics": {
+            "points_allowed_per_game": 112.7
+          }
+        },
+        "indiana-pacers": {
+          "record": {
+            "wins": 34,
+            "losses": 38,
+            "overall": "34-38",
+            "home": "13-23",
+            "away": "21-15"
+          },
+          "metrics": {
+            "points_allowed_per_game": 115.3
+          }
+        },
+        "charlotte-hornets": {
+          "record": {
+            "wins": 33,
+            "losses": 39,
+            "overall": "33-39",
+            "home": "18-18",
+            "away": "15-21"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.4
+          }
+        },
+        "san-antonio-spurs": {
+          "record": {
+            "wins": 33,
+            "losses": 39,
+            "overall": "33-39",
+            "home": "14-22",
+            "away": "19-17"
+          },
+          "metrics": {
+            "points_allowed_per_game": 112.8
+          }
+        },
+        "new-orleans-pelicans": {
+          "record": {
+            "wins": 31,
+            "losses": 41,
+            "overall": "31-41",
+            "home": "18-18",
+            "away": "13-23"
+          },
+          "metrics": {
+            "points_allowed_per_game": 114.9
+          }
+        },
+        "chicago-bulls": {
+          "record": {
+            "wins": 31,
+            "losses": 41,
+            "overall": "31-41",
+            "home": "15-21",
+            "away": "16-20"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.6
+          }
+        },
+        "sacramento-kings": {
+          "record": {
+            "wins": 31,
+            "losses": 41,
+            "overall": "31-41",
+            "home": "16-20",
+            "away": "15-21"
+          },
+          "metrics": {
+            "points_allowed_per_game": 117.4
+          }
+        },
+        "toronto-raptors": {
+          "record": {
+            "wins": 27,
+            "losses": 45,
+            "overall": "27-45",
+            "home": "16-20",
+            "away": "11-25"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.7
+          }
+        },
+        "minnesota-timberwolves": {
+          "record": {
+            "wins": 23,
+            "losses": 49,
+            "overall": "23-49",
+            "home": "13-23",
+            "away": "10-26"
+          },
+          "metrics": {
+            "points_allowed_per_game": 117.7
+          }
+        },
+        "cleveland-cavaliers": {
+          "record": {
+            "wins": 22,
+            "losses": 50,
+            "overall": "22-50",
+            "home": "13-23",
+            "away": "9-27"
+          },
+          "metrics": {
+            "points_allowed_per_game": 112.3
+          }
+        },
+        "oklahoma-city-thunder": {
+          "record": {
+            "wins": 22,
+            "losses": 50,
+            "overall": "22-50",
+            "home": "10-26",
+            "away": "12-24"
+          },
+          "metrics": {
+            "points_allowed_per_game": 115.6
+          }
+        },
+        "orlando-magic": {
+          "record": {
+            "wins": 21,
+            "losses": 51,
+            "overall": "21-51",
+            "home": "11-25",
+            "away": "10-26"
+          },
+          "metrics": {
+            "points_allowed_per_game": 113.3
+          }
+        },
+        "detroit-pistons": {
+          "record": {
+            "wins": 20,
+            "losses": 52,
+            "overall": "20-52",
+            "home": "13-23",
+            "away": "7-29"
+          },
+          "metrics": {
+            "points_allowed_per_game": 111.1
+          }
+        },
+        "houston-rockets": {
+          "record": {
+            "wins": 17,
+            "losses": 55,
+            "overall": "17-55",
+            "home": "9-27",
+            "away": "8-28"
+          },
+          "metrics": {
+            "points_allowed_per_game": 116.7
+          }
+        }
+      }
+    },
     "2022": {
       "season_key": "2022",
       "source": "https://basketball.realgm.com/nba/standings/league/2022",
