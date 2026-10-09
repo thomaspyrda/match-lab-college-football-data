@@ -92,3 +92,7 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 .nba-nfl-format .nba-metric-rank{color:#929297;font-size:12px;margin:12px 0 0}
 .nba-nfl-format .nba-metric-context{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
 @media(max-width:570px){.nba-nfl-format .nba-metric-pair{grid-template-columns:1fr}.nba-nfl-format .nba-paired-card{padding:15px;min-height:105px}.nba-nfl-format .nba-metric-context{grid-template-columns:1fr}}
+
+/* Four season-context metrics, each with its NBA rank. */
+.nba-nfl-format .nba-metric-context{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:840px){.nba-nfl-format .nba-metric-context{grid-template-columns:repeat(2,minmax(0,1fr))}}
