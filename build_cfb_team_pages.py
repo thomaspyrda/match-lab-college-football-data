@@ -114,7 +114,7 @@ def page(team,seasons,registry,current):
  options=''.join(f'<option value="{y}"{" selected" if y==default else ""}>{y}{" · no FBS data" if str(y) not in seasons else ""}</option>' for y in range(current,FIRST-1,-1))
  payload=json.dumps({'team':team,'seasons':seasons},separators=(',',':')).replace('<','\\u003c')
  robots='index,follow' if seasons else 'noindex,follow'
- logo_tile_variant = ' team-hero-logo-wrap--dark-gray' if str(team['id']) in {'2132', '2294'} else ''
+ logo_tile_variant = ' team-hero-logo-wrap--dark-gray' if str(team['id']) in {'2132', '2294', '154'} else ''
  return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(name)} Stats &amp; Season History | BetWise CFB</title><meta name="description" content="{esc(name)} college football season records, coaches, recruiting ranks, advanced metrics, player leaders and schedule results from 2015 forward."><meta name="robots" content="{robots}"><link rel="canonical" href="{BASE}{path}">
 <link rel="stylesheet" href="/cfb-dashboard-preview/styles.css?v=27"><link rel="stylesheet" href="/cfb/team-page.css?v=logo-tiles-20261009"><link rel="stylesheet" href="/site-navigation.css?v=2"><script src="/site-navigation-v3.js" defer></script><script id="team-color-script" src="https://matchlab.parlaycalculator.bet/sports-research/team-theme.js?v=2" defer></script><style id="team-section-title-style">.team-section:not(#snapshot) .team-section-head h2{{display:none!important}}</style></head>
