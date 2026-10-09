@@ -22,6 +22,12 @@ class AccoladeTests(unittest.TestCase):
  def test_shared_title_with_former_fbs_school(self):
   rows,_=conferences([(18,1,'Big Ten Conference\nYear Champion (Record)\n1905 Michigan (5-0)\nUChicago (7-0)')],self.resolve)
   self.assertTrue(rows[0]['shared'])
+ def test_first_round_draft_pick_archive_and_card(self):
+  picks=[p for t in self.data['teams'].values() for p in t.get('first_round_draft_picks',[])]
+  self.assertEqual(len(picks),self.data['coverage']['nfl_first_round_draft_count'])
+  self.assertTrue(all(p['overall_pick']<=32 for p in picks))
+  self.assertGreater(len(picks),300)
+  markup=render('333',self.data);self.assertIn('NFL First-Round Draft Picks',markup);self.assertIn('Draft Year',markup)
  def test_all_teams_and_unique_entries(self):
   self.assertEqual(set(self.data['teams']),{str(t['id']) for t in self.teams})
   for t in self.data['teams'].values():

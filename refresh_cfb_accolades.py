@@ -170,13 +170,20 @@ def main():
    if tid:bw.append({'team_id':tid,'year':g['season'],'date':g['start_date'][:10],'bowl':name,'opponent':g[lose],'score':f'{max(hp,ap):g}–{min(hp,ap):g}','vacated':False,'source':'CFBD','game_id':g['game_id']})
  meta['CFBD']={'name':'CollegeFootballData postseason games','url':'https://collegefootballdata.com/'}
  output={str(t['id']):{'name':t['name'],'bowl_wins':[],'conference_titles':[],'national_titles':[],'player_awards':[]} for t in teams}
+ # Preserve first-round draft data imported from the NFL team-page archive.
+ try: previous=json.loads((ROOT/'data/cfb/program-accolades.json').read_text())
+ except FileNotFoundError: previous={}
+ for k,v in previous.get('sources',{}).items():
+  if k.startswith('NFLDraft:'):meta[k]=v
+ for tid,team_data in output.items():
+  team_data['first_round_draft_picks']=previous.get('teams',{}).get(tid,{}).get('first_round_draft_picks',[])
  for key,rows in [('bowl_wins',bw),('conference_titles',cf),('national_titles',nt),('player_awards',aw)]:
   for r in rows:output[r['team_id']][key].append(r)
   for v in output.values():v[key].sort(key=lambda x:(-x['year'],x.get('award',x.get('bowl',''))))
  assert len(aw)>900 and len(cf)>1200 and len(nt)>150 and len(bw)>1200,(len(aw),len(cf),len(nt),len(bw))
  report={'unmatched_awards':awmiss,'unmatched_conferences':cfmiss}
  (source/'parse-audit.json').write_text(json.dumps(report,indent=2))
- data={'schema_version':1,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':meta,'coverage':{'bowl_book_through':book_through,'bowl_wins_through':max(r['year'] for r in bw),'conference_titles_through':max(r['year'] for r in cf),'national_titles_through':max(r['year'] for r in nt),'player_awards_through':max(r['year'] for r in aw)},'teams':output}
+ data={'schema_version':1,'updated_at':datetime.now(timezone.utc).isoformat(),'sources':meta,'coverage':{'nfl_first_round_draft_from':previous.get('coverage',{}).get('nfl_first_round_draft_from'),'nfl_first_round_draft_through':previous.get('coverage',{}).get('nfl_first_round_draft_through'),'nfl_first_round_draft_count':previous.get('coverage',{}).get('nfl_first_round_draft_count'),'bowl_book_through':book_through,'bowl_wins_through':max(r['year'] for r in bw),'conference_titles_through':max(r['year'] for r in cf),'national_titles_through':max(r['year'] for r in nt),'player_awards_through':max(r['year'] for r in aw)},'teams':output}
  (ROOT/'data/cfb/program-accolades.json').write_text(json.dumps(data,separators=(',',':'),ensure_ascii=False))
  print('Awards, conference titles, national title selections, bowl wins:',len(aw),len(cf),len(nt),len(bw));print('Coverage',data['coverage'])
 if __name__=='__main__':main()
