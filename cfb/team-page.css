@@ -3,7 +3,8 @@
 .team-shell{max-width:1180px;margin:auto;padding:34px 22px 70px}
 .team-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:180px 1fr;gap:34px;align-items:center;padding:34px;border:1px solid rgba(167,25,48,.7);border-radius:24px;background:linear-gradient(120deg,#050505 0%,#111 55%,rgba(167,25,48,.45) 100%);box-shadow:0 20px 50px #0008}
 .team-hero:after{content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid rgba(255,255,255,.08);border-radius:50%;box-shadow:0 0 0 40px rgba(255,255,255,.025),0 0 0 80px rgba(255,255,255,.018)}
-.team-hero-logo-wrap{position:relative;z-index:1;display:grid;place-items:center;width:170px;height:170px;border-radius:32px;background:#e9eaed;border:1px solid rgba(255,255,255,.45);box-shadow:0 12px 34px rgba(0,0,0,.28)}
+.team-hero-logo-wrap{position:relative;z-index:1;display:grid;place-items:center;width:170px;height:170px;border-radius:32px;background:#000;border:1px solid rgba(255,255,255,.08)}
+.team-hero-logo-wrap--dark-gray{background:#343434;border-color:rgba(255,255,255,.18)}
 .team-hero-logo{width:138px;height:138px;object-fit:contain}
 .team-hero-copy{position:relative;z-index:1}.team-kicker{margin:0;color:#f0b7c1;font-size:11px;font-weight:900;letter-spacing:.13em}.team-hero h1{margin:5px 0 8px;font:900 clamp(42px,7vw,76px)/.95 "DM Sans",sans-serif;letter-spacing:-.045em}.team-hero-copy>p:not(.team-kicker){max-width:700px;color:#d0d0d0;font-size:17px}
 .season-control{display:flex;align-items:center;gap:10px;margin-top:22px}.season-control label{font-weight:800}.season-control select{min-width:130px;padding:10px 14px;border:1px solid #555;border-radius:10px;background:#090909;color:#fff;font:700 14px inherit}
