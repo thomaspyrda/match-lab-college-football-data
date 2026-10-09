@@ -8,6 +8,7 @@ on:
       - apply_cfb_program_accolades.py
       - verify_cfb_team_pages.py
       - refresh_cfb_accolades.py
+      - refresh_cfb_first_round_draft_picks.py
       - test_cfb_accolades.py
       - data/cfb/program-accolades.json
       - data/cfb/national-title-claims.json
@@ -27,6 +28,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Refresh NFL first-round draft picks from 1970 onward
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python refresh_cfb_first_round_draft_picks.py
       - name: Verify program history and existing season calculations
         run: python -m unittest test_cfb_accolades.py test_cfb_team_pages.py
       - name: Build all CFB team pages from existing season data
@@ -49,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cfb/teams data/cfb/teams teams.html sitemap-cfb-teams.xml sitemap.xml
+          git add cfb/teams data/cfb/teams data/cfb/program-accolades.json teams.html sitemap-cfb-teams.xml sitemap.xml
           git diff --cached --quiet && exit 0
           git commit -m "Add sourced program accolades to every CFB team page"
           git pull --rebase -X theirs origin main
