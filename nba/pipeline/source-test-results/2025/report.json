@@ -1,6 +1,6 @@
 {
   "season": "2024-25",
-  "started_at": "2026-10-09T18:05:43.663034+00:00",
+  "started_at": "2026-10-09T18:09:12.620586+00:00",
   "sources": {
     "team_games": {
       "status": "failed",
@@ -23,20 +23,247 @@
       "error": "HTTPSConnectionPool(host='stats.nba.com', port=443): Read timed out. (read timeout=25)"
     },
     "betting": {
-      "status": "source_probe_failed",
+      "status": "completed",
       "teams": {
         "new-york-knicks": {
-          "status": "failed",
-          "error": "[Errno 2] No such file or directory: <!doctype html>\n<html id=\"html\" class=\"no-js\" lang=\"en\">\n    <head>\n\t\t<script> \n\twindow.dataLayer = window.dataLayer || []; \n\tfunction gtag(){dataLayer.push(arguments);} \n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'denied',\n\t  'wait_for_update': 500\n\t});\n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'granted',\n\t  'region': ['US']\n\t});\n</script>\n\n\n\n\t<!-- OneTrust Cookies Consent Notice start for teamrankings.com -->\n\t<script src=\"https://cdn.cookielaw.org/consent/cd78aa8e-f100-463b-a2c3-a63709bcb84d/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"cd78aa8e-f100-463b-a2c3-a63709bcb84d\" ></script>\n\t<script type"
+          "status": "downloaded",
+          "games": 102,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/new-york-knicks?date=2025-07-10",
+          "regular_season_dates_matched": 0
         },
         "boston-celtics": {
+          "status": "downloaded",
+          "games": 89,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/boston-celtics?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "atlanta-hawks": {
+          "status": "downloaded",
+          "games": 88,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/atlanta-hawks?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "brooklyn-nets": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/brooklyn-nets?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "charlotte-hornets": {
+          "status": "downloaded",
+          "games": 84,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/charlotte-hornets?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "chicago-bulls": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/chicago-bulls?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "cleveland-cavaliers": {
+          "status": "downloaded",
+          "games": 100,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/cleveland-cavaliers?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "dallas-mavericks": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/dallas-mavericks?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "denver-nuggets": {
+          "status": "downloaded",
+          "games": 88,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/denver-nuggets?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "detroit-pistons": {
+          "status": "downloaded",
+          "games": 96,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/detroit-pistons?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "golden-state-warriors": {
+          "status": "downloaded",
+          "games": 84,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/golden-state-warriors?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "houston-rockets": {
+          "status": "downloaded",
+          "games": 88,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/houston-rockets?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "indiana-pacers": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/indiana-pacers?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "la-clippers": {
           "status": "failed",
-          "error": "[Errno 2] No such file or directory: <!doctype html>\n<html id=\"html\" class=\"no-js\" lang=\"en\">\n    <head>\n\t\t<script> \n\twindow.dataLayer = window.dataLayer || []; \n\tfunction gtag(){dataLayer.push(arguments);} \n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'denied',\n\t  'wait_for_update': 500\n\t});\n\t\n\tgtag('consent', 'default', {\n\t  'analytics_storage': 'granted',\n\t  'region': ['US']\n\t});\n</script>\n\n\n\n\t<!-- OneTrust Cookies Consent Notice start for teamrankings.com -->\n\t<script src=\"https://cdn.cookielaw.org/consent/cd78aa8e-f100-463b-a2c3-a63709bcb84d/otSDKStub.js\"  type=\"text/javascript\" charset=\"UTF-8\" data-domain-script=\"cd78aa8e-f100-463b-a2c3-a63709bcb84d\" ></script>\n\t<script type"
+          "error": "Historical game table not found. Available columns: [['Team', 'Team Links']]"
+        },
+        "los-angeles-lakers": {
+          "status": "downloaded",
+          "games": 92,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/los-angeles-lakers?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "memphis-grizzlies": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/memphis-grizzlies?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "miami-heat": {
+          "status": "downloaded",
+          "games": 83,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/miami-heat?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "milwaukee-bucks": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/milwaukee-bucks?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "minnesota-timberwolves": {
+          "status": "downloaded",
+          "games": 94,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/minnesota-timberwolves?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "new-orleans-pelicans": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/new-orleans-pelicans?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "oklahoma-city-thunder": {
+          "status": "downloaded",
+          "games": 97,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/oklahoma-city-thunder?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "orlando-magic": {
+          "status": "downloaded",
+          "games": 91,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/orlando-magic?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "philadelphia-76ers": {
+          "status": "downloaded",
+          "games": 94,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/philadelphia-76ers?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "phoenix-suns": {
+          "status": "downloaded",
+          "games": 88,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/phoenix-suns?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "portland-trail-blazers": {
+          "status": "downloaded",
+          "games": 88,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/portland-trail-blazers?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "sacramento-kings": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/sacramento-kings?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "san-antonio-spurs": {
+          "status": "downloaded",
+          "games": 106,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/san-antonio-spurs?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "toronto-raptors": {
+          "status": "downloaded",
+          "games": 89,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/toronto-raptors?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "utah-jazz": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/utah-jazz?date=2025-07-10",
+          "regular_season_dates_matched": 0
+        },
+        "washington-wizards": {
+          "status": "downloaded",
+          "games": 82,
+          "games_with_spread": 0,
+          "games_with_total": 0,
+          "source": "https://www.teamrankings.com/nba/team/washington-wizards?date=2025-07-10",
+          "regular_season_dates_matched": 0
         }
       },
       "expected_teams": 30,
-      "source": "https://www.teamrankings.com/",
-      "remaining_teams_not_requested": 28
+      "source": "https://www.teamrankings.com/"
     }
   },
   "checks": {
@@ -107,14 +334,15 @@
     "betting_full_season_coverage": {
       "passed": false,
       "details": {
-        "downloaded_teams": 0,
-        "attempted_teams": 2,
+        "downloaded_teams": 29,
+        "attempted_teams": 30,
         "expected_teams": 30
       }
     }
   },
   "live_data_changed": false,
-  "finished_at": "2026-10-09T18:07:34.608516+00:00",
+  "nba_access_test_reused_from": "2026-10-09T18:05:43.663034+00:00",
+  "finished_at": "2026-10-09T18:09:49.476207+00:00",
   "basketball_passed": false,
   "all_sources_passed": false
 }
