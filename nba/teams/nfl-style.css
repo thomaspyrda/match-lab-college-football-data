@@ -96,3 +96,6 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 /* Four season-context metrics, each with its NBA rank. */
 .nba-nfl-format .nba-metric-context{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:840px){.nba-nfl-format .nba-metric-context{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Keep the expanded snapshot on one desktop row. */
+@media(min-width:841px){.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(8,minmax(0,1fr))}}
