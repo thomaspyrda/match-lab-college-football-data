@@ -1,0 +1,16 @@
+/* Match the green Strength-card outline on selectable team directory cards.
+   NFL is intentionally excluded because its pages use team-specific border colors. */
+a.conference-team[href*="/cfb/teams/"]:hover,
+a.conference-team[href*="/cfb/teams/"]:focus-visible,
+a.conference-team[href*="/nba/teams/"]:hover,
+a.conference-team[href*="/nba/teams/"]:focus-visible,
+a.conference-team[href*="/cbb/teams/"]:hover,
+a.conference-team[href*="/cbb/teams/"]:focus-visible,
+a.conference-team[href*="/mlb/teams/"]:hover,
+a.conference-team[href*="/mlb/teams/"]:focus-visible {
+  border-color: #00ff41;
+  background: #172019;
+  box-shadow: 0 0 0 1px #00ff41;
+  outline: 1px solid #00ff41;
+  outline-offset: 0;
+}
