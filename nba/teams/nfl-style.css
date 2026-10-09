@@ -104,3 +104,7 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 
 .nba-nfl-format .franchise-accolades h2{font-size:1.6rem;line-height:1.2;letter-spacing:normal;margin:4px 0 12px}
 .nba-nfl-format .nba-accolade-type{font-size:1.1rem;color:#f3f5f3;margin:24px 0 12px}
+
+/* Postseason outcomes include opponents and series or game scores. */
+.nba-nfl-format .nba-playoff-strip strong{min-width:0;text-align:right;line-height:1.5}
+@media(max-width:570px){.nba-nfl-format .nba-playoff-strip{flex-direction:column;align-items:flex-start;gap:7px}.nba-nfl-format .nba-playoff-strip strong{text-align:left;font-size:16px}}
