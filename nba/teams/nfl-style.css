@@ -17,7 +17,7 @@ body.nba-nfl-format{background:linear-gradient(115deg,#091b39 0%,#181728 48%,#3b
 .nba-nfl-format .nba-content-section{margin:30px 0 34px}
 .nba-nfl-format .nba-section-kicker{color:var(--nba-team-accent,#60a1e5);font-size:11px;font-weight:900;letter-spacing:.11em;text-transform:uppercase;margin:0 0 9px}
 .nba-nfl-format .nba-section-title{font-size:32px;font-weight:850;line-height:1.15;color:#fff;margin:0 0 19px}
-.nba-nfl-format .nba-tile-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.nba-nfl-format .nba-tile-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
 .nba-nfl-format .nba-tile,.nba-nfl-format .nba-coach-card{background:#1e1e1e;border:1px solid #34343a;border-radius:14px;padding:19px 16px;min-width:0}
 .nba-nfl-format .nba-tile strong{color:#f9f9fb;font-size:25px;display:block;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
 .nba-nfl-format .nba-tile small{color:#9f9fa5;font-size:11px;text-transform:uppercase;letter-spacing:.045em;display:block;margin-top:8px}
@@ -36,7 +36,7 @@ body.nba-nfl-format{background:linear-gradient(115deg,#091b39 0%,#181728 48%,#3b
 .nba-nfl-format .nba-source-line{color:#aaa;font-size:12px;margin-top:10px}
 .nba-nfl-format .nba-source-line a{color:#91bdfa}
 @media(max-width:840px){.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.nba-nfl-format .nba-coaches{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:570px){.nba-nfl-format .nba-shell{padding:20px 14px 55px}.nba-nfl-format .nba-navigation{flex-wrap:nowrap;overflow-x:auto}.nba-nfl-format .nba-navigation a{white-space:nowrap}.nba-nfl-format .nba-season-controls{align-items:stretch;flex-direction:column}.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nba-nfl-format .nba-coaches{grid-template-columns:1fr}.nba-nfl-format .nba-heading img{width:58px;height:58px}.nba-nfl-format .nba-heading{gap:12px}.nba-nfl-format .nba-tile{padding:14px 12px}.nba-nfl-format .nba-tile strong{font-size:21px}}
+@media(max-width:570px){.nba-nfl-format .nba-shell{padding:20px 14px 55px}.nba-nfl-format .nba-navigation{flex-wrap:nowrap;overflow-x:auto}.nba-nfl-format .nba-navigation a{white-space:nowrap}.nba-nfl-format .nba-season-controls{align-items:stretch;flex-direction:column}.nba-nfl-format .nba-tile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nba-nfl-format .nba-coaches{grid-template-columns:1fr}.nba-nfl-format .nba-heading img{width:58px;height:58px}.nba-nfl-format .nba-heading{gap:12px}.nba-nfl-format .nba-tile{padding:13px 10px}.nba-nfl-format .nba-tile strong{font-size:21px}}
 
 /* Shared NFL-equivalent team hero; season selector belongs inside hero */
 .nba-nfl-format .nba-hero{display:flex;align-items:center;gap:42px;min-height:280px;padding:35px;background:radial-gradient(circle at 88% 10%,#29234588,transparent 36%),linear-gradient(120deg,#080808 0%,#181020 58%,#11274a 100%);border:1px solid #365da5;border-radius:23px;margin-bottom:18px}
