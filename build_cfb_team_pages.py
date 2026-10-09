@@ -168,6 +168,7 @@ def main():
   if re.search(ranking_anchor,content):content=re.sub(ranking_anchor,lambda m:RANKING_LINKS,content,count=1)
   else:content=content.replace('</section><nav class="directory-jumps"',RANKING_LINKS+'</section><nav class="directory-jumps"',1)
   if 'rankings-navigation.css' not in content:content=content.replace('</head>',RANKING_STYLE+'</head>',1)
+  if 'team-card-hover.css' not in content:content=content.replace('</head>','<link rel="stylesheet" href="/sports-research/team-card-hover.css?v=1"></head>',1)
   def link(m):
    body=m.group(1);idmatch=re.search(r'/([0-9]+)\.png',body)
    if not idmatch or idmatch[1] not in registry:return m.group(0)
