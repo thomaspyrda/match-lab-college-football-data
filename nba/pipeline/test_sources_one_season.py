@@ -6,6 +6,8 @@ from collections import defaultdict
 from datetime import datetime,timezone
 from nba_api.stats.endpoints import leaguegamelog,leaguedashteamstats
 import requests
+import pandas as pd
+from io import StringIO
 import build_teamrankings_games as betting
 from build_history import SLUGS, abbr
 
@@ -15,6 +17,8 @@ ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/"nba/pipeline/source-test-results"/str(YEAR)
 RAW=OUT/"raw"
 RAW.mkdir(parents=True,exist_ok=True)
+prior_path=OUT/"report.json"
+prior=json.loads(prior_path.read_text()) if prior_path.exists() else {}
 report={"season":SEASON,"started_at":datetime.now(timezone.utc).isoformat(),"sources":{},"checks":{},"live_data_changed":False}
 datasets={}
 def save():
@@ -33,10 +37,16 @@ def nba(name,factory):
     print(name,json.dumps(report["sources"][name]),flush=True)
     time.sleep(2)
 
-nba("team_games",lambda:leaguegamelog.LeagueGameLog(season=SEASON,season_type_all_star="Regular Season",player_or_team_abbreviation="T",timeout=25))
-nba("team_base",lambda:leaguedashteamstats.LeagueDashTeamStats(season=SEASON,season_type_all_star="Regular Season",per_mode_detailed="Totals",measure_type_detailed_defense="Base",timeout=25))
-nba("team_advanced",lambda:leaguedashteamstats.LeagueDashTeamStats(season=SEASON,season_type_all_star="Regular Season",per_mode_detailed="PerGame",measure_type_detailed_defense="Advanced",timeout=25))
-nba("player_games",lambda:leaguegamelog.LeagueGameLog(season=SEASON,season_type_all_star="Regular Season",player_or_team_abbreviation="P",timeout=25))
+# Preserve the completed NBA access test when rerunning parser fixes.
+if prior.get("sources") and all(prior["sources"].get(k,{}).get("status")=="failed" for k in ("team_games","team_base","team_advanced","player_games")):
+    report["sources"].update({k:prior["sources"][k] for k in ("team_games","team_base","team_advanced","player_games")})
+    report["nba_access_test_reused_from"]=prior.get("started_at")
+    print("Reusing completed NBA access failure report; only retrying corrected betting parser.",flush=True)
+else:
+    nba("team_games",lambda:leaguegamelog.LeagueGameLog(season=SEASON,season_type_all_star="Regular Season",player_or_team_abbreviation="T",timeout=25))
+    nba("team_base",lambda:leaguedashteamstats.LeagueDashTeamStats(season=SEASON,season_type_all_star="Regular Season",per_mode_detailed="Totals",measure_type_detailed_defense="Base",timeout=25))
+    nba("team_advanced",lambda:leaguedashteamstats.LeagueDashTeamStats(season=SEASON,season_type_all_star="Regular Season",per_mode_detailed="PerGame",measure_type_detailed_defense="Advanced",timeout=25))
+    nba("player_games",lambda:leaguegamelog.LeagueGameLog(season=SEASON,season_type_all_star="Regular Season",player_or_team_abbreviation="P",timeout=25))
 
 def check(name,ok,details):
     report["checks"][name]={"passed":bool(ok),"details":details}
@@ -81,6 +91,16 @@ traded=[pid for pid,v in teams_per_player.items() if len(v)>1]
 check("traded_player_stints_preserved",bool(players) and len(traded)>0,{"multi_team_players":len(traded),"sample_ids":traded[:10],"method":"Aggregate by PLAYER_ID and TEAM_ID, never assign combined season totals to a final team."})
 # Probe two teams before expanding to the full league. Stop if the source cannot
 # supply historical dated game tables; avoid wasting requests on a failed source.
+def table_for_test(html):
+    tables=pd.read_html(StringIO(html))
+    columns=[]
+    for df in tables:
+        df.columns=[str(c).strip() for c in df.columns]
+        columns.append(list(df.columns))
+        if {"Date","Opponent","Result"}.issubset(df.columns):
+            return df
+    raise RuntimeError("Historical game table not found. Available columns: "+str(columns)[:500])
+betting.table_for=table_for_test
 class ShortSession(requests.Session):
     def get(self,*args,**kwargs):
         kwargs["timeout"]=15
