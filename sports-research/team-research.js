@@ -12,10 +12,12 @@
   orderTeamSections();
   const input = document.querySelector('#team-search');
   const group = document.querySelector('#group-filter');
-  if (input && group) {
+  if (group) {
     const cards = [...document.querySelectorAll('[data-team-name]')];
+    const status = document.querySelector('#search-status');
+    const emptySearch = document.querySelector('#empty-search');
     const filter = () => {
-      const query = input.value.trim().toLocaleLowerCase();
+      const query = input?.value.trim().toLocaleLowerCase() ?? '';
       let count = 0;
       cards.forEach(card => {
         card.hidden = !card.dataset.teamName.includes(query) || (group.value && card.dataset.group !== group.value);
@@ -23,10 +25,10 @@
       });
       document.querySelectorAll('.conference-group').forEach(section => section.hidden = !section.querySelector('[data-team-name]:not([hidden])'));
       document.querySelectorAll('.league-section').forEach(section => section.hidden = !section.querySelector('.conference-group:not([hidden])'));
-      document.querySelector('#search-status').textContent = `${count} ${count === 1 ? 'team' : 'teams'} shown`;
-      document.querySelector('#empty-search').hidden = count !== 0;
+      if (status) status.textContent = `${count} ${count === 1 ? 'team' : 'teams'} shown`;
+      if (emptySearch) emptySearch.hidden = count !== 0;
     };
-    input.addEventListener('input', filter); group.addEventListener('change', filter);
+    input?.addEventListener('input', filter); group.addEventListener('change', filter);
   }
   const select = document.querySelector('#season-select');
   const seed = document.querySelector('#team-season-data');
