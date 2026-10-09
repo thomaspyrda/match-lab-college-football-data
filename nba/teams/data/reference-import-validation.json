@@ -1,0 +1,481 @@
+{
+  "source": "User-provided Basketball Reference Excel exports",
+  "season_type": "Regular Season",
+  "seasons": {
+    "2016": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download.xls",
+          "sha256": "91f2b216cb53e24ae0e2752841f0b7615269b57b342c96ff231378a5dd651004"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (1).xls",
+          "sha256": "86e8bd5a0f871c963bb23cb3022a30d5ba47df77534a24a69025a081d7118d8f"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (2).xls",
+          "sha256": "d5c6d922d320a625ed9af99d53ca6ec91928677fc6b03413c8ddf3ae6b97f7b7"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (3).xls",
+          "sha256": "8481b7585ed508da0aebaa063185fbee25da634c2329172f02ce252b0e24989b"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (4).xls",
+          "sha256": "369ecedef26a8cbaa7ffaf3659dce68f7e098b2c610f620ce967c193cb7fe8c7"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (5).xls",
+          "sha256": "832caa641541e8235a3b4acb0417b6680bcf79d513b5b9b1f8c10f9f534e1462"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (6).xls",
+          "sha256": "170a3076eb146692ecf4b4af423f62aa5af459d9d317e39280e9dba17bee4309"
+        }
+      ]
+    },
+    "2017": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (7).xls",
+          "sha256": "85643cf04e7d32960464f3c6a92f0342be14b52faceda64b380b3daac32f5a3c"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (8).xls",
+          "sha256": "819c5f87ce869670e2aa9292fda2a68832a6f03f23d3012b85e4bc3f474b4091"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (9).xls",
+          "sha256": "97b9a93afe49c764b730034c46ec3d0f26e5a498ed81f561f6ef856a9957ecc4"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (10).xls",
+          "sha256": "3f8bf100e685d7a1f1bbbaa6b30bdad35b1d06cc594be9816a607f8852766978"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (11).xls",
+          "sha256": "de2cbdc504efbce0f72686fee0708958cc789d4072c543021671dc79247e3aa8"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (12).xls",
+          "sha256": "88fe8611cff1d57b850cfe2063dfc631d9e2b366b7f0322fae72126c0d49d5f8"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (13).xls",
+          "sha256": "55e95845995ed370cbd54cebe85d9f05d59335e2bce927752e9c0f6673dca63d"
+        }
+      ]
+    },
+    "2018": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (14).xls",
+          "sha256": "47aa4740a3a754621ca5d75da7412d75b69106963617414c5153da510b6c4ad3"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (15).xls",
+          "sha256": "01654342c2abb78a45b81048cb9269675a51b8afb36efae1ece59a144e2bb66f"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (16).xls",
+          "sha256": "0811fdc7654255aa84a3e95f874224640288d006a340be9b86318eb47e08fb21"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (17).xls",
+          "sha256": "c39c31f6394b1fb4becd598197259b922f48ca875492db4c8f89aa0acce8dfcb"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (18).xls",
+          "sha256": "4aa3fa8b3ace96023388a349ac746605f430933bfe36a551ad25d10d29774481"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (19).xls",
+          "sha256": "a1d1ee4721f1dc6d408db6d7d8c090fb35a89d6fdbd936a223b457be5ad04fe6"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (20).xls",
+          "sha256": "7991135ac1753e14c379fe1210d43b42444332bf62f25f393abb6290f0539f4e"
+        }
+      ]
+    },
+    "2019": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (21).xls",
+          "sha256": "e71da39308c71a66e762d536a1bdc80a73b7ca8b9cec05782db15b571e8ccf0e"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (22).xls",
+          "sha256": "dadf1dc306988b77fd29bcac29991072c4f23bfd0a548a4e5e58c006669f22fa"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (23).xls",
+          "sha256": "c967f4e9bad958d872c73bc146b394fbff14c2357e7d976174ad8300dae592ea"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (24).xls",
+          "sha256": "b262aac45c3a8d6dee4319eea8043d7bf9f70c15cb8d47e67fe7f5940178bfa1"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (25).xls",
+          "sha256": "bb324052eda40ded9955fdf316b1987bd5b36457506039dbaf433aca015f7a86"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (26).xls",
+          "sha256": "cb2901d416679d5c01c4dba3c066625e954623cc084016dbda10e7f5136e7e22"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (27).xls",
+          "sha256": "4a0a797b5c9d531231395bb7a80dd1557216a5d79fed146c834557ac3be5d3fa"
+        }
+      ]
+    },
+    "2020": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1059,
+      "losses": 1059,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (28).xls",
+          "sha256": "2e5ba8309435780289e91635176c228f4375dd2d9dadd355db01f5376a848fb7"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (29).xls",
+          "sha256": "89e17efc5096b4df2dfcfd0b4e87d86b69b1df020377e5addf62882ec0d5e358"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (30).xls",
+          "sha256": "9f100afa4721c325e434e144a1b96da6c7e8a720757f9447b14daa3d6998ec4a"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (31).xls",
+          "sha256": "5cbe496a2a708f1867d309e3004c0ff0e6087cd79dbc58cee5f04df597b8cafc"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (32).xls",
+          "sha256": "faa91b5412d3012f76893653068a383c234157d5d49be60360bc3fa3d542810f"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (33).xls",
+          "sha256": "40326cce9470057963930251225d321151ef47577c3d4d0644162f8843a1f3b0"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (34).xls",
+          "sha256": "71ef7fc043825c64d298f921cd627fd643310cf6e7f045f791231f51a5fbca77"
+        }
+      ]
+    },
+    "2021": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1080,
+      "losses": 1080,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (35).xls",
+          "sha256": "9936b83e5d7da665083becee6960d7f6889332e6629691da05ca480a70858916"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (36).xls",
+          "sha256": "322817572bc969c5d67c0abde8e3da71404fbf269f86dd5f5adc11d256eb2ef4"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (37).xls",
+          "sha256": "f0491a7cfe68a55dcd73441cc76ed54715c6254ca78c74bb28029e22eb6fe27c"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (38).xls",
+          "sha256": "3fed99f5e38833aa8e45c7258872b51ceac533cc1ef8ac9f0fb92e61c35c769e"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (39).xls",
+          "sha256": "facaf18260078873c754a67c5a688c39d06f97d3eb79c04bf14561804f577c69"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (40).xls",
+          "sha256": "edda1153db0386494e8b4bef8654339a496fcc8f4b3c152fcf53d333acb9c46d"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (41).xls",
+          "sha256": "669acf96f68c671c4dead79b065cf40ecea1b394ae359efa060a13a79cac0cf9"
+        }
+      ]
+    },
+    "2022": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (42).xls",
+          "sha256": "902773fa677cdea0b461bd02527ff53cffb5ddd57a4ab7edf2ecc410044f04be"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (43).xls",
+          "sha256": "b0ad718d9a34077e351d5c6bd7fb5b64a7bf1c0b1b161f6795adc5e34e6340e9"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (44).xls",
+          "sha256": "b87513fe6d349da19941a62061f3cd6928c6075a5effaa216b5f77628fd5812b"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (45).xls",
+          "sha256": "fbdc14ed8444469d8c9c381927736567c5a74885b44a78a5dabecfe53ae476f0"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (46).xls",
+          "sha256": "a49c6be0dd95759c5f2084eda08c29204708a67bf570265685e00dd630fd5212"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (47).xls",
+          "sha256": "27ce9ae794e4ff7f8516761a4c0b6365696e4d9bdf26e394747cfcb956fc68f6"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (48).xls",
+          "sha256": "f7e8cea7fe035ebbca994308a98aa385cf98dd517c0bfa3d4efc204ca3852186"
+        }
+      ]
+    },
+    "2023": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (49).xls",
+          "sha256": "d6ac327559ca7a4ae0a3e88e5ca6c1b44cb9b220b62b754b8146ff175983adc4"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (50).xls",
+          "sha256": "3fd699081a4f6d68139cdb32309691aa9220e696f023989b191cc17d7f4b6964"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (51).xls",
+          "sha256": "6660844669b663a7b3a3d0117b9c59351d584d3b43283daefeaf5eb0f5c42216"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (52).xls",
+          "sha256": "5ee88eca50ead093ec7588e2428100e6f2fd5527446d3cd1933e6d5dce3780ba"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (53).xls",
+          "sha256": "1e53fb2f912d2700f71615b008e9afcaa572a4ad2ac745d340b424ea553d9ab7"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (54).xls",
+          "sha256": "ccf9ffbeb1fcb59b36d59de95ef82df26753c8fe6ce39832e9bf2d223341d614"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (55).xls",
+          "sha256": "fa19ae5ffa1c2b5cf0c7030bc60225f3bcb1a737df25dde2ab8401c1d1581159"
+        }
+      ]
+    },
+    "2024": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (56).xls",
+          "sha256": "593d3955d4a6878279f3f290cf379774e5fee81569ae350107bd7f2f3bda5be8"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (57).xls",
+          "sha256": "a11b6b073c8035f1b48e6a391b3f637d9b0cfda5633311664a4d47ba3c6b9744"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (58).xls",
+          "sha256": "49791429f7ae1b3173c029d5d4c5cac87c69a899b38a5d862dcdce44f3f9e52b"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (59).xls",
+          "sha256": "c624dff460bc19a2d3f2480a0fe12abd0e512abb3a6b2c72c056d1e3492e1248"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (60).xls",
+          "sha256": "13701f93006c54bf66d234ddb052b8bd2d43e41b42286de210ee691ab0f544b7"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (61).xls",
+          "sha256": "79a883ade7db909a4a8cb7e2afc578694153b518d5f5a93336d40734b1bd6678"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (62).xls",
+          "sha256": "7f9f43e00c206bdf57f5f606a378103e763ae7a7005686ece4b365189185eb72"
+        }
+      ]
+    },
+    "2025": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (63).xls",
+          "sha256": "9a6c64c5f5fa2df85b7efa302706ab919adfca92a09cba4f037d0d56d6b247a5"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (64).xls",
+          "sha256": "06956f5984d475087901cf9b8d85133c5729737b034078329251bc62679cc961"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (65).xls",
+          "sha256": "14f758f8d55dd8270a0f625a8460c628bf3a8a6783b70c2d29c895ed3f3b37b6"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (66).xls",
+          "sha256": "6936a33673e40a0db711765470b68f5877da617625b172455b36fcef371633ef"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (67).xls",
+          "sha256": "ddb8cc32d69f416ebf6d8302d4d43ab0eefe4479d158580657c1f78501df50df"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (68).xls",
+          "sha256": "1a2ea5ca0796ccea4ea8a2209ccb875604369e64fadbbe5063db5ee2ac648161"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (69).xls",
+          "sha256": "b64a513939dc8d134ce4030968fc658655ca18f2fff3af204091032bd498c561"
+        }
+      ]
+    },
+    "2026": {
+      "teams": 30,
+      "tables": 7,
+      "wins": 1230,
+      "losses": 1230,
+      "source_files": [
+        {
+          "table": "per_game",
+          "filename": "sportsref_download (70).xls",
+          "sha256": "1738e11a14096e6c3afaccf45f5989bd56e29c5488ac2c78a9e52a05762a127d"
+        },
+        {
+          "table": "opponent_per_game",
+          "filename": "sportsref_download (71).xls",
+          "sha256": "965ca6d11d8dc6f0ec993e4fb512744d46105ac211fff34c3bd0166047afe734"
+        },
+        {
+          "table": "per_100",
+          "filename": "sportsref_download (72).xls",
+          "sha256": "251b842e5474671159862b084ea34d4910b410fab11e096e1e4b2e2883d2c94e"
+        },
+        {
+          "table": "opponent_per_100",
+          "filename": "sportsref_download (73).xls",
+          "sha256": "62181bc9e5ec8d255cd4289e8184d15c121de36008e0449559b62aff9509b833"
+        },
+        {
+          "table": "advanced",
+          "filename": "sportsref_download (74).xls",
+          "sha256": "13c7cfb5628f97b0795d4217bfd60ba2fa3d788e9667fe4a1da02637d5723582"
+        },
+        {
+          "table": "shooting",
+          "filename": "sportsref_download (75).xls",
+          "sha256": "ac97b1ead78f1531ce78188fa6f09757b8aebfdeaedca8244da483e26f2ff83f"
+        },
+        {
+          "table": "opponent_shooting",
+          "filename": "sportsref_download (76).xls",
+          "sha256": "9a39082ff45b8e78f7577333d1b9bad368c818b6d6e9f48111cf1fb69f371689"
+        }
+      ]
+    }
+  },
+  "team_seasons": 330,
+  "tables": 77
+}

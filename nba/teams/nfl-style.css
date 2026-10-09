@@ -72,3 +72,11 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 .nba-nfl-format .nba-award-tab:focus-visible{outline:2px solid color-mix(in srgb,var(--nba-primary) 75%,white);outline-offset:2px}
 .nba-nfl-format .nba-award-panel{min-height:52px}
 @media(max-width:480px){.nba-nfl-format .nba-award-tabs{width:100%}.nba-nfl-format .nba-award-tab{flex:1}}
+
+/* Focused season metrics, with responsive groups. */
+.nba-nfl-format .nba-metric-heading{color:#e9e9ef;font-size:17px;margin:23px 0 12px;font-weight:750}
+.nba-nfl-format .nba-metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.nba-nfl-format #metrics .nba-table{min-width:460px}
+.nba-nfl-format #metrics .nba-source-line{line-height:1.7;max-width:900px}
+@media(max-width:840px){.nba-nfl-format .nba-metric-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:570px){.nba-nfl-format .nba-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
