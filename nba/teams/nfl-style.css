@@ -108,3 +108,36 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 /* Postseason outcomes include opponents and series or game scores. */
 .nba-nfl-format .nba-playoff-strip strong{min-width:0;text-align:right;line-height:1.5}
 @media(max-width:570px){.nba-nfl-format .nba-playoff-strip{flex-direction:column;align-items:flex-start;gap:7px}.nba-nfl-format .nba-playoff-strip strong{text-align:left;font-size:16px}}
+
+/* NFL-style season leaders and expandable season tables. */
+.nba-nfl-format .nba-season-leader-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.nba-nfl-format .nba-season-leader-card{background:#191919;border:1px solid #333;border-top:3px solid var(--nba-primary,#347fdd);border-radius:12px;padding:16px;min-width:0}
+.nba-nfl-format .nba-leader-category{color:var(--nba-primary,#347fdd);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin:0 0 14px}
+.nba-nfl-format .nba-season-leader-person h3{margin:0 0 4px;font-size:18px;color:#f3f5f3}
+.nba-nfl-format .nba-season-leader-person>small{color:#aaa;font-size:12px}
+.nba-nfl-format .nba-leader-total{color:#bfc0c3;font-size:12px;margin:12px 0 5px}
+.nba-nfl-format .nba-leader-total strong{color:#f3f5f3;font-size:20px}
+.nba-nfl-format .nba-leader-rank{font-size:11px;color:#d5ad55;line-height:1.5;margin:6px 0 14px}
+.nba-nfl-format .nba-season-leader-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.nba-nfl-format .nba-season-leader-stats span{display:grid;gap:4px;background:#111;padding:9px;border-radius:7px}
+.nba-nfl-format .nba-season-leader-stats b{font-size:17px;color:#f3f5f3;font-variant-numeric:tabular-nums}
+.nba-nfl-format .nba-season-leader-stats small{color:#aaa;font-size:10px}
+.nba-nfl-format .nba-season-leader-person+.nba-season-leader-person{border-top:1px solid #333;margin-top:16px;padding-top:16px}
+.nba-nfl-format .nba-expand{margin-top:16px;border:1px solid #34343a;border-radius:12px;background:#191919;overflow:hidden}
+.nba-nfl-format .nba-expand>summary{cursor:pointer;padding:16px;font-size:14px;font-weight:700;color:#f3f5f3;list-style:none;line-height:1.5}
+.nba-nfl-format .nba-expand>summary::-webkit-details-marker{display:none}
+.nba-nfl-format .nba-expand>summary::before{content:'▸';display:inline-block;margin-right:10px;color:var(--nba-primary,#347fdd)}
+.nba-nfl-format .nba-expand[open]>summary::before{transform:rotate(90deg)}
+.nba-nfl-format .nba-expand>summary:focus-visible{outline:2px solid var(--nba-primary,#347fdd);outline-offset:-3px}
+.nba-nfl-format .nba-expand .nba-data-wrap{border:0;border-radius:0}
+.nba-nfl-format .nba-when-open{display:none}
+.nba-nfl-format .nba-expand[open] .nba-when-closed{display:none}
+.nba-nfl-format .nba-expand[open] .nba-when-open{display:inline}
+.nba-nfl-format .nba-table td.nba-result-w{color:#7cdb9a;font-weight:800}
+.nba-nfl-format .nba-table td.nba-result-l{color:#ed8f8f;font-weight:800}
+.nba-nfl-format .nba-schedule-table td:nth-child(4){min-width:175px}
+.nba-nfl-format .nba-schedule-table td:nth-child(5),.nba-nfl-format .nba-schedule-table td:nth-child(6){white-space:nowrap}
+.nba-nfl-format .nba-schedule-table a{color:inherit;text-decoration:none}
+.nba-nfl-format .nba-schedule-table a:hover{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:1000px){.nba-nfl-format .nba-season-leader-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.nba-nfl-format .nba-season-leader-grid{grid-template-columns:1fr}}
