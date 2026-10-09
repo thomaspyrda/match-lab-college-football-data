@@ -26,10 +26,10 @@ class AccoladeTests(unittest.TestCase):
   picks=[p for t in self.data['teams'].values() for p in t.get('first_round_draft_picks',[])]
   self.assertEqual(len(picks),self.data['coverage']['nfl_first_round_draft_count'])
   self.assertTrue(all(p['overall_pick']<=32 for p in picks))
-  self.assertGreater(len(picks),1200)
+  self.assertGreater(len(picks),1500)
   years={p['year'] for p in picks}
   self.assertEqual(min(years),1970);self.assertEqual(max(years),self.data['coverage']['nfl_first_round_draft_through'])
-  self.assertIn('NFLDraft:CFBD',self.data['sources'])
+  self.assertIn('NFLDraft:PFR:1970',self.data['sources'])
   markup=render('333',self.data);self.assertIn('NFL First-Round Draft Picks',markup);self.assertIn('Draft Year',markup)
  def test_all_teams_and_unique_entries(self):
   self.assertEqual(set(self.data['teams']),{str(t['id']) for t in self.teams})
