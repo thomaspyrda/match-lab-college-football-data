@@ -1,0 +1,43 @@
+name: NBA one-season source test
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'nba/pipeline/test_sources_one_season.py'
+      - '.github/workflows/nba-source-test.yml'
+permissions:
+  contents: write
+concurrency:
+  group: nba-one-season-source-test
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source clients
+        run: pip install nba_api pandas requests lxml html5lib
+      - name: Test 2024-25 basketball and betting sources
+        run: python -u nba/pipeline/test_sources_one_season.py
+      - name: Preserve raw source downloads
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nba-2024-25-source-test
+          path: nba/pipeline/source-test-results/2025/
+          if-no-files-found: warn
+      - name: Save source coverage report
+        if: always()
+        run: |
+          git config user.name "betwise-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add nba/pipeline/source-test-results/2025/report.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Report 2024-25 NBA source validation coverage"
+            git pull --rebase origin main
+            git push
+          fi
