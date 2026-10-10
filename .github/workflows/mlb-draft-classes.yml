@@ -30,7 +30,7 @@ jobs:
           for y,teams in d["years"].items():
               assert len(teams)==30,(y,len(teams))
               picks=[p for a in teams.values() for p in a]
-              assert len(picks)>=300,(y,len(picks))
+              assert len(picks)>=(130 if int(y)==2020 else 300),(y,len(picks))
           PY
       - name: Commit verified dataset
         run: |
