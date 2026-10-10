@@ -1,0 +1,3451 @@
+{
+  "schema_version": 1,
+  "source": "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/Managers.csv",
+  "years": "2015-2025",
+  "coverage": "Raw verified manager assignments. Names are resolved by the People.csv collector; do not display playerIDs as names.",
+  "teams": {
+    "arizona-diamondbacks": {
+      "2015": [
+        {
+          "player_id": "halech01",
+          "order": 1,
+          "games": 162,
+          "wins": 79,
+          "losses": 83
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "halech01",
+          "order": 1,
+          "games": 162,
+          "wins": 69,
+          "losses": 93
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 161,
+          "wins": 82,
+          "losses": 79
+        },
+        {
+          "player_id": "narroje01",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 85,
+          "losses": 77
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 60,
+          "wins": 25,
+          "losses": 35
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 52,
+          "losses": 110
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 74,
+          "losses": 88
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "lovulto01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ]
+    },
+    "atlanta-braves": {
+      "2015": [
+        {
+          "player_id": "gonzafr99",
+          "order": 1,
+          "games": 162,
+          "wins": 67,
+          "losses": 95
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "gonzafr99",
+          "order": 1,
+          "games": 37,
+          "wins": 9,
+          "losses": 28
+        },
+        {
+          "player_id": "snitkbr99",
+          "order": 2,
+          "games": 124,
+          "wins": 59,
+          "losses": 65
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 72,
+          "losses": 90
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 97,
+          "losses": 65
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 60,
+          "wins": 35,
+          "losses": 25
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 161,
+          "wins": 88,
+          "losses": 73
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 101,
+          "losses": 61
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 104,
+          "losses": 58
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "snitkbr99",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ]
+    },
+    "baltimore-orioles": {
+      "2015": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 75,
+          "losses": 87
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 47,
+          "losses": 115
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 54,
+          "losses": 108
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 60,
+          "wins": 25,
+          "losses": 35
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 52,
+          "losses": 110
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 101,
+          "losses": 61
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 91,
+          "losses": 71
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "hydebr99",
+          "order": 1,
+          "games": 43,
+          "wins": 15,
+          "losses": 28
+        },
+        {
+          "player_id": "mansoto99",
+          "order": 2,
+          "games": 119,
+          "wins": 60,
+          "losses": 59
+        }
+      ]
+    },
+    "boston-red-sox": {
+      "2015": [
+        {
+          "player_id": "farrejo03",
+          "order": 1,
+          "games": 113,
+          "wins": 50,
+          "losses": 63
+        },
+        {
+          "player_id": "lovulto01",
+          "order": 2,
+          "games": 49,
+          "wins": 28,
+          "losses": 21
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "farrejo03",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "farrejo03",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 108,
+          "losses": 54
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "roeniro01",
+          "order": 1,
+          "games": 60,
+          "wins": 24,
+          "losses": 36
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "coraal01",
+          "order": 1,
+          "games": 161,
+          "wins": 88,
+          "losses": 73
+        },
+        {
+          "player_id": "vazqura01",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ]
+    },
+    "chicago-cubs": {
+      "2015": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 162,
+          "wins": 97,
+          "losses": 65
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 162,
+          "wins": 103,
+          "losses": 58
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 163,
+          "wins": 95,
+          "losses": 68
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "rossda01",
+          "order": 1,
+          "games": 60,
+          "wins": 34,
+          "losses": 26
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "rossda01",
+          "order": 1,
+          "games": 154,
+          "wins": 66,
+          "losses": 88
+        },
+        {
+          "player_id": "greenan01",
+          "order": 2,
+          "games": 8,
+          "wins": 5,
+          "losses": 3
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "rossda01",
+          "order": 1,
+          "games": 162,
+          "wins": 74,
+          "losses": 88
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "rossda01",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ]
+    },
+    "chicago-white-sox": {
+      "2015": [
+        {
+          "player_id": "venturo01",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "venturo01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "renteri01",
+          "order": 1,
+          "games": 162,
+          "wins": 67,
+          "losses": 95
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "renteri01",
+          "order": 1,
+          "games": 158,
+          "wins": 60,
+          "losses": 98
+        },
+        {
+          "player_id": "mcewijo01",
+          "order": 2,
+          "games": 4,
+          "wins": 2,
+          "losses": 2
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "renteri01",
+          "order": 1,
+          "games": 161,
+          "wins": 72,
+          "losses": 89
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "renteri01",
+          "order": 1,
+          "games": 60,
+          "wins": 35,
+          "losses": 25
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "larusto01",
+          "order": 1,
+          "games": 160,
+          "wins": 92,
+          "losses": 68
+        },
+        {
+          "player_id": "cairomi01",
+          "order": 2,
+          "games": 2,
+          "wins": 1,
+          "losses": 1
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "larusto01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "grifope99",
+          "order": 1,
+          "games": 162,
+          "wins": 61,
+          "losses": 101
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "grifope99",
+          "order": 1,
+          "games": 117,
+          "wins": 28,
+          "losses": 89
+        },
+        {
+          "player_id": "sizemgr01",
+          "order": 2,
+          "games": 45,
+          "wins": 13,
+          "losses": 32
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "venabwi01",
+          "order": 1,
+          "games": 162,
+          "wins": 60,
+          "losses": 102
+        }
+      ]
+    },
+    "cincinnati-reds": {
+      "2015": [
+        {
+          "player_id": "pricebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 64,
+          "losses": 98
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "pricebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "pricebr99",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "pricebr99",
+          "order": 1,
+          "games": 18,
+          "wins": 3,
+          "losses": 15
+        },
+        {
+          "player_id": "rigglji99",
+          "order": 2,
+          "games": 144,
+          "wins": 64,
+          "losses": 80
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 155,
+          "wins": 70,
+          "losses": 85
+        },
+        {
+          "player_id": "benavfr01",
+          "order": 2,
+          "games": 7,
+          "wins": 5,
+          "losses": 2
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 59,
+          "wins": 31,
+          "losses": 28
+        },
+        {
+          "player_id": "benavfr01",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 162,
+          "wins": 62,
+          "losses": 100
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "bellda01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 161,
+          "wins": 83,
+          "losses": 78
+        },
+        {
+          "player_id": "benavfr01",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ]
+    },
+    "cleveland-guardians": {
+      "2015": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 161,
+          "wins": 81,
+          "losses": 80
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 161,
+          "wins": 94,
+          "losses": 67
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 154,
+          "wins": 98,
+          "losses": 56
+        },
+        {
+          "player_id": "millsbr01",
+          "order": 2,
+          "games": 8,
+          "wins": 4,
+          "losses": 4
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 162,
+          "wins": 91,
+          "losses": 71
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 53,
+          "wins": 30,
+          "losses": 23
+        },
+        {
+          "player_id": "alomasa02",
+          "order": 2,
+          "games": 7,
+          "wins": 5,
+          "losses": 2
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 97,
+          "wins": 49,
+          "losses": 48
+        },
+        {
+          "player_id": "halede99",
+          "order": 2,
+          "games": 65,
+          "wins": 31,
+          "losses": 34
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "francte01",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "vogtst01",
+          "order": 1,
+          "games": 161,
+          "wins": 92,
+          "losses": 69
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "vogtst01",
+          "order": 1,
+          "games": 162,
+          "wins": 88,
+          "losses": 74
+        }
+      ]
+    },
+    "colorado-rockies": {
+      "2015": [
+        {
+          "player_id": "weisswa01",
+          "order": 1,
+          "games": 158,
+          "wins": 66,
+          "losses": 92
+        },
+        {
+          "player_id": "runneto01",
+          "order": 2,
+          "games": 4,
+          "wins": 2,
+          "losses": 2
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "weisswa01",
+          "order": 1,
+          "games": 162,
+          "wins": 75,
+          "losses": 87
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 161,
+          "wins": 87,
+          "losses": 74
+        },
+        {
+          "player_id": "redmomi01",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 163,
+          "wins": 91,
+          "losses": 72
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 60,
+          "wins": 26,
+          "losses": 34
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 161,
+          "wins": 74,
+          "losses": 87
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 162,
+          "wins": 59,
+          "losses": 103
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 162,
+          "wins": 61,
+          "losses": 101
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 40,
+          "wins": 7,
+          "losses": 33
+        },
+        {
+          "player_id": "schaewa99",
+          "order": 2,
+          "games": 122,
+          "wins": 36,
+          "losses": 86
+        }
+      ]
+    },
+    "detroit-tigers": {
+      "2015": [
+        {
+          "player_id": "ausmubr01",
+          "order": 1,
+          "games": 161,
+          "wins": 74,
+          "losses": 87
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "ausmubr01",
+          "order": 1,
+          "games": 160,
+          "wins": 85,
+          "losses": 75
+        },
+        {
+          "player_id": "lamonge01",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "ausmubr01",
+          "order": 1,
+          "games": 162,
+          "wins": 64,
+          "losses": 98
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "gardero01",
+          "order": 1,
+          "games": 162,
+          "wins": 64,
+          "losses": 98
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "gardero01",
+          "order": 1,
+          "games": 161,
+          "wins": 47,
+          "losses": 114
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "gardero01",
+          "order": 1,
+          "games": 48,
+          "wins": 20,
+          "losses": 28
+        },
+        {
+          "player_id": "mcclell01",
+          "order": 2,
+          "games": 10,
+          "wins": 3,
+          "losses": 7
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 66,
+          "losses": 96
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 87,
+          "losses": 75
+        }
+      ]
+    },
+    "houston-astros": {
+      "2015": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 101,
+          "losses": 61
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 103,
+          "losses": 59
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "hinchaj01",
+          "order": 1,
+          "games": 162,
+          "wins": 107,
+          "losses": 55
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 60,
+          "wins": 29,
+          "losses": 31
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 162,
+          "wins": 95,
+          "losses": 67
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 162,
+          "wins": 106,
+          "losses": 56
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "espadjo99",
+          "order": 1,
+          "games": 161,
+          "wins": 88,
+          "losses": 73
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "espadjo99",
+          "order": 1,
+          "games": 161,
+          "wins": 86,
+          "losses": 75
+        },
+        {
+          "player_id": "lopezom99",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ]
+    },
+    "kansas-city-royals": {
+      "2015": [
+        {
+          "player_id": "yostne01",
+          "order": 1,
+          "games": 162,
+          "wins": 95,
+          "losses": 67
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "yostne01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "yostne01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "yostne01",
+          "order": 1,
+          "games": 162,
+          "wins": 58,
+          "losses": 104
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "yostne01",
+          "order": 1,
+          "games": 162,
+          "wins": 59,
+          "losses": 103
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 60,
+          "wins": 26,
+          "losses": 34
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 162,
+          "wins": 74,
+          "losses": 88
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 162,
+          "wins": 65,
+          "losses": 97
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "quatrma99",
+          "order": 1,
+          "games": 162,
+          "wins": 56,
+          "losses": 106
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "quatrma99",
+          "order": 1,
+          "games": 160,
+          "wins": 86,
+          "losses": 74
+        },
+        {
+          "player_id": "hoovepa01",
+          "order": 2,
+          "games": 2,
+          "wins": 0,
+          "losses": 2
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "quatrma99",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ]
+    },
+    "los-angeles-angels": {
+      "2015": [
+        {
+          "player_id": "sciosmi01",
+          "order": 1,
+          "games": 162,
+          "wins": 85,
+          "losses": 77
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "sciosmi01",
+          "order": 1,
+          "games": 162,
+          "wins": 74,
+          "losses": 88
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "sciosmi01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "sciosmi01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "ausmubr01",
+          "order": 1,
+          "games": 162,
+          "wins": 72,
+          "losses": 90
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 60,
+          "wins": 26,
+          "losses": 34
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "maddojo99",
+          "order": 1,
+          "games": 56,
+          "wins": 27,
+          "losses": 29
+        },
+        {
+          "player_id": "nevinph01",
+          "order": 2,
+          "games": 106,
+          "wins": 46,
+          "losses": 60
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "nevinph01",
+          "order": 1,
+          "games": 162,
+          "wins": 73,
+          "losses": 89
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "washiro01",
+          "order": 1,
+          "games": 162,
+          "wins": 63,
+          "losses": 99
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "washiro01",
+          "order": 1,
+          "games": 74,
+          "wins": 36,
+          "losses": 38
+        },
+        {
+          "player_id": "montgra01",
+          "order": 2,
+          "games": 88,
+          "wins": 36,
+          "losses": 52
+        },
+        {
+          "player_id": "goinsry01",
+          "order": 3,
+          "games": 2,
+          "wins": 0,
+          "losses": 2
+        }
+      ]
+    },
+    "los-angeles-dodgers": {
+      "2015": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 91,
+          "losses": 71
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 104,
+          "losses": 58
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 163,
+          "wins": 92,
+          "losses": 71
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 106,
+          "losses": 56
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 60,
+          "wins": 43,
+          "losses": 17
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 106,
+          "losses": 56
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 111,
+          "losses": 51
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 100,
+          "losses": 62
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 98,
+          "losses": 64
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "roberda07",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ]
+    },
+    "miami-marlins": {
+      "2015": [
+        {
+          "player_id": "redmomi01",
+          "order": 1,
+          "games": 38,
+          "wins": 16,
+          "losses": 22
+        },
+        {
+          "player_id": "jennida99",
+          "order": 2,
+          "games": 124,
+          "wins": 55,
+          "losses": 69
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 161,
+          "wins": 79,
+          "losses": 82
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 161,
+          "wins": 63,
+          "losses": 98
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 162,
+          "wins": 57,
+          "losses": 105
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 60,
+          "wins": 31,
+          "losses": 29
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 150,
+          "wins": 63,
+          "losses": 87
+        },
+        {
+          "player_id": "rowsoja99",
+          "order": 2,
+          "games": 12,
+          "wins": 4,
+          "losses": 8
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "mattido01",
+          "order": 1,
+          "games": 162,
+          "wins": 69,
+          "losses": 93
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "schumsk01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "schumsk01",
+          "order": 1,
+          "games": 160,
+          "wins": 60,
+          "losses": 100
+        },
+        {
+          "player_id": "uruetlu99",
+          "order": 2,
+          "games": 2,
+          "wins": 2,
+          "losses": 0
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "mcculcl99",
+          "order": 1,
+          "games": 162,
+          "wins": 79,
+          "losses": 83
+        }
+      ]
+    },
+    "milwaukee-brewers": {
+      "2015": [
+        {
+          "player_id": "roeniro01",
+          "order": 1,
+          "games": 25,
+          "wins": 7,
+          "losses": 18
+        },
+        {
+          "player_id": "counscr01",
+          "order": 2,
+          "games": 137,
+          "wins": 61,
+          "losses": 76
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 73,
+          "losses": 89
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 163,
+          "wins": 96,
+          "losses": 67
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 60,
+          "wins": 29,
+          "losses": 31
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 95,
+          "losses": 67
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "counscr01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "murphpa99",
+          "order": 1,
+          "games": 160,
+          "wins": 92,
+          "losses": 68
+        },
+        {
+          "player_id": "weeksri01",
+          "order": 2,
+          "games": 2,
+          "wins": 1,
+          "losses": 1
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "murphpa99",
+          "order": 1,
+          "games": 162,
+          "wins": 97,
+          "losses": 65
+        }
+      ]
+    },
+    "minnesota-twins": {
+      "2015": [
+        {
+          "player_id": "molitpa01",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "molitpa01",
+          "order": 1,
+          "games": 162,
+          "wins": 59,
+          "losses": 103
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "molitpa01",
+          "order": 1,
+          "games": 162,
+          "wins": 85,
+          "losses": 77
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "molitpa01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 162,
+          "wins": 101,
+          "losses": 61
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 60,
+          "wins": 36,
+          "losses": 24
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 157,
+          "wins": 69,
+          "losses": 88
+        },
+        {
+          "player_id": "eversbi99",
+          "order": 2,
+          "games": 5,
+          "wins": 4,
+          "losses": 1
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 162,
+          "wins": 87,
+          "losses": 75
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "baldero01",
+          "order": 1,
+          "games": 162,
+          "wins": 70,
+          "losses": 92
+        }
+      ]
+    },
+    "new-york-mets": {
+      "2015": [
+        {
+          "player_id": "collite99",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "collite99",
+          "order": 1,
+          "games": 161,
+          "wins": 87,
+          "losses": 74
+        },
+        {
+          "player_id": "scottdi03",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "collite99",
+          "order": 1,
+          "games": 162,
+          "wins": 70,
+          "losses": 92
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "callami01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "callami01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "rojaslu99",
+          "order": 1,
+          "games": 60,
+          "wins": 26,
+          "losses": 34
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "rojaslu99",
+          "order": 1,
+          "games": 160,
+          "wins": 76,
+          "losses": 84
+        },
+        {
+          "player_id": "jaussda99",
+          "order": 2,
+          "games": 2,
+          "wins": 1,
+          "losses": 1
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 101,
+          "losses": 61
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "showabu99",
+          "order": 1,
+          "games": 162,
+          "wins": 75,
+          "losses": 87
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "mendoca99",
+          "order": 1,
+          "games": 161,
+          "wins": 89,
+          "losses": 72
+        },
+        {
+          "player_id": "gibbojo02",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "mendoca99",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ]
+    },
+    "new-york-yankees": {
+      "2015": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 162,
+          "wins": 87,
+          "losses": 75
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 162,
+          "wins": 91,
+          "losses": 71
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 161,
+          "wins": 100,
+          "losses": 61
+        },
+        {
+          "player_id": "bardjo01",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 103,
+          "losses": 59
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 60,
+          "wins": 33,
+          "losses": 27
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 92,
+          "losses": 70
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 99,
+          "losses": 63
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 94,
+          "losses": 68
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "booneaa01",
+          "order": 1,
+          "games": 162,
+          "wins": 94,
+          "losses": 68
+        }
+      ]
+    },
+    "athletics": {
+      "2015": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 69,
+          "losses": 93
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 75,
+          "losses": 87
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 97,
+          "losses": 65
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 97,
+          "losses": 65
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 60,
+          "wins": 36,
+          "losses": 24
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "kotsama01",
+          "order": 1,
+          "games": 162,
+          "wins": 60,
+          "losses": 102
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "kotsama01",
+          "order": 1,
+          "games": 162,
+          "wins": 50,
+          "losses": 112
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "kotsama01",
+          "order": 1,
+          "games": 162,
+          "wins": 69,
+          "losses": 93
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "kotsama01",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ]
+    },
+    "philadelphia-phillies": {
+      "2015": [
+        {
+          "player_id": "sandbry01",
+          "order": 1,
+          "games": 74,
+          "wins": 26,
+          "losses": 48
+        },
+        {
+          "player_id": "mackape01",
+          "order": 2,
+          "games": 88,
+          "wins": 37,
+          "losses": 51
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "mackape01",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "mackape01",
+          "order": 1,
+          "games": 162,
+          "wins": 66,
+          "losses": 96
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 60,
+          "wins": 28,
+          "losses": 32
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "girarjo01",
+          "order": 1,
+          "games": 51,
+          "wins": 22,
+          "losses": 29
+        },
+        {
+          "player_id": "thomsro99",
+          "order": 2,
+          "games": 111,
+          "wins": 65,
+          "losses": 46
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "thomsro99",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "thomsro99",
+          "order": 1,
+          "games": 162,
+          "wins": 95,
+          "losses": 67
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "thomsro99",
+          "order": 1,
+          "games": 162,
+          "wins": 96,
+          "losses": 66
+        }
+      ]
+    },
+    "pittsburgh-pirates": {
+      "2015": [
+        {
+          "player_id": "hurdlcl01",
+          "order": 1,
+          "games": 162,
+          "wins": 98,
+          "losses": 64
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "hurdlcl01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 83
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "hurdlcl01",
+          "order": 1,
+          "games": 162,
+          "wins": 75,
+          "losses": 87
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "hurdlcl01",
+          "order": 1,
+          "games": 161,
+          "wins": 82,
+          "losses": 79
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "hurdlcl01",
+          "order": 1,
+          "games": 159,
+          "wins": 68,
+          "losses": 91
+        },
+        {
+          "player_id": "princto01",
+          "order": 2,
+          "games": 3,
+          "wins": 1,
+          "losses": 2
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 60,
+          "wins": 19,
+          "losses": 41
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 162,
+          "wins": 61,
+          "losses": 101
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 162,
+          "wins": 62,
+          "losses": 100
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "sheltde99",
+          "order": 1,
+          "games": 38,
+          "wins": 12,
+          "losses": 26
+        },
+        {
+          "player_id": "kellydo01",
+          "order": 2,
+          "games": 124,
+          "wins": 59,
+          "losses": 65
+        }
+      ]
+    },
+    "san-diego-padres": {
+      "2015": [
+        {
+          "player_id": "blackbu02",
+          "order": 1,
+          "games": 65,
+          "wins": 32,
+          "losses": 33
+        },
+        {
+          "player_id": "roberda07",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        },
+        {
+          "player_id": "murphpa99",
+          "order": 3,
+          "games": 96,
+          "wins": 42,
+          "losses": 54
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "greenan01",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "greenan01",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "greenan01",
+          "order": 1,
+          "games": 162,
+          "wins": 66,
+          "losses": 96
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "greenan01",
+          "order": 1,
+          "games": 154,
+          "wins": 69,
+          "losses": 85
+        },
+        {
+          "player_id": "barajro01",
+          "order": 2,
+          "games": 8,
+          "wins": 1,
+          "losses": 7
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "tinglja99",
+          "order": 1,
+          "games": 60,
+          "wins": 37,
+          "losses": 23
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "tinglja99",
+          "order": 1,
+          "games": 162,
+          "wins": 79,
+          "losses": 83
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "shildmi99",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "shildmi99",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ]
+    },
+    "san-francisco-giants": {
+      "2015": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 84,
+          "losses": 78
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 161,
+          "wins": 86,
+          "losses": 75
+        },
+        {
+          "player_id": "wotusro01",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 160,
+          "wins": 63,
+          "losses": 97
+        },
+        {
+          "player_id": "wotusro01",
+          "order": 2,
+          "games": 2,
+          "wins": 1,
+          "losses": 1
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 73,
+          "losses": 89
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 60,
+          "wins": 29,
+          "losses": 31
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 162,
+          "wins": 107,
+          "losses": 55
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "kaplega01",
+          "order": 1,
+          "games": 159,
+          "wins": 78,
+          "losses": 81
+        },
+        {
+          "player_id": "correka99",
+          "order": 2,
+          "games": 3,
+          "wins": 1,
+          "losses": 2
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "melvibo01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ]
+    },
+    "seattle-mariners": {
+      "2015": [
+        {
+          "player_id": "mcclell01",
+          "order": 1,
+          "games": 159,
+          "wins": 75,
+          "losses": 84
+        },
+        {
+          "player_id": "jewettr99",
+          "order": 2,
+          "games": 3,
+          "wins": 1,
+          "losses": 2
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 60,
+          "wins": 27,
+          "losses": 33
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 162,
+          "wins": 88,
+          "losses": 74
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "servasc01",
+          "order": 1,
+          "games": 128,
+          "wins": 64,
+          "losses": 64
+        },
+        {
+          "player_id": "wilsoda01",
+          "order": 2,
+          "games": 34,
+          "wins": 21,
+          "losses": 13
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "wilsoda01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ]
+    },
+    "st-louis-cardinals": {
+      "2015": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 162,
+          "wins": 100,
+          "losses": 62
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "mathemi01",
+          "order": 1,
+          "games": 93,
+          "wins": 47,
+          "losses": 46
+        },
+        {
+          "player_id": "shildmi99",
+          "order": 2,
+          "games": 69,
+          "wins": 41,
+          "losses": 28
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "shildmi99",
+          "order": 1,
+          "games": 162,
+          "wins": 91,
+          "losses": 71
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "shildmi99",
+          "order": 1,
+          "games": 58,
+          "wins": 30,
+          "losses": 28
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "shildmi99",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "marmool99",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "marmool99",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "marmool99",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "marmool99",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ]
+    },
+    "tampa-bay-rays": {
+      "2015": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 68,
+          "losses": 94
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 80,
+          "losses": 82
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 96,
+          "losses": 66
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 60,
+          "wins": 40,
+          "losses": 20
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 100,
+          "losses": 62
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 86,
+          "losses": 76
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 99,
+          "losses": 63
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 161,
+          "wins": 80,
+          "losses": 81
+        },
+        {
+          "player_id": "linarro99",
+          "order": 2,
+          "games": 1,
+          "wins": 0,
+          "losses": 1
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "cashke01",
+          "order": 1,
+          "games": 162,
+          "wins": 77,
+          "losses": 85
+        }
+      ]
+    },
+    "texas-rangers": {
+      "2015": [
+        {
+          "player_id": "banisje01",
+          "order": 1,
+          "games": 162,
+          "wins": 88,
+          "losses": 74
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "banisje01",
+          "order": 1,
+          "games": 162,
+          "wins": 95,
+          "losses": 67
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "banisje01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "banisje01",
+          "order": 1,
+          "games": 152,
+          "wins": 64,
+          "losses": 88
+        },
+        {
+          "player_id": "wakamdo01",
+          "order": 2,
+          "games": 10,
+          "wins": 3,
+          "losses": 7
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "woodwch01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "woodwch01",
+          "order": 1,
+          "games": 60,
+          "wins": 22,
+          "losses": 38
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "woodwch01",
+          "order": 1,
+          "games": 162,
+          "wins": 60,
+          "losses": 102
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "woodwch01",
+          "order": 1,
+          "games": 114,
+          "wins": 51,
+          "losses": 63
+        },
+        {
+          "player_id": "beaslto99",
+          "order": 2,
+          "games": 48,
+          "wins": 17,
+          "losses": 31
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 90,
+          "losses": 72
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 78,
+          "losses": 84
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "bochybr01",
+          "order": 1,
+          "games": 162,
+          "wins": 81,
+          "losses": 81
+        }
+      ]
+    },
+    "toronto-blue-jays": {
+      "2015": [
+        {
+          "player_id": "gibbojo02",
+          "order": 1,
+          "games": 161,
+          "wins": 92,
+          "losses": 69
+        },
+        {
+          "player_id": "halede99",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "gibbojo02",
+          "order": 1,
+          "games": 159,
+          "wins": 87,
+          "losses": 72
+        },
+        {
+          "player_id": "halede99",
+          "order": 2,
+          "games": 3,
+          "wins": 2,
+          "losses": 1
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "gibbojo02",
+          "order": 1,
+          "games": 162,
+          "wins": 76,
+          "losses": 86
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "gibbojo02",
+          "order": 1,
+          "games": 162,
+          "wins": 73,
+          "losses": 89
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "montoch01",
+          "order": 1,
+          "games": 162,
+          "wins": 67,
+          "losses": 95
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "montoch01",
+          "order": 1,
+          "games": 60,
+          "wins": 32,
+          "losses": 28
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "montoch01",
+          "order": 1,
+          "games": 160,
+          "wins": 90,
+          "losses": 70
+        },
+        {
+          "player_id": "schnejo99",
+          "order": 2,
+          "games": 2,
+          "wins": 1,
+          "losses": 1
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "montoch01",
+          "order": 1,
+          "games": 88,
+          "wins": 46,
+          "losses": 42
+        },
+        {
+          "player_id": "schnejo99",
+          "order": 2,
+          "games": 74,
+          "wins": 46,
+          "losses": 28
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "schnejo99",
+          "order": 1,
+          "games": 162,
+          "wins": 89,
+          "losses": 73
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "schnejo99",
+          "order": 1,
+          "games": 162,
+          "wins": 74,
+          "losses": 88
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "schnejo99",
+          "order": 1,
+          "games": 162,
+          "wins": 94,
+          "losses": 68
+        }
+      ]
+    },
+    "washington-nationals": {
+      "2015": [
+        {
+          "player_id": "willima04",
+          "order": 1,
+          "games": 162,
+          "wins": 83,
+          "losses": 79
+        }
+      ],
+      "2016": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 161,
+          "wins": 94,
+          "losses": 67
+        },
+        {
+          "player_id": "speiech01",
+          "order": 2,
+          "games": 1,
+          "wins": 1,
+          "losses": 0
+        }
+      ],
+      "2017": [
+        {
+          "player_id": "bakerdu01",
+          "order": 1,
+          "games": 160,
+          "wins": 95,
+          "losses": 65
+        },
+        {
+          "player_id": "speiech01",
+          "order": 2,
+          "games": 2,
+          "wins": 2,
+          "losses": 0
+        }
+      ],
+      "2018": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 82,
+          "losses": 80
+        }
+      ],
+      "2019": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 93,
+          "losses": 69
+        }
+      ],
+      "2020": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 60,
+          "wins": 26,
+          "losses": 34
+        }
+      ],
+      "2021": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 65,
+          "losses": 97
+        }
+      ],
+      "2022": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 55,
+          "losses": 107
+        }
+      ],
+      "2023": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2024": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 162,
+          "wins": 71,
+          "losses": 91
+        }
+      ],
+      "2025": [
+        {
+          "player_id": "martida01",
+          "order": 1,
+          "games": 90,
+          "wins": 37,
+          "losses": 53
+        },
+        {
+          "player_id": "cairomi01",
+          "order": 2,
+          "games": 72,
+          "wins": 29,
+          "losses": 43
+        }
+      ]
+    }
+  }
+}
