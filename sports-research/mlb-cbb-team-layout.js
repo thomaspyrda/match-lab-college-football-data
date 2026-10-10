@@ -8,7 +8,7 @@ const heading=main.querySelector('.team-research-heading'),breadcrumb=main.query
 if(!heading)return;
 const teamName=heading.querySelector('h1')?.textContent?.trim()||match[2],logo=heading.querySelector('img')?.getAttribute('src')||'',subtitle=heading.querySelector('div>p:last-child')?.textContent||'';
 const seasons=Array.isArray(data.seasons)?data.seasons:[],current=seasons.at(-1)?.key||'2026';
-const conf=sport==='mlb'?['Runs / Game','Batting Average','On-Base %','Slugging %','Home Runs','Strikeout Rate','ERA','WHIP','Runs Allowed / Game','Opponent Average','Bullpen ERA','Fielding %']:['Points / Game','Offensive Rating','Effective FG %','3P %','Free Throw %','Turnover Rate','Points Allowed / Game','Defensive Rating','Opponent eFG %','Rebound Rate','Steals / Game','Blocks / Game'];
+const conf=sport==='mlb'?['Runs / Game','Batting Average','On-Base %','Slugging %','Home Runs','Strikeout Rate','ERA','WHIP','Runs Allowed / Game','Opponent Average','Bullpen ERA','Strikeouts / 9']:['Points / Game','Offensive Rating','Effective FG %','3P %','Free Throw %','Turnover Rate','Points Allowed / Game','Defensive Rating','Opponent eFG %','Rebound Rate','Steals / Game','Blocks / Game'];
 const source=data.seasons||[];const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sportTitle=sport==='mlb'?'MLB':'CBB',route='/'+sport+'/teams/';
 const section=(id,kicker,title,inside)=>'<section id="'+id+'" class="wise-team-section"><div class="wise-team-head"><p>'+kicker+'</p><h2>'+title+'</h2></div>'+inside+'</section>';
