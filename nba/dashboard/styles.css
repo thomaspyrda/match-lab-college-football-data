@@ -186,3 +186,6 @@ html,body{max-width:100%;overflow-x:hidden}
 
 
 .qb-efficiency{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;padding:12px;border:1px solid var(--team-color);border-radius:8px}.qb-efficiency small{display:block;color:#a0a9b8;font-size:10px;text-transform:uppercase;letter-spacing:.6px}.qb-efficiency strong{display:block;margin-top:6px;font-size:20px;color:var(--team-color)}
+
+/* Matchup rail arrows: same treatment as CFB dashboard */
+.game-rail-navigation{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;gap:10px;align-items:center}.game-rail-navigation .game-rail{min-width:0}.game-scroll-arrow{display:grid;place-items:center;width:38px;height:48px;border:1px solid #454b45;border-radius:9px;background:#1b1e1b;color:#f4f6f4;font:800 25px/1 "DM Sans";cursor:pointer}.game-scroll-arrow:hover{border-color:#00ff41;color:#00ff41}.game-scroll-arrow:focus-visible{outline:2px solid #00ff41;outline-offset:3px}@media(max-width:760px){.game-rail-navigation{grid-template-columns:30px minmax(0,1fr) 30px;gap:6px}.game-scroll-arrow{width:30px;height:42px;font-size:22px}}
