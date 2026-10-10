@@ -23,5 +23,7 @@ for year in range(1969,1994):
 for year in range(1995,2026):
     assert division_by_year.get(year)==6,(year,division_by_year.get(year))
 assert len(division_by_year)==56
+assert sum(t['team']['league_pennants']['count'] for t in teams.values())==267
+assert all(t['team']['league_pennants']['count'] is not None for t in teams.values())
 print("Verified structure: 30 teams, 286 division titles (1969–2025), no duplicates.")
-print("League pennants and player awards: remain pending until individually sourced.")
+print("Player awards: 31 multi-franchise awards still require attribution review.")
