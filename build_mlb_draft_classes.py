@@ -42,7 +42,8 @@ def build(year):
             out[TEAM_IDS[team_id]].append({"round":round_id,"overall_pick":overall,"round_pick":pick.get("roundPickNumber"),"player":name,"position":text_or_none(pos),"school":text_or_none(school),"player_id":person.get("id"),"signed":pick.get("isSigned") if isinstance(pick.get("isSigned"),bool) else None})
     if invalid:raise ValueError(f"{year} missing/unknown picks: {invalid[:15]}")
     all_picks=[p for arr in out.values() for p in arr]
-    if len(all_picks)<300:raise ValueError(f"{year} draft appears incomplete ({len(all_picks)} selections)")
+    minimum=130 if year==2020 else 300
+    if len(all_picks)<minimum:raise ValueError(f"{year} draft appears incomplete ({len(all_picks)} selections)")
     if len({p["overall_pick"] for p in all_picks})!=len(all_picks):raise ValueError(f"{year} duplicate overall picks")
     if any(not selections for selections in out.values()):raise ValueError(f"{year} team with no draft picks")
     for arr in out.values():arr.sort(key=lambda p:p["overall_pick"])
