@@ -19,9 +19,11 @@ document.body.classList.add(sport==='cbb'?'wise-cfb-template':'wise-nba-template
 main.classList.add('wise-team-main');
 main.innerHTML='<div class="wise-team-hero"><div class="wise-team-logo"><img src="'+esc(logo)+'" alt="'+esc(teamName)+' logo"></div><div class="wise-team-hero-copy"><p class="wise-eyebrow">'+sportTitle+' TEAM RESEARCH</p><h1>'+esc(teamName)+'</h1><p>'+esc(subtitle)+'</p><div class="wise-hero-season"><label for="wiseSeasonSelect">Season</label><select id="wiseSeasonSelect">'+seasons.slice().reverse().map(y=>'<option value="'+esc(y.key)+'">'+esc(y.label)+'</option>').join('')+'</select></div></div></div><nav class="wise-team-tabs" aria-label="Team page sections">'+nav+'</nav><div id="wiseTeamContents"></div>';
 const select=main.querySelector('#wiseSeasonSelect'),container=main.querySelector('#wiseTeamContents');
+let mlbSnapshots=null;
+
 select.value=current;
-function render(){const y=seasons.find(x=>String(x.key)===select.value)||{};const label=y.label||select.value;const record=y.record;
-const summary=[['Record',record&&typeof record==='object'?[record.wins,record.losses].join('–'):record],sport==='mlb'?['Runs / Game',null]:['Points / Game',null],sport==='mlb'?['Runs Allowed / Game',null]:['Points Allowed / Game',null],['Home Record',null],['Road Record',null],['ATS Record',null],['O/U Record',null]].map(([k,v])=>'<article class="wise-stat"><strong>'+esc(v||'—')+'</strong><span>'+k+'</span></article>').join('');
+function render(){const y=seasons.find(x=>String(x.key)===select.value)||{};const label=y.label||select.value;const mlbRow=sport==='mlb'?mlbSnapshots?.seasons?.[String(select.value)]?.[match[2]]:null;const record=mlbRow?.games_played?{wins:mlbRow.wins,losses:mlbRow.losses}:y.record;
+const summary=[['Record',record&&typeof record==='object'?[record.wins,record.losses].join('–'):record],sport==='mlb'?['Runs / Game',mlbRow?.runs_per_game]:['Points / Game',null],sport==='mlb'?['Runs Allowed / Game',mlbRow?.runs_allowed_per_game]:['Points Allowed / Game',null],['Home Record',mlbRow?.games_played?mlbRow.home.wins+'–'+mlbRow.home.losses:null],['Road Record',mlbRow?.games_played?mlbRow.away.wins+'–'+mlbRow.away.losses:null],['ATS Record',null],['O/U Record',null]].map(([k,v])=>'<article class="wise-stat"><strong>'+esc(v||'—')+'</strong><span>'+k+'</span></article>').join('');
 const metrics=conf.map((k,i)=>'<article class="wise-metric"><span>'+esc(k)+'</span><strong>—</strong><small>Data pending</small></article>').join('');
 const metricTile=label=>'<article class="wise-metric"><span>'+esc(label)+'</span><strong>—</strong><small>Data pending</small></article>';
 const mlbMetrics='<div class="wise-stat-split"><div><h3>HITTING</h3><div class="wise-metrics">'+conf.slice(0,6).map(metricTile).join('')+'</div></div><div><h3>PITCHING</h3><div class="wise-metrics">'+conf.slice(6).map(metricTile).join('')+'</div></div></div>';
@@ -31,4 +33,5 @@ container.innerHTML=section('snapshot','SEASON SNAPSHOT',esc(teamName)+' · '+es
 const more=container.querySelector('#wiseMoreGames');if(more)more.addEventListener('click',()=>{const tbody=container.querySelector('#schedule tbody');tbody.innerHTML=games.map(g=>'<tr><td>'+esc(g.date)+'</td><td>'+esc(g.opponent_name||g.opponent)+'</td><td>'+esc(g.result)+'</td><td>'+esc(g.score)+'</td></tr>').join('');more.remove()});
 }
 select.addEventListener('change',render);render();
+if(sport==='mlb')fetch('/data/mlb/season-snapshots.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No MLB season data');return r.json()}).then(d=>{mlbSnapshots=d;render()}).catch(()=>{});
 })();
