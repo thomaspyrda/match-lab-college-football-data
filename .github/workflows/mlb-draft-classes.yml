@@ -1,0 +1,43 @@
+name: Build MLB Draft Classes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - build_mlb_draft_classes.py
+      - .github/workflows/mlb-draft-classes.yml
+permissions:
+  contents: write
+concurrency:
+  group: mlb-draft-classes
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect all-round MLB drafts from official records
+        run: python build_mlb_draft_classes.py
+      - name: Check team and season coverage
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open("data/mlb/draft-classes.json"))
+          assert len(d["years"])==12
+          for y,teams in d["years"].items():
+              assert len(teams)==30,(y,len(teams))
+              picks=[p for a in teams.values() for p in a]
+              assert len(picks)>=300,(y,len(picks))
+          PY
+      - name: Commit verified dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mlb/draft-classes.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data(mlb): populate historical draft classes"
+          git pull --rebase -X theirs origin main
+          git push origin main
