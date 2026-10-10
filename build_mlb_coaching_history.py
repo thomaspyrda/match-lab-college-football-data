@@ -1,38 +1,49 @@
 #!/usr/bin/env python3
-"""Collect 2015–2025 MLB managerial tenures from the Lahman historical CSVs.
-Current 2026 and hitting/pitching coaches remain pending independent verification.
+"""Resolve 2015–2025 MLB managerial tenures from the saved, audited assignments.
+No incomplete manager names are published. 2026 and assistant coaches remain pending.
 """
-import csv,io,json,urllib.request,collections
-from datetime import datetime,timezone
+import argparse,csv,io,json,urllib.request,time
 from pathlib import Path
+from datetime import datetime,timezone
 ROOT=Path(__file__).resolve().parent
-BASE="https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/"
-def fetch(name):
- req=urllib.request.Request(BASE+name+".csv",headers={"User-Agent":"BetWiseResearch/1.0"})
- with urllib.request.urlopen(req,timeout=90) as r:return list(csv.DictReader(io.StringIO(r.read().decode("utf-8-sig"))))
+SOURCE=ROOT/"data/mlb/manager-source-records.json"
+OUT=ROOT/"data/mlb/coaching-history.json"
+URL="https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/People.csv"
+def names_from_people():
+    req=urllib.request.Request(URL,headers={"User-Agent":"BetWiseSportsResearch/1.0","Accept":"text/csv"})
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req,timeout=100) as response:
+                raw=response.read()
+            if len(raw)<100000:raise ValueError("People.csv appears truncated")
+            rows=csv.DictReader(io.StringIO(raw.decode("utf-8-sig")))
+            return {r["playerID"]:" ".join(filter(None,[r.get("nameFirst"),r.get("nameLast")])).strip() for r in rows}
+        except Exception:
+            if attempt==3:raise
+            time.sleep(2**attempt)
 def main():
- teams,managers,people=fetch("Teams"),fetch("Managers"),fetch("People")
- # Use the 2025 team code as the canonical reference, including historical identities.
- aliases={"ARI":"arizona-diamondbacks","ATL":"atlanta-braves","BAL":"baltimore-orioles","BOS":"boston-red-sox","CHC":"chicago-cubs","CHW":"chicago-white-sox","CIN":"cincinnati-reds","CLE":"cleveland-guardians","COL":"colorado-rockies","DET":"detroit-tigers","HOU":"houston-astros","KCR":"kansas-city-royals","LAA":"los-angeles-angels","LAD":"los-angeles-dodgers","MIA":"miami-marlins","MIL":"milwaukee-brewers","MIN":"minnesota-twins","NYM":"new-york-mets","NYY":"new-york-yankees","ATH":"athletics","PHI":"philadelphia-phillies","PIT":"pittsburgh-pirates","SDP":"san-diego-padres","SFG":"san-francisco-giants","SEA":"seattle-mariners","STL":"st-louis-cardinals","TBR":"tampa-bay-rays","TEX":"texas-rangers","TOR":"toronto-blue-jays","WSN":"washington-nationals"}
- franch={t["franchID"]:aliases[t["teamIDBR"]] for t in teams if t["yearID"]=="2025"}
- assert len(franch)==30
- seasonTeam={(int(t["yearID"]),t["teamID"]):franch.get(t["franchID"]) for t in teams}
- names={p["playerID"]:" ".join(filter(None,[p.get("nameFirst"),p.get("nameLast")])) for p in people}
- out={slug:{str(y):{"managers":[],"hitting_coaches":[],"pitching_coaches":[],"staff_status":"managers_only" if y<2026 else "not_loaded"} for y in range(2015,2027)} for slug in aliases.values()}
- for m in managers:
-  y=int(m["yearID"])
-  if not 2015<=y<=2025:continue
-  slug=seasonTeam.get((y,m["teamID"]))
-  if not slug:continue
-  pid=m["playerID"]
-  if not names.get(pid):raise ValueError(f"Manager name unresolved {pid}")
-  out[slug][str(y)]["managers"].append({"name":names[pid],"player_id":pid,"order":int(m["inseason"]),"games":int(m["G"]),"wins":int(m["W"]),"losses":int(m["L"]),"source":BASE+"Managers.csv"})
- for slug,seasons in out.items():
-  for y,record in seasons.items():
-   record["managers"].sort(key=lambda x:x["order"])
-   if int(y)<=2025 and not record["managers"]:raise ValueError(f"Missing {slug} manager for {y}")
-   if len({p["player_id"] for p in record["managers"]})!=len(record["managers"]):raise ValueError(f"Duplicate manager: {slug} {y}")
- d={"schema_version":1,"source":"SABR Lahman Managers, Teams and People historical CSVs","as_of":datetime.now(timezone.utc).isoformat(),"coverage":"2015-2025 manager tenures; 2026 and assistant coaches pending","teams":out}
- path=ROOT/"data/mlb/coaching-history.json";path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(d,ensure_ascii=False,separators=(",",":"))+"\n")
- print("Manager seasons",sum(bool(v["managers"]) for ts in out.values() for v in ts.values()),"manager tenures",sum(len(v["managers"]) for ts in out.values() for v in ts.values()))
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--people-file",type=Path,help="Optional local People.csv file")
+    args=ap.parse_args()
+    raw=json.loads(SOURCE.read_text())
+    people=({r["playerID"]:" ".join(filter(None,[r.get("nameFirst"),r.get("nameLast")])).strip() for r in csv.DictReader(args.people_file.open(encoding="utf-8-sig"))} if args.people_file else names_from_people())
+    out={}
+    for slug,seasons in raw["teams"].items():
+        out[slug]={}
+        for year in range(2015,2027):
+            assignments=seasons.get(str(year),[]) if year<=2025 else []
+            managers=[]
+            for row in assignments:
+                name=people.get(row["player_id"])
+                if not name:raise ValueError(f"Unresolved manager name {slug} {year}: {row['player_id']}")
+                managers.append({"name":name,"player_id":row["player_id"],"order":row["order"],"games":row["games"],"wins":row["wins"],"losses":row["losses"],"source":raw["source"]})
+            if year<=2025 and not managers:raise ValueError(f"Missing manager for {slug} {year}")
+            out[slug][str(year)]={"managers":managers,"hitting_coaches":[],"pitching_coaches":[],"staff_status":"managers_only" if managers else "not_loaded"}
+    assert len(out)==30
+    n=sum(len(t[str(y)]["managers"]) for t in out.values() for y in range(2015,2026))
+    assert n==389,f"Unexpected managerial assignment count: {n}"
+    data={"schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"source":raw["source"],"names_source":URL,"coverage":"2015–2025 managerial tenures; 2026 and hitting/pitching coaches not yet verified","teams":out}
+    OUT.parent.mkdir(parents=True,exist_ok=True)
+    OUT.write_text(json.dumps(data,ensure_ascii=False,separators=(",",":"))+"\n")
+    print(f"Generated {OUT}: {len(out)} teams, 330 team-seasons, {n} manager assignments")
 if __name__=="__main__":main()
