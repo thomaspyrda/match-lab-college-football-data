@@ -1,0 +1,30 @@
+(()=>{'use strict';
+const match=location.pathname.match(/^\/(mlb|cbb)\/teams\/([^/]+)\/?$/);
+if(!match)return;
+const sport=match[1],main=document.querySelector('main.research-main'),seed=document.querySelector('#team-season-data');
+if(!main||!seed)return;
+let data;try{data=JSON.parse(seed.textContent)}catch{return}
+const heading=main.querySelector('.team-research-heading'),breadcrumb=main.querySelector('.research-breadcrumbs');
+if(!heading)return;
+const teamName=heading.querySelector('h1')?.textContent?.trim()||match[2],logo=heading.querySelector('img')?.getAttribute('src')||'',subtitle=heading.querySelector('div>p:last-child')?.textContent||'';
+const seasons=Array.isArray(data.seasons)?data.seasons:[],current=seasons.at(-1)?.key||'2026';
+const conf=sport==='mlb'?['Runs / Game','Batting Average','On-Base %','Slugging %','Home Runs','Strikeout Rate','ERA','WHIP','Runs Allowed / Game','Opponent Average','Bullpen ERA','Fielding %']:['Points / Game','Offensive Rating','Effective FG %','3P %','Free Throw %','Turnover Rate','Points Allowed / Game','Defensive Rating','Opponent eFG %','Rebound Rate','Steals / Game','Blocks / Game'];
+const source=data.seasons||[];const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sportTitle=sport==='mlb'?'MLB':'CBB',route='/'+sport+'/teams/';
+const section=(id,kicker,title,inside)=>'<section id="'+id+'" class="wise-team-section"><div class="wise-team-head"><p>'+kicker+'</p><h2>'+title+'</h2></div>'+inside+'</section>';
+const empty=message=>'<div class="wise-empty">'+message+'</div>';
+const nav=['snapshot','metrics','schedule','players','leadership','draft','accolades'].map(id=>'<a href="#'+id+'">'+({snapshot:'Season Snapshot',metrics:'Team Metrics',schedule:'Schedule',players:'Player Stats',leadership:'Leadership',draft:sport==='mlb'?'Draft Class':'NBA Draft History',accolades:'Franchise Accolades'}[id])+'</a>').join('');
+main.classList.add('wise-team-main');
+main.innerHTML=(breadcrumb?.outerHTML||'')+'<div class="wise-team-hero"><img src="'+esc(logo)+'" alt="'+esc(teamName)+' logo"><div><p class="wise-eyebrow">'+sportTitle+' TEAM RESEARCH</p><h1>'+esc(teamName)+'</h1><p>'+esc(subtitle)+'</p></div></div><nav class="wise-team-tabs" aria-label="Team page sections">'+nav+'</nav><div class="wise-season-bar"><div><p class="wise-eyebrow">SEASON ARCHIVE</p><strong id="wiseSeasonTitle"></strong></div><label>Season <select id="wiseSeasonSelect">'+seasons.slice().reverse().map(y=>'<option value="'+esc(y.key)+'">'+esc(y.label)+'</option>').join('')+'</select></label></div><div id="wiseTeamContents"></div>';
+const select=main.querySelector('#wiseSeasonSelect'),container=main.querySelector('#wiseTeamContents');
+select.value=current;
+function render(){const y=seasons.find(x=>String(x.key)===select.value)||{};const label=y.label||select.value;main.querySelector('#wiseSeasonTitle').textContent=label;const record=y.record;
+const summary=[['Record',record&&typeof record==='object'?[record.wins,record.losses].join('–'):record],sport==='mlb'?['Runs / Game',null]:['Points / Game',null],sport==='mlb'?['Runs Allowed / Game',null]:['Points Allowed / Game',null],['Home Record',null],['Road Record',null],['ATS Record',null],['O/U Record',null]].map(([k,v])=>'<article class="wise-stat"><strong>'+esc(v||'—')+'</strong><span>'+k+'</span></article>').join('');
+const metrics=conf.map((k,i)=>'<article class="wise-metric"><span>'+esc(k)+'</span><strong>—</strong><small>Data pending</small></article>').join('');
+const games=Array.isArray(y.games)?y.games:[];
+const schedule=games.length?'<div class="wise-scroll"><table><thead><tr><th>Date</th><th>Opponent</th><th>Result</th><th>Score</th></tr></thead><tbody>'+games.slice(0,12).map(g=>'<tr><td>'+esc(g.date)+'</td><td>'+esc(g.opponent_name||g.opponent)+'</td><td>'+esc(g.result)+'</td><td>'+esc(g.score)+'</td></tr>').join('')+'</tbody></table></div>'+ (games.length>12?'<button type="button" id="wiseMoreGames">Show all '+games.length+' games</button>':''):empty('Season schedule not populated yet.');
+container.innerHTML=section('snapshot','SEASON SNAPSHOT',esc(teamName)+' · '+esc(label),'<div class="wise-snapshot-grid">'+summary+'</div>')+section('metrics','TEAM METRICS','Offense & Defense','<div class="wise-metrics">'+metrics+'</div>')+section('schedule','SCHEDULE & RESULTS','Season schedule',schedule)+section('players','PLAYER STATISTICS','Season leaders & roster',empty('Player statistics will appear when verified season data is added.'))+section('leadership','LEADERSHIP',sport==='mlb'?'Manager & Coaching Staff':'Head Coach',empty('Coaching history has not been populated yet.'))+section('draft','DRAFT CLASS',sport==='mlb'?'MLB Draft Class':'NBA Draft History',empty('Draft history has not been populated yet.'))+section('accolades','FRANCHISE ACCOLADES',sport==='mlb'?'Team & Player Awards':'Program & Player Awards',empty('Historical accolades have not been populated yet.'));
+const more=container.querySelector('#wiseMoreGames');if(more)more.addEventListener('click',()=>{const tbody=container.querySelector('#schedule tbody');tbody.innerHTML=games.map(g=>'<tr><td>'+esc(g.date)+'</td><td>'+esc(g.opponent_name||g.opponent)+'</td><td>'+esc(g.result)+'</td><td>'+esc(g.score)+'</td></tr>').join('');more.remove()});
+}
+select.addEventListener('change',render);render();
+})();
