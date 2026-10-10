@@ -3458,6 +3458,15 @@
           "source": "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/AwardsPlayers.csv"
         },
         {
+          "year": 1984,
+          "player": "Rick Sutcliffe",
+          "league": "NL",
+          "position": null,
+          "player_id": "sutclri01",
+          "source": "https://www.mlb.com/cubs/history/timeline",
+          "attribution": "official_team_credit"
+        },
+        {
           "year": 1992,
           "player": "Greg Maddux",
           "league": "NL",
@@ -7312,6 +7321,15 @@
           "position": "2B",
           "player_id": "polanpl01",
           "source": "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/AwardsPlayers.csv"
+        },
+        {
+          "year": 2015,
+          "player": "Yoenis Cespedes",
+          "league": "AL",
+          "position": null,
+          "player_id": "cespeyo01",
+          "source": "https://www.mlb.com/news/yoenis-cespedes-wins-al-gold-glove-award/c-156969008",
+          "attribution": "official_team_credit"
         },
         {
           "year": 2016,
@@ -13067,6 +13085,15 @@
           "position": "OF",
           "player_id": "gardnbr01",
           "source": "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/AwardsPlayers.csv"
+        },
+        {
+          "year": 2021,
+          "player": "Joey Gallo",
+          "league": "AL",
+          "position": null,
+          "player_id": "gallojo01",
+          "source": "https://www.mlb.com/news/joey-gallo-wins-2021-gold-glove-award-for-right-field",
+          "attribution": "official_team_credit"
         },
         {
           "year": 2022,
@@ -20786,16 +20813,6 @@
       "reason": "multiple_or_unsupported_franchises"
     },
     {
-      "year": 2015,
-      "name": "cespeyo01",
-      "award": "gold_glove",
-      "teams": {
-        "DET": 102,
-        "NYM": 57
-      },
-      "reason": "multiple_or_unsupported_franchises"
-    },
-    {
       "year": 2021,
       "name": "duvalad01",
       "award": "gold_glove",
@@ -20822,16 +20839,6 @@
       "teams": {
         "MIN": 101,
         "TOR": 37
-      },
-      "reason": "multiple_or_unsupported_franchises"
-    },
-    {
-      "year": 2021,
-      "name": "gallojo01",
-      "award": "gold_glove",
-      "teams": {
-        "NYY": 58,
-        "TEX": 95
       },
       "reason": "multiple_or_unsupported_franchises"
     },
@@ -21015,16 +21022,6 @@
         "CHC": 20,
         "PHI": 14,
         "STL": 16
-      },
-      "reason": "multiple_or_unsupported_franchises"
-    },
-    {
-      "year": 1984,
-      "name": "sutclri01",
-      "award": "cy_young",
-      "teams": {
-        "CHC": 20,
-        "CLE": 15
       },
       "reason": "multiple_or_unsupported_franchises"
     },
