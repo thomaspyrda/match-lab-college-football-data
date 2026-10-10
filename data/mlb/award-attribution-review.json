@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "description": "Manual review queue: award-year player played for multiple franchises. Do not assign an award from games played alone.",
-  "count": 26,
+  "count": 23,
   "entries": [
     {
       "year": 1989,
@@ -39,9 +39,9 @@
         "NYM": 57
       },
       "reason": "multiple_or_unsupported_franchises",
-      "review_status": "needs_award_year_source",
-      "assigned_franchise": null,
-      "verification_url": null
+      "review_status": "resolved_official_award_attribution",
+      "assigned_franchise": "detroit-tigers",
+      "verification_url": "https://www.mlb.com/news/yoenis-cespedes-wins-al-gold-glove-award/c-156969008"
     },
     {
       "year": 2022,
@@ -105,9 +105,9 @@
         "TEX": 95
       },
       "reason": "multiple_or_unsupported_franchises",
-      "review_status": "needs_award_year_source",
-      "assigned_franchise": null,
-      "verification_url": null
+      "review_status": "resolved_official_award_attribution",
+      "assigned_franchise": "new-york-yankees",
+      "verification_url": "https://www.mlb.com/news/joey-gallo-wins-2021-gold-glove-award-for-right-field"
     },
     {
       "year": 2019,
@@ -397,9 +397,9 @@
         "CLE": 15
       },
       "reason": "multiple_or_unsupported_franchises",
-      "review_status": "needs_award_year_source",
-      "assigned_franchise": null,
-      "verification_url": null
+      "review_status": "resolved_official_award_attribution",
+      "assigned_franchise": "chicago-cubs",
+      "verification_url": "https://www.mlb.com/cubs/history/timeline"
     },
     {
       "year": 2017,
