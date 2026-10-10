@@ -24,12 +24,13 @@ const categories=[['World Series Championships',team.team?.world_series],['Leagu
 const rows=categories.map(([label,item])=>{const ready=item?.count!==null&&item?.count!==undefined;
 return '<article class="wise-honor-card"><span>'+esc(label)+'</span><strong>'+ (ready?esc(item.count):'—') +'</strong><small>'+(ready&&item.years?.length?esc(item.years.join(' · ')):'Historical record pending verification')+'</small></article>'}).join('');
 const awards=[['MVP','mvp'],['Cy Young','cy_young'],['Rookie of the Year','rookie_of_the_year'],['Gold Gloves','gold_glove'],['Silver Sluggers','silver_slugger']];
-const players=awards.map(([name,key])=>'<article class="wise-honor-card"><span>'+esc(name)+'</span><strong>'+ (team.player_awards_status==='complete'?esc((team.player?.[key]||[]).length):'—') +'</strong><small>'+(team.player_awards_status==='complete'?'Verified individual awards':'Historical winners pending verification')+'</small></article>').join('');
-return '<div class="wise-honor-heading">TEAM</div><div class="wise-honors-grid">'+rows+'</div><div class="wise-honor-heading">PLAYER</div><div class="wise-honors-grid">'+players+'</div><p class="wise-honor-note">All-time franchise history includes former team names and cities. Unverified categories remain blank; they are not zero.</p>';
+const players=awards.map(([name,key])=>{const entries=mlbAwards?.awards?.[match[2]]?.[key];const available=Array.isArray(entries);return '<article class="wise-honor-card"><span>'+esc(name)+'</span><strong>'+(available?esc(entries.length):'—')+'</strong><small>'+(available?(entries.length?esc(entries.slice(-3).map(x=>x.player+' ('+x.year+')').join(' · ')):'No entries in imported records'):'Historical winners pending verification')+'</small></article>'}).join('');
+return '<div class="wise-honor-heading">TEAM</div><div class="wise-honors-grid">'+rows+'</div><div class="wise-honor-heading">PLAYER</div><div class="wise-honors-grid">'+players+'</div><p class="wise-honor-note">All-time franchise history includes former team names and cities. Award data is preliminary and subject to franchise attribution review. Missing categories remain blank; they are not zero.</p>';
 }
 const select=main.querySelector('#wiseSeasonSelect'),container=main.querySelector('#wiseTeamContents');
 let mlbSnapshots=null;
 let mlbAccolades=null;
+let mlbAwards=null;
 
 select.value=current;
 function render(){const y=seasons.find(x=>String(x.key)===select.value)||{};const label=y.label||select.value;const mlbRow=sport==='mlb'?mlbSnapshots?.seasons?.[String(select.value)]?.[match[2]]:null;const record=mlbRow?.games_played?{wins:mlbRow.wins,losses:mlbRow.losses}:y.record;
@@ -43,6 +44,7 @@ container.innerHTML=section('snapshot','SEASON SNAPSHOT',esc(teamName)+' · '+es
 const more=container.querySelector('#wiseMoreGames');if(more)more.addEventListener('click',()=>{const tbody=container.querySelector('#schedule tbody');tbody.innerHTML=games.map(g=>'<tr><td>'+esc(g.date)+'</td><td>'+esc(g.opponent_name||g.opponent)+'</td><td>'+esc(g.result)+'</td><td>'+esc(g.score)+'</td></tr>').join('');more.remove()});
 }
 select.addEventListener('change',render);render();
+if(sport==='mlb')fetch('/data/mlb/award-winners.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Historical MLB awards unavailable');return r.json()}).then(d=>{mlbAwards=d;render()}).catch(()=>{});
 if(sport==='mlb')fetch('/data/mlb/franchise-accolades.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No franchise awards data');return r.json()}).then(d=>{mlbAccolades=d;render()}).catch(()=>{});
 if(sport==='mlb')fetch('/data/mlb/season-snapshots.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No MLB season data');return r.json()}).then(d=>{mlbSnapshots=d;render()}).catch(()=>{});
 })();
