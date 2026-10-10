@@ -330,3 +330,25 @@
   .then(data=>{archive=data;draw()}).catch(()=>{});
  select.addEventListener('change',()=>queueMicrotask(draw));
 })();
+
+// Restore the canonical NBA team-page renderer on generated legacy HTML shells.
+// All NBA team pages already load this shared script, so they retain the modern layout
+// even when a team archive HTML generator refreshes the underlying placeholder markup.
+(() => {
+  const path = location.pathname;
+  if (!/^\/nba\/teams\/[^/]+\/?$/.test(path)) return;
+  if (!document.querySelector('#team-season-data')) return;
+  if (!document.querySelector('link[data-nba-modern-layout]')) {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.css?v=restore-20261010';
+    css.dataset.nbaModernLayout = 'true';
+    document.head.append(css);
+  }
+  if (!document.querySelector('script[data-nba-modern-layout]')) {
+    const js = document.createElement('script');
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=restore-20261010';
+    js.dataset.nbaModernLayout = 'true';
+    document.body.append(js);
+  }
+})();
