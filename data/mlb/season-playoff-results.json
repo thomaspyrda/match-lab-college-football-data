@@ -1,0 +1,1763 @@
+{
+  "schema_version": 1,
+  "years": "2015–2025",
+  "source": "SABR Lahman SeriesPost.csv and Teams.csv",
+  "source_urls": [
+    "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/SeriesPost.csv",
+    "https://raw.githubusercontent.com/corbtastik/lahman-baseball-db/main/Teams.csv"
+  ],
+  "teams": {
+    "arizona-diamondbacks": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–3"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Texas Rangers in World Series, 1–4",
+        "round": "World Series",
+        "opponent": "texas-rangers",
+        "series": "1–4"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "atlanta-braves": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "1–3"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to St. Louis Cardinals in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "st-louis-cardinals",
+        "series": "2–3"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "3–4"
+      },
+      "2021": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Houston Astros, 4–2",
+        "round": "World Series",
+        "opponent": "houston-astros",
+        "series": "4–2"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Philadelphia Phillies in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "philadelphia-phillies",
+        "series": "1–3"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Philadelphia Phillies in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "philadelphia-phillies",
+        "series": "1–3"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to San Diego Padres in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "san-diego-padres",
+        "series": "0–2"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "baltimore-orioles": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Toronto Blue Jays in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "toronto-blue-jays",
+        "series": "0–1"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Texas Rangers in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "texas-rangers",
+        "series": "0–3"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Kansas City Royals in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "kansas-city-royals",
+        "series": "0–2"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "boston-red-sox": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Cleveland Indians in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "cleveland-guardians",
+        "series": "0–3"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "1–3"
+      },
+      "2018": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Los Angeles Dodgers, 4–1",
+        "round": "World Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "4–1"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "houston-astros",
+        "series": "2–4"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "new-york-yankees",
+        "series": "1–2"
+      }
+    },
+    "chicago-cubs": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to New York Mets in Championship Series, 0–4",
+        "round": "Championship Series",
+        "opponent": "new-york-mets",
+        "series": "0–4"
+      },
+      "2016": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Cleveland Indians, 4–3",
+        "round": "World Series",
+        "opponent": "cleveland-guardians",
+        "series": "4–3"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Championship Series, 1–4",
+        "round": "Championship Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "1–4"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Colorado Rockies in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "colorado-rockies",
+        "series": "0–1"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Miami Marlins in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "miami-marlins",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Milwaukee Brewers in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "milwaukee-brewers",
+        "series": "2–3"
+      }
+    },
+    "chicago-white-sox": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Oakland Athletics in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "athletics",
+        "series": "1–2"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "1–3"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "cincinnati-reds": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Atlanta Braves in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "atlanta-braves",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–2"
+      }
+    },
+    "cleveland-guardians": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in World Series, 3–4",
+        "round": "World Series",
+        "opponent": "chicago-cubs",
+        "series": "3–4"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "new-york-yankees",
+        "series": "2–3"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "0–3"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "new-york-yankees",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "new-york-yankees",
+        "series": "2–3"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Championship Series, 1–4",
+        "round": "Championship Series",
+        "opponent": "new-york-yankees",
+        "series": "1–4"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Detroit Tigers in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "detroit-tigers",
+        "series": "1–2"
+      }
+    },
+    "colorado-rockies": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Arizona Diamondbacks in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "arizona-diamondbacks",
+        "series": "0–1"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Milwaukee Brewers in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "milwaukee-brewers",
+        "series": "0–3"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "detroit-tigers": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Cleveland Guardians in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "cleveland-guardians",
+        "series": "2–3"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Seattle Mariners in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "seattle-mariners",
+        "series": "2–3"
+      }
+    },
+    "houston-astros": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Kansas City Royals in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "kansas-city-royals",
+        "series": "2–3"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Los Angeles Dodgers, 4–3",
+        "round": "World Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "4–3"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Boston Red Sox in Championship Series, 1–4",
+        "round": "Championship Series",
+        "opponent": "boston-red-sox",
+        "series": "1–4"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Washington Nationals in World Series, 3–4",
+        "round": "World Series",
+        "opponent": "washington-nationals",
+        "series": "3–4"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Tampa Bay Rays in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "tampa-bay-rays",
+        "series": "3–4"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Atlanta Braves in World Series, 2–4",
+        "round": "World Series",
+        "opponent": "atlanta-braves",
+        "series": "2–4"
+      },
+      "2022": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Philadelphia Phillies, 4–2",
+        "round": "World Series",
+        "opponent": "philadelphia-phillies",
+        "series": "4–2"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Texas Rangers in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "texas-rangers",
+        "series": "3–4"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Detroit Tigers in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "detroit-tigers",
+        "series": "0–2"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "kansas-city-royals": {
+      "2015": {
+        "status": "champion",
+        "text": "World Series Champions — defeated New York Mets, 4–1",
+        "round": "World Series",
+        "opponent": "new-york-mets",
+        "series": "4–1"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "new-york-yankees",
+        "series": "1–3"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "los-angeles-angels": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "los-angeles-dodgers": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to New York Mets in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "new-york-mets",
+        "series": "2–3"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "chicago-cubs",
+        "series": "2–4"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in World Series, 3–4",
+        "round": "World Series",
+        "opponent": "houston-astros",
+        "series": "3–4"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Boston Red Sox in World Series, 1–4",
+        "round": "World Series",
+        "opponent": "boston-red-sox",
+        "series": "1–4"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Washington Nationals in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "washington-nationals",
+        "series": "2–3"
+      },
+      "2020": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Tampa Bay Rays, 4–2",
+        "round": "World Series",
+        "opponent": "tampa-bay-rays",
+        "series": "4–2"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Atlanta Braves in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "atlanta-braves",
+        "series": "2–4"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to San Diego Padres in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "san-diego-padres",
+        "series": "1–3"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Arizona Diamondbacks in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "arizona-diamondbacks",
+        "series": "0–3"
+      },
+      "2024": {
+        "status": "champion",
+        "text": "World Series Champions — defeated New York Yankees, 4–1",
+        "round": "World Series",
+        "opponent": "new-york-yankees",
+        "series": "4–1"
+      },
+      "2025": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Toronto Blue Jays, 4–3",
+        "round": "World Series",
+        "opponent": "toronto-blue-jays",
+        "series": "4–3"
+      }
+    },
+    "miami-marlins": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Atlanta Braves in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "atlanta-braves",
+        "series": "0–3"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Philadelphia Phillies in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "philadelphia-phillies",
+        "series": "0–2"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "milwaukee-brewers": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "3–4"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Washington Nationals in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "washington-nationals",
+        "series": "0–1"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Atlanta Braves in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "atlanta-braves",
+        "series": "1–3"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Arizona Diamondbacks in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "arizona-diamondbacks",
+        "series": "0–2"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to New York Mets in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "new-york-mets",
+        "series": "1–2"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Championship Series, 0–4",
+        "round": "Championship Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–4"
+      }
+    },
+    "minnesota-twins": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "new-york-yankees",
+        "series": "0–1"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "new-york-yankees",
+        "series": "0–3"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "houston-astros",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "1–3"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "new-york-mets": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Kansas City Royals in World Series, 1–4",
+        "round": "World Series",
+        "opponent": "kansas-city-royals",
+        "series": "1–4"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to San Francisco Giants in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "san-francisco-giants",
+        "series": "0–1"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to San Diego Padres in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "san-diego-padres",
+        "series": "1–2"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "2–4"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "new-york-yankees": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "houston-astros",
+        "series": "0–1"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "houston-astros",
+        "series": "3–4"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to Boston Red Sox in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "boston-red-sox",
+        "series": "1–3"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "houston-astros",
+        "series": "2–4"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Tampa Bay Rays in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "tampa-bay-rays",
+        "series": "2–3"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Boston Red Sox in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "boston-red-sox",
+        "series": "0–1"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Championship Series, 0–4",
+        "round": "Championship Series",
+        "opponent": "houston-astros",
+        "series": "0–4"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in World Series, 1–4",
+        "round": "World Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "1–4"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Toronto Blue Jays in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "toronto-blue-jays",
+        "series": "1–3"
+      }
+    },
+    "athletics": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "eliminated",
+        "text": "Lost to New York Yankees in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "new-york-yankees",
+        "series": "0–1"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Tampa Bay Rays in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "tampa-bay-rays",
+        "series": "0–1"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "1–3"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "philadelphia-phillies": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in World Series, 2–4",
+        "round": "World Series",
+        "opponent": "houston-astros",
+        "series": "2–4"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Arizona Diamondbacks in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "arizona-diamondbacks",
+        "series": "3–4"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to New York Mets in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "new-york-mets",
+        "series": "1–3"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "1–3"
+      }
+    },
+    "pittsburgh-pirates": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "chicago-cubs",
+        "series": "0–1"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "san-diego-padres": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–3"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Philadelphia Phillies in Championship Series, 1–4",
+        "round": "Championship Series",
+        "opponent": "philadelphia-phillies",
+        "series": "1–4"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "2–3"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "chicago-cubs",
+        "series": "1–2"
+      }
+    },
+    "san-francisco-giants": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "chicago-cubs",
+        "series": "1–3"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "2–3"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "seattle-mariners": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "0–3"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Toronto Blue Jays in Championship Series, 3–4",
+        "round": "Championship Series",
+        "opponent": "toronto-blue-jays",
+        "series": "3–4"
+      }
+    },
+    "st-louis-cardinals": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "chicago-cubs",
+        "series": "1–3"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Washington Nationals in Championship Series, 0–4",
+        "round": "Championship Series",
+        "opponent": "washington-nationals",
+        "series": "0–4"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to San Diego Padres in Wild Card, 1–2",
+        "round": "Wild Card",
+        "opponent": "san-diego-padres",
+        "series": "1–2"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Wild Card, 0–1",
+        "round": "Wild Card",
+        "opponent": "los-angeles-dodgers",
+        "series": "0–1"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Philadelphia Phillies in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "philadelphia-phillies",
+        "series": "0–2"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "tampa-bay-rays": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "eliminated",
+        "text": "Lost to Houston Astros in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "houston-astros",
+        "series": "2–3"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in World Series, 2–4",
+        "round": "World Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "2–4"
+      },
+      "2021": {
+        "status": "eliminated",
+        "text": "Lost to Boston Red Sox in Division Series, 1–3",
+        "round": "Division Series",
+        "opponent": "boston-red-sox",
+        "series": "1–3"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Cleveland Guardians in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "cleveland-guardians",
+        "series": "0–2"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Texas Rangers in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "texas-rangers",
+        "series": "0–2"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "texas-rangers": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Toronto Blue Jays in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "toronto-blue-jays",
+        "series": "2–3"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Toronto Blue Jays in Division Series, 0–3",
+        "round": "Division Series",
+        "opponent": "toronto-blue-jays",
+        "series": "0–3"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Arizona Diamondbacks, 4–1",
+        "round": "World Series",
+        "opponent": "arizona-diamondbacks",
+        "series": "4–1"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    },
+    "toronto-blue-jays": {
+      "2015": {
+        "status": "eliminated",
+        "text": "Lost to Kansas City Royals in Championship Series, 2–4",
+        "round": "Championship Series",
+        "opponent": "kansas-city-royals",
+        "series": "2–4"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Cleveland Indians in Championship Series, 1–4",
+        "round": "Championship Series",
+        "opponent": "cleveland-guardians",
+        "series": "1–4"
+      },
+      "2017": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2020": {
+        "status": "eliminated",
+        "text": "Lost to Tampa Bay Rays in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "tampa-bay-rays",
+        "series": "0–2"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "eliminated",
+        "text": "Lost to Seattle Mariners in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "seattle-mariners",
+        "series": "0–2"
+      },
+      "2023": {
+        "status": "eliminated",
+        "text": "Lost to Minnesota Twins in Wild Card, 0–2",
+        "round": "Wild Card",
+        "opponent": "minnesota-twins",
+        "series": "0–2"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in World Series, 3–4",
+        "round": "World Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "3–4"
+      }
+    },
+    "washington-nationals": {
+      "2015": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2016": {
+        "status": "eliminated",
+        "text": "Lost to Los Angeles Dodgers in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "los-angeles-dodgers",
+        "series": "2–3"
+      },
+      "2017": {
+        "status": "eliminated",
+        "text": "Lost to Chicago Cubs in Division Series, 2–3",
+        "round": "Division Series",
+        "opponent": "chicago-cubs",
+        "series": "2–3"
+      },
+      "2018": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2019": {
+        "status": "champion",
+        "text": "World Series Champions — defeated Houston Astros, 4–3",
+        "round": "World Series",
+        "opponent": "houston-astros",
+        "series": "4–3"
+      },
+      "2020": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2021": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2022": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2023": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2024": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      },
+      "2025": {
+        "status": "missed_playoffs",
+        "text": "Missed Playoffs"
+      }
+    }
+  }
+}
