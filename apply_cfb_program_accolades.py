@@ -11,7 +11,7 @@ def update_page(content,team_id,data):
  if anchor not in content:raise ValueError(f'Missing bottom-of-page source anchor: {team_id}')
  content=content.replace(anchor,section+'\n'+anchor,1)
  if 'href="#programAccolades"' not in content:content=content.replace('<a href="#schedule">Schedule</a>','<a href="#schedule">Schedule</a><a href="#programAccolades">Accolades</a>',1)
- content=re.sub(r'/cfb/team-page\.css\?v=[^"\s]+','/cfb/team-page.css?v=accolades-20261008',content)
+ content=re.sub(r'/cfb/team-page\.css\?v=[^"\s]+','/cfb/team-page.css?v=draft-links-20261010',content)
  content=re.sub(r'site-navigation\.js\?v=[^"\s]+','site-navigation-v3.js',content)
  assert content.count('id="programAccolades"')==1
  assert content.index('id="programAccolades"')>content.index('id="schedule"')
