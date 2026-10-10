@@ -2,1343 +2,10 @@
   "slate": {
     "season": 2026,
     "week": 7,
-    "generated_at": "2026-10-09T18:55:30.930470+00:00",
+    "generated_at": "2026-10-10T00:58:58.264084+00:00",
     "model_version": "v15"
   },
   "games": [
-    {
-      "game_id": "401858254",
-      "season": 2026,
-      "week": 6,
-      "kickoff": "2026-10-09T23:00:00.000Z",
-      "venue": "L&N Federal Credit Union Stadium",
-      "venue_id": 3873,
-      "away": {
-        "name": "Florida State",
-        "record": "3-2",
-        "ap_rank": null,
-        "team_strength": 72.8,
-        "team_strength_rank": 28,
-        "team_strength_sd": 0.888,
-        "offensive_strength": 78.0,
-        "offensive_strength_rank": 20,
-        "defensive_strength": 66.2,
-        "defensive_strength_rank": 44,
-        "sos_rank": 27,
-        "form": {
-          "games": 5,
-          "wins": 3,
-          "losses": 2,
-          "avg_points": 33.2,
-          "avg_allowed": 21.6,
-          "coming_off_loss": false,
-          "last_five": [
-            {
-              "week": 1,
-              "opponent": "New Mexico State",
-              "location": "H",
-              "start_date": "2026-08-29T23:00:00.000Z",
-              "result": "W",
-              "points": 34,
-              "allowed": 17,
-              "opponent_abbr": "NMSU"
-            },
-            {
-              "week": 1,
-              "opponent": "SMU",
-              "location": "H",
-              "start_date": "2026-09-07T23:30:00.000Z",
-              "result": "L",
-              "points": 24,
-              "allowed": 27,
-              "opponent_abbr": "SMU"
-            },
-            {
-              "week": 3,
-              "opponent": "Alabama",
-              "location": "A",
-              "start_date": "2026-09-19T19:30:00.000Z",
-              "result": "L",
-              "points": 36,
-              "allowed": 50,
-              "opponent_abbr": "ALA"
-            },
-            {
-              "week": 4,
-              "opponent": "Central Arkansas",
-              "location": "H",
-              "start_date": "2026-09-26T19:00:00.000Z",
-              "result": "W",
-              "points": 34,
-              "allowed": 7,
-              "opponent_abbr": null
-            },
-            {
-              "week": 5,
-              "opponent": "Virginia",
-              "location": "H",
-              "start_date": "2026-10-03T19:30:00.000Z",
-              "result": "W",
-              "points": 38,
-              "allowed": 7,
-              "opponent_abbr": "UVA"
-            }
-          ]
-        },
-        "metrics": {
-          "offensive_efficiency": 75,
-          "defensive_efficiency": 7,
-          "rushing_success": 57,
-          "passing_success": 44,
-          "explosiveness": 98,
-          "finishing_drives": 88,
-          "defensive_rushing_success": 41,
-          "defensive_passing_success": 13,
-          "defensive_explosiveness": 18,
-          "defensive_finishing_drives": 42,
-          "havoc": 42,
-          "overall_success": 54,
-          "defensive_success": 22,
-          "standard_down_success": 28,
-          "defensive_standard_down_success": 19,
-          "passing_down_success": 89,
-          "defensive_passing_down_success": 25,
-          "line_yards": 66,
-          "defensive_line_yards": 31,
-          "stuff_rate": 65,
-          "defensive_stuff_rate": 35,
-          "power_success": 9,
-          "defensive_power_success": 4,
-          "second_level_yards": 58,
-          "defensive_second_level_yards": 39,
-          "open_field_yards": 69,
-          "defensive_open_field_yards": 39,
-          "passing_ppa": 72,
-          "defensive_passing_ppa": 12,
-          "rushing_ppa": 82,
-          "defensive_rushing_ppa": 21,
-          "passing_explosiveness": 99,
-          "defensive_passing_explosiveness": 24,
-          "rushing_explosiveness": 85,
-          "defensive_rushing_explosiveness": 37,
-          "raw": {
-            "offensive_efficiency": 0.2629653481190604,
-            "defensive_efficiency": 0.2643748437947692,
-            "rushing_success": 0.4552238805970149,
-            "passing_success": 0.42574257425742573,
-            "explosiveness": 1.5206293242891817,
-            "finishing_drives": 4.884615384615385,
-            "defensive_rushing_success": 0.4260869565217391,
-            "defensive_passing_success": 0.4728682170542636,
-            "defensive_explosiveness": 1.3860548368856032,
-            "defensive_finishing_drives": 3.5238095238095237,
-            "havoc": 0.156,
-            "overall_success": 0.44214876033057854,
-            "defensive_success": 0.448,
-            "standard_down_success": 0.45614035087719296,
-            "defensive_standard_down_success": 0.5060240963855421,
-            "passing_down_success": 0.4084507042253521,
-            "defensive_passing_down_success": 0.3333333333333333,
-            "line_yards": 3.234328358208955,
-            "defensive_line_yards": 3.068695652173913,
-            "stuff_rate": 0.14925373134328357,
-            "defensive_stuff_rate": 0.17391304347826086,
-            "power_success": 0.5625,
-            "defensive_power_success": 0.9166666666666666,
-            "second_level_yards": 1.1417910447761195,
-            "defensive_second_level_yards": 1.0434782608695652,
-            "open_field_yards": 1.5149253731343284,
-            "defensive_open_field_yards": 1.173913043478261,
-            "passing_ppa": 0.38416153388395685,
-            "defensive_passing_ppa": 0.39839959803365455,
-            "rushing_ppa": 0.24182663440584035,
-            "defensive_rushing_ppa": 0.15208326650023377,
-            "passing_explosiveness": 2.0591872030648983,
-            "defensive_passing_explosiveness": 1.6907885678762422,
-            "rushing_explosiveness": 1.1310624882799294,
-            "defensive_rushing_explosiveness": 0.9896040033875005
-          },
-          "games_played": 4,
-          "metrics_available": 35,
-          "through_week": 5,
-          "third_down_conversion": 1.092,
-          "defensive_third_down_conversion": 0.615,
-          "red_zone_td_rate": 2.136,
-          "defensive_red_zone_td_rate": 2.161,
-          "red_zone_points_per_trip": 1.97,
-          "defensive_red_zone_points_per_trip": 1.926
-        },
-        "conference": "ACC",
-        "espn_id": 52,
-        "raw_metrics": {
-          "havoc_allowed": 0.14,
-          "havoc": 0.172,
-          "overall_success": 0.45084745762711864,
-          "defensive_success": 0.42857142857142855,
-          "offensive_ppa": 0.2807487365726912,
-          "defensive_ppa": 0.20026169119438136,
-          "passing_success": 0.4380165289256198,
-          "defensive_passing_success": 0.43312101910828027,
-          "rushing_success": 0.4666666666666667,
-          "defensive_rushing_success": 0.4264705882352941,
-          "explosiveness": 1.4755696923523602,
-          "defensive_explosiveness": 1.299902276689145,
-          "points_per_opportunity": 4.9375,
-          "defensive_points_per_opportunity": 3.0,
-          "third_down_made": 26.0,
-          "third_down_att": 61.0,
-          "third_down_allowed_made": 30.0,
-          "third_down_allowed_att": 74.0,
-          "red_zone_td": 18.0,
-          "red_zone_att": 21.0,
-          "red_zone_allowed_td": 7.0,
-          "red_zone_allowed_att": 16.0,
-          "sack_rate_allowed": 0.09230769230769231,
-          "sack_rate": 0.09042553191489362,
-          "turnovers": 7,
-          "turnovers_forced": 5,
-          "third_down_conversion": 0.4262295081967213,
-          "defensive_third_down_conversion": 0.40540540540540543,
-          "red_zone_td_rate": 0.8571428571428571,
-          "defensive_red_zone_td_rate": 0.4375,
-          "sack_rate_allowed_rank": 122,
-          "sack_rate_rank": 19,
-          "havoc_allowed_rank": 60,
-          "havoc_rank": 50,
-          "turnovers_rank": 83,
-          "turnovers_forced_rank": 85,
-          "overall_success_rank": 55,
-          "defensive_success_rank": 92,
-          "offensive_ppa_rank": 25,
-          "defensive_ppa_rank": 116,
-          "passing_success_rank": 73,
-          "defensive_passing_success_rank": 101,
-          "rushing_success_rank": 56,
-          "defensive_rushing_success_rank": 81,
-          "explosiveness_rank": 6,
-          "defensive_explosiveness_rank": 90,
-          "points_per_opportunity_rank": 12,
-          "defensive_points_per_opportunity_rank": 40,
-          "third_down_conversion_rank": 60,
-          "defensive_third_down_conversion_rank": 97,
-          "red_zone_td_rate_rank": 5,
-          "defensive_red_zone_td_rate_rank": 21
-        },
-        "abbr": "FSU",
-        "color": "#782f40",
-        "alternate_color": "#ceb888",
-        "logo": "https://cdn.collegefootballdata.com/logos/500/52.png",
-        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/52.png"
-      },
-      "home": {
-        "name": "Louisville",
-        "record": "2-3",
-        "ap_rank": null,
-        "team_strength": 71.0,
-        "team_strength_rank": 38,
-        "team_strength_sd": 0.798,
-        "offensive_strength": 76.8,
-        "offensive_strength_rank": 21,
-        "defensive_strength": 63.4,
-        "defensive_strength_rank": 49,
-        "sos_rank": 15,
-        "form": {
-          "games": 5,
-          "wins": 2,
-          "losses": 3,
-          "avg_points": 38.6,
-          "avg_allowed": 29.2,
-          "coming_off_loss": true,
-          "last_five": [
-            {
-              "week": 1,
-              "opponent": "Ole Miss",
-              "location": "A",
-              "start_date": "2026-09-06T23:30:00.000Z",
-              "result": "L",
-              "points": 38,
-              "allowed": 41,
-              "opponent_abbr": "MISS"
-            },
-            {
-              "week": 2,
-              "opponent": "Villanova",
-              "location": "H",
-              "start_date": "2026-09-11T23:00:00.000Z",
-              "result": "W",
-              "points": 59,
-              "allowed": 13,
-              "opponent_abbr": null
-            },
-            {
-              "week": 3,
-              "opponent": "SMU",
-              "location": "H",
-              "start_date": "2026-09-19T19:30:00.000Z",
-              "result": "W",
-              "points": 41,
-              "allowed": 31,
-              "opponent_abbr": "SMU"
-            },
-            {
-              "week": 4,
-              "opponent": "Wake Forest",
-              "location": "H",
-              "start_date": "2026-09-26T16:00:00.000Z",
-              "result": "L",
-              "points": 27,
-              "allowed": 30,
-              "opponent_abbr": "WAKE"
-            },
-            {
-              "week": 5,
-              "opponent": "NC State",
-              "location": "A",
-              "start_date": "2026-10-03T19:30:00.000Z",
-              "result": "L",
-              "points": 28,
-              "allowed": 31,
-              "opponent_abbr": "NCSU"
-            }
-          ]
-        },
-        "metrics": {
-          "offensive_efficiency": 88,
-          "defensive_efficiency": 36,
-          "rushing_success": 70,
-          "passing_success": 78,
-          "explosiveness": 85,
-          "finishing_drives": 72,
-          "defensive_rushing_success": 20,
-          "defensive_passing_success": 63,
-          "defensive_explosiveness": 53,
-          "defensive_finishing_drives": 37,
-          "havoc": 24,
-          "overall_success": 79,
-          "defensive_success": 40,
-          "standard_down_success": 88,
-          "defensive_standard_down_success": 36,
-          "passing_down_success": 42,
-          "defensive_passing_down_success": 59,
-          "line_yards": 21,
-          "defensive_line_yards": 20,
-          "stuff_rate": 22,
-          "defensive_stuff_rate": 4,
-          "power_success": 36,
-          "defensive_power_success": 92,
-          "second_level_yards": 61,
-          "defensive_second_level_yards": 56,
-          "open_field_yards": 90,
-          "defensive_open_field_yards": 57,
-          "passing_ppa": 82,
-          "defensive_passing_ppa": 15,
-          "rushing_ppa": 72,
-          "defensive_rushing_ppa": 61,
-          "passing_explosiveness": 72,
-          "defensive_passing_explosiveness": 3,
-          "rushing_explosiveness": 73,
-          "defensive_rushing_explosiveness": 90,
-          "raw": {
-            "offensive_efficiency": 0.3301888940142602,
-            "defensive_efficiency": 0.12247372718054267,
-            "rushing_success": 0.47368421052631576,
-            "passing_success": 0.5,
-            "explosiveness": 1.3878221074903756,
-            "finishing_drives": 4.392857142857143,
-            "defensive_rushing_success": 0.45652173913043476,
-            "defensive_passing_success": 0.3821138211382114,
-            "defensive_explosiveness": 1.2270264133303201,
-            "defensive_finishing_drives": 3.6153846153846154,
-            "havoc": 0.136,
-            "overall_success": 0.48616600790513836,
-            "defensive_success": 0.41697416974169743,
-            "standard_down_success": 0.5543478260869565,
-            "defensive_standard_down_success": 0.4742268041237113,
-            "passing_down_success": 0.30434782608695654,
-            "defensive_passing_down_success": 0.2727272727272727,
-            "line_yards": 2.7481203007518795,
-            "defensive_line_yards": 3.1884057971014492,
-            "stuff_rate": 0.21052631578947367,
-            "defensive_stuff_rate": 0.11594202898550725,
-            "power_success": 0.7058823529411765,
-            "defensive_power_success": 0.5172413793103449,
-            "second_level_yards": 1.1578947368421053,
-            "defensive_second_level_yards": 0.9710144927536232,
-            "open_field_yards": 1.887218045112782,
-            "defensive_open_field_yards": 0.8695652173913043,
-            "passing_ppa": 0.4614578244390943,
-            "defensive_passing_ppa": 0.3802160015279481,
-            "rushing_ppa": 0.19248763854775902,
-            "defensive_rushing_ppa": 0.008253633199654196,
-            "passing_explosiveness": 1.6959586767345378,
-            "defensive_passing_explosiveness": 1.9660233829275646,
-            "rushing_explosiveness": 1.0605454505645728,
-            "defensive_rushing_explosiveness": 0.6915304903327949
-          },
-          "games_played": 4,
-          "metrics_available": 35,
-          "through_week": 5,
-          "third_down_conversion": 0.533,
-          "defensive_third_down_conversion": 0.881,
-          "red_zone_td_rate": 0.401,
-          "defensive_red_zone_td_rate": 0.443,
-          "red_zone_points_per_trip": 0.282,
-          "defensive_red_zone_points_per_trip": 0.429
-        },
-        "conference": "ACC",
-        "espn_id": 97,
-        "raw_metrics": {
-          "havoc_allowed": 0.167,
-          "havoc": 0.132,
-          "overall_success": 0.48534201954397393,
-          "defensive_success": 0.4117647058823529,
-          "offensive_ppa": 0.31327040779854487,
-          "defensive_ppa": 0.15624512127311738,
-          "passing_success": 0.49324324324324326,
-          "defensive_passing_success": 0.41818181818181815,
-          "rushing_success": 0.4774193548387097,
-          "defensive_rushing_success": 0.4134078212290503,
-          "explosiveness": 1.4081838269749378,
-          "defensive_explosiveness": 1.2718225594385253,
-          "points_per_opportunity": 4.235294117647059,
-          "defensive_points_per_opportunity": 3.444444444444444,
-          "third_down_made": 26.0,
-          "third_down_att": 57.0,
-          "third_down_allowed_made": 26.0,
-          "third_down_allowed_att": 71.0,
-          "red_zone_td": 12.0,
-          "red_zone_att": 20.0,
-          "red_zone_allowed_td": 11.0,
-          "red_zone_allowed_att": 21.0,
-          "sack_rate_allowed": 0.0641025641025641,
-          "sack_rate": 0.04597701149425287,
-          "turnovers": 4,
-          "turnovers_forced": 8,
-          "third_down_conversion": 0.45614035087719296,
-          "defensive_third_down_conversion": 0.36619718309859156,
-          "red_zone_td_rate": 0.6,
-          "defensive_red_zone_td_rate": 0.5238095238095238,
-          "sack_rate_allowed_rank": 89,
-          "sack_rate_rank": 108,
-          "havoc_allowed_rank": 108,
-          "havoc_rank": 108,
-          "turnovers_rank": 32,
-          "turnovers_forced_rank": 23,
-          "overall_success_rank": 29,
-          "defensive_success_rank": 76,
-          "offensive_ppa_rank": 13,
-          "defensive_ppa_rank": 100,
-          "passing_success_rank": 31,
-          "defensive_passing_success_rank": 80,
-          "rushing_success_rank": 40,
-          "defensive_rushing_success_rank": 70,
-          "explosiveness_rank": 13,
-          "defensive_explosiveness_rank": 80,
-          "points_per_opportunity_rank": 53,
-          "defensive_points_per_opportunity_rank": 75,
-          "third_down_conversion_rank": 42,
-          "defensive_third_down_conversion_rank": 66,
-          "red_zone_td_rate_rank": 84,
-          "defensive_red_zone_td_rate_rank": 49
-        },
-        "abbr": "LOU",
-        "color": "#c9001f",
-        "alternate_color": "#000000",
-        "logo": "https://cdn.collegefootballdata.com/logos/500/97.png",
-        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/97.png"
-      },
-      "market": {
-        "spread": -4.0,
-        "total": 60.0,
-        "home_moneyline": -230.0,
-        "away_moneyline": 190.0,
-        "provider": "Bovada"
-      },
-      "context": {
-        "conference_game": true,
-        "neutral_site": false
-      },
-      "weather": {
-        "summary": "Outdoor \u00b7 81\u00b0F \u00b7 Wind 6 mph \u00b7 Mostly Cloudy \u00b7 0% precipitation"
-      },
-      "matchup_metrics": [
-        {
-          "label": "Sack Rate Allowed",
-          "offense_label": "Sack Rate Allowed",
-          "defense_label": "Sack Rate",
-          "format": "percent",
-          "away_offense": 0.09230769230769231,
-          "home_defense": 0.04597701149425287,
-          "home_offense": 0.0641025641025641,
-          "away_defense": 0.09042553191489362,
-          "away_offense_rank": 122,
-          "home_defense_rank": 108,
-          "home_offense_rank": 89,
-          "away_defense_rank": 19
-        },
-        {
-          "label": "Havoc Allowed",
-          "offense_label": "Havoc Allowed",
-          "defense_label": "Havoc",
-          "format": "percent",
-          "away_offense": 0.14,
-          "home_defense": 0.132,
-          "home_offense": 0.167,
-          "away_defense": 0.172,
-          "away_offense_rank": 60,
-          "home_defense_rank": 108,
-          "home_offense_rank": 108,
-          "away_defense_rank": 50
-        },
-        {
-          "label": "Turnovers",
-          "offense_label": "Turnovers",
-          "defense_label": "Turnovers Forced",
-          "format": "count",
-          "away_offense": 7,
-          "home_defense": 8,
-          "home_offense": 4,
-          "away_defense": 5,
-          "away_offense_rank": 83,
-          "home_defense_rank": 23,
-          "home_offense_rank": 32,
-          "away_defense_rank": 85
-        },
-        {
-          "label": "Success Rate",
-          "offense_label": "Success Rate",
-          "defense_label": "Defensive Success Rate",
-          "format": "percent",
-          "away_offense": 0.45084745762711864,
-          "home_defense": 0.4117647058823529,
-          "home_offense": 0.48534201954397393,
-          "away_defense": 0.42857142857142855,
-          "away_offense_rank": 55,
-          "home_defense_rank": 76,
-          "home_offense_rank": 29,
-          "away_defense_rank": 92
-        },
-        {
-          "label": "EPA / Play",
-          "offense_label": "EPA / Play",
-          "defense_label": "EPA / Play Allowed",
-          "format": "decimal",
-          "away_offense": 0.2807487365726912,
-          "home_defense": 0.15624512127311738,
-          "home_offense": 0.31327040779854487,
-          "away_defense": 0.20026169119438136,
-          "away_offense_rank": 25,
-          "home_defense_rank": 100,
-          "home_offense_rank": 13,
-          "away_defense_rank": 116
-        },
-        {
-          "label": "Passing Success Rate",
-          "offense_label": "Passing Success Rate",
-          "defense_label": "Defensive Pass Success Rate",
-          "format": "percent",
-          "away_offense": 0.4380165289256198,
-          "home_defense": 0.41818181818181815,
-          "home_offense": 0.49324324324324326,
-          "away_defense": 0.43312101910828027,
-          "away_offense_rank": 73,
-          "home_defense_rank": 80,
-          "home_offense_rank": 31,
-          "away_defense_rank": 101
-        },
-        {
-          "label": "Rushing Success Rate",
-          "offense_label": "Rushing Success Rate",
-          "defense_label": "Defensive Rush Success Rate",
-          "format": "percent",
-          "away_offense": 0.4666666666666667,
-          "home_defense": 0.4134078212290503,
-          "home_offense": 0.4774193548387097,
-          "away_defense": 0.4264705882352941,
-          "away_offense_rank": 56,
-          "home_defense_rank": 70,
-          "home_offense_rank": 40,
-          "away_defense_rank": 81
-        },
-        {
-          "label": "Explosiveness",
-          "offense_label": "Explosiveness",
-          "defense_label": "Explosiveness Allowed",
-          "format": "decimal",
-          "away_offense": 1.4755696923523602,
-          "home_defense": 1.2718225594385253,
-          "home_offense": 1.4081838269749378,
-          "away_defense": 1.299902276689145,
-          "away_offense_rank": 6,
-          "home_defense_rank": 80,
-          "home_offense_rank": 13,
-          "away_defense_rank": 90
-        },
-        {
-          "label": "Points per Opportunity",
-          "offense_label": "Points per Opportunity",
-          "defense_label": "Points per Opportunity Allowed",
-          "format": "decimal",
-          "away_offense": 4.9375,
-          "home_defense": 3.444444444444444,
-          "home_offense": 4.235294117647059,
-          "away_defense": 3.0,
-          "away_offense_rank": 12,
-          "home_defense_rank": 75,
-          "home_offense_rank": 53,
-          "away_defense_rank": 40
-        },
-        {
-          "label": "Third Down Conversion",
-          "offense_label": "Third Down Conversion",
-          "defense_label": "Third Down Defense",
-          "format": "percent",
-          "away_offense": 0.4262295081967213,
-          "home_defense": 0.36619718309859156,
-          "home_offense": 0.45614035087719296,
-          "away_defense": 0.40540540540540543,
-          "away_offense_rank": 60,
-          "home_defense_rank": 66,
-          "home_offense_rank": 42,
-          "away_defense_rank": 97
-        },
-        {
-          "label": "Red Zone TD Rate",
-          "offense_label": "Red Zone TD Rate",
-          "defense_label": "Red Zone TD Defense",
-          "format": "percent",
-          "away_offense": 0.8571428571428571,
-          "home_defense": 0.5238095238095238,
-          "home_offense": 0.6,
-          "away_defense": 0.4375,
-          "away_offense_rank": 5,
-          "home_defense_rank": 49,
-          "home_offense_rank": 84,
-          "away_defense_rank": 21
-        }
-      ],
-      "featured_mismatch": {
-        "metric": "EPA / Play",
-        "side": "home_offense",
-        "rank_gap": 103,
-        "offense_rank": 13,
-        "opponent_defense_rank": 116,
-        "offense_value": 0.31327040779854487,
-        "opponent_defense_value": 0.20026169119438136
-      },
-      "market_trends": [
-        {
-          "label": "ATS this season",
-          "away": "2-2-1",
-          "home": "3-2-0",
-          "note": "Current-season ATS record using available closing lines."
-        },
-        {
-          "label": "ATS by location",
-          "away": "Road \u00b7 1-0-0",
-          "home": "Home \u00b7 2-1-0",
-          "note": "Current-season ATS record in the same home/road role as this matchup."
-        },
-        {
-          "label": "O/U this season",
-          "away": "1-4-0",
-          "home": "4-1-0",
-          "note": "Current-season over-under record. Format is Over-Under-Push."
-        },
-        {
-          "label": "O/U by location",
-          "away": "Road \u00b7 1-0-0",
-          "home": "Home \u00b7 2-1-0",
-          "note": "Current-season over-under record in the same home/road role as this matchup."
-        }
-      ],
-      "players": [
-        {
-          "team": "FSU",
-          "name": "Ashton Daniels",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.563
-            },
-            {
-              "label": "Pass usage",
-              "value": 1
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.248
-            },
-            {
-              "label": "3rd Down Completion %",
-              "value": 0.5806451612903226
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4838679",
-          "slot": "Projected starting QB",
-          "efficiency": {
-            "label": "Passing PPA",
-            "value": 0.37,
-            "rank": 58,
-            "sample_size": 116,
-            "minimum": 10,
-            "qualified": true,
-            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
-            "qualifying_count": 196
-          },
-          "production": {
-            "totals": {
-              "completions": 70.0,
-              "attempts": 116.0,
-              "passing_yards": 1111.0,
-              "passing_tds": 6.0,
-              "interceptions": 6.0,
-              "carries": 57.0,
-              "rushing_yards": 278.0,
-              "rushing_tds": 9.0,
-              "receptions": null,
-              "receiving_yards": null,
-              "receiving_tds": null
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": 14.0,
-              "attempts": 23.2,
-              "passing_yards": 222.2,
-              "passing_tds": 1.2,
-              "interceptions": 1.2,
-              "carries": 11.4,
-              "rushing_yards": 55.6,
-              "rushing_tds": 1.8,
-              "receptions": null,
-              "receiving_yards": null,
-              "receiving_tds": null
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": "Projected from recent passing role"
-        },
-        {
-          "team": "FSU",
-          "name": "Ousmane Kromah",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.281
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.455
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.0012077294685990338
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.164
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5141560",
-          "slot": "Top usage RB",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 81.0,
-              "rushing_yards": 477.0,
-              "rushing_tds": 5.0,
-              "receptions": 7.0,
-              "receiving_yards": 54.0,
-              "receiving_tds": 0.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 16.2,
-              "rushing_yards": 95.4,
-              "rushing_tds": 1.0,
-              "receptions": 1.4,
-              "receiving_yards": 10.8,
-              "receiving_tds": 0.0
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "FSU",
-          "name": "Duce Robinson",
-          "position": "WR",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.081
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.3272946859903382
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.091
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4870922",
-          "slot": "Top usage WR",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 0.0,
-              "rushing_yards": -12.0,
-              "rushing_tds": 0.0,
-              "receptions": 15.0,
-              "receiving_yards": 280.0,
-              "receiving_tds": 2.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 0.0,
-              "rushing_yards": -2.4,
-              "rushing_tds": 0.0,
-              "receptions": 3.0,
-              "receiving_yards": 56.0,
-              "receiving_tds": 0.4
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "FSU",
-          "name": "Landen Thomas",
-          "position": "TE",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.025
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.014492753623188406
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.048
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5079738",
-          "slot": "Top usage TE",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": null,
-              "rushing_yards": null,
-              "rushing_tds": null,
-              "receptions": 2.0,
-              "receiving_yards": 13.0,
-              "receiving_tds": 1.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": null,
-              "rushing_yards": null,
-              "rushing_tds": null,
-              "receptions": 0.4,
-              "receiving_yards": 2.6,
-              "receiving_tds": 0.2
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "FSU",
-          "name": "Samuel Singleton",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.145
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.18
-            },
-            {
-              "label": "Air Yards %",
-              "value": -0.012077294685990338
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.143
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4870955",
-          "slot": "Next skill player",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 20.0,
-              "rushing_yards": 73.0,
-              "rushing_tds": 1.0,
-              "receptions": 8.0,
-              "receiving_yards": 162.0,
-              "receiving_tds": 2.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 4.0,
-              "rushing_yards": 14.6,
-              "rushing_tds": 0.2,
-              "receptions": 1.6,
-              "receiving_yards": 32.4,
-              "receiving_tds": 0.4
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "LOU",
-          "name": "Lincoln Kienholz",
-          "position": "QB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.619
-            },
-            {
-              "label": "Pass usage",
-              "value": 0.993
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.271
-            },
-            {
-              "label": "3rd Down Completion %",
-              "value": 0.6666666666666666
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5078278",
-          "slot": "Projected starting QB",
-          "efficiency": {
-            "label": "Passing PPA",
-            "value": 0.461,
-            "rank": 33,
-            "sample_size": 140,
-            "minimum": 10,
-            "qualified": true,
-            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
-            "qualifying_count": 196
-          },
-          "production": {
-            "totals": {
-              "completions": 96.0,
-              "attempts": 139.0,
-              "passing_yards": 1394.0,
-              "passing_tds": 9.0,
-              "interceptions": 1.0,
-              "carries": 52.0,
-              "rushing_yards": 158.0,
-              "rushing_tds": 6.0,
-              "receptions": null,
-              "receiving_yards": null,
-              "receiving_tds": null
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": 19.2,
-              "attempts": 27.8,
-              "passing_yards": 278.8,
-              "passing_tds": 1.8,
-              "interceptions": 0.2,
-              "carries": 10.4,
-              "rushing_yards": 31.6,
-              "rushing_tds": 1.2,
-              "receptions": null,
-              "receiving_yards": null,
-              "receiving_tds": null
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": "Projected from recent passing role"
-        },
-        {
-          "team": "LOU",
-          "name": "Isaac Brown",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.212
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.355
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.008653846153846154
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.105
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5079349",
-          "slot": "Top usage RB",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 57.0,
-              "rushing_yards": 322.0,
-              "rushing_tds": 2.0,
-              "receptions": 9.0,
-              "receiving_yards": 41.0,
-              "receiving_tds": 0.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 11.4,
-              "rushing_yards": 64.4,
-              "rushing_tds": 0.4,
-              "receptions": 1.8,
-              "receiving_yards": 8.2,
-              "receiving_tds": 0.0
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "LOU",
-          "name": "Tre Richardson",
-          "position": "WR",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.13
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.032
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.30288461538461536
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.123
-            }
-          ],
-          "placeholder": false,
-          "player_id": "5294063",
-          "slot": "Top usage WR",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 5.0,
-              "rushing_yards": 63.0,
-              "rushing_tds": 1.0,
-              "receptions": 28.0,
-              "receiving_yards": 445.0,
-              "receiving_tds": 2.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 1.0,
-              "rushing_yards": 12.6,
-              "rushing_tds": 0.2,
-              "receptions": 5.6,
-              "receiving_yards": 89.0,
-              "receiving_tds": 0.4
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "LOU",
-          "name": "Brody Foley",
-          "position": "TE",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.026
-            },
-            {
-              "label": "Rush usage",
-              "value": 0
-            },
-            {
-              "label": "Air Yards %",
-              "value": 0.007692307692307693
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4819226",
-          "slot": "Top usage TE",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": null,
-              "rushing_yards": null,
-              "rushing_tds": null,
-              "receptions": 2.0,
-              "receiving_yards": 13.0,
-              "receiving_tds": 0.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": null,
-              "rushing_yards": null,
-              "rushing_tds": null,
-              "receptions": 0.4,
-              "receiving_yards": 2.6,
-              "receiving_tds": 0.0
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        },
-        {
-          "team": "LOU",
-          "name": "Keyjuan Brown",
-          "position": "RB",
-          "usage": [
-            {
-              "label": "Overall usage",
-              "value": 0.13
-            },
-            {
-              "label": "Rush usage",
-              "value": 0.239
-            },
-            {
-              "label": "Air Yards %",
-              "value": -0.0028846153846153848
-            },
-            {
-              "label": "3rd-down usage",
-              "value": 0.018
-            }
-          ],
-          "placeholder": false,
-          "player_id": "4923046",
-          "slot": "Next skill player",
-          "efficiency": null,
-          "production": {
-            "totals": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 38.0,
-              "rushing_yards": 367.0,
-              "rushing_tds": 3.0,
-              "receptions": 2.0,
-              "receiving_yards": 18.0,
-              "receiving_tds": 0.0
-            },
-            "team_games": 5,
-            "per_game": {
-              "completions": null,
-              "attempts": null,
-              "passing_yards": null,
-              "passing_tds": null,
-              "interceptions": null,
-              "carries": 7.6,
-              "rushing_yards": 73.4,
-              "rushing_tds": 0.6,
-              "receptions": 0.4,
-              "receiving_yards": 3.6,
-              "receiving_tds": 0.0
-            },
-            "average_basis": "per completed team game",
-            "source": "CollegeFootballData /stats/player/season"
-          },
-          "availability_note": null,
-          "availability_updated": null,
-          "projection_note": null
-        }
-      ],
-      "trends": [
-        {
-          "type": "matchup_edge",
-          "metric": "EPA / Play",
-          "team": "Louisville",
-          "edge_unit": "offense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 103
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Explosiveness",
-          "team": "Louisville",
-          "edge_unit": "offense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 77
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "EPA / Play",
-          "team": "Florida State",
-          "edge_unit": "offense",
-          "offense_side": "away",
-          "direction": "rank gap",
-          "gap": 75
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Explosiveness",
-          "team": "Florida State",
-          "edge_unit": "offense",
-          "offense_side": "away",
-          "direction": "rank gap",
-          "gap": 74
-        },
-        {
-          "type": "matchup_edge",
-          "metric": "Sack Rate Allowed",
-          "team": "Florida State",
-          "edge_unit": "defense",
-          "offense_side": "home",
-          "direction": "rank gap",
-          "gap": 70
-        },
-        {
-          "type": "bounce_back",
-          "team": "Louisville",
-          "detail": "coming off a loss"
-        },
-        {
-          "type": "game_context",
-          "detail": "conference matchup"
-        }
-      ]
-    },
     {
       "game_id": "401858487",
       "season": 2026,
@@ -3121,17 +1788,17 @@
       },
       "market": {
         "spread": -4.0,
-        "total": 44.0,
-        "home_moneyline": -180.0,
-        "away_moneyline": 155.0,
-        "provider": "Bovada"
+        "total": 43.5,
+        "home_moneyline": -185.0,
+        "away_moneyline": 154.0,
+        "provider": "DraftKings"
       },
       "context": {
         "conference_game": true,
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 8 mph \u00b7 Partly Cloudy \u00b7 3% precipitation"
+        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 8 mph \u00b7 Partly Cloudy \u00b7 1% precipitation"
       },
       "matchup_metrics": [
         {
@@ -4458,11 +3125,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/23.png"
       },
       "market": {
-        "spread": -4.5,
-        "total": 42.5,
-        "home_moneyline": -192.0,
-        "away_moneyline": 160.0,
-        "provider": "DraftKings"
+        "spread": -4.0,
+        "total": 43.0,
+        "home_moneyline": -245.0,
+        "away_moneyline": 205.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
@@ -5781,10 +4448,10 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/252.png"
       },
       "market": {
-        "spread": -10.5,
+        "spread": -11.5,
         "total": 46.5,
-        "home_moneyline": -425.0,
-        "away_moneyline": 330.0,
+        "home_moneyline": -470.0,
+        "away_moneyline": 360.0,
         "provider": "DraftKings"
       },
       "context": {
@@ -5792,7 +4459,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 8 mph \u00b7 Partly Cloudy \u00b7 4% precipitation"
+        "summary": "Outdoor \u00b7 75\u00b0F \u00b7 Wind 8 mph \u00b7 Partly Cloudy \u00b7 7% precipitation"
       },
       "matchup_metrics": [
         {
@@ -7120,7 +5787,7 @@
       },
       "market": {
         "spread": -3.5,
-        "total": 48.5,
+        "total": 49.5,
         "home_moneyline": -200.0,
         "away_moneyline": 170.0,
         "provider": "Bovada"
@@ -8452,18 +7119,18 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/158.png"
       },
       "market": {
-        "spread": 7.5,
-        "total": 47.5,
-        "home_moneyline": 245.0,
-        "away_moneyline": -305.0,
-        "provider": "DraftKings"
+        "spread": 9.0,
+        "total": 48.0,
+        "home_moneyline": 270.0,
+        "away_moneyline": -340.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 76\u00b0F \u00b7 Wind 18 mph \u00b7 Sunny \u00b7 0% precipitation"
+        "summary": "Outdoor \u00b7 76\u00b0F \u00b7 Wind 20 mph \u00b7 Sunny \u00b7 0% precipitation"
       },
       "matchup_metrics": [
         {
@@ -9785,7 +8452,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/277.png"
       },
       "market": {
-        "spread": 3.0,
+        "spread": 3.5,
         "total": 60.5,
         "home_moneyline": 125.0,
         "away_moneyline": -145.0,
@@ -11113,7 +9780,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/197.png"
       },
       "market": {
-        "spread": -11.0,
+        "spread": -10.0,
         "total": 53.5,
         "home_moneyline": -430.0,
         "away_moneyline": 320.0,
@@ -13770,7 +12437,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 63\u00b0F \u00b7 Wind 1 mph \u00b7 Mostly Sunny \u00b7 0% precipitation"
+        "summary": "Outdoor \u00b7 62\u00b0F \u00b7 Wind 2 mph \u00b7 Mostly Sunny \u00b7 0% precipitation"
       },
       "matchup_metrics": [
         {
@@ -15086,11 +13753,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/189.png"
       },
       "market": {
-        "spread": -8.5,
+        "spread": -9.0,
         "total": 43.5,
-        "home_moneyline": -310.0,
-        "away_moneyline": 250.0,
-        "provider": "DraftKings"
+        "home_moneyline": -275.0,
+        "away_moneyline": 225.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
@@ -16421,9 +15088,9 @@
       "market": {
         "spread": 3.5,
         "total": 58.5,
-        "home_moneyline": 150.0,
-        "away_moneyline": -175.0,
-        "provider": "Bovada"
+        "home_moneyline": 140.0,
+        "away_moneyline": -166.0,
+        "provider": "DraftKings"
       },
       "context": {
         "conference_game": true,
@@ -19023,7 +17690,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/57.png"
       },
       "market": {
-        "spread": -11.5,
+        "spread": -10.5,
         "total": 58.5,
         "home_moneyline": -490.0,
         "away_moneyline": 355.0,
@@ -19034,7 +17701,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 84\u00b0F \u00b7 Wind 14 mph \u00b7 Slight Chance Showers And Thunderstorms \u00b7 16% precipitation"
+        "summary": "Outdoor \u00b7 87\u00b0F \u00b7 Wind 17 mph \u00b7 Chance Rain Showers \u00b7 42% precipitation"
       },
       "matchup_metrics": [
         {
@@ -21690,8 +20357,8 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/113.png"
       },
       "market": {
-        "spread": 4.0,
-        "total": 45.5,
+        "spread": 4.5,
+        "total": 44.5,
         "home_moneyline": 115.0,
         "away_moneyline": -135.0,
         "provider": "Bovada"
@@ -24338,8 +23005,8 @@
       "market": {
         "spread": 7.5,
         "total": 39.5,
-        "home_moneyline": 260.0,
-        "away_moneyline": -325.0,
+        "home_moneyline": 250.0,
+        "away_moneyline": -310.0,
         "provider": "DraftKings"
       },
       "context": {
@@ -25674,7 +24341,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/249.png"
       },
       "market": {
-        "spread": -28.0,
+        "spread": -28.5,
         "total": 58.0,
         "home_moneyline": -5000.0,
         "away_moneyline": 1300.0,
@@ -27012,7 +25679,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/87.png"
       },
       "market": {
-        "spread": -38.5,
+        "spread": -39.5,
         "total": 54.5,
         "home_moneyline": null,
         "away_moneyline": null,
@@ -28331,11 +26998,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2483.png"
       },
       "market": {
-        "spread": -11.5,
-        "total": 59.5,
-        "home_moneyline": -455.0,
-        "away_moneyline": 350.0,
-        "provider": "DraftKings"
+        "spread": -10.5,
+        "total": 58.0,
+        "home_moneyline": -470.0,
+        "away_moneyline": 345.0,
+        "provider": "Bovada"
       },
       "context": {
         "conference_game": true,
@@ -33668,7 +32335,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/195.png"
       },
       "market": {
-        "spread": -3.0,
+        "spread": -2.0,
         "total": 46.0,
         "home_moneyline": -175.0,
         "away_moneyline": 150.0,
@@ -37638,7 +36305,7 @@
       },
       "market": {
         "spread": -2.0,
-        "total": 49.0,
+        "total": 48.0,
         "home_moneyline": -130.0,
         "away_moneyline": 110.0,
         "provider": "Bovada"
@@ -38975,8 +37642,8 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2711.png"
       },
       "market": {
-        "spread": -13.5,
-        "total": 43.0,
+        "spread": -14.0,
+        "total": 43.5,
         "home_moneyline": -650.0,
         "away_moneyline": 450.0,
         "provider": "Bovada"
@@ -40303,7 +38970,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/238.png"
       },
       "market": {
-        "spread": 10.0,
+        "spread": 9.0,
         "total": 54.5,
         "home_moneyline": 305.0,
         "away_moneyline": -410.0,
@@ -40314,7 +38981,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 68\u00b0F \u00b7 Wind 15 mph \u00b7 Showers And Thunderstorms \u00b7 78% precipitation"
+        "summary": "Outdoor \u00b7 68\u00b0F \u00b7 Wind 15 mph \u00b7 Showers And Thunderstorms \u00b7 95% precipitation"
       },
       "matchup_metrics": [
         {
@@ -41653,7 +40320,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 72\u00b0F \u00b7 Wind 5 mph \u00b7 Partly Sunny \u00b7 0% precipitation"
+        "summary": "Outdoor \u00b7 73\u00b0F \u00b7 Wind 5 mph \u00b7 Partly Sunny \u00b7 1% precipitation"
       },
       "matchup_metrics": [
         {
@@ -42961,8 +41628,8 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/151.png"
       },
       "market": {
-        "spread": -9.5,
-        "total": 47.0,
+        "spread": -10.5,
+        "total": 46.5,
         "home_moneyline": -410.0,
         "away_moneyline": 305.0,
         "provider": "Bovada"
@@ -46970,8 +45637,8 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/204.png"
       },
       "market": {
-        "spread": -15.5,
-        "total": 53.5,
+        "spread": -16.0,
+        "total": 53.0,
         "home_moneyline": -625.0,
         "away_moneyline": 430.0,
         "provider": "Bovada"
@@ -48303,10 +46970,10 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/235.png"
       },
       "market": {
-        "spread": -14.0,
+        "spread": -14.5,
         "total": 53.5,
-        "home_moneyline": -600.0,
-        "away_moneyline": 440.0,
+        "home_moneyline": -625.0,
+        "away_moneyline": 455.0,
         "provider": "DraftKings"
       },
       "context": {
@@ -48314,7 +46981,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 66\u00b0F \u00b7 Wind 15 mph \u00b7 Chance Rain Showers \u00b7 50% precipitation"
+        "summary": "Outdoor \u00b7 66\u00b0F \u00b7 Wind 20 mph \u00b7 Chance Rain Showers \u00b7 50% precipitation"
       },
       "matchup_metrics": [
         {
@@ -52296,7 +50963,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2439.png"
       },
       "market": {
-        "spread": 3.0,
+        "spread": 2.5,
         "total": 47.5,
         "home_moneyline": 135.0,
         "away_moneyline": -160.0,
@@ -54973,7 +53640,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 69\u00b0F \u00b7 Wind 25 mph \u00b7 Chance Rain Showers \u00b7 48% precipitation"
+        "summary": "Outdoor \u00b7 69\u00b0F \u00b7 Wind 15 mph \u00b7 Chance Rain Showers \u00b7 48% precipitation"
       },
       "matchup_metrics": [
         {
@@ -57619,7 +56286,7 @@
       },
       "market": {
         "spread": -10.0,
-        "total": 50.5,
+        "total": 49.5,
         "home_moneyline": -370.0,
         "away_moneyline": 285.0,
         "provider": "Bovada"
@@ -62930,7 +61597,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2509.png"
       },
       "market": {
-        "spread": 2.5,
+        "spread": 3.0,
         "total": 50.0,
         "home_moneyline": 110.0,
         "away_moneyline": -130.0,
@@ -62941,7 +61608,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 71\u00b0F \u00b7 Wind 7 mph \u00b7 Mostly Cloudy \u00b7 9% precipitation"
+        "summary": "Outdoor \u00b7 70\u00b0F \u00b7 Wind 7 mph \u00b7 Mostly Cloudy \u00b7 6% precipitation"
       },
       "matchup_metrics": [
         {
@@ -64254,7 +62921,7 @@
         "neutral_site": false
       },
       "weather": {
-        "summary": "Outdoor \u00b7 67\u00b0F \u00b7 Wind 16 mph \u00b7 Showers And Thunderstorms Likely \u00b7 60% precipitation"
+        "summary": "Outdoor \u00b7 68\u00b0F \u00b7 Wind 17 mph \u00b7 Slight Chance Showers And Thunderstorms \u00b7 12% precipitation"
       },
       "matchup_metrics": [
         {
@@ -65571,7 +64238,7 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/9.png"
       },
       "market": {
-        "spread": -20.5,
+        "spread": -21.0,
         "total": 50.5,
         "home_moneyline": -1600.0,
         "away_moneyline": 900.0,
@@ -68248,11 +66915,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2393.png"
       },
       "market": {
-        "spread": null,
-        "total": null,
-        "home_moneyline": null,
-        "away_moneyline": null,
-        "provider": null
+        "spread": 1.5,
+        "total": 48.5,
+        "home_moneyline": -102.0,
+        "away_moneyline": -118.0,
+        "provider": "DraftKings"
       },
       "context": {
         "conference_game": true,
@@ -69586,11 +68253,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/55.png"
       },
       "market": {
-        "spread": null,
-        "total": null,
-        "home_moneyline": null,
-        "away_moneyline": null,
-        "provider": null
+        "spread": -3.0,
+        "total": 45.5,
+        "home_moneyline": -148.0,
+        "away_moneyline": 124.0,
+        "provider": "DraftKings"
       },
       "context": {
         "conference_game": true,
@@ -76236,11 +74903,11 @@
         "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/326.png"
       },
       "market": {
-        "spread": null,
-        "total": null,
-        "home_moneyline": null,
-        "away_moneyline": null,
-        "provider": null
+        "spread": -12.5,
+        "total": 67.5,
+        "home_moneyline": -425.0,
+        "away_moneyline": 330.0,
+        "provider": "DraftKings"
       },
       "context": {
         "conference_game": true,
@@ -77124,6 +75791,3995 @@
         {
           "type": "bounce_back",
           "team": "Texas State",
+          "detail": "coming off a loss"
+        },
+        {
+          "type": "game_context",
+          "detail": "conference matchup"
+        }
+      ]
+    },
+    {
+      "game_id": "401862801",
+      "season": 2026,
+      "week": 7,
+      "kickoff": "2026-10-16T23:30:00.000Z",
+      "venue": "Yulman Stadium",
+      "venue_id": 4729,
+      "away": {
+        "name": "Memphis",
+        "record": "4-1",
+        "ap_rank": null,
+        "team_strength": 64.0,
+        "team_strength_rank": 50,
+        "team_strength_sd": 0.467,
+        "offensive_strength": 70.7,
+        "offensive_strength_rank": 30,
+        "defensive_strength": 53.4,
+        "defensive_strength_rank": 62,
+        "sos_rank": 115,
+        "form": {
+          "games": 5,
+          "wins": 4,
+          "losses": 1,
+          "avg_points": 38.6,
+          "avg_allowed": 22.4,
+          "coming_off_loss": false,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "UNLV",
+              "location": "A",
+              "start_date": "2026-08-30T02:00:00.000Z",
+              "result": "W",
+              "points": 27,
+              "allowed": 21,
+              "opponent_abbr": "UNLV"
+            },
+            {
+              "week": 1,
+              "opponent": "Arkansas State",
+              "location": "H",
+              "start_date": "2026-09-05T23:00:00.000Z",
+              "result": "W",
+              "points": 42,
+              "allowed": 24,
+              "opponent_abbr": "ARST"
+            },
+            {
+              "week": 2,
+              "opponent": "Boise State",
+              "location": "A",
+              "start_date": "2026-09-12T22:00:00.000Z",
+              "result": "L",
+              "points": 20,
+              "allowed": 38,
+              "opponent_abbr": "BOIS"
+            },
+            {
+              "week": 3,
+              "opponent": "UT Martin",
+              "location": "H",
+              "start_date": "2026-09-19T23:00:00.000Z",
+              "result": "W",
+              "points": 45,
+              "allowed": 21,
+              "opponent_abbr": null
+            },
+            {
+              "week": 5,
+              "opponent": "Charlotte",
+              "location": "A",
+              "start_date": "2026-10-03T15:00:00.000Z",
+              "result": "W",
+              "points": 59,
+              "allowed": 8,
+              "opponent_abbr": "CLT"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 81,
+          "defensive_efficiency": 24,
+          "rushing_success": 61,
+          "passing_success": 86,
+          "explosiveness": 82,
+          "finishing_drives": 77,
+          "defensive_rushing_success": 23,
+          "defensive_passing_success": 64,
+          "defensive_explosiveness": 9,
+          "defensive_finishing_drives": 38,
+          "havoc": 34,
+          "overall_success": 75,
+          "defensive_success": 45,
+          "standard_down_success": 71,
+          "defensive_standard_down_success": 30,
+          "passing_down_success": 71,
+          "defensive_passing_down_success": 63,
+          "line_yards": 82,
+          "defensive_line_yards": 13,
+          "stuff_rate": 66,
+          "defensive_stuff_rate": 14,
+          "power_success": 53,
+          "defensive_power_success": 17,
+          "second_level_yards": 76,
+          "defensive_second_level_yards": 18,
+          "open_field_yards": 99,
+          "defensive_open_field_yards": 7,
+          "passing_ppa": 96,
+          "defensive_passing_ppa": 63,
+          "rushing_ppa": 68,
+          "defensive_rushing_ppa": 2,
+          "passing_explosiveness": 88,
+          "defensive_passing_explosiveness": 23,
+          "rushing_explosiveness": 59,
+          "defensive_rushing_explosiveness": 9,
+          "raw": {
+            "offensive_efficiency": 0.28863829088613235,
+            "defensive_efficiency": 0.17011368157328044,
+            "rushing_success": 0.46099290780141844,
+            "passing_success": 0.5192307692307693,
+            "explosiveness": 1.369827052932887,
+            "finishing_drives": 4.608695652173913,
+            "defensive_rushing_success": 0.4523809523809524,
+            "defensive_passing_success": 0.3816793893129771,
+            "defensive_explosiveness": 1.4407045616073875,
+            "defensive_finishing_drives": 3.6,
+            "havoc": 0.149,
+            "overall_success": 0.47619047619047616,
+            "defensive_success": 0.4090909090909091,
+            "standard_down_success": 0.518918918918919,
+            "defensive_standard_down_success": 0.48823529411764705,
+            "passing_down_success": 0.3582089552238806,
+            "defensive_passing_down_success": 0.26595744680851063,
+            "line_yards": 3.4602836879432624,
+            "defensive_line_yards": 3.3142857142857145,
+            "stuff_rate": 0.14893617021276595,
+            "defensive_stuff_rate": 0.1349206349206349,
+            "power_success": 0.75,
+            "defensive_power_success": 0.8235294117647058,
+            "second_level_yards": 1.2765957446808511,
+            "defensive_second_level_yards": 1.1984126984126984,
+            "open_field_yards": 2.780141843971631,
+            "defensive_open_field_yards": 1.9206349206349207,
+            "passing_ppa": 0.6077197171639411,
+            "defensive_passing_ppa": 0.09073192450507415,
+            "rushing_ppa": 0.18441281483605504,
+            "defensive_rushing_ppa": 0.3004466505082504,
+            "passing_explosiveness": 1.8284049778548526,
+            "defensive_passing_explosiveness": 1.7022473789332329,
+            "rushing_explosiveness": 1.0084834849834572,
+            "defensive_rushing_explosiveness": 1.171479547304887
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": 0.35,
+          "defensive_third_down_conversion": 0.64,
+          "red_zone_td_rate": -0.329,
+          "defensive_red_zone_td_rate": 0.358,
+          "red_zone_points_per_trip": -0.092,
+          "defensive_red_zone_points_per_trip": 1.035
+        },
+        "conference": "American Athletic",
+        "espn_id": 235,
+        "raw_metrics": {
+          "havoc_allowed": 0.11,
+          "havoc": 0.166,
+          "overall_success": 0.5,
+          "defensive_success": 0.3993174061433447,
+          "offensive_ppa": 0.29350343688963637,
+          "defensive_ppa": 0.16215634745529806,
+          "passing_success": 0.5343511450381679,
+          "defensive_passing_success": 0.3680555555555556,
+          "rushing_success": 0.49411764705882355,
+          "defensive_rushing_success": 0.44680851063829785,
+          "explosiveness": 1.3257968568849445,
+          "defensive_explosiveness": 1.469101060101833,
+          "points_per_opportunity": 4.9375,
+          "defensive_points_per_opportunity": 3.2142857142857144,
+          "third_down_made": 28.0,
+          "third_down_att": 57.0,
+          "third_down_allowed_made": 22.0,
+          "third_down_allowed_att": 62.0,
+          "red_zone_td": 13.0,
+          "red_zone_att": 22.0,
+          "red_zone_allowed_td": 10.0,
+          "red_zone_allowed_att": 15.0,
+          "sack_rate_allowed": 0.05,
+          "sack_rate": 0.0784313725490196,
+          "turnovers": 5,
+          "turnovers_forced": 8,
+          "third_down_conversion": 0.49122807017543857,
+          "defensive_third_down_conversion": 0.3548387096774194,
+          "red_zone_td_rate": 0.5909090909090909,
+          "defensive_red_zone_td_rate": 0.6666666666666666,
+          "sack_rate_allowed_rank": 65,
+          "sack_rate_rank": 41,
+          "havoc_allowed_rank": 19,
+          "havoc_rank": 60,
+          "turnovers_rank": 51,
+          "turnovers_forced_rank": 23,
+          "overall_success_rank": 18,
+          "defensive_success_rank": 61,
+          "offensive_ppa_rank": 19,
+          "defensive_ppa_rank": 103,
+          "passing_success_rank": 15,
+          "defensive_passing_success_rank": 33,
+          "rushing_success_rank": 27,
+          "defensive_rushing_success_rank": 102,
+          "explosiveness_rank": 37,
+          "defensive_explosiveness_rank": 133,
+          "points_per_opportunity_rank": 12,
+          "defensive_points_per_opportunity_rank": 52,
+          "third_down_conversion_rank": 29,
+          "defensive_third_down_conversion_rank": 54,
+          "red_zone_td_rate_rank": 90,
+          "defensive_red_zone_td_rate_rank": 97
+        },
+        "abbr": "MEM",
+        "color": "#00498f",
+        "alternate_color": "#9c9ea1",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/235.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/235.png"
+      },
+      "home": {
+        "name": "Tulane",
+        "record": "2-2",
+        "ap_rank": null,
+        "team_strength": 43.3,
+        "team_strength_rank": 77,
+        "team_strength_sd": -0.224,
+        "offensive_strength": 38.5,
+        "offensive_strength_rank": 87,
+        "defensive_strength": 48.6,
+        "defensive_strength_rank": 69,
+        "sos_rank": 89,
+        "form": {
+          "games": 4,
+          "wins": 2,
+          "losses": 2,
+          "avg_points": 18.8,
+          "avg_allowed": 23.2,
+          "coming_off_loss": false,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Duke",
+              "location": "A",
+              "start_date": "2026-09-05T19:30:00.000Z",
+              "result": "L",
+              "points": 3,
+              "allowed": 17,
+              "opponent_abbr": "DUKE"
+            },
+            {
+              "week": 2,
+              "opponent": "South Alabama",
+              "location": "H",
+              "start_date": "2026-09-12T23:00:00.000Z",
+              "result": "W",
+              "points": 28,
+              "allowed": 24,
+              "opponent_abbr": "USA"
+            },
+            {
+              "week": 3,
+              "opponent": "Kansas State",
+              "location": "A",
+              "start_date": "2026-09-19T16:00:00.000Z",
+              "result": "L",
+              "points": 20,
+              "allowed": 31,
+              "opponent_abbr": "KSU"
+            },
+            {
+              "week": 4,
+              "opponent": "Southern Miss",
+              "location": "H",
+              "start_date": "2026-09-26T23:00:00.000Z",
+              "result": "W",
+              "points": 24,
+              "allowed": 21,
+              "opponent_abbr": "USM"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 35,
+          "defensive_efficiency": 23,
+          "rushing_success": 15,
+          "passing_success": 2,
+          "explosiveness": 96,
+          "finishing_drives": 4,
+          "defensive_rushing_success": 66,
+          "defensive_passing_success": 24,
+          "defensive_explosiveness": 34,
+          "defensive_finishing_drives": 54,
+          "havoc": 4,
+          "overall_success": 5,
+          "defensive_success": 50,
+          "standard_down_success": 8,
+          "defensive_standard_down_success": 59,
+          "passing_down_success": 10,
+          "defensive_passing_down_success": 34,
+          "line_yards": 10,
+          "defensive_line_yards": 27,
+          "stuff_rate": 18,
+          "defensive_stuff_rate": 23,
+          "power_success": 53,
+          "defensive_power_success": 34,
+          "second_level_yards": 39,
+          "defensive_second_level_yards": 20,
+          "open_field_yards": 99,
+          "defensive_open_field_yards": 26,
+          "passing_ppa": 13,
+          "defensive_passing_ppa": 25,
+          "rushing_ppa": 60,
+          "defensive_rushing_ppa": 35,
+          "passing_explosiveness": 74,
+          "defensive_passing_explosiveness": 48,
+          "rushing_explosiveness": 99,
+          "defensive_rushing_explosiveness": 20,
+          "raw": {
+            "offensive_efficiency": 0.10278927336162157,
+            "defensive_efficiency": 0.17148641914456647,
+            "rushing_success": 0.3790322580645161,
+            "passing_success": 0.30434782608695654,
+            "explosiveness": 1.5134249575371927,
+            "finishing_drives": 2.473684210526316,
+            "defensive_rushing_success": 0.37012987012987014,
+            "defensive_passing_success": 0.4426229508196721,
+            "defensive_explosiveness": 1.3057172965646036,
+            "defensive_finishing_drives": 3.3076923076923075,
+            "havoc": 0.11,
+            "overall_success": 0.34285714285714286,
+            "defensive_success": 0.3957597173144876,
+            "standard_down_success": 0.40789473684210525,
+            "defensive_standard_down_success": 0.441340782122905,
+            "passing_down_success": 0.23655913978494625,
+            "defensive_passing_down_success": 0.3173076923076923,
+            "line_yards": 2.5725806451612905,
+            "defensive_line_yards": 3.0863636363636364,
+            "stuff_rate": 0.21774193548387097,
+            "defensive_stuff_rate": 0.16233766233766234,
+            "power_success": 0.75,
+            "defensive_power_success": 0.7692307692307693,
+            "second_level_yards": 1.032258064516129,
+            "defensive_second_level_yards": 1.1493506493506493,
+            "open_field_yards": 2.7661290322580645,
+            "defensive_open_field_yards": 1.3311688311688312,
+            "passing_ppa": 0.019693760542403717,
+            "defensive_passing_ppa": 0.3003557110638774,
+            "rushing_ppa": 0.16098785512318523,
+            "defensive_rushing_ppa": 0.111971088265025,
+            "passing_explosiveness": 1.7032934523756704,
+            "defensive_passing_explosiveness": 1.5460618914972275,
+            "rushing_explosiveness": 1.3460629104897126,
+            "defensive_rushing_explosiveness": 1.0736145607783212
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -0.297,
+          "defensive_third_down_conversion": -0.497,
+          "red_zone_td_rate": -0.44,
+          "defensive_red_zone_td_rate": 0.166,
+          "red_zone_points_per_trip": -0.103,
+          "defensive_red_zone_points_per_trip": 0.649
+        },
+        "conference": "American Athletic",
+        "espn_id": 2655,
+        "raw_metrics": {
+          "havoc_allowed": 0.2,
+          "havoc": 0.11,
+          "overall_success": 0.34285714285714286,
+          "defensive_success": 0.3957597173144876,
+          "offensive_ppa": 0.10278927336162157,
+          "defensive_ppa": 0.17148641914456647,
+          "passing_success": 0.30434782608695654,
+          "defensive_passing_success": 0.4426229508196721,
+          "rushing_success": 0.3790322580645161,
+          "defensive_rushing_success": 0.37012987012987014,
+          "explosiveness": 1.5134249575371927,
+          "defensive_explosiveness": 1.3057172965646036,
+          "points_per_opportunity": 2.473684210526316,
+          "defensive_points_per_opportunity": 3.3076923076923075,
+          "third_down_made": 21.0,
+          "third_down_att": 56.0,
+          "third_down_allowed_made": 31.0,
+          "third_down_allowed_att": 64.0,
+          "red_zone_td": 5.0,
+          "red_zone_att": 8.0,
+          "red_zone_allowed_td": 10.0,
+          "red_zone_allowed_att": 20.0,
+          "sack_rate_allowed": 0.10833333333333334,
+          "sack_rate": 0.04065040650406504,
+          "turnovers": 2,
+          "turnovers_forced": 1,
+          "third_down_conversion": 0.375,
+          "defensive_third_down_conversion": 0.484375,
+          "red_zone_td_rate": 0.625,
+          "defensive_red_zone_td_rate": 0.5,
+          "sack_rate_allowed_rank": 131,
+          "sack_rate_rank": 116,
+          "havoc_allowed_rank": 134,
+          "havoc_rank": 134,
+          "turnovers_rank": 4,
+          "turnovers_forced_rank": 137,
+          "overall_success_rank": 134,
+          "defensive_success_rank": 59,
+          "offensive_ppa_rank": 88,
+          "defensive_ppa_rank": 105,
+          "passing_success_rank": 133,
+          "defensive_passing_success_rank": 106,
+          "rushing_success_rank": 117,
+          "defensive_rushing_success_rank": 36,
+          "explosiveness_rank": 3,
+          "defensive_explosiveness_rank": 92,
+          "points_per_opportunity_rank": 132,
+          "defensive_points_per_opportunity_rank": 60,
+          "third_down_conversion_rank": 91,
+          "defensive_third_down_conversion_rank": 132,
+          "red_zone_td_rate_rank": 73,
+          "defensive_red_zone_td_rate_rank": 30
+        },
+        "abbr": "TULN",
+        "color": "#006747",
+        "alternate_color": "#418fde",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/2655.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2655.png"
+      },
+      "market": {
+        "spread": null,
+        "total": null,
+        "home_moneyline": null,
+        "away_moneyline": null,
+        "provider": null
+      },
+      "context": {
+        "conference_game": true,
+        "neutral_site": false
+      },
+      "weather": {
+        "summary": "Outdoor \u00b7 forecast not yet available"
+      },
+      "matchup_metrics": [
+        {
+          "label": "Sack Rate Allowed",
+          "offense_label": "Sack Rate Allowed",
+          "defense_label": "Sack Rate",
+          "format": "percent",
+          "away_offense": 0.05,
+          "home_defense": 0.04065040650406504,
+          "home_offense": 0.10833333333333334,
+          "away_defense": 0.0784313725490196,
+          "away_offense_rank": 65,
+          "home_defense_rank": 116,
+          "home_offense_rank": 131,
+          "away_defense_rank": 41
+        },
+        {
+          "label": "Havoc Allowed",
+          "offense_label": "Havoc Allowed",
+          "defense_label": "Havoc",
+          "format": "percent",
+          "away_offense": 0.11,
+          "home_defense": 0.11,
+          "home_offense": 0.2,
+          "away_defense": 0.166,
+          "away_offense_rank": 19,
+          "home_defense_rank": 134,
+          "home_offense_rank": 134,
+          "away_defense_rank": 60
+        },
+        {
+          "label": "Turnovers",
+          "offense_label": "Turnovers",
+          "defense_label": "Turnovers Forced",
+          "format": "count",
+          "away_offense": 5,
+          "home_defense": 1,
+          "home_offense": 2,
+          "away_defense": 8,
+          "away_offense_rank": 51,
+          "home_defense_rank": 137,
+          "home_offense_rank": 4,
+          "away_defense_rank": 23
+        },
+        {
+          "label": "Success Rate",
+          "offense_label": "Success Rate",
+          "defense_label": "Defensive Success Rate",
+          "format": "percent",
+          "away_offense": 0.5,
+          "home_defense": 0.3957597173144876,
+          "home_offense": 0.34285714285714286,
+          "away_defense": 0.3993174061433447,
+          "away_offense_rank": 18,
+          "home_defense_rank": 59,
+          "home_offense_rank": 134,
+          "away_defense_rank": 61
+        },
+        {
+          "label": "EPA / Play",
+          "offense_label": "EPA / Play",
+          "defense_label": "EPA / Play Allowed",
+          "format": "decimal",
+          "away_offense": 0.29350343688963637,
+          "home_defense": 0.17148641914456647,
+          "home_offense": 0.10278927336162157,
+          "away_defense": 0.16215634745529806,
+          "away_offense_rank": 19,
+          "home_defense_rank": 105,
+          "home_offense_rank": 88,
+          "away_defense_rank": 103
+        },
+        {
+          "label": "Passing Success Rate",
+          "offense_label": "Passing Success Rate",
+          "defense_label": "Defensive Pass Success Rate",
+          "format": "percent",
+          "away_offense": 0.5343511450381679,
+          "home_defense": 0.4426229508196721,
+          "home_offense": 0.30434782608695654,
+          "away_defense": 0.3680555555555556,
+          "away_offense_rank": 15,
+          "home_defense_rank": 106,
+          "home_offense_rank": 133,
+          "away_defense_rank": 33
+        },
+        {
+          "label": "Rushing Success Rate",
+          "offense_label": "Rushing Success Rate",
+          "defense_label": "Defensive Rush Success Rate",
+          "format": "percent",
+          "away_offense": 0.49411764705882355,
+          "home_defense": 0.37012987012987014,
+          "home_offense": 0.3790322580645161,
+          "away_defense": 0.44680851063829785,
+          "away_offense_rank": 27,
+          "home_defense_rank": 36,
+          "home_offense_rank": 117,
+          "away_defense_rank": 102
+        },
+        {
+          "label": "Explosiveness",
+          "offense_label": "Explosiveness",
+          "defense_label": "Explosiveness Allowed",
+          "format": "decimal",
+          "away_offense": 1.3257968568849445,
+          "home_defense": 1.3057172965646036,
+          "home_offense": 1.5134249575371927,
+          "away_defense": 1.469101060101833,
+          "away_offense_rank": 37,
+          "home_defense_rank": 92,
+          "home_offense_rank": 3,
+          "away_defense_rank": 133
+        },
+        {
+          "label": "Points per Opportunity",
+          "offense_label": "Points per Opportunity",
+          "defense_label": "Points per Opportunity Allowed",
+          "format": "decimal",
+          "away_offense": 4.9375,
+          "home_defense": 3.3076923076923075,
+          "home_offense": 2.473684210526316,
+          "away_defense": 3.2142857142857144,
+          "away_offense_rank": 12,
+          "home_defense_rank": 60,
+          "home_offense_rank": 132,
+          "away_defense_rank": 52
+        },
+        {
+          "label": "Third Down Conversion",
+          "offense_label": "Third Down Conversion",
+          "defense_label": "Third Down Defense",
+          "format": "percent",
+          "away_offense": 0.49122807017543857,
+          "home_defense": 0.484375,
+          "home_offense": 0.375,
+          "away_defense": 0.3548387096774194,
+          "away_offense_rank": 29,
+          "home_defense_rank": 132,
+          "home_offense_rank": 91,
+          "away_defense_rank": 54
+        },
+        {
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
+          "format": "percent",
+          "away_offense": 0.5909090909090909,
+          "home_defense": 0.5,
+          "home_offense": 0.625,
+          "away_defense": 0.6666666666666666,
+          "away_offense_rank": 90,
+          "home_defense_rank": 30,
+          "home_offense_rank": 73,
+          "away_defense_rank": 97
+        }
+      ],
+      "featured_mismatch": {
+        "metric": "Explosiveness",
+        "side": "home_offense",
+        "rank_gap": 130,
+        "offense_rank": 3,
+        "opponent_defense_rank": 133,
+        "offense_value": 1.5134249575371927,
+        "opponent_defense_value": 1.469101060101833
+      },
+      "market_trends": [
+        {
+          "label": "ATS this season",
+          "away": "3-2-0",
+          "home": "1-3-0",
+          "note": "Current-season ATS record using available closing lines."
+        },
+        {
+          "label": "ATS by location",
+          "away": "Road \u00b7 2-1-0",
+          "home": "Home \u00b7 0-2-0",
+          "note": "Current-season ATS record in the same home/road role as this matchup."
+        },
+        {
+          "label": "O/U this season",
+          "away": "4-1-0",
+          "home": "2-2-0",
+          "note": "Current-season over-under record. Format is Over-Under-Push."
+        },
+        {
+          "label": "O/U by location",
+          "away": "Road \u00b7 2-1-0",
+          "home": "Home \u00b7 1-1-0",
+          "note": "Current-season over-under record in the same home/road role as this matchup."
+        }
+      ],
+      "players": [
+        {
+          "team": "MEM",
+          "name": "Marcus Stokes",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.51
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.977
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.171
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.6538461538461539
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5165807",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.666,
+            "rank": 9,
+            "sample_size": 124,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 90.0,
+              "attempts": 123.0,
+              "passing_yards": 1371.0,
+              "passing_tds": 14.0,
+              "interceptions": 3.0,
+              "carries": 36.0,
+              "rushing_yards": 152.0,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": 18.0,
+              "attempts": 24.6,
+              "passing_yards": 274.2,
+              "passing_tds": 2.8,
+              "interceptions": 0.6,
+              "carries": 7.2,
+              "rushing_yards": 30.4,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "MEM",
+          "name": "Jaylin Carter",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.235
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.406
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.016406890894175553
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.12
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5222671",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 70.0,
+              "rushing_yards": 513.0,
+              "rushing_tds": 6.0,
+              "receptions": 4.0,
+              "receiving_yards": 56.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 14.0,
+              "rushing_yards": 102.6,
+              "rushing_tds": 1.2,
+              "receptions": 0.8,
+              "receiving_yards": 11.2,
+              "receiving_tds": 0.2
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MEM",
+          "name": "Jermane Hayes",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.081
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.1509433962264151
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.06
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5264658",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 22.0,
+              "receiving_yards": 242.0,
+              "receiving_tds": 2.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 4.4,
+              "receiving_yards": 48.4,
+              "receiving_tds": 0.4
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MEM",
+          "name": "Hunter Tipton",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.071
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.14930270713699753
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.1
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5220352",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 19.0,
+              "receiving_yards": 367.0,
+              "receiving_tds": 5.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 3.8,
+              "receiving_yards": 73.4,
+              "receiving_tds": 1.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "MEM",
+          "name": "Manny Covey",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.132
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.235
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.0016406890894175555
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.08
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4922983",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 42.0,
+              "rushing_yards": 218.0,
+              "rushing_tds": 0.0,
+              "receptions": 2.0,
+              "receiving_yards": 18.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 8.4,
+              "rushing_yards": 43.6,
+              "rushing_tds": 0.0,
+              "receptions": 0.4,
+              "receiving_yards": 3.6,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "TULN",
+          "name": "Kadin Semonza",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.473
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.878
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.121
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.4827586206896552
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5091890",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.079,
+            "rank": 148,
+            "sample_size": 93,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 50.0,
+              "attempts": 93.0,
+              "passing_yards": 646.0,
+              "passing_tds": 3.0,
+              "interceptions": 1.0,
+              "carries": 26.0,
+              "rushing_yards": -51.0,
+              "rushing_tds": 1.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": 12.5,
+              "attempts": 23.25,
+              "passing_yards": 161.5,
+              "passing_tds": 0.75,
+              "interceptions": 0.25,
+              "carries": 6.5,
+              "rushing_yards": -12.75,
+              "rushing_tds": 0.25,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "TULN",
+          "name": "Johnnie Daniels",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.176
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.339
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.006586169045005488
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.119
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5218820",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 43.0,
+              "rushing_yards": 168.0,
+              "rushing_tds": 2.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 10.75,
+              "rushing_yards": 42.0,
+              "rushing_tds": 0.5,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "TULN",
+          "name": "Anthony Brown",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.118
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.4281009879253567
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.169
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4870635",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 11.0,
+              "receiving_yards": 144.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 2.75,
+              "receiving_yards": 36.0,
+              "receiving_tds": 0.25
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "TULN",
+          "name": "Dawson Johnson",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.042
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.05378704720087816
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.045
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5222239",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 5.0,
+              "receiving_yards": 44.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 1.25,
+              "receiving_yards": 11.0,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "TULN",
+          "name": "Jaylin Lucas",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.135
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.202
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.007683863885839737
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.051
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4871148",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 27.0,
+              "rushing_yards": 238.0,
+              "rushing_tds": 1.0,
+              "receptions": 6.0,
+              "receiving_yards": 38.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 6.75,
+              "rushing_yards": 59.5,
+              "rushing_tds": 0.25,
+              "receptions": 1.5,
+              "receiving_yards": 9.5,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        }
+      ],
+      "trends": [
+        {
+          "type": "matchup_edge",
+          "metric": "Explosiveness",
+          "team": "Tulane",
+          "edge_unit": "offense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 130
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Havoc Allowed",
+          "team": "Memphis",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 115
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Third Down Conversion",
+          "team": "Memphis",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 103
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Passing Success Rate",
+          "team": "Memphis",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 100
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Passing Success Rate",
+          "team": "Memphis",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 91
+        },
+        {
+          "type": "game_context",
+          "detail": "conference matchup"
+        },
+        {
+          "type": "strength_gap",
+          "team": "Memphis",
+          "rank_gap": 27
+        }
+      ]
+    },
+    {
+      "game_id": "401858493",
+      "season": 2026,
+      "week": 7,
+      "kickoff": "2026-10-17T00:00:00.000Z",
+      "venue": "Ross-Ade Stadium",
+      "venue_id": 3907,
+      "away": {
+        "name": "Washington",
+        "record": "3-2",
+        "ap_rank": null,
+        "team_strength": 66.7,
+        "team_strength_rank": 45,
+        "team_strength_sd": 0.584,
+        "offensive_strength": 51.4,
+        "offensive_strength_rank": 68,
+        "defensive_strength": 76.5,
+        "defensive_strength_rank": 20,
+        "sos_rank": 69,
+        "form": {
+          "games": 5,
+          "wins": 3,
+          "losses": 2,
+          "avg_points": 26.6,
+          "avg_allowed": 18.4,
+          "coming_off_loss": true,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Washington State",
+              "location": "H",
+              "start_date": "2026-09-06T20:00:00.000Z",
+              "result": "W",
+              "points": 24,
+              "allowed": 10,
+              "opponent_abbr": "WSU"
+            },
+            {
+              "week": 2,
+              "opponent": "Utah State",
+              "location": "H",
+              "start_date": "2026-09-12T19:30:00.000Z",
+              "result": "W",
+              "points": 16,
+              "allowed": 14,
+              "opponent_abbr": "USU"
+            },
+            {
+              "week": 3,
+              "opponent": "Eastern Washington",
+              "location": "H",
+              "start_date": "2026-09-19T23:15:00.000Z",
+              "result": "W",
+              "points": 48,
+              "allowed": 16,
+              "opponent_abbr": null
+            },
+            {
+              "week": 4,
+              "opponent": "Minnesota",
+              "location": "H",
+              "start_date": "2026-09-27T03:00:00.000Z",
+              "result": "L",
+              "points": 24,
+              "allowed": 27,
+              "opponent_abbr": "MINN"
+            },
+            {
+              "week": 5,
+              "opponent": "USC",
+              "location": "A",
+              "start_date": "2026-10-03T23:30:00.000Z",
+              "result": "L",
+              "points": 21,
+              "allowed": 25,
+              "opponent_abbr": "USC"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 47,
+          "defensive_efficiency": 93,
+          "rushing_success": 28,
+          "passing_success": 66,
+          "explosiveness": 33,
+          "finishing_drives": 47,
+          "defensive_rushing_success": 82,
+          "defensive_passing_success": 61,
+          "defensive_explosiveness": 66,
+          "defensive_finishing_drives": 85,
+          "havoc": 86,
+          "overall_success": 59,
+          "defensive_success": 82,
+          "standard_down_success": 58,
+          "defensive_standard_down_success": 86,
+          "passing_down_success": 41,
+          "defensive_passing_down_success": 54,
+          "line_yards": 27,
+          "defensive_line_yards": 89,
+          "stuff_rate": 14,
+          "defensive_stuff_rate": 99,
+          "power_success": 16,
+          "defensive_power_success": 99,
+          "second_level_yards": 15,
+          "defensive_second_level_yards": 58,
+          "open_field_yards": 47,
+          "defensive_open_field_yards": 54,
+          "passing_ppa": 53,
+          "defensive_passing_ppa": 76,
+          "rushing_ppa": 36,
+          "defensive_rushing_ppa": 94,
+          "passing_explosiveness": 16,
+          "defensive_passing_explosiveness": 39,
+          "rushing_explosiveness": 36,
+          "defensive_rushing_explosiveness": 88,
+          "raw": {
+            "offensive_efficiency": 0.14333073217596068,
+            "defensive_efficiency": -0.12788885264904795,
+            "rushing_success": 0.40594059405940597,
+            "passing_success": 0.4722222222222222,
+            "explosiveness": 1.1943910829598499,
+            "finishing_drives": 3.8620689655172415,
+            "defensive_rushing_success": 0.3333333333333333,
+            "defensive_passing_success": 0.3853211009174312,
+            "defensive_explosiveness": 1.1677209663048467,
+            "defensive_finishing_drives": 2.608695652173913,
+            "havoc": 0.203,
+            "overall_success": 0.44841269841269843,
+            "defensive_success": 0.3497942386831276,
+            "standard_down_success": 0.4973544973544973,
+            "defensive_standard_down_success": 0.3875,
+            "passing_down_success": 0.30158730158730157,
+            "defensive_passing_down_success": 0.27710843373493976,
+            "line_yards": 2.8297029702970296,
+            "defensive_line_yards": 2.3436507936507938,
+            "stuff_rate": 0.22772277227722773,
+            "defensive_stuff_rate": 0.30952380952380953,
+            "power_success": 0.6153846153846154,
+            "defensive_power_success": 0.3333333333333333,
+            "second_level_yards": 0.8712871287128713,
+            "defensive_second_level_yards": 0.9523809523809523,
+            "open_field_yards": 1.1683168316831682,
+            "defensive_open_field_yards": 0.9206349206349206,
+            "passing_ppa": 0.2545648300012039,
+            "defensive_passing_ppa": 0.041679803349158044,
+            "rushing_ppa": 0.06123723647948799,
+            "defensive_rushing_ppa": -0.2001365359026003,
+            "passing_explosiveness": 1.3748612268518396,
+            "defensive_passing_explosiveness": 1.5958769389303393,
+            "rushing_explosiveness": 0.8921849302766699,
+            "defensive_rushing_explosiveness": 0.740901404578086
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -1.158,
+          "defensive_third_down_conversion": 0.733,
+          "red_zone_td_rate": 0.192,
+          "defensive_red_zone_td_rate": 0.555,
+          "red_zone_points_per_trip": 0.254,
+          "defensive_red_zone_points_per_trip": 0.787
+        },
+        "conference": "Big Ten",
+        "espn_id": 264,
+        "raw_metrics": {
+          "havoc_allowed": 0.135,
+          "havoc": 0.183,
+          "overall_success": 0.43450479233226835,
+          "defensive_success": 0.36942675159235666,
+          "offensive_ppa": 0.11994046402486255,
+          "defensive_ppa": -0.057895332305180035,
+          "passing_success": 0.4482758620689655,
+          "defensive_passing_success": 0.3986013986013986,
+          "rushing_success": 0.4186046511627907,
+          "defensive_rushing_success": 0.35,
+          "explosiveness": 1.1990573616830897,
+          "defensive_explosiveness": 1.1723072043475664,
+          "points_per_opportunity": 3.9375,
+          "defensive_points_per_opportunity": 2.857142857142857,
+          "third_down_made": 18.0,
+          "third_down_att": 62.0,
+          "third_down_allowed_made": 20.0,
+          "third_down_allowed_att": 66.0,
+          "red_zone_td": 15.0,
+          "red_zone_att": 26.0,
+          "red_zone_allowed_td": 9.0,
+          "red_zone_allowed_att": 17.0,
+          "sack_rate_allowed": 0.08241758241758242,
+          "sack_rate": 0.0641025641025641,
+          "turnovers": 4,
+          "turnovers_forced": 9,
+          "third_down_conversion": 0.2903225806451613,
+          "defensive_third_down_conversion": 0.30303030303030304,
+          "red_zone_td_rate": 0.5769230769230769,
+          "defensive_red_zone_td_rate": 0.5294117647058824,
+          "sack_rate_allowed_rank": 115,
+          "sack_rate_rank": 62,
+          "havoc_allowed_rank": 51,
+          "havoc_rank": 32,
+          "turnovers_rank": 32,
+          "turnovers_forced_rank": 17,
+          "overall_success_rank": 69,
+          "defensive_success_rank": 34,
+          "offensive_ppa_rank": 85,
+          "defensive_ppa_rank": 22,
+          "passing_success_rank": 63,
+          "defensive_passing_success_rank": 61,
+          "rushing_success_rank": 91,
+          "defensive_rushing_success_rank": 29,
+          "explosiveness_rank": 88,
+          "defensive_explosiveness_rank": 43,
+          "points_per_opportunity_rank": 65,
+          "defensive_points_per_opportunity_rank": 30,
+          "third_down_conversion_rank": 130,
+          "defensive_third_down_conversion_rank": 24,
+          "red_zone_td_rate_rank": 94,
+          "defensive_red_zone_td_rate_rank": 51
+        },
+        "abbr": "WASH",
+        "color": "#33006f",
+        "alternate_color": "#e8d3a2",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/264.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/264.png"
+      },
+      "home": {
+        "name": "Purdue",
+        "record": "2-3",
+        "ap_rank": null,
+        "team_strength": 37.8,
+        "team_strength_rank": 90,
+        "team_strength_sd": -0.408,
+        "offensive_strength": 58.6,
+        "offensive_strength_rank": 56,
+        "defensive_strength": 23.6,
+        "defensive_strength_rank": 116,
+        "sos_rank": 12,
+        "form": {
+          "games": 5,
+          "wins": 2,
+          "losses": 3,
+          "avg_points": 30.4,
+          "avg_allowed": 35.0,
+          "coming_off_loss": false,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Indiana State",
+              "location": "H",
+              "start_date": "2026-09-04T23:00:00.000Z",
+              "result": "W",
+              "points": 44,
+              "allowed": 19,
+              "opponent_abbr": null
+            },
+            {
+              "week": 2,
+              "opponent": "Wake Forest",
+              "location": "H",
+              "start_date": "2026-09-12T16:00:00.000Z",
+              "result": "L",
+              "points": 36,
+              "allowed": 38,
+              "opponent_abbr": "WAKE"
+            },
+            {
+              "week": 3,
+              "opponent": "UCLA",
+              "location": "A",
+              "start_date": "2026-09-20T03:00:00.000Z",
+              "result": "L",
+              "points": 38,
+              "allowed": 52,
+              "opponent_abbr": "UCLA"
+            },
+            {
+              "week": 4,
+              "opponent": "Notre Dame",
+              "location": "H",
+              "start_date": "2026-09-26T18:00:00.000Z",
+              "result": "L",
+              "points": 10,
+              "allowed": 49,
+              "opponent_abbr": "ND"
+            },
+            {
+              "week": 5,
+              "opponent": "Illinois",
+              "location": "A",
+              "start_date": "2026-10-03T20:15:00.000Z",
+              "result": "W",
+              "points": 24,
+              "allowed": 17,
+              "opponent_abbr": "ILL"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 79,
+          "defensive_efficiency": 1,
+          "rushing_success": 34,
+          "passing_success": 89,
+          "explosiveness": 51,
+          "finishing_drives": 39,
+          "defensive_rushing_success": 1,
+          "defensive_passing_success": 18,
+          "defensive_explosiveness": 31,
+          "defensive_finishing_drives": 1,
+          "havoc": 27,
+          "overall_success": 73,
+          "defensive_success": 1,
+          "standard_down_success": 70,
+          "defensive_standard_down_success": 2,
+          "passing_down_success": 71,
+          "defensive_passing_down_success": 3,
+          "line_yards": 31,
+          "defensive_line_yards": 4,
+          "stuff_rate": 51,
+          "defensive_stuff_rate": 9,
+          "power_success": 39,
+          "defensive_power_success": 36,
+          "second_level_yards": 13,
+          "defensive_second_level_yards": 3,
+          "open_field_yards": 12,
+          "defensive_open_field_yards": 12,
+          "passing_ppa": 89,
+          "defensive_passing_ppa": 12,
+          "rushing_ppa": 41,
+          "defensive_rushing_ppa": 1,
+          "passing_explosiveness": 29,
+          "defensive_passing_explosiveness": 27,
+          "rushing_explosiveness": 43,
+          "defensive_rushing_explosiveness": 20,
+          "raw": {
+            "offensive_efficiency": 0.2874574480037641,
+            "defensive_efficiency": 0.37694061301321874,
+            "rushing_success": 0.4174757281553398,
+            "passing_success": 0.5317460317460317,
+            "explosiveness": 1.2496493298617257,
+            "finishing_drives": 3.6296296296296298,
+            "defensive_rushing_success": 0.559322033898305,
+            "defensive_passing_success": 0.4536082474226804,
+            "defensive_explosiveness": 1.3171482242973056,
+            "defensive_finishing_drives": 5.2,
+            "havoc": 0.14,
+            "overall_success": 0.4723404255319149,
+            "defensive_success": 0.5114155251141552,
+            "standard_down_success": 0.5178571428571429,
+            "defensive_standard_down_success": 0.5490196078431373,
+            "passing_down_success": 0.3582089552238806,
+            "defensive_passing_down_success": 0.42424242424242425,
+            "line_yards": 2.936893203883495,
+            "defensive_line_yards": 3.4686440677966104,
+            "stuff_rate": 0.1650485436893204,
+            "defensive_stuff_rate": 0.1271186440677966,
+            "power_success": 0.7142857142857143,
+            "defensive_power_success": 0.7619047619047619,
+            "second_level_yards": 0.8446601941747572,
+            "defensive_second_level_yards": 1.457627118644068,
+            "open_field_yards": 0.6019417475728155,
+            "defensive_open_field_yards": 1.7542372881355932,
+            "passing_ppa": 0.5060044918040286,
+            "defensive_passing_ppa": 0.387814233947313,
+            "rushing_ppa": 0.07764845851909476,
+            "defensive_rushing_ppa": 0.36799053432286793,
+            "passing_explosiveness": 1.4552574459651637,
+            "defensive_passing_explosiveness": 1.6772789668571104,
+            "rushing_explosiveness": 0.9141168538145064,
+            "defensive_rushing_explosiveness": 1.0778348169431284
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": 0.484,
+          "defensive_third_down_conversion": -1.264,
+          "red_zone_td_rate": -0.245,
+          "defensive_red_zone_td_rate": -0.965,
+          "red_zone_points_per_trip": -0.14,
+          "defensive_red_zone_points_per_trip": -1.011
+        },
+        "conference": "Big Ten",
+        "espn_id": 2509,
+        "raw_metrics": {
+          "havoc_allowed": 0.129,
+          "havoc": 0.136,
+          "overall_success": 0.468013468013468,
+          "defensive_success": 0.49122807017543857,
+          "offensive_ppa": 0.29001079716064726,
+          "defensive_ppa": 0.3096463729636714,
+          "passing_success": 0.5359477124183006,
+          "defensive_passing_success": 0.45925925925925926,
+          "rushing_success": 0.40441176470588236,
+          "defensive_rushing_success": 0.5277777777777778,
+          "explosiveness": 1.2539484373363274,
+          "defensive_explosiveness": 1.3356684848071945,
+          "points_per_opportunity": 3.5588235294117645,
+          "defensive_points_per_opportunity": 4.741935483870968,
+          "third_down_made": 29.0,
+          "third_down_att": 63.0,
+          "third_down_allowed_made": 30.0,
+          "third_down_allowed_att": 58.0,
+          "red_zone_td": 16.0,
+          "red_zone_att": 25.0,
+          "red_zone_allowed_td": 16.0,
+          "red_zone_allowed_att": 23.0,
+          "sack_rate_allowed": 0.07065217391304347,
+          "sack_rate": 0.046357615894039736,
+          "turnovers": 4,
+          "turnovers_forced": 3,
+          "third_down_conversion": 0.4603174603174603,
+          "defensive_third_down_conversion": 0.5172413793103449,
+          "red_zone_td_rate": 0.64,
+          "defensive_red_zone_td_rate": 0.6956521739130435,
+          "sack_rate_allowed_rank": 98,
+          "sack_rate_rank": 107,
+          "havoc_allowed_rank": 41,
+          "havoc_rank": 104,
+          "turnovers_rank": 32,
+          "turnovers_forced_rank": 116,
+          "overall_success_rank": 40,
+          "defensive_success_rank": 132,
+          "offensive_ppa_rank": 22,
+          "defensive_ppa_rank": 135,
+          "passing_success_rank": 13,
+          "defensive_passing_success_rank": 111,
+          "rushing_success_rank": 103,
+          "defensive_rushing_success_rank": 137,
+          "explosiveness_rank": 69,
+          "defensive_explosiveness_rank": 103,
+          "points_per_opportunity_rank": 92,
+          "defensive_points_per_opportunity_rank": 134,
+          "third_down_conversion_rank": 38,
+          "defensive_third_down_conversion_rank": 135,
+          "red_zone_td_rate_rank": 68,
+          "defensive_red_zone_td_rate_rank": 108
+        },
+        "abbr": "PUR",
+        "color": "#ceb888",
+        "alternate_color": "#000000",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/2509.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2509.png"
+      },
+      "market": {
+        "spread": null,
+        "total": null,
+        "home_moneyline": null,
+        "away_moneyline": null,
+        "provider": null
+      },
+      "context": {
+        "conference_game": true,
+        "neutral_site": false
+      },
+      "weather": {
+        "summary": "Outdoor \u00b7 forecast not yet available"
+      },
+      "matchup_metrics": [
+        {
+          "label": "Sack Rate Allowed",
+          "offense_label": "Sack Rate Allowed",
+          "defense_label": "Sack Rate",
+          "format": "percent",
+          "away_offense": 0.08241758241758242,
+          "home_defense": 0.046357615894039736,
+          "home_offense": 0.07065217391304347,
+          "away_defense": 0.0641025641025641,
+          "away_offense_rank": 115,
+          "home_defense_rank": 107,
+          "home_offense_rank": 98,
+          "away_defense_rank": 62
+        },
+        {
+          "label": "Havoc Allowed",
+          "offense_label": "Havoc Allowed",
+          "defense_label": "Havoc",
+          "format": "percent",
+          "away_offense": 0.135,
+          "home_defense": 0.136,
+          "home_offense": 0.129,
+          "away_defense": 0.183,
+          "away_offense_rank": 51,
+          "home_defense_rank": 104,
+          "home_offense_rank": 41,
+          "away_defense_rank": 32
+        },
+        {
+          "label": "Turnovers",
+          "offense_label": "Turnovers",
+          "defense_label": "Turnovers Forced",
+          "format": "count",
+          "away_offense": 4,
+          "home_defense": 3,
+          "home_offense": 4,
+          "away_defense": 9,
+          "away_offense_rank": 32,
+          "home_defense_rank": 116,
+          "home_offense_rank": 32,
+          "away_defense_rank": 17
+        },
+        {
+          "label": "Success Rate",
+          "offense_label": "Success Rate",
+          "defense_label": "Defensive Success Rate",
+          "format": "percent",
+          "away_offense": 0.43450479233226835,
+          "home_defense": 0.49122807017543857,
+          "home_offense": 0.468013468013468,
+          "away_defense": 0.36942675159235666,
+          "away_offense_rank": 69,
+          "home_defense_rank": 132,
+          "home_offense_rank": 40,
+          "away_defense_rank": 34
+        },
+        {
+          "label": "EPA / Play",
+          "offense_label": "EPA / Play",
+          "defense_label": "EPA / Play Allowed",
+          "format": "decimal",
+          "away_offense": 0.11994046402486255,
+          "home_defense": 0.3096463729636714,
+          "home_offense": 0.29001079716064726,
+          "away_defense": -0.057895332305180035,
+          "away_offense_rank": 85,
+          "home_defense_rank": 135,
+          "home_offense_rank": 22,
+          "away_defense_rank": 22
+        },
+        {
+          "label": "Passing Success Rate",
+          "offense_label": "Passing Success Rate",
+          "defense_label": "Defensive Pass Success Rate",
+          "format": "percent",
+          "away_offense": 0.4482758620689655,
+          "home_defense": 0.45925925925925926,
+          "home_offense": 0.5359477124183006,
+          "away_defense": 0.3986013986013986,
+          "away_offense_rank": 63,
+          "home_defense_rank": 111,
+          "home_offense_rank": 13,
+          "away_defense_rank": 61
+        },
+        {
+          "label": "Rushing Success Rate",
+          "offense_label": "Rushing Success Rate",
+          "defense_label": "Defensive Rush Success Rate",
+          "format": "percent",
+          "away_offense": 0.4186046511627907,
+          "home_defense": 0.5277777777777778,
+          "home_offense": 0.40441176470588236,
+          "away_defense": 0.35,
+          "away_offense_rank": 91,
+          "home_defense_rank": 137,
+          "home_offense_rank": 103,
+          "away_defense_rank": 29
+        },
+        {
+          "label": "Explosiveness",
+          "offense_label": "Explosiveness",
+          "defense_label": "Explosiveness Allowed",
+          "format": "decimal",
+          "away_offense": 1.1990573616830897,
+          "home_defense": 1.3356684848071945,
+          "home_offense": 1.2539484373363274,
+          "away_defense": 1.1723072043475664,
+          "away_offense_rank": 88,
+          "home_defense_rank": 103,
+          "home_offense_rank": 69,
+          "away_defense_rank": 43
+        },
+        {
+          "label": "Points per Opportunity",
+          "offense_label": "Points per Opportunity",
+          "defense_label": "Points per Opportunity Allowed",
+          "format": "decimal",
+          "away_offense": 3.9375,
+          "home_defense": 4.741935483870968,
+          "home_offense": 3.5588235294117645,
+          "away_defense": 2.857142857142857,
+          "away_offense_rank": 65,
+          "home_defense_rank": 134,
+          "home_offense_rank": 92,
+          "away_defense_rank": 30
+        },
+        {
+          "label": "Third Down Conversion",
+          "offense_label": "Third Down Conversion",
+          "defense_label": "Third Down Defense",
+          "format": "percent",
+          "away_offense": 0.2903225806451613,
+          "home_defense": 0.5172413793103449,
+          "home_offense": 0.4603174603174603,
+          "away_defense": 0.30303030303030304,
+          "away_offense_rank": 130,
+          "home_defense_rank": 135,
+          "home_offense_rank": 38,
+          "away_defense_rank": 24
+        },
+        {
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
+          "format": "percent",
+          "away_offense": 0.5769230769230769,
+          "home_defense": 0.6956521739130435,
+          "home_offense": 0.64,
+          "away_defense": 0.5294117647058824,
+          "away_offense_rank": 94,
+          "home_defense_rank": 108,
+          "home_offense_rank": 68,
+          "away_defense_rank": 51
+        }
+      ],
+      "featured_mismatch": {
+        "metric": "Turnovers",
+        "side": "away_offense",
+        "rank_gap": 84,
+        "offense_rank": 32,
+        "opponent_defense_rank": 116,
+        "offense_value": 4,
+        "opponent_defense_value": 3
+      },
+      "market_trends": [
+        {
+          "label": "ATS this season",
+          "away": "1-4-0",
+          "home": "2-3-0",
+          "note": "Current-season ATS record using available closing lines."
+        },
+        {
+          "label": "ATS by location",
+          "away": "Road \u00b7 1-0-0",
+          "home": "Home \u00b7 1-2-0",
+          "note": "Current-season ATS record in the same home/road role as this matchup."
+        },
+        {
+          "label": "O/U this season",
+          "away": "2-3-0",
+          "home": "4-1-0",
+          "note": "Current-season over-under record. Format is Over-Under-Push."
+        },
+        {
+          "label": "O/U by location",
+          "away": "Road \u00b7 0-1-0",
+          "home": "Home \u00b7 3-0-0",
+          "note": "Current-season over-under record in the same home/road role as this matchup."
+        }
+      ],
+      "players": [
+        {
+          "team": "WASH",
+          "name": "Demond Williams Jr.",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.665
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.983
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.271
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.5
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5079653",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.247,
+            "rank": 91,
+            "sample_size": 163,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 110.0,
+              "attempts": 163.0,
+              "passing_yards": 1327.0,
+              "passing_tds": 8.0,
+              "interceptions": 3.0,
+              "carries": 53.0,
+              "rushing_yards": 191.0,
+              "rushing_tds": 2.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": 22.0,
+              "attempts": 32.6,
+              "passing_yards": 265.4,
+              "passing_tds": 1.6,
+              "interceptions": 0.6,
+              "carries": 10.6,
+              "rushing_yards": 38.2,
+              "rushing_tds": 0.4,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "WASH",
+          "name": "Jayden Limar",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.188
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.429
+            },
+            {
+              "label": "Air Yards %",
+              "value": null
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4870868",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 12.0,
+              "rushing_yards": 47.0,
+              "rushing_tds": 1.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 2.4,
+              "rushing_yards": 9.4,
+              "rushing_tds": 0.2,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "WASH",
+          "name": "Dezmen Roebuck",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.15
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.18775510204081633
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.217
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5166797",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": 1.0,
+              "attempts": 1.0,
+              "passing_yards": 5.0,
+              "passing_tds": 1.0,
+              "interceptions": 0.0,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 35.0,
+              "receiving_yards": 338.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": 0.2,
+              "attempts": 0.2,
+              "passing_yards": 1.0,
+              "passing_tds": 0.2,
+              "interceptions": 0.0,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 7.0,
+              "receiving_yards": 67.6,
+              "receiving_tds": 0.2
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "WASH",
+          "name": "Baron Naone",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.054
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.11673469387755102
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.017
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5164338",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 16.0,
+              "receiving_yards": 245.0,
+              "receiving_tds": 2.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 3.2,
+              "receiving_yards": 49.0,
+              "receiving_tds": 0.4
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "WASH",
+          "name": "Brian Bonner Jr.",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.169
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.386
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.0016326530612244899
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5200430",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 41.0,
+              "rushing_yards": 215.0,
+              "rushing_tds": 0.0,
+              "receptions": 1.0,
+              "receiving_yards": 2.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 8.2,
+              "rushing_yards": 43.0,
+              "rushing_tds": 0.0,
+              "receptions": 0.2,
+              "receiving_yards": 0.4,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "PUR",
+          "name": "Ryan Browne",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.559
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.993
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.103
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.5625
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5104738",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.487,
+            "rank": 26,
+            "sample_size": 156,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 110.0,
+              "attempts": 156.0,
+              "passing_yards": 1390.0,
+              "passing_tds": 8.0,
+              "interceptions": 1.0,
+              "carries": 24.0,
+              "rushing_yards": -28.0,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": 22.0,
+              "attempts": 31.2,
+              "passing_yards": 278.0,
+              "passing_tds": 1.6,
+              "interceptions": 0.2,
+              "carries": 4.8,
+              "rushing_yards": -5.6,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "PUR",
+          "name": "Fame Ijeboi",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.306
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.581
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.0008285004142502071
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.151
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5218961",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 86.0,
+              "rushing_yards": 354.0,
+              "rushing_tds": 6.0,
+              "receptions": 11.0,
+              "receiving_yards": 88.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 17.2,
+              "rushing_yards": 70.8,
+              "rushing_tds": 1.2,
+              "receptions": 2.2,
+              "receiving_yards": 17.6,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "PUR",
+          "name": "Xavier Townsend",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.114
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.007
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.1383595691797846
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.17
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4808767",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 1.0,
+              "rushing_yards": 4.0,
+              "rushing_tds": 0.0,
+              "receptions": 28.0,
+              "receiving_yards": 307.0,
+              "receiving_tds": 2.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 0.2,
+              "rushing_yards": 0.8,
+              "rushing_tds": 0.0,
+              "receptions": 5.6,
+              "receiving_yards": 61.4,
+              "receiving_tds": 0.4
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "PUR",
+          "name": "Cooper McCutchan",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.054
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.00579950289975145
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.1
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5281268",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 2.0,
+              "receiving_yards": 12.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 0.4,
+              "receiving_yards": 2.4,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "PUR",
+          "name": "Asaad Waseem",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.114
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.3487986743993372
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.151
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4871062",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 27.0,
+              "receiving_yards": 453.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 5.4,
+              "receiving_yards": 90.6,
+              "receiving_tds": 0.2
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        }
+      ],
+      "trends": [
+        {
+          "type": "matchup_edge",
+          "metric": "Turnovers",
+          "team": "Washington",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 84
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Rushing Success Rate",
+          "team": "Washington",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 74
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Points per Opportunity",
+          "team": "Washington",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 69
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Success Rate",
+          "team": "Washington",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 63
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Points per Opportunity",
+          "team": "Washington",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 62
+        },
+        {
+          "type": "bounce_back",
+          "team": "Washington",
+          "detail": "coming off a loss"
+        },
+        {
+          "type": "game_context",
+          "detail": "conference matchup"
+        },
+        {
+          "type": "strength_gap",
+          "team": "Washington",
+          "rank_gap": 45
+        }
+      ]
+    },
+    {
+      "game_id": "401869844",
+      "season": 2026,
+      "week": 7,
+      "kickoff": "2026-10-17T00:00:00.000Z",
+      "venue": "Brooks Stadium (SC)",
+      "venue_id": 3654,
+      "away": {
+        "name": "App State",
+        "record": "3-1",
+        "ap_rank": null,
+        "team_strength": 23.0,
+        "team_strength_rank": 119,
+        "team_strength_sd": -1.1,
+        "offensive_strength": 20.9,
+        "offensive_strength_rank": 118,
+        "defensive_strength": 26.8,
+        "defensive_strength_rank": 108,
+        "sos_rank": 128,
+        "form": {
+          "games": 4,
+          "wins": 3,
+          "losses": 1,
+          "avg_points": 34.8,
+          "avg_allowed": 22.2,
+          "coming_off_loss": true,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "Maine",
+              "location": "H",
+              "start_date": "2026-09-05T19:30:00.000Z",
+              "result": "W",
+              "points": 55,
+              "allowed": 3,
+              "opponent_abbr": null
+            },
+            {
+              "week": 2,
+              "opponent": "East Carolina",
+              "location": "A",
+              "start_date": "2026-09-12T16:00:00.000Z",
+              "result": "W",
+              "points": 27,
+              "allowed": 24,
+              "opponent_abbr": "ECU"
+            },
+            {
+              "week": 3,
+              "opponent": "Charlotte",
+              "location": "H",
+              "start_date": "2026-09-19T22:00:00.000Z",
+              "result": "W",
+              "points": 26,
+              "allowed": 21,
+              "opponent_abbr": "CLT"
+            },
+            {
+              "week": 4,
+              "opponent": "NC State",
+              "location": "A",
+              "start_date": "2026-09-26T23:30:00.000Z",
+              "result": "L",
+              "points": 31,
+              "allowed": 41,
+              "opponent_abbr": "NCSU"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 53,
+          "defensive_efficiency": 42,
+          "rushing_success": 3,
+          "passing_success": 78,
+          "explosiveness": 77,
+          "finishing_drives": 42,
+          "defensive_rushing_success": 18,
+          "defensive_passing_success": 53,
+          "defensive_explosiveness": 82,
+          "defensive_finishing_drives": 31,
+          "havoc": 61,
+          "overall_success": 34,
+          "defensive_success": 29,
+          "standard_down_success": 10,
+          "defensive_standard_down_success": 15,
+          "passing_down_success": 91,
+          "defensive_passing_down_success": 88,
+          "line_yards": 2,
+          "defensive_line_yards": 53,
+          "stuff_rate": 7,
+          "defensive_stuff_rate": 65,
+          "power_success": 27,
+          "defensive_power_success": 7,
+          "second_level_yards": 9,
+          "defensive_second_level_yards": 46,
+          "open_field_yards": 11,
+          "defensive_open_field_yards": 63,
+          "passing_ppa": 85,
+          "defensive_passing_ppa": 68,
+          "rushing_ppa": 9,
+          "defensive_rushing_ppa": 25,
+          "passing_explosiveness": 53,
+          "defensive_passing_explosiveness": 88,
+          "rushing_explosiveness": 56,
+          "defensive_rushing_explosiveness": 58,
+          "raw": {
+            "offensive_efficiency": 0.1777698534611009,
+            "defensive_efficiency": 0.09900740327921216,
+            "rushing_success": 0.33613445378151263,
+            "passing_success": 0.5,
+            "explosiveness": 1.3431838683877844,
+            "finishing_drives": 3.694444444444444,
+            "defensive_rushing_success": 0.4594594594594595,
+            "defensive_passing_success": 0.3983050847457627,
+            "defensive_explosiveness": 1.1107116525322527,
+            "defensive_finishing_drives": 3.7272727272727275,
+            "havoc": 0.176,
+            "overall_success": 0.416988416988417,
+            "defensive_success": 0.4297872340425532,
+            "standard_down_success": 0.4176470588235294,
+            "defensive_standard_down_success": 0.5180722891566265,
+            "passing_down_success": 0.4157303370786517,
+            "defensive_passing_down_success": 0.21739130434782608,
+            "line_yards": 2.2478991596638656,
+            "defensive_line_yards": 2.8522522522522524,
+            "stuff_rate": 0.2605042016806723,
+            "defensive_stuff_rate": 0.2072072072072072,
+            "power_success": 0.6666666666666666,
+            "defensive_power_success": 0.8888888888888888,
+            "second_level_yards": 0.8067226890756303,
+            "defensive_second_level_yards": 1.018018018018018,
+            "open_field_yards": 0.5966386554621849,
+            "defensive_open_field_yards": 0.8108108108108109,
+            "passing_ppa": 0.47540790458963,
+            "defensive_passing_ppa": 0.06990772678171428,
+            "rushing_ppa": -0.06408689775729697,
+            "defensive_rushing_ppa": 0.14291725142111386,
+            "passing_explosiveness": 1.5552165139971719,
+            "defensive_passing_explosiveness": 1.3320340321380917,
+            "rushing_explosiveness": 0.9943217514719398,
+            "defensive_rushing_explosiveness": 0.8886343954322748
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -0.531,
+          "defensive_third_down_conversion": -0.12,
+          "red_zone_td_rate": -0.098,
+          "defensive_red_zone_td_rate": -1.308,
+          "red_zone_points_per_trip": -0.211,
+          "defensive_red_zone_points_per_trip": -1.287
+        },
+        "conference": "Sun Belt",
+        "espn_id": 2026,
+        "raw_metrics": {
+          "havoc_allowed": 0.122,
+          "havoc": 0.176,
+          "overall_success": 0.416988416988417,
+          "defensive_success": 0.4297872340425532,
+          "offensive_ppa": 0.1777698534611009,
+          "defensive_ppa": 0.09900740327921216,
+          "passing_success": 0.5,
+          "defensive_passing_success": 0.3983050847457627,
+          "rushing_success": 0.33613445378151263,
+          "defensive_rushing_success": 0.4594594594594595,
+          "explosiveness": 1.3431838683877844,
+          "defensive_explosiveness": 1.1107116525322527,
+          "points_per_opportunity": 3.694444444444444,
+          "defensive_points_per_opportunity": 3.7272727272727275,
+          "third_down_made": 19.0,
+          "third_down_att": 51.0,
+          "third_down_allowed_made": 20.0,
+          "third_down_allowed_att": 55.0,
+          "red_zone_td": 16.0,
+          "red_zone_att": 21.0,
+          "red_zone_allowed_td": 10.0,
+          "red_zone_allowed_att": 17.0,
+          "sack_rate_allowed": 0.027210884353741496,
+          "sack_rate": 0.04195804195804196,
+          "turnovers": 3,
+          "turnovers_forced": 7,
+          "third_down_conversion": 0.37254901960784315,
+          "defensive_third_down_conversion": 0.36363636363636365,
+          "red_zone_td_rate": 0.7619047619047619,
+          "defensive_red_zone_td_rate": 0.5882352941176471,
+          "sack_rate_allowed_rank": 14,
+          "sack_rate_rank": 115,
+          "havoc_allowed_rank": 34,
+          "havoc_rank": 44,
+          "turnovers_rank": 19,
+          "turnovers_forced_rank": 42,
+          "overall_success_rank": 94,
+          "defensive_success_rank": 94,
+          "offensive_ppa_rank": 61,
+          "defensive_ppa_rank": 81,
+          "passing_success_rank": 27,
+          "defensive_passing_success_rank": 59,
+          "rushing_success_rank": 133,
+          "defensive_rushing_success_rank": 110,
+          "explosiveness_rank": 27,
+          "defensive_explosiveness_rank": 18,
+          "points_per_opportunity_rank": 85,
+          "defensive_points_per_opportunity_rank": 93,
+          "third_down_conversion_rank": 93,
+          "defensive_third_down_conversion_rank": 62,
+          "red_zone_td_rate_rank": 18,
+          "defensive_red_zone_td_rate_rank": 72
+        },
+        "abbr": "APP",
+        "color": "#000000",
+        "alternate_color": "#ffcd00",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/2026.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/2026.png"
+      },
+      "home": {
+        "name": "Coastal Carolina",
+        "record": "1-4",
+        "ap_rank": null,
+        "team_strength": 24.4,
+        "team_strength_rank": 114,
+        "team_strength_sd": -1.032,
+        "offensive_strength": 23.7,
+        "offensive_strength_rank": 113,
+        "defensive_strength": 26.7,
+        "defensive_strength_rank": 109,
+        "sos_rank": 109,
+        "form": {
+          "games": 5,
+          "wins": 1,
+          "losses": 4,
+          "avg_points": 24.8,
+          "avg_allowed": 25.0,
+          "coming_off_loss": true,
+          "last_five": [
+            {
+              "week": 1,
+              "opponent": "West Virginia",
+              "location": "A",
+              "start_date": "2026-09-05T16:00:00.000Z",
+              "result": "L",
+              "points": 24,
+              "allowed": 31,
+              "opponent_abbr": "WVU"
+            },
+            {
+              "week": 2,
+              "opponent": "Fordham",
+              "location": "H",
+              "start_date": "2026-09-12T23:30:00.000Z",
+              "result": "W",
+              "points": 45,
+              "allowed": 7,
+              "opponent_abbr": null
+            },
+            {
+              "week": 3,
+              "opponent": "Delaware",
+              "location": "A",
+              "start_date": "2026-09-19T15:30:00.000Z",
+              "result": "L",
+              "points": 14,
+              "allowed": 22,
+              "opponent_abbr": "DEL"
+            },
+            {
+              "week": 4,
+              "opponent": "Liberty",
+              "location": "H",
+              "start_date": "2026-09-24T23:30:00.000Z",
+              "result": "L",
+              "points": 17,
+              "allowed": 34,
+              "opponent_abbr": "LIB"
+            },
+            {
+              "week": 5,
+              "opponent": "Georgia Southern",
+              "location": "H",
+              "start_date": "2026-10-03T23:00:00.000Z",
+              "result": "L",
+              "points": 24,
+              "allowed": 31,
+              "opponent_abbr": "GASO"
+            }
+          ]
+        },
+        "metrics": {
+          "offensive_efficiency": 49,
+          "defensive_efficiency": 36,
+          "rushing_success": 46,
+          "passing_success": 23,
+          "explosiveness": 92,
+          "finishing_drives": 37,
+          "defensive_rushing_success": 22,
+          "defensive_passing_success": 8,
+          "defensive_explosiveness": 99,
+          "defensive_finishing_drives": 59,
+          "havoc": 33,
+          "overall_success": 29,
+          "defensive_success": 12,
+          "standard_down_success": 11,
+          "defensive_standard_down_success": 14,
+          "passing_down_success": 80,
+          "defensive_passing_down_success": 56,
+          "line_yards": 74,
+          "defensive_line_yards": 18,
+          "stuff_rate": 36,
+          "defensive_stuff_rate": 7,
+          "power_success": 34,
+          "defensive_power_success": 27,
+          "second_level_yards": 94,
+          "defensive_second_level_yards": 66,
+          "open_field_yards": 33,
+          "defensive_open_field_yards": 23,
+          "passing_ppa": 50,
+          "defensive_passing_ppa": 7,
+          "rushing_ppa": 45,
+          "defensive_rushing_ppa": 65,
+          "passing_explosiveness": 98,
+          "defensive_passing_explosiveness": 40,
+          "rushing_explosiveness": 37,
+          "defensive_rushing_explosiveness": 94,
+          "raw": {
+            "offensive_efficiency": 0.15657727905798693,
+            "defensive_efficiency": 0.11844343517873587,
+            "rushing_success": 0.43636363636363634,
+            "passing_success": 0.38636363636363635,
+            "explosiveness": 1.4749889567430348,
+            "finishing_drives": 3.5833333333333335,
+            "defensive_rushing_success": 0.45394736842105265,
+            "defensive_passing_success": 0.4943820224719101,
+            "defensive_explosiveness": 0.9481096464636102,
+            "defensive_finishing_drives": 3.16,
+            "havoc": 0.148,
+            "overall_success": 0.4089068825910931,
+            "defensive_success": 0.46215139442231074,
+            "standard_down_success": 0.4258064516129032,
+            "defensive_standard_down_success": 0.5181347150259067,
+            "passing_down_success": 0.3804347826086957,
+            "defensive_passing_down_success": 0.27586206896551724,
+            "line_yards": 3.360909090909091,
+            "defensive_line_yards": 3.2328947368421055,
+            "stuff_rate": 0.18181818181818182,
+            "defensive_stuff_rate": 0.11842105263157894,
+            "power_success": 0.7,
+            "defensive_power_success": 0.8,
+            "second_level_yards": 1.4272727272727272,
+            "defensive_second_level_yards": 0.9013157894736842,
+            "open_field_yards": 0.9545454545454546,
+            "defensive_open_field_yards": 1.361842105263158,
+            "passing_ppa": 0.240820023620569,
+            "defensive_passing_ppa": 0.453537689924095,
+            "rushing_ppa": 0.09283420892579988,
+            "defensive_rushing_ppa": -0.0017468511041057971,
+            "passing_explosiveness": 1.9976266090526915,
+            "defensive_passing_explosiveness": 1.5889937758656725,
+            "rushing_explosiveness": 0.8944745987378455,
+            "defensive_rushing_explosiveness": 0.5522078608628314
+          },
+          "games_played": 4,
+          "metrics_available": 35,
+          "through_week": 6,
+          "third_down_conversion": -0.95,
+          "defensive_third_down_conversion": -0.804,
+          "red_zone_td_rate": -2.071,
+          "defensive_red_zone_td_rate": -0.928,
+          "red_zone_points_per_trip": -2.545,
+          "defensive_red_zone_points_per_trip": -0.934
+        },
+        "conference": "Sun Belt",
+        "espn_id": 324,
+        "raw_metrics": {
+          "havoc_allowed": 0.185,
+          "havoc": 0.142,
+          "overall_success": 0.410828025477707,
+          "defensive_success": 0.45806451612903226,
+          "offensive_ppa": 0.13585049311227446,
+          "defensive_ppa": 0.1432133725482104,
+          "passing_success": 0.3712574850299401,
+          "defensive_passing_success": 0.5042016806722689,
+          "rushing_success": 0.45774647887323944,
+          "defensive_rushing_success": 0.43820224719101125,
+          "explosiveness": 1.3419472439663804,
+          "defensive_explosiveness": 1.0180029476816275,
+          "points_per_opportunity": 3.5517241379310347,
+          "defensive_points_per_opportunity": 3.3333333333333335,
+          "third_down_made": 22.0,
+          "third_down_att": 62.0,
+          "third_down_allowed_made": 24.0,
+          "third_down_allowed_att": 63.0,
+          "red_zone_td": 6.0,
+          "red_zone_att": 11.0,
+          "red_zone_allowed_td": 11.0,
+          "red_zone_allowed_att": 20.0,
+          "sack_rate_allowed": 0.1016949152542373,
+          "sack_rate": 0.07936507936507936,
+          "turnovers": 8,
+          "turnovers_forced": 7,
+          "third_down_conversion": 0.3548387096774194,
+          "defensive_third_down_conversion": 0.38095238095238093,
+          "red_zone_td_rate": 0.5454545454545454,
+          "defensive_red_zone_td_rate": 0.55,
+          "sack_rate_allowed_rank": 127,
+          "sack_rate_rank": 36,
+          "havoc_allowed_rank": 126,
+          "havoc_rank": 91,
+          "turnovers_rank": 97,
+          "turnovers_forced_rank": 42,
+          "overall_success_rank": 98,
+          "defensive_success_rank": 120,
+          "offensive_ppa_rank": 76,
+          "defensive_ppa_rank": 94,
+          "passing_success_rank": 119,
+          "defensive_passing_success_rank": 131,
+          "rushing_success_rank": 62,
+          "defensive_rushing_success_rank": 95,
+          "explosiveness_rank": 29,
+          "defensive_explosiveness_rank": 5,
+          "points_per_opportunity_rank": 93,
+          "defensive_points_per_opportunity_rank": 64,
+          "third_down_conversion_rank": 104,
+          "defensive_third_down_conversion_rank": 78,
+          "red_zone_td_rate_rank": 105,
+          "defensive_red_zone_td_rate_rank": 62
+        },
+        "abbr": "CCU",
+        "color": "#006f71",
+        "alternate_color": "#a27752",
+        "logo": "https://cdn.collegefootballdata.com/logos/500/324.png",
+        "alternate_logo": "https://cdn.collegefootballdata.com/logos-dark/500/324.png"
+      },
+      "market": {
+        "spread": null,
+        "total": null,
+        "home_moneyline": null,
+        "away_moneyline": null,
+        "provider": null
+      },
+      "context": {
+        "conference_game": true,
+        "neutral_site": false
+      },
+      "weather": {
+        "summary": "Outdoor \u00b7 forecast not yet available"
+      },
+      "matchup_metrics": [
+        {
+          "label": "Sack Rate Allowed",
+          "offense_label": "Sack Rate Allowed",
+          "defense_label": "Sack Rate",
+          "format": "percent",
+          "away_offense": 0.027210884353741496,
+          "home_defense": 0.07936507936507936,
+          "home_offense": 0.1016949152542373,
+          "away_defense": 0.04195804195804196,
+          "away_offense_rank": 14,
+          "home_defense_rank": 36,
+          "home_offense_rank": 127,
+          "away_defense_rank": 115
+        },
+        {
+          "label": "Havoc Allowed",
+          "offense_label": "Havoc Allowed",
+          "defense_label": "Havoc",
+          "format": "percent",
+          "away_offense": 0.122,
+          "home_defense": 0.142,
+          "home_offense": 0.185,
+          "away_defense": 0.176,
+          "away_offense_rank": 34,
+          "home_defense_rank": 91,
+          "home_offense_rank": 126,
+          "away_defense_rank": 44
+        },
+        {
+          "label": "Turnovers",
+          "offense_label": "Turnovers",
+          "defense_label": "Turnovers Forced",
+          "format": "count",
+          "away_offense": 3,
+          "home_defense": 7,
+          "home_offense": 8,
+          "away_defense": 7,
+          "away_offense_rank": 19,
+          "home_defense_rank": 42,
+          "home_offense_rank": 97,
+          "away_defense_rank": 42
+        },
+        {
+          "label": "Success Rate",
+          "offense_label": "Success Rate",
+          "defense_label": "Defensive Success Rate",
+          "format": "percent",
+          "away_offense": 0.416988416988417,
+          "home_defense": 0.45806451612903226,
+          "home_offense": 0.410828025477707,
+          "away_defense": 0.4297872340425532,
+          "away_offense_rank": 94,
+          "home_defense_rank": 120,
+          "home_offense_rank": 98,
+          "away_defense_rank": 94
+        },
+        {
+          "label": "EPA / Play",
+          "offense_label": "EPA / Play",
+          "defense_label": "EPA / Play Allowed",
+          "format": "decimal",
+          "away_offense": 0.1777698534611009,
+          "home_defense": 0.1432133725482104,
+          "home_offense": 0.13585049311227446,
+          "away_defense": 0.09900740327921216,
+          "away_offense_rank": 61,
+          "home_defense_rank": 94,
+          "home_offense_rank": 76,
+          "away_defense_rank": 81
+        },
+        {
+          "label": "Passing Success Rate",
+          "offense_label": "Passing Success Rate",
+          "defense_label": "Defensive Pass Success Rate",
+          "format": "percent",
+          "away_offense": 0.5,
+          "home_defense": 0.5042016806722689,
+          "home_offense": 0.3712574850299401,
+          "away_defense": 0.3983050847457627,
+          "away_offense_rank": 27,
+          "home_defense_rank": 131,
+          "home_offense_rank": 119,
+          "away_defense_rank": 59
+        },
+        {
+          "label": "Rushing Success Rate",
+          "offense_label": "Rushing Success Rate",
+          "defense_label": "Defensive Rush Success Rate",
+          "format": "percent",
+          "away_offense": 0.33613445378151263,
+          "home_defense": 0.43820224719101125,
+          "home_offense": 0.45774647887323944,
+          "away_defense": 0.4594594594594595,
+          "away_offense_rank": 133,
+          "home_defense_rank": 95,
+          "home_offense_rank": 62,
+          "away_defense_rank": 110
+        },
+        {
+          "label": "Explosiveness",
+          "offense_label": "Explosiveness",
+          "defense_label": "Explosiveness Allowed",
+          "format": "decimal",
+          "away_offense": 1.3431838683877844,
+          "home_defense": 1.0180029476816275,
+          "home_offense": 1.3419472439663804,
+          "away_defense": 1.1107116525322527,
+          "away_offense_rank": 27,
+          "home_defense_rank": 5,
+          "home_offense_rank": 29,
+          "away_defense_rank": 18
+        },
+        {
+          "label": "Points per Opportunity",
+          "offense_label": "Points per Opportunity",
+          "defense_label": "Points per Opportunity Allowed",
+          "format": "decimal",
+          "away_offense": 3.694444444444444,
+          "home_defense": 3.3333333333333335,
+          "home_offense": 3.5517241379310347,
+          "away_defense": 3.7272727272727275,
+          "away_offense_rank": 85,
+          "home_defense_rank": 64,
+          "home_offense_rank": 93,
+          "away_defense_rank": 93
+        },
+        {
+          "label": "Third Down Conversion",
+          "offense_label": "Third Down Conversion",
+          "defense_label": "Third Down Defense",
+          "format": "percent",
+          "away_offense": 0.37254901960784315,
+          "home_defense": 0.38095238095238093,
+          "home_offense": 0.3548387096774194,
+          "away_defense": 0.36363636363636365,
+          "away_offense_rank": 93,
+          "home_defense_rank": 78,
+          "home_offense_rank": 104,
+          "away_defense_rank": 62
+        },
+        {
+          "label": "Red Zone TD Rate",
+          "offense_label": "Red Zone TD Rate",
+          "defense_label": "Red Zone TD Defense",
+          "format": "percent",
+          "away_offense": 0.7619047619047619,
+          "home_defense": 0.55,
+          "home_offense": 0.5454545454545454,
+          "away_defense": 0.5882352941176471,
+          "away_offense_rank": 18,
+          "home_defense_rank": 62,
+          "home_offense_rank": 105,
+          "away_defense_rank": 72
+        }
+      ],
+      "featured_mismatch": {
+        "metric": "Passing Success Rate",
+        "side": "away_offense",
+        "rank_gap": 104,
+        "offense_rank": 27,
+        "opponent_defense_rank": 131,
+        "offense_value": 0.5,
+        "opponent_defense_value": 0.5042016806722689
+      },
+      "market_trends": [
+        {
+          "label": "ATS this season",
+          "away": "3-1-0",
+          "home": "2-3-0",
+          "note": "Current-season ATS record using available closing lines."
+        },
+        {
+          "label": "ATS by location",
+          "away": "Road \u00b7 2-0-0",
+          "home": "Home \u00b7 1-2-0",
+          "note": "Current-season ATS record in the same home/road role as this matchup."
+        },
+        {
+          "label": "O/U this season",
+          "away": "2-2-0",
+          "home": "3-2-0",
+          "note": "Current-season over-under record. Format is Over-Under-Push."
+        },
+        {
+          "label": "O/U by location",
+          "away": "Road \u00b7 1-1-0",
+          "home": "Home \u00b7 2-1-0",
+          "note": "Current-season over-under record in the same home/road role as this matchup."
+        }
+      ],
+      "players": [
+        {
+          "team": "APP",
+          "name": "Malachi Singleton",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.606
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.992
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.218
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.6896551724137931
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4870999",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.535,
+            "rank": 19,
+            "sample_size": 133,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 96.0,
+              "attempts": 132.0,
+              "passing_yards": 1206.0,
+              "passing_tds": 7.0,
+              "interceptions": 1.0,
+              "carries": 29.0,
+              "rushing_yards": 20.0,
+              "rushing_tds": 2.0,
+              "receptions": 1.0,
+              "receiving_yards": 14.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": 24.0,
+              "attempts": 33.0,
+              "passing_yards": 301.5,
+              "passing_tds": 1.75,
+              "interceptions": 0.25,
+              "carries": 7.25,
+              "rushing_yards": 5.0,
+              "rushing_tds": 0.5,
+              "receptions": 0.25,
+              "receiving_yards": 3.5,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "APP",
+          "name": "Jaquari Lewis",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.189
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.37
+            },
+            {
+              "label": "Air Yards %",
+              "value": -0.012461059190031152
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.13
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5156152",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 47.0,
+              "rushing_yards": 220.0,
+              "rushing_tds": 4.0,
+              "receptions": 4.0,
+              "receiving_yards": 33.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 11.75,
+              "rushing_yards": 55.0,
+              "rushing_tds": 1.0,
+              "receptions": 1.0,
+              "receiving_yards": 8.25,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "APP",
+          "name": "Nate Branch",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.1
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.017
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.10384215991692627
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.056
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5224355",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 3.0,
+              "rushing_yards": 38.0,
+              "rushing_tds": 1.0,
+              "receptions": 20.0,
+              "receiving_yards": 203.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 0.75,
+              "rushing_yards": 9.5,
+              "rushing_tds": 0.25,
+              "receptions": 5.0,
+              "receiving_yards": 50.75,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "APP",
+          "name": "Darrin Fugitt",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.085
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.07995846313603323
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.037
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4885469",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 16.0,
+              "receiving_yards": 192.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 4.0,
+              "receiving_yards": 48.0,
+              "receiving_tds": 0.25
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "APP",
+          "name": "Sam Pickett III",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.097
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.3821391484942887
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.111
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5300543",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 20.0,
+              "receiving_yards": 326.0,
+              "receiving_tds": 3.0
+            },
+            "team_games": 4,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 5.0,
+              "receiving_yards": 81.5,
+              "receiving_tds": 0.75
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "CCU",
+          "name": "Deuce Bailey",
+          "position": "QB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.65
+            },
+            {
+              "label": "Pass usage",
+              "value": 0.97
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.282
+            },
+            {
+              "label": "3rd Down Completion %",
+              "value": 0.5555555555555556
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5296439",
+          "slot": "Projected starting QB",
+          "efficiency": {
+            "label": "Passing PPA",
+            "value": 0.242,
+            "rank": 92,
+            "sample_size": 157,
+            "minimum": 10,
+            "qualified": true,
+            "help": "CFBD average passing Predicted Points Added, excluding garbage time. FBS QB rank requires at least 10 pass attempts this season. Passing PPA differs from NFL EPA per Dropback.",
+            "qualifying_count": 196
+          },
+          "production": {
+            "totals": {
+              "completions": 85.0,
+              "attempts": 155.0,
+              "passing_yards": 1267.0,
+              "passing_tds": 12.0,
+              "interceptions": 2.0,
+              "carries": 55.0,
+              "rushing_yards": 171.0,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": 17.0,
+              "attempts": 31.0,
+              "passing_yards": 253.4,
+              "passing_tds": 2.4,
+              "interceptions": 0.4,
+              "carries": 11.0,
+              "rushing_yards": 34.2,
+              "rushing_tds": 0.0,
+              "receptions": null,
+              "receiving_yards": null,
+              "receiving_tds": null
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": "Projected from recent passing role"
+        },
+        {
+          "team": "CCU",
+          "name": "Jevon Edwards",
+          "position": "RB",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.156
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.31
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.004932182490752158
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.167
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5265325",
+          "slot": "Top usage RB",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 44.0,
+              "rushing_yards": 141.0,
+              "rushing_tds": 0.0,
+              "receptions": 4.0,
+              "receiving_yards": 35.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 8.8,
+              "rushing_yards": 28.2,
+              "rushing_tds": 0.0,
+              "receptions": 0.8,
+              "receiving_yards": 7.0,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "CCU",
+          "name": "Karmello English",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.092
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.007
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.1818742293464858
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.1
+            }
+          ],
+          "placeholder": false,
+          "player_id": "4870699",
+          "slot": "Top usage WR",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 1.0,
+              "rushing_yards": 10.0,
+              "rushing_tds": 0.0,
+              "receptions": 15.0,
+              "receiving_yards": 169.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": 0.2,
+              "rushing_yards": 2.0,
+              "rushing_tds": 0.0,
+              "receptions": 3.0,
+              "receiving_yards": 33.8,
+              "receiving_tds": 0.2
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "CCU",
+          "name": "Cyrus Ellison",
+          "position": "TE",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.04
+            },
+            {
+              "label": "Rush usage",
+              "value": 0.009
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.04315659679408138
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5095242",
+          "slot": "Top usage TE",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 4.0,
+              "receiving_yards": 48.0,
+              "receiving_tds": 0.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 0.8,
+              "receiving_yards": 9.6,
+              "receiving_tds": 0.0
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        },
+        {
+          "team": "CCU",
+          "name": "Tristian Gardner",
+          "position": "WR",
+          "usage": [
+            {
+              "label": "Overall usage",
+              "value": 0.089
+            },
+            {
+              "label": "Rush usage",
+              "value": 0
+            },
+            {
+              "label": "Air Yards %",
+              "value": 0.2651048088779285
+            },
+            {
+              "label": "3rd-down usage",
+              "value": 0.167
+            }
+          ],
+          "placeholder": false,
+          "player_id": "5296438",
+          "slot": "Next skill player",
+          "efficiency": null,
+          "production": {
+            "totals": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 13.0,
+              "receiving_yards": 218.0,
+              "receiving_tds": 1.0
+            },
+            "team_games": 5,
+            "per_game": {
+              "completions": null,
+              "attempts": null,
+              "passing_yards": null,
+              "passing_tds": null,
+              "interceptions": null,
+              "carries": null,
+              "rushing_yards": null,
+              "rushing_tds": null,
+              "receptions": 2.6,
+              "receiving_yards": 43.6,
+              "receiving_tds": 0.2
+            },
+            "average_basis": "per completed team game",
+            "source": "CollegeFootballData /stats/player/season"
+          },
+          "availability_note": null,
+          "availability_updated": null,
+          "projection_note": null
+        }
+      ],
+      "trends": [
+        {
+          "type": "matchup_edge",
+          "metric": "Passing Success Rate",
+          "team": "App State",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 104
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Havoc Allowed",
+          "team": "App State",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 82
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Passing Success Rate",
+          "team": "App State",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 60
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Havoc Allowed",
+          "team": "App State",
+          "edge_unit": "offense",
+          "offense_side": "away",
+          "direction": "rank gap",
+          "gap": 57
+        },
+        {
+          "type": "matchup_edge",
+          "metric": "Turnovers",
+          "team": "App State",
+          "edge_unit": "defense",
+          "offense_side": "home",
+          "direction": "rank gap",
+          "gap": 55
+        },
+        {
+          "type": "bounce_back",
+          "team": "App State",
+          "detail": "coming off a loss"
+        },
+        {
+          "type": "bounce_back",
+          "team": "Coastal Carolina",
           "detail": "coming off a loss"
         },
         {
