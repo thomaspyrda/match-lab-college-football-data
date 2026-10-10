@@ -1,0 +1,44 @@
+name: Refresh MLB season snapshots
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 12 * * *"
+  push:
+    branches: [main]
+    paths:
+      - build_mlb_season_snapshots.py
+      - .github/workflows/mlb-season-snapshots.yml
+permissions:
+  contents: write
+concurrency:
+  group: mlb-snapshot-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect MLB game results and validate seasons
+        run: python build_mlb_season_snapshots.py
+      - name: Validate output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("data/mlb/season-snapshots.json").read_text())
+          assert all(len(teams)==30 for teams in d["seasons"].values())
+          assert all(row["ats_record"] is None and row["ou_record"] is None for teams in d["seasons"].values() for row in teams.values())
+          print(len(d["seasons"]), "seasons validated")
+          PY
+      - name: Commit refreshed dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mlb/season-snapshots.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data(mlb): update verified season snapshots"
+          git pull --rebase -X theirs origin main
+          git push origin main
