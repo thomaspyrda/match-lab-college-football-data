@@ -13,7 +13,8 @@ Last verified: 2026-10-10. This file is a navigation aid for future ChatGPT deve
    - `nba/dashboard/app.js`: NBA matchup dashboard interactions, matchup selection and rendering.
    - `nba/dashboard/styles.css`: NBA dashboard styling.
    - `sports-research/team-research.js`: common research presentation/section-order helper; check actual impact before editing.
-   - Note: CFB Program Accolades NFL first-round draft picks (1970–2026) were previously implemented here, but exact CFB detail renderer and JSON filenames have NOT yet been verified.
+   - `cfb_program_accolades.py`: verified CFB Program Accolades HTML renderer and NFL draft team links; source data in `data/cfb/program-accolades.json`.
+   - `apply_cfb_program_accolades.py`: regenerates accolade sections in all `cfb/teams/<slug>/index.html` pages. Triggered by `.github/workflows/cfb-program-accolades.yml` on changes to the renderer; workflow tests, regenerates, and pushes static team pages.
 2. `thomaspyrda/betwise-nfl-matchup-dashboard` — independent NFL dashboard served at `nfl.parlaycalculator.bet`; branch `main`.
    - Root `index.html`: dashboard markup. Contains existing `game-rail-navigation`, `gamesPrev`, `gamesNext`, and `game-scroll-arrow` elements, reference for NBA arrows.
    - Root `app.js`, `styles.css`: NFL dashboard implementation (file paths referenced in HTML).
@@ -22,8 +23,8 @@ Last verified: 2026-10-10. This file is a navigation aid for future ChatGPT deve
 
 ## Pending requests (DO NOT mark as implemented)
 
-- CFB team Program Accolades: make every NFL first-round draft pick's receiving NFL team abbreviation link to the correct existing NFL team-page route, including historical franchise aliases. Exact CFB team-detail source path and existing NFL team route mapping must be located before writing.
-- NBA Dashboard: add side navigation arrows like the NFL/CFB dashboards. Modify `nba/dashboard/index.html`, `app.js` and `styles.css` only as needed after comparing working NFL implementation.
+- CFB team Program Accolades: source-code edit completed in `cfb_program_accolades.py` (2026-10-10, commit `28b00069`). Verify workflow generated static pages and live links after deployment.
+- NBA Dashboard: navigation arrow code completed in `nba/dashboard/index.html`, `app.js` and `styles.css` (2026-10-10, latest commit `7e758a76`). Verify live deployment and mobile interaction.
 
 ## Change safety
 
