@@ -1,0 +1,49 @@
+name: Publish MLB and CBB team layout
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - apply_mlb_cbb_team_layout.py
+      - sports-research/mlb-cbb-team-layout.js
+      - sports-research/mlb-cbb-team-layout.css
+      - .github/workflows/mlb-cbb-team-layout.yml
+permissions:
+  contents: write
+concurrency:
+  group: mlb-cbb-team-layout
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply layouts across existing team pages
+        run: python apply_mlb_cbb_team_layout.py
+      - name: Verify team page assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for sport in ('mlb','cbb'):
+              paths=list((Path(sport)/'teams').glob('*/index.html'))
+              assert paths
+              for path in paths:
+                  s=path.read_text()
+                  assert s.count('data-archive-layout="mlb-cbb-v1"')==2, path
+                  assert 'id="team-season-data"' in s, path
+              print(sport, len(paths), 'pages validated')
+          PY
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mlb/teams cbb/teams
+          git diff --cached --quiet && exit 0
+          git commit -m "Apply approved layout to MLB and CBB team pages"
+          git pull --rebase -X theirs origin main
+          git push origin main
