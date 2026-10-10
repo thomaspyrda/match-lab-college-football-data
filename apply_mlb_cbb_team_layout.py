@@ -6,7 +6,7 @@ import re
 ROOT = Path(__file__).resolve().parent
 TAG = 'data-archive-layout="mlb-cbb-v1"'
 CSS = '<link rel="stylesheet" href="/sports-research/mlb-cbb-team-layout-coaching-v11.css" '+TAG+'>'
-JS = '<script defer src="/sports-research/mlb-cbb-team-layout-coaching-v11.js" '+TAG+'></script>'
+JS = '<script defer src="/sports-research/mlb-cbb-team-layout-coaching-v12.js" '+TAG+'></script>'
 def main():
  for sport in ('mlb','cbb'):
   paths=list((ROOT / sport / 'teams').glob('*/index.html'))
