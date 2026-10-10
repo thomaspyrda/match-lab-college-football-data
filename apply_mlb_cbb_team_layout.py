@@ -5,8 +5,8 @@ from pathlib import Path
 import re
 ROOT = Path(__file__).resolve().parent
 TAG = 'data-archive-layout="mlb-cbb-v1"'
-CSS = '<link rel="stylesheet" href="/sports-research/mlb-cbb-team-layout.css?v=20261010-visual-v4" '+TAG+'>'
-JS = '<script defer src="/sports-research/mlb-cbb-team-layout.js?v=20261010-visual-v4" '+TAG+'></script>'
+CSS = '<link rel="stylesheet" href="/sports-research/mlb-cbb-team-layout.css?v=20261010-mlb-data-v5" '+TAG+'>'
+JS = '<script defer src="/sports-research/mlb-cbb-team-layout.js?v=20261010-mlb-data-v5" '+TAG+'></script>'
 def main():
  for sport in ('mlb','cbb'):
   paths=list((ROOT / sport / 'teams').glob('*/index.html'))
