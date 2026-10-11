@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish official MLB draft records as small team/year files, 2020–2026.
+"""Publish official MLB draft records as small team/year files, 2015–2026.
 Failure of one season does not invalidate independently verified seasons.
 """
 import json,urllib.request,time,datetime,pathlib,argparse,traceback
@@ -43,7 +43,7 @@ def collect(year):
     return selected,count,len(groups),url
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument('--years',nargs='+',type=int,default=list(range(2020,2027)))
+    p.add_argument('--years',nargs='+',type=int,default=list(range(2015,2027)))
     a=p.parse_args()
     status={'generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'seasons':{}}
     for year in a.years:
