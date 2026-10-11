@@ -1,0 +1,62 @@
+name: Publish verified 2025 MLB draft
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/mlb-draft-2025-publish.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and validate official 2025 draft
+        run: |
+          python - <<'PY'
+          import urllib.request,json,pathlib,datetime
+          url='https://statsapi.mlb.com/api/v1/draft/2025?limit=1500'
+          req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+          with urllib.request.urlopen(req,timeout=120) as r: data=json.load(r)
+          rounds=data['drafts']['rounds']
+          picks=[p for round_ in rounds for p in round_.get('picks',[]) if p.get('person',{}).get('fullName')]
+          assert len(picks)>=600,('too few selections',len(picks))
+          print('Downloaded',len(picks),'picks from',len(rounds),'round groups')
+          ids={108:'los-angeles-angels',109:'arizona-diamondbacks',110:'baltimore-orioles',111:'boston-red-sox',112:'chicago-cubs',113:'cincinnati-reds',114:'cleveland-guardians',115:'colorado-rockies',116:'detroit-tigers',117:'houston-astros',118:'kansas-city-royals',119:'los-angeles-dodgers',120:'washington-nationals',121:'new-york-mets',133:'athletics',134:'pittsburgh-pirates',135:'san-diego-padres',136:'seattle-mariners',137:'san-francisco-giants',138:'st-louis-cardinals',139:'tampa-bay-rays',140:'texas-rangers',141:'toronto-blue-jays',142:'minnesota-twins',143:'philadelphia-phillies',144:'atlanta-braves',145:'chicago-white-sox',146:'miami-marlins',147:'new-york-yankees',158:'milwaukee-brewers'}
+          result={v:[] for v in ids.values()}
+          for p in picks:
+            team_id=p.get('team',{}).get('id')
+            if team_id not in ids:raise ValueError(('unknown team',team_id))
+            person=p['person'];position=p.get('position') or person.get('primaryPosition') or {}
+            school=p.get('school') or person.get('school') or {}
+            record={'round':str(p.get('pickRound')),'overall_pick':int(p['pickNumber']),'round_pick':p.get('roundPickNumber'),'player':person['fullName'],'position':position.get('abbreviation') if isinstance(position,dict) else position,'school':school.get('name') if isinstance(school,dict) else school,'player_id':person.get('id'),'signed':p.get('isSigned') if isinstance(p.get('isSigned'),bool) else None}
+            result[ids[team_id]].append(record)
+          assert len(result)==30 and all(result.values()),'missing franchise'
+          all_picks=[p for group in result.values() for p in group]
+          assert len({p['overall_pick'] for p in all_picks})==len(all_picks),'duplicate overall picks'
+          for group in result.values():group.sort(key=lambda x:x['overall_pick'])
+          path=pathlib.Path('data/mlb/draft-classes.json')
+          old=json.loads(path.read_text()) if path.exists() and path.stat().st_size else {}
+          years=old.get('years',{})
+          years['2025']=result
+          doc={'schema_version':1,'source':'Official MLB Stats API','source_url':url,'generated_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'years':years}
+          path.parent.mkdir(parents=True,exist_ok=True)
+          path.write_text(json.dumps(doc,ensure_ascii=False,separators=(',',':'))+'\n')
+          print('Verified 2025:',len(all_picks),'draft selections across 30 teams')
+          PY
+      - name: Commit populated 2025 draft data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/draft-classes.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(mlb): publish complete verified 2025 draft across 30 teams'
+          git pull --rebase -X theirs origin main
+          git push origin main
