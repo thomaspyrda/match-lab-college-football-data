@@ -53,6 +53,7 @@ for yr in SEASONS:
  print('Fetching',yr,flush=True)
  games=api('/games',year=yr,seasonType='regular',division='fbs')
  advanced=api('/stats/game/advanced',year=yr,seasonType='regular',excludeGarbageTime='true')
+ fbs={t['school'] for t in api('/teams/fbs',year=yr) if t.get('school')}-{ 'Sacramento State','North Dakota State' }
  bygame=defaultdict(dict)
  for rec in advanced:
   if rec.get('team') and rec.get('gameId') is not None:
@@ -65,7 +66,7 @@ for yr in SEASONS:
   gid=str(g.get('id') or g.get('game_id'))
   home=g.get('home_team') or g.get('homeTeam'); away=g.get('away_team') or g.get('awayTeam')
   paired=bygame.get(gid,{})
-  if not home or not away or home not in paired or away not in paired:continue
+  if not home or not away or home not in fbs or away not in fbs or home not in paired or away not in paired:continue
   for offense,defense in ((home,away),(away,home)):
    for metric,path in FIELDS.items():
     actual=value(paired[offense],path)
