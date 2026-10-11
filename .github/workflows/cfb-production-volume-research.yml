@@ -1,0 +1,32 @@
+name: CFB production volume research
+on:
+  push:
+    branches: [main]
+    paths: [run_production_volume_research.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare frozen pregame baseline against volume-enhanced categories
+        run: python run_production_volume_research.py
+      - name: Commit research report only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/experiments/production_volume_pregame_comparison_2026.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(cfb): score pregame production volume comparison'
+          git pull --rebase origin main
+          git push origin HEAD:main
