@@ -1,0 +1,615 @@
+{
+  "study": "Current recursive versus frozen pregame opponent strength versus raw statistical adjustments",
+  "through_week": 6,
+  "production_unchanged": true,
+  "important_limitations": [
+    "Pregame profiles use completed earlier matchups and preseason priors; shared scaling and metric denominators are estimated from through-Week-6 data and are not strict leakage-free",
+    "Raw statistical control removes opponent correction from the 75% statistical component but retains pregame opponent context in the 15% QRR and 10% CSC",
+    "Pregame ratings are frozen for each matchup, while recursive final rankings recompute through Week 6",
+    "Early-season games lean heavily on preseason assessments"
+  ],
+  "models": [
+    {
+      "model": "recursive",
+      "top25": [
+        {
+          "rank": 1,
+          "team": "Miami"
+        },
+        {
+          "rank": 2,
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "team": "Georgia"
+        },
+        {
+          "rank": 4,
+          "team": "Alabama"
+        },
+        {
+          "rank": 5,
+          "team": "Texas"
+        },
+        {
+          "rank": 6,
+          "team": "Utah"
+        },
+        {
+          "rank": 7,
+          "team": "Indiana"
+        },
+        {
+          "rank": 8,
+          "team": "BYU"
+        },
+        {
+          "rank": 9,
+          "team": "Ohio State"
+        },
+        {
+          "rank": 10,
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 11,
+          "team": "UCLA"
+        },
+        {
+          "rank": 12,
+          "team": "Oregon"
+        },
+        {
+          "rank": 13,
+          "team": "Houston"
+        },
+        {
+          "rank": 14,
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 15,
+          "team": "LSU"
+        },
+        {
+          "rank": 16,
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 17,
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 18,
+          "team": "Missouri"
+        },
+        {
+          "rank": 19,
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 20,
+          "team": "Northwestern"
+        },
+        {
+          "rank": 21,
+          "team": "Nebraska"
+        },
+        {
+          "rank": 22,
+          "team": "Kentucky"
+        },
+        {
+          "rank": 23,
+          "team": "Wake Forest"
+        },
+        {
+          "rank": 24,
+          "team": "Iowa"
+        },
+        {
+          "rank": 25,
+          "team": "Oklahoma State"
+        }
+      ]
+    },
+    {
+      "model": "pregame",
+      "top25": [
+        {
+          "rank": 1,
+          "team": "Miami"
+        },
+        {
+          "rank": 2,
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "team": "Ohio State"
+        },
+        {
+          "rank": 4,
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "team": "Utah"
+        },
+        {
+          "rank": 6,
+          "team": "Texas"
+        },
+        {
+          "rank": 7,
+          "team": "Alabama"
+        },
+        {
+          "rank": 8,
+          "team": "LSU"
+        },
+        {
+          "rank": 9,
+          "team": "Indiana"
+        },
+        {
+          "rank": 10,
+          "team": "UCLA"
+        },
+        {
+          "rank": 11,
+          "team": "BYU"
+        },
+        {
+          "rank": 12,
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 13,
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 14,
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 15,
+          "team": "Michigan"
+        },
+        {
+          "rank": 16,
+          "team": "Oregon"
+        },
+        {
+          "rank": 17,
+          "team": "USC"
+        },
+        {
+          "rank": 18,
+          "team": "Nebraska"
+        },
+        {
+          "rank": 19,
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 20,
+          "team": "Missouri"
+        },
+        {
+          "rank": 21,
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "team": "SMU"
+        },
+        {
+          "rank": 23,
+          "team": "Houston"
+        },
+        {
+          "rank": 24,
+          "team": "Iowa"
+        },
+        {
+          "rank": 25,
+          "team": "Wake Forest"
+        }
+      ]
+    },
+    {
+      "model": "raw",
+      "top25": [
+        {
+          "rank": 1,
+          "team": "Miami"
+        },
+        {
+          "rank": 2,
+          "team": "Notre Dame"
+        },
+        {
+          "rank": 3,
+          "team": "Utah"
+        },
+        {
+          "rank": 4,
+          "team": "Georgia"
+        },
+        {
+          "rank": 5,
+          "team": "Ohio State"
+        },
+        {
+          "rank": 6,
+          "team": "Texas"
+        },
+        {
+          "rank": 7,
+          "team": "Indiana"
+        },
+        {
+          "rank": 8,
+          "team": "Alabama"
+        },
+        {
+          "rank": 9,
+          "team": "BYU"
+        },
+        {
+          "rank": 10,
+          "team": "Texas Tech"
+        },
+        {
+          "rank": 11,
+          "team": "UCLA"
+        },
+        {
+          "rank": 12,
+          "team": "LSU"
+        },
+        {
+          "rank": 13,
+          "team": "Mississippi State"
+        },
+        {
+          "rank": 14,
+          "team": "Ole Miss"
+        },
+        {
+          "rank": 15,
+          "team": "Oregon"
+        },
+        {
+          "rank": 16,
+          "team": "Nebraska"
+        },
+        {
+          "rank": 17,
+          "team": "Missouri"
+        },
+        {
+          "rank": 18,
+          "team": "Wisconsin"
+        },
+        {
+          "rank": 19,
+          "team": "Houston"
+        },
+        {
+          "rank": 20,
+          "team": "Iowa"
+        },
+        {
+          "rank": 21,
+          "team": "Northwestern"
+        },
+        {
+          "rank": 22,
+          "team": "USC"
+        },
+        {
+          "rank": 23,
+          "team": "Michigan"
+        },
+        {
+          "rank": 24,
+          "team": "Oklahoma"
+        },
+        {
+          "rank": 25,
+          "team": "Wake Forest"
+        }
+      ]
+    }
+  ],
+  "focus": [
+    {
+      "model": "recursive",
+      "teams": [
+        {
+          "team": "Georgia",
+          "rank": 3,
+          "offense_rank": 2,
+          "defense_rank": 22,
+          "off_sd": 2.04,
+          "def_sd": 1.021,
+          "overall_sd": 1.892,
+          "csc_sd": 2.0489
+        },
+        {
+          "team": "Texas",
+          "rank": 5,
+          "offense_rank": 30,
+          "defense_rank": 3,
+          "off_sd": 0.944,
+          "def_sd": 1.903,
+          "overall_sd": 1.797,
+          "csc_sd": 2.4216
+        },
+        {
+          "team": "Kentucky",
+          "rank": 22,
+          "offense_rank": 39,
+          "defense_rank": 65,
+          "off_sd": 0.621,
+          "def_sd": 0.111,
+          "overall_sd": 1.079,
+          "csc_sd": 2.0901
+        },
+        {
+          "team": "Alabama",
+          "rank": 4,
+          "offense_rank": 3,
+          "defense_rank": 18,
+          "off_sd": 1.806,
+          "def_sd": 1.252,
+          "overall_sd": 1.829,
+          "csc_sd": 2.2635
+        },
+        {
+          "team": "Ohio State",
+          "rank": 9,
+          "offense_rank": 6,
+          "defense_rank": 12,
+          "off_sd": 1.747,
+          "def_sd": 1.49,
+          "overall_sd": 1.609,
+          "csc_sd": 0.7644
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 17,
+          "offense_rank": 75,
+          "defense_rank": 2,
+          "off_sd": -0.122,
+          "def_sd": 1.931,
+          "overall_sd": 1.255,
+          "csc_sd": 1.7581
+        },
+        {
+          "team": "Miami",
+          "rank": 1,
+          "offense_rank": 1,
+          "defense_rank": 1,
+          "off_sd": 2.166,
+          "def_sd": 2.02,
+          "overall_sd": 2.06,
+          "csc_sd": 0.6306
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "offense_rank": 5,
+          "defense_rank": 4,
+          "off_sd": 1.797,
+          "def_sd": 1.903,
+          "overall_sd": 1.906,
+          "csc_sd": 0.8704
+        },
+        {
+          "team": "Utah",
+          "rank": 6,
+          "offense_rank": 4,
+          "defense_rank": 7,
+          "off_sd": 1.8,
+          "def_sd": 1.694,
+          "overall_sd": 1.779,
+          "csc_sd": 0.7313
+        }
+      ]
+    },
+    {
+      "model": "pregame",
+      "teams": [
+        {
+          "team": "Georgia",
+          "rank": 4,
+          "offense_rank": 2,
+          "defense_rank": 14,
+          "off_sd": 2.036,
+          "def_sd": 1.359,
+          "overall_sd": 1.869,
+          "csc_sd": 1.5254
+        },
+        {
+          "team": "Texas",
+          "rank": 6,
+          "offense_rank": 28,
+          "defense_rank": 4,
+          "off_sd": 0.891,
+          "def_sd": 1.779,
+          "overall_sd": 1.732,
+          "csc_sd": 2.8653
+        },
+        {
+          "team": "Kentucky",
+          "rank": 37,
+          "offense_rank": 52,
+          "defense_rank": 77,
+          "off_sd": 0.396,
+          "def_sd": -0.15,
+          "overall_sd": 0.76,
+          "csc_sd": 2.0083
+        },
+        {
+          "team": "Alabama",
+          "rank": 7,
+          "offense_rank": 6,
+          "defense_rank": 22,
+          "off_sd": 1.716,
+          "def_sd": 1.085,
+          "overall_sd": 1.667,
+          "csc_sd": 2.0928
+        },
+        {
+          "team": "Ohio State",
+          "rank": 3,
+          "offense_rank": 4,
+          "defense_rank": 5,
+          "off_sd": 2.012,
+          "def_sd": 1.761,
+          "overall_sd": 1.873,
+          "csc_sd": 1.2267
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 27,
+          "offense_rank": 64,
+          "defense_rank": 6,
+          "off_sd": 0.085,
+          "def_sd": 1.754,
+          "overall_sd": 0.934,
+          "csc_sd": 0.7178
+        },
+        {
+          "team": "Miami",
+          "rank": 1,
+          "offense_rank": 1,
+          "defense_rank": 1,
+          "off_sd": 2.232,
+          "def_sd": 2.105,
+          "overall_sd": 2.036,
+          "csc_sd": 0.3594
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "offense_rank": 3,
+          "defense_rank": 2,
+          "off_sd": 2.029,
+          "def_sd": 2.041,
+          "overall_sd": 1.957,
+          "csc_sd": 0.531
+        },
+        {
+          "team": "Utah",
+          "rank": 5,
+          "offense_rank": 5,
+          "defense_rank": 7,
+          "off_sd": 1.723,
+          "def_sd": 1.744,
+          "overall_sd": 1.76,
+          "csc_sd": 0.6984
+        }
+      ]
+    },
+    {
+      "model": "raw",
+      "teams": [
+        {
+          "team": "Georgia",
+          "rank": 4,
+          "offense_rank": 2,
+          "defense_rank": 23,
+          "off_sd": 1.99,
+          "def_sd": 1.02,
+          "overall_sd": 1.787,
+          "csc_sd": 1.2996
+        },
+        {
+          "team": "Texas",
+          "rank": 6,
+          "offense_rank": 38,
+          "defense_rank": 6,
+          "off_sd": 0.611,
+          "def_sd": 1.685,
+          "overall_sd": 1.704,
+          "csc_sd": 2.7495
+        },
+        {
+          "team": "Kentucky",
+          "rank": 30,
+          "offense_rank": 46,
+          "defense_rank": 86,
+          "off_sd": 0.437,
+          "def_sd": -0.273,
+          "overall_sd": 0.916,
+          "csc_sd": 2.5726
+        },
+        {
+          "team": "Alabama",
+          "rank": 8,
+          "offense_rank": 6,
+          "defense_rank": 28,
+          "off_sd": 1.651,
+          "def_sd": 0.868,
+          "overall_sd": 1.638,
+          "csc_sd": 2.0809
+        },
+        {
+          "team": "Ohio State",
+          "rank": 5,
+          "offense_rank": 4,
+          "defense_rank": 8,
+          "off_sd": 1.866,
+          "def_sd": 1.554,
+          "overall_sd": 1.729,
+          "csc_sd": 0.7538
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 24,
+          "offense_rank": 92,
+          "defense_rank": 5,
+          "off_sd": -0.422,
+          "def_sd": 1.765,
+          "overall_sd": 1.032,
+          "csc_sd": 1.0105
+        },
+        {
+          "team": "Miami",
+          "rank": 1,
+          "offense_rank": 1,
+          "defense_rank": 1,
+          "off_sd": 2.264,
+          "def_sd": 2.12,
+          "overall_sd": 2.185,
+          "csc_sd": 0.2409
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "offense_rank": 3,
+          "defense_rank": 2,
+          "off_sd": 1.886,
+          "def_sd": 1.948,
+          "overall_sd": 1.973,
+          "csc_sd": 0.495
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "offense_rank": 5,
+          "defense_rank": 4,
+          "off_sd": 1.751,
+          "def_sd": 1.834,
+          "overall_sd": 1.857,
+          "csc_sd": 0.5604
+        }
+      ]
+    }
+  ]
+}
