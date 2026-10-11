@@ -1,0 +1,252 @@
+{
+  "type": "frozen unit strength sensitivity",
+  "snapshot": "week6 pregame unit strengths, used to adjust games through week6 (NOT fully pregame safe for games before week6)",
+  "v15_reference": "week7",
+  "limitations": "Diagnostic only: week6 snapshot includes future games relative to weeks1-5, thus is not an independent predictive backtest. Full historical per-game frozen snapshots needed. Baseline v15 uses recursively solved metric-specific units; this experiment uses composite unit SD instead.",
+  "variants": [
+    {
+      "coefficient_multiplier": 0.75,
+      "top10": [
+        "Miami",
+        "Notre Dame",
+        "Utah",
+        "Ohio State",
+        "Georgia",
+        "LSU",
+        "Alabama",
+        "Indiana",
+        "BYU",
+        "Texas"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "sd": 2.299,
+          "v15_sd": 2.349,
+          "rank_change": 0
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 14,
+          "v15_rank": 10,
+          "sd": 1.331,
+          "v15_sd": 1.4,
+          "rank_change": -4
+        },
+        {
+          "team": "New Mexico",
+          "rank": 25,
+          "v15_rank": 25,
+          "sd": 0.973,
+          "v15_sd": 0.989,
+          "rank_change": 0
+        },
+        {
+          "team": "Liberty",
+          "rank": 36,
+          "v15_rank": 29,
+          "sd": 0.784,
+          "v15_sd": 0.859,
+          "rank_change": -7
+        },
+        {
+          "team": "Alabama",
+          "rank": 7,
+          "v15_rank": 6,
+          "sd": 1.628,
+          "v15_sd": 1.648,
+          "rank_change": -1
+        },
+        {
+          "team": "Georgia",
+          "rank": 5,
+          "v15_rank": 5,
+          "sd": 1.859,
+          "v15_sd": 1.818,
+          "rank_change": 0
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "v15_rank": 2,
+          "sd": 2.011,
+          "v15_sd": 2.088,
+          "rank_change": 0
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "v15_rank": 3,
+          "sd": 1.906,
+          "v15_sd": 1.929,
+          "rank_change": 0
+        }
+      ]
+    },
+    {
+      "coefficient_multiplier": 1.0,
+      "top10": [
+        "Miami",
+        "Notre Dame",
+        "Georgia",
+        "Ohio State",
+        "Utah",
+        "Alabama",
+        "LSU",
+        "Indiana",
+        "BYU",
+        "Texas"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "sd": 2.254,
+          "v15_sd": 2.349,
+          "rank_change": 0
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 14,
+          "v15_rank": 10,
+          "sd": 1.292,
+          "v15_sd": 1.4,
+          "rank_change": -4
+        },
+        {
+          "team": "New Mexico",
+          "rank": 26,
+          "v15_rank": 25,
+          "sd": 0.912,
+          "v15_sd": 0.989,
+          "rank_change": -1
+        },
+        {
+          "team": "Liberty",
+          "rank": 42,
+          "v15_rank": 29,
+          "sd": 0.705,
+          "v15_sd": 0.859,
+          "rank_change": -13
+        },
+        {
+          "team": "Alabama",
+          "rank": 6,
+          "v15_rank": 6,
+          "sd": 1.686,
+          "v15_sd": 1.648,
+          "rank_change": 0
+        },
+        {
+          "team": "Georgia",
+          "rank": 3,
+          "v15_rank": 5,
+          "sd": 1.901,
+          "v15_sd": 1.818,
+          "rank_change": 2
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "v15_rank": 2,
+          "sd": 1.97,
+          "v15_sd": 2.088,
+          "rank_change": 0
+        },
+        {
+          "team": "Utah",
+          "rank": 5,
+          "v15_rank": 3,
+          "sd": 1.878,
+          "v15_sd": 1.929,
+          "rank_change": -2
+        }
+      ]
+    },
+    {
+      "coefficient_multiplier": 1.25,
+      "top10": [
+        "Miami",
+        "Georgia",
+        "Notre Dame",
+        "Ohio State",
+        "Utah",
+        "Alabama",
+        "LSU",
+        "Indiana",
+        "BYU",
+        "Texas"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "sd": 2.21,
+          "v15_sd": 2.349,
+          "rank_change": 0
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 14,
+          "v15_rank": 10,
+          "sd": 1.256,
+          "v15_sd": 1.4,
+          "rank_change": -4
+        },
+        {
+          "team": "New Mexico",
+          "rank": 30,
+          "v15_rank": 25,
+          "sd": 0.855,
+          "v15_sd": 0.989,
+          "rank_change": -5
+        },
+        {
+          "team": "Liberty",
+          "rank": 46,
+          "v15_rank": 29,
+          "sd": 0.631,
+          "v15_sd": 0.859,
+          "rank_change": -17
+        },
+        {
+          "team": "Alabama",
+          "rank": 6,
+          "v15_rank": 6,
+          "sd": 1.736,
+          "v15_sd": 1.648,
+          "rank_change": 0
+        },
+        {
+          "team": "Georgia",
+          "rank": 2,
+          "v15_rank": 5,
+          "sd": 1.936,
+          "v15_sd": 1.818,
+          "rank_change": 3
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 3,
+          "v15_rank": 2,
+          "sd": 1.93,
+          "v15_sd": 2.088,
+          "rank_change": -1
+        },
+        {
+          "team": "Utah",
+          "rank": 5,
+          "v15_rank": 3,
+          "sd": 1.851,
+          "v15_sd": 1.929,
+          "rank_change": -2
+        }
+      ]
+    }
+  ],
+  "production_unchanged": true
+}
