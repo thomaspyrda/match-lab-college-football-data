@@ -1,6 +1,8 @@
 name: Build MLB Draft Classes
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "37 10 * * *"
   push:
     branches: [main]
     paths:
@@ -20,7 +22,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Collect all-round MLB drafts from official records
-        run: python build_mlb_draft_classes.py || echo 'Collector reported failure; recording diagnostics for investigation'
+        run: python -u build_mlb_draft_classes.py || echo "Collector reported failure; recording diagnostics for investigation"
       - name: Check team and season coverage
         run: |
           python - <<'PY'
