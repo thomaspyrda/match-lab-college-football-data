@@ -1,0 +1,30 @@
+name: CFB closing MOV 10-percent research
+on:
+  push:
+    branches: [main]
+    paths: [run_closing_mov_research.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run isolated closing MOV comparison
+        run: python run_closing_mov_research.py
+      - name: Commit report only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/experiments/closing_mov_10pct_pregame_comparison_2026.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(cfb): compare 10 percent closing MOV rankings'
+          git pull --rebase origin main
+          git push origin HEAD:main
