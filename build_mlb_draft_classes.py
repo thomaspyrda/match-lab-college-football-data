@@ -24,6 +24,7 @@ def build(year):
     raw=get(year);draft=raw.get("drafts") or {}
     rounds=draft.get("rounds") or []
     if not rounds:raise ValueError(f"Missing rounds in official draft {year}")
+    if len(rounds)<(5 if year==2020 else 20):raise ValueError(f"{year}: only {len(rounds)} rounds returned; incomplete draft")
     out={slug:[] for slug in TEAM_IDS.values()}
     invalid=[]
     for rd in rounds:
@@ -42,7 +43,7 @@ def build(year):
             out[TEAM_IDS[team_id]].append({"round":round_id,"overall_pick":overall,"round_pick":pick.get("roundPickNumber"),"player":name,"position":text_or_none(pos),"school":text_or_none(school),"player_id":person.get("id"),"signed":pick.get("isSigned") if isinstance(pick.get("isSigned"),bool) else None})
     if invalid:raise ValueError(f"{year} missing/unknown picks: {invalid[:15]}")
     all_picks=[p for arr in out.values() for p in arr]
-    minimum=130 if year==2020 else 300
+    minimum=130 if year==2020 else 450
     if len(all_picks)<minimum:raise ValueError(f"{year} draft appears incomplete ({len(all_picks)} selections)")
     if len({p["overall_pick"] for p in all_picks})!=len(all_picks):raise ValueError(f"{year} duplicate overall picks")
     if any(not selections for selections in out.values()):raise ValueError(f"{year} team with no draft picks")
@@ -51,10 +52,10 @@ def build(year):
     return out
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument("--years",nargs="+",type=int,default=list(range(2015,2027)))
+    parser.add_argument("--years",nargs="+",type=int,default=list(range(2020,2027)))
     args=parser.parse_args()
     path=ROOT/"data/mlb/draft-classes.json";path.parent.mkdir(parents=True,exist_ok=True)
-    old=json.loads(path.read_text()) if path.exists() else {}
+    old=json.loads(path.read_text()) if path.exists() and path.stat().st_size else {}
     all_years=old.get("years",{})
     failures={}
     for year in args.years:
