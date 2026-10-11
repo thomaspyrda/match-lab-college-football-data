@@ -1,0 +1,43 @@
+name: Restore MLB team archive layouts
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/restore-mlb-team-layouts.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Restore last verified MLB page layout
+        run: |
+          git restore --source=25879c454aac --worktree -- mlb/teams/
+          python - <<'PY'
+          from pathlib import Path
+          files=list(Path('mlb/teams').glob('*/index.html'))
+          assert len(files)==30,len(files)
+          for p in files:
+              s=p.read_text()
+              assert 'mlb-cbb-team-layout-draft-v15.js' in s,p
+          print('Restored',len(files),'team archive pages with draft and verified layout hooks')
+          PY
+      - name: Commit restored MLB pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/teams
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix(mlb): restore published archive team pages after scaffold overwrite'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
