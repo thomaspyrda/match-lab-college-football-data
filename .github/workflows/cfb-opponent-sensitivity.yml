@@ -21,6 +21,7 @@ jobs:
           python-version: '3.12'
       - name: Test ten-percent quality-results hybrid
         run: python run_hybrid_quality_results_research.py
+      # Research-only; no public ranking changes.
       - name: Test quality wins amplified 15 and 20 percent
         run: python run_quality_results_extreme_research.py
       - name: Run NFL-style joint ridge CFB research
