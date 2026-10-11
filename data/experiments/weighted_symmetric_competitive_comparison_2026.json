@@ -1,0 +1,926 @@
+{
+  "model": "weighted-symmetric-csc-75-15-10",
+  "through_week": 6,
+  "production_unchanged": true,
+  "method": "CSC game performance uses the same 6 CATS weights, per-category available-metric averages, opponent unit adjustment, and a 50/50 offensive/defensive game split, followed by prior symmetric CSC interaction and shrinkage.",
+  "limitations": [
+    "Retrospective season through Week 6, not prediction validation",
+    "No independent calibration of 0.40 factor or expectation logistic slope",
+    "The per-game score is not separately standardized before the tanh interaction",
+    "Game offense-defense signal is the simple average of category-weighted game-unit measures; per-metric season zdict is not reproduced at game level"
+  ],
+  "previous_top25": [
+    {
+      "rank": 1,
+      "team": "Miami"
+    },
+    {
+      "rank": 2,
+      "team": "Notre Dame"
+    },
+    {
+      "rank": 3,
+      "team": "Georgia"
+    },
+    {
+      "rank": 4,
+      "team": "Alabama"
+    },
+    {
+      "rank": 5,
+      "team": "Utah"
+    },
+    {
+      "rank": 6,
+      "team": "Texas"
+    },
+    {
+      "rank": 7,
+      "team": "Indiana"
+    },
+    {
+      "rank": 8,
+      "team": "BYU"
+    },
+    {
+      "rank": 9,
+      "team": "Texas Tech"
+    },
+    {
+      "rank": 10,
+      "team": "Ohio State"
+    },
+    {
+      "rank": 11,
+      "team": "UCLA"
+    },
+    {
+      "rank": 12,
+      "team": "Ole Miss"
+    },
+    {
+      "rank": 13,
+      "team": "Houston"
+    },
+    {
+      "rank": 14,
+      "team": "Oregon"
+    },
+    {
+      "rank": 15,
+      "team": "LSU"
+    },
+    {
+      "rank": 16,
+      "team": "Mississippi State"
+    },
+    {
+      "rank": 17,
+      "team": "Oklahoma"
+    },
+    {
+      "rank": 18,
+      "team": "Missouri"
+    },
+    {
+      "rank": 19,
+      "team": "Kentucky"
+    },
+    {
+      "rank": 20,
+      "team": "Wisconsin"
+    },
+    {
+      "rank": 21,
+      "team": "Northwestern"
+    },
+    {
+      "rank": 22,
+      "team": "USC"
+    },
+    {
+      "rank": 23,
+      "team": "Nebraska"
+    },
+    {
+      "rank": 24,
+      "team": "Iowa"
+    },
+    {
+      "rank": 25,
+      "team": "Wake Forest"
+    }
+  ],
+  "new_top25": [
+    {
+      "rank": 1,
+      "team": "Miami",
+      "old_rank": 1,
+      "change": 0,
+      "strength_sd": 2.06,
+      "csc_sd": 0.6306
+    },
+    {
+      "rank": 2,
+      "team": "Notre Dame",
+      "old_rank": 2,
+      "change": 0,
+      "strength_sd": 1.906,
+      "csc_sd": 0.8704
+    },
+    {
+      "rank": 3,
+      "team": "Georgia",
+      "old_rank": 3,
+      "change": 0,
+      "strength_sd": 1.892,
+      "csc_sd": 2.0489
+    },
+    {
+      "rank": 4,
+      "team": "Alabama",
+      "old_rank": 4,
+      "change": 0,
+      "strength_sd": 1.829,
+      "csc_sd": 2.2635
+    },
+    {
+      "rank": 5,
+      "team": "Texas",
+      "old_rank": 6,
+      "change": 1,
+      "strength_sd": 1.797,
+      "csc_sd": 2.4216
+    },
+    {
+      "rank": 6,
+      "team": "Utah",
+      "old_rank": 5,
+      "change": -1,
+      "strength_sd": 1.779,
+      "csc_sd": 0.7313
+    },
+    {
+      "rank": 7,
+      "team": "Indiana",
+      "old_rank": 7,
+      "change": 0,
+      "strength_sd": 1.696,
+      "csc_sd": 1.1858
+    },
+    {
+      "rank": 8,
+      "team": "BYU",
+      "old_rank": 8,
+      "change": 0,
+      "strength_sd": 1.64,
+      "csc_sd": 1.1989
+    },
+    {
+      "rank": 9,
+      "team": "Ohio State",
+      "old_rank": 10,
+      "change": 1,
+      "strength_sd": 1.609,
+      "csc_sd": 0.7644
+    },
+    {
+      "rank": 10,
+      "team": "Texas Tech",
+      "old_rank": 9,
+      "change": -1,
+      "strength_sd": 1.592,
+      "csc_sd": 1.362
+    },
+    {
+      "rank": 11,
+      "team": "UCLA",
+      "old_rank": 11,
+      "change": 0,
+      "strength_sd": 1.507,
+      "csc_sd": 1.5087
+    },
+    {
+      "rank": 12,
+      "team": "Oregon",
+      "old_rank": 14,
+      "change": 2,
+      "strength_sd": 1.381,
+      "csc_sd": 1.1559
+    },
+    {
+      "rank": 13,
+      "team": "Houston",
+      "old_rank": 13,
+      "change": 0,
+      "strength_sd": 1.341,
+      "csc_sd": 1.5541
+    },
+    {
+      "rank": 14,
+      "team": "Ole Miss",
+      "old_rank": 12,
+      "change": -2,
+      "strength_sd": 1.333,
+      "csc_sd": 2.2733
+    },
+    {
+      "rank": 15,
+      "team": "LSU",
+      "old_rank": 15,
+      "change": 0,
+      "strength_sd": 1.305,
+      "csc_sd": 0.4299
+    },
+    {
+      "rank": 16,
+      "team": "Mississippi State",
+      "old_rank": 16,
+      "change": 0,
+      "strength_sd": 1.281,
+      "csc_sd": 1.42
+    },
+    {
+      "rank": 17,
+      "team": "Oklahoma",
+      "old_rank": 17,
+      "change": 0,
+      "strength_sd": 1.255,
+      "csc_sd": 1.7581
+    },
+    {
+      "rank": 18,
+      "team": "Missouri",
+      "old_rank": 18,
+      "change": 0,
+      "strength_sd": 1.22,
+      "csc_sd": 1.3992
+    },
+    {
+      "rank": 19,
+      "team": "Wisconsin",
+      "old_rank": 20,
+      "change": 1,
+      "strength_sd": 1.135,
+      "csc_sd": 0.515
+    },
+    {
+      "rank": 20,
+      "team": "Northwestern",
+      "old_rank": 21,
+      "change": 1,
+      "strength_sd": 1.09,
+      "csc_sd": 0.8009
+    },
+    {
+      "rank": 21,
+      "team": "Nebraska",
+      "old_rank": 23,
+      "change": 2,
+      "strength_sd": 1.089,
+      "csc_sd": 0.4256
+    },
+    {
+      "rank": 22,
+      "team": "Kentucky",
+      "old_rank": 19,
+      "change": -3,
+      "strength_sd": 1.079,
+      "csc_sd": 2.0901
+    },
+    {
+      "rank": 23,
+      "team": "Wake Forest",
+      "old_rank": 25,
+      "change": 2,
+      "strength_sd": 1.075,
+      "csc_sd": 0.6198
+    },
+    {
+      "rank": 24,
+      "team": "Iowa",
+      "old_rank": 24,
+      "change": 0,
+      "strength_sd": 1.055,
+      "csc_sd": 0.523
+    },
+    {
+      "rank": 25,
+      "team": "Oklahoma State",
+      "old_rank": 26,
+      "change": 1,
+      "strength_sd": 1.053,
+      "csc_sd": 1.6157
+    }
+  ],
+  "focus": [
+    {
+      "team": "Georgia",
+      "old_rank": 3,
+      "new_rank": 3,
+      "csc_sd": 2.0489,
+      "games": [
+        {
+          "opponent": "Western Kentucky",
+          "own_points": 70.0,
+          "opp_points": 20.0,
+          "opponent_sd": -1.294,
+          "performance_signal": 0.9686,
+          "offensive_game_signal": 1.7468,
+          "defensive_game_signal": 0.1903,
+          "result_surprise": 0.0274,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Arkansas",
+          "own_points": 45.0,
+          "opp_points": 17.0,
+          "opponent_sd": -0.497,
+          "performance_signal": 0.4833,
+          "offensive_game_signal": 0.7439,
+          "defensive_game_signal": 0.2226,
+          "result_surprise": 0.0682,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Oklahoma",
+          "own_points": 41.0,
+          "opp_points": 13.0,
+          "opponent_sd": 0.994,
+          "performance_signal": 0.5049,
+          "offensive_game_signal": 0.2695,
+          "defensive_game_signal": 0.7403,
+          "result_surprise": 0.3046,
+          "credit": 0.3627
+        },
+        {
+          "opponent": "Vanderbilt",
+          "own_points": 38.0,
+          "opp_points": 14.0,
+          "opponent_sd": -0.161,
+          "performance_signal": 0.4424,
+          "offensive_game_signal": 0.7772,
+          "defensive_game_signal": 0.1076,
+          "result_surprise": 0.0988,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Alabama",
+          "own_points": 20.0,
+          "opp_points": 17.0,
+          "opponent_sd": 1.68,
+          "performance_signal": 0.3953,
+          "offensive_game_signal": 0.5099,
+          "defensive_game_signal": 0.2807,
+          "result_surprise": 0.4995,
+          "credit": 0.7144
+        }
+      ]
+    },
+    {
+      "team": "Kentucky",
+      "old_rank": 19,
+      "new_rank": 22,
+      "csc_sd": 2.0901,
+      "games": [
+        {
+          "opponent": "Alabama",
+          "own_points": 17.0,
+          "opp_points": 45.0,
+          "opponent_sd": 1.68,
+          "performance_signal": -0.2709,
+          "offensive_game_signal": -0.4967,
+          "defensive_game_signal": -0.0452,
+          "result_surprise": -0.1775,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Texas A&M",
+          "own_points": 31.0,
+          "opp_points": 21.0,
+          "opponent_sd": 0.285,
+          "performance_signal": 0.3627,
+          "offensive_game_signal": 0.6569,
+          "defensive_game_signal": 0.0684,
+          "result_surprise": 0.465,
+          "credit": 0.1112
+        },
+        {
+          "opponent": "South Alabama",
+          "own_points": 45.0,
+          "opp_points": 21.0,
+          "opponent_sd": -0.74,
+          "performance_signal": 0.3868,
+          "offensive_game_signal": 0.4789,
+          "defensive_game_signal": 0.2947,
+          "result_surprise": 0.2026,
+          "credit": 0.0
+        },
+        {
+          "opponent": "South Carolina",
+          "own_points": 35.0,
+          "opp_points": 34.0,
+          "opponent_sd": 0.909,
+          "performance_signal": 0.0872,
+          "offensive_game_signal": 0.216,
+          "defensive_game_signal": -0.0416,
+          "result_surprise": 0.6475,
+          "credit": 0.2874
+        },
+        {
+          "opponent": "LSU",
+          "own_points": 35.0,
+          "opp_points": 34.0,
+          "opponent_sd": 1.682,
+          "performance_signal": 0.1197,
+          "offensive_game_signal": 0.3189,
+          "defensive_game_signal": -0.0794,
+          "result_surprise": 0.8229,
+          "credit": 0.6999
+        }
+      ]
+    },
+    {
+      "team": "Miami",
+      "old_rank": 1,
+      "new_rank": 1,
+      "csc_sd": 0.6306,
+      "games": [
+        {
+          "opponent": "Stanford",
+          "own_points": 45.0,
+          "opp_points": 6.0,
+          "opponent_sd": -0.966,
+          "performance_signal": 0.6162,
+          "offensive_game_signal": 0.7437,
+          "defensive_game_signal": 0.4888,
+          "result_surprise": 0.0195,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Wake Forest",
+          "own_points": 33.0,
+          "opp_points": 20.0,
+          "opponent_sd": 1.02,
+          "performance_signal": 0.4104,
+          "offensive_game_signal": 0.294,
+          "defensive_game_signal": 0.5269,
+          "result_surprise": 0.1772,
+          "credit": 0.2589
+        },
+        {
+          "opponent": "Central Michigan",
+          "own_points": 52.0,
+          "opp_points": 3.0,
+          "opponent_sd": -0.977,
+          "performance_signal": 1.1476,
+          "offensive_game_signal": 1.3375,
+          "defensive_game_signal": 0.9578,
+          "result_surprise": 0.0192,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Clemson",
+          "own_points": 41.0,
+          "opp_points": 13.0,
+          "opponent_sd": 0.193,
+          "performance_signal": 0.4656,
+          "offensive_game_signal": 0.5429,
+          "defensive_game_signal": 0.3882,
+          "result_surprise": 0.074,
+          "credit": 0.0418
+        }
+      ]
+    },
+    {
+      "team": "Utah",
+      "old_rank": 5,
+      "new_rank": 6,
+      "csc_sd": 0.7313,
+      "games": [
+        {
+          "opponent": "Arkansas",
+          "own_points": 43.0,
+          "opp_points": 10.0,
+          "opponent_sd": -0.497,
+          "performance_signal": 0.7132,
+          "offensive_game_signal": 0.9886,
+          "defensive_game_signal": 0.4378,
+          "result_surprise": 0.0522,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Utah State",
+          "own_points": 33.0,
+          "opp_points": 0.0,
+          "opponent_sd": -0.727,
+          "performance_signal": 0.843,
+          "offensive_game_signal": 0.5685,
+          "defensive_game_signal": 1.1176,
+          "result_surprise": 0.0401,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Iowa State",
+          "own_points": 31.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.274,
+          "performance_signal": 0.4141,
+          "offensive_game_signal": 0.3395,
+          "defensive_game_signal": 0.4887,
+          "result_surprise": 0.122,
+          "credit": 0.0616
+        },
+        {
+          "opponent": "Kansas",
+          "own_points": 41.0,
+          "opp_points": 24.0,
+          "opponent_sd": 0.823,
+          "performance_signal": 0.6065,
+          "offensive_game_signal": 0.7661,
+          "defensive_game_signal": 0.447,
+          "result_surprise": 0.2117,
+          "credit": 0.2859
+        }
+      ]
+    },
+    {
+      "team": "Texas Tech",
+      "old_rank": 9,
+      "new_rank": 10,
+      "csc_sd": 1.362,
+      "games": [
+        {
+          "opponent": "Oregon State",
+          "own_points": 35.0,
+          "opp_points": 24.0,
+          "opponent_sd": 0.846,
+          "performance_signal": 0.3218,
+          "offensive_game_signal": 0.1587,
+          "defensive_game_signal": 0.4848,
+          "result_surprise": 0.3291,
+          "credit": 0.2512
+        },
+        {
+          "opponent": "Houston",
+          "own_points": 28.0,
+          "opp_points": 26.0,
+          "opponent_sd": 1.145,
+          "performance_signal": 0.3154,
+          "offensive_game_signal": 0.6046,
+          "defensive_game_signal": 0.0262,
+          "result_surprise": 0.4125,
+          "credit": 0.3863
+        },
+        {
+          "opponent": "Sam Houston",
+          "own_points": 49.0,
+          "opp_points": 14.0,
+          "opponent_sd": -1.684,
+          "performance_signal": 0.3554,
+          "offensive_game_signal": 0.4969,
+          "defensive_game_signal": 0.214,
+          "result_surprise": 0.023,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Colorado",
+          "own_points": 29.0,
+          "opp_points": 7.0,
+          "opponent_sd": 0.015,
+          "performance_signal": 0.1372,
+          "offensive_game_signal": -0.2946,
+          "defensive_game_signal": 0.569,
+          "result_surprise": 0.1533,
+          "credit": 0.0019
+        }
+      ]
+    },
+    {
+      "team": "Alabama",
+      "old_rank": 4,
+      "new_rank": 4,
+      "csc_sd": 2.2635,
+      "games": [
+        {
+          "opponent": "East Carolina",
+          "own_points": 48.0,
+          "opp_points": 10.0,
+          "opponent_sd": -0.454,
+          "performance_signal": 0.872,
+          "offensive_game_signal": 0.7839,
+          "defensive_game_signal": 0.9601,
+          "result_surprise": 0.0717,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Kentucky",
+          "own_points": 45.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.402,
+          "performance_signal": 0.6236,
+          "offensive_game_signal": 0.4019,
+          "defensive_game_signal": 0.8452,
+          "result_surprise": 0.1775,
+          "credit": 0.1334
+        },
+        {
+          "opponent": "Florida State",
+          "own_points": 50.0,
+          "opp_points": 36.0,
+          "opponent_sd": 0.59,
+          "performance_signal": 0.2977,
+          "offensive_game_signal": 0.7933,
+          "defensive_game_signal": -0.1978,
+          "result_surprise": 0.2129,
+          "credit": 0.1331
+        },
+        {
+          "opponent": "South Carolina",
+          "own_points": 49.0,
+          "opp_points": 18.0,
+          "opponent_sd": 0.909,
+          "performance_signal": 0.6939,
+          "offensive_game_signal": 0.9333,
+          "defensive_game_signal": 0.4545,
+          "result_surprise": 0.2839,
+          "credit": 0.3834
+        },
+        {
+          "opponent": "Mississippi State",
+          "own_points": 56.0,
+          "opp_points": 23.0,
+          "opponent_sd": 1.075,
+          "performance_signal": 0.9232,
+          "offensive_game_signal": 1.1983,
+          "defensive_game_signal": 0.648,
+          "result_surprise": 0.3262,
+          "credit": 0.5552
+        },
+        {
+          "opponent": "Georgia",
+          "own_points": 17.0,
+          "opp_points": 20.0,
+          "opponent_sd": 1.682,
+          "performance_signal": 0.174,
+          "offensive_game_signal": 0.2454,
+          "defensive_game_signal": 0.1027,
+          "result_surprise": -0.4995,
+          "credit": 0.1159
+        }
+      ]
+    },
+    {
+      "team": "LSU",
+      "old_rank": 15,
+      "new_rank": 15,
+      "csc_sd": 0.4299,
+      "games": [
+        {
+          "opponent": "Clemson",
+          "own_points": 51.0,
+          "opp_points": 10.0,
+          "opponent_sd": 0.193,
+          "performance_signal": 1.2033,
+          "offensive_game_signal": 1.1829,
+          "defensive_game_signal": 1.2236,
+          "result_surprise": 0.1435,
+          "credit": 0.0849
+        },
+        {
+          "opponent": "Louisiana Tech",
+          "own_points": 45.0,
+          "opp_points": 14.0,
+          "opponent_sd": -0.649,
+          "performance_signal": 0.8272,
+          "offensive_game_signal": 0.148,
+          "defensive_game_signal": 1.5064,
+          "result_surprise": 0.0574,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Ole Miss",
+          "own_points": 24.0,
+          "opp_points": 32.0,
+          "opponent_sd": 0.961,
+          "performance_signal": 0.0291,
+          "offensive_game_signal": 0.2339,
+          "defensive_game_signal": -0.1756,
+          "result_surprise": -0.7039,
+          "credit": 0.0112
+        },
+        {
+          "opponent": "Texas A&M",
+          "own_points": 35.0,
+          "opp_points": 6.0,
+          "opponent_sd": 0.285,
+          "performance_signal": 0.7364,
+          "offensive_game_signal": 0.6232,
+          "defensive_game_signal": 0.8496,
+          "result_surprise": 0.1576,
+          "credit": 0.1009
+        },
+        {
+          "opponent": "Kentucky",
+          "own_points": 34.0,
+          "opp_points": 35.0,
+          "opponent_sd": 0.402,
+          "performance_signal": 0.2333,
+          "offensive_game_signal": 0.35,
+          "defensive_game_signal": 0.1167,
+          "result_surprise": -0.8229,
+          "credit": 0.0369
+        }
+      ]
+    },
+    {
+      "team": "Notre Dame",
+      "old_rank": 2,
+      "new_rank": 2,
+      "csc_sd": 0.8704,
+      "games": [
+        {
+          "opponent": "Wisconsin",
+          "own_points": 41.0,
+          "opp_points": 13.0,
+          "opponent_sd": 1.154,
+          "performance_signal": 0.6488,
+          "offensive_game_signal": 0.5989,
+          "defensive_game_signal": 0.6986,
+          "result_surprise": 0.2585,
+          "credit": 0.4508
+        },
+        {
+          "opponent": "Rice",
+          "own_points": 52.0,
+          "opp_points": 0.0,
+          "opponent_sd": -0.975,
+          "performance_signal": 1.3067,
+          "offensive_game_signal": 1.0895,
+          "defensive_game_signal": 1.5239,
+          "result_surprise": 0.0264,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Michigan State",
+          "own_points": 27.0,
+          "opp_points": 10.0,
+          "opponent_sd": -0.007,
+          "performance_signal": 0.3861,
+          "offensive_game_signal": 0.1138,
+          "defensive_game_signal": 0.6583,
+          "result_surprise": 0.0797,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Purdue",
+          "own_points": 49.0,
+          "opp_points": 10.0,
+          "opponent_sd": 0.016,
+          "performance_signal": 0.8877,
+          "offensive_game_signal": 1.1118,
+          "defensive_game_signal": 0.6636,
+          "result_surprise": 0.0817,
+          "credit": 0.0053
+        },
+        {
+          "opponent": "North Carolina",
+          "own_points": 37.0,
+          "opp_points": 26.0,
+          "opponent_sd": 0.352,
+          "performance_signal": 0.2742,
+          "offensive_game_signal": 0.5978,
+          "defensive_game_signal": -0.0494,
+          "result_surprise": 0.1176,
+          "credit": 0.0587
+        },
+        {
+          "opponent": "Stanford",
+          "own_points": 58.0,
+          "opp_points": 7.0,
+          "opponent_sd": -0.966,
+          "performance_signal": 0.9205,
+          "offensive_game_signal": 1.0299,
+          "defensive_game_signal": 0.8111,
+          "result_surprise": 0.0266,
+          "credit": 0.0
+        }
+      ]
+    },
+    {
+      "team": "Texas",
+      "old_rank": 6,
+      "new_rank": 5,
+      "csc_sd": 2.4216,
+      "games": [
+        {
+          "opponent": "Texas State",
+          "own_points": 59.0,
+          "opp_points": 7.0,
+          "opponent_sd": 0.133,
+          "performance_signal": 0.7694,
+          "offensive_game_signal": 1.1521,
+          "defensive_game_signal": 0.3867,
+          "result_surprise": 0.1523,
+          "credit": 0.0478
+        },
+        {
+          "opponent": "Ohio State",
+          "own_points": 24.0,
+          "opp_points": 23.0,
+          "opponent_sd": 1.778,
+          "performance_signal": 0.3893,
+          "offensive_game_signal": 0.351,
+          "defensive_game_signal": 0.4276,
+          "result_surprise": 0.5639,
+          "credit": 0.8134
+        },
+        {
+          "opponent": "UTSA",
+          "own_points": 30.0,
+          "opp_points": 6.0,
+          "opponent_sd": 0.03,
+          "performance_signal": 0.4571,
+          "offensive_game_signal": -0.0123,
+          "defensive_game_signal": 0.9265,
+          "result_surprise": 0.137,
+          "credit": 0.0075
+        },
+        {
+          "opponent": "Tennessee",
+          "own_points": 20.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.839,
+          "performance_signal": 0.3946,
+          "offensive_game_signal": -0.1649,
+          "defensive_game_signal": 0.9541,
+          "result_surprise": 0.2954,
+          "credit": 0.2624
+        },
+        {
+          "opponent": "Oklahoma",
+          "own_points": 24.0,
+          "opp_points": 27.0,
+          "opponent_sd": 0.994,
+          "performance_signal": 0.3684,
+          "offensive_game_signal": 0.1645,
+          "defensive_game_signal": 0.5723,
+          "result_surprise": -0.6646,
+          "credit": 0.1402
+        }
+      ]
+    },
+    {
+      "team": "BYU",
+      "old_rank": 8,
+      "new_rank": 8,
+      "csc_sd": 1.1989,
+      "games": [
+        {
+          "opponent": "Arizona",
+          "own_points": 28.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.854,
+          "performance_signal": 0.3879,
+          "offensive_game_signal": 0.4624,
+          "defensive_game_signal": 0.3133,
+          "result_surprise": 0.3026,
+          "credit": 0.2677
+        },
+        {
+          "opponent": "Colorado State",
+          "own_points": 41.0,
+          "opp_points": 23.0,
+          "opponent_sd": -0.959,
+          "performance_signal": 0.4508,
+          "offensive_game_signal": 0.8503,
+          "defensive_game_signal": 0.0514,
+          "result_surprise": 0.047,
+          "credit": 0.0
+        },
+        {
+          "opponent": "TCU",
+          "own_points": 17.0,
+          "opp_points": 10.0,
+          "opponent_sd": 0.939,
+          "performance_signal": 0.226,
+          "offensive_game_signal": -0.1053,
+          "defensive_game_signal": 0.5574,
+          "result_surprise": 0.3246,
+          "credit": 0.2325
+        },
+        {
+          "opponent": "Iowa State",
+          "own_points": 24.0,
+          "opp_points": 10.0,
+          "opponent_sd": 0.274,
+          "performance_signal": 0.3567,
+          "offensive_game_signal": 0.1172,
+          "defensive_game_signal": 0.5962,
+          "result_surprise": 0.1779,
+          "credit": 0.0637
+        }
+      ]
+    }
+  ]
+}
