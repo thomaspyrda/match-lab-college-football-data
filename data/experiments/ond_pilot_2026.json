@@ -8,7 +8,7 @@
   "validation": 2025,
   "test": 2026,
   "features": "Pregame opponent defensive allowance history, shrunk toward FBS training mean; home-field flag. No separate SOS.",
-  "limitations": "Pilot covers 13 advanced-endpoint metrics rather than complete 38/41; 2026 is partial; games are used in team-season chronological order; benchmark uses v15 coefficients on independent prior allowance proxy, not exact production v15; game residuals are divided by training FBS game SD, not residual SD; no external venue or roster controls.",
+  "limitations": "Pilot covers 13 advanced-endpoint metrics rather than complete 38/41; 2026 is partial; games are used in team-season chronological order; benchmark uses v15 coefficients on independent prior allowance proxy, not exact production v15; raw z-scores use training FBS game SD; the additional residual SD scores use 2025 holdout prediction-error SD; no external venue or roster controls.",
   "results": {
     "validation_2025": {
       "metric_count": 13,
@@ -33,9 +33,9 @@
     "ppa": {
       "trained": 4464,
       "coefficient": [
-        -0.12620530021234616,
-        0.6055047168997876,
-        0.267026491069624
+        -0.12620530021234613,
+        0.6055047168997877,
+        0.26702649106962395
       ],
       "v15_proxy_k": 0.162136,
       "validation_residual_sigma": 0.97705,
@@ -77,9 +77,9 @@
     "success_rate": {
       "trained": 4464,
       "coefficient": [
-        -0.11430918217855272,
-        0.6794855335520246,
-        0.246406082605319
+        -0.11430918217855275,
+        0.6794855335520243,
+        0.24640608260531904
       ],
       "v15_proxy_k": 0.206633,
       "validation_residual_sigma": 0.96164,
@@ -121,9 +121,9 @@
     "passing_ppa": {
       "trained": 4464,
       "coefficient": [
-        -0.1019861142858329,
-        0.44629585064688415,
-        0.20483066416180648
+        -0.10198611428583285,
+        0.44629585064688443,
+        0.20483066416180642
       ],
       "v15_proxy_k": 0.116637,
       "validation_residual_sigma": 0.97633,
@@ -165,9 +165,9 @@
     "passing_success": {
       "trained": 4464,
       "coefficient": [
-        -0.1005556543740306,
-        0.4274394304669255,
-        0.20026519198507212
+        -0.10055565437403058,
+        0.42743943046692523,
+        0.2002651919850721
       ],
       "v15_proxy_k": 0.122741,
       "validation_residual_sigma": 0.98138,
@@ -210,8 +210,8 @@
       "trained": 4464,
       "coefficient": [
         -0.06227885938277313,
-        0.49076945342831485,
-        0.1376239041306133
+        0.49076945342831474,
+        0.13762390413061326
       ],
       "v15_proxy_k": 0.201272,
       "validation_residual_sigma": 0.97552,
@@ -253,9 +253,9 @@
     "rushing_success": {
       "trained": 4464,
       "coefficient": [
-        -0.07447820035305987,
-        0.6151362381132223,
-        0.1716761911619448
+        -0.07447820035305984,
+        0.615136238113222,
+        0.17167619116194474
       ],
       "v15_proxy_k": 0.250584,
       "validation_residual_sigma": 0.9611,
@@ -297,9 +297,9 @@
     "passing_explosiveness": {
       "trained": 4464,
       "coefficient": [
-        -0.01417352058148139,
-        0.29274698123643733,
-        0.028021455116979423
+        -0.01417352058148141,
+        0.29274698123643744,
+        0.028021455116979455
       ],
       "v15_proxy_k": 0.123217,
       "validation_residual_sigma": 0.96778,
@@ -341,9 +341,9 @@
     "rushing_explosiveness": {
       "trained": 4464,
       "coefficient": [
-        -0.02571526999803347,
+        -0.025715269998033474,
         0.1263620180856444,
-        0.05267107985995439
+        0.052671079859954416
       ],
       "v15_proxy_k": 0.036396,
       "validation_residual_sigma": 0.89085,
@@ -385,9 +385,9 @@
     "line_yards": {
       "trained": 4464,
       "coefficient": [
-        -0.06222684714380676,
-        0.5694575515420265,
-        0.14915004698277165
+        -0.06222684714380679,
+        0.5694575515420263,
+        0.1491500469827717
       ],
       "v15_proxy_k": 0.279417,
       "validation_residual_sigma": 1.02239,
@@ -429,9 +429,9 @@
     "power_success": {
       "trained": 4464,
       "coefficient": [
-        -0.03362705035517597,
-        0.2326738675573905,
-        0.07456027837179258
+        -0.03362705035517598,
+        0.23267386755739053,
+        0.07456027837179259
       ],
       "v15_proxy_k": 0.11994,
       "validation_residual_sigma": 0.98313,
@@ -474,8 +474,8 @@
       "trained": 4464,
       "coefficient": [
         -0.09754484968588509,
-        0.614939244394179,
-        0.2144779918170485
+        0.6149392443941792,
+        0.21447799181704852
       ],
       "v15_proxy_k": 0.212539,
       "validation_residual_sigma": 0.99008,
@@ -517,9 +517,9 @@
     "passing_down_success": {
       "trained": 4464,
       "coefficient": [
-        -0.0978277168982672,
-        0.3397352372668531,
-        0.1951590237095679
+        -0.09782771689826725,
+        0.33973523726685323,
+        0.19515902370956797
       ],
       "v15_proxy_k": 0.099421,
       "validation_residual_sigma": 0.99388,
@@ -561,9 +561,9 @@
     "stuff_avoidance": {
       "trained": 4464,
       "coefficient": [
-        -0.03622278096318133,
-        0.5670117776341066,
-        0.0920549089708468
+        -0.03622278096318127,
+        0.5670117776341067,
+        0.09205490897084673
       ],
       "v15_proxy_k": 0.314395,
       "validation_residual_sigma": 0.94653,
