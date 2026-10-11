@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parent
 TEAM_IDS={108:"los-angeles-angels",109:"arizona-diamondbacks",110:"baltimore-orioles",111:"boston-red-sox",112:"chicago-cubs",113:"cincinnati-reds",114:"cleveland-guardians",115:"colorado-rockies",116:"detroit-tigers",117:"houston-astros",118:"kansas-city-royals",119:"los-angeles-dodgers",120:"washington-nationals",121:"new-york-mets",133:"athletics",134:"pittsburgh-pirates",135:"san-diego-padres",136:"seattle-mariners",137:"san-francisco-giants",138:"st-louis-cardinals",139:"tampa-bay-rays",140:"texas-rangers",141:"toronto-blue-jays",142:"minnesota-twins",143:"philadelphia-phillies",144:"atlanta-braves",145:"chicago-white-sox",146:"miami-marlins",147:"new-york-yankees",158:"milwaukee-brewers"}
 URL="https://statsapi.mlb.com/api/v1/draft/{}"
 def get(year,round_number):
-    url=URL.format(year)+f"?round={round_number}&limit=100"
+    url=URL.format(year)+(f"?round={round_number}&limit=100" if round_number is not None else "?limit=1500")
     req=urllib.request.Request(url,headers={"User-Agent":"BetWiseResearch/1.0","Accept":"application/json"})
     for attempt in range(4):
         try:
@@ -21,48 +21,43 @@ def text_or_none(v):
     if isinstance(v,dict):return v.get("name") or v.get("fullName") or v.get("abbreviation")
     return str(v).strip() if v not in (None,"") else None
 def build(year):
-    # One round per request avoids pagination/caps on combined draft responses.
-    # The 2020 draft had five rounds, 2021 onward has twenty.
-    expected_rounds=5 if year==2020 else 20
+    # Official full response includes compensation/supplemental groups beyond 5/20 standard rounds.
+    # The same MLB endpoint returned 160 selections for 2020 and 615 for 2025 in probe.
+    raw=get(year,None)
+    draft=raw.get("drafts") or {}
+    rounds=draft.get("rounds") or []
+    required=5 if year==2020 else 20
+    if len(rounds)<required:raise ValueError(f"{year}: only {len(rounds)} round groups")
     out={slug:[] for slug in TEAM_IDS.values()}
     invalid=[]
-    used_rounds=set()
-    for number in range(1,expected_rounds+1):
-        raw=get(year,number)
-        draft=raw.get("drafts") or {}
-        rounds=draft.get("rounds") or []
-        picks=[p for rd in rounds for p in rd.get("picks",[]) or [] if str(p.get("pickRound") or rd.get("round") or "")==str(number)]
-        if not picks:raise ValueError(f"{year} round {number}: API returned no picks")
-        used_rounds.add(number)
-        for pick in picks:
+    for group in rounds:
+        group_name=str(group.get("round") or "").strip()
+        for pick in group.get("picks",[]) or []:
             if pick.get("isPass") is True:continue
-            # Skip unselected placeholders only if there is no named drafted player.
-            if pick.get("isDrafted") is False and not ((pick.get("person") or {}).get("fullName") or pick.get("name")):continue
             team=pick.get("team") or {}
             try:team_id=int(team.get("id"))
-            except (ValueError,TypeError):team_id=None
-            if team_id not in TEAM_IDS:
-                invalid.append(("unknown_team",number,team_id,pick.get("pickNumber")));continue
+            except (TypeError,ValueError):team_id=None
             person=pick.get("person") or {}
             name=person.get("fullName") or pick.get("name") or person.get("name")
-            if not name:
-                invalid.append(("unnamed",number,pick.get("pickNumber")));continue
-            pos=pick.get("position") or person.get("primaryPosition")
-            school=pick.get("school") or person.get("school")
+            if team_id not in TEAM_IDS or not name:
+                invalid.append({"round":group_name,"team":team_id,"player":name,"pick":pick.get("pickNumber")})
+                continue
             try:overall=int(pick.get("pickNumber"))
             except (ValueError,TypeError):overall=None
             if overall is None:
-                invalid.append(("invalid_pick",number,pick.get("pickNumber")));continue
-            out[TEAM_IDS[team_id]].append({"round":str(number),"overall_pick":overall,"round_pick":pick.get("roundPickNumber"),"player":name,"position":text_or_none(pos),"school":text_or_none(school),"player_id":person.get("id"),"signed":pick.get("isSigned") if isinstance(pick.get("isSigned"),bool) else None})
-    if invalid:raise ValueError(f"{year} missing/unknown picks: {invalid[:15]}")
-    all_picks=[p for arr in out.values() for p in arr]
-    minimum=130 if year==2020 else 450
-    if len(all_picks)<minimum:raise ValueError(f"{year} returned only {len(all_picks)} picks; expected >={minimum}")
-    if len({p["overall_pick"] for p in all_picks})!=len(all_picks):raise ValueError(f"{year}: duplicate overall picks")
-    if len(used_rounds)!=expected_rounds:raise ValueError(f"{year}: missing rounds")
-    if any(not picks for picks in out.values()):raise ValueError(f"{year}: team without draft selections")
-    for picks in out.values():picks.sort(key=lambda p:p["overall_pick"])
-    print(f"{year}: {len(all_picks)} picks, {len(used_rounds)} rounds, {len(out)} teams",flush=True)
+                invalid.append({"round":group_name,"pick":pick.get("pickNumber")})
+                continue
+            pos=pick.get("position") or person.get("primaryPosition")
+            school=pick.get("school") or person.get("school")
+            out[TEAM_IDS[team_id]].append({"round":str(pick.get("pickRound") or group_name),"overall_pick":overall,"round_pick":pick.get("roundPickNumber"),"player":name,"position":text_or_none(pos),"school":text_or_none(school),"player_id":person.get("id"),"signed":pick.get("isSigned") if isinstance(pick.get("isSigned"),bool) else None})
+    if invalid:raise ValueError(f"{year}: unresolved draft picks: {invalid[:10]}")
+    picks=[p for values in out.values() for p in values]
+    expected_min=130 if year==2020 else 450
+    if len(picks)<expected_min:raise ValueError(f"{year}: only {len(picks)} picks returned")
+    if len({p["overall_pick"] for p in picks})!=len(picks):raise ValueError(f"{year}: duplicate overall picks")
+    if any(not selections for selections in out.values()):raise ValueError(f"{year}: at least one franchise has no picks")
+    for values in out.values():values.sort(key=lambda p:p["overall_pick"])
+    print(f"{year}: {len(picks)} picks, {len(rounds)} groups, 30 franchises",flush=True)
     return out
 def main():
     parser=argparse.ArgumentParser()
