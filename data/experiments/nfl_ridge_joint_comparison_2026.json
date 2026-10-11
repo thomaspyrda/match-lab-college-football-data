@@ -1,0 +1,486 @@
+{
+  "model": "nfl-style-joint-ridge-cfb-research",
+  "year": 2026,
+  "through_week": 6,
+  "comparison": "Production v15 vs one-pass joint ridge regularization, same full CFB metric set and game population",
+  "qualification": "Unlike CFB v15, the NFL methodology jointly fits offense and defense by ridge regression rather than iterative opponent-unit adjustments. FCS downside is approximated as a one-sided pseudo-observation. Ridge settings are sensitivity probes, not historically optimized.",
+  "production_unchanged": true,
+  "v15_top15": [
+    {
+      "rank": 1,
+      "team": "Miami",
+      "sd": 2.349
+    },
+    {
+      "rank": 2,
+      "team": "Notre Dame",
+      "sd": 2.088
+    },
+    {
+      "rank": 3,
+      "team": "Utah",
+      "sd": 1.929
+    },
+    {
+      "rank": 4,
+      "team": "Ohio State",
+      "sd": 1.896
+    },
+    {
+      "rank": 5,
+      "team": "Georgia",
+      "sd": 1.818
+    },
+    {
+      "rank": 6,
+      "team": "Alabama",
+      "sd": 1.648
+    },
+    {
+      "rank": 7,
+      "team": "LSU",
+      "sd": 1.603
+    },
+    {
+      "rank": 8,
+      "team": "Indiana",
+      "sd": 1.579
+    },
+    {
+      "rank": 9,
+      "team": "BYU",
+      "sd": 1.486
+    },
+    {
+      "rank": 10,
+      "team": "Texas Tech",
+      "sd": 1.4
+    },
+    {
+      "rank": 11,
+      "team": "Texas",
+      "sd": 1.34
+    },
+    {
+      "rank": 12,
+      "team": "Nebraska",
+      "sd": 1.331
+    },
+    {
+      "rank": 13,
+      "team": "UCLA",
+      "sd": 1.262
+    },
+    {
+      "rank": 14,
+      "team": "Oregon",
+      "sd": 1.248
+    },
+    {
+      "rank": 15,
+      "team": "Houston",
+      "sd": 1.203
+    }
+  ],
+  "variants": [
+    {
+      "ridge": 2.0,
+      "top15": [
+        {
+          "team": "Georgia",
+          "rank": 1,
+          "sd": 1.864,
+          "v15_rank": 5
+        },
+        {
+          "team": "Texas",
+          "rank": 2,
+          "sd": 1.806,
+          "v15_rank": 11
+        },
+        {
+          "team": "Alabama",
+          "rank": 3,
+          "sd": 1.771,
+          "v15_rank": 6
+        },
+        {
+          "team": "LSU",
+          "rank": 4,
+          "sd": 1.737,
+          "v15_rank": 7
+        },
+        {
+          "team": "Oregon",
+          "rank": 5,
+          "sd": 1.721,
+          "v15_rank": 14
+        },
+        {
+          "team": "Miami",
+          "rank": 6,
+          "sd": 1.699,
+          "v15_rank": 1
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 7,
+          "sd": 1.694,
+          "v15_rank": 2
+        },
+        {
+          "team": "Ohio State",
+          "rank": 8,
+          "sd": 1.645,
+          "v15_rank": 4
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 9,
+          "sd": 1.416,
+          "v15_rank": 44
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 10,
+          "sd": 1.404,
+          "v15_rank": 19
+        },
+        {
+          "team": "Utah",
+          "rank": 11,
+          "sd": 1.355,
+          "v15_rank": 3
+        },
+        {
+          "team": "Indiana",
+          "rank": 12,
+          "sd": 1.342,
+          "v15_rank": 8
+        },
+        {
+          "team": "Louisville",
+          "rank": 13,
+          "sd": 1.304,
+          "v15_rank": 33
+        },
+        {
+          "team": "BYU",
+          "rank": 14,
+          "sd": 1.255,
+          "v15_rank": 9
+        },
+        {
+          "team": "South Carolina",
+          "rank": 15,
+          "sd": 1.223,
+          "v15_rank": 27
+        }
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 6,
+          "v15_rank": 1,
+          "sd": 1.699
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 7,
+          "v15_rank": 2,
+          "sd": 1.694
+        },
+        {
+          "team": "Utah",
+          "rank": 11,
+          "v15_rank": 3,
+          "sd": 1.355
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 18,
+          "v15_rank": 10,
+          "sd": 1.174
+        },
+        {
+          "team": "New Mexico",
+          "rank": 62,
+          "v15_rank": 25,
+          "sd": 0.254
+        },
+        {
+          "team": "Liberty",
+          "rank": 87,
+          "v15_rank": 29,
+          "sd": -0.455
+        }
+      ]
+    },
+    {
+      "ridge": 4.0,
+      "top15": [
+        {
+          "team": "Georgia",
+          "rank": 1,
+          "sd": 1.848,
+          "v15_rank": 5
+        },
+        {
+          "team": "Oregon",
+          "rank": 2,
+          "sd": 1.829,
+          "v15_rank": 14
+        },
+        {
+          "team": "Texas",
+          "rank": 3,
+          "sd": 1.794,
+          "v15_rank": 11
+        },
+        {
+          "team": "Ohio State",
+          "rank": 4,
+          "sd": 1.693,
+          "v15_rank": 4
+        },
+        {
+          "team": "Miami",
+          "rank": 5,
+          "sd": 1.675,
+          "v15_rank": 1
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "sd": 1.646,
+          "v15_rank": 2
+        },
+        {
+          "team": "Alabama",
+          "rank": 7,
+          "sd": 1.639,
+          "v15_rank": 6
+        },
+        {
+          "team": "LSU",
+          "rank": 8,
+          "sd": 1.627,
+          "v15_rank": 7
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 9,
+          "sd": 1.484,
+          "v15_rank": 44
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 10,
+          "sd": 1.437,
+          "v15_rank": 19
+        },
+        {
+          "team": "Indiana",
+          "rank": 11,
+          "sd": 1.424,
+          "v15_rank": 8
+        },
+        {
+          "team": "BYU",
+          "rank": 12,
+          "sd": 1.279,
+          "v15_rank": 9
+        },
+        {
+          "team": "Louisville",
+          "rank": 13,
+          "sd": 1.249,
+          "v15_rank": 33
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 14,
+          "sd": 1.245,
+          "v15_rank": 10
+        },
+        {
+          "team": "Tennessee",
+          "rank": 15,
+          "sd": 1.244,
+          "v15_rank": 40
+        }
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 5,
+          "v15_rank": 1,
+          "sd": 1.675
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "v15_rank": 2,
+          "sd": 1.646
+        },
+        {
+          "team": "Utah",
+          "rank": 16,
+          "v15_rank": 3,
+          "sd": 1.217
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 14,
+          "v15_rank": 10,
+          "sd": 1.245
+        },
+        {
+          "team": "New Mexico",
+          "rank": 62,
+          "v15_rank": 25,
+          "sd": 0.246
+        },
+        {
+          "team": "Liberty",
+          "rank": 88,
+          "v15_rank": 29,
+          "sd": -0.501
+        }
+      ]
+    },
+    {
+      "ridge": 8.0,
+      "top15": [
+        {
+          "team": "Oregon",
+          "rank": 1,
+          "sd": 1.871,
+          "v15_rank": 14
+        },
+        {
+          "team": "Georgia",
+          "rank": 2,
+          "sd": 1.818,
+          "v15_rank": 5
+        },
+        {
+          "team": "Texas",
+          "rank": 3,
+          "sd": 1.762,
+          "v15_rank": 11
+        },
+        {
+          "team": "Ohio State",
+          "rank": 4,
+          "sd": 1.753,
+          "v15_rank": 4
+        },
+        {
+          "team": "Miami",
+          "rank": 5,
+          "sd": 1.649,
+          "v15_rank": 1
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "sd": 1.644,
+          "v15_rank": 2
+        },
+        {
+          "team": "Alabama",
+          "rank": 7,
+          "sd": 1.536,
+          "v15_rank": 6
+        },
+        {
+          "team": "LSU",
+          "rank": 8,
+          "sd": 1.531,
+          "v15_rank": 7
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 9,
+          "sd": 1.523,
+          "v15_rank": 44
+        },
+        {
+          "team": "Indiana",
+          "rank": 10,
+          "sd": 1.507,
+          "v15_rank": 8
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 11,
+          "sd": 1.453,
+          "v15_rank": 19
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 12,
+          "sd": 1.331,
+          "v15_rank": 10
+        },
+        {
+          "team": "BYU",
+          "rank": 13,
+          "sd": 1.298,
+          "v15_rank": 9
+        },
+        {
+          "team": "Tennessee",
+          "rank": 14,
+          "sd": 1.256,
+          "v15_rank": 40
+        },
+        {
+          "team": "Michigan",
+          "rank": 15,
+          "sd": 1.247,
+          "v15_rank": 23
+        }
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 5,
+          "v15_rank": 1,
+          "sd": 1.649
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "v15_rank": 2,
+          "sd": 1.644
+        },
+        {
+          "team": "Utah",
+          "rank": 22,
+          "v15_rank": 3,
+          "sd": 1.124
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 12,
+          "v15_rank": 10,
+          "sd": 1.331
+        },
+        {
+          "team": "New Mexico",
+          "rank": 61,
+          "v15_rank": 25,
+          "sd": 0.252
+        },
+        {
+          "team": "Liberty",
+          "rank": 85,
+          "v15_rank": 29,
+          "sd": -0.491
+        }
+      ]
+    }
+  ]
+}
