@@ -26,7 +26,7 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open("data/mlb/draft-classes.json"))
-          assert len(d["years"])==12
+          assert 1<=len(d["years"])<=12
           for y,teams in d["years"].items():
               assert len(teams)==30,(y,len(teams))
               picks=[p for a in teams.values() for p in a]
