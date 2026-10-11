@@ -2,7 +2,7 @@ name: CFB opponent adjustment top-20 sensitivity test
 on:
   push:
     branches: [main]
-    paths: [.github/workflows/cfb-opponent-sensitivity.yml]
+    paths: [.github/workflows/cfb-opponent-sensitivity.yml, ond_independent_pilot.py]
   workflow_dispatch:
 permissions:
   contents: write
