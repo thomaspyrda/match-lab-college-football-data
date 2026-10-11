@@ -111,7 +111,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/experiments/hybrid_nonlinear_comparison_2026.json data/experiments/hybrid_recursive_comparison_2026.json data/experiments/ond_frozen_unit_comparison_2026.json data/experiments/miami_game_level_audit_2026.json data/experiments/miami_average_fbs_expected_2026.json data/experiments/ond_pilot_2026.json data/experiments/ond_offense_defense_2026.json
+          git add data/experiments/opponent_expectation_calibration_2026.json data/experiments/hybrid_nonlinear_comparison_2026.json data/experiments/hybrid_recursive_comparison_2026.json data/experiments/ond_frozen_unit_comparison_2026.json data/experiments/miami_game_level_audit_2026.json data/experiments/miami_average_fbs_expected_2026.json data/experiments/ond_pilot_2026.json data/experiments/ond_offense_defense_2026.json
           git diff --cached --quiet && exit 0
           git commit -m 'research(cfb): compare top-20 opponent adjustments without modifying production'
           for i in 1 2 3 4 5; do
