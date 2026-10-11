@@ -11,7 +11,7 @@ src=v15[:start]+block+v15[end:]
 src=src.replace('    calibration=json.loads(FCS_CALIBRATION.read_text())','    HYBRID_COEFF=1.0\n    QRR_WEIGHT=float(os.environ.get("QRR_WEIGHT","0.15"))\n    calibration=json.loads(FCS_CALIBRATION.read_text())')
 old='OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_v15_{SEASON}_week_{WEEK}.json"'
 assert old in src
-src=src.replace(old,'OUT=ROOT/"data"/"experiments"/"hybrid_quality_results_extreme_{os.environ.get(\'QRR_LABEL\',\'15\')}pct_2026_week_7.json"')
+src=src.replace(old,'OUT=ROOT/"data"/"experiments"/f"hybrid_quality_results_extreme_{os.environ.get(\'QRR_LABEL\',\'15\')}pct_2026_week_7.json"')
 needle='    ro,rd,rt=ranks(off),ranks(deff),ranks(overall)'
 assert needle in src
 addition='''    # Quality result: actual W/D/L minus expectation implied by existing
