@@ -48,6 +48,10 @@ def shell(title, description, path, body, indexable=True):
 def write(path, title, description, body, indexable=True):
     dest = ROOT / path.lstrip('/') / 'index.html'
     dest.parent.mkdir(parents=True, exist_ok=True)
+    # MLB team pages are maintained by the dedicated archive layout publisher.
+    # Never replace a completed page with this scaffold during SEO regeneration.
+    if path.startswith('/mlb/teams/') and dest.exists():
+        return
     dest.write_text(shell(title, description, path, body, indexable), encoding='utf-8')
 
 def card(team, group):
