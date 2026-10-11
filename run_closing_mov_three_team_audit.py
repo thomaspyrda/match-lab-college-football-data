@@ -42,3 +42,5 @@ out={'season':2026,'through_week':6,'method':'Same provider sorting, per-game ca
 path=R/'data/experiments/closing_mov_three_team_game_audit_2026.json'
 path.write_text(json.dumps(out,indent=2)+'\n')
 print(json.dumps(result,indent=2))
+
+# Isolated audit launch.
