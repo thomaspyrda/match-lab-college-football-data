@@ -56,8 +56,15 @@ def main():
     path=ROOT/"data/mlb/draft-classes.json";path.parent.mkdir(parents=True,exist_ok=True)
     old=json.loads(path.read_text()) if path.exists() else {}
     all_years=old.get("years",{})
-    for year in args.years:all_years[str(year)]=build(year)
-    doc={"schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"source":"MLB Stats API official draft results","source_url":"https://statsapi.mlb.com/api/v1/draft/{year}","years":dict(sorted(all_years.items()))}
-    path.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\n")
-    print("Saved",path)
+    failures={}
+    for year in args.years:
+        try:
+            all_years[str(year)]=build(year)
+        except Exception as exc:
+            failures[str(year)]=str(exc)
+            print(f"Could not validate {year}: {exc}")
+    doc={"schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"source":"MLB Stats API official draft results","source_url":"https://statsapi.mlb.com/api/v1/draft/{year}","years":dict(sorted(all_years.items())),"unavailable_years":failures}
+    if not all_years:raise RuntimeError("No validated MLB draft years were collected")
+    path.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\\n")
+    print("Saved",path,"verified years:",len(all_years),"unavailable:",len(failures))
 if __name__=="__main__":main()
