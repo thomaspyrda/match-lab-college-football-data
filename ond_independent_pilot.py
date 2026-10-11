@@ -104,15 +104,16 @@ for metric in FIELDS:
  val=[r for r in samples if r['season']==2025]
  test=[r for r in samples if r['season']==2026]
  c=fit(train)
+ residual_sigma=statistics.pstdev([r['actual']-predict(c,r) for r in val]) or 1.0
  k=calib.get(metric,{}).get('selected_coefficient',0.2)
  # V15-shaped comparator uses same opponent information and historical coefficient,
  # but it is NOT the v15 production ranking model.
  baselines={'neutral':lambda r:0,'v15_coefficient_proxy':lambda r:k*r['opponent_allow'],'ond_ridge':lambda r:predict(c,r)}
- metrics[metric]={'trained':len(train),'coefficient':c,'v15_proxy_k':k,'validation_2025':{n:error(val,f) for n,f in baselines.items()},'test_2026':{n:error(test,f) for n,f in baselines.items()}}
+ metrics[metric]={'trained':len(train),'coefficient':c,'v15_proxy_k':k,'validation_residual_sigma':round(residual_sigma,5),'validation_2025':{n:error(val,f) for n,f in baselines.items()},'test_2026':{n:error(test,f) for n,f in baselines.items()}}
  for r in test:
   if r['team']!='Miami':continue
   actual=r['actual'];expected=predict(c,r)
-  miami.append({'game_id':r['game_id'],'opponent':r['opponent'],'metric':metric,'observed_z':round(actual,3),'expected_average_fbs_z':round(expected,3),'dominance_residual_z':round(actual-expected,3),'opponent_prior_games':r['prior_games']})
+  miami.append({'game_id':r['game_id'],'opponent':r['opponent'],'metric':metric,'observed_z':round(actual,3),'expected_average_fbs_z':round(expected,3),'dominance_residual_z':round(actual-expected,3),'dominance_residual_sd':round((actual-expected)/residual_sigma,3),'opponent_prior_games':r['prior_games']})
 summary={}
 for period in ('validation_2025','test_2026'):
  complete=[v[period] for v in metrics.values() if v[period]['ond_ridge'] and v[period]['v15_coefficient_proxy']]
