@@ -79,13 +79,27 @@ jobs:
           assert output,'Miami game extraction returned no eligible games'
           result={'team':'Miami','through_week':6,'no_sos_bonus':True,'method':'Game-level metric z vs full FBS game distribution, corrected by each opponent corresponding unit SD and calibrated metric coefficient','caveat':'Opponent SDs use through-week-6 ratings: retrospective audit only, not pregame predictions. Per-game metric composite z is not the final standardized team strength SD.','games':output}
           (base/'miami_game_level_audit_2026.json').write_text(json.dumps(result,indent=2)+'\n')
+
+          # Opponent-neutral interpretation: expected average FBS metric z vs opponent
+          # equals -k * opposing unit z; residual is observed minus that expectation.
+          # Add unadjusted and opponent-specific expected baselines to saved rows.
+          for game in output:
+              game['offense_expected_average_fbs_z']=round(game['miami_offense_raw_z']-game['miami_offense_adjusted_z'],3)
+              game['defense_expected_average_fbs_z']=round(game['miami_defense_raw_z']-game['miami_defense_adjusted_z'],3)
+              game['offense_dominance_above_expected_z']=game['miami_offense_adjusted_z']
+              game['defense_dominance_above_expected_z']=game['miami_defense_adjusted_z']
+              game['combined_dominance_above_expected_z']=round((game['miami_offense_adjusted_z']+game['miami_defense_adjusted_z'])/2,3)
+          result['expected_baseline_interpretation']='Each per-metric average-FBS expectation is -coefficient * opponent unit SD; actual minus that expectation equals calibrated opponent-adjusted game z. Composites share the same category weights as v15.'
+          result['limitation']='Uses in-sample through-week-6 opponent ratings and game-level FBS distribution; this reexpresses existing adjustment as an expected average-FBS baseline, not an independently estimated new predictive model.'
+          (base/'miami_average_fbs_expected_2026.json').write_text(json.dumps(result,indent=2)+'\\n')
+
           print(json.dumps(result,indent=2))
           PY
       - name: Commit experiment only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/experiments/miami_game_level_audit_2026.json
+          git add data/experiments/miami_game_level_audit_2026.json data/experiments/miami_average_fbs_expected_2026.json
           git diff --cached --quiet && exit 0
           git commit -m 'research(cfb): compare top-20 opponent adjustments without modifying production'
           for i in 1 2 3 4 5; do
