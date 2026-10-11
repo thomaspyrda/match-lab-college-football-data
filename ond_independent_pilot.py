@@ -120,6 +120,59 @@ for metric in FIELDS:
   actual=r['actual'];expected=predict(c,r)
   target=miami if r['team']=='Miami' else texas_tech
   target.append({'game_id':r['game_id'],'opponent':r['opponent'],'metric':metric,'observed_z':round(actual,3),'expected_average_fbs_z':round(expected,3),'dominance_residual_z':round(actual-expected,3),'dominance_residual_sd':round((actual-expected)/residual_sigma,3),'opponent_prior_games':r['prior_games']})
+# Empirical opponent-strength calibration: fit linear vs nonlinear expectation,
+# using the same PRE-GAME defensive allowance proxy for all candidates.
+# Bins and strength thresholds are fit on 2022-24, assessed on 2025/26.
+calibration_test={}
+for metric in FIELDS:
+ rows=[x.copy() for x in allrows if x['metric']==metric]
+ tr=[x for x in rows if x['season']<=2024]
+ if len(tr)<300:continue
+ mu=statistics.fmean(x['actual'] for x in tr)
+ sd=statistics.pstdev(x['actual'] for x in tr) or 1.0
+ for x in rows:
+  p=mu if x['prior_allowed'] is None else x['prior_allowed']
+  x['strength']=-((x['prior_games']*p+3*mu)/(x['prior_games']+3)-mu)/sd
+  x['y']=(x['actual']-mu)/sd
+  x['home']=float(x['home'])
+ # Strong defense = positive strength, so regression coefficient should be negative.
+ import numpy as np
+ def design(x,curve):
+  z=x['strength']
+  return [1.,z,x['home']] if curve=='linear' else [1.,z,np.clip(z,-2.5,2.5)**3,x['home']]
+ train=[x for x in rows if x['season']<=2024]
+ val=[x for x in rows if x['season']==2025]
+ test=[x for x in rows if x['season']==2026]
+ coefs={}
+ for curve in ('linear','cubic'):
+  X=np.array([design(x,curve) for x in train]);Y=np.array([x['y'] for x in train])
+  reg=np.diag([0.0]+[3.0]*(X.shape[1]-1))
+  coefs[curve]=np.linalg.solve(X.T@X+reg,X.T@Y)
+ v15_k=calib.get(metric,{}).get('selected_coefficient',0.0)
+ def score(pool,curve):
+  errors=[]
+  for x in pool:
+   pred= -v15_k*x['strength'] if curve=='v15_coefficient_proxy' else float(np.dot(design(x,curve),coefs[curve]))
+   errors.append((x['y']-pred)**2)
+  return round(math.sqrt(statistics.fmean(errors)),5) if errors else None
+ # Equal-frequency strength bins defined ONLY on the training distribution.
+ cuts=np.quantile([x['strength'] for x in train],[.2,.4,.6,.8]).tolist()
+ def group(z):return sum(z>v for v in cuts)
+ bins=[]
+ for i in range(5):
+  trbin=[x for x in train if group(x['strength'])==i]
+  vbin=[x for x in val if group(x['strength'])==i]
+  if not trbin:continue
+  bins.append({'strength_quantile':i+1,'train_n':len(trbin),'train_avg_opponent_strength':round(statistics.fmean(x['strength'] for x in trbin),4),'train_actual_metric_z':round(statistics.fmean(x['y'] for x in trbin),4),'validation_n':len(vbin),'validation_actual_metric_z':round(statistics.fmean(x['y'] for x in vbin),4) if vbin else None})
+ calibration_test[metric]={'validation_2025_rmse':{k:score(val,k) for k in ('v15_coefficient_proxy','linear','cubic')},'test_2026_rmse':{k:score(test,k) for k in ('v15_coefficient_proxy','linear','cubic')},'coefficients':{k:[round(float(v),5) for v in coef] for k,coef in coefs.items()},'opponent_quintiles':bins}
+calib_summary={}
+for period in ('validation_2025_rmse','test_2026_rmse'):
+ m=[x[period] for x in calibration_test.values() if all(x[period].values())]
+ calib_summary[period]={'metrics':len(m),'avg_rmse':{k:round(statistics.fmean(x[k] for x in m),5) for k in ('v15_coefficient_proxy','linear','cubic')},'cubic_beats_linear_count':sum(x['cubic']<x['linear'] for x in m)}
+calibration_path=ROOT/'data/experiments/opponent_expectation_calibration_2026.json'
+calibration_path.write_text(json.dumps({'schema':'empirical-opponent-expectation-v1','strength_measure':'Historical opponent pregame allowed-performance composite per metric; NOT historical v15 opponent-unit strength snapshots. Positive means stronger defense.','limitations':'Observational conditional averages confound opponent and own offensive quality. Historical games are ordered chronologically; opponent prior shrinkage to three games. Results test statistical expectation fit, not a verified overall FBS team-strength model. Current v15 coefficient used as proxy on this independent strength feature; not exact v15 evaluation.','training':[2022,2023,2024],'validation':2025,'test':2026,'summary':calib_summary,'metrics':calibration_test},indent=2)+chr(10))
+print('OPPONENT_EXPECTATION',json.dumps(calib_summary),flush=True)
+
 summary={}
 for period in ('validation_2025','test_2026'):
  complete=[v[period] for v in metrics.values() if v[period]['ond_ridge'] and v[period]['v15_coefficient_proxy']]
