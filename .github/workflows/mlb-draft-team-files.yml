@@ -37,5 +37,11 @@ jobs:
           git add data/mlb/drafts data/mlb/draft-publish-status.json
           git diff --cached --quiet && exit 0
           git commit -m 'data(mlb): publish official draft classes 2015–2026'
-          git pull --rebase -X theirs origin main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main
+            if git push origin main; then exit 0; fi
+            echo "Concurrent update, retrying push ($attempt/5)"
+            sleep 3
+          done
+          exit 1
