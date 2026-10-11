@@ -26,6 +26,7 @@ jobs:
         run: python run_quality_results_extreme_research.py
       - name: Test cumulative competitive strength credit
         run: python run_competitive_credit_research.py
+      # CSC sign mirror corrected; research only.
       - name: Test symmetric performance-result competition credit
         run: python run_symmetric_competitive_research.py
       - name: Run NFL-style joint ridge CFB research
