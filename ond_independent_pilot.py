@@ -113,6 +113,7 @@ for metric in FIELDS:
  baselines={'neutral':lambda r:0,'v15_coefficient_proxy':lambda r:k*r['opponent_allow'],'ond_ridge':lambda r:predict(c,r)}
  metrics[metric]={'trained':len(train),'coefficient':c,'v15_proxy_k':k,'validation_residual_sigma':round(residual_sigma,5),'validation_2025':{n:error(val,f) for n,f in baselines.items()},'test_2026':{n:error(test,f) for n,f in baselines.items()}}
  for r in test:
+  actual=r['actual'];expected=predict(c,r)
   if r['season']==2026:
    fbs_2026.append({'team':r['team'],'opponent':r['opponent'],'game_id':r['game_id'],'metric':metric,'dominance_residual_sd':round((actual-expected)/residual_sigma,3)})
   if r['team'] not in ('Miami','Texas Tech'):continue
