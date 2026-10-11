@@ -1,0 +1,233 @@
+{
+  "season": 2026,
+  "through_week": 6,
+  "method": "Same provider sorting, per-game caps and sample as 10% MOV experiment. Team spread uses home-team negative favorite convention.",
+  "teams": {
+    "New Mexico": {
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Central Michigan",
+          "home": true,
+          "points_for": 38.0,
+          "points_against": 7.0,
+          "actual_margin": 31.0,
+          "team_spread": -11.5,
+          "mov_residual": 19.5,
+          "provider": "DraftKings",
+          "game_id": "401864498"
+        },
+        {
+          "week": 2,
+          "opponent": "Mercyhurst",
+          "home": true,
+          "points_for": 70.0,
+          "points_against": 7.0,
+          "actual_margin": 63.0,
+          "team_spread": -42.5,
+          "mov_residual": 20.5,
+          "provider": "DraftKings",
+          "game_id": "401865252"
+        },
+        {
+          "week": 3,
+          "opponent": "Oklahoma",
+          "home": false,
+          "points_for": 6.0,
+          "points_against": 14.0,
+          "actual_margin": -8.0,
+          "team_spread": 21.5,
+          "mov_residual": 13.5,
+          "provider": "DraftKings",
+          "game_id": "401856690"
+        },
+        {
+          "week": 4,
+          "opponent": "New Mexico State",
+          "home": false,
+          "points_for": 42.0,
+          "points_against": 18.0,
+          "actual_margin": 24.0,
+          "team_spread": -11.5,
+          "mov_residual": 12.5,
+          "provider": "DraftKings",
+          "game_id": "401864579"
+        },
+        {
+          "week": 5,
+          "opponent": "UTEP",
+          "home": true,
+          "points_for": 61.0,
+          "points_against": 7.0,
+          "actual_margin": 54.0,
+          "team_spread": -23.5,
+          "mov_residual": 30.5,
+          "provider": "DraftKings",
+          "game_id": "401864514"
+        }
+      ],
+      "covered_games": 5,
+      "total_games": 5,
+      "sum_residual": 96.5,
+      "mean_residual": 19.3,
+      "shrunken_mean_residual": 10.722,
+      "mov_standardized_sd": 2.592,
+      "baseline_rank": 33,
+      "adjusted_rank": 21,
+      "adjusted_score": 1.024,
+      "prior_report_coverage": 4,
+      "coverage_matches_prior": false
+    },
+    "SMU": {
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Florida State",
+          "home": false,
+          "points_for": 27.0,
+          "points_against": 24.0,
+          "actual_margin": 3.0,
+          "team_spread": -3.0,
+          "mov_residual": 0.0,
+          "provider": "DraftKings",
+          "game_id": "401858212"
+        },
+        {
+          "week": 2,
+          "opponent": "UC Davis",
+          "home": true,
+          "points_for": 56.0,
+          "points_against": 10.0,
+          "actual_margin": 46.0,
+          "team_spread": -32.5,
+          "mov_residual": 13.5,
+          "provider": "DraftKings",
+          "game_id": "401858223"
+        },
+        {
+          "week": 3,
+          "opponent": "Louisville",
+          "home": false,
+          "points_for": 31.0,
+          "points_against": 41.0,
+          "actual_margin": -10.0,
+          "team_spread": 3.0,
+          "mov_residual": -7.0,
+          "provider": "DraftKings",
+          "game_id": "401858230"
+        },
+        {
+          "week": 4,
+          "opponent": "Missouri State",
+          "home": true,
+          "points_for": 34.0,
+          "points_against": 24.0,
+          "actual_margin": 10.0,
+          "team_spread": -30.5,
+          "mov_residual": -20.5,
+          "provider": "DraftKings",
+          "game_id": "401858241"
+        },
+        {
+          "week": 5,
+          "opponent": "Boston College",
+          "home": true,
+          "points_for": 25.0,
+          "points_against": 16.0,
+          "actual_margin": 9.0,
+          "team_spread": -21.5,
+          "mov_residual": -12.5,
+          "provider": "DraftKings",
+          "game_id": "401858246"
+        }
+      ],
+      "covered_games": 5,
+      "total_games": 5,
+      "sum_residual": -26.5,
+      "mean_residual": -5.3,
+      "shrunken_mean_residual": -2.944,
+      "mov_standardized_sd": -1.366,
+      "baseline_rank": 22,
+      "adjusted_rank": 37,
+      "adjusted_score": 0.786,
+      "prior_report_coverage": 4,
+      "coverage_matches_prior": false
+    },
+    "Oklahoma": {
+      "games": [
+        {
+          "week": 1,
+          "opponent": "UTEP",
+          "home": true,
+          "points_for": 51.0,
+          "points_against": 0.0,
+          "actual_margin": 51.0,
+          "team_spread": -40.5,
+          "mov_residual": 10.5,
+          "provider": "DraftKings",
+          "game_id": "401856664"
+        },
+        {
+          "week": 2,
+          "opponent": "Michigan",
+          "home": false,
+          "points_for": 10.0,
+          "points_against": 17.0,
+          "actual_margin": -7.0,
+          "team_spread": -5.5,
+          "mov_residual": -12.5,
+          "provider": "DraftKings",
+          "game_id": "401856679"
+        },
+        {
+          "week": 3,
+          "opponent": "New Mexico",
+          "home": true,
+          "points_for": 14.0,
+          "points_against": 6.0,
+          "actual_margin": 8.0,
+          "team_spread": -21.5,
+          "mov_residual": -13.5,
+          "provider": "DraftKings",
+          "game_id": "401856690"
+        },
+        {
+          "week": 4,
+          "opponent": "Georgia",
+          "home": false,
+          "points_for": 13.0,
+          "points_against": 41.0,
+          "actual_margin": -28.0,
+          "team_spread": 11.5,
+          "mov_residual": -16.5,
+          "provider": "DraftKings",
+          "game_id": "401856700"
+        },
+        {
+          "week": 6,
+          "opponent": "Texas",
+          "home": true,
+          "points_for": 27.0,
+          "points_against": 24.0,
+          "actual_margin": 3.0,
+          "team_spread": 7.5,
+          "mov_residual": 10.5,
+          "provider": "DraftKings",
+          "game_id": "401856717"
+        }
+      ],
+      "covered_games": 5,
+      "total_games": 5,
+      "sum_residual": -21.5,
+      "mean_residual": -4.3,
+      "shrunken_mean_residual": -2.389,
+      "mov_standardized_sd": -0.654,
+      "baseline_rank": 27,
+      "adjusted_rank": 38,
+      "adjusted_score": 0.775,
+      "prior_report_coverage": 5,
+      "coverage_matches_prior": true
+    }
+  },
+  "warning": "CFBD market line records are not guaranteed timestamp-certified kickoff closing odds; game-by-game data are market estimates, not verified closing lines."
+}
