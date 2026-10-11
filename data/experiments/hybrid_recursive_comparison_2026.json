@@ -1,0 +1,283 @@
+{
+  "model": "hybrid-recursive-composite-v1",
+  "fbs_population": 136,
+  "recursive": true,
+  "method": "Each metric adjusts with corresponding recursively updated opposing composite unit SD, synchronous damped fixed-point iterations. Full v15 metric categories, prior, FCS downside, 50/50 preserved.",
+  "limits": "Retrospective week7 ratings through week6; not a pregame predictive backtest. No calibration against future game results yet.",
+  "production_unchanged": true,
+  "variants": [
+    {
+      "coefficient_multiplier": 0.75,
+      "top10": [
+        "Miami",
+        "Notre Dame",
+        "Utah",
+        "Ohio State",
+        "Georgia",
+        "LSU",
+        "Indiana",
+        "Alabama",
+        "BYU",
+        "Texas"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "strength_sd": 2.341,
+          "v15_sd": 2.349,
+          "offense_rank": 1,
+          "defense_rank": 1
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 11,
+          "v15_rank": 10,
+          "strength_sd": 1.45,
+          "v15_sd": 1.4,
+          "offense_rank": 20,
+          "defense_rank": 13
+        },
+        {
+          "team": "New Mexico",
+          "rank": 23,
+          "v15_rank": 25,
+          "strength_sd": 0.985,
+          "v15_sd": 0.989,
+          "offense_rank": 36,
+          "defense_rank": 19
+        },
+        {
+          "team": "Liberty",
+          "rank": 40,
+          "v15_rank": 29,
+          "strength_sd": 0.751,
+          "v15_sd": 0.859,
+          "offense_rank": 39,
+          "defense_rank": 32
+        },
+        {
+          "team": "Alabama",
+          "rank": 8,
+          "v15_rank": 6,
+          "strength_sd": 1.616,
+          "v15_sd": 1.648,
+          "offense_rank": 6,
+          "defense_rank": 18
+        },
+        {
+          "team": "Georgia",
+          "rank": 5,
+          "v15_rank": 5,
+          "strength_sd": 1.679,
+          "v15_sd": 1.818,
+          "offense_rank": 2,
+          "defense_rank": 23
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "v15_rank": 2,
+          "strength_sd": 2.053,
+          "v15_sd": 2.088,
+          "offense_rank": 3,
+          "defense_rank": 2
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "v15_rank": 3,
+          "strength_sd": 1.942,
+          "v15_sd": 1.929,
+          "offense_rank": 4,
+          "defense_rank": 6
+        }
+      ],
+      "max_iterations": 10,
+      "max_delta": 0.000575
+    },
+    {
+      "coefficient_multiplier": 1.0,
+      "top10": [
+        "Miami",
+        "Notre Dame",
+        "Utah",
+        "Ohio State",
+        "LSU",
+        "Georgia",
+        "Alabama",
+        "Indiana",
+        "Texas",
+        "BYU"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "strength_sd": 2.299,
+          "v15_sd": 2.349,
+          "offense_rank": 1,
+          "defense_rank": 1
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 12,
+          "v15_rank": 10,
+          "strength_sd": 1.439,
+          "v15_sd": 1.4,
+          "offense_rank": 20,
+          "defense_rank": 13
+        },
+        {
+          "team": "New Mexico",
+          "rank": 27,
+          "v15_rank": 25,
+          "strength_sd": 0.915,
+          "v15_sd": 0.989,
+          "offense_rank": 38,
+          "defense_rank": 21
+        },
+        {
+          "team": "Liberty",
+          "rank": 43,
+          "v15_rank": 29,
+          "strength_sd": 0.639,
+          "v15_sd": 0.859,
+          "offense_rank": 41,
+          "defense_rank": 38
+        },
+        {
+          "team": "Alabama",
+          "rank": 7,
+          "v15_rank": 6,
+          "strength_sd": 1.68,
+          "v15_sd": 1.648,
+          "offense_rank": 3,
+          "defense_rank": 18
+        },
+        {
+          "team": "Georgia",
+          "rank": 6,
+          "v15_rank": 5,
+          "strength_sd": 1.682,
+          "v15_sd": 1.818,
+          "offense_rank": 2,
+          "defense_rank": 22
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "v15_rank": 2,
+          "strength_sd": 2.032,
+          "v15_sd": 2.088,
+          "offense_rank": 5,
+          "defense_rank": 4
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "v15_rank": 3,
+          "strength_sd": 1.919,
+          "v15_sd": 1.929,
+          "offense_rank": 4,
+          "defense_rank": 7
+        }
+      ],
+      "max_iterations": 11,
+      "max_delta": 0.000586
+    },
+    {
+      "coefficient_multiplier": 1.25,
+      "top10": [
+        "Miami",
+        "Notre Dame",
+        "Utah",
+        "Ohio State",
+        "Alabama",
+        "LSU",
+        "Georgia",
+        "Texas",
+        "Indiana",
+        "Oregon"
+      ],
+      "focus": [
+        {
+          "team": "Miami",
+          "rank": 1,
+          "v15_rank": 1,
+          "strength_sd": 2.254,
+          "v15_sd": 2.349,
+          "offense_rank": 1,
+          "defense_rank": 1
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 12,
+          "v15_rank": 10,
+          "strength_sd": 1.426,
+          "v15_sd": 1.4,
+          "offense_rank": 20,
+          "defense_rank": 14
+        },
+        {
+          "team": "New Mexico",
+          "rank": 33,
+          "v15_rank": 25,
+          "strength_sd": 0.846,
+          "v15_sd": 0.989,
+          "offense_rank": 40,
+          "defense_rank": 27
+        },
+        {
+          "team": "Liberty",
+          "rank": 46,
+          "v15_rank": 29,
+          "strength_sd": 0.524,
+          "v15_sd": 0.859,
+          "offense_rank": 48,
+          "defense_rank": 41
+        },
+        {
+          "team": "Alabama",
+          "rank": 5,
+          "v15_rank": 6,
+          "strength_sd": 1.74,
+          "v15_sd": 1.648,
+          "offense_rank": 3,
+          "defense_rank": 17
+        },
+        {
+          "team": "Georgia",
+          "rank": 7,
+          "v15_rank": 5,
+          "strength_sd": 1.685,
+          "v15_sd": 1.818,
+          "offense_rank": 2,
+          "defense_rank": 21
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "v15_rank": 2,
+          "strength_sd": 2.013,
+          "v15_sd": 2.088,
+          "offense_rank": 5,
+          "defense_rank": 5
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "v15_rank": 3,
+          "strength_sd": 1.893,
+          "v15_sd": 1.929,
+          "offense_rank": 4,
+          "defense_rank": 7
+        }
+      ],
+      "max_iterations": 12,
+      "max_delta": 0.000639
+    }
+  ]
+}
