@@ -26,11 +26,11 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open("data/mlb/draft-classes.json"))
-          assert 1<=len(d["years"])<=12
+          assert 1<=len(d["years"])<=7
           for y,teams in d["years"].items():
               assert len(teams)==30,(y,len(teams))
               picks=[p for a in teams.values() for p in a]
-              assert len(picks)>=(130 if int(y)==2020 else 300),(y,len(picks))
+              assert len(picks)>=(130 if int(y)==2020 else 450),(y,len(picks))
           PY
       - name: Commit verified dataset
         run: |
