@@ -1,0 +1,44 @@
+name: MLB Draft API Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/mlb-draft-api-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Probe official draft API and persist response shapes
+        run: |
+          mkdir -p data/mlb
+          python - <<'PY'
+          import urllib.request,json,datetime
+          report={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"samples":{}}
+          for year in (2020,2025,2026):
+            for q in (f"https://statsapi.mlb.com/api/v1/draft/{year}?round=1&limit=100",f"https://statsapi.mlb.com/api/v1/draft/{year}?limit=1500"):
+              try:
+                req=urllib.request.Request(q,headers={"User-Agent":"Mozilla/5.0"})
+                with urllib.request.urlopen(req,timeout=25) as resp: d=json.load(resp)
+                dr=d.get("drafts",{})
+                rounds=dr.get("rounds",[])
+                first=next((p for r in rounds for p in r.get("picks",[]) if p),{})
+                report["samples"][q]={"top_keys":list(d),"draft_type":str(type(dr)),"draft_keys":list(dr) if isinstance(dr,dict) else None,"round_count":len(rounds),"first_round_keys":list(rounds[0]) if rounds else [],"first_pick":first,"total_picks":sum(len(r.get("picks",[])) for r in rounds)}
+              except Exception as exc:report["samples"][q]={"error":str(exc)}
+          with open("data/mlb/draft-api-probe.json","w") as f: json.dump(report,f,indent=2)
+          print(json.dumps(report)[:2000])
+          PY
+      - name: Publish diagnostics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mlb/draft-api-probe.json
+          git diff --cached --quiet && exit 0
+          git commit -m "diagnostics(mlb): capture official draft API response schema"
+          git pull --rebase -X theirs origin main
+          git push origin main
