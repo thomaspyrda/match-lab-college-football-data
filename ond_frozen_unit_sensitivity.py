@@ -12,6 +12,7 @@ base=json.loads((ROOT/'data/experiments/recursive_unit_strength_v15_2026_week_7.
 prior=json.loads((ROOT/'data/experiments/recursive_unit_strength_v15_2026_week_6.json').read_text())
 pr={r['team']:r for r in prior['rankings']}
 prior_map={t:{'off':r['offensive_strength_sd'],'def':r['defensive_strength_sd']} for t,r in pr.items()}
+(ROOT/'data/experiments/ond_frozen_units_week6.json').write_text(json.dumps(prior_map)+'\n')
 new=src
 needle='    hist=json.loads(HISTORY.read_text())["games"]'
 assert needle in new
