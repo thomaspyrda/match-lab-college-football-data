@@ -12,12 +12,14 @@ with urllib.request.urlopen(req,timeout=120) as f:lines=json.load(f)
 by_id=defaultdict(list)
 for r in lines:by_id[str(r['id'])].append(r)
 teams=['New Mexico','SMU','Oklahoma']
+eligible={r['team'] for r in existing['rankings']}
 result={}
 for team in teams:
     rows=[]
     for g in sorted(games,key=lambda g:(g.get('week',0),g.get('start_date',''))):
         home=g.get('home');away=g.get('away')
         if team not in (home,away):continue
+        if home not in eligible or away not in eligible:continue
         is_home=team==home;opp=away if is_home else home
         hp=float(g['result']['home_points']);ap=float(g['result']['away_points'])
         margin=(hp-ap)*(1 if is_home else -1)
