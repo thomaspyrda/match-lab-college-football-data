@@ -1,0 +1,216 @@
+{
+  "model": "hybrid-quality-results-10pct",
+  "scope": "2026 completed games through week 6",
+  "production_unchanged": true,
+  "description": "90% original linear recursive hybrid strength, 10% opponent-quality-adjusted win-loss surprise rating. Actual result minus expected based on opponent-adjusted baseline strength. No margin repeated. 4-game reliability shrinkage.",
+  "caveats": [
+    "1.2 logistic slope and 4-game shrink are provisional, not empirically calibrated.",
+    "Current-season fitted strengths are used for same-season opponent qualities; descriptive retrospective metric, not pregame predictions.",
+    "Result residuals and statistical strength remain correlated."
+  ],
+  "top15": [
+    {
+      "rank": 1,
+      "team": "Miami",
+      "strength_sd": 2.281,
+      "hybrid_rank": 1,
+      "qrr_sd": 0.4306,
+      "wins": 4,
+      "losses": 0
+    },
+    {
+      "rank": 2,
+      "team": "Notre Dame",
+      "strength_sd": 2.05,
+      "hybrid_rank": 2,
+      "qrr_sd": 0.6999,
+      "wins": 6,
+      "losses": 0
+    },
+    {
+      "rank": 3,
+      "team": "Utah",
+      "strength_sd": 1.933,
+      "hybrid_rank": 3,
+      "qrr_sd": 0.6315,
+      "wins": 4,
+      "losses": 0
+    },
+    {
+      "rank": 4,
+      "team": "Georgia",
+      "strength_sd": 1.776,
+      "hybrid_rank": 6,
+      "qrr_sd": 1.3127,
+      "wins": 5,
+      "losses": 0
+    },
+    {
+      "rank": 5,
+      "team": "Ohio State",
+      "strength_sd": 1.72,
+      "hybrid_rank": 4,
+      "qrr_sd": -0.0754,
+      "wins": 5,
+      "losses": 1
+    },
+    {
+      "rank": 6,
+      "team": "Alabama",
+      "strength_sd": 1.706,
+      "hybrid_rank": 7,
+      "qrr_sd": 0.6788,
+      "wins": 5,
+      "losses": 1
+    },
+    {
+      "rank": 7,
+      "team": "Indiana",
+      "strength_sd": 1.693,
+      "hybrid_rank": 8,
+      "qrr_sd": 1.2835,
+      "wins": 5,
+      "losses": 0
+    },
+    {
+      "rank": 8,
+      "team": "BYU",
+      "strength_sd": 1.642,
+      "hybrid_rank": 10,
+      "qrr_sd": 1.2603,
+      "wins": 4,
+      "losses": 0
+    },
+    {
+      "rank": 9,
+      "team": "Texas",
+      "strength_sd": 1.589,
+      "hybrid_rank": 9,
+      "qrr_sd": 0.6376,
+      "wins": 4,
+      "losses": 1
+    },
+    {
+      "rank": 10,
+      "team": "Texas Tech",
+      "strength_sd": 1.545,
+      "hybrid_rank": 12,
+      "qrr_sd": 1.3575,
+      "wins": 4,
+      "losses": 0
+    },
+    {
+      "rank": 11,
+      "team": "LSU",
+      "strength_sd": 1.47,
+      "hybrid_rank": 5,
+      "qrr_sd": -1.5301,
+      "wins": 3,
+      "losses": 2
+    },
+    {
+      "rank": 12,
+      "team": "UCLA",
+      "strength_sd": 1.426,
+      "hybrid_rank": 13,
+      "qrr_sd": 1.3792,
+      "wins": 5,
+      "losses": 0
+    },
+    {
+      "rank": 13,
+      "team": "Oregon",
+      "strength_sd": 1.366,
+      "hybrid_rank": 11,
+      "qrr_sd": -0.9239,
+      "wins": 2,
+      "losses": 2
+    },
+    {
+      "rank": 14,
+      "team": "Houston",
+      "strength_sd": 1.226,
+      "hybrid_rank": 16,
+      "qrr_sd": 1.0507,
+      "wins": 4,
+      "losses": 1
+    },
+    {
+      "rank": 15,
+      "team": "Wisconsin",
+      "strength_sd": 1.182,
+      "hybrid_rank": 15,
+      "qrr_sd": 0.565,
+      "wins": 3,
+      "losses": 1
+    }
+  ],
+  "focus": [
+    {
+      "team": "Miami",
+      "rank": 1,
+      "games": 4,
+      "wins": 4,
+      "losses": 0,
+      "raw_result_surprise": 0.03624,
+      "qrr_sd": 0.4306,
+      "baseline_rank": 1,
+      "baseline_sd": 2.299
+    },
+    {
+      "team": "Notre Dame",
+      "rank": 2,
+      "games": 6,
+      "wins": 6,
+      "losses": 0,
+      "raw_result_surprise": 0.05904,
+      "qrr_sd": 0.6999,
+      "baseline_rank": 2,
+      "baseline_sd": 2.032
+    },
+    {
+      "team": "Utah",
+      "rank": 3,
+      "games": 4,
+      "wins": 4,
+      "losses": 0,
+      "raw_result_surprise": 0.05325,
+      "qrr_sd": 0.6315,
+      "baseline_rank": 3,
+      "baseline_sd": 1.9188
+    },
+    {
+      "team": "Texas Tech",
+      "rank": 10,
+      "games": 4,
+      "wins": 4,
+      "losses": 0,
+      "raw_result_surprise": 0.11474,
+      "qrr_sd": 1.3575,
+      "baseline_rank": 12,
+      "baseline_sd": 1.4393
+    },
+    {
+      "team": "New Mexico",
+      "rank": 33,
+      "games": 4,
+      "wins": 3,
+      "losses": 1,
+      "raw_result_surprise": -0.02592,
+      "qrr_sd": -0.3034,
+      "baseline_rank": 27,
+      "baseline_sd": 0.9151
+    },
+    {
+      "team": "Liberty",
+      "rank": 44,
+      "games": 5,
+      "wins": 4,
+      "losses": 1,
+      "raw_result_surprise": -0.01503,
+      "qrr_sd": -0.1748,
+      "baseline_rank": 43,
+      "baseline_sd": 0.6388
+    }
+  ]
+}
