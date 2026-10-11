@@ -1,0 +1,905 @@
+{
+  "schema": "empirical-opponent-expectation-v1",
+  "strength_measure": "Historical opponent pregame allowed-performance composite per metric; NOT historical v15 opponent-unit strength snapshots. Positive means stronger defense.",
+  "limitations": "Observational conditional averages confound opponent and own offensive quality. Historical games are ordered chronologically; opponent prior shrinkage to three games. Results test statistical expectation fit, not a verified overall FBS team-strength model. Current v15 coefficient used as proxy on this independent strength feature; not exact v15 evaluation.",
+  "training": [
+    2022,
+    2023,
+    2024
+  ],
+  "validation": 2025,
+  "test": 2026,
+  "summary": {
+    "validation_2025_rmse": {
+      "metrics": 13,
+      "avg_rmse": {
+        "v15_coefficient_proxy": 0.98531,
+        "linear": 0.97318,
+        "cubic": 0.97328
+      },
+      "cubic_beats_linear_count": 4
+    },
+    "test_2026_rmse": {
+      "metrics": 13,
+      "avg_rmse": {
+        "v15_coefficient_proxy": 1.01147,
+        "linear": 0.99727,
+        "cubic": 0.99716
+      },
+      "cubic_beats_linear_count": 7
+    }
+  },
+  "metrics": {
+    "ppa": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 1.01051,
+        "linear": 0.97836,
+        "cubic": 0.97829
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.01031,
+        "linear": 0.97701,
+        "cubic": 0.97709
+      },
+      "coefficients": {
+        "linear": [
+          -0.12635,
+          -0.60429,
+          0.26728
+        ],
+        "cubic": [
+          -0.12637,
+          -0.60048,
+          -0.01009,
+          0.26727
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4648,
+          "train_actual_metric_z": 0.3189,
+          "validation_n": 299,
+          "validation_actual_metric_z": 0.2114
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1342,
+          "train_actual_metric_z": 0.1059,
+          "validation_n": 337,
+          "validation_actual_metric_z": 0.1508
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.0111,
+          "train_actual_metric_z": -0.0706,
+          "validation_n": 309,
+          "validation_actual_metric_z": -0.0239
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1744,
+          "train_actual_metric_z": -0.0751,
+          "validation_n": 293,
+          "validation_actual_metric_z": -0.1929
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.474,
+          "train_actual_metric_z": -0.2791,
+          "validation_n": 286,
+          "validation_actual_metric_z": -0.4323
+        }
+      ]
+    },
+    "success_rate": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.99048,
+        "linear": 0.96204,
+        "cubic": 0.96252
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.04693,
+        "linear": 1.01601,
+        "cubic": 1.01501
+      },
+      "coefficients": {
+        "linear": [
+          -0.11444,
+          -0.67816,
+          0.24664
+        ],
+        "cubic": [
+          -0.11412,
+          -0.72679,
+          0.12986,
+          0.24641
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4654,
+          "train_actual_metric_z": 0.3366,
+          "validation_n": 276,
+          "validation_actual_metric_z": 0.2403
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.143,
+          "train_actual_metric_z": 0.1375,
+          "validation_n": 375,
+          "validation_actual_metric_z": 0.1063
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 894,
+          "train_avg_opponent_strength": 0.0115,
+          "train_actual_metric_z": -0.0277,
+          "validation_n": 319,
+          "validation_actual_metric_z": 0.0615
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 891,
+          "train_avg_opponent_strength": 0.175,
+          "train_actual_metric_z": -0.1239,
+          "validation_n": 298,
+          "validation_actual_metric_z": -0.1241
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4877,
+          "train_actual_metric_z": -0.3228,
+          "validation_n": 256,
+          "validation_actual_metric_z": -0.4694
+        }
+      ]
+    },
+    "passing_ppa": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.98967,
+        "linear": 0.9771,
+        "cubic": 0.97695
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.03209,
+        "linear": 1.01976,
+        "cubic": 1.01993
+      },
+      "coefficients": {
+        "linear": [
+          -0.10209,
+          -0.44523,
+          0.20503
+        ],
+        "cubic": [
+          -0.10252,
+          -0.47279,
+          0.04523,
+          0.20498
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4145,
+          "train_actual_metric_z": 0.1914,
+          "validation_n": 274,
+          "validation_actual_metric_z": 0.1573
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1362,
+          "train_actual_metric_z": 0.0821,
+          "validation_n": 275,
+          "validation_actual_metric_z": 0.1053
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": -0.0003,
+          "train_actual_metric_z": -0.0318,
+          "validation_n": 287,
+          "validation_actual_metric_z": -0.0403
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1325,
+          "train_actual_metric_z": -0.0382,
+          "validation_n": 322,
+          "validation_actual_metric_z": -0.127
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4233,
+          "train_actual_metric_z": -0.2035,
+          "validation_n": 366,
+          "validation_actual_metric_z": -0.2704
+        }
+      ]
+    },
+    "passing_success": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.99861,
+        "linear": 0.9814,
+        "cubic": 0.9815
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.02748,
+        "linear": 1.00823,
+        "cubic": 1.0081
+      },
+      "coefficients": {
+        "linear": [
+          -0.10065,
+          -0.42638,
+          0.20045
+        ],
+        "cubic": [
+          -0.10024,
+          -0.47015,
+          0.14524,
+          0.20052
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.434,
+          "train_actual_metric_z": 0.2084,
+          "validation_n": 336,
+          "validation_actual_metric_z": 0.2456
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1336,
+          "train_actual_metric_z": 0.0605,
+          "validation_n": 340,
+          "validation_actual_metric_z": 0.0975
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.0063,
+          "train_actual_metric_z": -0.0243,
+          "validation_n": 298,
+          "validation_actual_metric_z": 0.0032
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.1453,
+          "train_actual_metric_z": -0.0562,
+          "validation_n": 259,
+          "validation_actual_metric_z": -0.0296
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4112,
+          "train_actual_metric_z": -0.1885,
+          "validation_n": 291,
+          "validation_actual_metric_z": -0.3277
+        }
+      ]
+    },
+    "rushing_ppa": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.98697,
+        "linear": 0.97681,
+        "cubic": 0.977
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 0.99698,
+        "linear": 0.9842,
+        "cubic": 0.98384
+      },
+      "coefficients": {
+        "linear": [
+          -0.06236,
+          -0.48963,
+          0.13776
+        ],
+        "cubic": [
+          -0.06253,
+          -0.50351,
+          0.03565,
+          0.13782
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4174,
+          "train_actual_metric_z": 0.2437,
+          "validation_n": 222,
+          "validation_actual_metric_z": 0.1543
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1277,
+          "train_actual_metric_z": 0.0753,
+          "validation_n": 352,
+          "validation_actual_metric_z": 0.025
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.0126,
+          "train_actual_metric_z": -0.078,
+          "validation_n": 357,
+          "validation_actual_metric_z": -0.1034
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1578,
+          "train_actual_metric_z": -0.0658,
+          "validation_n": 303,
+          "validation_actual_metric_z": -0.0571
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4413,
+          "train_actual_metric_z": -0.1753,
+          "validation_n": 290,
+          "validation_actual_metric_z": -0.2763
+        }
+      ]
+    },
+    "rushing_success": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.97365,
+        "linear": 0.96167,
+        "cubic": 0.9614
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 0.98328,
+        "linear": 0.96824,
+        "cubic": 0.96861
+      },
+      "coefficients": {
+        "linear": [
+          -0.07459,
+          -0.61383,
+          0.17184
+        ],
+        "cubic": [
+          -0.07423,
+          -0.58322,
+          -0.08618,
+          0.17171
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4308,
+          "train_actual_metric_z": 0.2876,
+          "validation_n": 246,
+          "validation_actual_metric_z": 0.1213
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 894,
+          "train_avg_opponent_strength": -0.1356,
+          "train_actual_metric_z": 0.1283,
+          "validation_n": 358,
+          "validation_actual_metric_z": 0.0877
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 891,
+          "train_avg_opponent_strength": 0.0105,
+          "train_actual_metric_z": -0.0901,
+          "validation_n": 327,
+          "validation_actual_metric_z": -0.0577
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1689,
+          "train_actual_metric_z": -0.055,
+          "validation_n": 324,
+          "validation_actual_metric_z": -0.0545
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4795,
+          "train_actual_metric_z": -0.2712,
+          "validation_n": 269,
+          "validation_actual_metric_z": -0.3242
+        }
+      ]
+    },
+    "passing_explosiveness": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.96943,
+        "linear": 0.9682,
+        "cubic": 0.96832
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 0.88255,
+        "linear": 0.88247,
+        "cubic": 0.88321
+      },
+      "coefficients": {
+        "linear": [
+          -0.01419,
+          -0.29192,
+          0.02805
+        ],
+        "cubic": [
+          -0.0116,
+          -0.35986,
+          0.13646,
+          0.02706
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.3995,
+          "train_actual_metric_z": 0.1364,
+          "validation_n": 198,
+          "validation_actual_metric_z": 0.103
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1113,
+          "train_actual_metric_z": 0.0641,
+          "validation_n": 317,
+          "validation_actual_metric_z": -0.0199
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.0087,
+          "train_actual_metric_z": -0.0417,
+          "validation_n": 304,
+          "validation_actual_metric_z": -0.0931
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1327,
+          "train_actual_metric_z": -0.0125,
+          "validation_n": 352,
+          "validation_actual_metric_z": -0.0094
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.3666,
+          "train_actual_metric_z": -0.1464,
+          "validation_n": 353,
+          "validation_actual_metric_z": -0.1238
+        }
+      ]
+    },
+    "rushing_explosiveness": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.89205,
+        "linear": 0.89104,
+        "cubic": 0.89104
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 0.99243,
+        "linear": 0.99048,
+        "cubic": 0.99015
+      },
+      "coefficients": {
+        "linear": [
+          -0.02574,
+          -0.12597,
+          0.05272
+        ],
+        "cubic": [
+          -0.02604,
+          -0.14351,
+          0.01919,
+          0.0526
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.3409,
+          "train_actual_metric_z": 0.016,
+          "validation_n": 356,
+          "validation_actual_metric_z": 0.0428
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1119,
+          "train_actual_metric_z": 0.0298,
+          "validation_n": 278,
+          "validation_actual_metric_z": 0.0949
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": -0.0022,
+          "train_actual_metric_z": 0.0426,
+          "validation_n": 296,
+          "validation_actual_metric_z": -0.0246
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1107,
+          "train_actual_metric_z": -0.0383,
+          "validation_n": 351,
+          "validation_actual_metric_z": 0.0233
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.3687,
+          "train_actual_metric_z": -0.0501,
+          "validation_n": 243,
+          "validation_actual_metric_z": -0.0351
+        }
+      ]
+    },
+    "line_yards": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 1.03955,
+        "linear": 1.03118,
+        "cubic": 1.0312
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.03805,
+        "linear": 1.02267,
+        "cubic": 1.02281
+      },
+      "coefficients": {
+        "linear": [
+          -0.06232,
+          -0.56826,
+          0.14929
+        ],
+        "cubic": [
+          -0.06249,
+          -0.57451,
+          0.01637,
+          0.14929
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4175,
+          "train_actual_metric_z": 0.2804,
+          "validation_n": 146,
+          "validation_actual_metric_z": 0.1016
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1335,
+          "train_actual_metric_z": 0.1003,
+          "validation_n": 251,
+          "validation_actual_metric_z": -0.0112
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.0054,
+          "train_actual_metric_z": -0.0749,
+          "validation_n": 323,
+          "validation_actual_metric_z": -0.2403
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1544,
+          "train_actual_metric_z": -0.0485,
+          "validation_n": 375,
+          "validation_actual_metric_z": -0.2012
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4996,
+          "train_actual_metric_z": -0.2574,
+          "validation_n": 429,
+          "validation_actual_metric_z": -0.3622
+        }
+      ]
+    },
+    "power_success": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.98491,
+        "linear": 0.98358,
+        "cubic": 0.98417
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.01278,
+        "linear": 1.00697,
+        "cubic": 1.00667
+      },
+      "coefficients": {
+        "linear": [
+          -0.03367,
+          -0.23203,
+          0.07463
+        ],
+        "cubic": [
+          -0.03878,
+          -0.34466,
+          0.43545,
+          0.0747
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 896,
+          "train_avg_opponent_strength": -0.3449,
+          "train_actual_metric_z": 0.0589,
+          "validation_n": 250,
+          "validation_actual_metric_z": -0.0044
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 902,
+          "train_avg_opponent_strength": -0.1427,
+          "train_actual_metric_z": 0.0737,
+          "validation_n": 324,
+          "validation_actual_metric_z": 0.0418
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 880,
+          "train_avg_opponent_strength": -0.0105,
+          "train_actual_metric_z": -0.01,
+          "validation_n": 308,
+          "validation_actual_metric_z": -0.0575
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1281,
+          "train_actual_metric_z": 0.022,
+          "validation_n": 394,
+          "validation_actual_metric_z": -0.0493
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4509,
+          "train_actual_metric_z": -0.1457,
+          "validation_n": 248,
+          "validation_actual_metric_z": -0.0857
+        }
+      ]
+    },
+    "standard_down_success": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 1.00906,
+        "linear": 0.99033,
+        "cubic": 0.99042
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.03488,
+        "linear": 1.01611,
+        "cubic": 1.01604
+      },
+      "coefficients": {
+        "linear": [
+          -0.09767,
+          -0.61366,
+          0.21468
+        ],
+        "cubic": [
+          -0.09776,
+          -0.62268,
+          0.0235,
+          0.21463
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.4371,
+          "train_actual_metric_z": 0.2813,
+          "validation_n": 330,
+          "validation_actual_metric_z": 0.1844
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1411,
+          "train_actual_metric_z": 0.1219,
+          "validation_n": 351,
+          "validation_actual_metric_z": 0.1287
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.004,
+          "train_actual_metric_z": -0.0309,
+          "validation_n": 290,
+          "validation_actual_metric_z": -0.006
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1695,
+          "train_actual_metric_z": -0.091,
+          "validation_n": 290,
+          "validation_actual_metric_z": -0.1189
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4835,
+          "train_actual_metric_z": -0.2813,
+          "validation_n": 263,
+          "validation_actual_metric_z": -0.3402
+        }
+      ]
+    },
+    "passing_down_success": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 1.00545,
+        "linear": 0.9946,
+        "cubic": 0.99457
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 1.09502,
+        "linear": 1.08033,
+        "cubic": 1.07932
+      },
+      "coefficients": {
+        "linear": [
+          -0.09792,
+          -0.33885,
+          0.19534
+        ],
+        "cubic": [
+          -0.09698,
+          -0.37176,
+          0.11512,
+          0.19519
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.429,
+          "train_actual_metric_z": 0.1159,
+          "validation_n": 248,
+          "validation_actual_metric_z": 0.038
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1277,
+          "train_actual_metric_z": 0.098,
+          "validation_n": 321,
+          "validation_actual_metric_z": -0.0025
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": 0.0089,
+          "train_actual_metric_z": -0.0243,
+          "validation_n": 318,
+          "validation_actual_metric_z": 0.0267
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1495,
+          "train_actual_metric_z": -0.0295,
+          "validation_n": 323,
+          "validation_actual_metric_z": -0.0767
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.3947,
+          "train_actual_metric_z": -0.1601,
+          "validation_n": 314,
+          "validation_actual_metric_z": -0.1896
+        }
+      ]
+    },
+    "stuff_avoidance": {
+      "validation_2025_rmse": {
+        "v15_coefficient_proxy": 0.95869,
+        "linear": 0.955,
+        "cubic": 0.95532
+      },
+      "test_2026_rmse": {
+        "v15_coefficient_proxy": 0.99633,
+        "linear": 0.992,
+        "cubic": 0.99235
+      },
+      "coefficients": {
+        "linear": [
+          -0.03629,
+          -0.56574,
+          0.09214
+        ],
+        "cubic": [
+          -0.03418,
+          -0.51892,
+          -0.12867,
+          0.09202
+        ]
+      },
+      "opponent_quintiles": [
+        {
+          "strength_quantile": 1,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.3899,
+          "train_actual_metric_z": 0.2198,
+          "validation_n": 115,
+          "validation_actual_metric_z": 0.0607
+        },
+        {
+          "strength_quantile": 2,
+          "train_n": 893,
+          "train_avg_opponent_strength": -0.1522,
+          "train_actual_metric_z": 0.1017,
+          "validation_n": 255,
+          "validation_actual_metric_z": 0.0265
+        },
+        {
+          "strength_quantile": 3,
+          "train_n": 892,
+          "train_avg_opponent_strength": -0.0058,
+          "train_actual_metric_z": 0.0136,
+          "validation_n": 319,
+          "validation_actual_metric_z": -0.2767
+        },
+        {
+          "strength_quantile": 4,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.1426,
+          "train_actual_metric_z": -0.0603,
+          "validation_n": 395,
+          "validation_actual_metric_z": -0.1687
+        },
+        {
+          "strength_quantile": 5,
+          "train_n": 893,
+          "train_avg_opponent_strength": 0.4918,
+          "train_actual_metric_z": -0.2747,
+          "validation_n": 440,
+          "validation_actual_metric_z": -0.325
+        }
+      ]
+    }
+  }
+}
