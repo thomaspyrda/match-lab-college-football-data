@@ -33,11 +33,12 @@
     "ppa": {
       "trained": 4464,
       "coefficient": [
-        -0.12620530021234624,
-        0.6055047168997875,
-        0.2670264910696242
+        -0.12620530021234616,
+        0.6055047168997876,
+        0.267026491069624
       ],
       "v15_proxy_k": 0.162136,
+      "validation_residual_sigma": 0.97705,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -77,10 +78,11 @@
       "trained": 4464,
       "coefficient": [
         -0.11430918217855272,
-        0.6794855335520247,
+        0.6794855335520246,
         0.246406082605319
       ],
       "v15_proxy_k": 0.206633,
+      "validation_residual_sigma": 0.96164,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -120,10 +122,11 @@
       "trained": 4464,
       "coefficient": [
         -0.1019861142858329,
-        0.4462958506468843,
-        0.2048306641618065
+        0.44629585064688415,
+        0.20483066416180648
       ],
       "v15_proxy_k": 0.116637,
+      "validation_residual_sigma": 0.97633,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -162,11 +165,12 @@
     "passing_success": {
       "trained": 4464,
       "coefficient": [
-        -0.10055565437403058,
-        0.4274394304669254,
-        0.2002651919850721
+        -0.1005556543740306,
+        0.4274394304669255,
+        0.20026519198507212
       ],
       "v15_proxy_k": 0.122741,
+      "validation_residual_sigma": 0.98138,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -205,11 +209,12 @@
     "rushing_ppa": {
       "trained": 4464,
       "coefficient": [
-        -0.062278859382773104,
-        0.4907694534283146,
-        0.13762390413061323
+        -0.06227885938277313,
+        0.49076945342831485,
+        0.1376239041306133
       ],
       "v15_proxy_k": 0.201272,
+      "validation_residual_sigma": 0.97552,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -248,11 +253,12 @@
     "rushing_success": {
       "trained": 4464,
       "coefficient": [
-        -0.07447820035305983,
+        -0.07447820035305987,
         0.6151362381132223,
-        0.17167619116194474
+        0.1716761911619448
       ],
       "v15_proxy_k": 0.250584,
+      "validation_residual_sigma": 0.9611,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -291,11 +297,12 @@
     "passing_explosiveness": {
       "trained": 4464,
       "coefficient": [
-        -0.014173520581481382,
-        0.2927469812364374,
-        0.02802145511697942
+        -0.01417352058148139,
+        0.29274698123643733,
+        0.028021455116979423
       ],
       "v15_proxy_k": 0.123217,
+      "validation_residual_sigma": 0.96778,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -334,11 +341,12 @@
     "rushing_explosiveness": {
       "trained": 4464,
       "coefficient": [
-        -0.025715269998033516,
+        -0.02571526999803347,
         0.1263620180856444,
-        0.052671079859954464
+        0.05267107985995439
       ],
       "v15_proxy_k": 0.036396,
+      "validation_residual_sigma": 0.89085,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -377,11 +385,12 @@
     "line_yards": {
       "trained": 4464,
       "coefficient": [
-        -0.06222684714380679,
-        0.5694575515420262,
-        0.14915004698277168
+        -0.06222684714380676,
+        0.5694575515420265,
+        0.14915004698277165
       ],
       "v15_proxy_k": 0.279417,
+      "validation_residual_sigma": 1.02239,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -420,11 +429,12 @@
     "power_success": {
       "trained": 4464,
       "coefficient": [
-        -0.03362705035517602,
-        0.23267386755739047,
-        0.07456027837179263
+        -0.03362705035517597,
+        0.2326738675573905,
+        0.07456027837179258
       ],
       "v15_proxy_k": 0.11994,
+      "validation_residual_sigma": 0.98313,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -463,11 +473,12 @@
     "standard_down_success": {
       "trained": 4464,
       "coefficient": [
-        -0.0975448496858851,
-        0.6149392443941794,
-        0.21447799181704852
+        -0.09754484968588509,
+        0.614939244394179,
+        0.2144779918170485
       ],
       "v15_proxy_k": 0.212539,
+      "validation_residual_sigma": 0.99008,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -506,11 +517,12 @@
     "passing_down_success": {
       "trained": 4464,
       "coefficient": [
-        -0.09782771689826723,
-        0.33973523726685306,
-        0.19515902370956795
+        -0.0978277168982672,
+        0.3397352372668531,
+        0.1951590237095679
       ],
       "v15_proxy_k": 0.099421,
+      "validation_residual_sigma": 0.99388,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -549,11 +561,12 @@
     "stuff_avoidance": {
       "trained": 4464,
       "coefficient": [
-        -0.03622278096318127,
-        0.5670117776341068,
-        0.09205490897084671
+        -0.03622278096318133,
+        0.5670117776341066,
+        0.0920549089708468
       ],
       "v15_proxy_k": 0.314395,
+      "validation_residual_sigma": 0.94653,
       "validation_2025": {
         "neutral": {
           "n": 1524,
@@ -598,6 +611,7 @@
       "observed_z": 1.861,
       "expected_average_fbs_z": -0.166,
       "dominance_residual_z": 2.026,
+      "dominance_residual_sd": 2.074,
       "opponent_prior_games": 1
     },
     {
@@ -607,6 +621,7 @@
       "observed_z": 0.568,
       "expected_average_fbs_z": -0.152,
       "dominance_residual_z": 0.72,
+      "dominance_residual_sd": 0.737,
       "opponent_prior_games": 2
     },
     {
@@ -616,6 +631,7 @@
       "observed_z": 2.261,
       "expected_average_fbs_z": 0.239,
       "dominance_residual_z": 2.022,
+      "dominance_residual_sd": 2.07,
       "opponent_prior_games": 2
     },
     {
@@ -625,6 +641,7 @@
       "observed_z": 0.883,
       "expected_average_fbs_z": -0.354,
       "dominance_residual_z": 1.237,
+      "dominance_residual_sd": 1.266,
       "opponent_prior_games": 4
     },
     {
@@ -634,6 +651,7 @@
       "observed_z": 1.732,
       "expected_average_fbs_z": -0.228,
       "dominance_residual_z": 1.959,
+      "dominance_residual_sd": 2.037,
       "opponent_prior_games": 1
     },
     {
@@ -643,6 +661,7 @@
       "observed_z": 0.222,
       "expected_average_fbs_z": -0.012,
       "dominance_residual_z": 0.235,
+      "dominance_residual_sd": 0.244,
       "opponent_prior_games": 2
     },
     {
@@ -652,6 +671,7 @@
       "observed_z": 2.291,
       "expected_average_fbs_z": 0.301,
       "dominance_residual_z": 1.99,
+      "dominance_residual_sd": 2.07,
       "opponent_prior_games": 2
     },
     {
@@ -661,6 +681,7 @@
       "observed_z": 0.993,
       "expected_average_fbs_z": -0.224,
       "dominance_residual_z": 1.217,
+      "dominance_residual_sd": 1.266,
       "opponent_prior_games": 4
     },
     {
@@ -670,6 +691,7 @@
       "observed_z": 2.211,
       "expected_average_fbs_z": -0.122,
       "dominance_residual_z": 2.333,
+      "dominance_residual_sd": 2.389,
       "opponent_prior_games": 1
     },
     {
@@ -679,6 +701,7 @@
       "observed_z": 0.637,
       "expected_average_fbs_z": -0.089,
       "dominance_residual_z": 0.725,
+      "dominance_residual_sd": 0.743,
       "opponent_prior_games": 2
     },
     {
@@ -688,6 +711,7 @@
       "observed_z": 1.497,
       "expected_average_fbs_z": 0.01,
       "dominance_residual_z": 1.487,
+      "dominance_residual_sd": 1.523,
       "opponent_prior_games": 2
     },
     {
@@ -697,6 +721,7 @@
       "observed_z": 0.285,
       "expected_average_fbs_z": -0.326,
       "dominance_residual_z": 0.612,
+      "dominance_residual_sd": 0.627,
       "opponent_prior_games": 4
     },
     {
@@ -706,6 +731,7 @@
       "observed_z": 2.487,
       "expected_average_fbs_z": -0.165,
       "dominance_residual_z": 2.652,
+      "dominance_residual_sd": 2.702,
       "opponent_prior_games": 1
     },
     {
@@ -715,6 +741,7 @@
       "observed_z": 0.938,
       "expected_average_fbs_z": 0.023,
       "dominance_residual_z": 0.915,
+      "dominance_residual_sd": 0.932,
       "opponent_prior_games": 2
     },
     {
@@ -724,6 +751,7 @@
       "observed_z": 1.936,
       "expected_average_fbs_z": 0.101,
       "dominance_residual_z": 1.834,
+      "dominance_residual_sd": 1.869,
       "opponent_prior_games": 2
     },
     {
@@ -733,6 +761,7 @@
       "observed_z": 0.559,
       "expected_average_fbs_z": -0.246,
       "dominance_residual_z": 0.805,
+      "dominance_residual_sd": 0.82,
       "opponent_prior_games": 4
     },
     {
@@ -742,6 +771,7 @@
       "observed_z": -0.076,
       "expected_average_fbs_z": -0.13,
       "dominance_residual_z": 0.053,
+      "dominance_residual_sd": 0.055,
       "opponent_prior_games": 1
     },
     {
@@ -751,6 +781,7 @@
       "observed_z": 0.046,
       "expected_average_fbs_z": -0.147,
       "dominance_residual_z": 0.192,
+      "dominance_residual_sd": 0.197,
       "opponent_prior_games": 2
     },
     {
@@ -760,6 +791,7 @@
       "observed_z": 1.46,
       "expected_average_fbs_z": 0.257,
       "dominance_residual_z": 1.202,
+      "dominance_residual_sd": 1.233,
       "opponent_prior_games": 2
     },
     {
@@ -769,6 +801,7 @@
       "observed_z": 0.648,
       "expected_average_fbs_z": 0.011,
       "dominance_residual_z": 0.637,
+      "dominance_residual_sd": 0.653,
       "opponent_prior_games": 4
     },
     {
@@ -778,6 +811,7 @@
       "observed_z": 0.397,
       "expected_average_fbs_z": -0.071,
       "dominance_residual_z": 0.468,
+      "dominance_residual_sd": 0.487,
       "opponent_prior_games": 1
     },
     {
@@ -787,6 +821,7 @@
       "observed_z": -0.678,
       "expected_average_fbs_z": -0.092,
       "dominance_residual_z": -0.585,
+      "dominance_residual_sd": -0.609,
       "opponent_prior_games": 2
     },
     {
@@ -796,6 +831,7 @@
       "observed_z": 1.648,
       "expected_average_fbs_z": 0.325,
       "dominance_residual_z": 1.323,
+      "dominance_residual_sd": 1.376,
       "opponent_prior_games": 2
     },
     {
@@ -805,6 +841,7 @@
       "observed_z": 0.99,
       "expected_average_fbs_z": 0.003,
       "dominance_residual_z": 0.988,
+      "dominance_residual_sd": 1.028,
       "opponent_prior_games": 4
     },
     {
@@ -814,6 +851,7 @@
       "observed_z": 0.036,
       "expected_average_fbs_z": -0.067,
       "dominance_residual_z": 0.103,
+      "dominance_residual_sd": 0.106,
       "opponent_prior_games": 1
     },
     {
@@ -823,6 +861,7 @@
       "observed_z": -0.969,
       "expected_average_fbs_z": -0.189,
       "dominance_residual_z": -0.78,
+      "dominance_residual_sd": -0.806,
       "opponent_prior_games": 2
     },
     {
@@ -832,6 +871,7 @@
       "observed_z": -0.381,
       "expected_average_fbs_z": -0.07,
       "dominance_residual_z": -0.311,
+      "dominance_residual_sd": -0.321,
       "opponent_prior_games": 2
     },
     {
@@ -841,6 +881,7 @@
       "observed_z": -0.131,
       "expected_average_fbs_z": -0.056,
       "dominance_residual_z": -0.075,
+      "dominance_residual_sd": -0.077,
       "opponent_prior_games": 4
     },
     {
@@ -850,6 +891,7 @@
       "observed_z": -0.594,
       "expected_average_fbs_z": -0.005,
       "dominance_residual_z": -0.589,
+      "dominance_residual_sd": -0.661,
       "opponent_prior_games": 1
     },
     {
@@ -859,6 +901,7 @@
       "observed_z": -0.035,
       "expected_average_fbs_z": -0.018,
       "dominance_residual_z": -0.018,
+      "dominance_residual_sd": -0.02,
       "opponent_prior_games": 2
     },
     {
@@ -868,6 +911,7 @@
       "observed_z": 0.071,
       "expected_average_fbs_z": 0.024,
       "dominance_residual_z": 0.048,
+      "dominance_residual_sd": 0.053,
       "opponent_prior_games": 2
     },
     {
@@ -877,6 +921,7 @@
       "observed_z": -0.494,
       "expected_average_fbs_z": -0.063,
       "dominance_residual_z": -0.43,
+      "dominance_residual_sd": -0.483,
       "opponent_prior_games": 4
     },
     {
@@ -886,6 +931,7 @@
       "observed_z": -0.089,
       "expected_average_fbs_z": -0.07,
       "dominance_residual_z": -0.018,
+      "dominance_residual_sd": -0.018,
       "opponent_prior_games": 1
     },
     {
@@ -895,6 +941,7 @@
       "observed_z": 0.114,
       "expected_average_fbs_z": -0.225,
       "dominance_residual_z": 0.339,
+      "dominance_residual_sd": 0.331,
       "opponent_prior_games": 2
     },
     {
@@ -904,6 +951,7 @@
       "observed_z": 2.017,
       "expected_average_fbs_z": 0.349,
       "dominance_residual_z": 1.667,
+      "dominance_residual_sd": 1.631,
       "opponent_prior_games": 2
     },
     {
@@ -913,6 +961,7 @@
       "observed_z": 1.244,
       "expected_average_fbs_z": 0.121,
       "dominance_residual_z": 1.123,
+      "dominance_residual_sd": 1.099,
       "opponent_prior_games": 4
     },
     {
@@ -922,6 +971,7 @@
       "observed_z": 1.007,
       "expected_average_fbs_z": 0.025,
       "dominance_residual_z": 0.982,
+      "dominance_residual_sd": 0.999,
       "opponent_prior_games": 1
     },
     {
@@ -931,6 +981,7 @@
       "observed_z": 0.031,
       "expected_average_fbs_z": -0.11,
       "dominance_residual_z": 0.14,
+      "dominance_residual_sd": 0.142,
       "opponent_prior_games": 2
     },
     {
@@ -940,6 +991,7 @@
       "observed_z": 1.007,
       "expected_average_fbs_z": 0.135,
       "dominance_residual_z": 0.872,
+      "dominance_residual_sd": 0.887,
       "opponent_prior_games": 2
     },
     {
@@ -949,6 +1001,7 @@
       "observed_z": -0.132,
       "expected_average_fbs_z": -0.021,
       "dominance_residual_z": -0.111,
+      "dominance_residual_sd": -0.113,
       "opponent_prior_games": 4
     },
     {
@@ -958,6 +1011,7 @@
       "observed_z": 1.782,
       "expected_average_fbs_z": -0.239,
       "dominance_residual_z": 2.021,
+      "dominance_residual_sd": 2.041,
       "opponent_prior_games": 1
     },
     {
@@ -967,6 +1021,7 @@
       "observed_z": 0.42,
       "expected_average_fbs_z": -0.074,
       "dominance_residual_z": 0.494,
+      "dominance_residual_sd": 0.499,
       "opponent_prior_games": 2
     },
     {
@@ -976,6 +1031,7 @@
       "observed_z": 1.631,
       "expected_average_fbs_z": 0.172,
       "dominance_residual_z": 1.46,
+      "dominance_residual_sd": 1.474,
       "opponent_prior_games": 2
     },
     {
@@ -985,6 +1041,7 @@
       "observed_z": 0.885,
       "expected_average_fbs_z": -0.336,
       "dominance_residual_z": 1.221,
+      "dominance_residual_sd": 1.233,
       "opponent_prior_games": 4
     },
     {
@@ -994,6 +1051,7 @@
       "observed_z": 0.169,
       "expected_average_fbs_z": -0.083,
       "dominance_residual_z": 0.252,
+      "dominance_residual_sd": 0.254,
       "opponent_prior_games": 1
     },
     {
@@ -1003,6 +1061,7 @@
       "observed_z": -0.206,
       "expected_average_fbs_z": -0.015,
       "dominance_residual_z": -0.191,
+      "dominance_residual_sd": -0.192,
       "opponent_prior_games": 2
     },
     {
@@ -1012,6 +1071,7 @@
       "observed_z": 2.794,
       "expected_average_fbs_z": 0.224,
       "dominance_residual_z": 2.57,
+      "dominance_residual_sd": 2.586,
       "opponent_prior_games": 2
     },
     {
@@ -1021,6 +1081,7 @@
       "observed_z": 0.169,
       "expected_average_fbs_z": -0.001,
       "dominance_residual_z": 0.17,
+      "dominance_residual_sd": 0.171,
       "opponent_prior_games": 4
     },
     {
@@ -1030,6 +1091,7 @@
       "observed_z": 0.191,
       "expected_average_fbs_z": 0.087,
       "dominance_residual_z": 0.104,
+      "dominance_residual_sd": 0.109,
       "opponent_prior_games": 1
     },
     {
@@ -1039,6 +1101,7 @@
       "observed_z": -0.13,
       "expected_average_fbs_z": -0.288,
       "dominance_residual_z": 0.158,
+      "dominance_residual_sd": 0.167,
       "opponent_prior_games": 2
     },
     {
@@ -1048,6 +1111,7 @@
       "observed_z": 1.225,
       "expected_average_fbs_z": 0.274,
       "dominance_residual_z": 0.951,
+      "dominance_residual_sd": 1.004,
       "opponent_prior_games": 2
     },
     {
@@ -1057,6 +1121,7 @@
       "observed_z": 1.246,
       "expected_average_fbs_z": 0.098,
       "dominance_residual_z": 1.148,
+      "dominance_residual_sd": 1.213,
       "opponent_prior_games": 4
     }
   ]
