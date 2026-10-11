@@ -59,11 +59,73 @@ jobs:
           dest.write_text(json.dumps(report,indent=2)+'\n')
           print(json.dumps(report,indent=2))
           PY
+      - name: Miami opponent-by-opponent game audit
+        run: |
+          python - <<'PY'
+          import os,json,statistics,pathlib,urllib.request,urllib.parse
+          from collections import defaultdict
+          import experiment_dominance_v15 as m
+          base=pathlib.Path('data/experiments')
+          ranks={r['team']:r for r in json.loads((base/'recursive_unit_strength_v15_2026_week_7.json').read_text())['rankings']}
+          games=json.loads(pathlib.Path('data/historical/2026.json').read_text())['games']
+          candidates=[g for g in games if g.get('result') and 0<int(g.get('week') or 0)<7 and 'Miami' in [m.canon(g.get('home')),m.canon(g.get('away'))]]
+          api=lambda endpoint,**params:json.load(urllib.request.urlopen(urllib.request.Request('https://api.collegefootballdata.com'+endpoint+'?'+urllib.parse.urlencode(params),headers={'Authorization':'Bearer '+os.environ['CFBD_API_KEY'],'Accept':'application/json'}),timeout=120))
+          adv=defaultdict(dict)
+          for rec in api('/stats/game/advanced',year=2026,seasonType='regular',excludeGarbageTime='true'):
+              if rec.get('team'):adv[str(rec.get('gameId'))][m.canon(rec['team'])]=rec
+          pbp=defaultdict(lambda:defaultdict(list))
+          for wk in sorted(set(int(g['week']) for g in candidates)):
+              for play in api('/plays',year=2026,week=wk,seasonType='regular'):
+                  if play.get('gameId') is not None and play.get('offense'):
+                      pbp[str(play['gameId'])][m.canon(play['offense'])].append(play)
+          fbs={m.canon(t['school']) for t in api('/teams/fbs',year=2026) if t.get('school')}-m.FBS_EXCLUSIONS_2026
+          allvals=defaultdict(list)
+          for g in games:
+              if not g.get('result') or not 0<int(g.get('week') or 0)<7:continue
+              h,a=m.canon(g['home']),m.canon(g['away']);gid=str(g['game_id'])
+              if h not in fbs or a not in fbs or h not in adv[gid] or a not in adv[gid]:continue
+              for t,pts in [(h,g['result']['home_points']),(a,g['result']['away_points'])]:
+                  row=m.metric_row(adv[gid][t],pts,m.situational_metrics(pbp[gid].get(t,[])))
+                  for metric in m.METRICS:
+                      if row.get(metric) is not None:allvals[metric].append(row[metric])
+          means={key:statistics.fmean(v) for key,v in allvals.items()}
+          sds={key:statistics.pstdev(v) or 1 for key,v in allvals.items()}
+          coeff=json.loads((base/'sd_to_sd_calibration_v14.json').read_text())['metrics']
+          def aggregate(d,kind):
+              parts=[]
+              for cat,(w,metrics) in m.CATS.items():
+                  vals=[d[k][kind] for k in metrics if k in d]
+                  if vals:parts.append((w,statistics.fmean(vals)))
+              return round(sum(w*v for w,v in parts)/sum(w for w,v in parts),3) if parts else None
+          output=[]
+          for g in candidates:
+              home,away=m.canon(g['home']),m.canon(g['away']);opp=away if home=='Miami' else home;gid=str(g['game_id'])
+              if opp not in ranks or opp not in adv[gid] or 'Miami' not in adv[gid]:continue
+              mp=g['result']['home_points'] if home=='Miami' else g['result']['away_points']
+              op=g['result']['away_points'] if home=='Miami' else g['result']['home_points']
+              own=m.metric_row(adv[gid]['Miami'],mp,m.situational_metrics(pbp[gid].get('Miami',[])))
+              other=m.metric_row(adv[gid][opp],op,m.situational_metrics(pbp[gid].get(opp,[])))
+              off={};defense={}
+              for metric in m.METRICS:
+                  if metric not in sds:continue
+                  k=coeff.get(metric,{}).get('selected_coefficient',.20)
+                  if own.get(metric) is not None:
+                      z=(own[metric]-means[metric])/sds[metric]
+                      off[metric]={'raw':z,'adjusted':z+k*ranks[opp]['defensive_strength_sd']}
+                  if other.get(metric) is not None:
+                      z=-(other[metric]-means[metric])/sds[metric]
+                      defense[metric]={'raw':z,'adjusted':z+k*ranks[opp]['offensive_strength_sd']}
+              output.append({'week':g['week'],'opponent':opp,'score':str(mp)+'-'+str(op),'opponent_offense_sd':ranks[opp]['offensive_strength_sd'],'opponent_defense_sd':ranks[opp]['defensive_strength_sd'],'miami_offense_raw_z':aggregate(off,'raw'),'miami_offense_adjusted_z':aggregate(off,'adjusted'),'miami_defense_raw_z':aggregate(defense,'raw'),'miami_defense_adjusted_z':aggregate(defense,'adjusted'),'offense_metrics':len(off),'defense_metrics':len(defense)})
+          assert output,'Miami game extraction returned no eligible games'
+          result={'team':'Miami','through_week':6,'no_sos_bonus':True,'method':'Game-level metric z vs full FBS game distribution, corrected by each opponent corresponding unit SD and calibrated metric coefficient','caveat':'Opponent SDs use through-week-6 ratings: retrospective audit only, not pregame predictions. Per-game metric composite z is not the final standardized team strength SD.','games':output}
+          (base/'miami_game_level_audit_2026.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps(result,indent=2))
+          PY
       - name: Commit experiment only
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/experiments/opponent_sensitivity_*.json
+          git add data/experiments/opponent_sensitivity_*.json data/experiments/miami_game_level_audit_2026.json
           git diff --cached --quiet && exit 0
           git commit -m 'research(cfb): compare top-20 opponent adjustments without modifying production'
           for i in 1 2 3 4 5; do
