@@ -19,46 +19,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Recalculate week-seven rankings with alternate opponent coefficients
-        run: |
-          python - <<'PY'
-          import pathlib,os,subprocess,json,sys
-          src=pathlib.Path('experiment_dominance_v15.py').read_text()
-          marker='mult_calibration["metrics"].get(m,{}).get("selected_coefficient",0.20)'
-          assert src.count(marker)==2
-          for multiplier,label in [(1.5,'stronger_1_5x'),(2.0,'stronger_2x')]:
-              new=src.replace(marker,f'({marker})*{multiplier}')
-              new=new.replace('OUT=ROOT/"data"/"experiments"/f"recursive_unit_strength_v15_{SEASON}_week_{WEEK}.json"',f'OUT=ROOT/"data"/"experiments"/f"opponent_sensitivity_{label}_{{SEASON}}_week_{{WEEK}}.json"')
-              script=pathlib.Path(f'_run_opponent_test_{label}.py')
-              script.write_text(new)
-              try:subprocess.run([sys.executable,str(script)],env=dict(os.environ,MODEL_WEEK='7'),check=True,timeout=660)
-              finally:script.unlink(missing_ok=True)
-          PY
-      - name: Compare two-week ranking changes and stronger adjustment
-        run: |
-          python - <<'PY'
-          import json,pathlib
-          d=pathlib.Path('data/experiments')
-          def load(name):
-              return json.loads((d/name).read_text())['rankings']
-          baseline=load('recursive_unit_strength_v15_2026_week_7.json')
-          earlier=load('recursive_unit_strength_v15_2026_week_5.json')
-          versions={'baseline':baseline,'stronger_1_5x':load('opponent_sensitivity_stronger_1_5x_2026_week_7.json'),'stronger_2x':load('opponent_sensitivity_stronger_2x_2026_week_7.json')}
-          by_earlier={x['team']:x for x in earlier}
-          named={n:{x['team']:x for x in v} for n,v in versions.items()}
-          rows=[]
-          for x in baseline[:20]:
-              team=x['team']; prior=by_earlier.get(team)
-              row={'team':team,'baseline_rank':x['rank'],'baseline_sd':x['overall_team_strength_sd'],'week_5_rank':prior['rank'] if prior else None,'week_5_sd':prior['overall_team_strength_sd'] if prior else None}
-              for name in ('stronger_1_5x','stronger_2x'):
-                  v=named[name][team]
-                  row[name]={'rank':v['rank'],'sd':v['overall_team_strength_sd'],'rank_change':x['rank']-v['rank'],'sd_change':round(v['overall_team_strength_sd']-x['overall_team_strength_sd'],3)}
-              rows.append(row)
-          report={'scope':'top 20 of baseline week 7; compares through week 4 versus through week 6','production_unchanged':True,'no_separate_sos_factor':True,'model':'v15 same 38 metrics, alternative multipliers on historically calibrated coefficients','caveat':'Sensitivity diagnostic only. Higher coefficients have not been independently validated on held-out games.','rows':rows}
-          dest=d/'opponent_sensitivity_top20_2026_week7_report.json'
-          dest.write_text(json.dumps(report,indent=2)+'\n')
-          print(json.dumps(report,indent=2))
-          PY
       - name: Miami opponent-by-opponent game audit
         run: |
           python - <<'PY'
@@ -125,7 +85,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/experiments/opponent_sensitivity_*.json data/experiments/miami_game_level_audit_2026.json
+          git add data/experiments/miami_game_level_audit_2026.json
           git diff --cached --quiet && exit 0
           git commit -m 'research(cfb): compare top-20 opponent adjustments without modifying production'
           for i in 1 2 3 4 5; do
