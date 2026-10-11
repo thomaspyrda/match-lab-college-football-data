@@ -91,7 +91,7 @@ jobs:
               game['combined_dominance_above_expected_z']=round((game['miami_offense_adjusted_z']+game['miami_defense_adjusted_z'])/2,3)
           result['expected_baseline_interpretation']='Each per-metric average-FBS expectation is -coefficient * opponent unit SD; actual minus that expectation equals calibrated opponent-adjusted game z. Composites share the same category weights as v15.'
           result['limitation']='Uses in-sample through-week-6 opponent ratings and game-level FBS distribution; this reexpresses existing adjustment as an expected average-FBS baseline, not an independently estimated new predictive model.'
-          (base/'miami_average_fbs_expected_2026.json').write_text(json.dumps(result,indent=2)+'\\n')
+          (base/'miami_average_fbs_expected_2026.json').write_text(json.dumps(result,indent=2)+chr(10))
 
           print(json.dumps(result,indent=2))
           PY
