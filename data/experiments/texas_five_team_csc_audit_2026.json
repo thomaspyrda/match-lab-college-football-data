@@ -1,0 +1,444 @@
+{
+  "name": "Texas Georgia Alabama Ohio State Oklahoma weighted CSC game-level audit",
+  "season": 2026,
+  "pregame_week": 7,
+  "through_week": 6,
+  "production_unchanged": true,
+  "teams": [
+    {
+      "team": "Texas",
+      "rank": 5,
+      "strength_sd": 1.797,
+      "offense_rank": 30,
+      "offensive_strength_sd": 0.944,
+      "defense_rank": 3,
+      "defensive_strength_sd": 1.903,
+      "record": [
+        4,
+        1
+      ],
+      "qrr_sd": 1.3151,
+      "csc_sd": 2.4216,
+      "total_positive_game_csc": 1.2713,
+      "total_negative_game_csc": 0,
+      "positive_from_biggest_game_fraction": 0.6398,
+      "mean_game_offense_signal": 0.2981,
+      "mean_game_defense_signal": 0.6534,
+      "qualified_strong_wins": 2,
+      "qualified_strong_losses": 1,
+      "games": [
+        {
+          "opponent": "Texas State",
+          "own_points": 59.0,
+          "opp_points": 7.0,
+          "opponent_sd": 0.133,
+          "performance_signal": 0.7694,
+          "offensive_game_signal": 1.1521,
+          "defensive_game_signal": 0.3867,
+          "result_surprise": 0.1523,
+          "credit": 0.0478
+        },
+        {
+          "opponent": "Ohio State",
+          "own_points": 24.0,
+          "opp_points": 23.0,
+          "opponent_sd": 1.778,
+          "performance_signal": 0.3893,
+          "offensive_game_signal": 0.351,
+          "defensive_game_signal": 0.4276,
+          "result_surprise": 0.5639,
+          "credit": 0.8134
+        },
+        {
+          "opponent": "UTSA",
+          "own_points": 30.0,
+          "opp_points": 6.0,
+          "opponent_sd": 0.03,
+          "performance_signal": 0.4571,
+          "offensive_game_signal": -0.0123,
+          "defensive_game_signal": 0.9265,
+          "result_surprise": 0.137,
+          "credit": 0.0075
+        },
+        {
+          "opponent": "Tennessee",
+          "own_points": 20.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.839,
+          "performance_signal": 0.3946,
+          "offensive_game_signal": -0.1649,
+          "defensive_game_signal": 0.9541,
+          "result_surprise": 0.2954,
+          "credit": 0.2624
+        },
+        {
+          "opponent": "Oklahoma",
+          "own_points": 24.0,
+          "opp_points": 27.0,
+          "opponent_sd": 0.994,
+          "performance_signal": 0.3684,
+          "offensive_game_signal": 0.1645,
+          "defensive_game_signal": 0.5723,
+          "result_surprise": -0.6646,
+          "credit": 0.1402
+        }
+      ]
+    },
+    {
+      "team": "Georgia",
+      "rank": 3,
+      "strength_sd": 1.892,
+      "offense_rank": 2,
+      "offensive_strength_sd": 2.04,
+      "defense_rank": 22,
+      "defensive_strength_sd": 1.021,
+      "record": [
+        5,
+        0
+      ],
+      "qrr_sd": 1.5474,
+      "csc_sd": 2.0489,
+      "total_positive_game_csc": 1.0771,
+      "total_negative_game_csc": 0,
+      "positive_from_biggest_game_fraction": 0.6633,
+      "mean_game_offense_signal": 0.8095,
+      "mean_game_defense_signal": 0.3083,
+      "qualified_strong_wins": 2,
+      "qualified_strong_losses": 0,
+      "games": [
+        {
+          "opponent": "Western Kentucky",
+          "own_points": 70.0,
+          "opp_points": 20.0,
+          "opponent_sd": -1.294,
+          "performance_signal": 0.9686,
+          "offensive_game_signal": 1.7468,
+          "defensive_game_signal": 0.1903,
+          "result_surprise": 0.0274,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Arkansas",
+          "own_points": 45.0,
+          "opp_points": 17.0,
+          "opponent_sd": -0.497,
+          "performance_signal": 0.4833,
+          "offensive_game_signal": 0.7439,
+          "defensive_game_signal": 0.2226,
+          "result_surprise": 0.0682,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Oklahoma",
+          "own_points": 41.0,
+          "opp_points": 13.0,
+          "opponent_sd": 0.994,
+          "performance_signal": 0.5049,
+          "offensive_game_signal": 0.2695,
+          "defensive_game_signal": 0.7403,
+          "result_surprise": 0.3046,
+          "credit": 0.3627
+        },
+        {
+          "opponent": "Vanderbilt",
+          "own_points": 38.0,
+          "opp_points": 14.0,
+          "opponent_sd": -0.161,
+          "performance_signal": 0.4424,
+          "offensive_game_signal": 0.7772,
+          "defensive_game_signal": 0.1076,
+          "result_surprise": 0.0988,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Alabama",
+          "own_points": 20.0,
+          "opp_points": 17.0,
+          "opponent_sd": 1.68,
+          "performance_signal": 0.3953,
+          "offensive_game_signal": 0.5099,
+          "defensive_game_signal": 0.2807,
+          "result_surprise": 0.4995,
+          "credit": 0.7144
+        }
+      ]
+    },
+    {
+      "team": "Alabama",
+      "rank": 4,
+      "strength_sd": 1.829,
+      "offense_rank": 3,
+      "offensive_strength_sd": 1.806,
+      "defense_rank": 18,
+      "defensive_strength_sd": 1.252,
+      "record": [
+        5,
+        1
+      ],
+      "qrr_sd": 1.0324,
+      "csc_sd": 2.2635,
+      "total_positive_game_csc": 1.321,
+      "total_negative_game_csc": 0,
+      "positive_from_biggest_game_fraction": 0.4203,
+      "mean_game_offense_signal": 0.726,
+      "mean_game_defense_signal": 0.4688,
+      "qualified_strong_wins": 2,
+      "qualified_strong_losses": 1,
+      "games": [
+        {
+          "opponent": "East Carolina",
+          "own_points": 48.0,
+          "opp_points": 10.0,
+          "opponent_sd": -0.454,
+          "performance_signal": 0.872,
+          "offensive_game_signal": 0.7839,
+          "defensive_game_signal": 0.9601,
+          "result_surprise": 0.0717,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Kentucky",
+          "own_points": 45.0,
+          "opp_points": 17.0,
+          "opponent_sd": 0.402,
+          "performance_signal": 0.6236,
+          "offensive_game_signal": 0.4019,
+          "defensive_game_signal": 0.8452,
+          "result_surprise": 0.1775,
+          "credit": 0.1334
+        },
+        {
+          "opponent": "Florida State",
+          "own_points": 50.0,
+          "opp_points": 36.0,
+          "opponent_sd": 0.59,
+          "performance_signal": 0.2977,
+          "offensive_game_signal": 0.7933,
+          "defensive_game_signal": -0.1978,
+          "result_surprise": 0.2129,
+          "credit": 0.1331
+        },
+        {
+          "opponent": "South Carolina",
+          "own_points": 49.0,
+          "opp_points": 18.0,
+          "opponent_sd": 0.909,
+          "performance_signal": 0.6939,
+          "offensive_game_signal": 0.9333,
+          "defensive_game_signal": 0.4545,
+          "result_surprise": 0.2839,
+          "credit": 0.3834
+        },
+        {
+          "opponent": "Mississippi State",
+          "own_points": 56.0,
+          "opp_points": 23.0,
+          "opponent_sd": 1.075,
+          "performance_signal": 0.9232,
+          "offensive_game_signal": 1.1983,
+          "defensive_game_signal": 0.648,
+          "result_surprise": 0.3262,
+          "credit": 0.5552
+        },
+        {
+          "opponent": "Georgia",
+          "own_points": 17.0,
+          "opp_points": 20.0,
+          "opponent_sd": 1.682,
+          "performance_signal": 0.174,
+          "offensive_game_signal": 0.2454,
+          "defensive_game_signal": 0.1027,
+          "result_surprise": -0.4995,
+          "credit": 0.1159
+        }
+      ]
+    },
+    {
+      "team": "Ohio State",
+      "rank": 9,
+      "strength_sd": 1.609,
+      "offense_rank": 6,
+      "offensive_strength_sd": 1.747,
+      "defense_rank": 12,
+      "defensive_strength_sd": 1.49,
+      "record": [
+        5,
+        1
+      ],
+      "qrr_sd": 0.2283,
+      "csc_sd": 0.7644,
+      "total_positive_game_csc": 0.4535,
+      "total_negative_game_csc": 0,
+      "positive_from_biggest_game_fraction": 0.7129,
+      "mean_game_offense_signal": 0.7232,
+      "mean_game_defense_signal": 0.5737,
+      "qualified_strong_wins": 1,
+      "qualified_strong_losses": 1,
+      "games": [
+        {
+          "opponent": "Ball State",
+          "own_points": 56.0,
+          "opp_points": 3.0,
+          "opponent_sd": -1.467,
+          "performance_signal": 1.0117,
+          "offensive_game_signal": 0.9441,
+          "defensive_game_signal": 1.0794,
+          "result_surprise": 0.02,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Texas",
+          "own_points": 23.0,
+          "opp_points": 24.0,
+          "opponent_sd": 1.564,
+          "performance_signal": 0.1767,
+          "offensive_game_signal": 0.2515,
+          "defensive_game_signal": 0.1018,
+          "result_surprise": -0.5639,
+          "credit": 0.1094
+        },
+        {
+          "opponent": "Kent State",
+          "own_points": 59.0,
+          "opp_points": 3.0,
+          "opponent_sd": -1.79,
+          "performance_signal": 0.9946,
+          "offensive_game_signal": 0.866,
+          "defensive_game_signal": 1.1233,
+          "result_surprise": 0.0136,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Illinois",
+          "own_points": 42.0,
+          "opp_points": 19.0,
+          "opponent_sd": 0.078,
+          "performance_signal": 0.5442,
+          "offensive_game_signal": 1.037,
+          "defensive_game_signal": 0.0514,
+          "result_surprise": 0.115,
+          "credit": 0.0208
+        },
+        {
+          "opponent": "Iowa",
+          "own_points": 31.0,
+          "opp_points": 14.0,
+          "opponent_sd": 0.931,
+          "performance_signal": 0.5175,
+          "offensive_game_signal": 0.5853,
+          "defensive_game_signal": 0.4497,
+          "result_surprise": 0.2658,
+          "credit": 0.3233
+        },
+        {
+          "opponent": "Maryland",
+          "own_points": 45.0,
+          "opp_points": 16.0,
+          "opponent_sd": -0.219,
+          "performance_signal": 0.646,
+          "offensive_game_signal": 0.6552,
+          "defensive_game_signal": 0.6369,
+          "result_surprise": 0.0834,
+          "credit": 0.0
+        }
+      ]
+    },
+    {
+      "team": "Oklahoma",
+      "rank": 17,
+      "strength_sd": 1.255,
+      "offense_rank": 75,
+      "offensive_strength_sd": -0.122,
+      "defense_rank": 2,
+      "defensive_strength_sd": 1.931,
+      "record": [
+        3,
+        2
+      ],
+      "qrr_sd": 1.3696,
+      "csc_sd": 1.7581,
+      "total_positive_game_csc": 0.9257,
+      "total_negative_game_csc": 0,
+      "positive_from_biggest_game_fraction": 0.5219,
+      "mean_game_offense_signal": -0.157,
+      "mean_game_defense_signal": 0.6671,
+      "qualified_strong_wins": 2,
+      "qualified_strong_losses": 2,
+      "games": [
+        {
+          "opponent": "UTEP",
+          "own_points": 51.0,
+          "opp_points": 0.0,
+          "opponent_sd": -2.014,
+          "performance_signal": 0.7199,
+          "offensive_game_signal": 0.6327,
+          "defensive_game_signal": 0.8071,
+          "result_surprise": 0.0263,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Michigan",
+          "own_points": 10.0,
+          "opp_points": 17.0,
+          "opponent_sd": 1.091,
+          "performance_signal": 0.0445,
+          "offensive_game_signal": -0.35,
+          "defensive_game_signal": 0.4391,
+          "result_surprise": -0.4709,
+          "credit": 0.0194
+        },
+        {
+          "opponent": "New Mexico",
+          "own_points": 14.0,
+          "opp_points": 6.0,
+          "opponent_sd": 0.915,
+          "performance_signal": 0.4978,
+          "offensive_game_signal": -0.2538,
+          "defensive_game_signal": 1.2493,
+          "result_surprise": 0.4764,
+          "credit": 0.4232
+        },
+        {
+          "opponent": "Georgia",
+          "own_points": 13.0,
+          "opp_points": 41.0,
+          "opponent_sd": 1.682,
+          "performance_signal": -0.0518,
+          "offensive_game_signal": -0.573,
+          "defensive_game_signal": 0.4695,
+          "result_surprise": -0.3046,
+          "credit": 0.0
+        },
+        {
+          "opponent": "Texas",
+          "own_points": 27.0,
+          "opp_points": 24.0,
+          "opponent_sd": 1.564,
+          "performance_signal": 0.0648,
+          "offensive_game_signal": -0.2409,
+          "defensive_game_signal": 0.3705,
+          "result_surprise": 0.6646,
+          "credit": 0.4831
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "texas_ohio_state_fraction_of_positive_csc": 0.6398,
+    "texas_ou_loss_csc": 0.1402,
+    "texas_ou_loss_qrr_surprise": -0.6646,
+    "texas_vs_georgia_offense_rank": [
+      30,
+      2
+    ],
+    "texas_vs_alabama_offense_rank": [
+      30,
+      3
+    ]
+  },
+  "limitations": [
+    "CSC can reward good statistical performance in a loss while QRR penalizes that loss; intentional but must inspect combined magnitudes",
+    "2026 retrospective ratings; no out-of-sample ranking calibration",
+    "No game-level cap recalibration or ablations in this audit"
+  ]
+}
