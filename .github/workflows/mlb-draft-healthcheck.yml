@@ -1,0 +1,33 @@
+name: MLB Draft Workflow Health Check
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/mlb-draft-healthcheck.yml
+permissions:
+  contents: write
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Record action execution
+        run: |
+          mkdir -p data/mlb
+          python - <<'PY'
+          import json,os,datetime
+          path="data/mlb/draft-workflow-health.json"
+          with open(path,"w") as f: json.dump({"ran_at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"commit":os.getenv("GITHUB_SHA"),"runner":"github-actions","status":"executed"},f,indent=2)
+          PY
+      - name: Commit health check
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mlb/draft-workflow-health.json
+          git diff --cached --quiet && exit 0
+          git commit -m "ci(mlb): record GitHub Actions heartbeat"
+          git pull --rebase -X theirs origin main
+          git push origin main
