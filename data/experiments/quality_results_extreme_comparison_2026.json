@@ -1,0 +1,652 @@
+{
+  "model": "opponent-strength-amplified-quality-results",
+  "as_of_week": 7,
+  "through_week": 6,
+  "baseline": "linear recursive hybrid 90/10 quality residual",
+  "specification": "New result residual uses outcome-dependent exponential multiplier 0.35 times opponent composite SD, bounded 0.50 to 2.50. More weight for wins versus strong teams and losses versus weak teams. Same baseline expected outcome; 4-game shrinkage.",
+  "caveats": [
+    "Prototype coefficients are not calibrated.",
+    "Result-based metric can double-count performance; amplification may increase that risk.",
+    "No separate schedule-reliability adjustment has yet been applied."
+  ],
+  "old_10pct_top25": [
+    {
+      "rank": 1,
+      "team": "Miami",
+      "sd": 2.281
+    },
+    {
+      "rank": 2,
+      "team": "Notre Dame",
+      "sd": 2.05
+    },
+    {
+      "rank": 3,
+      "team": "Utah",
+      "sd": 1.933
+    },
+    {
+      "rank": 4,
+      "team": "Georgia",
+      "sd": 1.776
+    },
+    {
+      "rank": 5,
+      "team": "Ohio State",
+      "sd": 1.72
+    },
+    {
+      "rank": 6,
+      "team": "Alabama",
+      "sd": 1.706
+    },
+    {
+      "rank": 7,
+      "team": "Indiana",
+      "sd": 1.693
+    },
+    {
+      "rank": 8,
+      "team": "BYU",
+      "sd": 1.642
+    },
+    {
+      "rank": 9,
+      "team": "Texas",
+      "sd": 1.589
+    },
+    {
+      "rank": 10,
+      "team": "Texas Tech",
+      "sd": 1.545
+    },
+    {
+      "rank": 11,
+      "team": "LSU",
+      "sd": 1.47
+    },
+    {
+      "rank": 12,
+      "team": "UCLA",
+      "sd": 1.426
+    },
+    {
+      "rank": 13,
+      "team": "Oregon",
+      "sd": 1.366
+    },
+    {
+      "rank": 14,
+      "team": "Houston",
+      "sd": 1.226
+    },
+    {
+      "rank": 15,
+      "team": "Wisconsin",
+      "sd": 1.182
+    },
+    {
+      "rank": 16,
+      "team": "Nebraska",
+      "sd": 1.181
+    },
+    {
+      "rank": 17,
+      "team": "Mississippi State",
+      "sd": 1.159
+    },
+    {
+      "rank": 18,
+      "team": "Missouri",
+      "sd": 1.116
+    },
+    {
+      "rank": 19,
+      "team": "Wake Forest",
+      "sd": 1.095
+    },
+    {
+      "rank": 20,
+      "team": "Northwestern",
+      "sd": 1.091
+    },
+    {
+      "rank": 21,
+      "team": "Ole Miss",
+      "sd": 1.046
+    },
+    {
+      "rank": 22,
+      "team": "Iowa",
+      "sd": 1.029
+    },
+    {
+      "rank": 23,
+      "team": "Oklahoma",
+      "sd": 1.022
+    },
+    {
+      "rank": 24,
+      "team": "USC",
+      "sd": 1.021
+    },
+    {
+      "rank": 25,
+      "team": "Michigan",
+      "sd": 0.962
+    }
+  ],
+  "variants": [
+    {
+      "weight": 0.15,
+      "top25": [
+        {
+          "rank": 1,
+          "team": "Miami",
+          "old_10pct_rank": 1,
+          "delta_positions": 0,
+          "strength_sd": 2.192,
+          "qrr_sd": 0.4093
+        },
+        {
+          "rank": 2,
+          "team": "Notre Dame",
+          "old_10pct_rank": 2,
+          "delta_positions": 0,
+          "strength_sd": 1.986,
+          "qrr_sd": 0.6617
+        },
+        {
+          "rank": 3,
+          "team": "Utah",
+          "old_10pct_rank": 3,
+          "delta_positions": 0,
+          "strength_sd": 1.866,
+          "qrr_sd": 0.5635
+        },
+        {
+          "rank": 4,
+          "team": "Georgia",
+          "old_10pct_rank": 4,
+          "delta_positions": 0,
+          "strength_sd": 1.807,
+          "qrr_sd": 1.5474
+        },
+        {
+          "rank": 5,
+          "team": "Alabama",
+          "old_10pct_rank": 6,
+          "delta_positions": 1,
+          "strength_sd": 1.721,
+          "qrr_sd": 1.0324
+        },
+        {
+          "rank": 6,
+          "team": "Indiana",
+          "old_10pct_rank": 7,
+          "delta_positions": 1,
+          "strength_sd": 1.701,
+          "qrr_sd": 1.3618
+        },
+        {
+          "rank": 7,
+          "team": "Ohio State",
+          "old_10pct_rank": 5,
+          "delta_positions": -2,
+          "strength_sd": 1.681,
+          "qrr_sd": 0.2283
+        },
+        {
+          "rank": 8,
+          "team": "Texas",
+          "old_10pct_rank": 9,
+          "delta_positions": 1,
+          "strength_sd": 1.66,
+          "qrr_sd": 1.3151
+        },
+        {
+          "rank": 9,
+          "team": "BYU",
+          "old_10pct_rank": 8,
+          "delta_positions": -1,
+          "strength_sd": 1.638,
+          "qrr_sd": 1.2619
+        },
+        {
+          "rank": 10,
+          "team": "Texas Tech",
+          "old_10pct_rank": 10,
+          "delta_positions": 0,
+          "strength_sd": 1.563,
+          "qrr_sd": 1.422
+        },
+        {
+          "rank": 11,
+          "team": "UCLA",
+          "old_10pct_rank": 12,
+          "delta_positions": 1,
+          "strength_sd": 1.45,
+          "qrr_sd": 1.4411
+        },
+        {
+          "rank": 12,
+          "team": "LSU",
+          "old_10pct_rank": 11,
+          "delta_positions": -1,
+          "strength_sd": 1.41,
+          "qrr_sd": -0.8906
+        },
+        {
+          "rank": 13,
+          "team": "Oregon",
+          "old_10pct_rank": 13,
+          "delta_positions": 0,
+          "strength_sd": 1.386,
+          "qrr_sd": -0.0476
+        },
+        {
+          "rank": 14,
+          "team": "Houston",
+          "old_10pct_rank": 14,
+          "delta_positions": 0,
+          "strength_sd": 1.265,
+          "qrr_sd": 1.2654
+        },
+        {
+          "rank": 15,
+          "team": "Mississippi State",
+          "old_10pct_rank": 17,
+          "delta_positions": 2,
+          "strength_sd": 1.213,
+          "qrr_sd": 1.3423
+        },
+        {
+          "rank": 16,
+          "team": "Wisconsin",
+          "old_10pct_rank": 15,
+          "delta_positions": -1,
+          "strength_sd": 1.177,
+          "qrr_sd": 0.6795
+        },
+        {
+          "rank": 17,
+          "team": "Ole Miss",
+          "old_10pct_rank": 21,
+          "delta_positions": 4,
+          "strength_sd": 1.158,
+          "qrr_sd": 1.6556
+        },
+        {
+          "rank": 18,
+          "team": "Missouri",
+          "old_10pct_rank": 18,
+          "delta_positions": 0,
+          "strength_sd": 1.151,
+          "qrr_sd": 1.1713
+        },
+        {
+          "rank": 19,
+          "team": "Nebraska",
+          "old_10pct_rank": 16,
+          "delta_positions": -3,
+          "strength_sd": 1.147,
+          "qrr_sd": 0.253
+        },
+        {
+          "rank": 20,
+          "team": "Oklahoma",
+          "old_10pct_rank": 23,
+          "delta_positions": 3,
+          "strength_sd": 1.142,
+          "qrr_sd": 1.3696
+        },
+        {
+          "rank": 21,
+          "team": "Northwestern",
+          "old_10pct_rank": 20,
+          "delta_positions": -1,
+          "strength_sd": 1.094,
+          "qrr_sd": 0.63
+        },
+        {
+          "rank": 22,
+          "team": "Wake Forest",
+          "old_10pct_rank": 19,
+          "delta_positions": -3,
+          "strength_sd": 1.093,
+          "qrr_sd": 0.921
+        },
+        {
+          "rank": 23,
+          "team": "Iowa",
+          "old_10pct_rank": 22,
+          "delta_positions": -1,
+          "strength_sd": 1.074,
+          "qrr_sd": 1.3077
+        },
+        {
+          "rank": 24,
+          "team": "USC",
+          "old_10pct_rank": 24,
+          "delta_positions": 0,
+          "strength_sd": 1.036,
+          "qrr_sd": 1.1878
+        },
+        {
+          "rank": 25,
+          "team": "SMU",
+          "old_10pct_rank": 26,
+          "delta_positions": 1,
+          "strength_sd": 0.944,
+          "qrr_sd": 0.2902
+        }
+      ],
+      "focus": [
+        {
+          "team": "Georgia",
+          "rank": 4,
+          "old_10pct_rank": 4,
+          "qrr_sd": 1.5474
+        },
+        {
+          "team": "Alabama",
+          "rank": 5,
+          "old_10pct_rank": 6,
+          "qrr_sd": 1.0324
+        },
+        {
+          "team": "Miami",
+          "rank": 1,
+          "old_10pct_rank": 1,
+          "qrr_sd": 0.4093
+        },
+        {
+          "team": "Utah",
+          "rank": 3,
+          "old_10pct_rank": 3,
+          "qrr_sd": 0.5635
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "old_10pct_rank": 2,
+          "qrr_sd": 0.6617
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 10,
+          "old_10pct_rank": 10,
+          "qrr_sd": 1.422
+        },
+        {
+          "team": "Liberty",
+          "rank": 45,
+          "old_10pct_rank": 44,
+          "qrr_sd": -0.1839
+        },
+        {
+          "team": "New Mexico",
+          "rank": 34,
+          "old_10pct_rank": 33,
+          "qrr_sd": -0.1699
+        }
+      ]
+    },
+    {
+      "weight": 0.2,
+      "top25": [
+        {
+          "rank": 1,
+          "team": "Miami",
+          "old_10pct_rank": 1,
+          "delta_positions": 0,
+          "strength_sd": 2.14,
+          "qrr_sd": 0.4093
+        },
+        {
+          "rank": 2,
+          "team": "Notre Dame",
+          "old_10pct_rank": 2,
+          "delta_positions": 0,
+          "strength_sd": 1.958,
+          "qrr_sd": 0.6617
+        },
+        {
+          "rank": 3,
+          "team": "Georgia",
+          "old_10pct_rank": 4,
+          "delta_positions": 1,
+          "strength_sd": 1.843,
+          "qrr_sd": 1.5474
+        },
+        {
+          "rank": 4,
+          "team": "Utah",
+          "old_10pct_rank": 3,
+          "delta_positions": -1,
+          "strength_sd": 1.835,
+          "qrr_sd": 0.5635
+        },
+        {
+          "rank": 5,
+          "team": "Indiana",
+          "old_10pct_rank": 7,
+          "delta_positions": 2,
+          "strength_sd": 1.728,
+          "qrr_sd": 1.3618
+        },
+        {
+          "rank": 6,
+          "team": "Alabama",
+          "old_10pct_rank": 6,
+          "delta_positions": 0,
+          "strength_sd": 1.727,
+          "qrr_sd": 1.0324
+        },
+        {
+          "rank": 7,
+          "team": "Texas",
+          "old_10pct_rank": 9,
+          "delta_positions": 2,
+          "strength_sd": 1.687,
+          "qrr_sd": 1.3151
+        },
+        {
+          "rank": 8,
+          "team": "BYU",
+          "old_10pct_rank": 8,
+          "delta_positions": 0,
+          "strength_sd": 1.662,
+          "qrr_sd": 1.2619
+        },
+        {
+          "rank": 9,
+          "team": "Ohio State",
+          "old_10pct_rank": 5,
+          "delta_positions": -4,
+          "strength_sd": 1.635,
+          "qrr_sd": 0.2283
+        },
+        {
+          "rank": 10,
+          "team": "Texas Tech",
+          "old_10pct_rank": 10,
+          "delta_positions": 0,
+          "strength_sd": 1.599,
+          "qrr_sd": 1.422
+        },
+        {
+          "rank": 11,
+          "team": "UCLA",
+          "old_10pct_rank": 12,
+          "delta_positions": 1,
+          "strength_sd": 1.492,
+          "qrr_sd": 1.4411
+        },
+        {
+          "rank": 12,
+          "team": "Oregon",
+          "old_10pct_rank": 13,
+          "delta_positions": 1,
+          "strength_sd": 1.333,
+          "qrr_sd": -0.0476
+        },
+        {
+          "rank": 13,
+          "team": "Houston",
+          "old_10pct_rank": 14,
+          "delta_positions": 1,
+          "strength_sd": 1.302,
+          "qrr_sd": 1.2654
+        },
+        {
+          "rank": 14,
+          "team": "LSU",
+          "old_10pct_rank": 11,
+          "delta_positions": -3,
+          "strength_sd": 1.301,
+          "qrr_sd": -0.8906
+        },
+        {
+          "rank": 15,
+          "team": "Mississippi State",
+          "old_10pct_rank": 17,
+          "delta_positions": 2,
+          "strength_sd": 1.257,
+          "qrr_sd": 1.3423
+        },
+        {
+          "rank": 16,
+          "team": "Ole Miss",
+          "old_10pct_rank": 21,
+          "delta_positions": 5,
+          "strength_sd": 1.225,
+          "qrr_sd": 1.6556
+        },
+        {
+          "rank": 17,
+          "team": "Oklahoma",
+          "old_10pct_rank": 23,
+          "delta_positions": 6,
+          "strength_sd": 1.191,
+          "qrr_sd": 1.3696
+        },
+        {
+          "rank": 18,
+          "team": "Missouri",
+          "old_10pct_rank": 18,
+          "delta_positions": 0,
+          "strength_sd": 1.186,
+          "qrr_sd": 1.1713
+        },
+        {
+          "rank": 19,
+          "team": "Wisconsin",
+          "old_10pct_rank": 15,
+          "delta_positions": -4,
+          "strength_sd": 1.179,
+          "qrr_sd": 0.6795
+        },
+        {
+          "rank": 20,
+          "team": "Nebraska",
+          "old_10pct_rank": 16,
+          "delta_positions": -4,
+          "strength_sd": 1.122,
+          "qrr_sd": 0.253
+        },
+        {
+          "rank": 21,
+          "team": "Iowa",
+          "old_10pct_rank": 22,
+          "delta_positions": 1,
+          "strength_sd": 1.121,
+          "qrr_sd": 1.3077
+        },
+        {
+          "rank": 22,
+          "team": "Wake Forest",
+          "old_10pct_rank": 19,
+          "delta_positions": -3,
+          "strength_sd": 1.114,
+          "qrr_sd": 0.921
+        },
+        {
+          "rank": 23,
+          "team": "Northwestern",
+          "old_10pct_rank": 20,
+          "delta_positions": -3,
+          "strength_sd": 1.095,
+          "qrr_sd": 0.63
+        },
+        {
+          "rank": 24,
+          "team": "USC",
+          "old_10pct_rank": 24,
+          "delta_positions": 0,
+          "strength_sd": 1.076,
+          "qrr_sd": 1.1878
+        },
+        {
+          "rank": 25,
+          "team": "Kentucky",
+          "old_10pct_rank": 40,
+          "delta_positions": 15,
+          "strength_sd": 1.038,
+          "qrr_sd": 3.0517
+        }
+      ],
+      "focus": [
+        {
+          "team": "Georgia",
+          "rank": 3,
+          "old_10pct_rank": 4,
+          "qrr_sd": 1.5474
+        },
+        {
+          "team": "Alabama",
+          "rank": 6,
+          "old_10pct_rank": 6,
+          "qrr_sd": 1.0324
+        },
+        {
+          "team": "Miami",
+          "rank": 1,
+          "old_10pct_rank": 1,
+          "qrr_sd": 0.4093
+        },
+        {
+          "team": "Utah",
+          "rank": 4,
+          "old_10pct_rank": 3,
+          "qrr_sd": 0.5635
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 2,
+          "old_10pct_rank": 2,
+          "qrr_sd": 0.6617
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 10,
+          "old_10pct_rank": 10,
+          "qrr_sd": 1.422
+        },
+        {
+          "team": "Liberty",
+          "rank": 44,
+          "old_10pct_rank": 44,
+          "qrr_sd": -0.1839
+        },
+        {
+          "team": "New Mexico",
+          "rank": 35,
+          "old_10pct_rank": 33,
+          "qrr_sd": -0.1699
+        }
+      ]
+    }
+  ],
+  "production_unchanged": true
+}
