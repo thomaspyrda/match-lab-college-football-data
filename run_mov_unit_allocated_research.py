@@ -66,3 +66,5 @@ report={'study':'Game-level allocated MOV versus separate and universal MOV','th
 out=R/'data/experiments/mov_unit_allocated_comparison_2026.json'
 out.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'eligible_spread_games':len(audit),'allocated_team_games':len(events),'focus':report['focus'],'allocated_top25':report['allocated_top25']},indent=2))
+
+# Run isolated experiment.
