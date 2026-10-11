@@ -100,3 +100,5 @@ report={'study':'Frozen-pregame MOV 10% comparison: baseline vs separate compone
 out=R/'data/experiments/compare_mov_separate_vs_allmetrics_2026.json'
 out.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'games':len(audit),'focus':report['focus'],'top25':{k:report[k] for k in ('baseline_top25','separate_top25','allmetrics_top25')}},indent=2))
+
+# Trigger isolated comparison.
