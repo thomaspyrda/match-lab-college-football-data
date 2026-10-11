@@ -71,21 +71,20 @@ addition='''    # Quality result: actual W/D/L minus expectation implied by exis
             result=(1.0 if pf>pa else .5 if pf==pa else 0.0)
             surprise=result-expected
             perf=metric_signal.get((t,opponent),0.0)
-            # Symmetric multipliers use the same function in reverse signs.
-            result_weight=math.exp(.35*opp_sd) if surprise>=0 else math.exp(-.35*opp_sd)
-            perf_weight=math.exp(.35*opp_sd) if perf>=0 else math.exp(-.35*opp_sd)
-            # Reward two separately legitimate accomplishments: positive
-            # statistical evidence and success in game outcome.
-            # Interaction adds a premium when both point the same direction.
-            result_e=surprise*min(2.5,max(.5,result_weight))
-            perf_e=math.tanh(perf)*min(2.5,max(.5,perf_weight))
-            alignment=(1 if result_e*perf_e>0 else -1)
-            interaction=alignment*min(abs(result_e),abs(perf_e))
-            # Baseline statistical and QRR terms already contain raw effects:
-            # CSC is centered as the opponent-strength-specific EXTRA weight.
-            # This preserves a negative mirror for failures versus weak teams.
-            bonus=(result_e-surprise)+(perf_e-math.tanh(perf))+.40*interaction
-            value=max(-2.0,min(2.0,bonus))
+            # Explicit mirror: strength S, statistical signal P and result R
+            # have equal/opposite effect under (S,P,R)->(-S,-P,-R).
+            # Merely facing a difficult opponent earns nothing.
+            p=math.tanh(perf)
+            strong=max(0.0,opp_sd)
+            weak=max(0.0,-opp_sd)
+            pos_performance=strong*max(0.0,p)
+            neg_performance=weak*max(0.0,-p)
+            pos_result=strong*max(0.0,surprise)
+            neg_result=weak*max(0.0,-surprise)
+            pos_interaction=strong*max(0.0,p)*max(0.0,surprise)
+            neg_interaction=weak*max(0.0,-p)*max(0.0,-surprise)
+            value=0.40*((pos_performance-neg_performance)+(pos_result-neg_result)+(pos_interaction-neg_interaction))
+            value=max(-2.0,min(2.0,value))
             competitive[t].append(value)
             competitive_games[t].append({"opponent":opponent,"own_points":pf,"opp_points":pa,"opponent_sd":round(opp_sd,3),"performance_signal":round(perf,4),"result_surprise":round(surprise,4),"credit":round(value,4)})
     csc_raw={t:(sum(competitive[t])/(len(competitive[t])+4) if competitive[t] else 0.0) for t in teams}
