@@ -39,7 +39,9 @@ def build(year):
             school=pick.get("school") or person.get("school")
             round_id=str(pick.get("pickRound") or rd.get("round") or "").strip()
             overall=pick.get("pickNumber")
-            if not round_id or not isinstance(overall,int):invalid.append(("bad pick",overall));continue
+            try:overall=int(overall)
+            except (ValueError,TypeError):overall=None
+            if not round_id or overall is None:invalid.append(("bad pick",overall));continue
             out[TEAM_IDS[team_id]].append({"round":round_id,"overall_pick":overall,"round_pick":pick.get("roundPickNumber"),"player":name,"position":text_or_none(pos),"school":text_or_none(school),"player_id":person.get("id"),"signed":pick.get("isSigned") if isinstance(pick.get("isSigned"),bool) else None})
     if invalid:raise ValueError(f"{year} missing/unknown picks: {invalid[:15]}")
     all_picks=[p for arr in out.values() for p in arr]
