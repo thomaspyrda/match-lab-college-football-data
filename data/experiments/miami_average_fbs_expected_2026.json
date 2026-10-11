@@ -80,4 +80,4 @@
   ],
   "expected_baseline_interpretation": "Each per-metric average-FBS expectation is -coefficient * opponent unit SD; actual minus that expectation equals calibrated opponent-adjusted game z. Composites share the same category weights as v15.",
   "limitation": "Uses in-sample through-week-6 opponent ratings and game-level FBS distribution; this reexpresses existing adjustment as an expected average-FBS baseline, not an independently estimated new predictive model."
-}\n
+}
