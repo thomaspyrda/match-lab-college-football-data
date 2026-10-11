@@ -87,6 +87,8 @@ for yr in SEASONS:
 calib=json.loads((ROOT/'data/experiments/sd_to_sd_calibration_v14.json').read_text())['metrics']
 metrics={}
 miami=[]
+texas_tech=[]
+fbs_2026=[]
 for metric in FIELDS:
  samples=[r.copy() for r in allrows if r['metric']==metric]
  train=[r for r in samples if r['season']<=2024]
@@ -111,14 +113,17 @@ for metric in FIELDS:
  baselines={'neutral':lambda r:0,'v15_coefficient_proxy':lambda r:k*r['opponent_allow'],'ond_ridge':lambda r:predict(c,r)}
  metrics[metric]={'trained':len(train),'coefficient':c,'v15_proxy_k':k,'validation_residual_sigma':round(residual_sigma,5),'validation_2025':{n:error(val,f) for n,f in baselines.items()},'test_2026':{n:error(test,f) for n,f in baselines.items()}}
  for r in test:
-  if r['team']!='Miami':continue
+  if r['season']==2026:
+   fbs_2026.append({'team':r['team'],'opponent':r['opponent'],'game_id':r['game_id'],'metric':metric,'dominance_residual_sd':round((actual-expected)/residual_sigma,3)})
+  if r['team'] not in ('Miami','Texas Tech'):continue
   actual=r['actual'];expected=predict(c,r)
-  miami.append({'game_id':r['game_id'],'opponent':r['opponent'],'metric':metric,'observed_z':round(actual,3),'expected_average_fbs_z':round(expected,3),'dominance_residual_z':round(actual-expected,3),'dominance_residual_sd':round((actual-expected)/residual_sigma,3),'opponent_prior_games':r['prior_games']})
+  target=miami if r['team']=='Miami' else texas_tech
+  target.append({'game_id':r['game_id'],'opponent':r['opponent'],'metric':metric,'observed_z':round(actual,3),'expected_average_fbs_z':round(expected,3),'dominance_residual_z':round(actual-expected,3),'dominance_residual_sd':round((actual-expected)/residual_sigma,3),'opponent_prior_games':r['prior_games']})
 summary={}
 for period in ('validation_2025','test_2026'):
  complete=[v[period] for v in metrics.values() if v[period]['ond_ridge'] and v[period]['v15_coefficient_proxy']]
  summary[period]={'metric_count':len(complete),'mean_metric_rmse':{n:round(statistics.fmean(v[n]['rmse'] for v in complete),5) for n in ('neutral','v15_coefficient_proxy','ond_ridge')},'ond_better_than_proxy_metrics':sum(v['ond_ridge']['rmse']<v['v15_coefficient_proxy']['rmse'] for v in complete)}
-payload={'schema':'ond-independent-pilot-v1','train':[2022,2023,2024],'validation':2025,'test':2026,'features':'Pregame opponent defensive allowance history, shrunk toward FBS training mean; home-field flag. No separate SOS.','limitations':'Pilot covers 13 advanced-endpoint metrics rather than complete 38/41; 2026 is partial; games are used in team-season chronological order; benchmark uses v15 coefficients on independent prior allowance proxy, not exact production v15; raw z-scores use training FBS game SD; the additional residual SD scores use 2025 holdout prediction-error SD; no external venue or roster controls.','results':summary,'metrics':metrics,'miami_2026':miami}
+payload={'schema':'ond-independent-pilot-v1','train':[2022,2023,2024],'validation':2025,'test':2026,'features':'Pregame opponent defensive allowance history, shrunk toward FBS training mean; home-field flag. No separate SOS.','limitations':'Pilot covers 13 advanced-endpoint metrics rather than complete 38/41; 2026 is partial; games are used in team-season chronological order; benchmark uses v15 coefficients on independent prior allowance proxy, not exact production v15; raw z-scores use training FBS game SD; the additional residual SD scores use 2025 holdout prediction-error SD; no external venue or roster controls.','results':summary,'metrics':metrics,'miami_2026':miami,'texas_tech_2026':texas_tech,'fbs_2026_dominance':fbs_2026}
 DEST.parent.mkdir(parents=True,exist_ok=True)
 DEST.write_text(json.dumps(payload,indent=2)+'\n')
 print(json.dumps({'results':summary,'miami_rows':len(miami)},indent=2))
