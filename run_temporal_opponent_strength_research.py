@@ -115,7 +115,7 @@ src=src.replace('"convergence":convergence,"fcs_diagnostics":fcs_diagnostics,"ra
 # insert a frozen pregame profile into the generated runtime before recursion
 pregame="    # Frozen pregame opponent unit profiles from available prior matchups.\n    pregame_off={};pregame_def={};pregame_strength={}\n    past_off=defaultdict(list);past_def=defaultdict(list)\n    def game_raw_unit(row,defensive=False):\n        parts=[]\n        for cat,(w,ms) in CATS.items():\n            vals=[(-1.0 if defensive else 1.0)*(row[m]-mus[m])/sds[m] for m in ms if row[m] is not None]\n            if vals:parts.append((w,sum(vals)/len(vals)))\n        den=sum(w for w,v in parts)\n        return sum(w*v for w,v in parts)/den if den else None\n    for home,away,home_m,away_m in obs:\n        def pre(t,unit):\n            history=past_off[t] if unit=='off' else past_def[t]\n            p=evidence_prior_weight(len(history))\n            return p*prior_z.get(t,0.0)+(1-p)*(sum(history)/len(history) if history else prior_z.get(t,0.0))\n        ho,hd,ao,ad=pre(home,'off'),pre(home,'def'),pre(away,'off'),pre(away,'def')\n        pregame_off[(home,away)],pregame_def[(home,away)],pregame_strength[(home,away)]=ho,hd,.5*(ho+hd)\n        pregame_off[(away,home)],pregame_def[(away,home)],pregame_strength[(away,home)]=ao,ad,.5*(ao+ad)\n        for t,own,opp in ((home,home_m,away_m),(away,away_m,home_m)):\n            x=game_raw_unit(own);y=game_raw_unit(opp,True)\n            if x is not None:past_off[t].append(x)\n            if y is not None:past_def[t].append(y)\n"
 src=src.replace('    game_metric={} ', '    game_metric={} ') # compatibility no-op
-anchor='    game_metric={}\\n'
+anchor='    game_metric={}'
 assert anchor in src
 src=src.replace(anchor,pregame+anchor)
 variants=[]
