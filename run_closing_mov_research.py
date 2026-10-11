@@ -93,3 +93,5 @@ report={'study':'Pregame baseline 90% plus standardized closing-spread MOV resid
 p=ROOT/'data/experiments/closing_mov_10pct_pregame_comparison_2026.json'
 p.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'covered_games':len(audits),'focus':report['focus'],'top25':new_order[:25]},indent=2))
+
+# Research-only execution trigger.
