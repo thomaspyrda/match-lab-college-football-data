@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 ROOT=Path(__file__).resolve().parent
 TEAM_IDS={108:"los-angeles-angels",109:"arizona-diamondbacks",110:"baltimore-orioles",111:"boston-red-sox",112:"chicago-cubs",113:"cincinnati-reds",114:"cleveland-guardians",115:"colorado-rockies",116:"detroit-tigers",117:"houston-astros",118:"kansas-city-royals",119:"los-angeles-dodgers",120:"washington-nationals",121:"new-york-mets",133:"athletics",134:"pittsburgh-pirates",135:"san-diego-padres",136:"seattle-mariners",137:"san-francisco-giants",138:"st-louis-cardinals",139:"tampa-bay-rays",140:"texas-rangers",141:"toronto-blue-jays",142:"minnesota-twins",143:"philadelphia-phillies",144:"atlanta-braves",145:"chicago-white-sox",146:"miami-marlins",147:"new-york-yankees",158:"milwaukee-brewers"}
-URL="https://statsapi.mlb.com/api/v1/draft/{}"
+URL="https://statsapi.mlb.com/api/v1/draft/{}?limit=1500"
 def get(year):
     url=URL.format(year)
     req=urllib.request.Request(url,headers={"User-Agent":"BetWiseResearch/1.0","Accept":"application/json"})
@@ -35,7 +35,7 @@ def build(year):
             person=pick.get("person") or {}
             name=person.get("fullName") or pick.get("name") or person.get("name")
             if not name:invalid.append(("unnamed",pick.get("pickNumber")));continue
-            pos=person.get("primaryPosition") or pick.get("position")
+            pos=pick.get("position") or person.get("primaryPosition")
             school=pick.get("school") or person.get("school")
             round_id=str(pick.get("pickRound") or rd.get("round") or "").strip()
             overall=pick.get("pickNumber")
