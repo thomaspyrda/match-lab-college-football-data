@@ -68,8 +68,8 @@ def main():
             print(f"Could not validate {year}: {exc}")
     doc={"schema_version":1,"generated_at":datetime.now(timezone.utc).isoformat(),"source":"MLB Stats API official draft results","source_url":"https://statsapi.mlb.com/api/v1/draft/{year}","years":dict(sorted(all_years.items())),"unavailable_years":failures}
     diagnostics=ROOT/"data/mlb/draft-collection-status.json"
-    diagnostics.write_text(json.dumps({"attempted_years":args.years,"validated_years":sorted(map(int,all_years)),"failures":failures,"generated_at":doc["generated_at"]},indent=2)+"\\n")
+    diagnostics.write_text(json.dumps({"attempted_years":args.years,"validated_years":sorted(map(int,all_years)),"failures":failures,"generated_at":doc["generated_at"]},indent=2)+"\n")
     if not all_years:raise RuntimeError("No validated MLB draft years were collected; see data/mlb/draft-collection-status.json")
-    path.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\\n")
+    path.write_text(json.dumps(doc,ensure_ascii=False,separators=(",",":"))+"\n")
     print("Saved",path,"verified years:",len(all_years),"unavailable:",len(failures))
 if __name__=="__main__":main()
