@@ -51,6 +51,25 @@ jobs:
           path.write_text(json.dumps(doc,ensure_ascii=False,separators=(',',':'))+'\n')
           print('Verified 2025:',len(all_picks),'draft selections across 30 teams')
           PY
+      - name: Persist failure diagnostics
+        if: failure()
+        run: |
+          mkdir -p data/mlb
+          python - <<'PY'
+          import json,datetime
+          with open('data/mlb/draft-2025-publish-status.json','w') as f:
+              json.dump({'status':'failed_before_publish','at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'note':'Inspect workflow step logs for precise cause'},f,indent=2)
+          PY
+      - name: Commit failure diagnostics
+        if: failure()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/draft-2025-publish-status.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'diagnostics(mlb): record 2025 draft publish failure'
+          git pull --rebase -X theirs origin main
+          git push origin main
       - name: Commit populated 2025 draft data
         run: |
           git config user.name 'github-actions[bot]'
