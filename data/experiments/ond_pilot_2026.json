@@ -13,579 +13,579 @@
     "validation_2025": {
       "metric_count": 13,
       "mean_metric_rmse": {
-        "neutral": 0.96742,
-        "v15_coefficient_proxy": 0.96109,
-        "ond_ridge": 0.94372
+        "neutral": 0.99303,
+        "v15_coefficient_proxy": 0.98531,
+        "ond_ridge": 0.97318
       },
       "ond_better_than_proxy_metrics": 13
     },
     "test_2026": {
       "metric_count": 13,
       "mean_metric_rmse": {
-        "neutral": 1.03305,
-        "v15_coefficient_proxy": 1.0294,
-        "ond_ridge": 0.99954
+        "neutral": 1.0169,
+        "v15_coefficient_proxy": 1.01147,
+        "ond_ridge": 0.99728
       },
       "ond_better_than_proxy_metrics": 13
     }
   },
   "metrics": {
     "ppa": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.1972187381336171,
-        0.5083391510815738,
-        0.4088464564793314
+        -0.12620530021234624,
+        0.6055047168997875,
+        0.2670264910696242
       ],
       "v15_proxy_k": 0.162136,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.95314,
-          "mae": 0.7252
+          "n": 1524,
+          "rmse": 1.02247,
+          "mae": 0.7752
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.94475,
-          "mae": 0.71826
+          "n": 1524,
+          "rmse": 1.01051,
+          "mae": 0.7656
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.90784,
-          "mae": 0.69676
+          "n": 1524,
+          "rmse": 0.97835,
+          "mae": 0.74697
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.03074,
-          "mae": 0.79383
+          "n": 640,
+          "rmse": 1.01791,
+          "mae": 0.80824
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.02753,
-          "mae": 0.7915
+          "n": 640,
+          "rmse": 1.01031,
+          "mae": 0.80414
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.97143,
-          "mae": 0.74544
+          "n": 640,
+          "rmse": 0.97702,
+          "mae": 0.77868
         }
       }
     },
     "success_rate": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.19568849435317445,
-        0.5996723993984153,
-        0.41417292802725514
+        -0.11430918217855272,
+        0.6794855335520247,
+        0.246406082605319
       ],
       "v15_proxy_k": 0.206633,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.9972,
-          "mae": 0.76593
+          "n": 1524,
+          "rmse": 1.00448,
+          "mae": 0.77499
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.98643,
-          "mae": 0.75662
+          "n": 1524,
+          "rmse": 0.99048,
+          "mae": 0.76469
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.95034,
-          "mae": 0.73602
+          "n": 1524,
+          "rmse": 0.96204,
+          "mae": 0.74889
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.06336,
-          "mae": 0.83266
+          "n": 640,
+          "rmse": 1.05555,
+          "mae": 0.8309
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.05739,
-          "mae": 0.82637
+          "n": 640,
+          "rmse": 1.04693,
+          "mae": 0.82249
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.9986,
-          "mae": 0.78232
+          "n": 640,
+          "rmse": 1.01604,
+          "mae": 0.7944
         }
       }
     },
     "passing_ppa": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.14829658257886047,
-        0.41300809047253045,
-        0.30405221036203206
+        -0.1019861142858329,
+        0.4462958506468843,
+        0.2048306641618065
       ],
       "v15_proxy_k": 0.116637,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.96515,
-          "mae": 0.7398
+          "n": 1524,
+          "rmse": 0.99488,
+          "mae": 0.76319
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.96131,
-          "mae": 0.73625
+          "n": 1524,
+          "rmse": 0.98967,
+          "mae": 0.75843
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.9443,
-          "mae": 0.72425
+          "n": 1524,
+          "rmse": 0.97709,
+          "mae": 0.74779
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.00306,
-          "mae": 0.74959
+          "n": 640,
+          "rmse": 1.03334,
+          "mae": 0.77408
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.00171,
-          "mae": 0.74864
+          "n": 640,
+          "rmse": 1.03209,
+          "mae": 0.77285
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.96973,
-          "mae": 0.72458
+          "n": 640,
+          "rmse": 1.01979,
+          "mae": 0.76357
         }
       }
     },
     "passing_success": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.15797649083500628,
-        0.4046713406738878,
-        0.32649210228995634
+        -0.10055565437403058,
+        0.4274394304669254,
+        0.2002651919850721
       ],
       "v15_proxy_k": 0.122741,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.97924,
-          "mae": 0.76835
+          "n": 1524,
+          "rmse": 1.00497,
+          "mae": 0.79293
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.97473,
-          "mae": 0.76424
+          "n": 1524,
+          "rmse": 0.99861,
+          "mae": 0.7885
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.95183,
-          "mae": 0.74679
+          "n": 1524,
+          "rmse": 0.98138,
+          "mae": 0.77436
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.0237,
-          "mae": 0.79831
+          "n": 640,
+          "rmse": 1.02941,
+          "mae": 0.80058
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.02283,
-          "mae": 0.79788
+          "n": 640,
+          "rmse": 1.02748,
+          "mae": 0.80047
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.98212,
-          "mae": 0.76408
+          "n": 640,
+          "rmse": 1.00826,
+          "mae": 0.78603
         }
       }
     },
     "rushing_ppa": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.13480531090092054,
-        0.4414093443664087,
-        0.2787801952305022
+        -0.062278859382773104,
+        0.4907694534283146,
+        0.13762390413061323
       ],
       "v15_proxy_k": 0.201272,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.9184,
-          "mae": 0.68529
+          "n": 1524,
+          "rmse": 0.99392,
+          "mae": 0.73624
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.91213,
-          "mae": 0.68075
+          "n": 1524,
+          "rmse": 0.98697,
+          "mae": 0.73182
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.89304,
-          "mae": 0.67054
+          "n": 1524,
+          "rmse": 0.97681,
+          "mae": 0.72719
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.015,
-          "mae": 0.75926
+          "n": 640,
+          "rmse": 1.0028,
+          "mae": 0.76423
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.01199,
-          "mae": 0.75582
+          "n": 640,
+          "rmse": 0.99698,
+          "mae": 0.76211
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.98097,
-          "mae": 0.7325
+          "n": 640,
+          "rmse": 0.98422,
+          "mae": 0.75694
         }
       }
     },
     "rushing_success": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.15419831852422786,
-        0.5621046704286952,
-        0.32769979629091067
+        -0.07447820035305983,
+        0.6151362381132223,
+        0.17167619116194474
       ],
       "v15_proxy_k": 0.250584,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.97666,
-          "mae": 0.76563
+          "n": 1524,
+          "rmse": 0.98369,
+          "mae": 0.77356
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.96695,
-          "mae": 0.75862
+          "n": 1524,
+          "rmse": 0.97365,
+          "mae": 0.76711
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.94491,
-          "mae": 0.74258
+          "n": 1524,
+          "rmse": 0.96168,
+          "mae": 0.75836
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.02885,
-          "mae": 0.80263
+          "n": 640,
+          "rmse": 0.99221,
+          "mae": 0.77858
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.02182,
-          "mae": 0.79524
+          "n": 640,
+          "rmse": 0.98328,
+          "mae": 0.77156
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.98634,
-          "mae": 0.77142
+          "n": 640,
+          "rmse": 0.96825,
+          "mae": 0.76482
         }
       }
     },
     "passing_explosiveness": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.02584467423049885,
-        0.19441504924706515,
-        0.05618553694708546
+        -0.014173520581481382,
+        0.2927469812364374,
+        0.02802145511697942
       ],
       "v15_proxy_k": 0.123217,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.93945,
-          "mae": 0.70457
+          "n": 1524,
+          "rmse": 0.97153,
+          "mae": 0.71352
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.93697,
-          "mae": 0.70259
+          "n": 1524,
+          "rmse": 0.96943,
+          "mae": 0.71223
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.93597,
-          "mae": 0.70259
+          "n": 1524,
+          "rmse": 0.9682,
+          "mae": 0.71168
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 0.93919,
-          "mae": 0.70607
+          "n": 640,
+          "rmse": 0.88371,
+          "mae": 0.68373
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 0.93891,
-          "mae": 0.7053
+          "n": 640,
+          "rmse": 0.88255,
+          "mae": 0.68327
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 0.93813,
-          "mae": 0.7048
+          "n": 640,
+          "rmse": 0.88248,
+          "mae": 0.68376
         }
       }
     },
     "rushing_explosiveness": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.041744305768215986,
-        0.13749601766951045,
-        0.08600943521031297
+        -0.025715269998033516,
+        0.1263620180856444,
+        0.052671079859954464
       ],
       "v15_proxy_k": 0.036396,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.87087,
-          "mae": 0.61674
+          "n": 1524,
+          "rmse": 0.89232,
+          "mae": 0.64353
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.8704,
-          "mae": 0.61641
+          "n": 1524,
+          "rmse": 0.89205,
+          "mae": 0.64325
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.86792,
-          "mae": 0.61568
+          "n": 1524,
+          "rmse": 0.89104,
+          "mae": 0.64267
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.03296,
-          "mae": 0.71349
+          "n": 640,
+          "rmse": 0.99289,
+          "mae": 0.69463
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.03266,
-          "mae": 0.71341
+          "n": 640,
+          "rmse": 0.99243,
+          "mae": 0.69488
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.02911,
-          "mae": 0.71085
+          "n": 640,
+          "rmse": 0.99048,
+          "mae": 0.69398
         }
       }
     },
     "line_yards": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.12582546599080582,
-        0.5262715392333287,
-        0.26559321114503054
+        -0.06222684714380679,
+        0.5694575515420262,
+        0.14915004698277168
       ],
       "v15_proxy_k": 0.279417,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 1.00159,
-          "mae": 0.75112
+          "n": 1524,
+          "rmse": 1.05434,
+          "mae": 0.78342
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.99032,
-          "mae": 0.74447
+          "n": 1524,
+          "rmse": 1.03955,
+          "mae": 0.77473
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.97717,
-          "mae": 0.7374
+          "n": 1524,
+          "rmse": 1.03117,
+          "mae": 0.7736
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.06529,
-          "mae": 0.7936
+          "n": 640,
+          "rmse": 1.05417,
+          "mae": 0.7847
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.05748,
-          "mae": 0.78654
+          "n": 640,
+          "rmse": 1.03805,
+          "mae": 0.77515
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.0294,
-          "mae": 0.76846
+          "n": 640,
+          "rmse": 1.02266,
+          "mae": 0.76824
         }
       }
     },
     "power_success": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.07088351205936613,
-        0.17244815909066452,
-        0.14441967699975244
+        -0.03362705035517602,
+        0.23267386755739047,
+        0.07456027837179263
       ],
       "v15_proxy_k": 0.11994,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 1.00316,
-          "mae": 0.79694
+          "n": 1524,
+          "rmse": 0.98573,
+          "mae": 0.77707
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 1.00235,
-          "mae": 0.79708
+          "n": 1524,
+          "rmse": 0.98491,
+          "mae": 0.77681
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.9977,
-          "mae": 0.79429
+          "n": 1524,
+          "rmse": 0.98358,
+          "mae": 0.776
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.04935,
-          "mae": 0.83853
+          "n": 640,
+          "rmse": 1.01453,
+          "mae": 0.78977
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.04801,
-          "mae": 0.83784
+          "n": 640,
+          "rmse": 1.01278,
+          "mae": 0.7876
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.0383,
-          "mae": 0.8295
+          "n": 640,
+          "rmse": 1.00697,
+          "mae": 0.78231
         }
       }
     },
     "standard_down_success": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.1739204566968642,
-        0.5294538560951852,
-        0.3678822951067488
+        -0.0975448496858851,
+        0.6149392443941794,
+        0.21447799181704852
       ],
       "v15_proxy_k": 0.212539,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.99343,
-          "mae": 0.76126
+          "n": 1524,
+          "rmse": 1.02071,
+          "mae": 0.79344
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.98477,
-          "mae": 0.75447
+          "n": 1524,
+          "rmse": 1.00906,
+          "mae": 0.78503
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.95781,
-          "mae": 0.73943
+          "n": 1524,
+          "rmse": 0.99033,
+          "mae": 0.7735
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.07471,
-          "mae": 0.82645
+          "n": 640,
+          "rmse": 1.04043,
+          "mae": 0.79587
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.0688,
-          "mae": 0.82026
+          "n": 640,
+          "rmse": 1.03488,
+          "mae": 0.79195
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.02386,
-          "mae": 0.78412
+          "n": 640,
+          "rmse": 1.01614,
+          "mae": 0.77616
         }
       }
     },
     "passing_down_success": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.14841650999139733,
-        0.3553244337328811,
-        0.30334322653998586
+        -0.09782771689826723,
+        0.33973523726685306,
+        0.19515902370956795
       ],
       "v15_proxy_k": 0.099421,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 1.01807,
-          "mae": 0.77655
+          "n": 1524,
+          "rmse": 1.00765,
+          "mae": 0.76822
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 1.01559,
-          "mae": 0.77483
+          "n": 1524,
+          "rmse": 1.00545,
+          "mae": 0.76752
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.99948,
-          "mae": 0.76538
+          "n": 1524,
+          "rmse": 0.99461,
+          "mae": 0.76223
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.06475,
-          "mae": 0.81699
+          "n": 640,
+          "rmse": 1.09649,
+          "mae": 0.84823
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.06348,
-          "mae": 0.81638
+          "n": 640,
+          "rmse": 1.09502,
+          "mae": 0.84831
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.03237,
-          "mae": 0.79529
+          "n": 640,
+          "rmse": 1.08035,
+          "mae": 0.84137
         }
       }
     },
     "stuff_avoidance": {
-      "trained": 8784,
+      "trained": 4464,
       "coefficient": [
-        -0.08955900079993588,
-        0.5635972011061641,
-        0.18907395187042692
+        -0.03622278096318127,
+        0.5670117776341068,
+        0.09205490897084671
       ],
       "v15_proxy_k": 0.314395,
       "validation_2025": {
         "neutral": {
-          "n": 3216,
-          "rmse": 0.96008,
-          "mae": 0.73051
+          "n": 1524,
+          "rmse": 0.97273,
+          "mae": 0.74683
         },
         "v15_coefficient_proxy": {
-          "n": 3216,
-          "rmse": 0.94741,
-          "mae": 0.72326
+          "n": 1524,
+          "rmse": 0.95869,
+          "mae": 0.73714
         },
         "ond_ridge": {
-          "n": 3216,
-          "rmse": 0.9401,
-          "mae": 0.72132
+          "n": 1524,
+          "rmse": 0.955,
+          "mae": 0.73636
         }
       },
       "test_2026": {
         "neutral": {
-          "n": 1614,
-          "rmse": 1.03867,
-          "mae": 0.78121
+          "n": 640,
+          "rmse": 1.00628,
+          "mae": 0.76408
         },
         "v15_coefficient_proxy": {
-          "n": 1614,
-          "rmse": 1.0296,
-          "mae": 0.7741
+          "n": 640,
+          "rmse": 0.99633,
+          "mae": 0.75448
         },
         "ond_ridge": {
-          "n": 1614,
-          "rmse": 1.01363,
-          "mae": 0.76513
+          "n": 640,
+          "rmse": 0.99201,
+          "mae": 0.75021
         }
       }
     }
@@ -595,585 +595,468 @@
       "game_id": "401858206",
       "opponent": "Stanford",
       "metric": "ppa",
-      "observed_z": 1.64,
-      "expected_average_fbs_z": -0.224,
-      "dominance_residual_z": 1.864,
+      "observed_z": 1.861,
+      "expected_average_fbs_z": -0.166,
+      "dominance_residual_z": 2.026,
       "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "ppa",
-      "observed_z": 3.93,
-      "expected_average_fbs_z": 0.106,
-      "dominance_residual_z": 3.824,
-      "opponent_prior_games": 2
     },
     {
       "game_id": "401858226",
       "opponent": "Wake Forest",
       "metric": "ppa",
-      "observed_z": 0.514,
-      "expected_average_fbs_z": -0.212,
-      "dominance_residual_z": 0.726,
+      "observed_z": 0.568,
+      "expected_average_fbs_z": -0.152,
+      "dominance_residual_z": 0.72,
       "opponent_prior_games": 2
     },
     {
       "game_id": "401858238",
       "opponent": "Central Michigan",
       "metric": "ppa",
-      "observed_z": 1.989,
-      "expected_average_fbs_z": 0.21,
-      "dominance_residual_z": 1.779,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "ppa",
-      "observed_z": 0.789,
-      "expected_average_fbs_z": -0.358,
-      "dominance_residual_z": 1.147,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "success_rate",
-      "observed_z": 1.59,
-      "expected_average_fbs_z": -0.284,
-      "dominance_residual_z": 1.874,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "success_rate",
-      "observed_z": 4.774,
-      "expected_average_fbs_z": 0.191,
-      "dominance_residual_z": 4.583,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "success_rate",
-      "observed_z": 0.221,
-      "expected_average_fbs_z": -0.11,
-      "dominance_residual_z": 0.331,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "success_rate",
-      "observed_z": 2.098,
-      "expected_average_fbs_z": 0.295,
-      "dominance_residual_z": 1.803,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "success_rate",
-      "observed_z": 0.92,
-      "expected_average_fbs_z": -0.277,
-      "dominance_residual_z": 1.197,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "passing_ppa",
-      "observed_z": 2.066,
-      "expected_average_fbs_z": -0.167,
-      "dominance_residual_z": 2.233,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "passing_ppa",
-      "observed_z": 2.848,
-      "expected_average_fbs_z": 0.014,
-      "dominance_residual_z": 2.834,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "passing_ppa",
-      "observed_z": 0.582,
-      "expected_average_fbs_z": -0.14,
-      "dominance_residual_z": 0.722,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "passing_ppa",
-      "observed_z": 1.393,
-      "expected_average_fbs_z": 0.043,
-      "dominance_residual_z": 1.35,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "passing_ppa",
-      "observed_z": 0.251,
-      "expected_average_fbs_z": -0.348,
-      "dominance_residual_z": 0.599,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "passing_success",
-      "observed_z": 2.325,
-      "expected_average_fbs_z": -0.215,
-      "dominance_residual_z": 2.539,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "passing_success",
-      "observed_z": 3.817,
-      "expected_average_fbs_z": 0.065,
-      "dominance_residual_z": 3.752,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "passing_success",
-      "observed_z": 0.878,
-      "expected_average_fbs_z": -0.048,
-      "dominance_residual_z": 0.926,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "passing_success",
-      "observed_z": 1.81,
-      "expected_average_fbs_z": 0.123,
-      "dominance_residual_z": 1.686,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "passing_success",
-      "observed_z": 0.524,
-      "expected_average_fbs_z": -0.286,
-      "dominance_residual_z": 0.81,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "rushing_ppa",
-      "observed_z": -0.05,
-      "expected_average_fbs_z": -0.186,
-      "dominance_residual_z": 0.136,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "rushing_ppa",
-      "observed_z": 2.65,
-      "expected_average_fbs_z": 0.069,
-      "dominance_residual_z": 2.581,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "rushing_ppa",
-      "observed_z": 0.057,
-      "expected_average_fbs_z": -0.198,
-      "dominance_residual_z": 0.256,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "rushing_ppa",
-      "observed_z": 1.298,
-      "expected_average_fbs_z": 0.185,
-      "dominance_residual_z": 1.112,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "rushing_ppa",
-      "observed_z": 0.585,
-      "expected_average_fbs_z": -0.073,
-      "dominance_residual_z": 0.658,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "rushing_success",
-      "observed_z": 0.39,
-      "expected_average_fbs_z": -0.148,
-      "dominance_residual_z": 0.537,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "rushing_success",
-      "observed_z": 3.852,
-      "expected_average_fbs_z": 0.209,
-      "dominance_residual_z": 3.643,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "rushing_success",
-      "observed_z": -0.599,
-      "expected_average_fbs_z": -0.164,
-      "dominance_residual_z": -0.436,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "rushing_success",
-      "observed_z": 1.541,
-      "expected_average_fbs_z": 0.313,
-      "dominance_residual_z": 1.228,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "rushing_success",
-      "observed_z": 0.936,
-      "expected_average_fbs_z": -0.081,
-      "dominance_residual_z": 1.017,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "passing_explosiveness",
-      "observed_z": 0.023,
-      "expected_average_fbs_z": -0.06,
-      "dominance_residual_z": 0.083,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "passing_explosiveness",
-      "observed_z": -0.092,
-      "expected_average_fbs_z": 0.044,
-      "dominance_residual_z": -0.136,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "passing_explosiveness",
-      "observed_z": -0.939,
-      "expected_average_fbs_z": -0.138,
-      "dominance_residual_z": -0.801,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "passing_explosiveness",
-      "observed_z": -0.376,
-      "expected_average_fbs_z": -0.025,
-      "dominance_residual_z": -0.351,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "passing_explosiveness",
-      "observed_z": -0.137,
-      "expected_average_fbs_z": -0.054,
-      "dominance_residual_z": -0.083,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "rushing_explosiveness",
-      "observed_z": -0.587,
-      "expected_average_fbs_z": -0.022,
-      "dominance_residual_z": -0.565,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "rushing_explosiveness",
-      "observed_z": 0.06,
-      "expected_average_fbs_z": 0.002,
-      "dominance_residual_z": 0.057,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "rushing_explosiveness",
-      "observed_z": -0.064,
-      "expected_average_fbs_z": -0.035,
-      "dominance_residual_z": -0.029,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "rushing_explosiveness",
-      "observed_z": 0.035,
-      "expected_average_fbs_z": 0.004,
-      "dominance_residual_z": 0.032,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "rushing_explosiveness",
-      "observed_z": -0.493,
-      "expected_average_fbs_z": -0.083,
-      "dominance_residual_z": -0.41,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "line_yards",
-      "observed_z": -0.004,
-      "expected_average_fbs_z": -0.123,
-      "dominance_residual_z": 0.118,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "line_yards",
-      "observed_z": 2.796,
-      "expected_average_fbs_z": 0.033,
-      "dominance_residual_z": 2.763,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "line_yards",
-      "observed_z": 0.173,
-      "expected_average_fbs_z": -0.242,
-      "dominance_residual_z": 0.415,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "line_yards",
-      "observed_z": 1.838,
-      "expected_average_fbs_z": 0.266,
-      "dominance_residual_z": 1.572,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "line_yards",
-      "observed_z": 1.162,
-      "expected_average_fbs_z": 0.044,
-      "dominance_residual_z": 1.118,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "power_success",
-      "observed_z": 0.984,
-      "expected_average_fbs_z": -0.028,
-      "dominance_residual_z": 1.012,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "power_success",
-      "observed_z": 0.984,
-      "expected_average_fbs_z": 0.036,
-      "dominance_residual_z": 0.947,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "power_success",
-      "observed_z": 0.069,
-      "expected_average_fbs_z": -0.121,
-      "dominance_residual_z": 0.19,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "power_success",
-      "observed_z": 0.984,
-      "expected_average_fbs_z": 0.158,
-      "dominance_residual_z": 0.825,
-      "opponent_prior_games": 3
-    },
-    {
-      "game_id": "401858249",
-      "opponent": "Clemson",
-      "metric": "power_success",
-      "observed_z": -0.084,
-      "expected_average_fbs_z": -0.058,
-      "dominance_residual_z": -0.026,
-      "opponent_prior_games": 4
-    },
-    {
-      "game_id": "401858206",
-      "opponent": "Stanford",
-      "metric": "standard_down_success",
-      "observed_z": 1.636,
-      "expected_average_fbs_z": -0.28,
-      "dominance_residual_z": 1.916,
-      "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "standard_down_success",
-      "observed_z": 4.084,
-      "expected_average_fbs_z": 0.145,
-      "dominance_residual_z": 3.938,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858226",
-      "opponent": "Wake Forest",
-      "metric": "standard_down_success",
-      "observed_z": 0.405,
-      "expected_average_fbs_z": -0.15,
-      "dominance_residual_z": 0.555,
-      "opponent_prior_games": 2
-    },
-    {
-      "game_id": "401858238",
-      "opponent": "Central Michigan",
-      "metric": "standard_down_success",
-      "observed_z": 1.499,
+      "observed_z": 2.261,
       "expected_average_fbs_z": 0.239,
-      "dominance_residual_z": 1.26,
-      "opponent_prior_games": 3
+      "dominance_residual_z": 2.022,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "ppa",
+      "observed_z": 0.883,
+      "expected_average_fbs_z": -0.354,
+      "dominance_residual_z": 1.237,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "success_rate",
+      "observed_z": 1.732,
+      "expected_average_fbs_z": -0.228,
+      "dominance_residual_z": 1.959,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "success_rate",
+      "observed_z": 0.222,
+      "expected_average_fbs_z": -0.012,
+      "dominance_residual_z": 0.235,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "success_rate",
+      "observed_z": 2.291,
+      "expected_average_fbs_z": 0.301,
+      "dominance_residual_z": 1.99,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "success_rate",
+      "observed_z": 0.993,
+      "expected_average_fbs_z": -0.224,
+      "dominance_residual_z": 1.217,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "passing_ppa",
+      "observed_z": 2.211,
+      "expected_average_fbs_z": -0.122,
+      "dominance_residual_z": 2.333,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "passing_ppa",
+      "observed_z": 0.637,
+      "expected_average_fbs_z": -0.089,
+      "dominance_residual_z": 0.725,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "passing_ppa",
+      "observed_z": 1.497,
+      "expected_average_fbs_z": 0.01,
+      "dominance_residual_z": 1.487,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "passing_ppa",
+      "observed_z": 0.285,
+      "expected_average_fbs_z": -0.326,
+      "dominance_residual_z": 0.612,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "passing_success",
+      "observed_z": 2.487,
+      "expected_average_fbs_z": -0.165,
+      "dominance_residual_z": 2.652,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "passing_success",
+      "observed_z": 0.938,
+      "expected_average_fbs_z": 0.023,
+      "dominance_residual_z": 0.915,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "passing_success",
+      "observed_z": 1.936,
+      "expected_average_fbs_z": 0.101,
+      "dominance_residual_z": 1.834,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "passing_success",
+      "observed_z": 0.559,
+      "expected_average_fbs_z": -0.246,
+      "dominance_residual_z": 0.805,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "rushing_ppa",
+      "observed_z": -0.076,
+      "expected_average_fbs_z": -0.13,
+      "dominance_residual_z": 0.053,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "rushing_ppa",
+      "observed_z": 0.046,
+      "expected_average_fbs_z": -0.147,
+      "dominance_residual_z": 0.192,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "rushing_ppa",
+      "observed_z": 1.46,
+      "expected_average_fbs_z": 0.257,
+      "dominance_residual_z": 1.202,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "rushing_ppa",
+      "observed_z": 0.648,
+      "expected_average_fbs_z": 0.011,
+      "dominance_residual_z": 0.637,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "rushing_success",
+      "observed_z": 0.397,
+      "expected_average_fbs_z": -0.071,
+      "dominance_residual_z": 0.468,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "rushing_success",
+      "observed_z": -0.678,
+      "expected_average_fbs_z": -0.092,
+      "dominance_residual_z": -0.585,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "rushing_success",
+      "observed_z": 1.648,
+      "expected_average_fbs_z": 0.325,
+      "dominance_residual_z": 1.323,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "rushing_success",
+      "observed_z": 0.99,
+      "expected_average_fbs_z": 0.003,
+      "dominance_residual_z": 0.988,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "passing_explosiveness",
+      "observed_z": 0.036,
+      "expected_average_fbs_z": -0.067,
+      "dominance_residual_z": 0.103,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "passing_explosiveness",
+      "observed_z": -0.969,
+      "expected_average_fbs_z": -0.189,
+      "dominance_residual_z": -0.78,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "passing_explosiveness",
+      "observed_z": -0.381,
+      "expected_average_fbs_z": -0.07,
+      "dominance_residual_z": -0.311,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "passing_explosiveness",
+      "observed_z": -0.131,
+      "expected_average_fbs_z": -0.056,
+      "dominance_residual_z": -0.075,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "rushing_explosiveness",
+      "observed_z": -0.594,
+      "expected_average_fbs_z": -0.005,
+      "dominance_residual_z": -0.589,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "rushing_explosiveness",
+      "observed_z": -0.035,
+      "expected_average_fbs_z": -0.018,
+      "dominance_residual_z": -0.018,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "rushing_explosiveness",
+      "observed_z": 0.071,
+      "expected_average_fbs_z": 0.024,
+      "dominance_residual_z": 0.048,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "rushing_explosiveness",
+      "observed_z": -0.494,
+      "expected_average_fbs_z": -0.063,
+      "dominance_residual_z": -0.43,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "line_yards",
+      "observed_z": -0.089,
+      "expected_average_fbs_z": -0.07,
+      "dominance_residual_z": -0.018,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "line_yards",
+      "observed_z": 0.114,
+      "expected_average_fbs_z": -0.225,
+      "dominance_residual_z": 0.339,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "line_yards",
+      "observed_z": 2.017,
+      "expected_average_fbs_z": 0.349,
+      "dominance_residual_z": 1.667,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "line_yards",
+      "observed_z": 1.244,
+      "expected_average_fbs_z": 0.121,
+      "dominance_residual_z": 1.123,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "power_success",
+      "observed_z": 1.007,
+      "expected_average_fbs_z": 0.025,
+      "dominance_residual_z": 0.982,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "power_success",
+      "observed_z": 0.031,
+      "expected_average_fbs_z": -0.11,
+      "dominance_residual_z": 0.14,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "power_success",
+      "observed_z": 1.007,
+      "expected_average_fbs_z": 0.135,
+      "dominance_residual_z": 0.872,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858249",
+      "opponent": "Clemson",
+      "metric": "power_success",
+      "observed_z": -0.132,
+      "expected_average_fbs_z": -0.021,
+      "dominance_residual_z": -0.111,
+      "opponent_prior_games": 4
+    },
+    {
+      "game_id": "401858206",
+      "opponent": "Stanford",
+      "metric": "standard_down_success",
+      "observed_z": 1.782,
+      "expected_average_fbs_z": -0.239,
+      "dominance_residual_z": 2.021,
+      "opponent_prior_games": 1
+    },
+    {
+      "game_id": "401858226",
+      "opponent": "Wake Forest",
+      "metric": "standard_down_success",
+      "observed_z": 0.42,
+      "expected_average_fbs_z": -0.074,
+      "dominance_residual_z": 0.494,
+      "opponent_prior_games": 2
+    },
+    {
+      "game_id": "401858238",
+      "opponent": "Central Michigan",
+      "metric": "standard_down_success",
+      "observed_z": 1.631,
+      "expected_average_fbs_z": 0.172,
+      "dominance_residual_z": 1.46,
+      "opponent_prior_games": 2
     },
     {
       "game_id": "401858249",
       "opponent": "Clemson",
       "metric": "standard_down_success",
-      "observed_z": 0.825,
-      "expected_average_fbs_z": -0.352,
-      "dominance_residual_z": 1.177,
+      "observed_z": 0.885,
+      "expected_average_fbs_z": -0.336,
+      "dominance_residual_z": 1.221,
       "opponent_prior_games": 4
     },
     {
       "game_id": "401858206",
       "opponent": "Stanford",
       "metric": "passing_down_success",
-      "observed_z": 0.155,
-      "expected_average_fbs_z": -0.135,
-      "dominance_residual_z": 0.29,
+      "observed_z": 0.169,
+      "expected_average_fbs_z": -0.083,
+      "dominance_residual_z": 0.252,
       "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "passing_down_success",
-      "observed_z": 5.125,
-      "expected_average_fbs_z": 0.194,
-      "dominance_residual_z": 4.931,
-      "opponent_prior_games": 2
     },
     {
       "game_id": "401858226",
       "opponent": "Wake Forest",
       "metric": "passing_down_success",
-      "observed_z": -0.2,
-      "expected_average_fbs_z": -0.067,
-      "dominance_residual_z": -0.132,
+      "observed_z": -0.206,
+      "expected_average_fbs_z": -0.015,
+      "dominance_residual_z": -0.191,
       "opponent_prior_games": 2
     },
     {
       "game_id": "401858238",
       "opponent": "Central Michigan",
       "metric": "passing_down_success",
-      "observed_z": 2.64,
-      "expected_average_fbs_z": 0.232,
-      "dominance_residual_z": 2.409,
-      "opponent_prior_games": 3
+      "observed_z": 2.794,
+      "expected_average_fbs_z": 0.224,
+      "dominance_residual_z": 2.57,
+      "opponent_prior_games": 2
     },
     {
       "game_id": "401858249",
       "opponent": "Clemson",
       "metric": "passing_down_success",
-      "observed_z": 0.155,
-      "expected_average_fbs_z": -0.053,
-      "dominance_residual_z": 0.209,
+      "observed_z": 0.169,
+      "expected_average_fbs_z": -0.001,
+      "dominance_residual_z": 0.17,
       "opponent_prior_games": 4
     },
     {
       "game_id": "401858206",
       "opponent": "Stanford",
       "metric": "stuff_avoidance",
-      "observed_z": 0.241,
-      "expected_average_fbs_z": 0.033,
-      "dominance_residual_z": 0.208,
+      "observed_z": 0.191,
+      "expected_average_fbs_z": 0.087,
+      "dominance_residual_z": 0.104,
       "opponent_prior_games": 1
-    },
-    {
-      "game_id": "401858213",
-      "opponent": "Florida A&M",
-      "metric": "stuff_avoidance",
-      "observed_z": 1.818,
-      "expected_average_fbs_z": -0.01,
-      "dominance_residual_z": 1.828,
-      "opponent_prior_games": 2
     },
     {
       "game_id": "401858226",
       "opponent": "Wake Forest",
       "metric": "stuff_avoidance",
-      "observed_z": -0.055,
-      "expected_average_fbs_z": -0.306,
-      "dominance_residual_z": 0.251,
+      "observed_z": -0.13,
+      "expected_average_fbs_z": -0.288,
+      "dominance_residual_z": 0.158,
       "opponent_prior_games": 2
     },
     {
       "game_id": "401858238",
       "opponent": "Central Michigan",
       "metric": "stuff_avoidance",
-      "observed_z": 1.194,
-      "expected_average_fbs_z": 0.207,
-      "dominance_residual_z": 0.986,
-      "opponent_prior_games": 3
+      "observed_z": 1.225,
+      "expected_average_fbs_z": 0.274,
+      "dominance_residual_z": 0.951,
+      "opponent_prior_games": 2
     },
     {
       "game_id": "401858249",
       "opponent": "Clemson",
       "metric": "stuff_avoidance",
-      "observed_z": 1.213,
-      "expected_average_fbs_z": 0.054,
-      "dominance_residual_z": 1.159,
+      "observed_z": 1.246,
+      "expected_average_fbs_z": 0.098,
+      "dominance_residual_z": 1.148,
       "opponent_prior_games": 4
     }
   ]
