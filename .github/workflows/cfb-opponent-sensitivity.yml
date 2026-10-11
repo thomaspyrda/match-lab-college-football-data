@@ -33,7 +33,7 @@ jobs:
         run: python run_weighted_symmetric_competitive_research.py
       - name: Audit Texas and comparison teams CSC components
         run: python run_texas_five_team_csc_audit.py
-      - name: Compare frozen pregame and nonrecursive rankings
+      - name: Compare frozen pregame versus nonrecursive rankings
         run: python run_temporal_opponent_strength_research.py
       - name: Run NFL-style joint ridge CFB research
         run: |
