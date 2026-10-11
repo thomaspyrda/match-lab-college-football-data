@@ -28,7 +28,7 @@ for label,curve in labels:
  for team in ('Texas Tech','Miami','Notre Dame','Utah','New Mexico','Liberty','Alabama','Georgia','Ohio State'):
   x=named[team]
   focus.append({'team':team,'rank':x['rank'],'sd':x['overall_team_strength_sd'],'v15_rank':baseline[team]['rank'],'v15_sd':baseline[team]['overall_team_strength_sd']})
- rows.append({'curve':label,'lambda':curve,'top10':[r['team'] for r in ranking[:10]],'focus':focus,'iterations':max(x['iterations'] for x in data['convergence'].values()),'max_delta':max(x['max_delta'] for x in data['convergence'].values())})
+ rows.append({'curve':label,'lambda':curve,'top10':[r['team'] for r in ranking[:10]],'top15':[{'rank':r['rank'],'team':r['team'],'strength_sd':r['overall_team_strength_sd']} for r in ranking[:15]],'focus':focus,'iterations':max(x['iterations'] for x in data['convergence'].values()),'max_delta':max(x['max_delta'] for x in data['convergence'].values())})
 result={'model':'recursive hybrid nonlinear opponent adjustment','nonlinear_transform':'z + lambda * clamp(z,-2.5,2.5)^3','note':'Transforms recursively updated opponent composite unit strength for each per-metric adjustment. Not SOS multiplier. Category weights, preseason anchor, FCS policy unchanged.','not_validated':'Retrospective through week 6 only; no independent future-game predictive validation. Do not select model based on rank plausibility alone.','production_unchanged':True,'variants':rows}
 (root/'data/experiments/hybrid_nonlinear_comparison_2026.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps(result,indent=2))
