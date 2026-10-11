@@ -1,0 +1,29 @@
+name: Audit three-team MOV
+on:
+  push:
+    branches: [main]
+    paths: [run_closing_mov_three_team_audit.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python run_closing_mov_three_team_audit.py
+      - name: Commit research output only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/experiments/closing_mov_three_team_game_audit_2026.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(cfb): audit three-team MOV game residuals'
+          git pull --rebase origin main
+          git push origin HEAD:main
