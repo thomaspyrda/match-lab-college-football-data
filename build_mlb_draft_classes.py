@@ -7,9 +7,9 @@ from pathlib import Path
 from datetime import datetime, timezone
 ROOT=Path(__file__).resolve().parent
 TEAM_IDS={108:"los-angeles-angels",109:"arizona-diamondbacks",110:"baltimore-orioles",111:"boston-red-sox",112:"chicago-cubs",113:"cincinnati-reds",114:"cleveland-guardians",115:"colorado-rockies",116:"detroit-tigers",117:"houston-astros",118:"kansas-city-royals",119:"los-angeles-dodgers",120:"washington-nationals",121:"new-york-mets",133:"athletics",134:"pittsburgh-pirates",135:"san-diego-padres",136:"seattle-mariners",137:"san-francisco-giants",138:"st-louis-cardinals",139:"tampa-bay-rays",140:"texas-rangers",141:"toronto-blue-jays",142:"minnesota-twins",143:"philadelphia-phillies",144:"atlanta-braves",145:"chicago-white-sox",146:"miami-marlins",147:"new-york-yankees",158:"milwaukee-brewers"}
-URL="https://statsapi.mlb.com/api/v1/draft/{}?limit=1500"
+URL="https://statsapi.mlb.com/api/v1/draft/{}"
 def get(year,round_number):
-    url=URL.format(year)+f"&round={round_number}"
+    url=URL.format(year)+f"?round={round_number}&limit=100"
     req=urllib.request.Request(url,headers={"User-Agent":"BetWiseResearch/1.0","Accept":"application/json"})
     for attempt in range(4):
         try:
@@ -35,7 +35,9 @@ def build(year):
         if not picks:raise ValueError(f"{year} round {number}: API returned no picks")
         used_rounds.add(number)
         for pick in picks:
-            if pick.get("isDrafted") is False or pick.get("isPass") is True:continue
+            if pick.get("isPass") is True:continue
+            # Skip unselected placeholders only if there is no named drafted player.
+            if pick.get("isDrafted") is False and not ((pick.get("person") or {}).get("fullName") or pick.get("name")):continue
             team=pick.get("team") or {}
             try:team_id=int(team.get("id"))
             except (ValueError,TypeError):team_id=None
