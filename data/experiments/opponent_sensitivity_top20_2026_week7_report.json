@@ -1,0 +1,389 @@
+{
+  "scope": "top 20 of baseline week 7; compares through week 4 versus through week 6",
+  "production_unchanged": true,
+  "no_separate_sos_factor": true,
+  "model": "v15 same 38 metrics, alternative multipliers on historically calibrated coefficients",
+  "caveat": "Sensitivity diagnostic only. Higher coefficients have not been independently validated on held-out games.",
+  "rows": [
+    {
+      "team": "Miami",
+      "baseline_rank": 1,
+      "baseline_sd": 2.349,
+      "week_5_rank": 2,
+      "week_5_sd": 1.963,
+      "stronger_1_5x": {
+        "rank": 1,
+        "sd": 2.286,
+        "rank_change": 0,
+        "sd_change": -0.063
+      },
+      "stronger_2x": {
+        "rank": 1,
+        "sd": 2.216,
+        "rank_change": 0,
+        "sd_change": -0.133
+      }
+    },
+    {
+      "team": "Notre Dame",
+      "baseline_rank": 2,
+      "baseline_sd": 2.088,
+      "week_5_rank": 3,
+      "week_5_sd": 1.807,
+      "stronger_1_5x": {
+        "rank": 2,
+        "sd": 2.051,
+        "rank_change": 0,
+        "sd_change": -0.037
+      },
+      "stronger_2x": {
+        "rank": 2,
+        "sd": 2.014,
+        "rank_change": 0,
+        "sd_change": -0.074
+      }
+    },
+    {
+      "team": "Utah",
+      "baseline_rank": 3,
+      "baseline_sd": 1.929,
+      "week_5_rank": 10,
+      "week_5_sd": 1.452,
+      "stronger_1_5x": {
+        "rank": 3,
+        "sd": 1.879,
+        "rank_change": 0,
+        "sd_change": -0.05
+      },
+      "stronger_2x": {
+        "rank": 6,
+        "sd": 1.818,
+        "rank_change": -3,
+        "sd_change": -0.111
+      }
+    },
+    {
+      "team": "Ohio State",
+      "baseline_rank": 4,
+      "baseline_sd": 1.896,
+      "week_5_rank": 5,
+      "week_5_sd": 1.795,
+      "stronger_1_5x": {
+        "rank": 4,
+        "sd": 1.868,
+        "rank_change": 0,
+        "sd_change": -0.028
+      },
+      "stronger_2x": {
+        "rank": 5,
+        "sd": 1.831,
+        "rank_change": -1,
+        "sd_change": -0.065
+      }
+    },
+    {
+      "team": "Georgia",
+      "baseline_rank": 5,
+      "baseline_sd": 1.818,
+      "week_5_rank": 1,
+      "week_5_sd": 2.066,
+      "stronger_1_5x": {
+        "rank": 5,
+        "sd": 1.861,
+        "rank_change": 0,
+        "sd_change": 0.043
+      },
+      "stronger_2x": {
+        "rank": 4,
+        "sd": 1.891,
+        "rank_change": 1,
+        "sd_change": 0.073
+      }
+    },
+    {
+      "team": "Alabama",
+      "baseline_rank": 6,
+      "baseline_sd": 1.648,
+      "week_5_rank": 9,
+      "week_5_sd": 1.472,
+      "stronger_1_5x": {
+        "rank": 6,
+        "sd": 1.781,
+        "rank_change": 0,
+        "sd_change": 0.133
+      },
+      "stronger_2x": {
+        "rank": 3,
+        "sd": 1.911,
+        "rank_change": 3,
+        "sd_change": 0.263
+      }
+    },
+    {
+      "team": "LSU",
+      "baseline_rank": 7,
+      "baseline_sd": 1.603,
+      "week_5_rank": 8,
+      "week_5_sd": 1.527,
+      "stronger_1_5x": {
+        "rank": 7,
+        "sd": 1.597,
+        "rank_change": 0,
+        "sd_change": -0.006
+      },
+      "stronger_2x": {
+        "rank": 7,
+        "sd": 1.6,
+        "rank_change": 0,
+        "sd_change": -0.003
+      }
+    },
+    {
+      "team": "Indiana",
+      "baseline_rank": 8,
+      "baseline_sd": 1.579,
+      "week_5_rank": 4,
+      "week_5_sd": 1.802,
+      "stronger_1_5x": {
+        "rank": 8,
+        "sd": 1.564,
+        "rank_change": 0,
+        "sd_change": -0.015
+      },
+      "stronger_2x": {
+        "rank": 8,
+        "sd": 1.541,
+        "rank_change": 0,
+        "sd_change": -0.038
+      }
+    },
+    {
+      "team": "BYU",
+      "baseline_rank": 9,
+      "baseline_sd": 1.486,
+      "week_5_rank": 6,
+      "week_5_sd": 1.704,
+      "stronger_1_5x": {
+        "rank": 9,
+        "sd": 1.482,
+        "rank_change": 0,
+        "sd_change": -0.004
+      },
+      "stronger_2x": {
+        "rank": 9,
+        "sd": 1.473,
+        "rank_change": 0,
+        "sd_change": -0.013
+      }
+    },
+    {
+      "team": "Texas Tech",
+      "baseline_rank": 10,
+      "baseline_sd": 1.4,
+      "week_5_rank": 12,
+      "week_5_sd": 1.415,
+      "stronger_1_5x": {
+        "rank": 11,
+        "sd": 1.372,
+        "rank_change": -1,
+        "sd_change": -0.028
+      },
+      "stronger_2x": {
+        "rank": 13,
+        "sd": 1.341,
+        "rank_change": -3,
+        "sd_change": -0.059
+      }
+    },
+    {
+      "team": "Texas",
+      "baseline_rank": 11,
+      "baseline_sd": 1.34,
+      "week_5_rank": 13,
+      "week_5_sd": 1.302,
+      "stronger_1_5x": {
+        "rank": 10,
+        "sd": 1.398,
+        "rank_change": 1,
+        "sd_change": 0.058
+      },
+      "stronger_2x": {
+        "rank": 10,
+        "sd": 1.456,
+        "rank_change": 1,
+        "sd_change": 0.116
+      }
+    },
+    {
+      "team": "Nebraska",
+      "baseline_rank": 12,
+      "baseline_sd": 1.331,
+      "week_5_rank": 18,
+      "week_5_sd": 1.119,
+      "stronger_1_5x": {
+        "rank": 13,
+        "sd": 1.323,
+        "rank_change": -1,
+        "sd_change": -0.008
+      },
+      "stronger_2x": {
+        "rank": 14,
+        "sd": 1.301,
+        "rank_change": -2,
+        "sd_change": -0.03
+      }
+    },
+    {
+      "team": "UCLA",
+      "baseline_rank": 13,
+      "baseline_sd": 1.262,
+      "week_5_rank": 25,
+      "week_5_sd": 1.004,
+      "stronger_1_5x": {
+        "rank": 15,
+        "sd": 1.218,
+        "rank_change": -2,
+        "sd_change": -0.044
+      },
+      "stronger_2x": {
+        "rank": 18,
+        "sd": 1.186,
+        "rank_change": -5,
+        "sd_change": -0.076
+      }
+    },
+    {
+      "team": "Oregon",
+      "baseline_rank": 14,
+      "baseline_sd": 1.248,
+      "week_5_rank": 7,
+      "week_5_sd": 1.614,
+      "stronger_1_5x": {
+        "rank": 14,
+        "sd": 1.314,
+        "rank_change": 0,
+        "sd_change": 0.066
+      },
+      "stronger_2x": {
+        "rank": 12,
+        "sd": 1.381,
+        "rank_change": 2,
+        "sd_change": 0.133
+      }
+    },
+    {
+      "team": "Houston",
+      "baseline_rank": 15,
+      "baseline_sd": 1.203,
+      "week_5_rank": 15,
+      "week_5_sd": 1.174,
+      "stronger_1_5x": {
+        "rank": 12,
+        "sd": 1.331,
+        "rank_change": 3,
+        "sd_change": 0.128
+      },
+      "stronger_2x": {
+        "rank": 11,
+        "sd": 1.43,
+        "rank_change": 4,
+        "sd_change": 0.227
+      }
+    },
+    {
+      "team": "USC",
+      "baseline_rank": 16,
+      "baseline_sd": 1.138,
+      "week_5_rank": 32,
+      "week_5_sd": 0.871,
+      "stronger_1_5x": {
+        "rank": 16,
+        "sd": 1.207,
+        "rank_change": 0,
+        "sd_change": 0.069
+      },
+      "stronger_2x": {
+        "rank": 16,
+        "sd": 1.232,
+        "rank_change": 0,
+        "sd_change": 0.094
+      }
+    },
+    {
+      "team": "Mississippi State",
+      "baseline_rank": 17,
+      "baseline_sd": 1.137,
+      "week_5_rank": 16,
+      "week_5_sd": 1.128,
+      "stronger_1_5x": {
+        "rank": 17,
+        "sd": 1.196,
+        "rank_change": 0,
+        "sd_change": 0.059
+      },
+      "stronger_2x": {
+        "rank": 15,
+        "sd": 1.253,
+        "rank_change": 2,
+        "sd_change": 0.116
+      }
+    },
+    {
+      "team": "Northwestern",
+      "baseline_rank": 18,
+      "baseline_sd": 1.097,
+      "week_5_rank": 36,
+      "week_5_sd": 0.773,
+      "stronger_1_5x": {
+        "rank": 19,
+        "sd": 1.113,
+        "rank_change": -1,
+        "sd_change": 0.016
+      },
+      "stronger_2x": {
+        "rank": 19,
+        "sd": 1.115,
+        "rank_change": -1,
+        "sd_change": 0.018
+      }
+    },
+    {
+      "team": "Ole Miss",
+      "baseline_rank": 19,
+      "baseline_sd": 1.089,
+      "week_5_rank": 26,
+      "week_5_sd": 0.994,
+      "stronger_1_5x": {
+        "rank": 18,
+        "sd": 1.16,
+        "rank_change": 1,
+        "sd_change": 0.071
+      },
+      "stronger_2x": {
+        "rank": 17,
+        "sd": 1.225,
+        "rank_change": 2,
+        "sd_change": 0.136
+      }
+    },
+    {
+      "team": "Wisconsin",
+      "baseline_rank": 20,
+      "baseline_sd": 1.029,
+      "week_5_rank": 44,
+      "week_5_sd": 0.666,
+      "stronger_1_5x": {
+        "rank": 20,
+        "sd": 1.034,
+        "rank_change": 0,
+        "sd_change": 0.005
+      },
+      "stronger_2x": {
+        "rank": 23,
+        "sd": 1.034,
+        "rank_change": -3,
+        "sd_change": 0.005
+      }
+    }
+  ]
+}
