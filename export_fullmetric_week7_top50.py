@@ -6,3 +6,5 @@ out={'model':'Original v15 41-metric week-7 pregame snapshot','pregame_week':j['
 p=r/'data/experiments/fullmetric_week7_top50_2026.json'
 p.write_text(json.dumps(out,indent=2)+'\n')
 print(json.dumps(out))
+
+# Trigger export.
