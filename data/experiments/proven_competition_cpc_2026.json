@@ -1,0 +1,1115 @@
+{
+  "model": "continuous high-competition proof and weak-schedule capped upside",
+  "status": "research_only",
+  "through_week": 6,
+  "eligible_lines": 315,
+  "strength_proxy": "Frozen week-start ranks seeded by the independent consensus preseason score; previous weeks updated using capped actual-margin residual vs 2.5 + 0.22*preseason-score gap. This is an Elo-like research proxy, NOT the original model frozen-unit rating.",
+  "cpc": "Signed spread margin surprise x continuous opponent-quality modifier: positive credit 0.25x (weak) to 1.30x (elite); negative 0.75x (elite) to 1.25x (weak). Four-game shrinkage then centered SD normalization.",
+  "important_limitations": [
+    "Strength quality is a provisional separate pregame proxy, not the production model historical strength",
+    "CFBD lines may not be certified at kickoff close",
+    "Weights/factors are hypotheses, not calibrated by out-of-sample forecasting",
+    "Quality and market MOV share residual information; combined arms can double-count",
+    "Higher final relative rank does not prove a stronger absolute rating"
+  ],
+  "models": {
+    "baseline": {
+      "weights": {
+        "baseline": 1,
+        "mov": 0,
+        "cpc": 0
+      },
+      "top25": [
+        "Miami",
+        "Notre Dame",
+        "Ohio State",
+        "Georgia",
+        "Utah",
+        "Texas",
+        "Alabama",
+        "LSU",
+        "Indiana",
+        "UCLA",
+        "BYU",
+        "Texas Tech",
+        "Mississippi State",
+        "Ole Miss",
+        "Michigan",
+        "Oregon",
+        "USC",
+        "Nebraska",
+        "Wisconsin",
+        "Missouri",
+        "Northwestern",
+        "SMU",
+        "Houston",
+        "Iowa",
+        "Wake Forest"
+      ]
+    },
+    "separate_mov_10pct": {
+      "weights": {
+        "baseline": 0.9,
+        "mov": 0.1,
+        "cpc": 0
+      },
+      "top25": [
+        "Miami",
+        "Notre Dame",
+        "Georgia",
+        "Utah",
+        "Ohio State",
+        "Alabama",
+        "UCLA",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Indiana",
+        "Mississippi State",
+        "Texas Tech",
+        "Ole Miss",
+        "Nebraska",
+        "Wisconsin",
+        "Northwestern",
+        "Missouri",
+        "Wake Forest",
+        "Michigan",
+        "New Mexico",
+        "Iowa",
+        "USC",
+        "Houston",
+        "Arizona"
+      ]
+    },
+    "cpc_only_5pct": {
+      "weights": {
+        "baseline": 0.95,
+        "mov": 0,
+        "cpc": 0.05
+      },
+      "top25": [
+        "Miami",
+        "Notre Dame",
+        "Georgia",
+        "Ohio State",
+        "Utah",
+        "Alabama",
+        "Texas",
+        "LSU",
+        "UCLA",
+        "Indiana",
+        "BYU",
+        "Mississippi State",
+        "Texas Tech",
+        "Ole Miss",
+        "Michigan",
+        "Nebraska",
+        "Missouri",
+        "Wisconsin",
+        "Northwestern",
+        "USC",
+        "Oregon",
+        "Wake Forest",
+        "Iowa",
+        "Houston",
+        "Arizona"
+      ]
+    },
+    "mov_10pct_plus_cpc_5pct": {
+      "weights": {
+        "baseline": 0.85,
+        "mov": 0.1,
+        "cpc": 0.05
+      },
+      "top25": [
+        "Miami",
+        "Georgia",
+        "Notre Dame",
+        "Alabama",
+        "UCLA",
+        "Utah",
+        "Ohio State",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Indiana",
+        "Northwestern",
+        "Nebraska",
+        "Wisconsin",
+        "Texas Tech",
+        "Missouri",
+        "Wake Forest",
+        "Ole Miss",
+        "New Mexico",
+        "Iowa",
+        "Houston",
+        "Michigan",
+        "James Madison",
+        "Oklahoma State"
+      ]
+    },
+    "mov_10pct_plus_cpc_10pct": {
+      "weights": {
+        "baseline": 0.8,
+        "mov": 0.1,
+        "cpc": 0.1
+      },
+      "top25": [
+        "Miami",
+        "Georgia",
+        "UCLA",
+        "Alabama",
+        "Utah",
+        "Notre Dame",
+        "Ohio State",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Northwestern",
+        "Missouri",
+        "Indiana",
+        "Wisconsin",
+        "Nebraska",
+        "Wake Forest",
+        "New Mexico",
+        "Ole Miss",
+        "Texas Tech",
+        "Oregon State",
+        "Iowa",
+        "Baylor",
+        "Houston",
+        "Oklahoma State"
+      ]
+    }
+  },
+  "focus": [
+    {
+      "team": "New Mexico",
+      "games_with_lines": 4,
+      "cpc_z": 1.586,
+      "ranks": {
+        "baseline": 33,
+        "separate_mov_10pct": 21,
+        "cpc_only_5pct": 30,
+        "mov_10pct_plus_cpc_5pct": 20,
+        "mov_10pct_plus_cpc_10pct": 18
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Central Michigan",
+          "pregame_opponent_rank_proxy": 109,
+          "residual": 19.5,
+          "quality_weighted_residual": 5.7,
+          "positive_factor": 0.292,
+          "negative_factor": 1.23,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 9,
+          "residual": 13.5,
+          "quality_weighted_residual": 16.66,
+          "positive_factor": 1.234,
+          "negative_factor": 0.781,
+          "outcome": "L"
+        },
+        {
+          "week": 4,
+          "opponent": "New Mexico State",
+          "pregame_opponent_rank_proxy": 119,
+          "residual": 12.5,
+          "quality_weighted_residual": 3.42,
+          "positive_factor": 0.274,
+          "negative_factor": 1.239,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "UTEP",
+          "pregame_opponent_rank_proxy": 136,
+          "residual": 30.5,
+          "quality_weighted_residual": 7.9,
+          "positive_factor": 0.259,
+          "negative_factor": 1.246,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "SMU",
+      "games_with_lines": 4,
+      "cpc_z": -1.417,
+      "ranks": {
+        "baseline": 22,
+        "separate_mov_10pct": 37,
+        "cpc_only_5pct": 28,
+        "mov_10pct_plus_cpc_5pct": 40,
+        "mov_10pct_plus_cpc_10pct": 42
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Florida State",
+          "pregame_opponent_rank_proxy": 35,
+          "residual": -0.0,
+          "quality_weighted_residual": -0.0,
+          "positive_factor": 1.053,
+          "negative_factor": 0.868,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Louisville",
+          "pregame_opponent_rank_proxy": 28,
+          "residual": -7.0,
+          "quality_weighted_residual": -5.84,
+          "positive_factor": 1.122,
+          "negative_factor": 0.835,
+          "outcome": "L"
+        },
+        {
+          "week": 4,
+          "opponent": "Missouri State",
+          "pregame_opponent_rank_proxy": 125,
+          "residual": -20.5,
+          "quality_weighted_residual": -25.46,
+          "positive_factor": 0.267,
+          "negative_factor": 1.242,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "Boston College",
+          "pregame_opponent_rank_proxy": 87,
+          "residual": -12.5,
+          "quality_weighted_residual": -14.8,
+          "positive_factor": 0.389,
+          "negative_factor": 1.184,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Oklahoma",
+      "games_with_lines": 5,
+      "cpc_z": -0.36,
+      "ranks": {
+        "baseline": 27,
+        "separate_mov_10pct": 38,
+        "cpc_only_5pct": 32,
+        "mov_10pct_plus_cpc_5pct": 38,
+        "mov_10pct_plus_cpc_10pct": 38
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "UTEP",
+          "pregame_opponent_rank_proxy": 129,
+          "residual": 10.5,
+          "quality_weighted_residual": 2.77,
+          "positive_factor": 0.263,
+          "negative_factor": 1.244,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Michigan",
+          "pregame_opponent_rank_proxy": 20,
+          "residual": -12.5,
+          "quality_weighted_residual": -10.08,
+          "positive_factor": 1.181,
+          "negative_factor": 0.807,
+          "outcome": "L"
+        },
+        {
+          "week": 3,
+          "opponent": "New Mexico",
+          "pregame_opponent_rank_proxy": 52,
+          "residual": -13.5,
+          "quality_weighted_residual": -13.2,
+          "positive_factor": 0.821,
+          "negative_factor": 0.978,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Georgia",
+          "pregame_opponent_rank_proxy": 3,
+          "residual": -16.5,
+          "quality_weighted_residual": -12.74,
+          "positive_factor": 1.253,
+          "negative_factor": 0.772,
+          "outcome": "L"
+        },
+        {
+          "week": 6,
+          "opponent": "Texas",
+          "pregame_opponent_rank_proxy": 8,
+          "residual": 10.5,
+          "quality_weighted_residual": 13.0,
+          "positive_factor": 1.238,
+          "negative_factor": 0.78,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Texas",
+      "games_with_lines": 5,
+      "cpc_z": 0.093,
+      "ranks": {
+        "baseline": 6,
+        "separate_mov_10pct": 9,
+        "cpc_only_5pct": 7,
+        "mov_10pct_plus_cpc_5pct": 9,
+        "mov_10pct_plus_cpc_10pct": 9
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Texas State",
+          "pregame_opponent_rank_proxy": 76,
+          "residual": 22.5,
+          "quality_weighted_residual": 10.95,
+          "positive_factor": 0.487,
+          "negative_factor": 1.137,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Ohio State",
+          "pregame_opponent_rank_proxy": 1,
+          "residual": -1.5,
+          "quality_weighted_residual": -1.16,
+          "positive_factor": 1.258,
+          "negative_factor": 0.77,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "UTSA",
+          "pregame_opponent_rank_proxy": 77,
+          "residual": -5.5,
+          "quality_weighted_residual": -6.28,
+          "positive_factor": 0.476,
+          "negative_factor": 1.142,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Tennessee",
+          "pregame_opponent_rank_proxy": 15,
+          "residual": -2.5,
+          "quality_weighted_residual": -1.98,
+          "positive_factor": 1.209,
+          "negative_factor": 0.793,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 12,
+          "residual": -10.5,
+          "quality_weighted_residual": -8.26,
+          "positive_factor": 1.222,
+          "negative_factor": 0.787,
+          "outcome": "L"
+        }
+      ]
+    },
+    {
+      "team": "Georgia",
+      "games_with_lines": 5,
+      "cpc_z": 1.361,
+      "ranks": {
+        "baseline": 4,
+        "separate_mov_10pct": 3,
+        "cpc_only_5pct": 3,
+        "mov_10pct_plus_cpc_5pct": 2,
+        "mov_10pct_plus_cpc_10pct": 2
+      },
+      "game_breakdown": [
+        {
+          "week": 2,
+          "opponent": "Western Kentucky",
+          "pregame_opponent_rank_proxy": 97,
+          "residual": 9.5,
+          "quality_weighted_residual": 3.15,
+          "positive_factor": 0.332,
+          "negative_factor": 1.211,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Arkansas",
+          "pregame_opponent_rank_proxy": 65,
+          "residual": 3.5,
+          "quality_weighted_residual": 2.19,
+          "positive_factor": 0.625,
+          "negative_factor": 1.071,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 9,
+          "residual": 16.5,
+          "quality_weighted_residual": 20.36,
+          "positive_factor": 1.234,
+          "negative_factor": 0.781,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "Vanderbilt",
+          "pregame_opponent_rank_proxy": 43,
+          "residual": -1.5,
+          "quality_weighted_residual": -1.37,
+          "positive_factor": 0.953,
+          "negative_factor": 0.915,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "Alabama",
+          "pregame_opponent_rank_proxy": 6,
+          "residual": 5.5,
+          "quality_weighted_residual": 6.84,
+          "positive_factor": 1.244,
+          "negative_factor": 0.777,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Ohio State",
+      "games_with_lines": 6,
+      "cpc_z": 0.368,
+      "ranks": {
+        "baseline": 3,
+        "separate_mov_10pct": 5,
+        "cpc_only_5pct": 4,
+        "mov_10pct_plus_cpc_5pct": 7,
+        "mov_10pct_plus_cpc_10pct": 7
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Ball State",
+          "pregame_opponent_rank_proxy": 130,
+          "residual": 2.5,
+          "quality_weighted_residual": 0.66,
+          "positive_factor": 0.263,
+          "negative_factor": 1.244,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Texas",
+          "pregame_opponent_rank_proxy": 5,
+          "residual": 1.5,
+          "quality_weighted_residual": 1.87,
+          "positive_factor": 1.247,
+          "negative_factor": 0.775,
+          "outcome": "L"
+        },
+        {
+          "week": 3,
+          "opponent": "Kent State",
+          "pregame_opponent_rank_proxy": 128,
+          "residual": 3.5,
+          "quality_weighted_residual": 0.92,
+          "positive_factor": 0.264,
+          "negative_factor": 1.243,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Illinois",
+          "pregame_opponent_rank_proxy": 36,
+          "residual": -2.5,
+          "quality_weighted_residual": -2.18,
+          "positive_factor": 1.041,
+          "negative_factor": 0.873,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "Iowa",
+          "pregame_opponent_rank_proxy": 20,
+          "residual": 2.5,
+          "quality_weighted_residual": 2.95,
+          "positive_factor": 1.181,
+          "negative_factor": 0.807,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "Maryland",
+          "pregame_opponent_rank_proxy": 60,
+          "residual": -2.5,
+          "quality_weighted_residual": -2.59,
+          "positive_factor": 0.698,
+          "negative_factor": 1.037,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Miami",
+      "games_with_lines": 4,
+      "cpc_z": 0.948,
+      "ranks": {
+        "baseline": 1,
+        "separate_mov_10pct": 1,
+        "cpc_only_5pct": 1,
+        "mov_10pct_plus_cpc_5pct": 1,
+        "mov_10pct_plus_cpc_10pct": 1
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Stanford",
+          "pregame_opponent_rank_proxy": 77,
+          "residual": 14.5,
+          "quality_weighted_residual": 6.9,
+          "positive_factor": 0.476,
+          "negative_factor": 1.142,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Wake Forest",
+          "pregame_opponent_rank_proxy": 50,
+          "residual": -7.5,
+          "quality_weighted_residual": -7.23,
+          "positive_factor": 0.852,
+          "negative_factor": 0.963,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Central Michigan",
+          "pregame_opponent_rank_proxy": 110,
+          "residual": 7.5,
+          "quality_weighted_residual": 2.17,
+          "positive_factor": 0.29,
+          "negative_factor": 1.231,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "Clemson",
+          "pregame_opponent_rank_proxy": 34,
+          "residual": 14.0,
+          "quality_weighted_residual": 14.89,
+          "positive_factor": 1.063,
+          "negative_factor": 0.863,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Notre Dame",
+      "games_with_lines": 6,
+      "cpc_z": 0.193,
+      "ranks": {
+        "baseline": 2,
+        "separate_mov_10pct": 2,
+        "cpc_only_5pct": 2,
+        "mov_10pct_plus_cpc_5pct": 3,
+        "mov_10pct_plus_cpc_10pct": 6
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Wisconsin",
+          "pregame_opponent_rank_proxy": 44,
+          "residual": 7.0,
+          "quality_weighted_residual": 6.57,
+          "positive_factor": 0.939,
+          "negative_factor": 0.922,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Rice",
+          "pregame_opponent_rank_proxy": 116,
+          "residual": 7.5,
+          "quality_weighted_residual": 2.09,
+          "positive_factor": 0.278,
+          "negative_factor": 1.237,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Michigan State",
+          "pregame_opponent_rank_proxy": 59,
+          "residual": -11.5,
+          "quality_weighted_residual": -11.84,
+          "positive_factor": 0.714,
+          "negative_factor": 1.029,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "Purdue",
+          "pregame_opponent_rank_proxy": 78,
+          "residual": 11.5,
+          "quality_weighted_residual": 5.36,
+          "positive_factor": 0.466,
+          "negative_factor": 1.147,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "North Carolina",
+          "pregame_opponent_rank_proxy": 61,
+          "residual": -10.0,
+          "quality_weighted_residual": -10.44,
+          "positive_factor": 0.683,
+          "negative_factor": 1.044,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "Stanford",
+          "pregame_opponent_rank_proxy": 87,
+          "residual": 10.5,
+          "quality_weighted_residual": 4.08,
+          "positive_factor": 0.389,
+          "negative_factor": 1.184,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Oregon",
+      "games_with_lines": 4,
+      "cpc_z": -1.271,
+      "ranks": {
+        "baseline": 16,
+        "separate_mov_10pct": 30,
+        "cpc_only_5pct": 21,
+        "mov_10pct_plus_cpc_5pct": 37,
+        "mov_10pct_plus_cpc_10pct": 40
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Boise State",
+          "pregame_opponent_rank_proxy": 34,
+          "residual": -17.5,
+          "quality_weighted_residual": -15.1,
+          "positive_factor": 1.063,
+          "negative_factor": 0.863,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Oklahoma State",
+          "pregame_opponent_rank_proxy": 44,
+          "residual": -32.5,
+          "quality_weighted_residual": -29.96,
+          "positive_factor": 0.939,
+          "negative_factor": 0.922,
+          "outcome": "L"
+        },
+        {
+          "week": 4,
+          "opponent": "USC",
+          "pregame_opponent_rank_proxy": 11,
+          "residual": 10.5,
+          "quality_weighted_residual": 12.88,
+          "positive_factor": 1.227,
+          "negative_factor": 0.785,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "UCLA",
+          "pregame_opponent_rank_proxy": 29,
+          "residual": -12.0,
+          "quality_weighted_residual": -10.07,
+          "positive_factor": 1.113,
+          "negative_factor": 0.839,
+          "outcome": "L"
+        }
+      ]
+    },
+    {
+      "team": "Navy",
+      "games_with_lines": 4,
+      "cpc_z": -0.783,
+      "ranks": {
+        "baseline": 79,
+        "separate_mov_10pct": 80,
+        "cpc_only_5pct": 80,
+        "mov_10pct_plus_cpc_5pct": 86,
+        "mov_10pct_plus_cpc_10pct": 90
+      },
+      "game_breakdown": [
+        {
+          "week": 2,
+          "opponent": "Florida Atlantic",
+          "pregame_opponent_rank_proxy": 94,
+          "residual": -12.5,
+          "quality_weighted_residual": -15.05,
+          "positive_factor": 0.346,
+          "negative_factor": 1.204,
+          "outcome": "L"
+        },
+        {
+          "week": 4,
+          "opponent": "UAB",
+          "pregame_opponent_rank_proxy": 122,
+          "residual": -10.5,
+          "quality_weighted_residual": -13.02,
+          "positive_factor": 0.27,
+          "negative_factor": 1.24,
+          "outcome": "L"
+        },
+        {
+          "week": 5,
+          "opponent": "Air Force",
+          "pregame_opponent_rank_proxy": 84,
+          "residual": -2.5,
+          "quality_weighted_residual": -2.93,
+          "positive_factor": 0.411,
+          "negative_factor": 1.173,
+          "outcome": "L"
+        },
+        {
+          "week": 6,
+          "opponent": "Tulsa",
+          "pregame_opponent_rank_proxy": 93,
+          "residual": 5.0,
+          "quality_weighted_residual": 1.76,
+          "positive_factor": 0.351,
+          "negative_factor": 1.202,
+          "outcome": "W"
+        }
+      ]
+    },
+    {
+      "team": "Rutgers",
+      "games_with_lines": 4,
+      "cpc_z": -1.076,
+      "ranks": {
+        "baseline": 121,
+        "separate_mov_10pct": 122,
+        "cpc_only_5pct": 122,
+        "mov_10pct_plus_cpc_5pct": 122,
+        "mov_10pct_plus_cpc_10pct": 121
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "Massachusetts",
+          "pregame_opponent_rank_proxy": 136,
+          "residual": -35,
+          "quality_weighted_residual": -43.6,
+          "positive_factor": 0.259,
+          "negative_factor": 1.246,
+          "outcome": "L"
+        },
+        {
+          "week": 2,
+          "opponent": "Boston College",
+          "pregame_opponent_rank_proxy": 88,
+          "residual": -4.0,
+          "quality_weighted_residual": -4.75,
+          "positive_factor": 0.382,
+          "negative_factor": 1.187,
+          "outcome": "L"
+        },
+        {
+          "week": 3,
+          "opponent": "USC",
+          "pregame_opponent_rank_proxy": 12,
+          "residual": 14.0,
+          "quality_weighted_residual": 17.11,
+          "positive_factor": 1.222,
+          "negative_factor": 0.787,
+          "outcome": "L"
+        },
+        {
+          "week": 5,
+          "opponent": "Indiana",
+          "pregame_opponent_rank_proxy": 5,
+          "residual": -7.5,
+          "quality_weighted_residual": -5.81,
+          "positive_factor": 1.247,
+          "negative_factor": 0.775,
+          "outcome": "L"
+        }
+      ]
+    },
+    {
+      "team": "Alabama",
+      "games_with_lines": 6,
+      "cpc_z": 2.096,
+      "ranks": {
+        "baseline": 7,
+        "separate_mov_10pct": 6,
+        "cpc_only_5pct": 6,
+        "mov_10pct_plus_cpc_5pct": 4,
+        "mov_10pct_plus_cpc_10pct": 4
+      },
+      "game_breakdown": [
+        {
+          "week": 1,
+          "opponent": "East Carolina",
+          "pregame_opponent_rank_proxy": 82,
+          "residual": 9.5,
+          "quality_weighted_residual": 4.07,
+          "positive_factor": 0.428,
+          "negative_factor": 1.165,
+          "outcome": "W"
+        },
+        {
+          "week": 2,
+          "opponent": "Kentucky",
+          "pregame_opponent_rank_proxy": 56,
+          "residual": 18.5,
+          "quality_weighted_residual": 14.05,
+          "positive_factor": 0.76,
+          "negative_factor": 1.007,
+          "outcome": "W"
+        },
+        {
+          "week": 3,
+          "opponent": "Florida State",
+          "pregame_opponent_rank_proxy": 37,
+          "residual": -4.5,
+          "quality_weighted_residual": -3.95,
+          "positive_factor": 1.03,
+          "negative_factor": 0.879,
+          "outcome": "W"
+        },
+        {
+          "week": 4,
+          "opponent": "South Carolina",
+          "pregame_opponent_rank_proxy": 23,
+          "residual": 18.5,
+          "quality_weighted_residual": 21.48,
+          "positive_factor": 1.161,
+          "negative_factor": 0.816,
+          "outcome": "W"
+        },
+        {
+          "week": 5,
+          "opponent": "Mississippi State",
+          "pregame_opponent_rank_proxy": 39,
+          "residual": 27.5,
+          "quality_weighted_residual": 27.65,
+          "positive_factor": 1.005,
+          "negative_factor": 0.89,
+          "outcome": "W"
+        },
+        {
+          "week": 6,
+          "opponent": "Georgia",
+          "pregame_opponent_rank_proxy": 3,
+          "residual": -5.5,
+          "quality_weighted_residual": -4.25,
+          "positive_factor": 1.253,
+          "negative_factor": 0.772,
+          "outcome": "L"
+        }
+      ]
+    }
+  ],
+  "largest_changes": [
+    {
+      "team": "Washington",
+      "baseline_rank": 61,
+      "proposed_rank": 83,
+      "change": -22
+    },
+    {
+      "team": "Oregon",
+      "baseline_rank": 16,
+      "proposed_rank": 37,
+      "change": -21
+    },
+    {
+      "team": "SMU",
+      "baseline_rank": 22,
+      "proposed_rank": 40,
+      "change": -18
+    },
+    {
+      "team": "Georgia State",
+      "baseline_rank": 72,
+      "proposed_rank": 56,
+      "change": 16
+    },
+    {
+      "team": "Oregon State",
+      "baseline_rank": 43,
+      "proposed_rank": 28,
+      "change": 15
+    },
+    {
+      "team": "Arizona State",
+      "baseline_rank": 59,
+      "proposed_rank": 73,
+      "change": -14
+    },
+    {
+      "team": "Purdue",
+      "baseline_rank": 75,
+      "proposed_rank": 62,
+      "change": 13
+    },
+    {
+      "team": "New Mexico",
+      "baseline_rank": 33,
+      "proposed_rank": 20,
+      "change": 13
+    },
+    {
+      "team": "UConn",
+      "baseline_rank": 83,
+      "proposed_rank": 71,
+      "change": 12
+    },
+    {
+      "team": "NC State",
+      "baseline_rank": 81,
+      "proposed_rank": 93,
+      "change": -12
+    },
+    {
+      "team": "Boston College",
+      "baseline_rank": 88,
+      "proposed_rank": 76,
+      "change": 12
+    },
+    {
+      "team": "USC",
+      "baseline_rank": 17,
+      "proposed_rank": 29,
+      "change": -12
+    },
+    {
+      "team": "Oklahoma",
+      "baseline_rank": 27,
+      "proposed_rank": 38,
+      "change": -11
+    },
+    {
+      "team": "Colorado",
+      "baseline_rank": 76,
+      "proposed_rank": 85,
+      "change": -9
+    },
+    {
+      "team": "Florida Atlantic",
+      "baseline_rank": 77,
+      "proposed_rank": 68,
+      "change": 9
+    },
+    {
+      "team": "Stanford",
+      "baseline_rank": 109,
+      "proposed_rank": 118,
+      "change": -9
+    },
+    {
+      "team": "Buffalo",
+      "baseline_rank": 122,
+      "proposed_rank": 113,
+      "change": 9
+    },
+    {
+      "team": "Troy",
+      "baseline_rank": 89,
+      "proposed_rank": 81,
+      "change": 8
+    },
+    {
+      "team": "North Carolina",
+      "baseline_rank": 51,
+      "proposed_rank": 43,
+      "change": 8
+    },
+    {
+      "team": "Michigan",
+      "baseline_rank": 15,
+      "proposed_rank": 23,
+      "change": -8
+    },
+    {
+      "team": "Ohio",
+      "baseline_rank": 87,
+      "proposed_rank": 79,
+      "change": 8
+    },
+    {
+      "team": "Northwestern",
+      "baseline_rank": 21,
+      "proposed_rank": 13,
+      "change": 8
+    },
+    {
+      "team": "James Madison",
+      "baseline_rank": 32,
+      "proposed_rank": 24,
+      "change": 8
+    },
+    {
+      "team": "UNLV",
+      "baseline_rank": 80,
+      "proposed_rank": 88,
+      "change": -8
+    },
+    {
+      "team": "Iowa State",
+      "baseline_rank": 67,
+      "proposed_rank": 60,
+      "change": 7
+    },
+    {
+      "team": "Navy",
+      "baseline_rank": 79,
+      "proposed_rank": 86,
+      "change": -7
+    },
+    {
+      "team": "Wake Forest",
+      "baseline_rank": 25,
+      "proposed_rank": 18,
+      "change": 7
+    },
+    {
+      "team": "Kansas State",
+      "baseline_rank": 46,
+      "proposed_rank": 53,
+      "change": -7
+    },
+    {
+      "team": "Baylor",
+      "baseline_rank": 34,
+      "proposed_rank": 27,
+      "change": 7
+    },
+    {
+      "team": "Maryland",
+      "baseline_rank": 94,
+      "proposed_rank": 101,
+      "change": -7
+    }
+  ],
+  "weak_opponent_checks": {
+    "positive_factor_at_rank_120": 0.272,
+    "negative_factor_at_rank_120": 1.239,
+    "positive_factor_at_rank_10": 1.231,
+    "negative_factor_at_rank_10": 0.783
+  }
+}
