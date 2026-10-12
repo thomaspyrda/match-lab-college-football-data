@@ -31,8 +31,28 @@ exec(compile(ast.Module(body=selected,type_ignores=[]),"<v15 metric extraction>"
 metrics=ns["METRICS"];assert len(metrics)==41,f"Expected 41 metrics; got {len(metrics)}"
 f=ns["f"]; metric_row=ns["metric_row"]; situational_metrics=ns["situational_metrics"]
 FBS={canon(x["school"]) for x in api("/teams/fbs",year=SEASON) if x.get("school")}-{"Sacramento State","North Dakota State"}
-games=api("/games",year=SEASON,seasonType="regular")
-completed=[g for g in games if g.get("home_points") is not None and g.get("away_points") is not None]
+# Prefer the existing validated production history; CFBD may vary field casing.
+history_path=ROOT/"data"/"historical"/f"{SEASON}.json"
+history=json.loads(history_path.read_text()).get("games",[]) if history_path.exists() else []
+completed=[]
+for g in history:
+    result=g.get("result") or {}
+    hp=result.get("home_points"); ap=result.get("away_points")
+    if hp is None or ap is None:continue
+    completed.append({"id":g.get("game_id"),"week":g.get("week"),
+      "home_team":g.get("home"),"away_team":g.get("away"),
+      "home_points":hp,"away_points":ap})
+if not completed:
+    games=api("/games",year=SEASON,seasonType="regular")
+    for g in games:
+        hp=g.get("home_points",g.get("homePoints"));ap=g.get("away_points",g.get("awayPoints"))
+        if hp is None or ap is None:continue
+        completed.append({"id":g.get("id",g.get("gameId")),"week":g.get("week"),
+          "home_team":g.get("home_team",g.get("homeTeam")),
+          "away_team":g.get("away_team",g.get("awayTeam")),
+          "home_points":hp,"away_points":ap})
+print("ARCHIVE INPUT:",json.dumps({"history_games":len(history),"completed":len(completed)}),flush=True)
+if not completed:raise SystemExit("No completed game results found")
 completed.sort(key=lambda g:(int(g.get("week") or 0),str(g.get("id"))))
 adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
 by_gid=defaultdict(dict)
@@ -72,5 +92,9 @@ with (OUT/"games.csv").open("w",newline="") as stream:
 coverage={m:sum(r.get("off_"+m) is not None for r in records) for m in metrics}
 report={"season":SEASON,"completed_games":len(ledger),"team_game_rows":len(records),"fbs_teams":len(FBS),"metrics_per_side":41,"metric_coverage_counts":coverage,"missing_advanced_rows":missing}
 (OUT/"coverage.json").write_text(json.dumps(report,indent=2))
+if not records:
+    print("MATCH DIAGNOSTIC:",json.dumps({"completed":len(completed),"fbs_count":len(FBS),
+      "adv_rows":len(adv),"adv_games":len(by_gid),"first_adv_keys":list(adv[0]) if adv else [],
+      "first_missing":missing[:3],"first_fbs":sorted(FBS)[:5]}),flush=True)
 assert len(records)>0,"No complete usable team/game rows"
 print(json.dumps({k:v for k,v in report.items() if k not in ("metric_coverage_counts","missing_advanced_rows")}))
