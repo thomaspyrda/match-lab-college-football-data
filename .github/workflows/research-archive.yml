@@ -6,6 +6,7 @@ on:
     paths:
       - 'build_research_archive.py'
       - 'run_four_unit_research.py'
+      - 'build_conference_strength_research.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -27,6 +28,8 @@ jobs:
         run: python build_research_archive.py
       - name: Calculate all national ranking variants
         run: python run_four_unit_research.py
+      - name: Build conference research rankings
+        run: python build_conference_strength_research.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
@@ -38,6 +41,8 @@ jobs:
           assert report['metrics_per_side']==41
           assert (root/'top25_comparison.csv').exists()
           assert (root/'ranking_experiments.json').exists()
+          assert (root/'conference_strength.csv').exists()
+          assert (root/'conference_exposure.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
