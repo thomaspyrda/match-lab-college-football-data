@@ -57,6 +57,8 @@ jobs:
           assert (root/'exposure_gated_comparison.csv').exists()
           assert (root/'raw_metrics_earned_exposure_comparison.csv').exists()
           assert (root/'key_game_results_audit.csv').exists()
+          assert (root/'elite_validation_games.csv').exists()
+          assert (root/'pregame_all_team_ranks.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
