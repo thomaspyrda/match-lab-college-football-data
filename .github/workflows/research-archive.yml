@@ -1,0 +1,51 @@
+name: Research Archive 2026 (isolated)
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'build_research_archive.py'
+      - '.github/workflows/research-archive.yml'
+permissions:
+  contents: write
+jobs:
+  build-archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate archive code
+        run: python -m py_compile build_research_archive.py
+      - name: Build weekly historical research archive
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          RESEARCH_SEASON: '2026'
+        run: python build_research_archive.py
+      - name: Verify output files and coverage
+        run: |
+          python - <<'PY'
+          import json,pathlib,csv
+          root=pathlib.Path('data/research/2026')
+          report=json.loads((root/'coverage.json').read_text())
+          rows=list(csv.DictReader((root/'weekly_team_metrics.csv').open()))
+          assert report['team_game_rows']==len(rows)>0
+          assert report['metrics_per_side']==41
+          assert len(set(x['team'] for x in rows))>=100
+          print('Validated',len(rows),'team-game rows')
+          PY
+      - name: Upload archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfb-research-2026
+          path: data/research/2026/
+      - name: Commit archive on research branch only
+        if: github.ref == 'refs/heads/research/four-unit-archive-2026'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2026
+          git diff --cached --quiet || git commit -m "Update isolated CFB research archive"
+          git push
