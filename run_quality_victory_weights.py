@@ -45,3 +45,5 @@ report={'status':'completed research only','through_week':6,'formula':'(0.85-qua
  'focus':[{'team':t,'quality_z':round(qz[t],3) if qz[t] is not None else None,'ranks':{k:v['ranks'][t] for k,v in runs.items()},'games':detail[t]} for t in focus]}
 out=R/'data/experiments/quality_victory_weight_comparison_2026.json';out.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'focus':[{'team':r['team'],'quality_z':r['quality_z'],'ranks':r['ranks']} for r in report['focus']],'top25':{k:v['top50'][:25] for k,v in report['models'].items()}},indent=2))
+
+# Execute isolated test.
