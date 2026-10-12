@@ -142,9 +142,19 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
                     tier=max(0.,(11-rank)/10) if rank<=10 else 0.
                     outcomes[t].append((1 if win else -1)+.4*resid+(.6*tier*win if not ecv else 0.))
                     if ecv:
-                        tier_value=(1. if rank<=10 else .6 if rank<=25 else .3 if rank<=50 else .1)
-                        v=tier_value*(1 if win else -(.4 if rank>50 else .15))
-                        v+=.15*resid
+                        # Strict Top-50-only positive validation. Sub-50 teams
+                        # cannot generate positive ECV even from blowout wins.
+                        tier_value=(1. if rank<=10 else .6 if rank<=25 else .3 if rank<=50 else 0.)
+                        if rank<=50:
+                            v=(tier_value if win else -.15*tier_value)+.15*resid
+                        else:
+                            # No bonus for beating weak opponents. Punish
+                            # losses, unexpectedly close wins, and negative
+                            # performance residuals; extreme underperformance
+                            # against weak opposition receives larger penalties.
+                            v=-(1.0 if not win else 0.) + min(0.,resid)*.65
+                        v=min(1.25,max(-1.65,v))
+                        if rank>50:v=min(0.,v)
                         confidence[t].append(v)
                         validation_games.append({"week":week,"game_id":r["game_id"],"team":t,"opponent":opp,
                           "opponent_pregame_rank":rank,"win":win,"actual_margin":tp-op,
