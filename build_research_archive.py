@@ -66,7 +66,14 @@ for week in sorted({int(g.get("week") or 0) for g in completed}):
     for p in api("/plays",year=SEASON,week=week,seasonType="regular"):
         if p.get("gameId") is not None and p.get("offense"):
             weekplays[str(p["gameId"])][canon(p["offense"])].append(p)
-columns=["season","week","game_id","team","opponent","location","team_points","opponent_points","win","fbs_opponent","plays_count"]+["off_"+m for m in metrics]+["def_"+m for m in metrics]
+def pass_20plus_rate(plays):
+    passes=[p for p in plays if int(p.get("down") or 0) in (1,2,3,4)
+      and p.get("yardsGained") is not None
+      and "Pass" in str(p.get("playType") or "")
+      and "Sack" not in str(p.get("playType") or "")]
+    if not passes:return None
+    return sum(float(p["yardsGained"])>=20 for p in passes)/len(passes)
+columns=["season","week","game_id","team","opponent","location","team_points","opponent_points","win","fbs_opponent","plays_count"]+["off_"+m for m in metrics]+["def_"+m for m in metrics]+["off_passing_20plus_rate","def_passing_20plus_rate"]
 records=[];ledger=[];missing=[]
 for g in completed:
     gid=str(g["id"]);home=canon(g["home_team"]);away=canon(g["away_team"])
@@ -85,6 +92,8 @@ for g in completed:
         row={"season":SEASON,"week":g["week"],"game_id":gid,"team":team,"opponent":opp,"location":loc,"team_points":tp,"opponent_points":op,"win":int(tp>op),"fbs_opponent":int(opp in FBS),"plays_count":len(ownplays)}
         row.update({"off_"+m:off.get(m) for m in metrics})
         row.update({"def_"+m:deff.get(m) for m in metrics})
+        row["off_passing_20plus_rate"]=pass_20plus_rate(ownplays)
+        row["def_passing_20plus_rate"]=pass_20plus_rate(oppplays)
         records.append(row)
 with (OUT/"weekly_team_metrics.csv").open("w",newline="") as stream:
     w=csv.DictWriter(stream,fieldnames=columns);w.writeheader();w.writerows(records)
