@@ -65,11 +65,13 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False,method="rank"):
+def run(amplitude,qor=False,method="rank",results_heavy=False):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
     priorcounts=defaultdict(int)
+    outcomes=defaultdict(list)
+    confidence=defaultdict(list)
     for week in weeks:
         data=byweek[week]
         # Year-to-date baseline is recalibrated using only previously completed games.
@@ -78,6 +80,8 @@ def run(amplitude,qor=False,method="rank"):
         for k in ("PO","RO","PD","RD"):
             ordered[k]=sorted(teams,key=lambda t:(-frozen[t][k],t))
         n=len(teams)
+        order=sorted(teams,key=lambda t:(-statistics.fmean(frozen[t].values()),t))
+        pregame_rank={t:i+1 for i,t in enumerate(order)}
         coef={}
         for k in ordered:
             for i,t in enumerate(ordered[k]):
@@ -113,6 +117,12 @@ def run(amplitude,qor=False,method="rank"):
                 expected=7*(statistics.fmean(f.values())-statistics.fmean(o.values()))
                 resid=max(-35,min(35,(tp-op)-expected))/35
                 evidence[t,"result"].append((resid,1))
+                if results_heavy:
+                    win=int(tp>op)
+                    rank=pregame_rank[opp]
+                    tier=max(0.,(11-rank)/10) if rank<=10 else 0.
+                    outcomes[t].append((1 if win else -1)+.4*resid+.6*tier*win)
+                    confidence[t].append(max(0.,min(2.,statistics.fmean(o.values())))*(1 if win else max(0.,resid)))
             if int(r["fbs_opponent"]):priorcounts[t]+=1
         allthrough.extend(data)
         new={}
@@ -128,12 +138,16 @@ def run(amplitude,qor=False,method="rank"):
             zs=zscores({t:new[t][k] for t in teams})
             for t in teams:new[t][k]=zs[t]
         frozen=new
+    if results_heavy:
+        strength_z=zscores({t:statistics.fmean(frozen[t].values()) for t in teams})
+        outcomes_z=zscores({t:statistics.fmean(outcomes[t]) if outcomes[t] else -1 for t in teams})
+        confidence_z=zscores({t:statistics.fmean(confidence[t]) if confidence[t] else 0 for t in teams})
     results=[]
     for t in teams:
         strength=statistics.fmean(frozen[t].values())
         q=evidence[t,"result"]
         quality=sum(v for v,_ in q)/len(q) if q else 0
-        score=strength+(.10*quality if qor else 0)
+        score=(.50*strength_z[t]+.35*outcomes_z[t]+.15*confidence_z[t] if results_heavy else strength+(.10*quality if qor else 0))
         results.append({"team":t,"score":round(score,5),"statistical_strength":round(strength,5),
                         "quality_results":round(quality,5),"games":priorcounts[t],
                         **{k:round(frozen[t][k],5) for k in ("PO","RO","PD","RD")}})
@@ -145,7 +159,8 @@ def main():
     variants={"unadjusted":(0,False),"adjust_50":(.5,False),"adjust_65":(.65,False),
               "adjust_50_qor":(.5,True),"adjust_65_qor":(.65,True),
               "unit_gap_50_qor":(.5,True,"gap"),"unit_gap_65_qor":(.65,True,"gap"),
-              "hybrid_50_qor":(.5,True,"hybrid"),"hybrid_65_qor":(.65,True,"hybrid")}
+              "hybrid_50_qor":(.5,True,"hybrid"),"hybrid_65_qor":(.65,True,"hybrid"),
+              "results_heavy_hybrid_50":(.5,False,"hybrid",True)}
     full={key:run(*params) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
