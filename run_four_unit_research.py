@@ -7,6 +7,12 @@ ROOT=Path(__file__).resolve().parent
 FOLDER=ROOT/"data"/"research"/"2026"
 rows=list(csv.DictReader((FOLDER/"weekly_team_metrics.csv").open()))
 pre=json.loads((FOLDER/"preseason_anchors.json").read_text()).get("teams",{})
+# Align CFBD source school names with the preseason consensus before ranking.
+ALIASES={"Mississippi":"Ole Miss","Connecticut":"UConn","Texas-San Antonio":"UTSA","San José State":"San Jose State"}
+def canon(x):return ALIASES.get(x,x)
+pre={canon(k):v for k,v in pre.items()}
+for row in rows:
+    row["team"]=canon(row["team"]);row["opponent"]=canon(row["opponent"])
 dct=json.loads((FOLDER/"metric_dictionary.json").read_text())
 cats=dct["categories"]
 # Retain v15 subcategory selection; identify passing/rushing-specific measures,
@@ -14,7 +20,7 @@ cats=dct["categories"]
 passing=cats["passing"][1]
 rushing=cats["rushing"][1]
 shared=cats["scoring"][1]+cats["efficiency"][1]+cats["line"][1]+cats["finishing"][1]
-teams=sorted({r["team"] for r in rows}|set(pre))
+teams=sorted({r["team"] for r in rows})
 weeks=sorted({int(r["week"]) for r in rows})
 byweek=defaultdict(list)
 for r in rows:byweek[int(r["week"])].append(r)
