@@ -30,7 +30,10 @@ ns={"statistics":statistics,"defaultdict":defaultdict}
 exec(compile(ast.Module(body=selected,type_ignores=[]),"<v15 metric extraction>","exec"),ns)
 metrics=ns["METRICS"];assert len(metrics)==41,f"Expected 41 metrics; got {len(metrics)}"
 f=ns["f"]; metric_row=ns["metric_row"]; situational_metrics=ns["situational_metrics"]
-FBS={canon(x["school"]) for x in api("/teams/fbs",year=SEASON) if x.get("school")}-{"Sacramento State","North Dakota State"}
+team_source=api("/teams/fbs",year=SEASON)
+FBS={canon(x["school"]) for x in team_source if x.get("school")}-{"Sacramento State","North Dakota State"}
+membership={canon(x["school"]):{"conference":x.get("conference") or "Independent","classification":x.get("classification")} for x in team_source if x.get("school") and canon(x["school"]) in FBS}
+(OUT/"conference_membership.json").write_text(json.dumps({"season":SEASON,"source":"CFBD /teams/fbs","teams":membership},indent=2))
 # Prefer the existing validated production history; CFBD may vary field casing.
 history_path=ROOT/"data"/"historical"/f"{SEASON}.json"
 history=json.loads(history_path.read_text()).get("games",[]) if history_path.exists() else []
