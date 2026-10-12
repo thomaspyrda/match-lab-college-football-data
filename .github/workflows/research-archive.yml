@@ -8,6 +8,7 @@ on:
       - 'run_four_unit_research.py'
       - 'build_conference_strength_research.py'
       - 'compare_earned_exposure.py'
+      - 'compare_raw_metrics_earned.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -33,6 +34,8 @@ jobs:
         run: python build_conference_strength_research.py
       - name: Compare earned pregame exposure
         run: python compare_earned_exposure.py
+      - name: Compare unadjusted metrics plus earned competition
+        run: python compare_raw_metrics_earned.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
@@ -49,6 +52,7 @@ jobs:
           assert (root/'pregame_opponent_exposure.csv').exists()
           assert (root/'pregame_exposure_summary.csv').exists()
           assert (root/'exposure_gated_comparison.csv').exists()
+          assert (root/'raw_metrics_earned_exposure_comparison.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
