@@ -65,14 +65,14 @@ def ranks_for(wcpc,wmov):
 runs={}
 for label,wcpc,wmov in [('baseline',0,0),('separate_mov_10pct',0,.1),('cpc_only_5pct',.05,0),('mov_10pct_plus_cpc_5pct',.05,.1),('mov_10pct_plus_cpc_10pct',.10,.1)]:
  ordered,rr=ranks_for(wcpc,wmov)
- runs[label]={'weights':{'baseline':round(1-wcpc-wmov,2),'mov':wmov,'cpc':wcpc},'top25':ordered[:25],'ranks':rr}
+ runs[label]={'weights':{'baseline':round(1-wcpc-wmov,2),'mov':wmov,'cpc':wcpc},'top25':ordered[:25],'top50':ordered[:50],'ranks':rr}
 focus=['New Mexico','SMU','Oklahoma','Texas','Georgia','Ohio State','Miami','Notre Dame','Oregon','Navy','Rutgers','Alabama']
 report={'model':'continuous high-competition proof and weak-schedule capped upside','status':'research_only',
  'through_week':6,'eligible_lines':len(audit)//2,
  'strength_proxy':'Frozen week-start ranks seeded by the independent consensus preseason score; previous weeks updated using capped actual-margin residual vs 2.5 + 0.22*preseason-score gap. This is an Elo-like research proxy, NOT the original model frozen-unit rating.',
  'cpc':'Signed spread margin surprise x continuous opponent-quality modifier: positive credit 0.25x (weak) to 1.30x (elite); negative 0.75x (elite) to 1.25x (weak). Four-game shrinkage then centered SD normalization.',
  'important_limitations':['Strength quality is a provisional separate pregame proxy, not the production model historical strength','CFBD lines may not be certified at kickoff close','Weights/factors are hypotheses, not calibrated by out-of-sample forecasting','Quality and market MOV share residual information; combined arms can double-count','Higher final relative rank does not prove a stronger absolute rating'],
- 'models':{k:{'weights':v['weights'],'top25':v['top25']} for k,v in runs.items()},
+ 'models':{k:{'weights':v['weights'],'top25':v['top25'],'top50':v['top50']} for k,v in runs.items()},
  'focus':[{'team':t,'games_with_lines':len(quality[t]),'cpc_z':round(z[t],3) if z[t] is not None else None,
  'ranks':{name:v['ranks'][t] for name,v in runs.items()},'game_breakdown':processed[t]} for t in focus],
  'largest_changes':sorted([{'team':t,'baseline_rank':runs['baseline']['ranks'][t],
