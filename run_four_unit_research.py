@@ -65,15 +65,28 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15)):
+def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15),save_pregame=False):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
+    pregame_records=[]
     priorcounts=defaultdict(int)
     outcomes=defaultdict(list)
     confidence=defaultdict(list)
     for week in weeks:
         data=byweek[week]
+        if save_pregame:
+            for game in data:
+                t,o=game["team"],game["opponent"]
+                if o in frozen:
+                    pregame_records.append({"week":week,"game_id":game["game_id"],"team":t,
+                      "opponent":o,"pregame_opponent_strength":round(statistics.fmean(frozen[o].values()),6),
+                      "pregame_team_strength":round(statistics.fmean(frozen[t].values()),6),
+                      "pregame_opponent_PO":round(frozen[o]["PO"],6),
+                      "pregame_opponent_RO":round(frozen[o]["RO"],6),
+                      "pregame_opponent_PD":round(frozen[o]["PD"],6),
+                      "pregame_opponent_RD":round(frozen[o]["RD"],6),
+                      "fbs_opponent":game["fbs_opponent"]})
         # Year-to-date baseline is recalibrated using only previously completed games.
         # Rank snapshots for a given week are frozen before consuming that week's data.
         ordered={}
@@ -142,6 +155,12 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
         strength_z=zscores({t:statistics.fmean(frozen[t].values()) for t in teams})
         outcomes_z=zscores({t:statistics.fmean(outcomes[t]) if outcomes[t] else -1 for t in teams})
         confidence_z=zscores({t:statistics.fmean(confidence[t]) if confidence[t] else 0 for t in teams})
+    if save_pregame:
+        with (FOLDER/"pregame_opponent_exposure.csv").open("w",newline="") as f:
+            fieldnames=["week","game_id","team","opponent","pregame_opponent_strength",
+              "pregame_team_strength","pregame_opponent_PO","pregame_opponent_RO",
+              "pregame_opponent_PD","pregame_opponent_RD","fbs_opponent"]
+            w=csv.DictWriter(f,fieldnames=fieldnames);w.writeheader();w.writerows(pregame_records)
     results=[]
     for t in teams:
         strength=statistics.fmean(frozen[t].values())
@@ -163,7 +182,7 @@ def main():
               "results_heavy_hybrid_50":(.5,False,"hybrid",True),
               "balanced_hybrid_50":(.5,False,"hybrid",True,(.60,.25,.15)),
               "conservative_hybrid_50":(.5,False,"hybrid",True,(.70,.20,.10))}
-    full={key:run(*params) for key,params in variants.items()}
+    full={key:run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
        "variants":full},indent=2))
