@@ -1,0 +1,378 @@
+{
+  "method": "90% raw-metrics balanced model + 10% earned pregame opponent exposure",
+  "caveat": "Experimental; frozen opponent strengths retain preseason anchoring; confidence may overlap existing result credits.",
+  "top25": [
+    {
+      "team": "Utah",
+      "score": 2.02561,
+      "earned_exposure_z": 0.83812,
+      "baseline_rank": 2,
+      "baseline_score": 1.96106,
+      "fbs_games": 4,
+      "rank": 1,
+      "change": 1
+    },
+    {
+      "team": "Georgia",
+      "score": 1.99717,
+      "earned_exposure_z": 2.20138,
+      "baseline_rank": 3,
+      "baseline_score": 1.79466,
+      "fbs_games": 5,
+      "rank": 2,
+      "change": 1
+    },
+    {
+      "team": "Miami",
+      "score": 1.96333,
+      "earned_exposure_z": 0.01761,
+      "baseline_rank": 1,
+      "baseline_score": 1.98103,
+      "fbs_games": 4,
+      "rank": 3,
+      "change": -2
+    },
+    {
+      "team": "BYU",
+      "score": 1.90216,
+      "earned_exposure_z": 1.29836,
+      "baseline_rank": 4,
+      "baseline_score": 1.78991,
+      "fbs_games": 4,
+      "rank": 4,
+      "change": 0
+    },
+    {
+      "team": "UCLA",
+      "score": 1.87485,
+      "earned_exposure_z": 2.23975,
+      "baseline_rank": 6,
+      "baseline_score": 1.66726,
+      "fbs_games": 5,
+      "rank": 5,
+      "change": 1
+    },
+    {
+      "team": "Texas",
+      "score": 1.69093,
+      "earned_exposure_z": 2.4869,
+      "baseline_rank": 11,
+      "baseline_score": 1.45655,
+      "fbs_games": 5,
+      "rank": 6,
+      "change": 5
+    },
+    {
+      "team": "Notre Dame",
+      "score": 1.66374,
+      "earned_exposure_z": -0.07204,
+      "baseline_rank": 5,
+      "baseline_score": 1.68752,
+      "fbs_games": 6,
+      "rank": 7,
+      "change": -2
+    },
+    {
+      "team": "Alabama",
+      "score": 1.64537,
+      "earned_exposure_z": 1.89866,
+      "baseline_rank": 10,
+      "baseline_score": 1.46995,
+      "fbs_games": 6,
+      "rank": 8,
+      "change": 2
+    },
+    {
+      "team": "Indiana",
+      "score": 1.62913,
+      "earned_exposure_z": 0.45382,
+      "baseline_rank": 7,
+      "baseline_score": 1.59946,
+      "fbs_games": 5,
+      "rank": 9,
+      "change": -2
+    },
+    {
+      "team": "LSU",
+      "score": 1.54796,
+      "earned_exposure_z": 1.20068,
+      "baseline_rank": 12,
+      "baseline_score": 1.44206,
+      "fbs_games": 5,
+      "rank": 10,
+      "change": 2
+    },
+    {
+      "team": "Ohio State",
+      "score": 1.48997,
+      "earned_exposure_z": -0.40155,
+      "baseline_rank": 8,
+      "baseline_score": 1.54531,
+      "fbs_games": 6,
+      "rank": 11,
+      "change": -3
+    },
+    {
+      "team": "Texas Tech",
+      "score": 1.46113,
+      "earned_exposure_z": -0.47427,
+      "baseline_rank": 9,
+      "baseline_score": 1.52353,
+      "fbs_games": 4,
+      "rank": 12,
+      "change": -3
+    },
+    {
+      "team": "Mississippi State",
+      "score": 1.41728,
+      "earned_exposure_z": 1.44462,
+      "baseline_rank": 13,
+      "baseline_score": 1.28545,
+      "fbs_games": 5,
+      "rank": 13,
+      "change": 0
+    },
+    {
+      "team": "Oklahoma State",
+      "score": 1.2355,
+      "earned_exposure_z": 2.2485,
+      "baseline_rank": 18,
+      "baseline_score": 1.02068,
+      "fbs_games": 4,
+      "rank": 14,
+      "change": 4
+    },
+    {
+      "team": "Ole Miss",
+      "score": 1.2211,
+      "earned_exposure_z": 1.17665,
+      "baseline_rank": 16,
+      "baseline_score": 1.11438,
+      "fbs_games": 5,
+      "rank": 15,
+      "change": 1
+    },
+    {
+      "team": "Wisconsin",
+      "score": 1.19774,
+      "earned_exposure_z": 0.58698,
+      "baseline_rank": 14,
+      "baseline_score": 1.15034,
+      "fbs_games": 4,
+      "rank": 16,
+      "change": -2
+    },
+    {
+      "team": "Missouri",
+      "score": 1.18322,
+      "earned_exposure_z": 1.30457,
+      "baseline_rank": 17,
+      "baseline_score": 1.06321,
+      "fbs_games": 5,
+      "rank": 17,
+      "change": 0
+    },
+    {
+      "team": "Kentucky",
+      "score": 1.15075,
+      "earned_exposure_z": 2.20498,
+      "baseline_rank": 21,
+      "baseline_score": 0.93948,
+      "fbs_games": 5,
+      "rank": 18,
+      "change": 3
+    },
+    {
+      "team": "Northwestern",
+      "score": 1.11819,
+      "earned_exposure_z": 0.10759,
+      "baseline_rank": 15,
+      "baseline_score": 1.11842,
+      "fbs_games": 4,
+      "rank": 19,
+      "change": -4
+    },
+    {
+      "team": "Oregon",
+      "score": 1.09547,
+      "earned_exposure_z": 1.53322,
+      "baseline_rank": 19,
+      "baseline_score": 0.9515,
+      "fbs_games": 4,
+      "rank": 20,
+      "change": -1
+    },
+    {
+      "team": "Iowa",
+      "score": 0.95645,
+      "earned_exposure_z": 0.16974,
+      "baseline_rank": 20,
+      "baseline_score": 0.9488,
+      "fbs_games": 5,
+      "rank": 21,
+      "change": -1
+    },
+    {
+      "team": "Duke",
+      "score": 0.9501,
+      "earned_exposure_z": 0.89373,
+      "baseline_rank": 26,
+      "baseline_score": 0.86927,
+      "fbs_games": 4,
+      "rank": 22,
+      "change": 4
+    },
+    {
+      "team": "Michigan",
+      "score": 0.91992,
+      "earned_exposure_z": 0.22681,
+      "baseline_rank": 22,
+      "baseline_score": 0.90614,
+      "fbs_games": 5,
+      "rank": 23,
+      "change": -1
+    },
+    {
+      "team": "Wake Forest",
+      "score": 0.90663,
+      "earned_exposure_z": 0.23897,
+      "baseline_rank": 24,
+      "baseline_score": 0.89149,
+      "fbs_games": 6,
+      "rank": 24,
+      "change": 0
+    },
+    {
+      "team": "Baylor",
+      "score": 0.86823,
+      "earned_exposure_z": 0.33636,
+      "baseline_rank": 28,
+      "baseline_score": 0.84288,
+      "fbs_games": 4,
+      "rank": 25,
+      "change": 3
+    }
+  ],
+  "watch": [
+    {
+      "team": "Utah",
+      "score": 2.02561,
+      "earned_exposure_z": 0.83812,
+      "baseline_rank": 2,
+      "baseline_score": 1.96106,
+      "fbs_games": 4,
+      "rank": 1,
+      "change": 1
+    },
+    {
+      "team": "Georgia",
+      "score": 1.99717,
+      "earned_exposure_z": 2.20138,
+      "baseline_rank": 3,
+      "baseline_score": 1.79466,
+      "fbs_games": 5,
+      "rank": 2,
+      "change": 1
+    },
+    {
+      "team": "Miami",
+      "score": 1.96333,
+      "earned_exposure_z": 0.01761,
+      "baseline_rank": 1,
+      "baseline_score": 1.98103,
+      "fbs_games": 4,
+      "rank": 3,
+      "change": -2
+    },
+    {
+      "team": "BYU",
+      "score": 1.90216,
+      "earned_exposure_z": 1.29836,
+      "baseline_rank": 4,
+      "baseline_score": 1.78991,
+      "fbs_games": 4,
+      "rank": 4,
+      "change": 0
+    },
+    {
+      "team": "Texas",
+      "score": 1.69093,
+      "earned_exposure_z": 2.4869,
+      "baseline_rank": 11,
+      "baseline_score": 1.45655,
+      "fbs_games": 5,
+      "rank": 6,
+      "change": 5
+    },
+    {
+      "team": "Notre Dame",
+      "score": 1.66374,
+      "earned_exposure_z": -0.07204,
+      "baseline_rank": 5,
+      "baseline_score": 1.68752,
+      "fbs_games": 6,
+      "rank": 7,
+      "change": -2
+    },
+    {
+      "team": "Alabama",
+      "score": 1.64537,
+      "earned_exposure_z": 1.89866,
+      "baseline_rank": 10,
+      "baseline_score": 1.46995,
+      "fbs_games": 6,
+      "rank": 8,
+      "change": 2
+    },
+    {
+      "team": "Indiana",
+      "score": 1.62913,
+      "earned_exposure_z": 0.45382,
+      "baseline_rank": 7,
+      "baseline_score": 1.59946,
+      "fbs_games": 5,
+      "rank": 9,
+      "change": -2
+    },
+    {
+      "team": "Ohio State",
+      "score": 1.48997,
+      "earned_exposure_z": -0.40155,
+      "baseline_rank": 8,
+      "baseline_score": 1.54531,
+      "fbs_games": 6,
+      "rank": 11,
+      "change": -3
+    },
+    {
+      "team": "Kentucky",
+      "score": 1.15075,
+      "earned_exposure_z": 2.20498,
+      "baseline_rank": 21,
+      "baseline_score": 0.93948,
+      "fbs_games": 5,
+      "rank": 18,
+      "change": 3
+    },
+    {
+      "team": "Oregon",
+      "score": 1.09547,
+      "earned_exposure_z": 1.53322,
+      "baseline_rank": 19,
+      "baseline_score": 0.9515,
+      "fbs_games": 4,
+      "rank": 20,
+      "change": -1
+    },
+    {
+      "team": "Florida",
+      "score": 0.55581,
+      "earned_exposure_z": 1.32188,
+      "baseline_rank": 43,
+      "baseline_score": 0.42783,
+      "fbs_games": 5,
+      "rank": 39,
+      "change": 4
+    }
+  ]
+}
