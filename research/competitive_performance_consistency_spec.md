@@ -27,7 +27,7 @@ No market spread, result, stat or opponent rating updated after kickoff may infl
 - Do not impose an additional independent weak-opponent penalty on an already strength-adjusted spread residual without demonstrating improvement.
 - A 3-point underperformance against weaker and stronger opponents is scored equally *relative to their respective expectation* unless an additional asymmetry is empirically justified.
 - Equivalent positive/negative deviations should be symmetric before any documented ceiling.
-- A team that has never played a top-25 opponent must not be treated as having failed a top-25 test: classify high-level evidence as unobserved, not as zero.
+- A team without strong-opponent results has less demonstrated evidence of elite-level ability than a team repeatedly performing strongly against elite teams. Apply a modest, reliability-aware evidence discount or ceiling for low-quality schedules, even if weak-opponent results are dominant. Do not label unplayed games as losses; lower confidence/proven-quality credit instead. Do not reward a tough schedule alone: poor performance against elite teams still counts negatively.
 - A 4–1 record against strong opposition matters through repeated positive result and performance surprises; wins already rewarded elsewhere must not be counted again at full weight.
 
 ## Reliability and aggregation
@@ -49,3 +49,6 @@ D. 10% MOV plus CPC as a carefully calibrated *non-redundant* diagnostic, not au
 - Never tune weights simply to make AP-like rankings or to force named teams to move.
 
 No production changes are authorized by this document.
+
+## Revised requirement (October 11 2026)
+Strong-opponent results should carry greater proven-quality credit than identical statistical overperformance against weak opponents, provided the adjustment is driven by actual results. Repeated weak-schedule blowouts may indicate underlying talent but provide limited *proven* elite strength. Model this as bounded, continuous evidence quality, not a purely schedule-based arbitrary punishment. A team with no strong opponents can have a high statistical projection yet a lower proven-quality rating.
