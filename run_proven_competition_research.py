@@ -85,3 +85,5 @@ report={'model':'continuous high-competition proof and weak-schedule capped upsi
 p=R/'data/experiments/proven_competition_cpc_2026.json'
 p.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'games':len(audit)//2,'focus':[{k:v for k,v in x.items() if k!='game_breakdown'} for x in report['focus']],'checks':report['weak_opponent_checks']},indent=2))
+
+# Research execution trigger.
