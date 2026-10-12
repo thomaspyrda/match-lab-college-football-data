@@ -181,6 +181,7 @@ def main():
               "hybrid_50_qor":(.5,True,"hybrid"),"hybrid_65_qor":(.65,True,"hybrid"),
               "results_heavy_hybrid_50":(.5,False,"hybrid",True),
               "balanced_hybrid_50":(.5,False,"hybrid",True,(.60,.25,.15)),
+              "raw_metrics_balanced":(0,False,"rank",True,(.60,.25,.15)),
               "conservative_hybrid_50":(.5,False,"hybrid",True,(.70,.20,.10))}
     full={key:run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
