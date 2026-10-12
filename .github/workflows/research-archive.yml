@@ -43,6 +43,8 @@ jobs:
           assert (root/'ranking_experiments.json').exists()
           assert (root/'conference_strength.csv').exists()
           assert (root/'conference_exposure.csv').exists()
+          assert (root/'pregame_opponent_exposure.csv').exists()
+          assert (root/'pregame_exposure_summary.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
