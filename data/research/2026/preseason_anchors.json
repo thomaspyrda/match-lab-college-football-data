@@ -1,0 +1,1454 @@
+{
+  "schema_version": "1.0",
+  "season": 2026,
+  "methodology": "Consensus of independent full-FBS preseason projections published before 2026 Week 0. Previous-season final rankings are not used as a source. Each source has equal weight; teams are ordered by mean source rank, then mapped to a nonlinear 1-100 preseason strength scale that reserves 95+ for the very top and compresses the weakest teams toward the bottom.",
+  "sources": {
+    "phil_steele": {
+      "date": "2026-07-08",
+      "url": "https://www.on3.com/news/phil-steele-releases-2026-preseason-poll-ranking-all-college-football-teams-1-to-138/",
+      "scope": "1-138 preseason projection"
+    },
+    "cbs_sports": {
+      "date": "2026-08-12",
+      "url": "https://www.cbssports.com/college-football/rankings/cbs-sports-rankings/",
+      "scope": "CBS Sports 138 preseason projection; ranks preserved via contemporaneous On3 reproduction"
+    },
+    "the_athletic": {
+      "date": "2026-08-24",
+      "url": "https://www.nytimes.com/athletic/college-football/",
+      "scope": "The Athletic 1-138 preseason projection; ranks preserved via contemporaneous On3 reproduction"
+    }
+  },
+  "scale_anchors": [
+    {
+      "rank": 1,
+      "score": 99
+    },
+    {
+      "rank": 3,
+      "score": 96
+    },
+    {
+      "rank": 5,
+      "score": 93
+    },
+    {
+      "rank": 10,
+      "score": 88
+    },
+    {
+      "rank": 15,
+      "score": 84
+    },
+    {
+      "rank": 25,
+      "score": 77
+    },
+    {
+      "rank": 40,
+      "score": 68
+    },
+    {
+      "rank": 60,
+      "score": 58
+    },
+    {
+      "rank": 80,
+      "score": 46
+    },
+    {
+      "rank": 100,
+      "score": 32
+    },
+    {
+      "rank": 120,
+      "score": 18
+    },
+    {
+      "rank": 138,
+      "score": 5
+    }
+  ],
+  "teams": {
+    "Ohio State": {
+      "consensus_rank": 1,
+      "score": 99,
+      "average_source_rank": 2.33,
+      "source_ranks": {
+        "phil_steele": 4,
+        "cbs_sports": 1,
+        "the_athletic": 2
+      }
+    },
+    "Oregon": {
+      "consensus_rank": 2,
+      "score": 97.5,
+      "average_source_rank": 2.67,
+      "source_ranks": {
+        "phil_steele": 2,
+        "cbs_sports": 2,
+        "the_athletic": 4
+      }
+    },
+    "Notre Dame": {
+      "consensus_rank": 3,
+      "score": 96,
+      "average_source_rank": 3,
+      "source_ranks": {
+        "phil_steele": 1,
+        "cbs_sports": 3,
+        "the_athletic": 5
+      }
+    },
+    "Georgia": {
+      "consensus_rank": 4,
+      "score": 94.5,
+      "average_source_rank": 3.67,
+      "source_ranks": {
+        "phil_steele": 3,
+        "cbs_sports": 5,
+        "the_athletic": 3
+      }
+    },
+    "Indiana": {
+      "consensus_rank": 5,
+      "score": 93,
+      "average_source_rank": 4.33,
+      "source_ranks": {
+        "phil_steele": 6,
+        "cbs_sports": 6,
+        "the_athletic": 1
+      }
+    },
+    "Texas": {
+      "consensus_rank": 6,
+      "score": 92,
+      "average_source_rank": 5,
+      "source_ranks": {
+        "phil_steele": 5,
+        "cbs_sports": 4,
+        "the_athletic": 6
+      }
+    },
+    "Miami": {
+      "consensus_rank": 7,
+      "score": 91,
+      "average_source_rank": 7.67,
+      "source_ranks": {
+        "phil_steele": 9,
+        "cbs_sports": 7,
+        "the_athletic": 7
+      }
+    },
+    "Oklahoma": {
+      "consensus_rank": 8,
+      "score": 90,
+      "average_source_rank": 8.67,
+      "source_ranks": {
+        "phil_steele": 7,
+        "cbs_sports": 9,
+        "the_athletic": 10
+      }
+    },
+    "Texas Tech": {
+      "consensus_rank": 9,
+      "score": 89,
+      "average_source_rank": 10,
+      "source_ranks": {
+        "phil_steele": 13,
+        "cbs_sports": 8,
+        "the_athletic": 9
+      }
+    },
+    "Mississippi": {
+      "consensus_rank": 10,
+      "score": 88,
+      "average_source_rank": 10.67,
+      "source_ranks": {
+        "phil_steele": 8,
+        "cbs_sports": 12,
+        "the_athletic": 12
+      }
+    },
+    "Texas A&M": {
+      "consensus_rank": 11,
+      "score": 87.2,
+      "average_source_rank": 12,
+      "source_ranks": {
+        "phil_steele": 12,
+        "cbs_sports": 11,
+        "the_athletic": 13
+      }
+    },
+    "USC": {
+      "consensus_rank": 12,
+      "score": 86.4,
+      "average_source_rank": 12.67,
+      "source_ranks": {
+        "phil_steele": 10,
+        "cbs_sports": 14,
+        "the_athletic": 14
+      }
+    },
+    "Alabama": {
+      "consensus_rank": 13,
+      "score": 85.6,
+      "average_source_rank": 13,
+      "source_ranks": {
+        "phil_steele": 11,
+        "cbs_sports": 13,
+        "the_athletic": 15
+      }
+    },
+    "LSU": {
+      "consensus_rank": 14,
+      "score": 84.8,
+      "average_source_rank": 13,
+      "source_ranks": {
+        "phil_steele": 21,
+        "cbs_sports": 10,
+        "the_athletic": 8
+      }
+    },
+    "BYU": {
+      "consensus_rank": 15,
+      "score": 84,
+      "average_source_rank": 14.67,
+      "source_ranks": {
+        "phil_steele": 17,
+        "cbs_sports": 16,
+        "the_athletic": 11
+      }
+    },
+    "Michigan": {
+      "consensus_rank": 16,
+      "score": 83.3,
+      "average_source_rank": 15,
+      "source_ranks": {
+        "phil_steele": 14,
+        "cbs_sports": 15,
+        "the_athletic": 16
+      }
+    },
+    "Tennessee": {
+      "consensus_rank": 17,
+      "score": 82.6,
+      "average_source_rank": 18.33,
+      "source_ranks": {
+        "phil_steele": 18,
+        "cbs_sports": 17,
+        "the_athletic": 20
+      }
+    },
+    "Washington": {
+      "consensus_rank": 18,
+      "score": 81.9,
+      "average_source_rank": 19,
+      "source_ranks": {
+        "phil_steele": 15,
+        "cbs_sports": 19,
+        "the_athletic": 23
+      }
+    },
+    "SMU": {
+      "consensus_rank": 19,
+      "score": 81.2,
+      "average_source_rank": 19.67,
+      "source_ranks": {
+        "phil_steele": 22,
+        "cbs_sports": 20,
+        "the_athletic": 17
+      }
+    },
+    "Iowa": {
+      "consensus_rank": 20,
+      "score": 80.5,
+      "average_source_rank": 21.67,
+      "source_ranks": {
+        "phil_steele": 20,
+        "cbs_sports": 21,
+        "the_athletic": 24
+      }
+    },
+    "Penn State": {
+      "consensus_rank": 21,
+      "score": 79.8,
+      "average_source_rank": 22,
+      "source_ranks": {
+        "phil_steele": 19,
+        "cbs_sports": 18,
+        "the_athletic": 29
+      }
+    },
+    "Florida": {
+      "consensus_rank": 22,
+      "score": 79.1,
+      "average_source_rank": 25.33,
+      "source_ranks": {
+        "phil_steele": 23,
+        "cbs_sports": 22,
+        "the_athletic": 31
+      }
+    },
+    "Houston": {
+      "consensus_rank": 23,
+      "score": 78.4,
+      "average_source_rank": 25.33,
+      "source_ranks": {
+        "phil_steele": 31,
+        "cbs_sports": 26,
+        "the_athletic": 19
+      }
+    },
+    "South Carolina": {
+      "consensus_rank": 24,
+      "score": 77.7,
+      "average_source_rank": 25.33,
+      "source_ranks": {
+        "phil_steele": 16,
+        "cbs_sports": 28,
+        "the_athletic": 32
+      }
+    },
+    "Utah": {
+      "consensus_rank": 25,
+      "score": 77,
+      "average_source_rank": 25.33,
+      "source_ranks": {
+        "phil_steele": 26,
+        "cbs_sports": 24,
+        "the_athletic": 26
+      }
+    },
+    "Louisville": {
+      "consensus_rank": 26,
+      "score": 76.4,
+      "average_source_rank": 26.33,
+      "source_ranks": {
+        "phil_steele": 36,
+        "cbs_sports": 25,
+        "the_athletic": 18
+      }
+    },
+    "Clemson": {
+      "consensus_rank": 27,
+      "score": 75.8,
+      "average_source_rank": 28,
+      "source_ranks": {
+        "phil_steele": 24,
+        "cbs_sports": 27,
+        "the_athletic": 33
+      }
+    },
+    "Missouri": {
+      "consensus_rank": 28,
+      "score": 75.2,
+      "average_source_rank": 30.33,
+      "source_ranks": {
+        "phil_steele": 33,
+        "cbs_sports": 23,
+        "the_athletic": 35
+      }
+    },
+    "TCU": {
+      "consensus_rank": 29,
+      "score": 74.6,
+      "average_source_rank": 31.67,
+      "source_ranks": {
+        "phil_steele": 37,
+        "cbs_sports": 31,
+        "the_athletic": 27
+      }
+    },
+    "Arizona": {
+      "consensus_rank": 30,
+      "score": 74,
+      "average_source_rank": 32,
+      "source_ranks": {
+        "phil_steele": 38,
+        "cbs_sports": 30,
+        "the_athletic": 28
+      }
+    },
+    "Auburn": {
+      "consensus_rank": 31,
+      "score": 73.4,
+      "average_source_rank": 32.33,
+      "source_ranks": {
+        "phil_steele": 29,
+        "cbs_sports": 32,
+        "the_athletic": 36
+      }
+    },
+    "Illinois": {
+      "consensus_rank": 32,
+      "score": 72.8,
+      "average_source_rank": 33.33,
+      "source_ranks": {
+        "phil_steele": 41,
+        "cbs_sports": 29,
+        "the_athletic": 30
+      }
+    },
+    "Pittsburgh": {
+      "consensus_rank": 33,
+      "score": 72.2,
+      "average_source_rank": 33.67,
+      "source_ranks": {
+        "phil_steele": 28,
+        "cbs_sports": 35,
+        "the_athletic": 38
+      }
+    },
+    "Virginia": {
+      "consensus_rank": 34,
+      "score": 71.6,
+      "average_source_rank": 36.67,
+      "source_ranks": {
+        "phil_steele": 39,
+        "cbs_sports": 37,
+        "the_athletic": 34
+      }
+    },
+    "Boise State": {
+      "consensus_rank": 35,
+      "score": 71,
+      "average_source_rank": 37,
+      "source_ranks": {
+        "phil_steele": 47,
+        "cbs_sports": 43,
+        "the_athletic": 21
+      }
+    },
+    "Florida State": {
+      "consensus_rank": 36,
+      "score": 70.4,
+      "average_source_rank": 37.33,
+      "source_ranks": {
+        "phil_steele": 25,
+        "cbs_sports": 38,
+        "the_athletic": 49
+      }
+    },
+    "Minnesota": {
+      "consensus_rank": 37,
+      "score": 69.8,
+      "average_source_rank": 38,
+      "source_ranks": {
+        "phil_steele": 35,
+        "cbs_sports": 40,
+        "the_athletic": 39
+      }
+    },
+    "Vanderbilt": {
+      "consensus_rank": 38,
+      "score": 69.2,
+      "average_source_rank": 40.33,
+      "source_ranks": {
+        "phil_steele": 34,
+        "cbs_sports": 36,
+        "the_athletic": 51
+      }
+    },
+    "Nebraska": {
+      "consensus_rank": 39,
+      "score": 68.6,
+      "average_source_rank": 41,
+      "source_ranks": {
+        "phil_steele": 32,
+        "cbs_sports": 33,
+        "the_athletic": 58
+      }
+    },
+    "Virginia Tech": {
+      "consensus_rank": 40,
+      "score": 68,
+      "average_source_rank": 42,
+      "source_ranks": {
+        "phil_steele": 40,
+        "cbs_sports": 39,
+        "the_athletic": 47
+      }
+    },
+    "Oklahoma State": {
+      "consensus_rank": 41,
+      "score": 67.5,
+      "average_source_rank": 43.33,
+      "source_ranks": {
+        "phil_steele": 64,
+        "cbs_sports": 44,
+        "the_athletic": 22
+      }
+    },
+    "Georgia Tech": {
+      "consensus_rank": 42,
+      "score": 67,
+      "average_source_rank": 43.67,
+      "source_ranks": {
+        "phil_steele": 44,
+        "cbs_sports": 47,
+        "the_athletic": 40
+      }
+    },
+    "UCLA": {
+      "consensus_rank": 43,
+      "score": 66.5,
+      "average_source_rank": 45.67,
+      "source_ranks": {
+        "phil_steele": 30,
+        "cbs_sports": 42,
+        "the_athletic": 65
+      }
+    },
+    "Kansas State": {
+      "consensus_rank": 44,
+      "score": 66,
+      "average_source_rank": 46.33,
+      "source_ranks": {
+        "phil_steele": 59,
+        "cbs_sports": 34,
+        "the_athletic": 46
+      }
+    },
+    "Wisconsin": {
+      "consensus_rank": 45,
+      "score": 65.5,
+      "average_source_rank": 47,
+      "source_ranks": {
+        "phil_steele": 27,
+        "cbs_sports": 60,
+        "the_athletic": 54
+      }
+    },
+    "NC State": {
+      "consensus_rank": 46,
+      "score": 65,
+      "average_source_rank": 48.33,
+      "source_ranks": {
+        "phil_steele": 52,
+        "cbs_sports": 45,
+        "the_athletic": 48
+      }
+    },
+    "Baylor": {
+      "consensus_rank": 47,
+      "score": 64.5,
+      "average_source_rank": 50.33,
+      "source_ranks": {
+        "phil_steele": 43,
+        "cbs_sports": 53,
+        "the_athletic": 55
+      }
+    },
+    "Northwestern": {
+      "consensus_rank": 48,
+      "score": 64,
+      "average_source_rank": 52.33,
+      "source_ranks": {
+        "phil_steele": 49,
+        "cbs_sports": 48,
+        "the_athletic": 60
+      }
+    },
+    "Duke": {
+      "consensus_rank": 49,
+      "score": 63.5,
+      "average_source_rank": 52.67,
+      "source_ranks": {
+        "phil_steele": 53,
+        "cbs_sports": 46,
+        "the_athletic": 59
+      }
+    },
+    "Navy": {
+      "consensus_rank": 50,
+      "score": 63,
+      "average_source_rank": 52.67,
+      "source_ranks": {
+        "phil_steele": 69,
+        "cbs_sports": 64,
+        "the_athletic": 25
+      }
+    },
+    "Arizona State": {
+      "consensus_rank": 51,
+      "score": 62.5,
+      "average_source_rank": 53,
+      "source_ranks": {
+        "phil_steele": 73,
+        "cbs_sports": 41,
+        "the_athletic": 45
+      }
+    },
+    "California": {
+      "consensus_rank": 52,
+      "score": 62,
+      "average_source_rank": 54,
+      "source_ranks": {
+        "phil_steele": 75,
+        "cbs_sports": 50,
+        "the_athletic": 37
+      }
+    },
+    "Texas-San Antonio": {
+      "consensus_rank": 53,
+      "score": 61.5,
+      "average_source_rank": 55,
+      "source_ranks": {
+        "phil_steele": 50,
+        "cbs_sports": 63,
+        "the_athletic": 52
+      }
+    },
+    "Wake Forest": {
+      "consensus_rank": 54,
+      "score": 61,
+      "average_source_rank": 55.33,
+      "source_ranks": {
+        "phil_steele": 58,
+        "cbs_sports": 58,
+        "the_athletic": 50
+      }
+    },
+    "Maryland": {
+      "consensus_rank": 55,
+      "score": 60.5,
+      "average_source_rank": 55.67,
+      "source_ranks": {
+        "phil_steele": 42,
+        "cbs_sports": 52,
+        "the_athletic": 73
+      }
+    },
+    "Mississippi State": {
+      "consensus_rank": 56,
+      "score": 60,
+      "average_source_rank": 56.67,
+      "source_ranks": {
+        "phil_steele": 51,
+        "cbs_sports": 51,
+        "the_athletic": 68
+      }
+    },
+    "UCF": {
+      "consensus_rank": 57,
+      "score": 59.5,
+      "average_source_rank": 57.67,
+      "source_ranks": {
+        "phil_steele": 45,
+        "cbs_sports": 59,
+        "the_athletic": 69
+      }
+    },
+    "Kentucky": {
+      "consensus_rank": 58,
+      "score": 59,
+      "average_source_rank": 58.33,
+      "source_ranks": {
+        "phil_steele": 56,
+        "cbs_sports": 55,
+        "the_athletic": 64
+      }
+    },
+    "New Mexico": {
+      "consensus_rank": 59,
+      "score": 58.5,
+      "average_source_rank": 59,
+      "source_ranks": {
+        "phil_steele": 68,
+        "cbs_sports": 68,
+        "the_athletic": 41
+      }
+    },
+    "Kansas": {
+      "consensus_rank": 60,
+      "score": 58,
+      "average_source_rank": 59.33,
+      "source_ranks": {
+        "phil_steele": 48,
+        "cbs_sports": 56,
+        "the_athletic": 74
+      }
+    },
+    "Arkansas": {
+      "consensus_rank": 61,
+      "score": 57.4,
+      "average_source_rank": 60,
+      "source_ranks": {
+        "phil_steele": 55,
+        "cbs_sports": 49,
+        "the_athletic": 76
+      }
+    },
+    "UNLV": {
+      "consensus_rank": 62,
+      "score": 56.8,
+      "average_source_rank": 60.33,
+      "source_ranks": {
+        "phil_steele": 80,
+        "cbs_sports": 57,
+        "the_athletic": 44
+      }
+    },
+    "San Diego State": {
+      "consensus_rank": 63,
+      "score": 56.2,
+      "average_source_rank": 61.67,
+      "source_ranks": {
+        "phil_steele": 71,
+        "cbs_sports": 71,
+        "the_athletic": 43
+      }
+    },
+    "Fresno State": {
+      "consensus_rank": 64,
+      "score": 55.6,
+      "average_source_rank": 62,
+      "source_ranks": {
+        "phil_steele": 54,
+        "cbs_sports": 75,
+        "the_athletic": 57
+      }
+    },
+    "James Madison": {
+      "consensus_rank": 65,
+      "score": 55,
+      "average_source_rank": 62,
+      "source_ranks": {
+        "phil_steele": 66,
+        "cbs_sports": 78,
+        "the_athletic": 42
+      }
+    },
+    "Rutgers": {
+      "consensus_rank": 66,
+      "score": 54.4,
+      "average_source_rank": 62.33,
+      "source_ranks": {
+        "phil_steele": 46,
+        "cbs_sports": 62,
+        "the_athletic": 79
+      }
+    },
+    "West Virginia": {
+      "consensus_rank": 67,
+      "score": 53.8,
+      "average_source_rank": 62.33,
+      "source_ranks": {
+        "phil_steele": 57,
+        "cbs_sports": 67,
+        "the_athletic": 63
+      }
+    },
+    "North Carolina": {
+      "consensus_rank": 68,
+      "score": 53.2,
+      "average_source_rank": 65.33,
+      "source_ranks": {
+        "phil_steele": 60,
+        "cbs_sports": 61,
+        "the_athletic": 75
+      }
+    },
+    "Cincinnati": {
+      "consensus_rank": 69,
+      "score": 52.6,
+      "average_source_rank": 67,
+      "source_ranks": {
+        "phil_steele": 77,
+        "cbs_sports": 54,
+        "the_athletic": 70
+      }
+    },
+    "Michigan State": {
+      "consensus_rank": 70,
+      "score": 52,
+      "average_source_rank": 67,
+      "source_ranks": {
+        "phil_steele": 63,
+        "cbs_sports": 66,
+        "the_athletic": 72
+      }
+    },
+    "Colorado": {
+      "consensus_rank": 71,
+      "score": 51.4,
+      "average_source_rank": 68,
+      "source_ranks": {
+        "phil_steele": 62,
+        "cbs_sports": 65,
+        "the_athletic": 77
+      }
+    },
+    "Syracuse": {
+      "consensus_rank": 72,
+      "score": 50.8,
+      "average_source_rank": 71.67,
+      "source_ranks": {
+        "phil_steele": 67,
+        "cbs_sports": 70,
+        "the_athletic": 78
+      }
+    },
+    "Tulane": {
+      "consensus_rank": 73,
+      "score": 50.2,
+      "average_source_rank": 72.33,
+      "source_ranks": {
+        "phil_steele": 78,
+        "cbs_sports": 86,
+        "the_athletic": 53
+      }
+    },
+    "Memphis": {
+      "consensus_rank": 74,
+      "score": 49.6,
+      "average_source_rank": 73.67,
+      "source_ranks": {
+        "phil_steele": 87,
+        "cbs_sports": 72,
+        "the_athletic": 62
+      }
+    },
+    "Army": {
+      "consensus_rank": 75,
+      "score": 49,
+      "average_source_rank": 75.33,
+      "source_ranks": {
+        "phil_steele": 79,
+        "cbs_sports": 81,
+        "the_athletic": 66
+      }
+    },
+    "South Florida": {
+      "consensus_rank": 76,
+      "score": 48.4,
+      "average_source_rank": 75.33,
+      "source_ranks": {
+        "phil_steele": 82,
+        "cbs_sports": 83,
+        "the_athletic": 61
+      }
+    },
+    "Western Michigan": {
+      "consensus_rank": 77,
+      "score": 47.8,
+      "average_source_rank": 75.67,
+      "source_ranks": {
+        "phil_steele": 76,
+        "cbs_sports": 95,
+        "the_athletic": 56
+      }
+    },
+    "Texas State": {
+      "consensus_rank": 78,
+      "score": 47.2,
+      "average_source_rank": 76,
+      "source_ranks": {
+        "phil_steele": 61,
+        "cbs_sports": 85,
+        "the_athletic": 82
+      }
+    },
+    "Stanford": {
+      "consensus_rank": 79,
+      "score": 46.6,
+      "average_source_rank": 79.33,
+      "source_ranks": {
+        "phil_steele": 70,
+        "cbs_sports": 74,
+        "the_athletic": 94
+      }
+    },
+    "Purdue": {
+      "consensus_rank": 80,
+      "score": 46,
+      "average_source_rank": 81.33,
+      "source_ranks": {
+        "phil_steele": 65,
+        "cbs_sports": 82,
+        "the_athletic": 97
+      }
+    },
+    "North Dakota State": {
+      "consensus_rank": 81,
+      "score": 45.3,
+      "average_source_rank": 81.67,
+      "source_ranks": {
+        "phil_steele": 101,
+        "cbs_sports": 73,
+        "the_athletic": 71
+      }
+    },
+    "East Carolina": {
+      "consensus_rank": 82,
+      "score": 44.6,
+      "average_source_rank": 82,
+      "source_ranks": {
+        "phil_steele": 86,
+        "cbs_sports": 80,
+        "the_athletic": 80
+      }
+    },
+    "Hawai'i": {
+      "consensus_rank": 83,
+      "score": 43.9,
+      "average_source_rank": 83.33,
+      "source_ranks": {
+        "phil_steele": 99,
+        "cbs_sports": 84,
+        "the_athletic": 67
+      }
+    },
+    "Old Dominion": {
+      "consensus_rank": 84,
+      "score": 43.2,
+      "average_source_rank": 83.33,
+      "source_ranks": {
+        "phil_steele": 74,
+        "cbs_sports": 91,
+        "the_athletic": 85
+      }
+    },
+    "Miami (OH)": {
+      "consensus_rank": 85,
+      "score": 42.5,
+      "average_source_rank": 83.67,
+      "source_ranks": {
+        "phil_steele": 88,
+        "cbs_sports": 79,
+        "the_athletic": 84
+      }
+    },
+    "Liberty": {
+      "consensus_rank": 86,
+      "score": 41.8,
+      "average_source_rank": 86,
+      "source_ranks": {
+        "phil_steele": 83,
+        "cbs_sports": 89,
+        "the_athletic": 86
+      }
+    },
+    "Boston College": {
+      "consensus_rank": 87,
+      "score": 41.1,
+      "average_source_rank": 87.33,
+      "source_ranks": {
+        "phil_steele": 91,
+        "cbs_sports": 76,
+        "the_athletic": 95
+      }
+    },
+    "Air Force": {
+      "consensus_rank": 88,
+      "score": 40.4,
+      "average_source_rank": 88.67,
+      "source_ranks": {
+        "phil_steele": 84,
+        "cbs_sports": 77,
+        "the_athletic": 105
+      }
+    },
+    "Washington State": {
+      "consensus_rank": 89,
+      "score": 39.7,
+      "average_source_rank": 88.67,
+      "source_ranks": {
+        "phil_steele": 95,
+        "cbs_sports": 88,
+        "the_athletic": 83
+      }
+    },
+    "Iowa State": {
+      "consensus_rank": 90,
+      "score": 39,
+      "average_source_rank": 89,
+      "source_ranks": {
+        "phil_steele": 100,
+        "cbs_sports": 69,
+        "the_athletic": 98
+      }
+    },
+    "Florida Atlantic": {
+      "consensus_rank": 91,
+      "score": 38.3,
+      "average_source_rank": 91.33,
+      "source_ranks": {
+        "phil_steele": 72,
+        "cbs_sports": 92,
+        "the_athletic": 110
+      }
+    },
+    "Marshall": {
+      "consensus_rank": 92,
+      "score": 37.6,
+      "average_source_rank": 92,
+      "source_ranks": {
+        "phil_steele": 85,
+        "cbs_sports": 90,
+        "the_athletic": 101
+      }
+    },
+    "Western Kentucky": {
+      "consensus_rank": 93,
+      "score": 36.9,
+      "average_source_rank": 92.67,
+      "source_ranks": {
+        "phil_steele": 102,
+        "cbs_sports": 87,
+        "the_athletic": 89
+      }
+    },
+    "Troy": {
+      "consensus_rank": 94,
+      "score": 36.2,
+      "average_source_rank": 93.33,
+      "source_ranks": {
+        "phil_steele": 106,
+        "cbs_sports": 93,
+        "the_athletic": 81
+      }
+    },
+    "Jacksonville State": {
+      "consensus_rank": 95,
+      "score": 35.5,
+      "average_source_rank": 94.33,
+      "source_ranks": {
+        "phil_steele": 94,
+        "cbs_sports": 98,
+        "the_athletic": 91
+      }
+    },
+    "Tulsa": {
+      "consensus_rank": 96,
+      "score": 34.8,
+      "average_source_rank": 96,
+      "source_ranks": {
+        "phil_steele": 81,
+        "cbs_sports": 96,
+        "the_athletic": 111
+      }
+    },
+    "Utah State": {
+      "consensus_rank": 97,
+      "score": 34.1,
+      "average_source_rank": 97.67,
+      "source_ranks": {
+        "phil_steele": 92,
+        "cbs_sports": 97,
+        "the_athletic": 104
+      }
+    },
+    "Temple": {
+      "consensus_rank": 98,
+      "score": 33.4,
+      "average_source_rank": 98,
+      "source_ranks": {
+        "phil_steele": 104,
+        "cbs_sports": 103,
+        "the_athletic": 87
+      }
+    },
+    "Louisiana Tech": {
+      "consensus_rank": 99,
+      "score": 32.7,
+      "average_source_rank": 98.67,
+      "source_ranks": {
+        "phil_steele": 90,
+        "cbs_sports": 99,
+        "the_athletic": 107
+      }
+    },
+    "North Texas": {
+      "consensus_rank": 100,
+      "score": 32,
+      "average_source_rank": 99,
+      "source_ranks": {
+        "phil_steele": 97,
+        "cbs_sports": 112,
+        "the_athletic": 88
+      }
+    },
+    "Toledo": {
+      "consensus_rank": 101,
+      "score": 31.3,
+      "average_source_rank": 99.33,
+      "source_ranks": {
+        "phil_steele": 98,
+        "cbs_sports": 107,
+        "the_athletic": 93
+      }
+    },
+    "Kennesaw State": {
+      "consensus_rank": 102,
+      "score": 30.6,
+      "average_source_rank": 102,
+      "source_ranks": {
+        "phil_steele": 111,
+        "cbs_sports": 105,
+        "the_athletic": 90
+      }
+    },
+    "Louisiana": {
+      "consensus_rank": 103,
+      "score": 29.9,
+      "average_source_rank": 102,
+      "source_ranks": {
+        "phil_steele": 89,
+        "cbs_sports": 104,
+        "the_athletic": 113
+      }
+    },
+    "Arkansas State": {
+      "consensus_rank": 104,
+      "score": 29.2,
+      "average_source_rank": 103,
+      "source_ranks": {
+        "phil_steele": 103,
+        "cbs_sports": 100,
+        "the_athletic": 106
+      }
+    },
+    "Colorado State": {
+      "consensus_rank": 105,
+      "score": 28.5,
+      "average_source_rank": 104,
+      "source_ranks": {
+        "phil_steele": 96,
+        "cbs_sports": 101,
+        "the_athletic": 115
+      }
+    },
+    "Eastern Michigan": {
+      "consensus_rank": 106,
+      "score": 27.8,
+      "average_source_rank": 106.33,
+      "source_ranks": {
+        "phil_steele": 93,
+        "cbs_sports": 118,
+        "the_athletic": 108
+      }
+    },
+    "Delaware": {
+      "consensus_rank": 107,
+      "score": 27.1,
+      "average_source_rank": 106.67,
+      "source_ranks": {
+        "phil_steele": 108,
+        "cbs_sports": 113,
+        "the_athletic": 99
+      }
+    },
+    "Georgia Southern": {
+      "consensus_rank": 108,
+      "score": 26.4,
+      "average_source_rank": 106.67,
+      "source_ranks": {
+        "phil_steele": 115,
+        "cbs_sports": 102,
+        "the_athletic": 103
+      }
+    },
+    "Central Michigan": {
+      "consensus_rank": 109,
+      "score": 25.7,
+      "average_source_rank": 107.67,
+      "source_ranks": {
+        "phil_steele": 121,
+        "cbs_sports": 110,
+        "the_athletic": 92
+      }
+    },
+    "Oregon State": {
+      "consensus_rank": 110,
+      "score": 25,
+      "average_source_rank": 108,
+      "source_ranks": {
+        "phil_steele": 114,
+        "cbs_sports": 94,
+        "the_athletic": 116
+      }
+    },
+    "Florida International": {
+      "consensus_rank": 111,
+      "score": 24.3,
+      "average_source_rank": 108.67,
+      "source_ranks": {
+        "phil_steele": 109,
+        "cbs_sports": 117,
+        "the_athletic": 100
+      }
+    },
+    "Ohio": {
+      "consensus_rank": 112,
+      "score": 23.6,
+      "average_source_rank": 108.67,
+      "source_ranks": {
+        "phil_steele": 110,
+        "cbs_sports": 120,
+        "the_athletic": 96
+      }
+    },
+    "App State": {
+      "consensus_rank": 113,
+      "score": 22.9,
+      "average_source_rank": 110,
+      "source_ranks": {
+        "phil_steele": 107,
+        "cbs_sports": 111,
+        "the_athletic": 112
+      }
+    },
+    "UConn": {
+      "consensus_rank": 114,
+      "score": 22.2,
+      "average_source_rank": 113,
+      "source_ranks": {
+        "phil_steele": 128,
+        "cbs_sports": 109,
+        "the_athletic": 102
+      }
+    },
+    "Wyoming": {
+      "consensus_rank": 115,
+      "score": 21.5,
+      "average_source_rank": 113,
+      "source_ranks": {
+        "phil_steele": 105,
+        "cbs_sports": 106,
+        "the_athletic": 128
+      }
+    },
+    "Nevada": {
+      "consensus_rank": 116,
+      "score": 20.8,
+      "average_source_rank": 115,
+      "source_ranks": {
+        "phil_steele": 112,
+        "cbs_sports": 108,
+        "the_athletic": 125
+      }
+    },
+    "Rice": {
+      "consensus_rank": 117,
+      "score": 20.1,
+      "average_source_rank": 116,
+      "source_ranks": {
+        "phil_steele": 113,
+        "cbs_sports": 121,
+        "the_athletic": 114
+      }
+    },
+    "Buffalo": {
+      "consensus_rank": 118,
+      "score": 19.4,
+      "average_source_rank": 116.67,
+      "source_ranks": {
+        "phil_steele": 127,
+        "cbs_sports": 114,
+        "the_athletic": 109
+      }
+    },
+    "Coastal Carolina": {
+      "consensus_rank": 119,
+      "score": 18.7,
+      "average_source_rank": 118.33,
+      "source_ranks": {
+        "phil_steele": 118,
+        "cbs_sports": 119,
+        "the_athletic": 118
+      }
+    },
+    "New Mexico State": {
+      "consensus_rank": 120,
+      "score": 18,
+      "average_source_rank": 118.33,
+      "source_ranks": {
+        "phil_steele": 116,
+        "cbs_sports": 122,
+        "the_athletic": 117
+      }
+    },
+    "South Alabama": {
+      "consensus_rank": 121,
+      "score": 17.3,
+      "average_source_rank": 118.33,
+      "source_ranks": {
+        "phil_steele": 120,
+        "cbs_sports": 115,
+        "the_athletic": 120
+      }
+    },
+    "Bowling Green": {
+      "consensus_rank": 122,
+      "score": 16.6,
+      "average_source_rank": 119,
+      "source_ranks": {
+        "phil_steele": 119,
+        "cbs_sports": 116,
+        "the_athletic": 122
+      }
+    },
+    "Akron": {
+      "consensus_rank": 123,
+      "score": 15.8,
+      "average_source_rank": 122,
+      "source_ranks": {
+        "phil_steele": 117,
+        "cbs_sports": 126,
+        "the_athletic": 123
+      }
+    },
+    "Missouri State": {
+      "consensus_rank": 124,
+      "score": 15.1,
+      "average_source_rank": 125.67,
+      "source_ranks": {
+        "phil_steele": 133,
+        "cbs_sports": 125,
+        "the_athletic": 119
+      }
+    },
+    "UAB": {
+      "consensus_rank": 125,
+      "score": 14.4,
+      "average_source_rank": 126,
+      "source_ranks": {
+        "phil_steele": 125,
+        "cbs_sports": 124,
+        "the_athletic": 129
+      }
+    },
+    "San José State": {
+      "consensus_rank": 126,
+      "score": 13.7,
+      "average_source_rank": 127,
+      "source_ranks": {
+        "phil_steele": 131,
+        "cbs_sports": 123,
+        "the_athletic": 127
+      }
+    },
+    "Kent State": {
+      "consensus_rank": 127,
+      "score": 12.9,
+      "average_source_rank": 127.33,
+      "source_ranks": {
+        "phil_steele": 130,
+        "cbs_sports": 128,
+        "the_athletic": 124
+      }
+    },
+    "UL Monroe": {
+      "consensus_rank": 128,
+      "score": 12.2,
+      "average_source_rank": 128.67,
+      "source_ranks": {
+        "phil_steele": 123,
+        "cbs_sports": 131,
+        "the_athletic": 132
+      }
+    },
+    "Middle Tennessee": {
+      "consensus_rank": 129,
+      "score": 11.5,
+      "average_source_rank": 129.33,
+      "source_ranks": {
+        "phil_steele": 124,
+        "cbs_sports": 134,
+        "the_athletic": 130
+      }
+    },
+    "UTEP": {
+      "consensus_rank": 130,
+      "score": 10.8,
+      "average_source_rank": 129.33,
+      "source_ranks": {
+        "phil_steele": 126,
+        "cbs_sports": 129,
+        "the_athletic": 133
+      }
+    },
+    "Ball State": {
+      "consensus_rank": 131,
+      "score": 10.1,
+      "average_source_rank": 130.67,
+      "source_ranks": {
+        "phil_steele": 136,
+        "cbs_sports": 135,
+        "the_athletic": 121
+      }
+    },
+    "Northern Illinois": {
+      "consensus_rank": 132,
+      "score": 9.3,
+      "average_source_rank": 130.67,
+      "source_ranks": {
+        "phil_steele": 134,
+        "cbs_sports": 127,
+        "the_athletic": 131
+      }
+    },
+    "Southern Miss": {
+      "consensus_rank": 133,
+      "score": 8.6,
+      "average_source_rank": 131,
+      "source_ranks": {
+        "phil_steele": 137,
+        "cbs_sports": 130,
+        "the_athletic": 126
+      }
+    },
+    "Charlotte": {
+      "consensus_rank": 134,
+      "score": 7.9,
+      "average_source_rank": 132,
+      "source_ranks": {
+        "phil_steele": 122,
+        "cbs_sports": 138,
+        "the_athletic": 136
+      }
+    },
+    "Georgia State": {
+      "consensus_rank": 135,
+      "score": 7.2,
+      "average_source_rank": 132.33,
+      "source_ranks": {
+        "phil_steele": 129,
+        "cbs_sports": 133,
+        "the_athletic": 135
+      }
+    },
+    "Sam Houston": {
+      "consensus_rank": 136,
+      "score": 6.4,
+      "average_source_rank": 134,
+      "source_ranks": {
+        "phil_steele": 132,
+        "cbs_sports": 136,
+        "the_athletic": 134
+      }
+    },
+    "Sacramento State": {
+      "consensus_rank": 137,
+      "score": 5.7,
+      "average_source_rank": 135.67,
+      "source_ranks": {
+        "phil_steele": 138,
+        "cbs_sports": 132,
+        "the_athletic": 137
+      }
+    },
+    "Massachusetts": {
+      "consensus_rank": 138,
+      "score": 5,
+      "average_source_rank": 136.67,
+      "source_ranks": {
+        "phil_steele": 135,
+        "cbs_sports": 137,
+        "the_athletic": 138
+      }
+    }
+  }
+}
