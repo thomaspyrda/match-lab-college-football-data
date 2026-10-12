@@ -74,6 +74,30 @@ for t in sorted(power):
       "relative_opponent_strength_z":round((average(faced)-mu)/sd,4) if faced else None})
 teams.sort(key=lambda r: -(r["relative_opponent_strength_z"] if r["relative_opponent_strength_z"] is not None else -99))
 for i,r in enumerate(teams,1):r["exposure_rank"]=i
+# Pregame-frozen opponent exposure: do not use future-week ratings.
+pregame_path=D/"pregame_opponent_exposure.csv"
+assert pregame_path.exists(),"Pregame exposure export missing"
+pregame=list(csv.DictReader(pregame_path.open()))
+frozen_byteam=defaultdict(list);frozen_conference=defaultdict(list)
+for row in pregame:
+    t=canon(row["team"]);o=canon(row["opponent"])
+    if t not in power or o not in power:continue
+    strength=float(row["pregame_opponent_strength"])
+    frozen_byteam[t].append(strength)
+    if conf[t]==conf[o]:frozen_conference[t].append(strength)
+for item in teams:
+    t=item["team"];allvals=frozen_byteam[t];cv=frozen_conference[t]
+    item["pregame_opponent_strength"]=round(average(allvals),5) if allvals else None
+    item["pregame_conference_opponent_strength"]=round(average(cv),5) if cv else None
+    item["pregame_exposure_games"]=len(allvals)
+    item["pregame_conference_games"]=len(cv)
+    item["pregame_exposure_z"]=round((average(allvals)-mu)/sd,4) if allvals else None
+teams.sort(key=lambda x: -(x["pregame_exposure_z"] if x["pregame_exposure_z"] is not None else -99))
+for i,item in enumerate(teams,1):item["pregame_exposure_rank"]=i
+with (D/"pregame_exposure_summary.csv").open("w",newline="") as f:
+    cols=["team","conference","pregame_opponent_strength","pregame_conference_opponent_strength",
+          "pregame_exposure_games","pregame_conference_games","pregame_exposure_z","pregame_exposure_rank"]
+    w=csv.DictWriter(f,fieldnames=cols);w.writeheader();w.writerows({k:r[k] for k in cols} for r in teams)
 (D/"conference_strength.json").write_text(json.dumps({"season":2026,"through_week":6,"method":"conference descriptive cross-sectional ratings, no production impact","note":"Opponent exposure uses end-of-week opponent strength; it is descriptive, not frozen pregame evidence. Nonconference residuals use end-of-week strengths and must not be used for pregame predictive inputs.","conferences":results,"teams":teams},indent=2))
 for filename,items in [("conference_strength.csv",results),("conference_exposure.csv",teams)]:
     cols=list(items[0])
