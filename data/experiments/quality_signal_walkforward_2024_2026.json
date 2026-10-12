@@ -1,0 +1,158 @@
+{
+  "status": "completed_incremental_research",
+  "years": [
+    2024,
+    2025,
+    2026
+  ],
+  "coverage": {
+    "2024": {
+      "games_found": 872,
+      "games_with_market_lines": 857,
+      "evaluated_games": 631
+    },
+    "2025": {
+      "games_found": 887,
+      "games_with_market_lines": 887,
+      "evaluated_games": 638
+    },
+    "2026": {
+      "games_found": 448,
+      "games_with_market_lines": 448,
+      "evaluated_games": 188
+    }
+  },
+  "results": {
+    "market": {
+      "n": 1457,
+      "mae": 11.8178,
+      "rmse": 15.0724,
+      "winner_accuracy": 0.7344,
+      "error_bias": -0.8699
+    },
+    "mov": {
+      "n": 1457,
+      "mae": 11.847,
+      "rmse": 15.0814,
+      "winner_accuracy": 0.731,
+      "error_bias": -0.861
+    },
+    "mov_cpc": {
+      "n": 1457,
+      "mae": 11.877,
+      "rmse": 15.1093,
+      "winner_accuracy": 0.733,
+      "error_bias": -0.8582
+    },
+    "mov_cpc_qv": {
+      "n": 1457,
+      "mae": 11.868,
+      "rmse": 15.1013,
+      "winner_accuracy": 0.7316,
+      "error_bias": -0.8592
+    }
+  },
+  "per_year": {
+    "2024": {
+      "market": {
+        "n": 631,
+        "mae": 11.8439,
+        "rmse": 15.1754,
+        "winner_accuracy": 0.7163,
+        "error_bias": -1.1783
+      },
+      "mov": {
+        "n": 631,
+        "mae": 11.8857,
+        "rmse": 15.1789,
+        "winner_accuracy": 0.7116,
+        "error_bias": -1.1583
+      },
+      "mov_cpc": {
+        "n": 631,
+        "mae": 11.9247,
+        "rmse": 15.2144,
+        "winner_accuracy": 0.7179,
+        "error_bias": -1.1571
+      },
+      "mov_cpc_qv": {
+        "n": 631,
+        "mae": 11.9148,
+        "rmse": 15.2084,
+        "winner_accuracy": 0.7147,
+        "error_bias": -1.1571
+      }
+    },
+    "2025": {
+      "market": {
+        "n": 638,
+        "mae": 11.7555,
+        "rmse": 14.9458,
+        "winner_accuracy": 0.7429,
+        "error_bias": -0.7351
+      },
+      "mov": {
+        "n": 638,
+        "mae": 11.792,
+        "rmse": 14.9775,
+        "winner_accuracy": 0.7398,
+        "error_bias": -0.7376
+      },
+      "mov_cpc": {
+        "n": 638,
+        "mae": 11.8204,
+        "rmse": 15.0064,
+        "winner_accuracy": 0.7382,
+        "error_bias": -0.7359
+      },
+      "mov_cpc_qv": {
+        "n": 638,
+        "mae": 11.8119,
+        "rmse": 14.9937,
+        "winner_accuracy": 0.7382,
+        "error_bias": -0.7362
+      }
+    },
+    "2026": {
+      "market": {
+        "n": 188,
+        "mae": 11.9415,
+        "rmse": 15.1536,
+        "winner_accuracy": 0.766,
+        "error_bias": -0.2926
+      },
+      "mov": {
+        "n": 188,
+        "mae": 11.9038,
+        "rmse": 15.1049,
+        "winner_accuracy": 0.766,
+        "error_bias": -0.2821
+      },
+      "mov_cpc": {
+        "n": 188,
+        "mae": 11.9094,
+        "rmse": 15.1036,
+        "winner_accuracy": 0.766,
+        "error_bias": -0.27
+      },
+      "mov_cpc_qv": {
+        "n": 188,
+        "mae": 11.9016,
+        "rmse": 15.1042,
+        "winner_accuracy": 0.766,
+        "error_bias": -0.2768
+      }
+    }
+  },
+  "method": "Out-of-week predictions using only prior-week market residuals and frozen quality-proxy opponent ranks. Market line used as predictor; additions are past MOV residual, CPC quality-weighted residual, or de-duplicated win-surprise quality residual. No current-week results are used before predicting.",
+  "limitations": [
+    "NOT a rerun of original v15 full-metric baseline: this tests incremental historical signal beyond available market lines",
+    "No guarantee /lines snapshots are exact kickoff closes",
+    "2014-2025 offseason preseason priors unavailable here, hence zero initial rating outside 2026",
+    "Opponent quality proxy is prior-week margin-updated rating, not original frozen unit model",
+    "Coefficients are provisional, not optimized or calibrated on a training set",
+    "2026 results only through week 6 in this comparison by date; earlier years through week 15",
+    "No injuries or roster changes"
+  ],
+  "recommendation_rule": "Only adopt feature if it reduces held-out MAE/RMSE across multiple seasons without harming coverage or creating redundancy."
+}
