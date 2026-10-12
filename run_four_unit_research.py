@@ -100,6 +100,11 @@ def run(amplitude,qor=False,method="rank"):
                 if method=="gap":
                     opponent_gap=max(-2.,min(2.,o[match[k]]))
                     adjusted=raw+amplitude*opponent_gap
+                elif method=="hybrid":
+                    opponent_gap=max(-2.,min(2.,o[match[k]]))
+                    rank_adjusted=raw*coef[match[k],opp]
+                    gap_adjusted=raw+amplitude*opponent_gap
+                    adjusted=.5*rank_adjusted+.5*gap_adjusted
                 else:
                     adjusted=raw*coef[match[k],opp]
                 evidence[t,k].append((adjusted,max(1,num(r.get("plays_count")) or 1)))
@@ -139,7 +144,8 @@ def main():
     if not rows:raise SystemExit("Empty archive")
     variants={"unadjusted":(0,False),"adjust_50":(.5,False),"adjust_65":(.65,False),
               "adjust_50_qor":(.5,True),"adjust_65_qor":(.65,True),
-              "unit_gap_50_qor":(.5,True,"gap"),"unit_gap_65_qor":(.65,True,"gap")}
+              "unit_gap_50_qor":(.5,True,"gap"),"unit_gap_65_qor":(.65,True,"gap"),
+              "hybrid_50_qor":(.5,True,"hybrid"),"hybrid_65_qor":(.65,True,"hybrid")}
     full={key:run(*params) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
