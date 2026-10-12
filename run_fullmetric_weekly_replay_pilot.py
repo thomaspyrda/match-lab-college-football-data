@@ -52,3 +52,5 @@ report={'status':'completed_fullmetric_pilot','year':2026,'pregame_weeks':list(r
  'sample':records[:10]}
 out=ROOT/'data/experiments/fullmetric_weekly_replay_2026_pilot.json';out.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({k:report[k] for k in ('game_count','metrics_per_unit','performance','per_week')},indent=2))
+
+# Run pilot.
