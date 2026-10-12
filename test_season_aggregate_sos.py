@@ -53,7 +53,7 @@ q=z({t:statistics.fmean(quality[t]) if quality[t] else -1. for t in m.teams})
 e=z({t:statistics.fmean(validation[t]) if validation[t] else 0. for t in m.teams})
 sos_z=z({t:exposure.get(t,0.) for t in m.teams})
 variants={}
-for alpha in (0.,.25,.5):
+for alpha in (0.,.15,.25,.5):
     # Season SOS adjusts all four standardized performance units equally.
     # No separate conference bonus. A positive SOS means harder opponents.
     adjusted={t:{k:raw[t][k]+alpha*sos_z[t] for k in ("PO","RO","PD","RD")} for t in m.teams}
