@@ -5,6 +5,7 @@ on:
     branches: [research/four-unit-archive-2026]
     paths:
       - 'build_research_archive.py'
+      - 'run_four_unit_research.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -24,6 +25,8 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
           RESEARCH_SEASON: '2026'
         run: python build_research_archive.py
+      - name: Calculate all national ranking variants
+        run: python run_four_unit_research.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
@@ -33,6 +36,8 @@ jobs:
           rows=list(csv.DictReader((root/'weekly_team_metrics.csv').open()))
           assert report['team_game_rows']==len(rows)>0
           assert report['metrics_per_side']==41
+          assert (root/'top25_comparison.csv').exists()
+          assert (root/'ranking_experiments.json').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
