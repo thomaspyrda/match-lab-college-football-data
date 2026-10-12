@@ -3,7 +3,7 @@
   "status": "research_only",
   "base_model": "Original v15 full-metric through week 6, pregame Week 7",
   "bonus_rule": "Win versus opponent pregame #1..#10 earns 11 minus rank points, 0 outside; each point adds 0.03 SD to overall strength; cumulative, no cap.",
-  "pregame_rank_method": "Week 1 independent 2026 preseason consensus rank; Weeks 2-6 archived original v15 pregame snapshots, reconstructed from games before that week. Archived v15 uses recursive opponent adjustments within each pregame snapshot.",
+  "pregame_rank_method": "Week 1 independent 2026 preseason consensus; Weeks 2-6 archived v15 pregame ranks when available; unseen/unranked FBS opponents use their independent preseason rank. FCS receive no bonus.",
   "weaknesses": [
     "Cumulative bonus favors more opportunities to face top-10 teams; that is intentional in this experimental formula.",
     "The extra reward overlaps some existing result/statistical signal.",
@@ -301,30 +301,6 @@
     },
     {
       "week": 2,
-      "winner": "Missouri",
-      "opponent": "Kansas",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Wake Forest",
-      "opponent": "Purdue",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "South Florida",
-      "opponent": "Army",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Texas A&M",
-      "opponent": "Arizona State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "North Carolina",
       "opponent": "East Tennessee State",
       "reason": "missing pregame rank"
@@ -333,12 +309,6 @@
       "week": 2,
       "winner": "Indiana",
       "opponent": "Howard",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Penn State",
-      "opponent": "Temple",
       "reason": "missing pregame rank"
     },
     {
@@ -357,12 +327,6 @@
       "week": 2,
       "winner": "Liberty",
       "opponent": "Gardner-Webb",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Virginia Tech",
-      "opponent": "Old Dominion",
       "reason": "missing pregame rank"
     },
     {
@@ -397,62 +361,14 @@
     },
     {
       "week": 2,
-      "winner": "Pittsburgh",
-      "opponent": "UCF",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Toledo",
       "opponent": "Central Connecticut",
       "reason": "missing pregame rank"
     },
     {
       "week": 2,
-      "winner": "Alabama",
-      "opponent": "Kentucky",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "California",
-      "opponent": "Syracuse",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Mississippi State",
-      "opponent": "Minnesota",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Notre Dame",
-      "opponent": "Rice",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "BYU",
-      "opponent": "Arizona",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Akron",
       "opponent": "Robert Morris",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Washington",
-      "opponent": "Utah State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Maryland",
-      "opponent": "UConn",
       "reason": "missing pregame rank"
     },
     {
@@ -487,26 +403,8 @@
     },
     {
       "week": 2,
-      "winner": "Vanderbilt",
-      "opponent": "Delaware",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Florida",
       "opponent": "Campbell",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Ohio",
-      "opponent": "Jacksonville State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Florida International",
-      "opponent": "Buffalo",
       "reason": "missing pregame rank"
     },
     {
@@ -523,12 +421,6 @@
     },
     {
       "week": 2,
-      "winner": "Tulane",
-      "opponent": "South Alabama",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Houston",
       "opponent": "Southern",
       "reason": "missing pregame rank"
@@ -541,32 +433,14 @@
     },
     {
       "week": 2,
-      "winner": "Marshall",
-      "opponent": "Middle Tennessee",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Missouri State",
       "opponent": "Lindenwood",
       "reason": "missing pregame rank"
     },
     {
       "week": 2,
-      "winner": "Georgia State",
-      "opponent": "Kennesaw State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Arkansas State",
       "opponent": "West Georgia",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Nebraska",
-      "opponent": "Bowling Green",
       "reason": "missing pregame rank"
     },
     {
@@ -583,50 +457,8 @@
     },
     {
       "week": 2,
-      "winner": "UCLA",
-      "opponent": "San Diego State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Iowa",
-      "opponent": "Iowa State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "LSU",
-      "opponent": "Louisiana Tech",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
       "winner": "Coastal Carolina",
       "opponent": "Fordham",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Clemson",
-      "opponent": "Georgia Southern",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Florida Atlantic",
-      "opponent": "Navy",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Auburn",
-      "opponent": "Southern Miss",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Ole Miss",
-      "opponent": "Charlotte",
       "reason": "missing pregame rank"
     },
     {
@@ -651,24 +483,6 @@
       "week": 2,
       "winner": "San Jose State",
       "opponent": "Cal Poly",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Utah",
-      "opponent": "Arkansas",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "Fresno State",
-      "opponent": "Sacramento State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 2,
-      "winner": "USC",
-      "opponent": "Louisiana",
       "reason": "missing pregame rank"
     },
     {
@@ -852,12 +666,6 @@
       "reason": "missing pregame rank"
     },
     {
-      "week": 4,
-      "winner": "Massachusetts",
-      "opponent": "Sacramento State",
-      "reason": "missing pregame rank"
-    },
-    {
       "week": 5,
       "winner": "UAB",
       "opponent": "Samford",
@@ -873,18 +681,6 @@
       "week": 5,
       "winner": "LSU",
       "opponent": "McNeese",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 6,
-      "winner": "Bowling Green",
-      "opponent": "Sacramento State",
-      "reason": "missing pregame rank"
-    },
-    {
-      "week": 6,
-      "winner": "UNLV",
-      "opponent": "North Dakota State",
       "reason": "missing pregame rank"
     }
   ],
