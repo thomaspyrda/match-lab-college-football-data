@@ -62,3 +62,5 @@ report={'study':'2026 aggressive Top-10 victory bonus, distinct cutoff','status'
 path=D/'experiments/top10_victory_bonus_aggressive_2026.json'
 path.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'checks':checks,'bonused_wins':audit,'missing':missing,'focus':report['focus'],'top25':[{'rank':r['rank'],'team':r['team'],'baseline':r['original_rank'],'pts':r['bonus_points']} for r in out[:25]]},indent=2))
+
+# Trigger initial run.
