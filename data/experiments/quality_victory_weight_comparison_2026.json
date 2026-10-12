@@ -1,0 +1,859 @@
+{
+  "status": "completed research only",
+  "through_week": 6,
+  "formula": "(0.85-quality_weight)*prior_strength + 0.10 MOV + 0.05 CPC + quality_weight*QVCP",
+  "quality_definition": "Game win surprise (win - frozen week-start model win probability) multiplied by continuous frozen pregame opponent quality; reliability-shrunk 4 games and cross-team z standardized",
+  "quality_rating_source": "CPC provisional week-start preseason plus margin residual proxy (not original model unit ratings)",
+  "note": "Baseline already includes a quality-results component (QRR ~15% inside original research model). This sensitivity test has not surgically removed QRR; quality win double-count risk remains. Not suitable for production adoption.",
+  "limitations": [
+    "Existing QRR inside baseline not independently removed; overlapping result reward",
+    "No held-out games; rankings sensitivity only",
+    "Model expectation win-probability slope 11 points is provisional and uncalibrated",
+    "Pregame strength proxy is not exact frozen primary model",
+    "Market spread records in MOV/CPC are not kickoff-close certified"
+  ],
+  "models": {
+    "0": {
+      "weights": {
+        "baseline": 0.85,
+        "mov": 0.1,
+        "cpc": 0.05,
+        "quality": 0
+      },
+      "top50": [
+        "Miami",
+        "Georgia",
+        "Notre Dame",
+        "Alabama",
+        "UCLA",
+        "Utah",
+        "Ohio State",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Indiana",
+        "Northwestern",
+        "Nebraska",
+        "Wisconsin",
+        "Texas Tech",
+        "Missouri",
+        "Wake Forest",
+        "Ole Miss",
+        "New Mexico",
+        "Iowa",
+        "Houston",
+        "Michigan",
+        "James Madison",
+        "Oklahoma State",
+        "Arizona",
+        "Baylor",
+        "Oregon State",
+        "USC",
+        "Duke",
+        "Boise State",
+        "Pittsburgh",
+        "Tennessee",
+        "Liberty",
+        "Memphis",
+        "Kentucky",
+        "Oregon",
+        "Oklahoma",
+        "Louisville",
+        "SMU",
+        "South Carolina",
+        "Auburn",
+        "North Carolina",
+        "Florida",
+        "Kansas",
+        "Florida State",
+        "Virginia",
+        "Louisiana",
+        "Penn State",
+        "North Texas"
+      ]
+    },
+    "0.025": {
+      "weights": {
+        "baseline": 0.825,
+        "mov": 0.1,
+        "cpc": 0.05,
+        "quality": 0.025
+      },
+      "top50": [
+        "Miami",
+        "Georgia",
+        "UCLA",
+        "Notre Dame",
+        "Alabama",
+        "Utah",
+        "Ohio State",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Indiana",
+        "Northwestern",
+        "Missouri",
+        "Wisconsin",
+        "Ole Miss",
+        "Texas Tech",
+        "Nebraska",
+        "Wake Forest",
+        "New Mexico",
+        "Iowa",
+        "Oklahoma State",
+        "Houston",
+        "James Madison",
+        "USC",
+        "Michigan",
+        "Duke",
+        "Baylor",
+        "Arizona",
+        "Oregon State",
+        "Pittsburgh",
+        "Kentucky",
+        "Boise State",
+        "Tennessee",
+        "Liberty",
+        "Memphis",
+        "Oregon",
+        "Oklahoma",
+        "Louisville",
+        "SMU",
+        "South Carolina",
+        "Auburn",
+        "North Carolina",
+        "Florida",
+        "Florida State",
+        "Kansas",
+        "Virginia",
+        "Louisiana",
+        "North Texas",
+        "Penn State"
+      ]
+    },
+    "0.05": {
+      "weights": {
+        "baseline": 0.8,
+        "mov": 0.1,
+        "cpc": 0.05,
+        "quality": 0.05
+      },
+      "top50": [
+        "Miami",
+        "Georgia",
+        "UCLA",
+        "Alabama",
+        "Notre Dame",
+        "Utah",
+        "Ohio State",
+        "LSU",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Indiana",
+        "Northwestern",
+        "Ole Miss",
+        "Missouri",
+        "Wisconsin",
+        "Texas Tech",
+        "Wake Forest",
+        "Nebraska",
+        "New Mexico",
+        "Iowa",
+        "Oklahoma State",
+        "Kentucky",
+        "Houston",
+        "James Madison",
+        "Duke",
+        "USC",
+        "Pittsburgh",
+        "Baylor",
+        "Michigan",
+        "Arizona",
+        "Oregon State",
+        "Boise State",
+        "Tennessee",
+        "Liberty",
+        "Memphis",
+        "Oregon",
+        "Louisville",
+        "Oklahoma",
+        "SMU",
+        "South Carolina",
+        "Auburn",
+        "North Carolina",
+        "Florida",
+        "Louisiana",
+        "Virginia",
+        "North Texas",
+        "Florida State",
+        "Kansas",
+        "Virginia Tech"
+      ]
+    },
+    "0.075": {
+      "weights": {
+        "baseline": 0.775,
+        "mov": 0.1,
+        "cpc": 0.05,
+        "quality": 0.075
+      },
+      "top50": [
+        "Miami",
+        "Georgia",
+        "UCLA",
+        "Alabama",
+        "Notre Dame",
+        "Utah",
+        "LSU",
+        "Ohio State",
+        "Texas",
+        "BYU",
+        "Mississippi State",
+        "Indiana",
+        "Ole Miss",
+        "Northwestern",
+        "Missouri",
+        "Wisconsin",
+        "Texas Tech",
+        "Wake Forest",
+        "Nebraska",
+        "Oklahoma State",
+        "Iowa",
+        "Kentucky",
+        "New Mexico",
+        "Duke",
+        "USC",
+        "James Madison",
+        "Houston",
+        "Pittsburgh",
+        "Baylor",
+        "Boise State",
+        "Arizona",
+        "Oregon State",
+        "Michigan",
+        "Tennessee",
+        "Liberty",
+        "Memphis",
+        "Louisville",
+        "Oregon",
+        "Oklahoma",
+        "SMU",
+        "South Carolina",
+        "North Carolina",
+        "Auburn",
+        "Florida",
+        "Louisiana",
+        "North Texas",
+        "Virginia",
+        "Florida State",
+        "Kansas",
+        "Georgia State"
+      ]
+    }
+  },
+  "focus": [
+    {
+      "team": "Oklahoma",
+      "quality_z": -0.33,
+      "ranks": {
+        "0": 38,
+        "0.025": 38,
+        "0.05": 39,
+        "0.075": 39
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "UTEP",
+          "pregame_opponent_rank_proxy": 129,
+          "win": true,
+          "pregame_win_probability": 0.86,
+          "quality_result": 0.0002
+        },
+        {
+          "week": 2,
+          "opponent": "Michigan",
+          "pregame_opponent_rank_proxy": 20,
+          "win": false,
+          "pregame_win_probability": 0.501,
+          "quality_result": -0.4039
+        },
+        {
+          "week": 3,
+          "opponent": "New Mexico",
+          "pregame_opponent_rank_proxy": 52,
+          "win": true,
+          "pregame_win_probability": 0.7,
+          "quality_result": 0.0893
+        },
+        {
+          "week": 4,
+          "opponent": "Georgia",
+          "pregame_opponent_rank_proxy": 3,
+          "win": false,
+          "pregame_win_probability": 0.402,
+          "quality_result": -0.3749
+        },
+        {
+          "week": 6,
+          "opponent": "Texas",
+          "pregame_opponent_rank_proxy": 8,
+          "win": true,
+          "pregame_win_probability": 0.515,
+          "quality_result": 0.4407
+        }
+      ]
+    },
+    {
+      "team": "Texas",
+      "quality_z": 1.431,
+      "ranks": {
+        "0": 9,
+        "0.025": 9,
+        "0.05": 9,
+        "0.075": 9
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Texas State",
+          "pregame_opponent_rank_proxy": 76,
+          "win": true,
+          "pregame_win_probability": 0.755,
+          "quality_result": 0.0174
+        },
+        {
+          "week": 2,
+          "opponent": "Ohio State",
+          "pregame_opponent_rank_proxy": 1,
+          "win": true,
+          "pregame_win_probability": 0.522,
+          "quality_result": 0.4504
+        },
+        {
+          "week": 3,
+          "opponent": "UTSA",
+          "pregame_opponent_rank_proxy": 77,
+          "win": true,
+          "pregame_win_probability": 0.772,
+          "quality_result": 0.0152
+        },
+        {
+          "week": 4,
+          "opponent": "Tennessee",
+          "pregame_opponent_rank_proxy": 15,
+          "win": true,
+          "pregame_win_probability": 0.489,
+          "quality_result": 0.4378
+        },
+        {
+          "week": 6,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 12,
+          "win": false,
+          "pregame_win_probability": 0.485,
+          "quality_result": -0.4276
+        }
+      ]
+    },
+    {
+      "team": "New Mexico",
+      "quality_z": -0.452,
+      "ranks": {
+        "0": 20,
+        "0.025": 20,
+        "0.05": 20,
+        "0.075": 23
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Central Michigan",
+          "pregame_opponent_rank_proxy": 109,
+          "win": true,
+          "pregame_win_probability": 0.707,
+          "quality_result": 0.0021
+        },
+        {
+          "week": 3,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 9,
+          "win": false,
+          "pregame_win_probability": 0.3,
+          "quality_result": -0.2703
+        },
+        {
+          "week": 4,
+          "opponent": "New Mexico State",
+          "pregame_opponent_rank_proxy": 119,
+          "win": true,
+          "pregame_win_probability": 0.659,
+          "quality_result": 0.0012
+        },
+        {
+          "week": 5,
+          "opponent": "UTEP",
+          "pregame_opponent_rank_proxy": 136,
+          "win": true,
+          "pregame_win_probability": 0.814,
+          "quality_result": 0.0002
+        }
+      ]
+    },
+    {
+      "team": "Georgia",
+      "quality_z": 2.693,
+      "ranks": {
+        "0": 2,
+        "0.025": 2,
+        "0.05": 2,
+        "0.075": 2
+      },
+      "games": [
+        {
+          "week": 2,
+          "opponent": "Western Kentucky",
+          "pregame_opponent_rank_proxy": 97,
+          "win": true,
+          "pregame_win_probability": 0.81,
+          "quality_result": 0.0032
+        },
+        {
+          "week": 3,
+          "opponent": "Arkansas",
+          "pregame_opponent_rank_proxy": 65,
+          "win": true,
+          "pregame_win_probability": 0.658,
+          "quality_result": 0.0491
+        },
+        {
+          "week": 4,
+          "opponent": "Oklahoma",
+          "pregame_opponent_rank_proxy": 9,
+          "win": true,
+          "pregame_win_probability": 0.598,
+          "quality_result": 0.362
+        },
+        {
+          "week": 5,
+          "opponent": "Vanderbilt",
+          "pregame_opponent_rank_proxy": 43,
+          "win": true,
+          "pregame_win_probability": 0.719,
+          "quality_result": 0.1253
+        },
+        {
+          "week": 6,
+          "opponent": "Alabama",
+          "pregame_opponent_rank_proxy": 6,
+          "win": true,
+          "pregame_win_probability": 0.472,
+          "quality_result": 0.4852
+        }
+      ]
+    },
+    {
+      "team": "Miami",
+      "quality_z": 1.376,
+      "ranks": {
+        "0": 1,
+        "0.025": 1,
+        "0.05": 1,
+        "0.075": 1
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Stanford",
+          "pregame_opponent_rank_proxy": 77,
+          "win": true,
+          "pregame_win_probability": 0.659,
+          "quality_result": 0.0226
+        },
+        {
+          "week": 3,
+          "opponent": "Wake Forest",
+          "pregame_opponent_rank_proxy": 50,
+          "win": true,
+          "pregame_win_probability": 0.602,
+          "quality_result": 0.1308
+        },
+        {
+          "week": 4,
+          "opponent": "Central Michigan",
+          "pregame_opponent_rank_proxy": 110,
+          "win": true,
+          "pregame_win_probability": 0.84,
+          "quality_result": 0.0011
+        },
+        {
+          "week": 5,
+          "opponent": "Clemson",
+          "pregame_opponent_rank_proxy": 34,
+          "win": true,
+          "pregame_win_probability": 0.565,
+          "quality_result": 0.2634
+        }
+      ]
+    },
+    {
+      "team": "Notre Dame",
+      "quality_z": 0.813,
+      "ranks": {
+        "0": 3,
+        "0.025": 4,
+        "0.05": 5,
+        "0.075": 5
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Wisconsin",
+          "pregame_opponent_rank_proxy": 44,
+          "win": true,
+          "pregame_win_probability": 0.698,
+          "quality_result": 0.1296
+        },
+        {
+          "week": 2,
+          "opponent": "Rice",
+          "pregame_opponent_rank_proxy": 116,
+          "win": true,
+          "pregame_win_probability": 0.858,
+          "quality_result": 0.0006
+        },
+        {
+          "week": 3,
+          "opponent": "Michigan State",
+          "pregame_opponent_rank_proxy": 59,
+          "win": true,
+          "pregame_win_probability": 0.762,
+          "quality_result": 0.0487
+        },
+        {
+          "week": 4,
+          "opponent": "Purdue",
+          "pregame_opponent_rank_proxy": 78,
+          "win": true,
+          "pregame_win_probability": 0.716,
+          "quality_result": 0.0176
+        },
+        {
+          "week": 5,
+          "opponent": "North Carolina",
+          "pregame_opponent_rank_proxy": 61,
+          "win": true,
+          "pregame_win_probability": 0.691,
+          "quality_result": 0.0564
+        },
+        {
+          "week": 6,
+          "opponent": "Stanford",
+          "pregame_opponent_rank_proxy": 87,
+          "win": true,
+          "pregame_win_probability": 0.829,
+          "quality_result": 0.0058
+        }
+      ]
+    },
+    {
+      "team": "Oregon",
+      "quality_z": 0.133,
+      "ranks": {
+        "0": 37,
+        "0.025": 37,
+        "0.05": 37,
+        "0.075": 38
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Boise State",
+          "pregame_opponent_rank_proxy": 34,
+          "win": true,
+          "pregame_win_probability": 0.681,
+          "quality_result": 0.1933
+        },
+        {
+          "week": 2,
+          "opponent": "Oklahoma State",
+          "pregame_opponent_rank_proxy": 44,
+          "win": false,
+          "pregame_win_probability": 0.604,
+          "quality_result": -0.2591
+        },
+        {
+          "week": 4,
+          "opponent": "USC",
+          "pregame_opponent_rank_proxy": 11,
+          "win": true,
+          "pregame_win_probability": 0.469,
+          "quality_result": 0.4718
+        },
+        {
+          "week": 6,
+          "opponent": "UCLA",
+          "pregame_opponent_rank_proxy": 29,
+          "win": false,
+          "pregame_win_probability": 0.661,
+          "quality_result": -0.4539
+        }
+      ]
+    },
+    {
+      "team": "SMU",
+      "quality_z": 0.185,
+      "ranks": {
+        "0": 40,
+        "0.025": 40,
+        "0.05": 40,
+        "0.075": 40
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Florida State",
+          "pregame_opponent_rank_proxy": 35,
+          "win": true,
+          "pregame_win_probability": 0.497,
+          "quality_result": 0.2958
+        },
+        {
+          "week": 3,
+          "opponent": "Louisville",
+          "pregame_opponent_rank_proxy": 28,
+          "win": false,
+          "pregame_win_probability": 0.475,
+          "quality_result": -0.3332
+        },
+        {
+          "week": 4,
+          "opponent": "Missouri State",
+          "pregame_opponent_rank_proxy": 125,
+          "win": true,
+          "pregame_win_probability": 0.834,
+          "quality_result": 0.0004
+        },
+        {
+          "week": 5,
+          "opponent": "Boston College",
+          "pregame_opponent_rank_proxy": 87,
+          "win": true,
+          "pregame_win_probability": 0.735,
+          "quality_result": 0.0089
+        }
+      ]
+    },
+    {
+      "team": "Alabama",
+      "quality_z": 0.93,
+      "ranks": {
+        "0": 4,
+        "0.025": 5,
+        "0.05": 4,
+        "0.075": 4
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "East Carolina",
+          "pregame_opponent_rank_proxy": 82,
+          "win": true,
+          "pregame_win_probability": 0.74,
+          "quality_result": 0.0123
+        },
+        {
+          "week": 2,
+          "opponent": "Kentucky",
+          "pregame_opponent_rank_proxy": 56,
+          "win": true,
+          "pregame_win_probability": 0.593,
+          "quality_result": 0.0985
+        },
+        {
+          "week": 3,
+          "opponent": "Florida State",
+          "pregame_opponent_rank_proxy": 37,
+          "win": true,
+          "pregame_win_probability": 0.661,
+          "quality_result": 0.1875
+        },
+        {
+          "week": 4,
+          "opponent": "South Carolina",
+          "pregame_opponent_rank_proxy": 23,
+          "win": true,
+          "pregame_win_probability": 0.624,
+          "quality_result": 0.29
+        },
+        {
+          "week": 5,
+          "opponent": "Mississippi State",
+          "pregame_opponent_rank_proxy": 39,
+          "win": true,
+          "pregame_win_probability": 0.579,
+          "quality_result": 0.2182
+        },
+        {
+          "week": 6,
+          "opponent": "Georgia",
+          "pregame_opponent_rank_proxy": 3,
+          "win": false,
+          "pregame_win_probability": 0.528,
+          "quality_result": -0.4929
+        }
+      ]
+    },
+    {
+      "team": "Ohio State",
+      "quality_z": 0.501,
+      "ranks": {
+        "0": 7,
+        "0.025": 7,
+        "0.05": 7,
+        "0.075": 8
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Ball State",
+          "pregame_opponent_rank_proxy": 130,
+          "win": true,
+          "pregame_win_probability": 0.881,
+          "quality_result": 0.0002
+        },
+        {
+          "week": 2,
+          "opponent": "Texas",
+          "pregame_opponent_rank_proxy": 5,
+          "win": false,
+          "pregame_win_probability": 0.478,
+          "quality_result": -0.4419
+        },
+        {
+          "week": 3,
+          "opponent": "Kent State",
+          "pregame_opponent_rank_proxy": 128,
+          "win": true,
+          "pregame_win_probability": 0.89,
+          "quality_result": 0.0002
+        },
+        {
+          "week": 4,
+          "opponent": "Illinois",
+          "pregame_opponent_rank_proxy": 36,
+          "win": true,
+          "pregame_win_probability": 0.712,
+          "quality_result": 0.1645
+        },
+        {
+          "week": 5,
+          "opponent": "Iowa",
+          "pregame_opponent_rank_proxy": 20,
+          "win": true,
+          "pregame_win_probability": 0.568,
+          "quality_result": 0.3487
+        },
+        {
+          "week": 6,
+          "opponent": "Maryland",
+          "pregame_opponent_rank_proxy": 60,
+          "win": true,
+          "pregame_win_probability": 0.788,
+          "quality_result": 0.041
+        }
+      ]
+    },
+    {
+      "team": "Navy",
+      "quality_z": 0.183,
+      "ranks": {
+        "0": 86,
+        "0.025": 82,
+        "0.05": 81,
+        "0.075": 78
+      },
+      "games": [
+        {
+          "week": 2,
+          "opponent": "Florida Atlantic",
+          "pregame_opponent_rank_proxy": 94,
+          "win": false,
+          "pregame_win_probability": 0.583,
+          "quality_result": -0.0121
+        },
+        {
+          "week": 4,
+          "opponent": "UAB",
+          "pregame_opponent_rank_proxy": 122,
+          "win": false,
+          "pregame_win_probability": 0.672,
+          "quality_result": -0.0019
+        },
+        {
+          "week": 5,
+          "opponent": "Air Force",
+          "pregame_opponent_rank_proxy": 84,
+          "win": false,
+          "pregame_win_probability": 0.538,
+          "quality_result": -0.0223
+        },
+        {
+          "week": 6,
+          "opponent": "Tulsa",
+          "pregame_opponent_rank_proxy": 93,
+          "win": true,
+          "pregame_win_probability": 0.673,
+          "quality_result": 0.0072
+        }
+      ]
+    },
+    {
+      "team": "Rutgers",
+      "quality_z": -1.423,
+      "ranks": {
+        "0": 122,
+        "0.025": 122,
+        "0.05": 122,
+        "0.075": 124
+      },
+      "games": [
+        {
+          "week": 1,
+          "opponent": "Massachusetts",
+          "pregame_opponent_rank_proxy": 136,
+          "win": false,
+          "pregame_win_probability": 0.771,
+          "quality_result": -0.0008
+        },
+        {
+          "week": 2,
+          "opponent": "Boston College",
+          "pregame_opponent_rank_proxy": 88,
+          "win": false,
+          "pregame_win_probability": 0.502,
+          "quality_result": -0.0158
+        },
+        {
+          "week": 3,
+          "opponent": "USC",
+          "pregame_opponent_rank_proxy": 12,
+          "win": false,
+          "pregame_win_probability": 0.359,
+          "quality_result": -0.3158
+        },
+        {
+          "week": 5,
+          "opponent": "Indiana",
+          "pregame_opponent_rank_proxy": 5,
+          "win": false,
+          "pregame_win_probability": 0.323,
+          "quality_result": -0.2981
+        }
+      ]
+    }
+  ]
+}
