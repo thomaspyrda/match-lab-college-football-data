@@ -65,7 +65,7 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False,method="rank",results_heavy=False):
+def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15)):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
@@ -147,7 +147,7 @@ def run(amplitude,qor=False,method="rank",results_heavy=False):
         strength=statistics.fmean(frozen[t].values())
         q=evidence[t,"result"]
         quality=sum(v for v,_ in q)/len(q) if q else 0
-        score=(.50*strength_z[t]+.35*outcomes_z[t]+.15*confidence_z[t] if results_heavy else strength+(.10*quality if qor else 0))
+        score=(weights[0]*strength_z[t]+weights[1]*outcomes_z[t]+weights[2]*confidence_z[t] if results_heavy else strength+(.10*quality if qor else 0))
         results.append({"team":t,"score":round(score,5),"statistical_strength":round(strength,5),
                         "quality_results":round(quality,5),"games":priorcounts[t],
                         **{k:round(frozen[t][k],5) for k in ("PO","RO","PD","RD")}})
@@ -160,7 +160,8 @@ def main():
               "adjust_50_qor":(.5,True),"adjust_65_qor":(.65,True),
               "unit_gap_50_qor":(.5,True,"gap"),"unit_gap_65_qor":(.65,True,"gap"),
               "hybrid_50_qor":(.5,True,"hybrid"),"hybrid_65_qor":(.65,True,"hybrid"),
-              "results_heavy_hybrid_50":(.5,False,"hybrid",True)}
+              "results_heavy_hybrid_50":(.5,False,"hybrid",True),
+              "balanced_hybrid_50":(.5,False,"hybrid",True,(.60,.25,.15))}
     full={key:run(*params) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
