@@ -65,7 +65,7 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15),save_pregame=False,ecv=False):
+def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15),save_pregame=False,ecv=False,weak_discount=0.):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
@@ -130,6 +130,10 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
                     adjusted=.5*rank_adjusted+.5*gap_adjusted
                 else:
                     adjusted=raw*coef[match[k],opp]
+                if weak_discount and adjusted>0:
+                    rank=pregame_rank[opp] if int(r["fbs_opponent"]) else 137
+                    target=(1. if rank<=50 else .85 if rank<=75 else .70 if rank<=100 else .55 if rank<=125 else .40 if rank<=136 else .20)
+                    adjusted*=1.-weak_discount*(1.-target)
                 evidence[t,k].append((adjusted,max(1,num(r.get("plays_count")) or 1)))
             tp,op=num(r["team_points"]),num(r["opponent_points"])
             if tp is not None and op is not None:
@@ -213,8 +217,10 @@ def main():
               "balanced_hybrid_50":(.5,False,"hybrid",True,(.60,.25,.15)),
               "raw_metrics_balanced":(0,False,"rank",True,(.60,.25,.15)),
               "raw_metrics_ecv_55_30_15":(0,False,"rank",True,(.55,.30,.15),False,True),
+              "raw_metrics_ecv_wod_half":(0,False,"rank",True,(.55,.30,.15),False,True,.5),
+              "raw_metrics_ecv_wod_full":(0,False,"rank",True,(.55,.30,.15),False,True,1.),
               "conservative_hybrid_50":(.5,False,"hybrid",True,(.70,.20,.10))}
-    full={key:run(*params) if key=="raw_metrics_ecv_55_30_15" else run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
+    full={key:run(*params) if key.startswith("raw_metrics_ecv_") else run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
        "variants":full},indent=2))
