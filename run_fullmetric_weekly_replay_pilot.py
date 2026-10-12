@@ -17,7 +17,7 @@ engine=tmp/'_research_v15_runner.py'
 original=original.replace('ROOT=Path(__file__).resolve().parent','ROOT=Path(__file__).resolve().parents[3]')
 engine.write_text(original)
 history=json.loads((ROOT/'data/historical/2026.json').read_text())['games']
-records=[];metrics_count=0
+records=[];metrics_count=0;latest_rankings=[]
 for week in range(3,8):
  target=tmp/f'v15_2026_pregame_week_{week}.json'
  if not target.exists():
@@ -26,6 +26,7 @@ for week in range(3,8):
   if not target.exists():raise RuntimeError('Missing snapshot '+str(target))
  obj=json.loads(target.read_text())
  metrics_count=len(next(iter(obj['rankings']))['diagnostics']['offense_metrics']) if obj['rankings'] else 0
+ if week==7: latest_rankings=[{'rank':i+1,'team':r['team'],'strength_sd':r['overall_team_strength_sd'],'offense_rank':r['offense_rank'],'defense_rank':r['defense_rank']} for i,r in enumerate(obj['rankings'][:50])]
  ratings={r['team']:r for r in obj['rankings']}
  games=[g for g in history if g.get('result') and int(g.get('week') or 0)==week]
  for g in games:
@@ -42,7 +43,7 @@ for week in range(3,8):
     'actual_margin':actual,'overall_pred':round(pred,4),'unit_pred':round(pred_unit,4)})
 def mae(col):return round(statistics.fmean(abs(g[col]-g['actual_margin']) for g in records),4) if records else None
 report={'status':'completed_fullmetric_pilot','year':2026,'pregame_weeks':list(range(3,8)),
- 'game_count':len(records),'metrics_per_unit':metrics_count,
+ 'game_count':len(records),'metrics_per_unit':metrics_count,'pregame_week_7_top50':latest_rankings,
  'metric_categories':'scoring, efficiency, passing, rushing, line, finishing; including play-derived situational conversion/red-zone variables',
  'baseline':'original full v15 40-metric unit engine; each weekly snapshot uses games completed BEFORE prediction week',
  'checks':{'all_snapshot_weeks_prior_to_predictions':True,'nonrecursive_frozen_per_game':False,'is_out_of_sample_coefficients_fit':False},
