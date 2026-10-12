@@ -65,11 +65,13 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15),save_pregame=False):
+def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.15),save_pregame=False,ecv=False):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
     pregame_records=[]
+    pregame_ranks=[]
+    validation_games=[]
     priorcounts=defaultdict(int)
     outcomes=defaultdict(list)
     confidence=defaultdict(list)
@@ -95,6 +97,10 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
         n=len(teams)
         order=sorted(teams,key=lambda t:(-statistics.fmean(frozen[t].values()),t))
         pregame_rank={t:i+1 for i,t in enumerate(order)}
+        if save_pregame:
+            for t in order:
+                pregame_ranks.append({"week":week,"team":t,"pregame_rank":pregame_rank[t],
+                  "pregame_strength":round(statistics.fmean(frozen[t].values()),6)})
         coef={}
         for k in ordered:
             for i,t in enumerate(ordered[k]):
@@ -134,8 +140,17 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
                     win=int(tp>op)
                     rank=pregame_rank[opp]
                     tier=max(0.,(11-rank)/10) if rank<=10 else 0.
-                    outcomes[t].append((1 if win else -1)+.4*resid+.6*tier*win)
-                    confidence[t].append(max(0.,min(2.,statistics.fmean(o.values())))*(1 if win else max(0.,resid)))
+                    outcomes[t].append((1 if win else -1)+.4*resid+(.6*tier*win if not ecv else 0.))
+                    if ecv:
+                        tier_value=(1. if rank<=10 else .6 if rank<=25 else .3 if rank<=50 else .1)
+                        v=tier_value*(1 if win else -(.4 if rank>50 else .15))
+                        v+=.15*resid
+                        confidence[t].append(v)
+                        validation_games.append({"week":week,"game_id":r["game_id"],"team":t,"opponent":opp,
+                          "opponent_pregame_rank":rank,"win":win,"actual_margin":tp-op,
+                          "relative_margin":round(resid,4),"validation_score":round(v,4)})
+                    else:
+                        confidence[t].append(max(0.,min(2.,statistics.fmean(o.values())))*(1 if win else max(0.,resid)))
             if int(r["fbs_opponent"]):priorcounts[t]+=1
         allthrough.extend(data)
         new={}
@@ -155,7 +170,12 @@ def run(amplitude,qor=False,method="rank",results_heavy=False,weights=(.50,.35,.
         strength_z=zscores({t:statistics.fmean(frozen[t].values()) for t in teams})
         outcomes_z=zscores({t:statistics.fmean(outcomes[t]) if outcomes[t] else -1 for t in teams})
         confidence_z=zscores({t:statistics.fmean(confidence[t]) if confidence[t] else 0 for t in teams})
+    if ecv:
+        with (FOLDER/"elite_validation_games.csv").open("w",newline="") as f:
+            w=csv.DictWriter(f,fieldnames=list(validation_games[0]));w.writeheader();w.writerows(validation_games)
     if save_pregame:
+        with (FOLDER/"pregame_all_team_ranks.csv").open("w",newline="") as f:
+            w=csv.DictWriter(f,fieldnames=list(pregame_ranks[0]));w.writeheader();w.writerows(pregame_ranks)
         with (FOLDER/"pregame_opponent_exposure.csv").open("w",newline="") as f:
             fieldnames=["week","game_id","team","opponent","pregame_opponent_strength",
               "pregame_team_strength","pregame_opponent_PO","pregame_opponent_RO",
@@ -182,6 +202,7 @@ def main():
               "results_heavy_hybrid_50":(.5,False,"hybrid",True),
               "balanced_hybrid_50":(.5,False,"hybrid",True,(.60,.25,.15)),
               "raw_metrics_balanced":(0,False,"rank",True,(.60,.25,.15)),
+              "raw_metrics_ecv_55_30_15":(0,False,"rank",True,(.55,.30,.15),False,True),
               "conservative_hybrid_50":(.5,False,"hybrid",True,(.70,.20,.10))}
     full={key:run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
