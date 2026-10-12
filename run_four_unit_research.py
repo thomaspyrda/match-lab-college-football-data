@@ -65,7 +65,7 @@ def unit_measure(row,kind,scales):
     if a is None:return b
     if b is None:return a
     return .8*a+.2*b
-def run(amplitude,qor=False):
+def run(amplitude,qor=False,method="rank"):
     evidence=defaultdict(list)
     frozen={t:{k:prior[t] for k in ("PO","RO","PD","RD")} for t in teams}
     allthrough=[]
@@ -93,7 +93,16 @@ def run(amplitude,qor=False):
             for k in match:
                 raw=unit_measure(r,k,scales)
                 if raw is None:continue
-                evidence[t,k].append((raw*coef[match[k],opp],max(1,num(r.get("plays_count")) or 1)))
+                # Gap model: additive frozen opponent-unit SD adjustment. Strong defense
+                # raises credit for offensive output; weak defense reduces it.
+                # Opposite units map similarly on defense. Never adjust via a
+                # multiplier on signed performance (wrong direction for negatives).
+                if method=="gap":
+                    opponent_gap=max(-2.,min(2.,o[match[k]]))
+                    adjusted=raw+amplitude*opponent_gap
+                else:
+                    adjusted=raw*coef[match[k],opp]
+                evidence[t,k].append((adjusted,max(1,num(r.get("plays_count")) or 1)))
             tp,op=num(r["team_points"]),num(r["opponent_points"])
             if tp is not None and op is not None:
                 expected=7*(statistics.fmean(f.values())-statistics.fmean(o.values()))
@@ -129,7 +138,8 @@ def run(amplitude,qor=False):
 def main():
     if not rows:raise SystemExit("Empty archive")
     variants={"unadjusted":(0,False),"adjust_50":(.5,False),"adjust_65":(.65,False),
-              "adjust_50_qor":(.5,True),"adjust_65_qor":(.65,True)}
+              "adjust_50_qor":(.5,True),"adjust_65_qor":(.65,True),
+              "unit_gap_50_qor":(.5,True,"gap"),"unit_gap_65_qor":(.65,True,"gap")}
     full={key:run(*params) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
@@ -139,6 +149,14 @@ def main():
         for name,ranking in full.items():
             for r in ranking[:25]:
                 w.writerow([name,r["rank"],r["team"],r["score"],r["PO"],r["RO"],r["PD"],r["RD"],r["quality_results"]])
+    watch=["Georgia","Miami","Notre Dame","Ohio State","BYU","Alabama","Indiana","Utah",
+           "Kentucky","Texas","Florida","Oregon"]
+    with (FOLDER/"opponent_gap_watchlist.csv").open("w",newline="") as f:
+        w=csv.writer(f);w.writerow(["team","model","rank","score","PO","RO","PD","RD","fbs_games"])
+        for team in watch:
+            for model,rankings in full.items():
+                row=next((r for r in rankings if r["team"]==team),None)
+                if row:w.writerow([team,model,row["rank"],row["score"],row["PO"],row["RO"],row["PD"],row["RD"],row["games"]])
     for name,ranking in full.items():
-        print(name,[(r["rank"],r["team"]) for r in ranking[:5]])
+        print(name,[(r["rank"],r["team"]) for r in ranking[:12]])
 if __name__=="__main__":main()
