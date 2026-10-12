@@ -27,6 +27,7 @@ for g in hist:
  winner,opponent=(h,a) if hp>ap else (a,h)
  if winner not in base_scores:continue
  opp_rank=rankings.get(week,{}).get(opponent)
+ if opp_rank is None:opp_rank=rankings[1].get(opponent)  # Approved independent preseason fallback for unranked FBS teams only
  if opp_rank is None:
   missing.append({'week':week,'winner':winner,'opponent':opponent,'reason':'missing pregame rank'})
   continue
@@ -53,7 +54,7 @@ checks={'top10_cutoff':all(1<=e['opponent_pregame_rank']<=10 for e in audit),
 report={'study':'2026 aggressive Top-10 victory bonus, distinct cutoff','status':'research_only',
  'base_model':'Original v15 full-metric through week 6, pregame Week 7',
  'bonus_rule':'Win versus opponent pregame #1..#10 earns 11 minus rank points, 0 outside; each point adds 0.03 SD to overall strength; cumulative, no cap.',
- 'pregame_rank_method':'Week 1 independent 2026 preseason consensus rank; Weeks 2-6 archived original v15 pregame snapshots, reconstructed from games before that week. Archived v15 uses recursive opponent adjustments within each pregame snapshot.',
+ 'pregame_rank_method':'Week 1 independent 2026 preseason consensus; Weeks 2-6 archived v15 pregame ranks when available; unseen/unranked FBS opponents use their independent preseason rank. FCS receive no bonus.',
  'weaknesses':['Cumulative bonus favors more opportunities to face top-10 teams; that is intentional in this experimental formula.','The extra reward overlaps some existing result/statistical signal.','Historical weekly pregame rankings are original v15, not frozen per-game nonrecursive experimental ratings.','No independent prediction accuracy test completed.'],
  'verified':checks,'missing_ranks':missing,'bonused_wins':audit,
  'top50':out[:50],
