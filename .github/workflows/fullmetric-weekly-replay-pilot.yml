@@ -1,0 +1,29 @@
+name: Full metric historical weekly replay pilot
+on:
+  push:
+    branches: [main]
+    paths: [run_fullmetric_weekly_replay_pilot.py]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python run_fullmetric_weekly_replay_pilot.py
+      - name: Save pilot results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/experiments/fullmetric_weekly_replay_2026_pilot.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'research(cfb): full metric weekly replay pilot results'
+          git pull --rebase origin main
+          git push origin HEAD:main
