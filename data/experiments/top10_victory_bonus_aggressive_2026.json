@@ -1,0 +1,3234 @@
+{
+  "study": "2026 aggressive Top-10 victory bonus, distinct cutoff",
+  "status": "research_only",
+  "base_model": "Original v15 full-metric through week 6, pregame Week 7",
+  "bonus_rule": "Win versus opponent pregame #1..#10 earns 11 minus rank points, 0 outside; each point adds 0.03 SD to overall strength; cumulative, no cap.",
+  "pregame_rank_method": "Week 1 independent 2026 preseason consensus rank; Weeks 2-6 archived original v15 pregame snapshots, reconstructed from games before that week. Archived v15 uses recursive opponent adjustments within each pregame snapshot.",
+  "weaknesses": [
+    "Cumulative bonus favors more opportunities to face top-10 teams; that is intentional in this experimental formula.",
+    "The extra reward overlaps some existing result/statistical signal.",
+    "Historical weekly pregame rankings are original v15, not frozen per-game nonrecursive experimental ratings.",
+    "No independent prediction accuracy test completed."
+  ],
+  "verified": {
+    "top10_cutoff": true,
+    "exact_bonus_formula": true,
+    "all_applied_to_overall_only": true,
+    "week_7_not_used_as_week_6_pregame": true
+  },
+  "missing_ranks": [
+    {
+      "week": 1,
+      "winner": "Delaware",
+      "opponent": "Merrimack",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Kennesaw State",
+      "opponent": "West Georgia",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "UCF",
+      "opponent": "Bethune-Cookman",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Buffalo",
+      "opponent": "UAlbany",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Minnesota",
+      "opponent": "Eastern Illinois",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Missouri",
+      "opponent": "Arkansas-Pine Bluff",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Utah",
+      "opponent": "Idaho",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Georgia State",
+      "opponent": "North Carolina A&T",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Purdue",
+      "opponent": "Indiana State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Kansas",
+      "opponent": "Long Island University",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Army",
+      "opponent": "Bryant",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Syracuse",
+      "opponent": "New Hampshire",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "UConn",
+      "opponent": "Lafayette",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Kentucky",
+      "opponent": "Youngstown State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Air Force",
+      "opponent": "Duquesne",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Iowa State",
+      "opponent": "Southeast Missouri State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Temple",
+      "opponent": "Rhode Island",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Georgia",
+      "opponent": "Tennessee State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "App State",
+      "opponent": "Maine",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Tennessee",
+      "opponent": "Furman",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "UTSA",
+      "opponent": "UT Rio Grande Valley",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Navy",
+      "opponent": "Towson",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Arkansas",
+      "opponent": "North Alabama",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Southern Miss",
+      "opponent": "Alcorn State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Old Dominion",
+      "opponent": "Norfolk State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "South Alabama",
+      "opponent": "SE Louisiana",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Texas Tech",
+      "opponent": "Abilene Christian",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Georgia Southern",
+      "opponent": "Charleston Southern",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Rice",
+      "opponent": "Houston Christian",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Kansas State",
+      "opponent": "Nicholls",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Vanderbilt",
+      "opponent": "Austin Peay",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Jacksonville State",
+      "opponent": "Eastern Kentucky",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Middle Tennessee",
+      "opponent": "Murray State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Virginia Tech",
+      "opponent": "VMI",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Louisiana Tech",
+      "opponent": "Northwestern State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "BYU",
+      "opponent": "Utah Tech",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Maryland",
+      "opponent": "Hampton",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Louisiana",
+      "opponent": "Lamar",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Northwestern",
+      "opponent": "South Dakota State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "New Mexico State",
+      "opponent": "Mercyhurst",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "San Diego State",
+      "opponent": "Portland State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Arizona",
+      "opponent": "Northern Arizona",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 1,
+      "winner": "Arizona State",
+      "opponent": "Morgan State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Miami",
+      "opponent": "Florida A&M",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Louisville",
+      "opponent": "Villanova",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "NC State",
+      "opponent": "Richmond",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Virginia",
+      "opponent": "Norfolk State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Missouri",
+      "opponent": "Kansas",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Wake Forest",
+      "opponent": "Purdue",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "South Florida",
+      "opponent": "Army",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Texas A&M",
+      "opponent": "Arizona State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "North Carolina",
+      "opponent": "East Tennessee State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Indiana",
+      "opponent": "Howard",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Penn State",
+      "opponent": "Temple",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "James Madison",
+      "opponent": "Wagner",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Kent State",
+      "opponent": "Wofford",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Liberty",
+      "opponent": "Gardner-Webb",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Virginia Tech",
+      "opponent": "Old Dominion",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Central Michigan",
+      "opponent": "Colgate",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "West Virginia",
+      "opponent": "UT Martin",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Miami (OH)",
+      "opponent": "Holy Cross",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Ball State",
+      "opponent": "Stony Brook",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Colorado",
+      "opponent": "Weber State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Pittsburgh",
+      "opponent": "UCF",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Toledo",
+      "opponent": "Central Connecticut",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Alabama",
+      "opponent": "Kentucky",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "California",
+      "opponent": "Syracuse",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Mississippi State",
+      "opponent": "Minnesota",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Notre Dame",
+      "opponent": "Rice",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "BYU",
+      "opponent": "Arizona",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Akron",
+      "opponent": "Robert Morris",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Washington",
+      "opponent": "Utah State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Maryland",
+      "opponent": "UConn",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Massachusetts",
+      "opponent": "Sacred Heart",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "SMU",
+      "opponent": "UC Davis",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Wyoming",
+      "opponent": "Northern Colorado",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "New Mexico",
+      "opponent": "Mercyhurst",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Troy",
+      "opponent": "Alabama State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Vanderbilt",
+      "opponent": "Delaware",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Florida",
+      "opponent": "Campbell",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Ohio",
+      "opponent": "Jacksonville State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Florida International",
+      "opponent": "Buffalo",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Western Michigan",
+      "opponent": "Monmouth",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Colorado State",
+      "opponent": "Southern Utah",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Tulane",
+      "opponent": "South Alabama",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Houston",
+      "opponent": "Southern",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "South Carolina",
+      "opponent": "Towson",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Marshall",
+      "opponent": "Middle Tennessee",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Missouri State",
+      "opponent": "Lindenwood",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Georgia State",
+      "opponent": "Kennesaw State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Arkansas State",
+      "opponent": "West Georgia",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Nebraska",
+      "opponent": "Bowling Green",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Cincinnati",
+      "opponent": "Western Carolina",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Wisconsin",
+      "opponent": "Western Illinois",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "UCLA",
+      "opponent": "San Diego State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Iowa",
+      "opponent": "Iowa State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "LSU",
+      "opponent": "Louisiana Tech",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Coastal Carolina",
+      "opponent": "Fordham",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Clemson",
+      "opponent": "Georgia Southern",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Florida Atlantic",
+      "opponent": "Navy",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Auburn",
+      "opponent": "Southern Miss",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Ole Miss",
+      "opponent": "Charlotte",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "TCU",
+      "opponent": "Grambling",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Baylor",
+      "opponent": "Prairie View A&M",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "UTEP",
+      "opponent": "Texas Southern",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "San Jose State",
+      "opponent": "Cal Poly",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Utah",
+      "opponent": "Arkansas",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "Fresno State",
+      "opponent": "Sacramento State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 2,
+      "winner": "USC",
+      "opponent": "Louisiana",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Oregon",
+      "opponent": "Portland State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Georgia Tech",
+      "opponent": "Mercer",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Boston College",
+      "opponent": "Maine",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Illinois",
+      "opponent": "Southern Illinois",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Massachusetts",
+      "opponent": "Stonehill",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "California",
+      "opponent": "Wagner",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Washington State",
+      "opponent": "Duquesne",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Iowa",
+      "opponent": "Northern Iowa",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Oklahoma State",
+      "opponent": "Murray State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Memphis",
+      "opponent": "UT Martin",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Sam Houston",
+      "opponent": "Nicholls",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "South Florida",
+      "opponent": "Delaware State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Nebraska",
+      "opponent": "North Dakota",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Washington",
+      "opponent": "Eastern Washington",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Tulsa",
+      "opponent": "East Texas A&M",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Boise State",
+      "opponent": "South Dakota",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 3,
+      "winner": "Oregon State",
+      "opponent": "Montana",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Rutgers",
+      "opponent": "Howard",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Pittsburgh",
+      "opponent": "Bucknell",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Eastern Michigan",
+      "opponent": "Lindenwood",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Florida State",
+      "opponent": "Central Arkansas",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Duke",
+      "opponent": "William & Mary",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Buffalo",
+      "opponent": "Robert Morris",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Ohio",
+      "opponent": "Stonehill",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Marshall",
+      "opponent": "Gardner-Webb",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "East Carolina",
+      "opponent": "North Carolina Central",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Florida International",
+      "opponent": "Long Island University",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Texas State",
+      "opponent": "Incarnate Word",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Western Kentucky",
+      "opponent": "Mercyhurst",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "North Texas",
+      "opponent": "Houston Christian",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 4,
+      "winner": "Massachusetts",
+      "opponent": "Sacramento State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 5,
+      "winner": "UAB",
+      "opponent": "Samford",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 5,
+      "winner": "Florida Atlantic",
+      "opponent": "Texas Southern",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 5,
+      "winner": "LSU",
+      "opponent": "McNeese",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 6,
+      "winner": "Bowling Green",
+      "opponent": "Sacramento State",
+      "reason": "missing pregame rank"
+    },
+    {
+      "week": 6,
+      "winner": "UNLV",
+      "opponent": "North Dakota State",
+      "reason": "missing pregame rank"
+    }
+  ],
+  "bonused_wins": [
+    {
+      "team": "Oklahoma State",
+      "opponent": "Oregon",
+      "week": 2,
+      "opponent_pregame_rank": 2,
+      "bonus_points": 9
+    },
+    {
+      "team": "Michigan",
+      "opponent": "Oklahoma",
+      "week": 2,
+      "opponent_pregame_rank": 7,
+      "bonus_points": 4
+    },
+    {
+      "team": "Texas",
+      "opponent": "Ohio State",
+      "week": 2,
+      "opponent_pregame_rank": 1,
+      "bonus_points": 10
+    },
+    {
+      "team": "Ole Miss",
+      "opponent": "LSU",
+      "week": 3,
+      "opponent_pregame_rank": 6,
+      "bonus_points": 5
+    },
+    {
+      "team": "UCLA",
+      "opponent": "Oregon",
+      "week": 6,
+      "opponent_pregame_rank": 2,
+      "bonus_points": 9
+    },
+    {
+      "team": "Kentucky",
+      "opponent": "LSU",
+      "week": 6,
+      "opponent_pregame_rank": 6,
+      "bonus_points": 5
+    },
+    {
+      "team": "Georgia",
+      "opponent": "Alabama",
+      "week": 6,
+      "opponent_pregame_rank": 10,
+      "bonus_points": 1
+    }
+  ],
+  "top50": [
+    {
+      "team": "Miami",
+      "baseline_sd": 2.349,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 2.349,
+      "victories": [],
+      "rank": 1,
+      "original_rank": 1,
+      "rank_change": 0
+    },
+    {
+      "team": "Notre Dame",
+      "baseline_sd": 2.088,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 2.088,
+      "victories": [],
+      "rank": 2,
+      "original_rank": 2,
+      "rank_change": 0
+    },
+    {
+      "team": "Utah",
+      "baseline_sd": 1.929,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.929,
+      "victories": [],
+      "rank": 3,
+      "original_rank": 3,
+      "rank_change": 0
+    },
+    {
+      "team": "Ohio State",
+      "baseline_sd": 1.896,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.896,
+      "victories": [],
+      "rank": 4,
+      "original_rank": 4,
+      "rank_change": 0
+    },
+    {
+      "team": "Georgia",
+      "baseline_sd": 1.818,
+      "bonus_points": 1,
+      "bonus_sd": 0.03,
+      "adjusted_sd": 1.848,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "Alabama",
+          "pregame_rank": 10,
+          "bonus_points": 1
+        }
+      ],
+      "rank": 5,
+      "original_rank": 5,
+      "rank_change": 0
+    },
+    {
+      "team": "Alabama",
+      "baseline_sd": 1.648,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.648,
+      "victories": [],
+      "rank": 6,
+      "original_rank": 6,
+      "rank_change": 0
+    },
+    {
+      "team": "Texas",
+      "baseline_sd": 1.34,
+      "bonus_points": 10,
+      "bonus_sd": 0.3,
+      "adjusted_sd": 1.64,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Ohio State",
+          "pregame_rank": 1,
+          "bonus_points": 10
+        }
+      ],
+      "rank": 7,
+      "original_rank": 11,
+      "rank_change": 4
+    },
+    {
+      "team": "LSU",
+      "baseline_sd": 1.603,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.603,
+      "victories": [],
+      "rank": 8,
+      "original_rank": 7,
+      "rank_change": -1
+    },
+    {
+      "team": "Indiana",
+      "baseline_sd": 1.579,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.579,
+      "victories": [],
+      "rank": 9,
+      "original_rank": 8,
+      "rank_change": -1
+    },
+    {
+      "team": "UCLA",
+      "baseline_sd": 1.262,
+      "bonus_points": 9,
+      "bonus_sd": 0.27,
+      "adjusted_sd": 1.532,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "Oregon",
+          "pregame_rank": 2,
+          "bonus_points": 9
+        }
+      ],
+      "rank": 10,
+      "original_rank": 13,
+      "rank_change": 3
+    },
+    {
+      "team": "BYU",
+      "baseline_sd": 1.486,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.486,
+      "victories": [],
+      "rank": 11,
+      "original_rank": 9,
+      "rank_change": -2
+    },
+    {
+      "team": "Texas Tech",
+      "baseline_sd": 1.4,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.4,
+      "victories": [],
+      "rank": 12,
+      "original_rank": 10,
+      "rank_change": -2
+    },
+    {
+      "team": "Nebraska",
+      "baseline_sd": 1.331,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.331,
+      "victories": [],
+      "rank": 13,
+      "original_rank": 12,
+      "rank_change": -1
+    },
+    {
+      "team": "Oregon",
+      "baseline_sd": 1.248,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.248,
+      "victories": [],
+      "rank": 14,
+      "original_rank": 14,
+      "rank_change": 0
+    },
+    {
+      "team": "Ole Miss",
+      "baseline_sd": 1.089,
+      "bonus_points": 5,
+      "bonus_sd": 0.15,
+      "adjusted_sd": 1.239,
+      "victories": [
+        {
+          "week": 3,
+          "opponent": "LSU",
+          "pregame_rank": 6,
+          "bonus_points": 5
+        }
+      ],
+      "rank": 15,
+      "original_rank": 19,
+      "rank_change": 4
+    },
+    {
+      "team": "Houston",
+      "baseline_sd": 1.203,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.203,
+      "victories": [],
+      "rank": 16,
+      "original_rank": 15,
+      "rank_change": -1
+    },
+    {
+      "team": "USC",
+      "baseline_sd": 1.138,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.138,
+      "victories": [],
+      "rank": 17,
+      "original_rank": 16,
+      "rank_change": -1
+    },
+    {
+      "team": "Mississippi State",
+      "baseline_sd": 1.137,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.137,
+      "victories": [],
+      "rank": 18,
+      "original_rank": 17,
+      "rank_change": -1
+    },
+    {
+      "team": "Michigan",
+      "baseline_sd": 1.006,
+      "bonus_points": 4,
+      "bonus_sd": 0.12,
+      "adjusted_sd": 1.126,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Oklahoma",
+          "pregame_rank": 7,
+          "bonus_points": 4
+        }
+      ],
+      "rank": 19,
+      "original_rank": 23,
+      "rank_change": 4
+    },
+    {
+      "team": "Northwestern",
+      "baseline_sd": 1.097,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.097,
+      "victories": [],
+      "rank": 20,
+      "original_rank": 18,
+      "rank_change": -2
+    },
+    {
+      "team": "Wisconsin",
+      "baseline_sd": 1.029,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.029,
+      "victories": [],
+      "rank": 21,
+      "original_rank": 20,
+      "rank_change": -1
+    },
+    {
+      "team": "Oklahoma State",
+      "baseline_sd": 0.757,
+      "bonus_points": 9,
+      "bonus_sd": 0.27,
+      "adjusted_sd": 1.027,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Oregon",
+          "pregame_rank": 2,
+          "bonus_points": 9
+        }
+      ],
+      "rank": 22,
+      "original_rank": 37,
+      "rank_change": 15
+    },
+    {
+      "team": "Wake Forest",
+      "baseline_sd": 1.008,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.008,
+      "victories": [],
+      "rank": 23,
+      "original_rank": 21,
+      "rank_change": -2
+    },
+    {
+      "team": "Arizona",
+      "baseline_sd": 1.007,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.007,
+      "victories": [],
+      "rank": 24,
+      "original_rank": 22,
+      "rank_change": -2
+    },
+    {
+      "team": "SMU",
+      "baseline_sd": 0.993,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.993,
+      "victories": [],
+      "rank": 25,
+      "original_rank": 24,
+      "rank_change": -1
+    },
+    {
+      "team": "New Mexico",
+      "baseline_sd": 0.989,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.989,
+      "victories": [],
+      "rank": 26,
+      "original_rank": 25,
+      "rank_change": -1
+    },
+    {
+      "team": "Oregon State",
+      "baseline_sd": 0.978,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.978,
+      "victories": [],
+      "rank": 27,
+      "original_rank": 26,
+      "rank_change": -1
+    },
+    {
+      "team": "South Carolina",
+      "baseline_sd": 0.914,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.914,
+      "victories": [],
+      "rank": 28,
+      "original_rank": 27,
+      "rank_change": -1
+    },
+    {
+      "team": "Boise State",
+      "baseline_sd": 0.901,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.901,
+      "victories": [],
+      "rank": 29,
+      "original_rank": 28,
+      "rank_change": -1
+    },
+    {
+      "team": "Liberty",
+      "baseline_sd": 0.859,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.859,
+      "victories": [],
+      "rank": 30,
+      "original_rank": 29,
+      "rank_change": -1
+    },
+    {
+      "team": "Memphis",
+      "baseline_sd": 0.843,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.843,
+      "victories": [],
+      "rank": 31,
+      "original_rank": 30,
+      "rank_change": -1
+    },
+    {
+      "team": "Missouri",
+      "baseline_sd": 0.837,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.837,
+      "victories": [],
+      "rank": 32,
+      "original_rank": 31,
+      "rank_change": -1
+    },
+    {
+      "team": "Baylor",
+      "baseline_sd": 0.826,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.826,
+      "victories": [],
+      "rank": 33,
+      "original_rank": 32,
+      "rank_change": -1
+    },
+    {
+      "team": "Louisville",
+      "baseline_sd": 0.823,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.823,
+      "victories": [],
+      "rank": 34,
+      "original_rank": 33,
+      "rank_change": -1
+    },
+    {
+      "team": "Iowa",
+      "baseline_sd": 0.807,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.807,
+      "victories": [],
+      "rank": 35,
+      "original_rank": 34,
+      "rank_change": -1
+    },
+    {
+      "team": "Pittsburgh",
+      "baseline_sd": 0.782,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.782,
+      "victories": [],
+      "rank": 36,
+      "original_rank": 35,
+      "rank_change": -1
+    },
+    {
+      "team": "Kansas State",
+      "baseline_sd": 0.769,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.769,
+      "victories": [],
+      "rank": 37,
+      "original_rank": 36,
+      "rank_change": -1
+    },
+    {
+      "team": "James Madison",
+      "baseline_sd": 0.749,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.749,
+      "victories": [],
+      "rank": 38,
+      "original_rank": 38,
+      "rank_change": 0
+    },
+    {
+      "team": "Duke",
+      "baseline_sd": 0.738,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.738,
+      "victories": [],
+      "rank": 39,
+      "original_rank": 39,
+      "rank_change": 0
+    },
+    {
+      "team": "Tennessee",
+      "baseline_sd": 0.731,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.731,
+      "victories": [],
+      "rank": 40,
+      "original_rank": 40,
+      "rank_change": 0
+    },
+    {
+      "team": "Kansas",
+      "baseline_sd": 0.717,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.717,
+      "victories": [],
+      "rank": 41,
+      "original_rank": 41,
+      "rank_change": 0
+    },
+    {
+      "team": "TCU",
+      "baseline_sd": 0.693,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.693,
+      "victories": [],
+      "rank": 42,
+      "original_rank": 42,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida",
+      "baseline_sd": 0.667,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.667,
+      "victories": [],
+      "rank": 43,
+      "original_rank": 43,
+      "rank_change": 0
+    },
+    {
+      "team": "Oklahoma",
+      "baseline_sd": 0.64,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.64,
+      "victories": [],
+      "rank": 44,
+      "original_rank": 44,
+      "rank_change": 0
+    },
+    {
+      "team": "Penn State",
+      "baseline_sd": 0.629,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.629,
+      "victories": [],
+      "rank": 45,
+      "original_rank": 45,
+      "rank_change": 0
+    },
+    {
+      "team": "Auburn",
+      "baseline_sd": 0.623,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.623,
+      "victories": [],
+      "rank": 46,
+      "original_rank": 46,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida State",
+      "baseline_sd": 0.572,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.572,
+      "victories": [],
+      "rank": 47,
+      "original_rank": 47,
+      "rank_change": 0
+    },
+    {
+      "team": "Louisiana",
+      "baseline_sd": 0.488,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.488,
+      "victories": [],
+      "rank": 48,
+      "original_rank": 48,
+      "rank_change": 0
+    },
+    {
+      "team": "Kentucky",
+      "baseline_sd": 0.31,
+      "bonus_points": 5,
+      "bonus_sd": 0.15,
+      "adjusted_sd": 0.46,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "LSU",
+          "pregame_rank": 6,
+          "bonus_points": 5
+        }
+      ],
+      "rank": 49,
+      "original_rank": 53,
+      "rank_change": 4
+    },
+    {
+      "team": "North Texas",
+      "baseline_sd": 0.442,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.442,
+      "victories": [],
+      "rank": 50,
+      "original_rank": 49,
+      "rank_change": -1
+    }
+  ],
+  "focus": {
+    "Kentucky": {
+      "team": "Kentucky",
+      "baseline_sd": 0.31,
+      "bonus_points": 5,
+      "bonus_sd": 0.15,
+      "adjusted_sd": 0.46,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "LSU",
+          "pregame_rank": 6,
+          "bonus_points": 5
+        }
+      ],
+      "rank": 49,
+      "original_rank": 53,
+      "rank_change": 4
+    },
+    "Oklahoma": {
+      "team": "Oklahoma",
+      "baseline_sd": 0.64,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.64,
+      "victories": [],
+      "rank": 44,
+      "original_rank": 44,
+      "rank_change": 0
+    },
+    "Texas": {
+      "team": "Texas",
+      "baseline_sd": 1.34,
+      "bonus_points": 10,
+      "bonus_sd": 0.3,
+      "adjusted_sd": 1.64,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Ohio State",
+          "pregame_rank": 1,
+          "bonus_points": 10
+        }
+      ],
+      "rank": 7,
+      "original_rank": 11,
+      "rank_change": 4
+    },
+    "New Mexico": {
+      "team": "New Mexico",
+      "baseline_sd": 0.989,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.989,
+      "victories": [],
+      "rank": 26,
+      "original_rank": 25,
+      "rank_change": -1
+    },
+    "Georgia": {
+      "team": "Georgia",
+      "baseline_sd": 1.818,
+      "bonus_points": 1,
+      "bonus_sd": 0.03,
+      "adjusted_sd": 1.848,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "Alabama",
+          "pregame_rank": 10,
+          "bonus_points": 1
+        }
+      ],
+      "rank": 5,
+      "original_rank": 5,
+      "rank_change": 0
+    },
+    "Oregon": {
+      "team": "Oregon",
+      "baseline_sd": 1.248,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.248,
+      "victories": [],
+      "rank": 14,
+      "original_rank": 14,
+      "rank_change": 0
+    },
+    "SMU": {
+      "team": "SMU",
+      "baseline_sd": 0.993,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.993,
+      "victories": [],
+      "rank": 25,
+      "original_rank": 24,
+      "rank_change": -1
+    },
+    "Alabama": {
+      "team": "Alabama",
+      "baseline_sd": 1.648,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.648,
+      "victories": [],
+      "rank": 6,
+      "original_rank": 6,
+      "rank_change": 0
+    },
+    "LSU": {
+      "team": "LSU",
+      "baseline_sd": 1.603,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.603,
+      "victories": [],
+      "rank": 8,
+      "original_rank": 7,
+      "rank_change": -1
+    },
+    "South Carolina": {
+      "team": "South Carolina",
+      "baseline_sd": 0.914,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.914,
+      "victories": [],
+      "rank": 28,
+      "original_rank": 27,
+      "rank_change": -1
+    },
+    "Texas A&M": {
+      "team": "Texas A&M",
+      "baseline_sd": 0.124,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.124,
+      "victories": [],
+      "rank": 62,
+      "original_rank": 62,
+      "rank_change": 0
+    }
+  },
+  "all_teams": [
+    {
+      "team": "Miami",
+      "baseline_sd": 2.349,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 2.349,
+      "victories": [],
+      "rank": 1,
+      "original_rank": 1,
+      "rank_change": 0
+    },
+    {
+      "team": "Notre Dame",
+      "baseline_sd": 2.088,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 2.088,
+      "victories": [],
+      "rank": 2,
+      "original_rank": 2,
+      "rank_change": 0
+    },
+    {
+      "team": "Utah",
+      "baseline_sd": 1.929,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.929,
+      "victories": [],
+      "rank": 3,
+      "original_rank": 3,
+      "rank_change": 0
+    },
+    {
+      "team": "Ohio State",
+      "baseline_sd": 1.896,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.896,
+      "victories": [],
+      "rank": 4,
+      "original_rank": 4,
+      "rank_change": 0
+    },
+    {
+      "team": "Georgia",
+      "baseline_sd": 1.818,
+      "bonus_points": 1,
+      "bonus_sd": 0.03,
+      "adjusted_sd": 1.848,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "Alabama",
+          "pregame_rank": 10,
+          "bonus_points": 1
+        }
+      ],
+      "rank": 5,
+      "original_rank": 5,
+      "rank_change": 0
+    },
+    {
+      "team": "Alabama",
+      "baseline_sd": 1.648,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.648,
+      "victories": [],
+      "rank": 6,
+      "original_rank": 6,
+      "rank_change": 0
+    },
+    {
+      "team": "Texas",
+      "baseline_sd": 1.34,
+      "bonus_points": 10,
+      "bonus_sd": 0.3,
+      "adjusted_sd": 1.64,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Ohio State",
+          "pregame_rank": 1,
+          "bonus_points": 10
+        }
+      ],
+      "rank": 7,
+      "original_rank": 11,
+      "rank_change": 4
+    },
+    {
+      "team": "LSU",
+      "baseline_sd": 1.603,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.603,
+      "victories": [],
+      "rank": 8,
+      "original_rank": 7,
+      "rank_change": -1
+    },
+    {
+      "team": "Indiana",
+      "baseline_sd": 1.579,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.579,
+      "victories": [],
+      "rank": 9,
+      "original_rank": 8,
+      "rank_change": -1
+    },
+    {
+      "team": "UCLA",
+      "baseline_sd": 1.262,
+      "bonus_points": 9,
+      "bonus_sd": 0.27,
+      "adjusted_sd": 1.532,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "Oregon",
+          "pregame_rank": 2,
+          "bonus_points": 9
+        }
+      ],
+      "rank": 10,
+      "original_rank": 13,
+      "rank_change": 3
+    },
+    {
+      "team": "BYU",
+      "baseline_sd": 1.486,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.486,
+      "victories": [],
+      "rank": 11,
+      "original_rank": 9,
+      "rank_change": -2
+    },
+    {
+      "team": "Texas Tech",
+      "baseline_sd": 1.4,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.4,
+      "victories": [],
+      "rank": 12,
+      "original_rank": 10,
+      "rank_change": -2
+    },
+    {
+      "team": "Nebraska",
+      "baseline_sd": 1.331,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.331,
+      "victories": [],
+      "rank": 13,
+      "original_rank": 12,
+      "rank_change": -1
+    },
+    {
+      "team": "Oregon",
+      "baseline_sd": 1.248,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.248,
+      "victories": [],
+      "rank": 14,
+      "original_rank": 14,
+      "rank_change": 0
+    },
+    {
+      "team": "Ole Miss",
+      "baseline_sd": 1.089,
+      "bonus_points": 5,
+      "bonus_sd": 0.15,
+      "adjusted_sd": 1.239,
+      "victories": [
+        {
+          "week": 3,
+          "opponent": "LSU",
+          "pregame_rank": 6,
+          "bonus_points": 5
+        }
+      ],
+      "rank": 15,
+      "original_rank": 19,
+      "rank_change": 4
+    },
+    {
+      "team": "Houston",
+      "baseline_sd": 1.203,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.203,
+      "victories": [],
+      "rank": 16,
+      "original_rank": 15,
+      "rank_change": -1
+    },
+    {
+      "team": "USC",
+      "baseline_sd": 1.138,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.138,
+      "victories": [],
+      "rank": 17,
+      "original_rank": 16,
+      "rank_change": -1
+    },
+    {
+      "team": "Mississippi State",
+      "baseline_sd": 1.137,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.137,
+      "victories": [],
+      "rank": 18,
+      "original_rank": 17,
+      "rank_change": -1
+    },
+    {
+      "team": "Michigan",
+      "baseline_sd": 1.006,
+      "bonus_points": 4,
+      "bonus_sd": 0.12,
+      "adjusted_sd": 1.126,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Oklahoma",
+          "pregame_rank": 7,
+          "bonus_points": 4
+        }
+      ],
+      "rank": 19,
+      "original_rank": 23,
+      "rank_change": 4
+    },
+    {
+      "team": "Northwestern",
+      "baseline_sd": 1.097,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.097,
+      "victories": [],
+      "rank": 20,
+      "original_rank": 18,
+      "rank_change": -2
+    },
+    {
+      "team": "Wisconsin",
+      "baseline_sd": 1.029,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.029,
+      "victories": [],
+      "rank": 21,
+      "original_rank": 20,
+      "rank_change": -1
+    },
+    {
+      "team": "Oklahoma State",
+      "baseline_sd": 0.757,
+      "bonus_points": 9,
+      "bonus_sd": 0.27,
+      "adjusted_sd": 1.027,
+      "victories": [
+        {
+          "week": 2,
+          "opponent": "Oregon",
+          "pregame_rank": 2,
+          "bonus_points": 9
+        }
+      ],
+      "rank": 22,
+      "original_rank": 37,
+      "rank_change": 15
+    },
+    {
+      "team": "Wake Forest",
+      "baseline_sd": 1.008,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.008,
+      "victories": [],
+      "rank": 23,
+      "original_rank": 21,
+      "rank_change": -2
+    },
+    {
+      "team": "Arizona",
+      "baseline_sd": 1.007,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 1.007,
+      "victories": [],
+      "rank": 24,
+      "original_rank": 22,
+      "rank_change": -2
+    },
+    {
+      "team": "SMU",
+      "baseline_sd": 0.993,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.993,
+      "victories": [],
+      "rank": 25,
+      "original_rank": 24,
+      "rank_change": -1
+    },
+    {
+      "team": "New Mexico",
+      "baseline_sd": 0.989,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.989,
+      "victories": [],
+      "rank": 26,
+      "original_rank": 25,
+      "rank_change": -1
+    },
+    {
+      "team": "Oregon State",
+      "baseline_sd": 0.978,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.978,
+      "victories": [],
+      "rank": 27,
+      "original_rank": 26,
+      "rank_change": -1
+    },
+    {
+      "team": "South Carolina",
+      "baseline_sd": 0.914,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.914,
+      "victories": [],
+      "rank": 28,
+      "original_rank": 27,
+      "rank_change": -1
+    },
+    {
+      "team": "Boise State",
+      "baseline_sd": 0.901,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.901,
+      "victories": [],
+      "rank": 29,
+      "original_rank": 28,
+      "rank_change": -1
+    },
+    {
+      "team": "Liberty",
+      "baseline_sd": 0.859,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.859,
+      "victories": [],
+      "rank": 30,
+      "original_rank": 29,
+      "rank_change": -1
+    },
+    {
+      "team": "Memphis",
+      "baseline_sd": 0.843,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.843,
+      "victories": [],
+      "rank": 31,
+      "original_rank": 30,
+      "rank_change": -1
+    },
+    {
+      "team": "Missouri",
+      "baseline_sd": 0.837,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.837,
+      "victories": [],
+      "rank": 32,
+      "original_rank": 31,
+      "rank_change": -1
+    },
+    {
+      "team": "Baylor",
+      "baseline_sd": 0.826,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.826,
+      "victories": [],
+      "rank": 33,
+      "original_rank": 32,
+      "rank_change": -1
+    },
+    {
+      "team": "Louisville",
+      "baseline_sd": 0.823,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.823,
+      "victories": [],
+      "rank": 34,
+      "original_rank": 33,
+      "rank_change": -1
+    },
+    {
+      "team": "Iowa",
+      "baseline_sd": 0.807,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.807,
+      "victories": [],
+      "rank": 35,
+      "original_rank": 34,
+      "rank_change": -1
+    },
+    {
+      "team": "Pittsburgh",
+      "baseline_sd": 0.782,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.782,
+      "victories": [],
+      "rank": 36,
+      "original_rank": 35,
+      "rank_change": -1
+    },
+    {
+      "team": "Kansas State",
+      "baseline_sd": 0.769,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.769,
+      "victories": [],
+      "rank": 37,
+      "original_rank": 36,
+      "rank_change": -1
+    },
+    {
+      "team": "James Madison",
+      "baseline_sd": 0.749,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.749,
+      "victories": [],
+      "rank": 38,
+      "original_rank": 38,
+      "rank_change": 0
+    },
+    {
+      "team": "Duke",
+      "baseline_sd": 0.738,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.738,
+      "victories": [],
+      "rank": 39,
+      "original_rank": 39,
+      "rank_change": 0
+    },
+    {
+      "team": "Tennessee",
+      "baseline_sd": 0.731,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.731,
+      "victories": [],
+      "rank": 40,
+      "original_rank": 40,
+      "rank_change": 0
+    },
+    {
+      "team": "Kansas",
+      "baseline_sd": 0.717,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.717,
+      "victories": [],
+      "rank": 41,
+      "original_rank": 41,
+      "rank_change": 0
+    },
+    {
+      "team": "TCU",
+      "baseline_sd": 0.693,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.693,
+      "victories": [],
+      "rank": 42,
+      "original_rank": 42,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida",
+      "baseline_sd": 0.667,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.667,
+      "victories": [],
+      "rank": 43,
+      "original_rank": 43,
+      "rank_change": 0
+    },
+    {
+      "team": "Oklahoma",
+      "baseline_sd": 0.64,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.64,
+      "victories": [],
+      "rank": 44,
+      "original_rank": 44,
+      "rank_change": 0
+    },
+    {
+      "team": "Penn State",
+      "baseline_sd": 0.629,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.629,
+      "victories": [],
+      "rank": 45,
+      "original_rank": 45,
+      "rank_change": 0
+    },
+    {
+      "team": "Auburn",
+      "baseline_sd": 0.623,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.623,
+      "victories": [],
+      "rank": 46,
+      "original_rank": 46,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida State",
+      "baseline_sd": 0.572,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.572,
+      "victories": [],
+      "rank": 47,
+      "original_rank": 47,
+      "rank_change": 0
+    },
+    {
+      "team": "Louisiana",
+      "baseline_sd": 0.488,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.488,
+      "victories": [],
+      "rank": 48,
+      "original_rank": 48,
+      "rank_change": 0
+    },
+    {
+      "team": "Kentucky",
+      "baseline_sd": 0.31,
+      "bonus_points": 5,
+      "bonus_sd": 0.15,
+      "adjusted_sd": 0.46,
+      "victories": [
+        {
+          "week": 6,
+          "opponent": "LSU",
+          "pregame_rank": 6,
+          "bonus_points": 5
+        }
+      ],
+      "rank": 49,
+      "original_rank": 53,
+      "rank_change": 4
+    },
+    {
+      "team": "North Texas",
+      "baseline_sd": 0.442,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.442,
+      "victories": [],
+      "rank": 50,
+      "original_rank": 49,
+      "rank_change": -1
+    },
+    {
+      "team": "Virginia",
+      "baseline_sd": 0.383,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.383,
+      "victories": [],
+      "rank": 51,
+      "original_rank": 50,
+      "rank_change": -1
+    },
+    {
+      "team": "Navy",
+      "baseline_sd": 0.358,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.358,
+      "victories": [],
+      "rank": 52,
+      "original_rank": 51,
+      "rank_change": -1
+    },
+    {
+      "team": "Virginia Tech",
+      "baseline_sd": 0.354,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.354,
+      "victories": [],
+      "rank": 53,
+      "original_rank": 52,
+      "rank_change": -1
+    },
+    {
+      "team": "Illinois",
+      "baseline_sd": 0.226,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.226,
+      "victories": [],
+      "rank": 54,
+      "original_rank": 54,
+      "rank_change": 0
+    },
+    {
+      "team": "Texas State",
+      "baseline_sd": 0.21,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.21,
+      "victories": [],
+      "rank": 55,
+      "original_rank": 55,
+      "rank_change": 0
+    },
+    {
+      "team": "North Carolina",
+      "baseline_sd": 0.199,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.199,
+      "victories": [],
+      "rank": 56,
+      "original_rank": 56,
+      "rank_change": 0
+    },
+    {
+      "team": "Georgia Tech",
+      "baseline_sd": 0.196,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.196,
+      "victories": [],
+      "rank": 57,
+      "original_rank": 57,
+      "rank_change": 0
+    },
+    {
+      "team": "West Virginia",
+      "baseline_sd": 0.16,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.16,
+      "victories": [],
+      "rank": 58,
+      "original_rank": 58,
+      "rank_change": 0
+    },
+    {
+      "team": "Cincinnati",
+      "baseline_sd": 0.159,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.159,
+      "victories": [],
+      "rank": 59,
+      "original_rank": 59,
+      "rank_change": 0
+    },
+    {
+      "team": "UCF",
+      "baseline_sd": 0.135,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.135,
+      "victories": [],
+      "rank": 60,
+      "original_rank": 60,
+      "rank_change": 0
+    },
+    {
+      "team": "Iowa State",
+      "baseline_sd": 0.127,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.127,
+      "victories": [],
+      "rank": 61,
+      "original_rank": 61,
+      "rank_change": 0
+    },
+    {
+      "team": "Texas A&M",
+      "baseline_sd": 0.124,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.124,
+      "victories": [],
+      "rank": 62,
+      "original_rank": 62,
+      "rank_change": 0
+    },
+    {
+      "team": "Toledo",
+      "baseline_sd": 0.105,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.105,
+      "victories": [],
+      "rank": 63,
+      "original_rank": 63,
+      "rank_change": 0
+    },
+    {
+      "team": "Syracuse",
+      "baseline_sd": 0.033,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.033,
+      "victories": [],
+      "rank": 64,
+      "original_rank": 64,
+      "rank_change": 0
+    },
+    {
+      "team": "Army",
+      "baseline_sd": 0.026,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.026,
+      "victories": [],
+      "rank": 65,
+      "original_rank": 65,
+      "rank_change": 0
+    },
+    {
+      "team": "UTSA",
+      "baseline_sd": 0.025,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.025,
+      "victories": [],
+      "rank": 66,
+      "original_rank": 66,
+      "rank_change": 0
+    },
+    {
+      "team": "Arizona State",
+      "baseline_sd": 0.02,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.02,
+      "victories": [],
+      "rank": 67,
+      "original_rank": 67,
+      "rank_change": 0
+    },
+    {
+      "team": "South Florida",
+      "baseline_sd": 0.015,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.015,
+      "victories": [],
+      "rank": 68,
+      "original_rank": 68,
+      "rank_change": 0
+    },
+    {
+      "team": "Western Michigan",
+      "baseline_sd": 0.008,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.008,
+      "victories": [],
+      "rank": 69,
+      "original_rank": 69,
+      "rank_change": 0
+    },
+    {
+      "team": "Purdue",
+      "baseline_sd": 0.003,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": 0.003,
+      "victories": [],
+      "rank": 70,
+      "original_rank": 70,
+      "rank_change": 0
+    },
+    {
+      "team": "UConn",
+      "baseline_sd": -0.071,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.071,
+      "victories": [],
+      "rank": 71,
+      "original_rank": 71,
+      "rank_change": 0
+    },
+    {
+      "team": "Washington",
+      "baseline_sd": -0.077,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.077,
+      "victories": [],
+      "rank": 72,
+      "original_rank": 72,
+      "rank_change": 0
+    },
+    {
+      "team": "Ohio",
+      "baseline_sd": -0.12,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.12,
+      "victories": [],
+      "rank": 73,
+      "original_rank": 73,
+      "rank_change": 0
+    },
+    {
+      "team": "Georgia State",
+      "baseline_sd": -0.152,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.152,
+      "victories": [],
+      "rank": 74,
+      "original_rank": 74,
+      "rank_change": 0
+    },
+    {
+      "team": "Clemson",
+      "baseline_sd": -0.159,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.159,
+      "victories": [],
+      "rank": 75,
+      "original_rank": 75,
+      "rank_change": 0
+    },
+    {
+      "team": "Michigan State",
+      "baseline_sd": -0.182,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.182,
+      "victories": [],
+      "rank": 76,
+      "original_rank": 76,
+      "rank_change": 0
+    },
+    {
+      "team": "UNLV",
+      "baseline_sd": -0.216,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.216,
+      "victories": [],
+      "rank": 77,
+      "original_rank": 77,
+      "rank_change": 0
+    },
+    {
+      "team": "Vanderbilt",
+      "baseline_sd": -0.217,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.217,
+      "victories": [],
+      "rank": 78,
+      "original_rank": 78,
+      "rank_change": 0
+    },
+    {
+      "team": "Temple",
+      "baseline_sd": -0.243,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.243,
+      "victories": [],
+      "rank": 79,
+      "original_rank": 79,
+      "rank_change": 0
+    },
+    {
+      "team": "Fresno State",
+      "baseline_sd": -0.27,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.27,
+      "victories": [],
+      "rank": 80,
+      "original_rank": 80,
+      "rank_change": 0
+    },
+    {
+      "team": "Troy",
+      "baseline_sd": -0.273,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.273,
+      "victories": [],
+      "rank": 81,
+      "original_rank": 81,
+      "rank_change": 0
+    },
+    {
+      "team": "Georgia Southern",
+      "baseline_sd": -0.276,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.276,
+      "victories": [],
+      "rank": 82,
+      "original_rank": 82,
+      "rank_change": 0
+    },
+    {
+      "team": "Colorado",
+      "baseline_sd": -0.308,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.308,
+      "victories": [],
+      "rank": 83,
+      "original_rank": 83,
+      "rank_change": 0
+    },
+    {
+      "team": "Tulane",
+      "baseline_sd": -0.331,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.331,
+      "victories": [],
+      "rank": 84,
+      "original_rank": 84,
+      "rank_change": 0
+    },
+    {
+      "team": "Tulsa",
+      "baseline_sd": -0.384,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.384,
+      "victories": [],
+      "rank": 85,
+      "original_rank": 85,
+      "rank_change": 0
+    },
+    {
+      "team": "Maryland",
+      "baseline_sd": -0.389,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.389,
+      "victories": [],
+      "rank": 86,
+      "original_rank": 86,
+      "rank_change": 0
+    },
+    {
+      "team": "South Alabama",
+      "baseline_sd": -0.398,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.398,
+      "victories": [],
+      "rank": 87,
+      "original_rank": 87,
+      "rank_change": 0
+    },
+    {
+      "team": "Air Force",
+      "baseline_sd": -0.412,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.412,
+      "victories": [],
+      "rank": 88,
+      "original_rank": 88,
+      "rank_change": 0
+    },
+    {
+      "team": "Boston College",
+      "baseline_sd": -0.415,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.415,
+      "victories": [],
+      "rank": 89,
+      "original_rank": 89,
+      "rank_change": 0
+    },
+    {
+      "team": "NC State",
+      "baseline_sd": -0.429,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.429,
+      "victories": [],
+      "rank": 90,
+      "original_rank": 90,
+      "rank_change": 0
+    },
+    {
+      "team": "Jacksonville State",
+      "baseline_sd": -0.435,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.435,
+      "victories": [],
+      "rank": 91,
+      "original_rank": 91,
+      "rank_change": 0
+    },
+    {
+      "team": "Minnesota",
+      "baseline_sd": -0.49,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.49,
+      "victories": [],
+      "rank": 92,
+      "original_rank": 92,
+      "rank_change": 0
+    },
+    {
+      "team": "California",
+      "baseline_sd": -0.491,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.491,
+      "victories": [],
+      "rank": 93,
+      "original_rank": 93,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida Atlantic",
+      "baseline_sd": -0.492,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.492,
+      "victories": [],
+      "rank": 94,
+      "original_rank": 94,
+      "rank_change": 0
+    },
+    {
+      "team": "Nevada",
+      "baseline_sd": -0.498,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.498,
+      "victories": [],
+      "rank": 95,
+      "original_rank": 95,
+      "rank_change": 0
+    },
+    {
+      "team": "Arkansas State",
+      "baseline_sd": -0.532,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.532,
+      "victories": [],
+      "rank": 96,
+      "original_rank": 96,
+      "rank_change": 0
+    },
+    {
+      "team": "New Mexico State",
+      "baseline_sd": -0.532,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.532,
+      "victories": [],
+      "rank": 97,
+      "original_rank": 97,
+      "rank_change": 0
+    },
+    {
+      "team": "East Carolina",
+      "baseline_sd": -0.554,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.554,
+      "victories": [],
+      "rank": 98,
+      "original_rank": 98,
+      "rank_change": 0
+    },
+    {
+      "team": "Miami (OH)",
+      "baseline_sd": -0.557,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.557,
+      "victories": [],
+      "rank": 99,
+      "original_rank": 99,
+      "rank_change": 0
+    },
+    {
+      "team": "Rutgers",
+      "baseline_sd": -0.587,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.587,
+      "victories": [],
+      "rank": 100,
+      "original_rank": 100,
+      "rank_change": 0
+    },
+    {
+      "team": "San Jose State",
+      "baseline_sd": -0.637,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.637,
+      "victories": [],
+      "rank": 101,
+      "original_rank": 101,
+      "rank_change": 0
+    },
+    {
+      "team": "Florida International",
+      "baseline_sd": -0.658,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.658,
+      "victories": [],
+      "rank": 102,
+      "original_rank": 102,
+      "rank_change": 0
+    },
+    {
+      "team": "Arkansas",
+      "baseline_sd": -0.663,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.663,
+      "victories": [],
+      "rank": 103,
+      "original_rank": 103,
+      "rank_change": 0
+    },
+    {
+      "team": "UAB",
+      "baseline_sd": -0.673,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.673,
+      "victories": [],
+      "rank": 104,
+      "original_rank": 104,
+      "rank_change": 0
+    },
+    {
+      "team": "Hawai'i",
+      "baseline_sd": -0.675,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.675,
+      "victories": [],
+      "rank": 105,
+      "original_rank": 105,
+      "rank_change": 0
+    },
+    {
+      "team": "Louisiana Tech",
+      "baseline_sd": -0.74,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.74,
+      "victories": [],
+      "rank": 106,
+      "original_rank": 106,
+      "rank_change": 0
+    },
+    {
+      "team": "Colorado State",
+      "baseline_sd": -0.749,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.749,
+      "victories": [],
+      "rank": 107,
+      "original_rank": 107,
+      "rank_change": 0
+    },
+    {
+      "team": "Eastern Michigan",
+      "baseline_sd": -0.756,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.756,
+      "victories": [],
+      "rank": 108,
+      "original_rank": 108,
+      "rank_change": 0
+    },
+    {
+      "team": "Marshall",
+      "baseline_sd": -0.81,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.81,
+      "victories": [],
+      "rank": 109,
+      "original_rank": 109,
+      "rank_change": 0
+    },
+    {
+      "team": "Coastal Carolina",
+      "baseline_sd": -0.817,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.817,
+      "victories": [],
+      "rank": 110,
+      "original_rank": 110,
+      "rank_change": 0
+    },
+    {
+      "team": "App State",
+      "baseline_sd": -0.9,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.9,
+      "victories": [],
+      "rank": 111,
+      "original_rank": 111,
+      "rank_change": 0
+    },
+    {
+      "team": "Central Michigan",
+      "baseline_sd": -0.921,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.921,
+      "victories": [],
+      "rank": 112,
+      "original_rank": 112,
+      "rank_change": 0
+    },
+    {
+      "team": "Akron",
+      "baseline_sd": -0.924,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.924,
+      "victories": [],
+      "rank": 113,
+      "original_rank": 113,
+      "rank_change": 0
+    },
+    {
+      "team": "Old Dominion",
+      "baseline_sd": -0.941,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.941,
+      "victories": [],
+      "rank": 114,
+      "original_rank": 114,
+      "rank_change": 0
+    },
+    {
+      "team": "Kennesaw State",
+      "baseline_sd": -0.97,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.97,
+      "victories": [],
+      "rank": 115,
+      "original_rank": 115,
+      "rank_change": 0
+    },
+    {
+      "team": "Utah State",
+      "baseline_sd": -0.972,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -0.972,
+      "victories": [],
+      "rank": 116,
+      "original_rank": 116,
+      "rank_change": 0
+    },
+    {
+      "team": "Wyoming",
+      "baseline_sd": -1.053,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.053,
+      "victories": [],
+      "rank": 117,
+      "original_rank": 117,
+      "rank_change": 0
+    },
+    {
+      "team": "Stanford",
+      "baseline_sd": -1.07,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.07,
+      "victories": [],
+      "rank": 118,
+      "original_rank": 118,
+      "rank_change": 0
+    },
+    {
+      "team": "Rice",
+      "baseline_sd": -1.125,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.125,
+      "victories": [],
+      "rank": 119,
+      "original_rank": 119,
+      "rank_change": 0
+    },
+    {
+      "team": "San Diego State",
+      "baseline_sd": -1.145,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.145,
+      "victories": [],
+      "rank": 120,
+      "original_rank": 120,
+      "rank_change": 0
+    },
+    {
+      "team": "Western Kentucky",
+      "baseline_sd": -1.274,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.274,
+      "victories": [],
+      "rank": 121,
+      "original_rank": 121,
+      "rank_change": 0
+    },
+    {
+      "team": "Delaware",
+      "baseline_sd": -1.297,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.297,
+      "victories": [],
+      "rank": 122,
+      "original_rank": 122,
+      "rank_change": 0
+    },
+    {
+      "team": "Washington State",
+      "baseline_sd": -1.327,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.327,
+      "victories": [],
+      "rank": 123,
+      "original_rank": 123,
+      "rank_change": 0
+    },
+    {
+      "team": "Ball State",
+      "baseline_sd": -1.434,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.434,
+      "victories": [],
+      "rank": 124,
+      "original_rank": 124,
+      "rank_change": 0
+    },
+    {
+      "team": "Buffalo",
+      "baseline_sd": -1.475,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.475,
+      "victories": [],
+      "rank": 125,
+      "original_rank": 125,
+      "rank_change": 0
+    },
+    {
+      "team": "Southern Miss",
+      "baseline_sd": -1.579,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.579,
+      "victories": [],
+      "rank": 126,
+      "original_rank": 126,
+      "rank_change": 0
+    },
+    {
+      "team": "Middle Tennessee",
+      "baseline_sd": -1.662,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.662,
+      "victories": [],
+      "rank": 127,
+      "original_rank": 127,
+      "rank_change": 0
+    },
+    {
+      "team": "Bowling Green",
+      "baseline_sd": -1.787,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.787,
+      "victories": [],
+      "rank": 128,
+      "original_rank": 128,
+      "rank_change": 0
+    },
+    {
+      "team": "Sam Houston",
+      "baseline_sd": -1.797,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.797,
+      "victories": [],
+      "rank": 129,
+      "original_rank": 129,
+      "rank_change": 0
+    },
+    {
+      "team": "Missouri State",
+      "baseline_sd": -1.906,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.906,
+      "victories": [],
+      "rank": 130,
+      "original_rank": 130,
+      "rank_change": 0
+    },
+    {
+      "team": "Northern Illinois",
+      "baseline_sd": -1.937,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.937,
+      "victories": [],
+      "rank": 131,
+      "original_rank": 131,
+      "rank_change": 0
+    },
+    {
+      "team": "Kent State",
+      "baseline_sd": -1.941,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -1.941,
+      "victories": [],
+      "rank": 132,
+      "original_rank": 132,
+      "rank_change": 0
+    },
+    {
+      "team": "UL Monroe",
+      "baseline_sd": -2.048,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -2.048,
+      "victories": [],
+      "rank": 133,
+      "original_rank": 133,
+      "rank_change": 0
+    },
+    {
+      "team": "Charlotte",
+      "baseline_sd": -2.131,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -2.131,
+      "victories": [],
+      "rank": 134,
+      "original_rank": 134,
+      "rank_change": 0
+    },
+    {
+      "team": "UTEP",
+      "baseline_sd": -2.17,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -2.17,
+      "victories": [],
+      "rank": 135,
+      "original_rank": 135,
+      "rank_change": 0
+    },
+    {
+      "team": "Massachusetts",
+      "baseline_sd": -2.182,
+      "bonus_points": 0,
+      "bonus_sd": 0.0,
+      "adjusted_sd": -2.182,
+      "victories": [],
+      "rank": 136,
+      "original_rank": 136,
+      "rank_change": 0
+    }
+  ]
+}
