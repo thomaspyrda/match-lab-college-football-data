@@ -94,3 +94,5 @@ if not by or len(by['market'])<300:raise RuntimeError('Insufficient evaluation m
 p=R/'data/experiments/quality_signal_walkforward_2024_2026.json'
 p.parent.mkdir(exist_ok=True,parents=True);p.write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))
+
+# Trigger walkforward.
