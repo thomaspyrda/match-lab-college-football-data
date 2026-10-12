@@ -204,7 +204,7 @@ def main():
               "raw_metrics_balanced":(0,False,"rank",True,(.60,.25,.15)),
               "raw_metrics_ecv_55_30_15":(0,False,"rank",True,(.55,.30,.15),False,True),
               "conservative_hybrid_50":(.5,False,"hybrid",True,(.70,.20,.10))}
-    full={key:run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
+    full={key:run(*params) if key=="raw_metrics_ecv_55_30_15" else run(*params,save_pregame=(key=="balanced_hybrid_50")) for key,params in variants.items()}
     (FOLDER/"ranking_experiments.json").write_text(json.dumps({"season":2026,"through_week":max(weeks),
        "note":"Experimental four-unit model. Unit-specific 80% and shared 20% aggregation; frozen weekly coefficients.",
        "variants":full},indent=2))
