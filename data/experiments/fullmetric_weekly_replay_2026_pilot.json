@@ -1,0 +1,145 @@
+{
+  "status": "completed_fullmetric_pilot",
+  "year": 2026,
+  "pregame_weeks": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "game_count": 219,
+  "metrics_per_unit": 41,
+  "metric_categories": "scoring, efficiency, passing, rushing, line, finishing; including play-derived situational conversion/red-zone variables",
+  "baseline": "original full v15 40-metric unit engine; each weekly snapshot uses games completed BEFORE prediction week",
+  "checks": {
+    "all_snapshot_weeks_prior_to_predictions": true,
+    "nonrecursive_frozen_per_game": false,
+    "is_out_of_sample_coefficients_fit": false
+  },
+  "performance": {
+    "overall_sd_pred_mae": 12.4445,
+    "unit_sd_pred_mae": 12.4881
+  },
+  "per_week": {
+    "3": {
+      "n": 54,
+      "overall_mae": 9.767
+    },
+    "4": {
+      "n": 56,
+      "overall_mae": 13.12
+    },
+    "5": {
+      "n": 54,
+      "overall_mae": 14.857
+    },
+    "6": {
+      "n": 55,
+      "overall_mae": 12.017
+    },
+    "7": {
+      "n": 0,
+      "overall_mae": null
+    }
+  },
+  "limitations": [
+    "This pilot establishes all-metric replay and strict pregame snapshots; it is not yet the final 2024-2026 model comparison",
+    "Original v15 uses recursively recomputed historical opponent profiles, not frozen per-game opponent ratings",
+    "Season 2026 existing independent preseason prior is used",
+    "Projection SD-to-points coefficient (7) is illustrative and not learned",
+    "Current game result never influences its own prediction"
+  ],
+  "sample": [
+    {
+      "week": 3,
+      "game_id": "401858225",
+      "home": "Pittsburgh",
+      "away": "Syracuse",
+      "actual_margin": 14.0,
+      "overall_pred": 7.988,
+      "unit_pred": 7.9495
+    },
+    {
+      "week": 3,
+      "game_id": "401858226",
+      "home": "Wake Forest",
+      "away": "Miami",
+      "actual_margin": -13.0,
+      "overall_pred": -6.817,
+      "unit_pred": -6.7575
+    },
+    {
+      "week": 3,
+      "game_id": "401856811",
+      "home": "Texas Tech",
+      "away": "Houston",
+      "actual_margin": 2.0,
+      "overall_pred": 4.67,
+      "unit_pred": 4.6525
+    },
+    {
+      "week": 3,
+      "game_id": "401869940",
+      "home": "Delaware",
+      "away": "Coastal Carolina",
+      "actual_margin": 8.0,
+      "overall_pred": 4.999,
+      "unit_pred": 4.985
+    },
+    {
+      "week": 3,
+      "game_id": "401858451",
+      "home": "Minnesota",
+      "away": "Akron",
+      "actual_margin": 34.0,
+      "overall_pred": 16.024,
+      "unit_pred": 15.9365
+    },
+    {
+      "week": 3,
+      "game_id": "401858229",
+      "home": "Clemson",
+      "away": "North Carolina",
+      "actual_margin": 8.0,
+      "overall_pred": 4.943,
+      "unit_pred": 4.929
+    },
+    {
+      "week": 3,
+      "game_id": "401856798",
+      "home": "Iowa State",
+      "away": "Bowling Green",
+      "actual_margin": 48.0,
+      "overall_pred": 10.662,
+      "unit_pred": 10.606
+    },
+    {
+      "week": 3,
+      "game_id": "401856686",
+      "home": "Arkansas",
+      "away": "Georgia",
+      "actual_margin": -28.0,
+      "overall_pred": -10.828,
+      "unit_pred": -10.737
+    },
+    {
+      "week": 3,
+      "game_id": "401856812",
+      "home": "Kansas",
+      "away": "Arizona State",
+      "actual_margin": -7.0,
+      "overall_pred": 0.722,
+      "unit_pred": 0.736
+    },
+    {
+      "week": 3,
+      "game_id": "401856792",
+      "home": "Kansas State",
+      "away": "Tulane",
+      "actual_margin": 11.0,
+      "overall_pred": 9.087,
+      "unit_pred": 9.045
+    }
+  ]
+}
