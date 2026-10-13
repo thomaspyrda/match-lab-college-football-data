@@ -1,0 +1,1924 @@
+{
+  "method": "Week W-1 frozen strengths predict Week W game-specific raw four-unit performance, W>=3; baseline game metric z-scales from games before Week W; FBS-only. Correlation and Spearman compare 0%,35%,50%,65%. Raw observed game statistics themselves not adjusted. This is predictive association, not definitive calibration or a betting backtest.",
+  "units": {
+    "PO": {
+      "observations": 1328,
+      "0": {
+        "pearson": 0.24586,
+        "spearman": 0.24628
+      },
+      "35": {
+        "pearson": 0.24378,
+        "spearman": 0.24437
+      },
+      "50": {
+        "pearson": 0.24242,
+        "spearman": 0.24315
+      },
+      "65": {
+        "pearson": 0.24075,
+        "spearman": 0.24188
+      }
+    },
+    "PD": {
+      "observations": 1328,
+      "0": {
+        "pearson": 0.19608,
+        "spearman": 0.20038
+      },
+      "35": {
+        "pearson": 0.19597,
+        "spearman": 0.20019
+      },
+      "50": {
+        "pearson": 0.19562,
+        "spearman": 0.19982
+      },
+      "65": {
+        "pearson": 0.19505,
+        "spearman": 0.19935
+      }
+    },
+    "RO": {
+      "observations": 1328,
+      "0": {
+        "pearson": 0.2554,
+        "spearman": 0.25458
+      },
+      "35": {
+        "pearson": 0.25412,
+        "spearman": 0.25256
+      },
+      "50": {
+        "pearson": 0.2532,
+        "spearman": 0.25136
+      },
+      "65": {
+        "pearson": 0.25204,
+        "spearman": 0.24964
+      }
+    },
+    "RD": {
+      "observations": 1328,
+      "0": {
+        "pearson": 0.23086,
+        "spearman": 0.20525
+      },
+      "35": {
+        "pearson": 0.23275,
+        "spearman": 0.20618
+      },
+      "50": {
+        "pearson": 0.23329,
+        "spearman": 0.20656
+      },
+      "65": {
+        "pearson": 0.23365,
+        "spearman": 0.20648
+      }
+    }
+  },
+  "leaders": {
+    "PO": {
+      "0": [
+        {
+          "team": "Vanderbilt",
+          "rank": 1,
+          "rating": 88.157
+        },
+        {
+          "team": "Ohio State",
+          "rank": 2,
+          "rating": 86.913
+        },
+        {
+          "team": "USC",
+          "rank": 3,
+          "rating": 81.17
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 81.019
+        },
+        {
+          "team": "North Texas",
+          "rank": 5,
+          "rating": 79.749
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "rating": 77.337
+        },
+        {
+          "team": "Air Force",
+          "rank": 7,
+          "rating": 76.333
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 8,
+          "rating": 73.975
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 9,
+          "rating": 73.591
+        },
+        {
+          "team": "Miami",
+          "rank": 10,
+          "rating": 73.087
+        },
+        {
+          "team": "Oregon",
+          "rank": 11,
+          "rating": 72.794
+        },
+        {
+          "team": "South Florida",
+          "rank": 12,
+          "rating": 71.41
+        },
+        {
+          "team": "Illinois",
+          "rank": 13,
+          "rating": 70.261
+        },
+        {
+          "team": "Georgia Tech",
+          "rank": 14,
+          "rating": 70.156
+        },
+        {
+          "team": "Texas State",
+          "rank": 15,
+          "rating": 69.751
+        }
+      ],
+      "35": [
+        {
+          "team": "Vanderbilt",
+          "rank": 1,
+          "rating": 87.5
+        },
+        {
+          "team": "Ohio State",
+          "rank": 2,
+          "rating": 86.027
+        },
+        {
+          "team": "USC",
+          "rank": 3,
+          "rating": 80.956
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 80.798
+        },
+        {
+          "team": "North Texas",
+          "rank": 5,
+          "rating": 78.584
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 6,
+          "rating": 76.93
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 7,
+          "rating": 76.247
+        },
+        {
+          "team": "Air Force",
+          "rank": 8,
+          "rating": 76.208
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 9,
+          "rating": 74.833
+        },
+        {
+          "team": "Miami",
+          "rank": 10,
+          "rating": 72.33
+        },
+        {
+          "team": "Oregon",
+          "rank": 11,
+          "rating": 71.52
+        },
+        {
+          "team": "Texas State",
+          "rank": 12,
+          "rating": 70.336
+        },
+        {
+          "team": "South Florida",
+          "rank": 13,
+          "rating": 70.282
+        },
+        {
+          "team": "Tennessee",
+          "rank": 14,
+          "rating": 70.193
+        },
+        {
+          "team": "Illinois",
+          "rank": 15,
+          "rating": 69.436
+        }
+      ],
+      "50": [
+        {
+          "team": "Vanderbilt",
+          "rank": 1,
+          "rating": 87.156
+        },
+        {
+          "team": "Ohio State",
+          "rank": 2,
+          "rating": 85.579
+        },
+        {
+          "team": "USC",
+          "rank": 3,
+          "rating": 80.824
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 80.664
+        },
+        {
+          "team": "North Texas",
+          "rank": 5,
+          "rating": 78.015
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 6,
+          "rating": 77.274
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 7,
+          "rating": 76.713
+        },
+        {
+          "team": "Air Force",
+          "rank": 8,
+          "rating": 76.123
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 9,
+          "rating": 75.384
+        },
+        {
+          "team": "Miami",
+          "rank": 10,
+          "rating": 71.956
+        },
+        {
+          "team": "Oregon",
+          "rank": 11,
+          "rating": 70.906
+        },
+        {
+          "team": "Tennessee",
+          "rank": 12,
+          "rating": 70.751
+        },
+        {
+          "team": "Texas State",
+          "rank": 13,
+          "rating": 70.586
+        },
+        {
+          "team": "South Florida",
+          "rank": 14,
+          "rating": 69.737
+        },
+        {
+          "team": "Tulane",
+          "rank": 15,
+          "rating": 69.624
+        }
+      ],
+      "65": [
+        {
+          "team": "Vanderbilt",
+          "rank": 1,
+          "rating": 86.77
+        },
+        {
+          "team": "Ohio State",
+          "rank": 2,
+          "rating": 85.084
+        },
+        {
+          "team": "USC",
+          "rank": 3,
+          "rating": 80.665
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 80.502
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 5,
+          "rating": 78.333
+        },
+        {
+          "team": "North Texas",
+          "rank": 6,
+          "rating": 77.398
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 7,
+          "rating": 76.467
+        },
+        {
+          "team": "Air Force",
+          "rank": 8,
+          "rating": 76.016
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 9,
+          "rating": 75.944
+        },
+        {
+          "team": "Miami",
+          "rank": 10,
+          "rating": 71.548
+        },
+        {
+          "team": "Tennessee",
+          "rank": 11,
+          "rating": 71.322
+        },
+        {
+          "team": "Texas State",
+          "rank": 12,
+          "rating": 70.835
+        },
+        {
+          "team": "Oregon",
+          "rank": 13,
+          "rating": 70.248
+        },
+        {
+          "team": "Tulane",
+          "rank": 14,
+          "rating": 69.888
+        },
+        {
+          "team": "South Florida",
+          "rank": 15,
+          "rating": 69.153
+        }
+      ]
+    },
+    "PD": {
+      "0": [
+        {
+          "team": "Texas Tech",
+          "rank": 1,
+          "rating": 92.623
+        },
+        {
+          "team": "Toledo",
+          "rank": 2,
+          "rating": 90.171
+        },
+        {
+          "team": "James Madison",
+          "rank": 3,
+          "rating": 82.539
+        },
+        {
+          "team": "San Diego State",
+          "rank": 4,
+          "rating": 81.751
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 5,
+          "rating": 75.899
+        },
+        {
+          "team": "Utah",
+          "rank": 6,
+          "rating": 75.237
+        },
+        {
+          "team": "Ohio State",
+          "rank": 7,
+          "rating": 73.163
+        },
+        {
+          "team": "Boise State",
+          "rank": 8,
+          "rating": 73.151
+        },
+        {
+          "team": "Oregon",
+          "rank": 9,
+          "rating": 72.482
+        },
+        {
+          "team": "Arizona",
+          "rank": 10,
+          "rating": 72.332
+        },
+        {
+          "team": "Old Dominion",
+          "rank": 11,
+          "rating": 71.12
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 12,
+          "rating": 70.321
+        },
+        {
+          "team": "Miami",
+          "rank": 13,
+          "rating": 69.873
+        },
+        {
+          "team": "Western Michigan",
+          "rank": 14,
+          "rating": 69.768
+        },
+        {
+          "team": "Ole Miss",
+          "rank": 15,
+          "rating": 69.697
+        }
+      ],
+      "35": [
+        {
+          "team": "Texas Tech",
+          "rank": 1,
+          "rating": 91.964
+        },
+        {
+          "team": "Toledo",
+          "rank": 2,
+          "rating": 87.148
+        },
+        {
+          "team": "James Madison",
+          "rank": 3,
+          "rating": 82.197
+        },
+        {
+          "team": "San Diego State",
+          "rank": 4,
+          "rating": 81.81
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 5,
+          "rating": 77.138
+        },
+        {
+          "team": "Utah",
+          "rank": 6,
+          "rating": 76.431
+        },
+        {
+          "team": "Ohio State",
+          "rank": 7,
+          "rating": 74.666
+        },
+        {
+          "team": "Oregon",
+          "rank": 8,
+          "rating": 72.773
+        },
+        {
+          "team": "Boise State",
+          "rank": 9,
+          "rating": 72.679
+        },
+        {
+          "team": "Arizona",
+          "rank": 10,
+          "rating": 72.661
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 11,
+          "rating": 71.204
+        },
+        {
+          "team": "Louisville",
+          "rank": 12,
+          "rating": 70.306
+        },
+        {
+          "team": "Old Dominion",
+          "rank": 13,
+          "rating": 69.648
+        },
+        {
+          "team": "Miami",
+          "rank": 14,
+          "rating": 69.317
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 15,
+          "rating": 69.042
+        }
+      ],
+      "50": [
+        {
+          "team": "Texas Tech",
+          "rank": 1,
+          "rating": 91.599
+        },
+        {
+          "team": "Toledo",
+          "rank": 2,
+          "rating": 85.709
+        },
+        {
+          "team": "James Madison",
+          "rank": 3,
+          "rating": 81.994
+        },
+        {
+          "team": "San Diego State",
+          "rank": 4,
+          "rating": 81.79
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 5,
+          "rating": 77.666
+        },
+        {
+          "team": "Utah",
+          "rank": 6,
+          "rating": 76.938
+        },
+        {
+          "team": "Ohio State",
+          "rank": 7,
+          "rating": 75.317
+        },
+        {
+          "team": "Oregon",
+          "rank": 8,
+          "rating": 72.873
+        },
+        {
+          "team": "Arizona",
+          "rank": 9,
+          "rating": 72.778
+        },
+        {
+          "team": "Boise State",
+          "rank": 10,
+          "rating": 72.43
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 11,
+          "rating": 71.577
+        },
+        {
+          "team": "Louisville",
+          "rank": 12,
+          "rating": 70.645
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 13,
+          "rating": 69.772
+        },
+        {
+          "team": "Miami",
+          "rank": 14,
+          "rating": 69.034
+        },
+        {
+          "team": "Old Dominion",
+          "rank": 15,
+          "rating": 68.945
+        }
+      ],
+      "65": [
+        {
+          "team": "Texas Tech",
+          "rank": 1,
+          "rating": 91.18
+        },
+        {
+          "team": "Toledo",
+          "rank": 2,
+          "rating": 84.18
+        },
+        {
+          "team": "James Madison",
+          "rank": 3,
+          "rating": 81.75
+        },
+        {
+          "team": "San Diego State",
+          "rank": 4,
+          "rating": 81.737
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 5,
+          "rating": 78.186
+        },
+        {
+          "team": "Utah",
+          "rank": 6,
+          "rating": 77.438
+        },
+        {
+          "team": "Ohio State",
+          "rank": 7,
+          "rating": 75.969
+        },
+        {
+          "team": "Oregon",
+          "rank": 8,
+          "rating": 72.954
+        },
+        {
+          "team": "Arizona",
+          "rank": 9,
+          "rating": 72.877
+        },
+        {
+          "team": "Boise State",
+          "rank": 10,
+          "rating": 72.149
+        },
+        {
+          "team": "Notre Dame",
+          "rank": 11,
+          "rating": 71.943
+        },
+        {
+          "team": "Louisville",
+          "rank": 12,
+          "rating": 70.976
+        },
+        {
+          "team": "Texas A&M",
+          "rank": 13,
+          "rating": 70.511
+        },
+        {
+          "team": "LSU",
+          "rank": 14,
+          "rating": 68.824
+        },
+        {
+          "team": "Alabama",
+          "rank": 15,
+          "rating": 68.791
+        }
+      ]
+    },
+    "RO": {
+      "0": [
+        {
+          "team": "North Texas",
+          "rank": 1,
+          "rating": 84.915
+        },
+        {
+          "team": "Utah",
+          "rank": 2,
+          "rating": 83.149
+        },
+        {
+          "team": "Arkansas",
+          "rank": 3,
+          "rating": 80.171
+        },
+        {
+          "team": "Vanderbilt",
+          "rank": 4,
+          "rating": 77.637
+        },
+        {
+          "team": "Navy",
+          "rank": 5,
+          "rating": 77.407
+        },
+        {
+          "team": "Oregon",
+          "rank": 6,
+          "rating": 77.169
+        },
+        {
+          "team": "Kansas",
+          "rank": 7,
+          "rating": 76.141
+        },
+        {
+          "team": "Cincinnati",
+          "rank": 8,
+          "rating": 74.802
+        },
+        {
+          "team": "Florida State",
+          "rank": 9,
+          "rating": 74.146
+        },
+        {
+          "team": "South Florida",
+          "rank": 10,
+          "rating": 72.83
+        },
+        {
+          "team": "Tennessee",
+          "rank": 11,
+          "rating": 72.1
+        },
+        {
+          "team": "Memphis",
+          "rank": 12,
+          "rating": 71.741
+        },
+        {
+          "team": "Virginia Tech",
+          "rank": 13,
+          "rating": 70.328
+        },
+        {
+          "team": "UNLV",
+          "rank": 14,
+          "rating": 69.808
+        },
+        {
+          "team": "Missouri",
+          "rank": 15,
+          "rating": 68.854
+        }
+      ],
+      "35": [
+        {
+          "team": "North Texas",
+          "rank": 1,
+          "rating": 83.441
+        },
+        {
+          "team": "Utah",
+          "rank": 2,
+          "rating": 83.282
+        },
+        {
+          "team": "Arkansas",
+          "rank": 3,
+          "rating": 80.424
+        },
+        {
+          "team": "Oregon",
+          "rank": 4,
+          "rating": 78.324
+        },
+        {
+          "team": "Kansas",
+          "rank": 5,
+          "rating": 78.117
+        },
+        {
+          "team": "Vanderbilt",
+          "rank": 6,
+          "rating": 77.2
+        },
+        {
+          "team": "Navy",
+          "rank": 7,
+          "rating": 76.987
+        },
+        {
+          "team": "Florida State",
+          "rank": 8,
+          "rating": 75.711
+        },
+        {
+          "team": "Cincinnati",
+          "rank": 9,
+          "rating": 75.651
+        },
+        {
+          "team": "South Florida",
+          "rank": 10,
+          "rating": 72.344
+        },
+        {
+          "team": "Tennessee",
+          "rank": 11,
+          "rating": 71.596
+        },
+        {
+          "team": "Memphis",
+          "rank": 12,
+          "rating": 71.456
+        },
+        {
+          "team": "Virginia Tech",
+          "rank": 13,
+          "rating": 70.464
+        },
+        {
+          "team": "Georgia Tech",
+          "rank": 14,
+          "rating": 69.478
+        },
+        {
+          "team": "Iowa",
+          "rank": 15,
+          "rating": 69.464
+        }
+      ],
+      "50": [
+        {
+          "team": "Utah",
+          "rank": 1,
+          "rating": 83.307
+        },
+        {
+          "team": "North Texas",
+          "rank": 2,
+          "rating": 82.728
+        },
+        {
+          "team": "Arkansas",
+          "rank": 3,
+          "rating": 80.507
+        },
+        {
+          "team": "Kansas",
+          "rank": 4,
+          "rating": 78.994
+        },
+        {
+          "team": "Oregon",
+          "rank": 5,
+          "rating": 78.824
+        },
+        {
+          "team": "Vanderbilt",
+          "rank": 6,
+          "rating": 76.969
+        },
+        {
+          "team": "Navy",
+          "rank": 7,
+          "rating": 76.765
+        },
+        {
+          "team": "Florida State",
+          "rank": 8,
+          "rating": 76.402
+        },
+        {
+          "team": "Cincinnati",
+          "rank": 9,
+          "rating": 76.013
+        },
+        {
+          "team": "South Florida",
+          "rank": 10,
+          "rating": 72.097
+        },
+        {
+          "team": "Tennessee",
+          "rank": 11,
+          "rating": 71.341
+        },
+        {
+          "team": "Memphis",
+          "rank": 12,
+          "rating": 71.302
+        },
+        {
+          "team": "Virginia Tech",
+          "rank": 13,
+          "rating": 70.504
+        },
+        {
+          "team": "Georgia Tech",
+          "rank": 14,
+          "rating": 70.015
+        },
+        {
+          "team": "Iowa",
+          "rank": 15,
+          "rating": 69.861
+        }
+      ],
+      "65": [
+        {
+          "team": "Utah",
+          "rank": 1,
+          "rating": 83.309
+        },
+        {
+          "team": "North Texas",
+          "rank": 2,
+          "rating": 81.961
+        },
+        {
+          "team": "Arkansas",
+          "rank": 3,
+          "rating": 80.571
+        },
+        {
+          "team": "Kansas",
+          "rank": 4,
+          "rating": 79.886
+        },
+        {
+          "team": "Oregon",
+          "rank": 5,
+          "rating": 79.323
+        },
+        {
+          "team": "Florida State",
+          "rank": 6,
+          "rating": 77.102
+        },
+        {
+          "team": "Vanderbilt",
+          "rank": 7,
+          "rating": 76.709
+        },
+        {
+          "team": "Navy",
+          "rank": 8,
+          "rating": 76.513
+        },
+        {
+          "team": "Cincinnati",
+          "rank": 9,
+          "rating": 76.371
+        },
+        {
+          "team": "South Florida",
+          "rank": 10,
+          "rating": 71.823
+        },
+        {
+          "team": "Memphis",
+          "rank": 11,
+          "rating": 71.125
+        },
+        {
+          "team": "Tennessee",
+          "rank": 12,
+          "rating": 71.059
+        },
+        {
+          "team": "Georgia Tech",
+          "rank": 13,
+          "rating": 70.56
+        },
+        {
+          "team": "Virginia Tech",
+          "rank": 14,
+          "rating": 70.53
+        },
+        {
+          "team": "Iowa",
+          "rank": 15,
+          "rating": 70.26
+        }
+      ]
+    },
+    "RD": {
+      "0": [
+        {
+          "team": "Ohio State",
+          "rank": 1,
+          "rating": 92.742
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 2,
+          "rating": 91.227
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 3,
+          "rating": 90.384
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 90.349
+        },
+        {
+          "team": "Auburn",
+          "rank": 5,
+          "rating": 84.285
+        },
+        {
+          "team": "James Madison",
+          "rank": 6,
+          "rating": 82.701
+        },
+        {
+          "team": "Pittsburgh",
+          "rank": 7,
+          "rating": 74.785
+        },
+        {
+          "team": "SMU",
+          "rank": 8,
+          "rating": 73.801
+        },
+        {
+          "team": "Georgia",
+          "rank": 9,
+          "rating": 73.351
+        },
+        {
+          "team": "East Carolina",
+          "rank": 10,
+          "rating": 72.853
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 11,
+          "rating": 72.691
+        },
+        {
+          "team": "Texas",
+          "rank": 12,
+          "rating": 70.997
+        },
+        {
+          "team": "Miami",
+          "rank": 13,
+          "rating": 70.648
+        },
+        {
+          "team": "Toledo",
+          "rank": 14,
+          "rating": 68.718
+        },
+        {
+          "team": "Missouri",
+          "rank": 15,
+          "rating": 65.959
+        }
+      ],
+      "35": [
+        {
+          "team": "Ohio State",
+          "rank": 1,
+          "rating": 93.533
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 2,
+          "rating": 90.646
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 3,
+          "rating": 90.319
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 89.313
+        },
+        {
+          "team": "Auburn",
+          "rank": 5,
+          "rating": 85.721
+        },
+        {
+          "team": "James Madison",
+          "rank": 6,
+          "rating": 83.158
+        },
+        {
+          "team": "Georgia",
+          "rank": 7,
+          "rating": 73.991
+        },
+        {
+          "team": "Pittsburgh",
+          "rank": 8,
+          "rating": 73.854
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 9,
+          "rating": 73.8
+        },
+        {
+          "team": "SMU",
+          "rank": 10,
+          "rating": 73.753
+        },
+        {
+          "team": "Texas",
+          "rank": 11,
+          "rating": 72.444
+        },
+        {
+          "team": "East Carolina",
+          "rank": 12,
+          "rating": 70.906
+        },
+        {
+          "team": "Miami",
+          "rank": 13,
+          "rating": 70.891
+        },
+        {
+          "team": "Toledo",
+          "rank": 14,
+          "rating": 68.02
+        },
+        {
+          "team": "Missouri",
+          "rank": 15,
+          "rating": 66.137
+        }
+      ],
+      "50": [
+        {
+          "team": "Ohio State",
+          "rank": 1,
+          "rating": 93.856
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 2,
+          "rating": 90.349
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 3,
+          "rating": 90.256
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 88.811
+        },
+        {
+          "team": "Auburn",
+          "rank": 5,
+          "rating": 86.343
+        },
+        {
+          "team": "James Madison",
+          "rank": 6,
+          "rating": 83.338
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 7,
+          "rating": 74.284
+        },
+        {
+          "team": "Georgia",
+          "rank": 8,
+          "rating": 74.262
+        },
+        {
+          "team": "SMU",
+          "rank": 9,
+          "rating": 73.711
+        },
+        {
+          "team": "Pittsburgh",
+          "rank": 10,
+          "rating": 73.411
+        },
+        {
+          "team": "Texas",
+          "rank": 11,
+          "rating": 73.083
+        },
+        {
+          "team": "Miami",
+          "rank": 12,
+          "rating": 70.985
+        },
+        {
+          "team": "East Carolina",
+          "rank": 13,
+          "rating": 70.005
+        },
+        {
+          "team": "Toledo",
+          "rank": 14,
+          "rating": 67.689
+        },
+        {
+          "team": "Missouri",
+          "rank": 15,
+          "rating": 66.204
+        }
+      ],
+      "65": [
+        {
+          "team": "Ohio State",
+          "rank": 1,
+          "rating": 94.166
+        },
+        {
+          "team": "Oklahoma",
+          "rank": 2,
+          "rating": 90.169
+        },
+        {
+          "team": "Texas Tech",
+          "rank": 3,
+          "rating": 90.02
+        },
+        {
+          "team": "Indiana",
+          "rank": 4,
+          "rating": 88.27
+        },
+        {
+          "team": "Auburn",
+          "rank": 5,
+          "rating": 86.967
+        },
+        {
+          "team": "James Madison",
+          "rank": 6,
+          "rating": 83.505
+        },
+        {
+          "team": "Wake Forest",
+          "rank": 7,
+          "rating": 74.771
+        },
+        {
+          "team": "Georgia",
+          "rank": 8,
+          "rating": 74.528
+        },
+        {
+          "team": "Texas",
+          "rank": 9,
+          "rating": 73.73
+        },
+        {
+          "team": "SMU",
+          "rank": 10,
+          "rating": 73.655
+        },
+        {
+          "team": "Pittsburgh",
+          "rank": 11,
+          "rating": 72.941
+        },
+        {
+          "team": "Miami",
+          "rank": 12,
+          "rating": 71.07
+        },
+        {
+          "team": "East Carolina",
+          "rank": 13,
+          "rating": 69.063
+        },
+        {
+          "team": "Toledo",
+          "rank": 14,
+          "rating": 67.337
+        },
+        {
+          "team": "Missouri",
+          "rank": 15,
+          "rating": 66.265
+        }
+      ]
+    }
+  },
+  "tracked": {
+    "Florida International": {
+      "PO": {
+        "0": {
+          "rank": 55,
+          "rating": 52.681
+        },
+        "35": {
+          "rank": 62,
+          "rating": 51.132
+        },
+        "50": {
+          "rank": 66,
+          "rating": 50.412
+        },
+        "65": {
+          "rank": 68,
+          "rating": 49.656
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 44,
+          "rating": 57.209
+        },
+        "35": {
+          "rank": 41,
+          "rating": 57.247
+        },
+        "50": {
+          "rank": 41,
+          "rating": 57.254
+        },
+        "65": {
+          "rank": 41,
+          "rating": 57.253
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 95,
+          "rating": 41.744
+        },
+        "35": {
+          "rank": 94,
+          "rating": 42.43
+        },
+        "50": {
+          "rank": 94,
+          "rating": 42.753
+        },
+        "65": {
+          "rank": 93,
+          "rating": 43.095
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 105,
+          "rating": 38.737
+        },
+        "35": {
+          "rank": 105,
+          "rating": 38.078
+        },
+        "50": {
+          "rank": 104,
+          "rating": 37.789
+        },
+        "65": {
+          "rank": 103,
+          "rating": 37.497
+        }
+      }
+    },
+    "Liberty": {
+      "PO": {
+        "0": {
+          "rank": 90,
+          "rating": 43.25
+        },
+        "35": {
+          "rank": 92,
+          "rating": 43.043
+        },
+        "50": {
+          "rank": 93,
+          "rating": 42.954
+        },
+        "65": {
+          "rank": 94,
+          "rating": 42.866
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 72,
+          "rating": 47.414
+        },
+        "35": {
+          "rank": 74,
+          "rating": 46.685
+        },
+        "50": {
+          "rank": 75,
+          "rating": 46.357
+        },
+        "65": {
+          "rank": 78,
+          "rating": 46.019
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 35,
+          "rating": 58.88
+        },
+        "35": {
+          "rank": 34,
+          "rating": 59.84
+        },
+        "50": {
+          "rank": 32,
+          "rating": 60.27
+        },
+        "65": {
+          "rank": 32,
+          "rating": 60.71
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 103,
+          "rating": 39.722
+        },
+        "35": {
+          "rank": 102,
+          "rating": 39.108
+        },
+        "50": {
+          "rank": 102,
+          "rating": 38.838
+        },
+        "65": {
+          "rank": 101,
+          "rating": 38.565
+        }
+      }
+    },
+    "Georgia State": {
+      "PO": {
+        "0": {
+          "rank": 103,
+          "rating": 40.653
+        },
+        "35": {
+          "rank": 103,
+          "rating": 40.864
+        },
+        "50": {
+          "rank": 102,
+          "rating": 40.971
+        },
+        "65": {
+          "rank": 101,
+          "rating": 41.089
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 134,
+          "rating": 22.735
+        },
+        "35": {
+          "rank": 134,
+          "rating": 22.609
+        },
+        "50": {
+          "rank": 134,
+          "rating": 22.592
+        },
+        "65": {
+          "rank": 134,
+          "rating": 22.601
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 91,
+          "rating": 44.215
+        },
+        "35": {
+          "rank": 95,
+          "rating": 42.384
+        },
+        "50": {
+          "rank": 96,
+          "rating": 41.551
+        },
+        "65": {
+          "rank": 98,
+          "rating": 40.689
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 120,
+          "rating": 32.171
+        },
+        "35": {
+          "rank": 121,
+          "rating": 32.426
+        },
+        "50": {
+          "rank": 121,
+          "rating": 32.556
+        },
+        "65": {
+          "rank": 121,
+          "rating": 32.7
+        }
+      }
+    },
+    "Oregon State": {
+      "PO": {
+        "0": {
+          "rank": 93,
+          "rating": 42.09
+        },
+        "35": {
+          "rank": 101,
+          "rating": 41.011
+        },
+        "50": {
+          "rank": 104,
+          "rating": 40.519
+        },
+        "65": {
+          "rank": 107,
+          "rating": 40.011
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 83,
+          "rating": 44.53
+        },
+        "35": {
+          "rank": 84,
+          "rating": 43.624
+        },
+        "50": {
+          "rank": 88,
+          "rating": 43.219
+        },
+        "65": {
+          "rank": 89,
+          "rating": 42.805
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 93,
+          "rating": 42.606
+        },
+        "35": {
+          "rank": 92,
+          "rating": 43.267
+        },
+        "50": {
+          "rank": 91,
+          "rating": 43.578
+        },
+        "65": {
+          "rank": 90,
+          "rating": 43.906
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 26,
+          "rating": 61.528
+        },
+        "35": {
+          "rank": 23,
+          "rating": 61.991
+        },
+        "50": {
+          "rank": 22,
+          "rating": 62.191
+        },
+        "65": {
+          "rank": 21,
+          "rating": 62.392
+        }
+      }
+    },
+    "Georgia": {
+      "PO": {
+        "0": {
+          "rank": 26,
+          "rating": 63.498
+        },
+        "35": {
+          "rank": 25,
+          "rating": 64.905
+        },
+        "50": {
+          "rank": 22,
+          "rating": 65.542
+        },
+        "65": {
+          "rank": 20,
+          "rating": 66.2
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 43,
+          "rating": 57.697
+        },
+        "35": {
+          "rank": 39,
+          "rating": 57.587
+        },
+        "50": {
+          "rank": 40,
+          "rating": 57.525
+        },
+        "65": {
+          "rank": 40,
+          "rating": 57.453
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 38,
+          "rating": 58.464
+        },
+        "35": {
+          "rank": 42,
+          "rating": 57.214
+        },
+        "50": {
+          "rank": 44,
+          "rating": 56.633
+        },
+        "65": {
+          "rank": 49,
+          "rating": 56.022
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 9,
+          "rating": 73.351
+        },
+        "35": {
+          "rank": 7,
+          "rating": 73.991
+        },
+        "50": {
+          "rank": 8,
+          "rating": 74.262
+        },
+        "65": {
+          "rank": 8,
+          "rating": 74.528
+        }
+      }
+    },
+    "Notre Dame": {
+      "PO": {
+        "0": {
+          "rank": 6,
+          "rating": 77.337
+        },
+        "35": {
+          "rank": 6,
+          "rating": 76.93
+        },
+        "50": {
+          "rank": 7,
+          "rating": 76.713
+        },
+        "65": {
+          "rank": 7,
+          "rating": 76.467
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 12,
+          "rating": 70.321
+        },
+        "35": {
+          "rank": 11,
+          "rating": 71.204
+        },
+        "50": {
+          "rank": 11,
+          "rating": 71.577
+        },
+        "65": {
+          "rank": 11,
+          "rating": 71.943
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 30,
+          "rating": 61.294
+        },
+        "35": {
+          "rank": 29,
+          "rating": 61.558
+        },
+        "50": {
+          "rank": 29,
+          "rating": 61.667
+        },
+        "65": {
+          "rank": 29,
+          "rating": 61.772
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 23,
+          "rating": 61.779
+        },
+        "35": {
+          "rank": 25,
+          "rating": 61.834
+        },
+        "50": {
+          "rank": 25,
+          "rating": 61.85
+        },
+        "65": {
+          "rank": 26,
+          "rating": 61.859
+        }
+      }
+    },
+    "Oregon": {
+      "PO": {
+        "0": {
+          "rank": 11,
+          "rating": 72.794
+        },
+        "35": {
+          "rank": 11,
+          "rating": 71.52
+        },
+        "50": {
+          "rank": 11,
+          "rating": 70.906
+        },
+        "65": {
+          "rank": 13,
+          "rating": 70.248
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 9,
+          "rating": 72.482
+        },
+        "35": {
+          "rank": 8,
+          "rating": 72.773
+        },
+        "50": {
+          "rank": 8,
+          "rating": 72.873
+        },
+        "65": {
+          "rank": 8,
+          "rating": 72.954
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 6,
+          "rating": 77.169
+        },
+        "35": {
+          "rank": 4,
+          "rating": 78.324
+        },
+        "50": {
+          "rank": 5,
+          "rating": 78.824
+        },
+        "65": {
+          "rank": 5,
+          "rating": 79.323
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 45,
+          "rating": 56.413
+        },
+        "35": {
+          "rank": 43,
+          "rating": 57.066
+        },
+        "50": {
+          "rank": 41,
+          "rating": 57.357
+        },
+        "65": {
+          "rank": 40,
+          "rating": 57.654
+        }
+      }
+    },
+    "James Madison": {
+      "PO": {
+        "0": {
+          "rank": 40,
+          "rating": 57.736
+        },
+        "35": {
+          "rank": 43,
+          "rating": 57.132
+        },
+        "50": {
+          "rank": 43,
+          "rating": 56.844
+        },
+        "65": {
+          "rank": 43,
+          "rating": 56.537
+        }
+      },
+      "PD": {
+        "0": {
+          "rank": 3,
+          "rating": 82.539
+        },
+        "35": {
+          "rank": 3,
+          "rating": 82.197
+        },
+        "50": {
+          "rank": 3,
+          "rating": 81.994
+        },
+        "65": {
+          "rank": 3,
+          "rating": 81.75
+        }
+      },
+      "RO": {
+        "0": {
+          "rank": 28,
+          "rating": 63.577
+        },
+        "35": {
+          "rank": 27,
+          "rating": 63.241
+        },
+        "50": {
+          "rank": 26,
+          "rating": 63.072
+        },
+        "65": {
+          "rank": 26,
+          "rating": 62.886
+        }
+      },
+      "RD": {
+        "0": {
+          "rank": 6,
+          "rating": 82.701
+        },
+        "35": {
+          "rank": 6,
+          "rating": 83.158
+        },
+        "50": {
+          "rank": 6,
+          "rating": 83.338
+        },
+        "65": {
+          "rank": 6,
+          "rating": 83.505
+        }
+      }
+    }
+  },
+  "mean_pearson": {
+    "0": 0.23205,
+    "35": 0.23165,
+    "50": 0.23113,
+    "65": 0.23037
+  },
+  "best_mean_pearson": "0"
+}
