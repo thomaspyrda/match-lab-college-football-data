@@ -1,0 +1,123 @@
+{
+  "season": 2025,
+  "method": "cumulative FBS-only game metrics standardized using observations available through each week; sample count shrinkage n/(n+2); no market, win or opponent adjustments",
+  "metric_definitions": {
+    "PO": [
+      [
+        "passing_ppa",
+        0.4
+      ],
+      [
+        "passing_success",
+        0.4
+      ],
+      [
+        "passing_20plus_rate",
+        0.2
+      ]
+    ],
+    "PD": [
+      [
+        "passing_ppa",
+        0.4
+      ],
+      [
+        "passing_success",
+        0.4
+      ],
+      [
+        "passing_20plus_rate",
+        0.2
+      ]
+    ],
+    "RO": [
+      [
+        "rushing_success",
+        0.25
+      ],
+      [
+        "rushing_ppa",
+        0.2
+      ],
+      [
+        "stuff_avoidance",
+        0.17
+      ],
+      [
+        "line_yards",
+        0.14
+      ],
+      [
+        "power_success",
+        0.11
+      ],
+      [
+        "second_level_yards",
+        0.08
+      ],
+      [
+        "open_field_yards",
+        0.05
+      ]
+    ],
+    "RD": [
+      [
+        "rushing_success",
+        0.25
+      ],
+      [
+        "rushing_ppa",
+        0.2
+      ],
+      [
+        "stuff_avoidance",
+        0.17
+      ],
+      [
+        "line_yards",
+        0.14
+      ],
+      [
+        "power_success",
+        0.11
+      ],
+      [
+        "second_level_yards",
+        0.08
+      ],
+      [
+        "open_field_yards",
+        0.05
+      ]
+    ]
+  },
+  "rating_scale": "50+15*z by unit per week, unbounded",
+  "weekly_team_rows": 2176,
+  "pregame_opponent_rows": 1428,
+  "teams": 136,
+  "weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "caveats": [
+    "A rating's week W can be used only from week W+1 onward.",
+    "Each unit is estimated from that unit's own game statistics, not opponents' final ratings.",
+    "Missing teams are shrunk to national-average raw unit performance, not assigned fabricated observations.",
+    "No preseason ratings are supplied for the first week; do not use later weekly strength retroactively.",
+    "This independent stat-only snapshot is not the finalized production Team Dominance model."
+  ]
+}
