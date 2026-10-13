@@ -1,0 +1,35 @@
+name: Stronger suppression overall dominance comparison
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'test_betwise_stronger_suppression_overall.py'
+      - '.github/workflows/stronger-suppression-overall.yml'
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Calculate overall ratings
+        run: python -u test_betwise_stronger_suppression_overall.py
+      - name: Verify output and publish
+        run: |
+          python - <<'PY'
+          import json
+          p='data/research/2026/betwise_stronger_suppression_overall_comparison.json'
+          d=json.load(open(p))
+          assert len(d['rows'])==136
+          print('Verified',len(d['rows']),'teams')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2026/betwise_stronger_suppression_overall_comparison.*
+          git diff --cached --quiet || git commit -m "Publish research overall rankings with stronger adjusted units"
+          git push
