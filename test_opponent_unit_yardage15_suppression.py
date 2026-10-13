@@ -57,8 +57,8 @@ def execute(year):
  members=json.loads((d/"conference_membership.json").read_text())["teams"]
  teams=sorted(members)
  source=list(csv.DictReader((d/"weekly_team_metrics.csv").open()))
- add_yardage_fields(source,year)
  source=[g for g in source if g["fbs_opponent"]=="1" and g["team"] in members and g["opponent"] in members]
+ add_yardage_fields(source,year)
  weeks=sorted({int(g["week"]) for g in source})
  frozen=list(csv.DictReader((d/"validated_weighted_weekly_four_unit_strength.csv").open()))
  previous={(int(r["through_week"]),r["team"]):r for r in frozen}
