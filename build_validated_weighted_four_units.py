@@ -44,7 +44,7 @@ for year in YEARS:
     for metric,weight in METRICS[kind]:
      if metric.endswith("_ppa"):
       val=num(wmap[wk,t][f"{side}_{metric.split('_')[0]}_ppa_play_weighted"])
-     elif metric.endswith("_success"):
+     elif metric in ("passing_success","rushing_success"):
       val=num(smap[wk,t][f"{side}_{metric.split('_')[0]}_success_rate"])
      else:
       vals=[num(g.get(f"{side}_{metric}")) for g in history[t]]
