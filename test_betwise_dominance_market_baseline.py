@@ -57,8 +57,8 @@ for key,weights in {"25_25_25_25":(.25,.25,.25,.25),"40_25_25_10_baseline":(.40,
  variants[key]=rows
 (D/"betwise_dominance_market_baseline_comparison.json").write_text(json.dumps({"model":"Descriptive 4-component dominance; provisional independent z-scaled measures","weight_order":list(components),"weights":{"25_25_25_25":[.25,.25,.25,.25],"40_25_25_10_baseline":[.40,.25,.25,.10],"50_20_20_10_baseline":[.50,.20,.20,.10]},"caveats":["Four-unit opponent adjustments use frozen pregame strengths from prior research model.","Opponent market strength determined from 2026 full-period spreads; used for retrospective ranking only.","Strong-opponent victory recognition and ATS residual can correlate; component overlap needs auditing.","Market component includes absolute no-preseason market strength plus half-strength ATS adjustment.","Only completed FBS-versus-FBS games are included; 0–100 display not forced at boundaries."],"variants":variants},indent=2))
 with (D/"betwise_dominance_market_baseline_comparison.csv").open("w",newline="") as f:
- w=csv.writer(f);w.writerow(["model","rank","team","dominance_index","score_z","four_unit","earned_competition","ats_market","results"])
+ w=csv.writer(f);w.writerow(["model","rank","team","dominance_index","score_z","four_unit","earned_competition","market_strength_ats","results"])
  for model,rows in variants.items():
-  for r in rows:w.writerow([model,r["rank"],r["team"],r["dominance_index"],r["score_z"],r["four_unit"],r["earned_competition"],r["ats_market"],r["results"]])
+  for r in rows:w.writerow([model,r["rank"],r["team"],r["dominance_index"],r["score_z"],r["four_unit"],r["earned_competition"],r["market_strength_ats"],r["results"]])
 (D/"betwise_dominance_market_baseline_game_audit.json").write_text(json.dumps(audit,indent=2))
 print("BetWise composite weights:",[(v,[(r["rank"],r["team"]) for r in rows[:25]]) for v,rows in variants.items()])
