@@ -1,0 +1,2756 @@
+{
+  "model": "Descriptive 4-component dominance; provisional independent z-scaled measures",
+  "weight_order": [
+    "four_unit",
+    "earned_competition",
+    "ats_market",
+    "results"
+  ],
+  "weights": {
+    "40_25_25_10": [
+      0.4,
+      0.25,
+      0.25,
+      0.1
+    ],
+    "50_20_20_10": [
+      0.5,
+      0.2,
+      0.2,
+      0.1
+    ]
+  },
+  "caveats": [
+    "Four-unit opponent adjustments use frozen pregame strengths from prior research model.",
+    "Opponent market strength determined from 2026 full-period spreads; used for retrospective ranking only.",
+    "Strong-opponent victory recognition and ATS residual can correlate; component overlap needs auditing.",
+    "Market component measures ATS residual, NOT absolute market power; no preseason anchor in market-derived opponent weights.",
+    "Only completed FBS-versus-FBS games are included; 0\u2013100 display not forced at boundaries."
+  ],
+  "variants": {
+    "40_25_25_10": [
+      {
+        "team": "UCLA",
+        "score_z": 2.11094,
+        "dominance_index": 81.66,
+        "four_unit": 1.9289,
+        "earned_competition": 2.0865,
+        "ats_market": 2.5504,
+        "results": 1.8016,
+        "rank": 1
+      },
+      {
+        "team": "Georgia",
+        "score_z": 1.90562,
+        "dominance_index": 78.58,
+        "four_unit": 2.2831,
+        "earned_competition": 2.172,
+        "ats_market": 1.0768,
+        "results": 1.8016,
+        "rank": 2
+      },
+      {
+        "team": "Alabama",
+        "score_z": 1.78408,
+        "dominance_index": 76.76,
+        "four_unit": 2.2377,
+        "earned_competition": 1.418,
+        "ats_market": 1.6556,
+        "results": 1.2061,
+        "rank": 3
+      },
+      {
+        "team": "Utah",
+        "score_z": 1.54028,
+        "dominance_index": 73.1,
+        "four_unit": 1.5254,
+        "earned_competition": 1.872,
+        "ats_market": 1.1278,
+        "results": 1.8016,
+        "rank": 4
+      },
+      {
+        "team": "Miami",
+        "score_z": 1.50835,
+        "dominance_index": 72.63,
+        "four_unit": 1.5971,
+        "earned_competition": 1.8629,
+        "ats_market": 0.8944,
+        "results": 1.8016,
+        "rank": 5
+      },
+      {
+        "team": "Notre Dame",
+        "score_z": 1.44592,
+        "dominance_index": 71.69,
+        "four_unit": 1.8041,
+        "earned_competition": 1.8819,
+        "ats_market": 0.2946,
+        "results": 1.8016,
+        "rank": 6
+      },
+      {
+        "team": "Northwestern",
+        "score_z": 1.4392,
+        "dominance_index": 71.59,
+        "four_unit": 1.2036,
+        "earned_competition": 0.8829,
+        "ats_market": 2.5847,
+        "results": 0.9084,
+        "rank": 7
+      },
+      {
+        "team": "Missouri",
+        "score_z": 1.42525,
+        "dominance_index": 71.38,
+        "four_unit": 1.3525,
+        "earned_competition": 1.4061,
+        "ats_market": 1.696,
+        "results": 1.087,
+        "rank": 8
+      },
+      {
+        "team": "Wake Forest",
+        "score_z": 1.39722,
+        "dominance_index": 70.96,
+        "four_unit": 1.209,
+        "earned_competition": 1.1401,
+        "ats_market": 2.0319,
+        "results": 1.2061,
+        "rank": 9
+      },
+      {
+        "team": "LSU",
+        "score_z": 1.35686,
+        "dominance_index": 70.35,
+        "four_unit": 2.4076,
+        "earned_competition": 0.5175,
+        "ats_market": 0.9088,
+        "results": 0.3724,
+        "rank": 10
+      },
+      {
+        "team": "BYU",
+        "score_z": 1.35421,
+        "dominance_index": 70.31,
+        "four_unit": 1.451,
+        "earned_competition": 2.0313,
+        "ats_market": 0.3433,
+        "results": 1.8016,
+        "rank": 11
+      },
+      {
+        "team": "Oklahoma State",
+        "score_z": 1.22526,
+        "dominance_index": 68.38,
+        "four_unit": 1.0107,
+        "earned_competition": 1.4081,
+        "ats_market": 1.5124,
+        "results": 0.9084,
+        "rank": 12
+      },
+      {
+        "team": "Kentucky",
+        "score_z": 1.14494,
+        "dominance_index": 67.17,
+        "four_unit": 1.203,
+        "earned_competition": 1.4244,
+        "ats_market": 0.7958,
+        "results": 1.087,
+        "rank": 13
+      },
+      {
+        "team": "Texas",
+        "score_z": 1.14081,
+        "dominance_index": 67.11,
+        "four_unit": 1.6762,
+        "earned_competition": 1.5045,
+        "ats_market": -0.0579,
+        "results": 1.087,
+        "rank": 14
+      },
+      {
+        "team": "Oregon State",
+        "score_z": 1.13571,
+        "dominance_index": 67.04,
+        "four_unit": 1.0551,
+        "earned_competition": 0.0494,
+        "ats_market": 2.6563,
+        "results": 0.3724,
+        "rank": 15
+      },
+      {
+        "team": "Wisconsin",
+        "score_z": 1.13496,
+        "dominance_index": 67.02,
+        "four_unit": 1.1864,
+        "earned_competition": 0.9446,
+        "ats_market": 1.3336,
+        "results": 0.9084,
+        "rank": 16
+      },
+      {
+        "team": "Ohio State",
+        "score_z": 1.08378,
+        "dominance_index": 66.26,
+        "four_unit": 1.6266,
+        "earned_competition": 1.1384,
+        "ats_market": 0.1117,
+        "results": 1.2061,
+        "rank": 17
+      },
+      {
+        "team": "Mississippi State",
+        "score_z": 1.08154,
+        "dominance_index": 66.22,
+        "four_unit": 1.4203,
+        "earned_competition": 1.1765,
+        "ats_market": 0.4425,
+        "results": 1.087,
+        "rank": 18
+      },
+      {
+        "team": "Nebraska",
+        "score_z": 1.04043,
+        "dominance_index": 65.61,
+        "four_unit": 0.8977,
+        "earned_competition": 0.8857,
+        "ats_market": 1.4049,
+        "results": 1.087,
+        "rank": 19
+      },
+      {
+        "team": "Boise State",
+        "score_z": 1.01509,
+        "dominance_index": 65.23,
+        "four_unit": 0.8278,
+        "earned_competition": 0.9172,
+        "ats_market": 1.3839,
+        "results": 1.087,
+        "rank": 20
+      },
+      {
+        "team": "Baylor",
+        "score_z": 1.00734,
+        "dominance_index": 65.11,
+        "four_unit": 0.6532,
+        "earned_competition": 0.9611,
+        "ats_market": 1.6597,
+        "results": 0.9084,
+        "rank": 21
+      },
+      {
+        "team": "Indiana",
+        "score_z": 0.99463,
+        "dominance_index": 64.92,
+        "four_unit": 1.2427,
+        "earned_competition": 1.9897,
+        "ats_market": -0.7201,
+        "results": 1.8016,
+        "rank": 22
+      },
+      {
+        "team": "Georgia State",
+        "score_z": 0.97385,
+        "dominance_index": 64.61,
+        "four_unit": 0.555,
+        "earned_competition": 0.6514,
+        "ats_market": 1.9927,
+        "results": 0.9084,
+        "rank": 23
+      },
+      {
+        "team": "James Madison",
+        "score_z": 0.9655,
+        "dominance_index": 64.48,
+        "four_unit": 0.1637,
+        "earned_competition": 1.6301,
+        "ats_market": 1.2493,
+        "results": 1.8016,
+        "rank": 24
+      },
+      {
+        "team": "Houston",
+        "score_z": 0.94279,
+        "dominance_index": 64.14,
+        "four_unit": 0.9655,
+        "earned_competition": 1.1221,
+        "ats_market": 0.6694,
+        "results": 1.087,
+        "rank": 25
+      },
+      {
+        "team": "Pittsburgh",
+        "score_z": 0.92905,
+        "dominance_index": 63.94,
+        "four_unit": 0.9033,
+        "earned_competition": 1.2237,
+        "ats_market": 0.6125,
+        "results": 1.087,
+        "rank": 26
+      },
+      {
+        "team": "Ole Miss",
+        "score_z": 0.92824,
+        "dominance_index": 63.92,
+        "four_unit": 1.1954,
+        "earned_competition": 1.274,
+        "ats_market": 0.0915,
+        "results": 1.087,
+        "rank": 27
+      },
+      {
+        "team": "New Mexico",
+        "score_z": 0.88053,
+        "dominance_index": 63.21,
+        "four_unit": 0.3001,
+        "earned_competition": 0.4448,
+        "ats_market": 2.2338,
+        "results": 0.9084,
+        "rank": 28
+      },
+      {
+        "team": "Duke",
+        "score_z": 0.87241,
+        "dominance_index": 63.09,
+        "four_unit": 0.7984,
+        "earned_competition": 1.0268,
+        "ats_market": 0.8221,
+        "results": 0.9084,
+        "rank": 29
+      },
+      {
+        "team": "Arizona",
+        "score_z": 0.84574,
+        "dominance_index": 62.69,
+        "four_unit": 0.7088,
+        "earned_competition": 1.0124,
+        "ats_market": 0.8016,
+        "results": 1.087,
+        "rank": 30
+      },
+      {
+        "team": "Iowa",
+        "score_z": 0.84336,
+        "dominance_index": 62.65,
+        "four_unit": 0.6884,
+        "earned_competition": 1.203,
+        "ats_market": 0.6342,
+        "results": 1.087,
+        "rank": 31
+      },
+      {
+        "team": "Tennessee",
+        "score_z": 0.70844,
+        "dominance_index": 60.63,
+        "four_unit": 0.658,
+        "earned_competition": 1.0855,
+        "ats_market": 0.2606,
+        "results": 1.087,
+        "rank": 32
+      },
+      {
+        "team": "USC",
+        "score_z": 0.66027,
+        "dominance_index": 59.9,
+        "four_unit": 0.9385,
+        "earned_competition": 1.3946,
+        "ats_market": -0.7717,
+        "results": 1.2912,
+        "rank": 33
+      },
+      {
+        "team": "Texas Tech",
+        "score_z": 0.62187,
+        "dominance_index": 59.33,
+        "four_unit": 0.1721,
+        "earned_competition": 1.8618,
+        "ats_market": -0.3704,
+        "results": 1.8016,
+        "rank": 34
+      },
+      {
+        "team": "Memphis",
+        "score_z": 0.61294,
+        "dominance_index": 59.19,
+        "four_unit": -0.0017,
+        "earned_competition": 0.8781,
+        "ats_market": 1.1416,
+        "results": 1.087,
+        "rank": 35
+      },
+      {
+        "team": "Liberty",
+        "score_z": 0.5926,
+        "dominance_index": 58.89,
+        "four_unit": -0.1749,
+        "earned_competition": 0.7377,
+        "ats_market": 1.4777,
+        "results": 1.087,
+        "rank": 36
+      },
+      {
+        "team": "North Carolina",
+        "score_z": 0.5597,
+        "dominance_index": 58.4,
+        "four_unit": 0.7456,
+        "earned_competition": 0.0797,
+        "ats_market": 0.9601,
+        "results": 0.0151,
+        "rank": 37
+      },
+      {
+        "team": "Louisville",
+        "score_z": 0.49445,
+        "dominance_index": 57.42,
+        "four_unit": 1.2158,
+        "earned_competition": -0.148,
+        "ats_market": 0.3174,
+        "results": -0.3422,
+        "rank": 38
+      },
+      {
+        "team": "Michigan",
+        "score_z": 0.45243,
+        "dominance_index": 56.79,
+        "four_unit": 1.253,
+        "earned_competition": 0.3866,
+        "ats_market": -0.7307,
+        "results": 0.3724,
+        "rank": 39
+      },
+      {
+        "team": "Oklahoma",
+        "score_z": 0.37048,
+        "dominance_index": 55.56,
+        "four_unit": 1.1141,
+        "earned_competition": 0.3581,
+        "ats_market": -0.8077,
+        "results": 0.3724,
+        "rank": 40
+      },
+      {
+        "team": "Purdue",
+        "score_z": 0.34831,
+        "dominance_index": 55.22,
+        "four_unit": 0.5884,
+        "earned_competition": -0.3157,
+        "ats_market": 0.9043,
+        "results": -0.3422,
+        "rank": 41
+      },
+      {
+        "team": "North Texas",
+        "score_z": 0.29839,
+        "dominance_index": 54.48,
+        "four_unit": -0.23,
+        "earned_competition": 0.1851,
+        "ats_market": 1.2275,
+        "results": 0.3724,
+        "rank": 42
+      },
+      {
+        "team": "UTSA",
+        "score_z": 0.27505,
+        "dominance_index": 54.13,
+        "four_unit": -0.3101,
+        "earned_competition": 0.8753,
+        "ats_market": 0.2863,
+        "results": 1.087,
+        "rank": 43
+      },
+      {
+        "team": "Auburn",
+        "score_z": 0.26877,
+        "dominance_index": 54.03,
+        "four_unit": 0.7072,
+        "earned_competition": 0.263,
+        "ats_market": -0.4684,
+        "results": 0.3724,
+        "rank": 44
+      },
+      {
+        "team": "Florida",
+        "score_z": 0.25406,
+        "dominance_index": 53.81,
+        "four_unit": 0.6803,
+        "earned_competition": 0.5815,
+        "ats_market": -0.8028,
+        "results": 0.3724,
+        "rank": 45
+      },
+      {
+        "team": "Virginia Tech",
+        "score_z": 0.25308,
+        "dominance_index": 53.8,
+        "four_unit": 0.5807,
+        "earned_competition": 0.3892,
+        "ats_market": -0.4549,
+        "results": 0.3724,
+        "rank": 46
+      },
+      {
+        "team": "Cincinnati",
+        "score_z": 0.24474,
+        "dominance_index": 53.67,
+        "four_unit": -0.0677,
+        "earned_competition": 0.9767,
+        "ats_market": -0.2528,
+        "results": 0.9084,
+        "rank": 47
+      },
+      {
+        "team": "South Carolina",
+        "score_z": 0.24328,
+        "dominance_index": 53.65,
+        "four_unit": 0.7366,
+        "earned_competition": -0.3972,
+        "ats_market": 0.3286,
+        "results": -0.3422,
+        "rank": 48
+      },
+      {
+        "team": "SMU",
+        "score_z": 0.22852,
+        "dominance_index": 53.43,
+        "four_unit": 0.5211,
+        "earned_competition": 0.8415,
+        "ats_market": -1.1246,
+        "results": 0.9084,
+        "rank": 49
+      },
+      {
+        "team": "Florida State",
+        "score_z": 0.22687,
+        "dominance_index": 53.4,
+        "four_unit": 0.7777,
+        "earned_competition": -0.5084,
+        "ats_market": 0.3083,
+        "results": -0.3422,
+        "rank": 50
+      },
+      {
+        "team": "Iowa State",
+        "score_z": 0.19639,
+        "dominance_index": 52.95,
+        "four_unit": 0.5705,
+        "earned_competition": -0.5274,
+        "ats_market": 0.537,
+        "results": -0.3422,
+        "rank": 51
+      },
+      {
+        "team": "Kansas",
+        "score_z": 0.17716,
+        "dominance_index": 52.66,
+        "four_unit": 1.2807,
+        "earned_competition": -1.1158,
+        "ats_market": 0.1265,
+        "results": -0.8781,
+        "rank": 52
+      },
+      {
+        "team": "Florida Atlantic",
+        "score_z": 0.15261,
+        "dominance_index": 52.29,
+        "four_unit": -0.1988,
+        "earned_competition": 0.6163,
+        "ats_market": -0.0512,
+        "results": 0.9084,
+        "rank": 53
+      },
+      {
+        "team": "Virginia",
+        "score_z": 0.10422,
+        "dominance_index": 51.56,
+        "four_unit": 0.5253,
+        "earned_competition": 0.3758,
+        "ats_market": -0.9484,
+        "results": 0.3724,
+        "rank": 54
+      },
+      {
+        "team": "Louisiana",
+        "score_z": 0.10322,
+        "dominance_index": 51.55,
+        "four_unit": -0.4762,
+        "earned_competition": 0.1268,
+        "ats_market": 0.8991,
+        "results": 0.3724,
+        "rank": 55
+      },
+      {
+        "team": "Massachusetts",
+        "score_z": 0.10248,
+        "dominance_index": 51.54,
+        "four_unit": -0.2255,
+        "earned_competition": -0.2018,
+        "ats_market": 1.2046,
+        "results": -0.5804,
+        "rank": 56
+      },
+      {
+        "team": "Louisiana Tech",
+        "score_z": 0.07961,
+        "dominance_index": 51.19,
+        "four_unit": 0.1153,
+        "earned_competition": -0.1319,
+        "ats_market": 0.2599,
+        "results": 0.0151,
+        "rank": 57
+      },
+      {
+        "team": "Utah State",
+        "score_z": 0.02445,
+        "dominance_index": 50.37,
+        "four_unit": -0.0749,
+        "earned_competition": -0.5157,
+        "ats_market": 0.8701,
+        "results": -0.3422,
+        "rank": 58
+      },
+      {
+        "team": "Boston College",
+        "score_z": 0.0082,
+        "dominance_index": 50.12,
+        "four_unit": 0.4815,
+        "earned_competition": -0.8986,
+        "ats_market": 0.5122,
+        "results": -0.8781,
+        "rank": 59
+      },
+      {
+        "team": "Air Force",
+        "score_z": -0.00641,
+        "dominance_index": 49.9,
+        "four_unit": -1.7131,
+        "earned_competition": 1.5343,
+        "ats_market": 0.4603,
+        "results": 1.8016,
+        "rank": 60
+      },
+      {
+        "team": "UCF",
+        "score_z": -0.00752,
+        "dominance_index": 49.89,
+        "four_unit": 0.1137,
+        "earned_competition": -0.3709,
+        "ats_market": 0.2957,
+        "results": -0.3422,
+        "rank": 61
+      },
+      {
+        "team": "Oregon",
+        "score_z": -0.01312,
+        "dominance_index": 49.8,
+        "four_unit": 0.7343,
+        "earned_competition": 0.3672,
+        "ats_market": -1.6006,
+        "results": 0.0151,
+        "rank": 62
+      },
+      {
+        "team": "Penn State",
+        "score_z": -0.02578,
+        "dominance_index": 49.61,
+        "four_unit": 0.6984,
+        "earned_competition": -0.2436,
+        "ats_market": -0.983,
+        "results": 0.0151,
+        "rank": 63
+      },
+      {
+        "team": "Minnesota",
+        "score_z": -0.05807,
+        "dominance_index": 49.13,
+        "four_unit": -0.3756,
+        "earned_competition": 0.5808,
+        "ats_market": -0.3611,
+        "results": 0.3724,
+        "rank": 64
+      },
+      {
+        "team": "UConn",
+        "score_z": -0.07528,
+        "dominance_index": 48.87,
+        "four_unit": -0.3559,
+        "earned_competition": -0.3416,
+        "ats_market": 0.7468,
+        "results": -0.3422,
+        "rank": 65
+      },
+      {
+        "team": "Jacksonville State",
+        "score_z": -0.09458,
+        "dominance_index": 48.58,
+        "four_unit": -0.9589,
+        "earned_competition": 0.7558,
+        "ats_market": 0.0367,
+        "results": 0.9084,
+        "rank": 66
+      },
+      {
+        "team": "Texas A&M",
+        "score_z": -0.11044,
+        "dominance_index": 48.34,
+        "four_unit": 0.4182,
+        "earned_competition": -0.0751,
+        "ats_market": -1.0418,
+        "results": 0.0151,
+        "rank": 67
+      },
+      {
+        "team": "Nevada",
+        "score_z": -0.11263,
+        "dominance_index": 48.31,
+        "four_unit": -0.8806,
+        "earned_competition": -0.0232,
+        "ats_market": 0.9756,
+        "results": 0.0151,
+        "rank": 68
+      },
+      {
+        "team": "Fresno State",
+        "score_z": -0.11308,
+        "dominance_index": 48.3,
+        "four_unit": -0.5618,
+        "earned_competition": 0.0921,
+        "ats_market": 0.2054,
+        "results": 0.3724,
+        "rank": 69
+      },
+      {
+        "team": "Florida International",
+        "score_z": -0.1211,
+        "dominance_index": 48.18,
+        "four_unit": -0.5919,
+        "earned_competition": -0.1279,
+        "ats_market": 0.5845,
+        "results": 0.0151,
+        "rank": 70
+      },
+      {
+        "team": "Toledo",
+        "score_z": -0.14093,
+        "dominance_index": 47.89,
+        "four_unit": -0.4841,
+        "earned_competition": 0.3485,
+        "ats_market": -0.2866,
+        "results": 0.3724,
+        "rank": 71
+      },
+      {
+        "team": "San Jose State",
+        "score_z": -0.15526,
+        "dominance_index": 47.67,
+        "four_unit": -0.5228,
+        "earned_competition": -0.4084,
+        "ats_market": 0.7608,
+        "results": -0.3422,
+        "rank": 72
+      },
+      {
+        "team": "Georgia Tech",
+        "score_z": -0.15647,
+        "dominance_index": 47.65,
+        "four_unit": 0.6849,
+        "earned_competition": -0.758,
+        "ats_market": -0.6125,
+        "results": -0.8781,
+        "rank": 73
+      },
+      {
+        "team": "Western Michigan",
+        "score_z": -0.1757,
+        "dominance_index": 47.36,
+        "four_unit": -0.9103,
+        "earned_competition": -0.0051,
+        "ats_market": 0.6099,
+        "results": 0.3724,
+        "rank": 74
+      },
+      {
+        "team": "South Alabama",
+        "score_z": -0.18651,
+        "dominance_index": 47.2,
+        "four_unit": -0.9088,
+        "earned_competition": 0.1996,
+        "ats_market": 0.3595,
+        "results": 0.3724,
+        "rank": 75
+      },
+      {
+        "team": "Kansas State",
+        "score_z": -0.19235,
+        "dominance_index": 47.11,
+        "four_unit": 0.3376,
+        "earned_competition": -0.0457,
+        "ats_market": -1.2699,
+        "results": 0.0151,
+        "rank": 76
+      },
+      {
+        "team": "Ohio",
+        "score_z": -0.21212,
+        "dominance_index": 46.82,
+        "four_unit": -0.8829,
+        "earned_competition": 0.1851,
+        "ats_market": 0.2301,
+        "results": 0.3724,
+        "rank": 77
+      },
+      {
+        "team": "Syracuse",
+        "score_z": -0.24264,
+        "dominance_index": 46.36,
+        "four_unit": 0.2324,
+        "earned_competition": -0.9277,
+        "ats_market": -0.0635,
+        "results": -0.8781,
+        "rank": 78
+      },
+      {
+        "team": "Texas State",
+        "score_z": -0.24362,
+        "dominance_index": 46.35,
+        "four_unit": 0.9591,
+        "earned_competition": -0.8852,
+        "ats_market": -1.2726,
+        "results": -0.8781,
+        "rank": 79
+      },
+      {
+        "team": "Vanderbilt",
+        "score_z": -0.25978,
+        "dominance_index": 46.1,
+        "four_unit": 0.3468,
+        "earned_competition": -0.578,
+        "ats_market": -0.8792,
+        "results": -0.3422,
+        "rank": 80
+      },
+      {
+        "team": "East Carolina",
+        "score_z": -0.27076,
+        "dominance_index": 45.94,
+        "four_unit": -0.2943,
+        "earned_competition": -0.1852,
+        "ats_market": -0.4329,
+        "results": 0.0151,
+        "rank": 81
+      },
+      {
+        "team": "Michigan State",
+        "score_z": -0.27393,
+        "dominance_index": 45.89,
+        "four_unit": 0.1202,
+        "earned_competition": -0.7987,
+        "ats_market": -0.2572,
+        "results": -0.5804,
+        "rank": 82
+      },
+      {
+        "team": "Troy",
+        "score_z": -0.28222,
+        "dominance_index": 45.77,
+        "four_unit": -0.9023,
+        "earned_competition": -0.1986,
+        "ats_market": 0.5074,
+        "results": 0.0151,
+        "rank": 83
+      },
+      {
+        "team": "Clemson",
+        "score_z": -0.28338,
+        "dominance_index": 45.75,
+        "four_unit": -0.07,
+        "earned_competition": 0.2073,
+        "ats_market": -1.3778,
+        "results": 0.3724,
+        "rank": 84
+      },
+      {
+        "team": "TCU",
+        "score_z": -0.31891,
+        "dominance_index": 45.22,
+        "four_unit": 0.4516,
+        "earned_competition": -0.9306,
+        "ats_market": -0.7163,
+        "results": -0.8781,
+        "rank": 85
+      },
+      {
+        "team": "UAB",
+        "score_z": -0.32292,
+        "dominance_index": 45.16,
+        "four_unit": -0.6296,
+        "earned_competition": -0.3388,
+        "ats_market": 0.1914,
+        "results": -0.3422,
+        "rank": 86
+      },
+      {
+        "team": "Georgia Southern",
+        "score_z": -0.32445,
+        "dominance_index": 45.13,
+        "four_unit": -0.2085,
+        "earned_competition": -1.0697,
+        "ats_market": 0.5283,
+        "results": -1.0568,
+        "rank": 87
+      },
+      {
+        "team": "South Florida",
+        "score_z": -0.34817,
+        "dominance_index": 44.78,
+        "four_unit": -0.9187,
+        "earned_competition": 0.3175,
+        "ats_market": -0.3894,
+        "results": 0.3724,
+        "rank": 88
+      },
+      {
+        "team": "Tulsa",
+        "score_z": -0.35011,
+        "dominance_index": 44.75,
+        "four_unit": -0.6798,
+        "earned_competition": -0.2573,
+        "ats_market": 0.0813,
+        "results": -0.3422,
+        "rank": 89
+      },
+      {
+        "team": "Colorado",
+        "score_z": -0.35991,
+        "dominance_index": 44.6,
+        "four_unit": 0.7004,
+        "earned_competition": -0.9676,
+        "ats_market": -1.2415,
+        "results": -0.8781,
+        "rank": 90
+      },
+      {
+        "team": "Illinois",
+        "score_z": -0.37182,
+        "dominance_index": 44.42,
+        "four_unit": -0.0757,
+        "earned_competition": -0.4279,
+        "ats_market": -0.8013,
+        "results": -0.3422,
+        "rank": 91
+      },
+      {
+        "team": "California",
+        "score_z": -0.37212,
+        "dominance_index": 44.42,
+        "four_unit": -0.473,
+        "earned_competition": -0.204,
+        "ats_market": -0.3908,
+        "results": -0.3422,
+        "rank": 92
+      },
+      {
+        "team": "Wyoming",
+        "score_z": -0.38418,
+        "dominance_index": 44.24,
+        "four_unit": -0.9579,
+        "earned_competition": 0.1485,
+        "ats_market": -0.1587,
+        "results": 0.0151,
+        "rank": 93
+      },
+      {
+        "team": "UNLV",
+        "score_z": -0.38479,
+        "dominance_index": 44.23,
+        "four_unit": -0.8138,
+        "earned_competition": 0.3234,
+        "ats_market": -0.7094,
+        "results": 0.3724,
+        "rank": 94
+      },
+      {
+        "team": "West Virginia",
+        "score_z": -0.40397,
+        "dominance_index": 43.94,
+        "four_unit": -0.2717,
+        "earned_competition": -0.3125,
+        "ats_market": -0.7317,
+        "results": -0.3422,
+        "rank": 95
+      },
+      {
+        "team": "Army",
+        "score_z": -0.40406,
+        "dominance_index": 43.94,
+        "four_unit": -0.8866,
+        "earned_competition": 0.1267,
+        "ats_market": -0.3303,
+        "results": 0.0151,
+        "rank": 96
+      },
+      {
+        "team": "NC State",
+        "score_z": -0.40833,
+        "dominance_index": 43.88,
+        "four_unit": -0.0887,
+        "earned_competition": -0.2422,
+        "ats_market": -1.1123,
+        "results": -0.3422,
+        "rank": 97
+      },
+      {
+        "team": "Arizona State",
+        "score_z": -0.44557,
+        "dominance_index": 43.32,
+        "four_unit": 0.1602,
+        "earned_competition": -0.0716,
+        "ats_market": -1.9731,
+        "results": 0.0151,
+        "rank": 98
+      },
+      {
+        "team": "Temple",
+        "score_z": -0.44691,
+        "dominance_index": 43.3,
+        "four_unit": -0.427,
+        "earned_competition": -0.9127,
+        "ats_market": 0.2311,
+        "results": -1.0568,
+        "rank": 99
+      },
+      {
+        "team": "Buffalo",
+        "score_z": -0.49551,
+        "dominance_index": 42.57,
+        "four_unit": -1.2727,
+        "earned_competition": -0.7482,
+        "ats_market": 1.1536,
+        "results": -0.8781,
+        "rank": 100
+      },
+      {
+        "team": "New Mexico State",
+        "score_z": -0.50844,
+        "dominance_index": 42.37,
+        "four_unit": -0.5357,
+        "earned_competition": -0.9399,
+        "ats_market": 0.186,
+        "results": -1.0568,
+        "rank": 101
+      },
+      {
+        "team": "Arkansas",
+        "score_z": -0.51186,
+        "dominance_index": 42.32,
+        "four_unit": 0.1553,
+        "earned_competition": -1.3702,
+        "ats_market": -0.503,
+        "results": -1.0568,
+        "rank": 102
+      },
+      {
+        "team": "Navy",
+        "score_z": -0.51585,
+        "dominance_index": 42.26,
+        "four_unit": -0.3241,
+        "earned_competition": -0.6087,
+        "ats_market": -0.5849,
+        "results": -0.8781,
+        "rank": 103
+      },
+      {
+        "team": "App State",
+        "score_z": -0.53621,
+        "dominance_index": 41.96,
+        "four_unit": -1.1292,
+        "earned_competition": -0.0226,
+        "ats_market": -0.3217,
+        "results": 0.0151,
+        "rank": 104
+      },
+      {
+        "team": "Tulane",
+        "score_z": -0.55161,
+        "dominance_index": 41.73,
+        "four_unit": -0.911,
+        "earned_competition": -0.4855,
+        "ats_market": -0.1265,
+        "results": -0.3422,
+        "rank": 105
+      },
+      {
+        "team": "Washington",
+        "score_z": -0.69356,
+        "dominance_index": 39.6,
+        "four_unit": -0.1742,
+        "earned_competition": -0.5481,
+        "ats_market": -1.8106,
+        "results": -0.3422,
+        "rank": 106
+      },
+      {
+        "team": "Delaware",
+        "score_z": -0.7167,
+        "dominance_index": 39.25,
+        "four_unit": -0.6738,
+        "earned_competition": -0.8987,
+        "ats_market": -0.5389,
+        "results": -0.8781,
+        "rank": 107
+      },
+      {
+        "team": "Coastal Carolina",
+        "score_z": -0.80761,
+        "dominance_index": 37.89,
+        "four_unit": -1.3322,
+        "earned_competition": -0.824,
+        "ats_market": 0.1478,
+        "results": -1.0568,
+        "rank": 108
+      },
+      {
+        "team": "Colorado State",
+        "score_z": -0.80836,
+        "dominance_index": 37.87,
+        "four_unit": -1.1299,
+        "earned_competition": -0.8937,
+        "ats_market": -0.1806,
+        "results": -0.8781,
+        "rank": 109
+      },
+      {
+        "team": "Arkansas State",
+        "score_z": -0.84938,
+        "dominance_index": 37.26,
+        "four_unit": -0.8335,
+        "earned_competition": -0.9336,
+        "ats_market": -0.7077,
+        "results": -1.0568,
+        "rank": 110
+      },
+      {
+        "team": "Miami (OH)",
+        "score_z": -0.89864,
+        "dominance_index": 36.52,
+        "four_unit": -1.2702,
+        "earned_competition": -0.3629,
+        "ats_market": -1.0626,
+        "results": -0.3422,
+        "rank": 111
+      },
+      {
+        "team": "Rice",
+        "score_z": -0.92161,
+        "dominance_index": 36.18,
+        "four_unit": -0.7053,
+        "earned_competition": -1.6654,
+        "ats_market": -0.1839,
+        "results": -1.7714,
+        "rank": 112
+      },
+      {
+        "team": "Sam Houston",
+        "score_z": -0.92348,
+        "dominance_index": 36.15,
+        "four_unit": -0.8442,
+        "earned_competition": -1.6007,
+        "ats_market": -0.034,
+        "results": -1.7714,
+        "rank": 113
+      },
+      {
+        "team": "Washington State",
+        "score_z": -0.93521,
+        "dominance_index": 35.97,
+        "four_unit": -0.5415,
+        "earned_competition": -1.7365,
+        "ats_market": -0.4294,
+        "results": -1.7714,
+        "rank": 114
+      },
+      {
+        "team": "Stanford",
+        "score_z": -0.9514,
+        "dominance_index": 35.73,
+        "four_unit": -0.5084,
+        "earned_competition": -0.7657,
+        "ats_market": -1.9943,
+        "results": -0.5804,
+        "rank": 115
+      },
+      {
+        "team": "Middle Tennessee",
+        "score_z": -0.9583,
+        "dominance_index": 35.63,
+        "four_unit": -1.268,
+        "earned_competition": -0.7215,
+        "ats_market": -0.7317,
+        "results": -0.8781,
+        "rank": 116
+      },
+      {
+        "team": "Maryland",
+        "score_z": -0.96155,
+        "dominance_index": 35.58,
+        "four_unit": -0.3125,
+        "earned_competition": -1.306,
+        "ats_market": -1.6176,
+        "results": -1.0568,
+        "rank": 117
+      },
+      {
+        "team": "Eastern Michigan",
+        "score_z": -0.97844,
+        "dominance_index": 35.32,
+        "four_unit": -1.613,
+        "earned_competition": -0.4732,
+        "ats_market": -0.7229,
+        "results": -0.3422,
+        "rank": 118
+      },
+      {
+        "team": "Central Michigan",
+        "score_z": -0.97856,
+        "dominance_index": 35.32,
+        "four_unit": -1.7212,
+        "earned_competition": -0.4925,
+        "ats_market": -0.531,
+        "results": -0.3422,
+        "rank": 119
+      },
+      {
+        "team": "Hawai'i",
+        "score_z": -1.03051,
+        "dominance_index": 34.54,
+        "four_unit": -1.0625,
+        "earned_competition": -1.0256,
+        "ats_market": -0.9261,
+        "results": -1.1759,
+        "rank": 120
+      },
+      {
+        "team": "Northern Illinois",
+        "score_z": -1.03191,
+        "dominance_index": 34.52,
+        "four_unit": -0.6701,
+        "earned_competition": -1.652,
+        "ats_market": -0.6949,
+        "results": -1.7714,
+        "rank": 121
+      },
+      {
+        "team": "Missouri State",
+        "score_z": -1.03557,
+        "dominance_index": 34.47,
+        "four_unit": -0.9746,
+        "earned_competition": -1.6563,
+        "ats_market": -0.2181,
+        "results": -1.7714,
+        "rank": 122
+      },
+      {
+        "team": "Bowling Green",
+        "score_z": -1.06956,
+        "dominance_index": 33.96,
+        "four_unit": -1.3099,
+        "earned_competition": -0.9168,
+        "ats_market": -0.9144,
+        "results": -0.8781,
+        "rank": 123
+      },
+      {
+        "team": "Kennesaw State",
+        "score_z": -1.10231,
+        "dominance_index": 33.47,
+        "four_unit": -1.195,
+        "earned_competition": -1.5227,
+        "ats_market": -0.266,
+        "results": -1.7714,
+        "rank": 124
+      },
+      {
+        "team": "Marshall",
+        "score_z": -1.12147,
+        "dominance_index": 33.18,
+        "four_unit": -1.3467,
+        "earned_competition": -0.4729,
+        "ats_market": -1.7214,
+        "results": -0.3422,
+        "rank": 125
+      },
+      {
+        "team": "Rutgers",
+        "score_z": -1.13415,
+        "dominance_index": 32.99,
+        "four_unit": -0.7977,
+        "earned_competition": -1.7906,
+        "ats_market": -0.7612,
+        "results": -1.7714,
+        "rank": 126
+      },
+      {
+        "team": "Southern Miss",
+        "score_z": -1.13474,
+        "dominance_index": 32.98,
+        "four_unit": -1.0425,
+        "earned_competition": -1.5325,
+        "ats_market": -0.6299,
+        "results": -1.7714,
+        "rank": 127
+      },
+      {
+        "team": "Ball State",
+        "score_z": -1.15208,
+        "dominance_index": 32.72,
+        "four_unit": -1.0398,
+        "earned_competition": -1.6553,
+        "ats_market": -0.5809,
+        "results": -1.7714,
+        "rank": 128
+      },
+      {
+        "team": "Akron",
+        "score_z": -1.1961,
+        "dominance_index": 32.06,
+        "four_unit": -1.0069,
+        "earned_competition": -1.5009,
+        "ats_market": -0.9639,
+        "results": -1.7714,
+        "rank": 129
+      },
+      {
+        "team": "Old Dominion",
+        "score_z": -1.21,
+        "dominance_index": 31.85,
+        "four_unit": -1.4501,
+        "earned_competition": -0.8995,
+        "ats_market": -1.1977,
+        "results": -1.0568,
+        "rank": 130
+      },
+      {
+        "team": "Western Kentucky",
+        "score_z": -1.26605,
+        "dominance_index": 31.01,
+        "four_unit": -1.6205,
+        "earned_competition": -1.1676,
+        "ats_market": -0.8812,
+        "results": -1.0568,
+        "rank": 131
+      },
+      {
+        "team": "Kent State",
+        "score_z": -1.35145,
+        "dominance_index": 29.73,
+        "four_unit": -1.7011,
+        "earned_competition": -1.1406,
+        "ats_market": -1.1207,
+        "results": -1.0568,
+        "rank": 132
+      },
+      {
+        "team": "San Diego State",
+        "score_z": -1.39285,
+        "dominance_index": 29.11,
+        "four_unit": -1.4825,
+        "earned_competition": -0.9021,
+        "ats_market": -1.8747,
+        "results": -1.0568,
+        "rank": 133
+      },
+      {
+        "team": "Charlotte",
+        "score_z": -1.43148,
+        "dominance_index": 28.53,
+        "four_unit": -1.5566,
+        "earned_competition": -1.5919,
+        "ats_market": -0.935,
+        "results": -1.7714,
+        "rank": 134
+      },
+      {
+        "team": "UTEP",
+        "score_z": -1.72872,
+        "dominance_index": 24.07,
+        "four_unit": -1.7067,
+        "earned_competition": -1.7023,
+        "ats_market": -1.7733,
+        "results": -1.7714,
+        "rank": 135
+      },
+      {
+        "team": "UL Monroe",
+        "score_z": -1.76526,
+        "dominance_index": 23.52,
+        "four_unit": -2.186,
+        "earned_competition": -1.4642,
+        "ats_market": -1.3906,
+        "results": -1.7714,
+        "rank": 136
+      }
+    ],
+    "50_20_20_10": [
+      {
+        "team": "UCLA",
+        "score_z": 2.07199,
+        "dominance_index": 81.08,
+        "four_unit": 1.9289,
+        "earned_competition": 2.0865,
+        "ats_market": 2.5504,
+        "results": 1.8016,
+        "rank": 1
+      },
+      {
+        "team": "Georgia",
+        "score_z": 1.97149,
+        "dominance_index": 79.57,
+        "four_unit": 2.2831,
+        "earned_competition": 2.172,
+        "ats_market": 1.0768,
+        "results": 1.8016,
+        "rank": 2
+      },
+      {
+        "team": "Alabama",
+        "score_z": 1.85418,
+        "dominance_index": 77.81,
+        "four_unit": 2.2377,
+        "earned_competition": 1.418,
+        "ats_market": 1.6556,
+        "results": 1.2061,
+        "rank": 3
+      },
+      {
+        "team": "Utah",
+        "score_z": 1.54283,
+        "dominance_index": 73.14,
+        "four_unit": 1.5254,
+        "earned_competition": 1.872,
+        "ats_market": 1.1278,
+        "results": 1.8016,
+        "rank": 4
+      },
+      {
+        "team": "Miami",
+        "score_z": 1.5302,
+        "dominance_index": 72.95,
+        "four_unit": 1.5971,
+        "earned_competition": 1.8629,
+        "ats_market": 0.8944,
+        "results": 1.8016,
+        "rank": 5
+      },
+      {
+        "team": "LSU",
+        "score_z": 1.52631,
+        "dominance_index": 72.89,
+        "four_unit": 2.4076,
+        "earned_competition": 0.5175,
+        "ats_market": 0.9088,
+        "results": 0.3724,
+        "rank": 6
+      },
+      {
+        "team": "Notre Dame",
+        "score_z": 1.5175,
+        "dominance_index": 72.76,
+        "four_unit": 1.8041,
+        "earned_competition": 1.8819,
+        "ats_market": 0.2946,
+        "results": 1.8016,
+        "rank": 7
+      },
+      {
+        "team": "Missouri",
+        "score_z": 1.4054,
+        "dominance_index": 71.08,
+        "four_unit": 1.3525,
+        "earned_competition": 1.4061,
+        "ats_market": 1.696,
+        "results": 1.087,
+        "rank": 8
+      },
+      {
+        "team": "Northwestern",
+        "score_z": 1.38618,
+        "dominance_index": 70.79,
+        "four_unit": 1.2036,
+        "earned_competition": 0.8829,
+        "ats_market": 2.5847,
+        "results": 0.9084,
+        "rank": 9
+      },
+      {
+        "team": "BYU",
+        "score_z": 1.38058,
+        "dominance_index": 70.71,
+        "four_unit": 1.451,
+        "earned_competition": 2.0313,
+        "ats_market": 0.3433,
+        "results": 1.8016,
+        "rank": 10
+      },
+      {
+        "team": "Wake Forest",
+        "score_z": 1.35952,
+        "dominance_index": 70.39,
+        "four_unit": 1.209,
+        "earned_competition": 1.1401,
+        "ats_market": 2.0319,
+        "results": 1.2061,
+        "rank": 11
+      },
+      {
+        "team": "Texas",
+        "score_z": 1.23609,
+        "dominance_index": 68.54,
+        "four_unit": 1.6762,
+        "earned_competition": 1.5045,
+        "ats_market": -0.0579,
+        "results": 1.087,
+        "rank": 12
+      },
+      {
+        "team": "Ohio State",
+        "score_z": 1.18393,
+        "dominance_index": 67.76,
+        "four_unit": 1.6266,
+        "earned_competition": 1.1384,
+        "ats_market": 0.1117,
+        "results": 1.2061,
+        "rank": 13
+      },
+      {
+        "team": "Oklahoma State",
+        "score_z": 1.18031,
+        "dominance_index": 67.7,
+        "four_unit": 1.0107,
+        "earned_competition": 1.4081,
+        "ats_market": 1.5124,
+        "results": 0.9084,
+        "rank": 14
+      },
+      {
+        "team": "Kentucky",
+        "score_z": 1.15422,
+        "dominance_index": 67.31,
+        "four_unit": 1.203,
+        "earned_competition": 1.4244,
+        "ats_market": 0.7958,
+        "results": 1.087,
+        "rank": 15
+      },
+      {
+        "team": "Mississippi State",
+        "score_z": 1.14263,
+        "dominance_index": 67.14,
+        "four_unit": 1.4203,
+        "earned_competition": 1.1765,
+        "ats_market": 0.4425,
+        "results": 1.087,
+        "rank": 16
+      },
+      {
+        "team": "Wisconsin",
+        "score_z": 1.13969,
+        "dominance_index": 67.1,
+        "four_unit": 1.1864,
+        "earned_competition": 0.9446,
+        "ats_market": 1.3336,
+        "results": 0.9084,
+        "rank": 17
+      },
+      {
+        "team": "Oregon State",
+        "score_z": 1.10593,
+        "dominance_index": 66.59,
+        "four_unit": 1.0551,
+        "earned_competition": 0.0494,
+        "ats_market": 2.6563,
+        "results": 0.3724,
+        "rank": 18
+      },
+      {
+        "team": "Indiana",
+        "score_z": 1.05542,
+        "dominance_index": 65.83,
+        "four_unit": 1.2427,
+        "earned_competition": 1.9897,
+        "ats_market": -0.7201,
+        "results": 1.8016,
+        "rank": 19
+      },
+      {
+        "team": "Nebraska",
+        "score_z": 1.01567,
+        "dominance_index": 65.24,
+        "four_unit": 0.8977,
+        "earned_competition": 0.8857,
+        "ats_market": 1.4049,
+        "results": 1.087,
+        "rank": 20
+      },
+      {
+        "team": "Boise State",
+        "score_z": 0.98281,
+        "dominance_index": 64.74,
+        "four_unit": 0.8278,
+        "earned_competition": 0.9172,
+        "ats_market": 1.3839,
+        "results": 1.087,
+        "rank": 21
+      },
+      {
+        "team": "Ole Miss",
+        "score_z": 0.97951,
+        "dominance_index": 64.69,
+        "four_unit": 1.1954,
+        "earned_competition": 1.274,
+        "ats_market": 0.0915,
+        "results": 1.087,
+        "rank": 22
+      },
+      {
+        "team": "Houston",
+        "score_z": 0.94977,
+        "dominance_index": 64.25,
+        "four_unit": 0.9655,
+        "earned_competition": 1.1221,
+        "ats_market": 0.6694,
+        "results": 1.087,
+        "rank": 23
+      },
+      {
+        "team": "Baylor",
+        "score_z": 0.94163,
+        "dominance_index": 64.12,
+        "four_unit": 0.6532,
+        "earned_competition": 0.9611,
+        "ats_market": 1.6597,
+        "results": 0.9084,
+        "rank": 24
+      },
+      {
+        "team": "Pittsburgh",
+        "score_z": 0.92757,
+        "dominance_index": 63.91,
+        "four_unit": 0.9033,
+        "earned_competition": 1.2237,
+        "ats_market": 0.6125,
+        "results": 1.087,
+        "rank": 25
+      },
+      {
+        "team": "Georgia State",
+        "score_z": 0.89715,
+        "dominance_index": 63.46,
+        "four_unit": 0.555,
+        "earned_competition": 0.6514,
+        "ats_market": 1.9927,
+        "results": 0.9084,
+        "rank": 26
+      },
+      {
+        "team": "Duke",
+        "score_z": 0.8598,
+        "dominance_index": 62.9,
+        "four_unit": 0.7984,
+        "earned_competition": 1.0268,
+        "ats_market": 0.8221,
+        "results": 0.9084,
+        "rank": 27
+      },
+      {
+        "team": "James Madison",
+        "score_z": 0.83789,
+        "dominance_index": 62.57,
+        "four_unit": 0.1637,
+        "earned_competition": 1.6301,
+        "ats_market": 1.2493,
+        "results": 1.8016,
+        "rank": 28
+      },
+      {
+        "team": "Arizona",
+        "score_z": 0.82592,
+        "dominance_index": 62.39,
+        "four_unit": 0.7088,
+        "earned_competition": 1.0124,
+        "ats_market": 0.8016,
+        "results": 1.087,
+        "rank": 29
+      },
+      {
+        "team": "Iowa",
+        "score_z": 0.82034,
+        "dominance_index": 62.31,
+        "four_unit": 0.6884,
+        "earned_competition": 1.203,
+        "ats_market": 0.6342,
+        "results": 1.087,
+        "rank": 30
+      },
+      {
+        "team": "New Mexico",
+        "score_z": 0.77662,
+        "dominance_index": 61.65,
+        "four_unit": 0.3001,
+        "earned_competition": 0.4448,
+        "ats_market": 2.2338,
+        "results": 0.9084,
+        "rank": 31
+      },
+      {
+        "team": "USC",
+        "score_z": 0.72298,
+        "dominance_index": 60.84,
+        "four_unit": 0.9385,
+        "earned_competition": 1.3946,
+        "ats_market": -0.7717,
+        "results": 1.2912,
+        "rank": 32
+      },
+      {
+        "team": "Tennessee",
+        "score_z": 0.70694,
+        "dominance_index": 60.6,
+        "four_unit": 0.658,
+        "earned_competition": 1.0855,
+        "ats_market": 0.2606,
+        "results": 1.087,
+        "rank": 33
+      },
+      {
+        "team": "Louisville",
+        "score_z": 0.60755,
+        "dominance_index": 59.11,
+        "four_unit": 1.2158,
+        "earned_competition": -0.148,
+        "ats_market": 0.3174,
+        "results": -0.3422,
+        "rank": 34
+      },
+      {
+        "team": "Michigan",
+        "score_z": 0.59493,
+        "dominance_index": 58.92,
+        "four_unit": 1.253,
+        "earned_competition": 0.3866,
+        "ats_market": -0.7307,
+        "results": 0.3724,
+        "rank": 35
+      },
+      {
+        "team": "North Carolina",
+        "score_z": 0.58227,
+        "dominance_index": 58.73,
+        "four_unit": 0.7456,
+        "earned_competition": 0.0797,
+        "ats_market": 0.9601,
+        "results": 0.0151,
+        "rank": 36
+      },
+      {
+        "team": "Texas Tech",
+        "score_z": 0.56451,
+        "dominance_index": 58.47,
+        "four_unit": 0.1721,
+        "earned_competition": 1.8618,
+        "ats_market": -0.3704,
+        "results": 1.8016,
+        "rank": 37
+      },
+      {
+        "team": "Memphis",
+        "score_z": 0.51178,
+        "dominance_index": 57.68,
+        "four_unit": -0.0017,
+        "earned_competition": 0.8781,
+        "ats_market": 1.1416,
+        "results": 1.087,
+        "rank": 38
+      },
+      {
+        "team": "Oklahoma",
+        "score_z": 0.50436,
+        "dominance_index": 57.57,
+        "four_unit": 1.1141,
+        "earned_competition": 0.3581,
+        "ats_market": -0.8077,
+        "results": 0.3724,
+        "rank": 39
+      },
+      {
+        "team": "Liberty",
+        "score_z": 0.46434,
+        "dominance_index": 56.97,
+        "four_unit": -0.1749,
+        "earned_competition": 0.7377,
+        "ats_market": 1.4777,
+        "results": 1.087,
+        "rank": 40
+      },
+      {
+        "team": "Purdue",
+        "score_z": 0.37773,
+        "dominance_index": 55.67,
+        "four_unit": 0.5884,
+        "earned_competition": -0.3157,
+        "ats_market": 0.9043,
+        "results": -0.3422,
+        "rank": 41
+      },
+      {
+        "team": "Kansas",
+        "score_z": 0.3547,
+        "dominance_index": 55.32,
+        "four_unit": 1.2807,
+        "earned_competition": -1.1158,
+        "ats_market": 0.1265,
+        "results": -0.8781,
+        "rank": 42
+      },
+      {
+        "team": "Auburn",
+        "score_z": 0.34976,
+        "dominance_index": 55.25,
+        "four_unit": 0.7072,
+        "earned_competition": 0.263,
+        "ats_market": -0.4684,
+        "results": 0.3724,
+        "rank": 43
+      },
+      {
+        "team": "Florida",
+        "score_z": 0.33315,
+        "dominance_index": 55.0,
+        "four_unit": 0.6803,
+        "earned_competition": 0.5815,
+        "ats_market": -0.8028,
+        "results": 0.3724,
+        "rank": 44
+      },
+      {
+        "team": "South Carolina",
+        "score_z": 0.32037,
+        "dominance_index": 54.81,
+        "four_unit": 0.7366,
+        "earned_competition": -0.3972,
+        "ats_market": 0.3286,
+        "results": -0.3422,
+        "rank": 45
+      },
+      {
+        "team": "Florida State",
+        "score_z": 0.31464,
+        "dominance_index": 54.72,
+        "four_unit": 0.7777,
+        "earned_competition": -0.5084,
+        "ats_market": 0.3083,
+        "results": -0.3422,
+        "rank": 46
+      },
+      {
+        "team": "Virginia Tech",
+        "score_z": 0.31444,
+        "dominance_index": 54.72,
+        "four_unit": 0.5807,
+        "earned_competition": 0.3892,
+        "ats_market": -0.4549,
+        "results": 0.3724,
+        "rank": 47
+      },
+      {
+        "team": "SMU",
+        "score_z": 0.29478,
+        "dominance_index": 54.42,
+        "four_unit": 0.5211,
+        "earned_competition": 0.8415,
+        "ats_market": -1.1246,
+        "results": 0.9084,
+        "rank": 48
+      },
+      {
+        "team": "Iowa State",
+        "score_z": 0.25297,
+        "dominance_index": 53.79,
+        "four_unit": 0.5705,
+        "earned_competition": -0.5274,
+        "ats_market": 0.537,
+        "results": -0.3422,
+        "rank": 49
+      },
+      {
+        "team": "North Texas",
+        "score_z": 0.20477,
+        "dominance_index": 53.07,
+        "four_unit": -0.23,
+        "earned_competition": 0.1851,
+        "ats_market": 1.2275,
+        "results": 0.3724,
+        "rank": 50
+      },
+      {
+        "team": "Cincinnati",
+        "score_z": 0.20177,
+        "dominance_index": 53.03,
+        "four_unit": -0.0677,
+        "earned_competition": 0.9767,
+        "ats_market": -0.2528,
+        "results": 0.9084,
+        "rank": 51
+      },
+      {
+        "team": "UTSA",
+        "score_z": 0.18596,
+        "dominance_index": 52.79,
+        "four_unit": -0.3101,
+        "earned_competition": 0.8753,
+        "ats_market": 0.2863,
+        "results": 1.087,
+        "rank": 52
+      },
+      {
+        "team": "Virginia",
+        "score_z": 0.18537,
+        "dominance_index": 52.78,
+        "four_unit": 0.5253,
+        "earned_competition": 0.3758,
+        "ats_market": -0.9484,
+        "results": 0.3724,
+        "rank": 53
+      },
+      {
+        "team": "Oregon",
+        "score_z": 0.12197,
+        "dominance_index": 51.83,
+        "four_unit": 0.7343,
+        "earned_competition": 0.3672,
+        "ats_market": -1.6006,
+        "results": 0.0151,
+        "rank": 54
+      },
+      {
+        "team": "Penn State",
+        "score_z": 0.10539,
+        "dominance_index": 51.58,
+        "four_unit": 0.6984,
+        "earned_competition": -0.2436,
+        "ats_market": -0.983,
+        "results": 0.0151,
+        "rank": 55
+      },
+      {
+        "team": "Florida Atlantic",
+        "score_z": 0.10448,
+        "dominance_index": 51.57,
+        "four_unit": -0.1988,
+        "earned_competition": 0.6163,
+        "ats_market": -0.0512,
+        "results": 0.9084,
+        "rank": 56
+      },
+      {
+        "team": "Louisiana Tech",
+        "score_z": 0.08473,
+        "dominance_index": 51.27,
+        "four_unit": 0.1153,
+        "earned_competition": -0.1319,
+        "ats_market": 0.2599,
+        "results": 0.0151,
+        "rank": 57
+      },
+      {
+        "team": "Boston College",
+        "score_z": 0.07567,
+        "dominance_index": 51.14,
+        "four_unit": 0.4815,
+        "earned_competition": -0.8986,
+        "ats_market": 0.5122,
+        "results": -0.8781,
+        "rank": 58
+      },
+      {
+        "team": "Massachusetts",
+        "score_z": 0.02978,
+        "dominance_index": 50.45,
+        "four_unit": -0.2255,
+        "earned_competition": -0.2018,
+        "ats_market": 1.2046,
+        "results": -0.5804,
+        "rank": 59
+      },
+      {
+        "team": "UCF",
+        "score_z": 0.00761,
+        "dominance_index": 50.11,
+        "four_unit": 0.1137,
+        "earned_competition": -0.3709,
+        "ats_market": 0.2957,
+        "results": -0.3422,
+        "rank": 60
+      },
+      {
+        "team": "Louisiana",
+        "score_z": 0.00431,
+        "dominance_index": 50.06,
+        "four_unit": -0.4762,
+        "earned_competition": 0.1268,
+        "ats_market": 0.8991,
+        "results": 0.3724,
+        "rank": 61
+      },
+      {
+        "team": "Utah State",
+        "score_z": -0.00076,
+        "dominance_index": 49.99,
+        "four_unit": -0.0749,
+        "earned_competition": -0.5157,
+        "ats_market": 0.8701,
+        "results": -0.3422,
+        "rank": 62
+      },
+      {
+        "team": "Texas A&M",
+        "score_z": -0.01278,
+        "dominance_index": 49.81,
+        "four_unit": 0.4182,
+        "earned_competition": -0.0751,
+        "ats_market": -1.0418,
+        "results": 0.0151,
+        "rank": 63
+      },
+      {
+        "team": "Georgia Tech",
+        "score_z": -0.01946,
+        "dominance_index": 49.71,
+        "four_unit": 0.6849,
+        "earned_competition": -0.758,
+        "ats_market": -0.6125,
+        "results": -0.8781,
+        "rank": 64
+      },
+      {
+        "team": "Texas State",
+        "score_z": -0.03982,
+        "dominance_index": 49.4,
+        "four_unit": 0.9591,
+        "earned_competition": -0.8852,
+        "ats_market": -1.2726,
+        "results": -0.8781,
+        "rank": 65
+      },
+      {
+        "team": "Kansas State",
+        "score_z": -0.09281,
+        "dominance_index": 48.61,
+        "four_unit": 0.3376,
+        "earned_competition": -0.0457,
+        "ats_market": -1.2699,
+        "results": 0.0151,
+        "rank": 66
+      },
+      {
+        "team": "Minnesota",
+        "score_z": -0.10661,
+        "dominance_index": 48.4,
+        "four_unit": -0.3756,
+        "earned_competition": 0.5808,
+        "ats_market": -0.3611,
+        "results": 0.3724,
+        "rank": 67
+      },
+      {
+        "team": "UConn",
+        "score_z": -0.13113,
+        "dominance_index": 48.03,
+        "four_unit": -0.3559,
+        "earned_competition": -0.3416,
+        "ats_market": 0.7468,
+        "results": -0.3422,
+        "rank": 68
+      },
+      {
+        "team": "Vanderbilt",
+        "score_z": -0.15224,
+        "dominance_index": 47.72,
+        "four_unit": 0.3468,
+        "earned_competition": -0.578,
+        "ats_market": -0.8792,
+        "results": -0.3422,
+        "rank": 69
+      },
+      {
+        "team": "Syracuse",
+        "score_z": -0.16984,
+        "dominance_index": 47.45,
+        "four_unit": 0.2324,
+        "earned_competition": -0.9277,
+        "ats_market": -0.0635,
+        "results": -0.8781,
+        "rank": 70
+      },
+      {
+        "team": "Colorado",
+        "score_z": -0.17941,
+        "dominance_index": 47.31,
+        "four_unit": 0.7004,
+        "earned_competition": -0.9676,
+        "ats_market": -1.2415,
+        "results": -0.8781,
+        "rank": 71
+      },
+      {
+        "team": "Fresno State",
+        "score_z": -0.18414,
+        "dominance_index": 47.24,
+        "four_unit": -0.5618,
+        "earned_competition": 0.0921,
+        "ats_market": 0.2054,
+        "results": 0.3724,
+        "rank": 72
+      },
+      {
+        "team": "TCU",
+        "score_z": -0.19141,
+        "dominance_index": 47.13,
+        "four_unit": 0.4516,
+        "earned_competition": -0.9306,
+        "ats_market": -0.7163,
+        "results": -0.8781,
+        "rank": 73
+      },
+      {
+        "team": "Toledo",
+        "score_z": -0.19243,
+        "dominance_index": 47.11,
+        "four_unit": -0.4841,
+        "earned_competition": 0.3485,
+        "ats_market": -0.2866,
+        "results": 0.3724,
+        "rank": 74
+      },
+      {
+        "team": "Florida International",
+        "score_z": -0.20313,
+        "dominance_index": 46.95,
+        "four_unit": -0.5919,
+        "earned_competition": -0.1279,
+        "ats_market": 0.5845,
+        "results": 0.0151,
+        "rank": 75
+      },
+      {
+        "team": "Michigan State",
+        "score_z": -0.20912,
+        "dominance_index": 46.86,
+        "four_unit": 0.1202,
+        "earned_competition": -0.7987,
+        "ats_market": -0.2572,
+        "results": -0.5804,
+        "rank": 76
+      },
+      {
+        "team": "San Jose State",
+        "score_z": -0.22516,
+        "dominance_index": 46.62,
+        "four_unit": -0.5228,
+        "earned_competition": -0.4084,
+        "ats_market": 0.7608,
+        "results": -0.3422,
+        "rank": 77
+      },
+      {
+        "team": "Jacksonville State",
+        "score_z": -0.2301,
+        "dominance_index": 46.55,
+        "four_unit": -0.9589,
+        "earned_competition": 0.7558,
+        "ats_market": 0.0367,
+        "results": 0.9084,
+        "rank": 78
+      },
+      {
+        "team": "Clemson",
+        "score_z": -0.23185,
+        "dominance_index": 46.52,
+        "four_unit": -0.07,
+        "earned_competition": 0.2073,
+        "ats_market": -1.3778,
+        "results": 0.3724,
+        "rank": 79
+      },
+      {
+        "team": "Nevada",
+        "score_z": -0.24831,
+        "dominance_index": 46.28,
+        "four_unit": -0.8806,
+        "earned_competition": -0.0232,
+        "ats_market": 0.9756,
+        "results": 0.0151,
+        "rank": 80
+      },
+      {
+        "team": "East Carolina",
+        "score_z": -0.26928,
+        "dominance_index": 45.96,
+        "four_unit": -0.2943,
+        "earned_competition": -0.1852,
+        "ats_market": -0.4329,
+        "results": 0.0151,
+        "rank": 81
+      },
+      {
+        "team": "Air Force",
+        "score_z": -0.27745,
+        "dominance_index": 45.84,
+        "four_unit": -1.7131,
+        "earned_competition": 1.5343,
+        "ats_market": 0.4603,
+        "results": 1.8016,
+        "rank": 82
+      },
+      {
+        "team": "Western Michigan",
+        "score_z": -0.29697,
+        "dominance_index": 45.55,
+        "four_unit": -0.9103,
+        "earned_competition": -0.0051,
+        "ats_market": 0.6099,
+        "results": 0.3724,
+        "rank": 83
+      },
+      {
+        "team": "South Alabama",
+        "score_z": -0.30535,
+        "dominance_index": 45.42,
+        "four_unit": -0.9088,
+        "earned_competition": 0.1996,
+        "ats_market": 0.3595,
+        "results": 0.3724,
+        "rank": 84
+      },
+      {
+        "team": "Illinois",
+        "score_z": -0.31793,
+        "dominance_index": 45.23,
+        "four_unit": -0.0757,
+        "earned_competition": -0.4279,
+        "ats_market": -0.8013,
+        "results": -0.3422,
+        "rank": 85
+      },
+      {
+        "team": "Georgia Southern",
+        "score_z": -0.31823,
+        "dominance_index": 45.23,
+        "four_unit": -0.2085,
+        "earned_competition": -1.0697,
+        "ats_market": 0.5283,
+        "results": -1.0568,
+        "rank": 86
+      },
+      {
+        "team": "Ohio",
+        "score_z": -0.32117,
+        "dominance_index": 45.18,
+        "four_unit": -0.8829,
+        "earned_competition": 0.1851,
+        "ats_market": 0.2301,
+        "results": 0.3724,
+        "rank": 87
+      },
+      {
+        "team": "Arizona State",
+        "score_z": -0.32732,
+        "dominance_index": 45.09,
+        "four_unit": 0.1602,
+        "earned_competition": -0.0716,
+        "ats_market": -1.9731,
+        "results": 0.0151,
+        "rank": 88
+      },
+      {
+        "team": "NC State",
+        "score_z": -0.34948,
+        "dominance_index": 44.76,
+        "four_unit": -0.0887,
+        "earned_competition": -0.2422,
+        "ats_market": -1.1123,
+        "results": -0.3422,
+        "rank": 89
+      },
+      {
+        "team": "UAB",
+        "score_z": -0.37851,
+        "dominance_index": 44.32,
+        "four_unit": -0.6296,
+        "earned_competition": -0.3388,
+        "ats_market": 0.1914,
+        "results": -0.3422,
+        "rank": 90
+      },
+      {
+        "team": "West Virginia",
+        "score_z": -0.37893,
+        "dominance_index": 44.32,
+        "four_unit": -0.2717,
+        "earned_competition": -0.3125,
+        "ats_market": -0.7317,
+        "results": -0.3422,
+        "rank": 91
+      },
+      {
+        "team": "Troy",
+        "score_z": -0.38789,
+        "dominance_index": 44.18,
+        "four_unit": -0.9023,
+        "earned_competition": -0.1986,
+        "ats_market": 0.5074,
+        "results": 0.0151,
+        "rank": 92
+      },
+      {
+        "team": "California",
+        "score_z": -0.38969,
+        "dominance_index": 44.15,
+        "four_unit": -0.473,
+        "earned_competition": -0.204,
+        "ats_market": -0.3908,
+        "results": -0.3422,
+        "rank": 93
+      },
+      {
+        "team": "Arkansas",
+        "score_z": -0.40267,
+        "dominance_index": 43.96,
+        "four_unit": 0.1553,
+        "earned_competition": -1.3702,
+        "ats_market": -0.503,
+        "results": -1.0568,
+        "rank": 94
+      },
+      {
+        "team": "Tulsa",
+        "score_z": -0.4093,
+        "dominance_index": 43.86,
+        "four_unit": -0.6798,
+        "earned_competition": -0.2573,
+        "ats_market": 0.0813,
+        "results": -0.3422,
+        "rank": 95
+      },
+      {
+        "team": "South Florida",
+        "score_z": -0.43645,
+        "dominance_index": 43.45,
+        "four_unit": -0.9187,
+        "earned_competition": 0.3175,
+        "ats_market": -0.3894,
+        "results": 0.3724,
+        "rank": 96
+      },
+      {
+        "team": "UNLV",
+        "score_z": -0.44687,
+        "dominance_index": 43.3,
+        "four_unit": -0.8138,
+        "earned_competition": 0.3234,
+        "ats_market": -0.7094,
+        "results": 0.3724,
+        "rank": 97
+      },
+      {
+        "team": "Temple",
+        "score_z": -0.45554,
+        "dominance_index": 43.17,
+        "four_unit": -0.427,
+        "earned_competition": -0.9127,
+        "ats_market": 0.2311,
+        "results": -1.0568,
+        "rank": 98
+      },
+      {
+        "team": "Wyoming",
+        "score_z": -0.47946,
+        "dominance_index": 42.81,
+        "four_unit": -0.9579,
+        "earned_competition": 0.1485,
+        "ats_market": -0.1587,
+        "results": 0.0151,
+        "rank": 99
+      },
+      {
+        "team": "Army",
+        "score_z": -0.48254,
+        "dominance_index": 42.76,
+        "four_unit": -0.8866,
+        "earned_competition": 0.1267,
+        "ats_market": -0.3303,
+        "results": 0.0151,
+        "rank": 100
+      },
+      {
+        "team": "Navy",
+        "score_z": -0.48858,
+        "dominance_index": 42.67,
+        "four_unit": -0.3241,
+        "earned_competition": -0.6087,
+        "ats_market": -0.5849,
+        "results": -0.8781,
+        "rank": 101
+      },
+      {
+        "team": "New Mexico State",
+        "score_z": -0.52432,
+        "dominance_index": 42.14,
+        "four_unit": -0.5357,
+        "earned_competition": -0.9399,
+        "ats_market": 0.186,
+        "results": -1.0568,
+        "rank": 102
+      },
+      {
+        "team": "Washington",
+        "score_z": -0.59304,
+        "dominance_index": 41.1,
+        "four_unit": -0.1742,
+        "earned_competition": -0.5481,
+        "ats_market": -1.8106,
+        "results": -0.3422,
+        "rank": 103
+      },
+      {
+        "team": "Tulane",
+        "score_z": -0.61211,
+        "dominance_index": 40.82,
+        "four_unit": -0.911,
+        "earned_competition": -0.4855,
+        "ats_market": -0.1265,
+        "results": -0.3422,
+        "rank": 104
+      },
+      {
+        "team": "App State",
+        "score_z": -0.63192,
+        "dominance_index": 40.52,
+        "four_unit": -1.1292,
+        "earned_competition": -0.0226,
+        "ats_market": -0.3217,
+        "results": 0.0151,
+        "rank": 105
+      },
+      {
+        "team": "Buffalo",
+        "score_z": -0.64305,
+        "dominance_index": 40.35,
+        "four_unit": -1.2727,
+        "earned_competition": -0.7482,
+        "ats_market": 1.1536,
+        "results": -0.8781,
+        "rank": 106
+      },
+      {
+        "team": "Delaware",
+        "score_z": -0.7122,
+        "dominance_index": 39.32,
+        "four_unit": -0.6738,
+        "earned_competition": -0.8987,
+        "ats_market": -0.5389,
+        "results": -0.8781,
+        "rank": 107
+      },
+      {
+        "team": "Maryland",
+        "score_z": -0.84662,
+        "dominance_index": 37.3,
+        "four_unit": -0.3125,
+        "earned_competition": -1.306,
+        "ats_market": -1.6176,
+        "results": -1.0568,
+        "rank": 108
+      },
+      {
+        "team": "Arkansas State",
+        "score_z": -0.85067,
+        "dominance_index": 37.24,
+        "four_unit": -0.8335,
+        "earned_competition": -0.9336,
+        "ats_market": -0.7077,
+        "results": -1.0568,
+        "rank": 109
+      },
+      {
+        "team": "Stanford",
+        "score_z": -0.86424,
+        "dominance_index": 37.04,
+        "four_unit": -0.5084,
+        "earned_competition": -0.7657,
+        "ats_market": -1.9943,
+        "results": -0.5804,
+        "rank": 110
+      },
+      {
+        "team": "Colorado State",
+        "score_z": -0.86764,
+        "dominance_index": 36.99,
+        "four_unit": -1.1299,
+        "earned_competition": -0.8937,
+        "ats_market": -0.1806,
+        "results": -0.8781,
+        "rank": 111
+      },
+      {
+        "team": "Washington State",
+        "score_z": -0.88107,
+        "dominance_index": 36.78,
+        "four_unit": -0.5415,
+        "earned_competition": -1.7365,
+        "ats_market": -0.4294,
+        "results": -1.7714,
+        "rank": 112
+      },
+      {
+        "team": "Rice",
+        "score_z": -0.89967,
+        "dominance_index": 36.5,
+        "four_unit": -0.7053,
+        "earned_competition": -1.6654,
+        "ats_market": -0.1839,
+        "results": -1.7714,
+        "rank": 113
+      },
+      {
+        "team": "Coastal Carolina",
+        "score_z": -0.90702,
+        "dominance_index": 36.39,
+        "four_unit": -1.3322,
+        "earned_competition": -0.824,
+        "ats_market": 0.1478,
+        "results": -1.0568,
+        "rank": 114
+      },
+      {
+        "team": "Sam Houston",
+        "score_z": -0.92616,
+        "dominance_index": 36.11,
+        "four_unit": -0.8442,
+        "earned_competition": -1.6007,
+        "ats_market": -0.034,
+        "results": -1.7714,
+        "rank": 115
+      },
+      {
+        "team": "Miami (OH)",
+        "score_z": -0.95438,
+        "dominance_index": 35.68,
+        "four_unit": -1.2702,
+        "earned_competition": -0.3629,
+        "ats_market": -1.0626,
+        "results": -0.3422,
+        "rank": 116
+      },
+      {
+        "team": "Northern Illinois",
+        "score_z": -0.98157,
+        "dominance_index": 35.28,
+        "four_unit": -0.6701,
+        "earned_competition": -1.652,
+        "ats_market": -0.6949,
+        "results": -1.7714,
+        "rank": 117
+      },
+      {
+        "team": "Middle Tennessee",
+        "score_z": -1.01245,
+        "dominance_index": 34.81,
+        "four_unit": -1.268,
+        "earned_competition": -0.7215,
+        "ats_market": -0.7317,
+        "results": -0.8781,
+        "rank": 118
+      },
+      {
+        "team": "Hawai'i",
+        "score_z": -1.03918,
+        "dominance_index": 34.41,
+        "four_unit": -1.0625,
+        "earned_competition": -1.0256,
+        "ats_market": -0.9261,
+        "results": -1.1759,
+        "rank": 119
+      },
+      {
+        "team": "Missouri State",
+        "score_z": -1.0393,
+        "dominance_index": 34.41,
+        "four_unit": -0.9746,
+        "earned_competition": -1.6563,
+        "ats_market": -0.2181,
+        "results": -1.7714,
+        "rank": 120
+      },
+      {
+        "team": "Eastern Michigan",
+        "score_z": -1.07994,
+        "dominance_index": 33.8,
+        "four_unit": -1.613,
+        "earned_competition": -0.4732,
+        "ats_market": -0.7229,
+        "results": -0.3422,
+        "rank": 121
+      },
+      {
+        "team": "Rutgers",
+        "score_z": -1.08633,
+        "dominance_index": 33.71,
+        "four_unit": -0.7977,
+        "earned_competition": -1.7906,
+        "ats_market": -0.7612,
+        "results": -1.7714,
+        "rank": 122
+      },
+      {
+        "team": "Central Michigan",
+        "score_z": -1.09951,
+        "dominance_index": 33.51,
+        "four_unit": -1.7212,
+        "earned_competition": -0.4925,
+        "ats_market": -0.531,
+        "results": -0.3422,
+        "rank": 123
+      },
+      {
+        "team": "Bowling Green",
+        "score_z": -1.10898,
+        "dominance_index": 33.37,
+        "four_unit": -1.3099,
+        "earned_competition": -0.9168,
+        "ats_market": -0.9144,
+        "results": -0.8781,
+        "rank": 124
+      },
+      {
+        "team": "Southern Miss",
+        "score_z": -1.13087,
+        "dominance_index": 33.04,
+        "four_unit": -1.0425,
+        "earned_competition": -1.5325,
+        "ats_market": -0.6299,
+        "results": -1.7714,
+        "rank": 125
+      },
+      {
+        "team": "Kennesaw State",
+        "score_z": -1.13238,
+        "dominance_index": 33.01,
+        "four_unit": -1.195,
+        "earned_competition": -1.5227,
+        "ats_market": -0.266,
+        "results": -1.7714,
+        "rank": 126
+      },
+      {
+        "team": "Ball State",
+        "score_z": -1.14425,
+        "dominance_index": 32.84,
+        "four_unit": -1.0398,
+        "earned_competition": -1.6553,
+        "ats_market": -0.5809,
+        "results": -1.7714,
+        "rank": 127
+      },
+      {
+        "team": "Marshall",
+        "score_z": -1.14643,
+        "dominance_index": 32.8,
+        "four_unit": -1.3467,
+        "earned_competition": -0.4729,
+        "ats_market": -1.7214,
+        "results": -0.3422,
+        "rank": 128
+      },
+      {
+        "team": "Akron",
+        "score_z": -1.17356,
+        "dominance_index": 32.4,
+        "four_unit": -1.0069,
+        "earned_competition": -1.5009,
+        "ats_market": -0.9639,
+        "results": -1.7714,
+        "rank": 129
+      },
+      {
+        "team": "Old Dominion",
+        "score_z": -1.25015,
+        "dominance_index": 31.25,
+        "four_unit": -1.4501,
+        "earned_competition": -0.8995,
+        "ats_market": -1.1977,
+        "results": -1.0568,
+        "rank": 130
+      },
+      {
+        "team": "Western Kentucky",
+        "score_z": -1.32566,
+        "dominance_index": 30.12,
+        "four_unit": -1.6205,
+        "earned_competition": -1.1676,
+        "ats_market": -0.8812,
+        "results": -1.0568,
+        "rank": 131
+      },
+      {
+        "team": "San Diego State",
+        "score_z": -1.40226,
+        "dominance_index": 28.97,
+        "four_unit": -1.4825,
+        "earned_competition": -0.9021,
+        "ats_market": -1.8747,
+        "results": -1.0568,
+        "rank": 132
+      },
+      {
+        "team": "Kent State",
+        "score_z": -1.4085,
+        "dominance_index": 28.87,
+        "four_unit": -1.7011,
+        "earned_competition": -1.1406,
+        "ats_market": -1.1207,
+        "results": -1.0568,
+        "rank": 133
+      },
+      {
+        "team": "Charlotte",
+        "score_z": -1.46079,
+        "dominance_index": 28.09,
+        "four_unit": -1.5566,
+        "earned_competition": -1.5919,
+        "ats_market": -0.935,
+        "results": -1.7714,
+        "rank": 134
+      },
+      {
+        "team": "UTEP",
+        "score_z": -1.72562,
+        "dominance_index": 24.12,
+        "four_unit": -1.7067,
+        "earned_competition": -1.7023,
+        "ats_market": -1.7733,
+        "results": -1.7714,
+        "rank": 135
+      },
+      {
+        "team": "UL Monroe",
+        "score_z": -1.84112,
+        "dominance_index": 22.38,
+        "four_unit": -2.186,
+        "earned_competition": -1.4642,
+        "ats_market": -1.3906,
+        "results": -1.7714,
+        "rank": 136
+      }
+    ]
+  }
+}
