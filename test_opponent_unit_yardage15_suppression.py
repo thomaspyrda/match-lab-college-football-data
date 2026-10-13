@@ -10,9 +10,9 @@ from collections import defaultdict
 K=("PO","PD","RO","RD")
 OPP={"PO":"PD","PD":"PO","RO":"RD","RD":"RO"}
 METRICS={"PO":[("passing_ppa",.35),("passing_success",.35),("passing_20plus_rate",.15),("passing_yards_per_game",.10),("passing_yards_per_play",.05)],
-"PD":[("passing_ppa",.4),("passing_success",.4),("passing_20plus_rate",.2)],
+"PD":[("passing_ppa",.35),("passing_success",.35),("passing_20plus_rate",.15),("passing_yards_per_game",.10),("passing_yards_per_play",.05)],
 "RO":[("rushing_success",.22),("rushing_ppa",.18),("stuff_avoidance",.14),("line_yards",.12),("power_success",.10),("second_level_yards",.06),("open_field_yards",.03),("rushing_yards_per_game",.10),("rushing_yards_per_play",.05)],
-"RD":[("rushing_success",.25),("rushing_ppa",.2),("stuff_avoidance",.17),("line_yards",.14),("power_success",.11),("second_level_yards",.08),("open_field_yards",.05)]}
+"RD":[("rushing_success",.22),("rushing_ppa",.18),("stuff_avoidance",.14),("line_yards",.12),("power_success",.10),("second_level_yards",.06),("open_field_yards",.03),("rushing_yards_per_game",.10),("rushing_yards_per_play",.05)]}
 AMPS=(0.,1.)
 def number(v):
  try:
