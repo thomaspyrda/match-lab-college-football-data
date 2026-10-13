@@ -35,6 +35,7 @@ on:
       - 'backtest_betwise_2025.py'
       - 'build_weekly_static_four_units.py'
       - 'audit_cfbd_direct_advanced.py'
+      - 'reconstruct_cfbd_weekly_unit_metrics.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -115,6 +116,8 @@ jobs:
         env:
           CFBD_API_KEY: \${{ secrets.CFBD_API_KEY }}
         run: python audit_cfbd_direct_advanced.py
+      - name: Reconstruct weekly CFBD four-unit source metrics
+        run: python reconstruct_cfbd_weekly_unit_metrics.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
