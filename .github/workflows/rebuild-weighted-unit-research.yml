@@ -18,18 +18,21 @@ jobs:
         with:
           python-version: '3.12'
       - name: Rebuild using published verified source archives
+        id: rebuild
+        shell: bash
         run: |
-          python -u build_validated_weighted_four_units.py > /tmp/weighted-unit-output.log 2>&1 || echo 'REBUILD_FAILED' > /tmp/rebuild-status
-          cat /tmp/weighted-unit-output.log
-          cp /tmp/weighted-unit-output.log data/research/weighted_unit_rebuild_diagnostic.log
-      - name: Preserve diagnostic logs on research branch
+          set +e
+          python -u build_validated_weighted_four_units.py > weighted-unit-error.log 2>&1
+          status=$?
+          cat weighted-unit-error.log
+          exit "$status"
+      - name: Upload traceback regardless of rebuild outcome
         if: always()
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/weighted_unit_rebuild_diagnostic.log data/research/2025/validated_weighted_weekly_four_unit* data/research/2026/validated_weighted_weekly_four_unit* 2>/dev/null || true
-          git diff --cached --quiet || git commit -m "Record isolated weighted unit rebuild diagnostic"
-          git push
+        uses: actions/upload-artifact@v4
+        with:
+          name: weighted-unit-debug
+          path: weighted-unit-error.log
+          if-no-files-found: warn
       - name: Assert outputs
         run: |
           python - <<'PY'
