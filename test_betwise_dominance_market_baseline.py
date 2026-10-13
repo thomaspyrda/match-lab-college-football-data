@@ -47,7 +47,7 @@ market_strength_with_residual=standardize({t:market_power[t]+0.5*(sum(v*w for v,
 results=standardize({t:avg(result_events[t]) for t in teams})
 components={"four_unit":unit_component,"earned_competition":competition,"market_strength_ats":market_strength_with_residual,"results":results}
 variants={}
-for key,weights in {"25_25_25_25":(.25,.25,.25,.25),"40_25_25_10_baseline":(.40,.25,.25,.10),"50_20_20_10_baseline":(.50,.20,.20,.10)}.items():
+for key,weights in {"25_25_25_25":(.25,.25,.25,.25),"25_35_25_15":(.25,.35,.25,.15),"40_25_25_10_baseline":(.40,.25,.25,.10),"50_20_20_10_baseline":(.50,.20,.20,.10)}.items():
  rows=[]
  for t in teams:
   score=sum(weight*components[k][t] for k,weight in zip(components,weights))
@@ -55,7 +55,7 @@ for key,weights in {"25_25_25_25":(.25,.25,.25,.25),"40_25_25_10_baseline":(.40,
  rows.sort(key=lambda x:(-x["score_z"],x["team"]))
  for n,r in enumerate(rows,1):r["rank"]=n
  variants[key]=rows
-(D/"betwise_dominance_market_baseline_comparison.json").write_text(json.dumps({"model":"Descriptive 4-component dominance; provisional independent z-scaled measures","weight_order":list(components),"weights":{"25_25_25_25":[.25,.25,.25,.25],"40_25_25_10_baseline":[.40,.25,.25,.10],"50_20_20_10_baseline":[.50,.20,.20,.10]},"caveats":["Four-unit opponent adjustments use frozen pregame strengths from prior research model.","Opponent market strength determined from 2026 full-period spreads; used for retrospective ranking only.","Strong-opponent victory recognition and ATS residual can correlate; component overlap needs auditing.","Market component includes absolute no-preseason market strength plus half-strength ATS adjustment.","Only completed FBS-versus-FBS games are included; 0–100 display not forced at boundaries."],"variants":variants},indent=2))
+(D/"betwise_dominance_market_baseline_comparison.json").write_text(json.dumps({"model":"Descriptive 4-component dominance; provisional independent z-scaled measures","weight_order":list(components),"weights":{"25_25_25_25":[.25,.25,.25,.25],"25_35_25_15":[.25,.35,.25,.15],"40_25_25_10_baseline":[.40,.25,.25,.10],"50_20_20_10_baseline":[.50,.20,.20,.10]},"caveats":["Four-unit opponent adjustments use frozen pregame strengths from prior research model.","Opponent market strength determined from 2026 full-period spreads; used for retrospective ranking only.","Strong-opponent victory recognition and ATS residual can correlate; component overlap needs auditing.","Market component includes absolute no-preseason market strength plus half-strength ATS adjustment.","Only completed FBS-versus-FBS games are included; 0–100 display not forced at boundaries."],"variants":variants},indent=2))
 with (D/"betwise_dominance_market_baseline_comparison.csv").open("w",newline="") as f:
  w=csv.writer(f);w.writerow(["model","rank","team","dominance_index","score_z","four_unit","earned_competition","market_strength_ats","results"])
  for model,rows in variants.items():
