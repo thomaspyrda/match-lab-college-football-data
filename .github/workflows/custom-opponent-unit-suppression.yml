@@ -1,0 +1,36 @@
+name: Custom opponent-unit suppression research
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'test_opponent_unit_custom_suppression.py'
+      - '.github/workflows/custom-opponent-unit-suppression.yml'
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test custom suppression against zero-control
+        run: python -u test_opponent_unit_custom_suppression.py
+      - name: Validate and publish
+        run: |
+          python - <<'PY'
+          import csv
+          for year,wks in ((2025,16),(2026,6)):
+              p=f'data/research/{year}/opponent_unit_custom_suppression_weekly_comparison.csv'
+              rows=list(csv.DictReader(open(p)))
+              assert len(rows)==136*wks*4*2,(year,len(rows))
+              print(year,len(rows))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/opponent_unit_custom_suppression* data/research/2026/opponent_unit_custom_suppression*
+          git diff --cached --quiet || git commit -m "Publish user-defined opponent-unit suppression comparison"
+          git push
