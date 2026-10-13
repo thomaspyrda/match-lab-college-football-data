@@ -36,6 +36,7 @@ on:
       - 'build_weekly_static_four_units.py'
       - 'audit_cfbd_direct_advanced.py'
       - 'reconstruct_cfbd_weekly_unit_metrics.py'
+      - 'reconstruct_weighted_cfbd_ppa.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -118,6 +119,8 @@ jobs:
         run: python audit_cfbd_direct_advanced.py
       - name: Reconstruct weekly CFBD four-unit source metrics
         run: python reconstruct_cfbd_weekly_unit_metrics.py
+      - name: Audit and reconstruct play-weighted weekly PPA
+        run: python reconstruct_weighted_cfbd_ppa.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
