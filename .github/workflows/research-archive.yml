@@ -29,6 +29,7 @@ on:
       - 'test_betwise_20_45_20_15.py'
       - 'test_betwise_strict_rank70_cutoff.py'
       - 'test_betwise_strict_rank50_cutoff.py'
+      - 'test_betwise_top50_uncapped_units.py'
       - 'backtest_betwise_2025.py'
       - '.github/workflows/research-archive.yml'
 permissions:
@@ -98,6 +99,8 @@ jobs:
         run: python test_betwise_strict_rank70_cutoff.py
       - name: Test strict opponent Top 50 eligibility cutoff
         run: python test_betwise_strict_rank50_cutoff.py
+      - name: Compare Top50 cutoff without capping unit statistics
+        run: python test_betwise_top50_uncapped_units.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
