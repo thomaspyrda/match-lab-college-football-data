@@ -1,0 +1,28 @@
+name: Validate 2025 suppression accuracy (research)
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'validate_2025_opponent_suppression.py'
+      - '.github/workflows/validate-2025-suppression.yml'
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare next-game unit outcomes
+        run: python -u validate_2025_opponent_suppression.py
+      - name: Publish summary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/opponent_unit_suppression_2025_validation.json
+          git diff --cached --quiet || git commit -m "Publish 2025 suppression forward-validation results"
+          git push
