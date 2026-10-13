@@ -1,0 +1,15 @@
+{
+  "season": 2025,
+  "source": "Existing CFBD /stats/game/advanced game-level archive",
+  "excluded_opponents": "FCS opponents excluded",
+  "garbage_time": "Original archive requested excludeGarbageTime=true",
+  "method": "Cumulative arithmetic mean of per-game CFBD metric values, calculated independently at each completed week",
+  "important_limitation": "Passing/rushing success rates and PPA are equal-game averages, NOT exact play-weighted season aggregates; source does not preserve eligible pass/rush play denominators. Do not claim parity with Fourth and Short.",
+  "validation": {
+    "teams": 136,
+    "weeks": 16,
+    "team_week_rows": 2176,
+    "fbs_game_rows": 1524
+  },
+  "preserved": "All original unit and overall rankings remain unchanged"
+}

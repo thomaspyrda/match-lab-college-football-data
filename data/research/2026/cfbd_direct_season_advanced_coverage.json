@@ -1,0 +1,19 @@
+{
+  "endpoint": "/stats/season/advanced",
+  "query": {
+    "startWeek": 1,
+    "classification": "fbs"
+  },
+  "source": "CFBD direct API",
+  "coverage": [],
+  "blocked": {
+    "code": 401,
+    "endpoint": "/stats/season/advanced",
+    "explanation": "Season advanced endpoint rejected the existing CFBD credential. The game advanced endpoint succeeds earlier in this workflow; do not presume a missing key. Check endpoint entitlement and account/API authorization.",
+    "failed_week": 1,
+    "exclude_garbage_time": true
+  },
+  "status": "blocked_unauthorized",
+  "warning": "This is direct season-to-week aggregated CFBD data, not proof of Fourth and Short site parity. Classification filters team classification; opponent FBS-only exclusions are not guaranteed.",
+  "existing_files_untouched": true
+}
