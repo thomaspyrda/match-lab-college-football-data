@@ -3,7 +3,7 @@
 No production writes, no modification of historical v1/weekly four-unit archives.
 CFBD_API_KEY is supplied by existing GitHub Actions secret.
 """
-import csv,json,os,time,urllib.request,urllib.parse,statistics,math
+import csv,json,os,time,urllib.request,urllib.parse,urllib.error,statistics,math
 from pathlib import Path
 from collections import defaultdict
 ROOT=Path("data/research")
@@ -35,9 +35,17 @@ def main():
   weeks=sorted({int(r["week"]) for r in csv.DictReader((folder/"weekly_team_metrics.csv").open())})
   teams=set(json.loads((folder/"conference_membership.json").read_text())["teams"])
   out=[];alerts=[]
+  blocked=None
   for week in weeks:
+   if blocked:break
    for garbage in ([True,False] if year==2026 and week==6 else [True]):
-    response=fetch(year,week,garbage)
+    try:
+     response=fetch(year,week,garbage)
+    except urllib.error.HTTPError as exc:
+     if exc.code not in (401,403):raise
+     blocked={"code":exc.code,"endpoint":"/stats/season/advanced","explanation":"Season advanced endpoint rejected the existing CFBD credential. The game advanced endpoint succeeds earlier in this workflow; do not presume a missing key. Check endpoint entitlement and account/API authorization.","failed_week":week,"exclude_garbage_time":garbage}
+     print("CFBD SEASON ADVANCED ACCESS BLOCKED",year,blocked,flush=True)
+     break
     if not isinstance(response,list):raise RuntimeError("Unexpected API response")
     found=set()
     for row in response:
@@ -53,9 +61,10 @@ def main():
     if len(found)<120:raise RuntimeError(f"Incomplete API response for {year} week {week}: {len(found)}")
     alerts.append({"season":year,"week":week,"exclude_garbage_time":garbage,"teams":len(found),"missing_fbs":sorted(teams-found)})
   dest=folder/"cfbd_direct_season_advanced_weekly.csv"
-  with dest.open("w",newline="") as f:
-   w=csv.DictWriter(f,fieldnames=list(out[0]));w.writeheader();w.writerows(out)
-  (folder/"cfbd_direct_season_advanced_coverage.json").write_text(json.dumps({"endpoint":"/stats/season/advanced","query":{"startWeek":1,"classification":"fbs"},"source":"CFBD direct API","coverage":alerts,
+  if out and not blocked:
+   with dest.open("w",newline="") as f:
+    w=csv.DictWriter(f,fieldnames=list(out[0]));w.writeheader();w.writerows(out)
+  (folder/"cfbd_direct_season_advanced_coverage.json").write_text(json.dumps({"endpoint":"/stats/season/advanced","query":{"startWeek":1,"classification":"fbs"},"source":"CFBD direct API","coverage":alerts,"blocked":blocked,"status":"blocked_unauthorized" if blocked else "success",
    "warning":"This is direct season-to-week aggregated CFBD data, not proof of Fourth and Short site parity. Classification filters team classification; opponent FBS-only exclusions are not guaranteed.","existing_files_untouched":True},indent=2))
-  print("Direct CFBD advanced",year,"rows",len(out),"weeks",len(weeks),flush=True)
+  print("Direct CFBD advanced",year,"rows",len(out),"weeks",len(weeks),"status",("blocked" if blocked else "success"),flush=True)
 if __name__=="__main__":main()
