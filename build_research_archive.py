@@ -73,7 +73,7 @@ def pass_20plus_rate(plays):
       and "Sack" not in str(p.get("playType") or "")]
     if not passes:return None
     return sum(float(p["yardsGained"])>=20 for p in passes)/len(passes)
-columns=["season","week","game_id","team","opponent","location","team_points","opponent_points","win","fbs_opponent","plays_count"]+["off_"+m for m in metrics]+["def_"+m for m in metrics]+["off_passing_20plus_rate","def_passing_20plus_rate"]
+columns=["season","week","game_id","team","opponent","location","team_points","opponent_points","win","fbs_opponent","plays_count"]+["off_"+m for m in metrics]+["def_"+m for m in metrics]+["off_passing_20plus_rate","def_passing_20plus_rate"]+[f"{side}_{kind}_total_ppa" for side in ("off","def") for kind in ("passing","rushing")]
 records=[];ledger=[];missing=[]
 for g in completed:
     gid=str(g["id"]);home=canon(g["home_team"]);away=canon(g["away_team"])
@@ -94,6 +94,11 @@ for g in completed:
         row.update({"def_"+m:deff.get(m) for m in metrics})
         row["off_passing_20plus_rate"]=pass_20plus_rate(ownplays)
         row["def_passing_20plus_rate"]=pass_20plus_rate(oppplays)
+        for side,record in (("off",own),("def",enemy)):
+            offense=(record or {}).get("offense") or {}
+            for kind in ("passing","rushing"):
+                unit=offense.get(kind+"Plays") or {}
+                row[f"{side}_{kind}_total_ppa"]=unit.get("totalPPA")
         records.append(row)
 with (OUT/"weekly_team_metrics.csv").open("w",newline="") as stream:
     w=csv.DictWriter(stream,fieldnames=columns);w.writeheader();w.writerows(records)
