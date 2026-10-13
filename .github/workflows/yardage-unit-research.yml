@@ -19,12 +19,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Rebuild 2025 game yardage source from CFBD
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          RESEARCH_SEASON: '2025'
+        run: python -u build_research_archive.py
+      - name: Rebuild 2026 game yardage source from CFBD
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          RESEARCH_SEASON: '2026'
+        run: python -u build_research_archive.py
+      - name: Check yardage source coverage
+        run: |
+          python - <<'PY'
+          import csv
+          for season in (2025,2026):
+              p=f'data/research/{season}/unit_yardage_per_game.csv'
+              rows=list(csv.DictReader(open(p)))
+              assert len(rows)>600,(season,len(rows))
+              assert all('off_passing_yards_per_game' in r for r in rows)
+              print(season,len(rows),'yardage records')
+          PY
       - name: Verify yardage data and compare variants
         run: python -u test_opponent_unit_yardage15_suppression.py
       - name: Commit experimental ratings
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/2025/opponent_unit_yardage15_suppression* data/research/2026/opponent_unit_yardage15_suppression*
+          git add data/research/2025/unit_yardage_per_game.csv data/research/2026/unit_yardage_per_game.csv data/research/2025/opponent_unit_yardage15_suppression* data/research/2026/opponent_unit_yardage15_suppression*
           git diff --cached --quiet || git commit -m "Publish 15pct yardage enhanced unit experiment"
           git push
