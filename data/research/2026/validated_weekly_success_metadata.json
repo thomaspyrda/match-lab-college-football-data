@@ -1,0 +1,15 @@
+{
+  "season": 2026,
+  "checked_unit_game_rows": 2560,
+  "statuses": {
+    "validated": 2560
+  },
+  "team_week_rows": 816,
+  "method": "Pass/rush counts inferred from totalPPA/ppa. A count is accepted only if both that ratio and successRate*play_count are integer-consistent. Cumulative rate = sum(successful plays) / sum(eligible plays), FBS opponents only.",
+  "caveats": [
+    "Matching integer counts validates internal source consistency, not independent proof of Fourth and Short methodology.",
+    "API query excluded garbage-time plays; source pass/rush eligibility rules may differ from public third-party displays.",
+    "No weekly values are published when any available FBS game lacks verified counts.",
+    "No changes to original four-unit/overall ratings."
+  ]
+}
