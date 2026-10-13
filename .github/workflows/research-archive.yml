@@ -14,6 +14,7 @@ on:
       - 'test_pure_rush_sos.py'
       - 'test_pure_units_sos.py'
       - 'test_pure_units_20plus_sos.py'
+      - 'test_pure_units_top50_win_only.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -51,6 +52,8 @@ jobs:
         run: python test_pure_units_sos.py
       - name: Compare pass 20-plus-yard rate definition
         run: python test_pure_units_20plus_sos.py
+      - name: Test no positive QoR beyond pregame Top 50 without caps
+        run: python test_pure_units_top50_win_only.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
@@ -75,6 +78,7 @@ jobs:
           assert (root/'pure_rush_sos_comparison.csv').exists()
           assert (root/'pure_units_sos_comparison.csv').exists()
           assert (root/'pure_units_20plus_sos_comparison.csv').exists()
+          assert (root/'pure_units_top50_win_only_comparison.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
