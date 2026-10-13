@@ -38,6 +38,7 @@ on:
       - 'reconstruct_cfbd_weekly_unit_metrics.py'
       - 'reconstruct_weighted_cfbd_ppa.py'
       - 'validate_cfbd_weekly_success.py'
+      - 'build_validated_weighted_four_units.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -124,6 +125,8 @@ jobs:
         run: python reconstruct_weighted_cfbd_ppa.py
       - name: Validate weekly passing and rushing Success Rate denominators
         run: python validate_cfbd_weekly_success.py
+      - name: Rebuild four weekly units from validated weighted source measures
+        run: python build_validated_weighted_four_units.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
