@@ -34,6 +34,7 @@ on:
       - 'test_betwise_top30_top10_bonus_bottom50_weighted.py'
       - 'backtest_betwise_2025.py'
       - 'build_weekly_static_four_units.py'
+      - 'audit_cfbd_direct_advanced.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -110,6 +111,10 @@ jobs:
         run: python test_betwise_top30_top10_bonus_bottom50_weighted.py
       - name: Build frozen weekly four-unit strength archives
         run: python build_weekly_static_four_units.py
+      - name: Fetch CFBD direct season advanced weekly statistics for research parity audit
+        env:
+          CFBD_API_KEY: \${{ secrets.CFBD_API_KEY }}
+        run: python audit_cfbd_direct_advanced.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
