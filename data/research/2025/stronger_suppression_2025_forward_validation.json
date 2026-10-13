@@ -1,0 +1,99 @@
+{
+  "description": "2025 pregame-safe held-out forward validation of *four-unit component* under three settings; NOT a validation of the full 25/35/25/15 BetWise ranking.",
+  "evaluation": "Week >=3; ratings frozen after previous week; raw observed game unit statistics normalized only on games from preceding weeks; excludes FCS games.",
+  "results": {
+    "control": {
+      "units": {
+        "PO": {
+          "n": 1328,
+          "pearson": 0.245856
+        },
+        "PD": {
+          "n": 1328,
+          "pearson": 0.196078
+        },
+        "RO": {
+          "n": 1328,
+          "pearson": 0.255397
+        },
+        "RD": {
+          "n": 1328,
+          "pearson": 0.230861
+        }
+      },
+      "mean_unit_pearson": 0.232048,
+      "game_margin": {
+        "n": 664,
+        "pearson": 0.555255
+      },
+      "game_win": {
+        "n": 664,
+        "auc": 0.763535
+      }
+    },
+    "mild_1_5_to_35": {
+      "units": {
+        "PO": {
+          "n": 1328,
+          "pearson": 0.243794
+        },
+        "PD": {
+          "n": 1328,
+          "pearson": 0.195848
+        },
+        "RO": {
+          "n": 1328,
+          "pearson": 0.253902
+        },
+        "RD": {
+          "n": 1328,
+          "pearson": 0.232645
+        }
+      },
+      "mean_unit_pearson": 0.231547,
+      "game_margin": {
+        "n": 664,
+        "pearson": 0.557204
+      },
+      "game_win": {
+        "n": 664,
+        "auc": 0.764871
+      }
+    },
+    "strong_3_to_45": {
+      "units": {
+        "PO": {
+          "n": 1328,
+          "pearson": 0.242337
+        },
+        "PD": {
+          "n": 1328,
+          "pearson": 0.195783
+        },
+        "RO": {
+          "n": 1328,
+          "pearson": 0.25276
+        },
+        "RD": {
+          "n": 1328,
+          "pearson": 0.232327
+        }
+      },
+      "mean_unit_pearson": 0.230802,
+      "game_margin": {
+        "n": 664,
+        "pearson": 0.556913
+      },
+      "game_win": {
+        "n": 664,
+        "auc": 0.765178
+      }
+    }
+  },
+  "limitations": [
+    "Shared forward games and overlapping weekly training samples mean tiny differences require additional season-level uncertainty evaluation.",
+    "Market, ATS and quality-of-competition components are not pregame reconstructed; comparison is for units only, not overall dominance.",
+    "Past FBS games with missing advanced stats excluded; verify coverage and provider filtering.",
+    "2025 data was used to choose candidate curves, so confirmation on an untouched season is necessary before claiming superiority."
+  ]
+}
