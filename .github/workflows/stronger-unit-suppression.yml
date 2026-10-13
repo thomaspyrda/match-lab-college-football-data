@@ -1,0 +1,35 @@
+name: Stronger opponent unit suppression test
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'test_opponent_unit_stronger_suppression.py'
+      - '.github/workflows/stronger-unit-suppression.yml'
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run new 2025 and 2026 suppression comparisons
+        run: python -u test_opponent_unit_stronger_suppression.py
+      - name: Validate and publish
+        run: |
+          python - <<'PY'
+          import csv
+          for year,weeks in ((2025,16),(2026,6)):
+              rows=list(csv.DictReader(open(f'data/research/{year}/opponent_unit_stronger_suppression_weekly_comparison.csv')))
+              assert len(rows)==136*weeks*4*2, (year,len(rows))
+              print(year,len(rows))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/opponent_unit_stronger_suppression* data/research/2026/opponent_unit_stronger_suppression*
+          git diff --cached --quiet || git commit -m "Publish stronger opponent unit suppression research"
+          git push
