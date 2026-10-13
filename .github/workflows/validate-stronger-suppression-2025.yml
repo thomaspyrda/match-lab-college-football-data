@@ -1,0 +1,28 @@
+name: Validate stronger suppression against 2025 games
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'validate_stronger_suppression_2025_forward.py'
+      - '.github/workflows/validate-stronger-suppression-2025.yml'
+permissions:
+  contents: write
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Evaluate 2025 forward games
+        run: python -u validate_stronger_suppression_2025_forward.py
+      - name: Publish research validation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/stronger_suppression_2025_forward_validation.json
+          git diff --cached --quiet || git commit -m "Publish 2025 forward validation of stronger suppression"
+          git push
