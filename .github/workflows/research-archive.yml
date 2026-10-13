@@ -20,6 +20,7 @@ on:
       - 'test_pure_units_game_quality_adjusted.py'
       - 'test_pure_units_expected_residual.py'
       - 'test_pure_units_top50_stat_cap.py'
+      - 'test_market_spread_power.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -69,6 +70,8 @@ jobs:
         run: python test_pure_units_expected_residual.py
       - name: Test strict Top 50 statistical evidence cutoff
         run: python test_pure_units_top50_stat_cap.py
+      - name: Audit market spreads and test ratings
+        run: python test_market_spread_power.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
