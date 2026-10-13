@@ -126,12 +126,14 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cfb-research-2026
-          path: data/research/2026/
+          path: |
+            data/research/2025/
+            data/research/2026/
       - name: Commit archive on research branch only
         if: github.ref == 'refs/heads/research/four-unit-archive-2026'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/research/2026
+          git add data/research/2025 data/research/2026
           git diff --cached --quiet || git commit -m "Update isolated CFB research archive"
           git push
