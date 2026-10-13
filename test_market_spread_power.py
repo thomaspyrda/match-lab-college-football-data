@@ -53,9 +53,20 @@ r=prior.copy()
 for _ in range(700):
  nxt={t:(1.5*prior[t]+sum(r[o]+d for o,d in schedule[t]))/(1.5+len(schedule[t])) for t in teams}
  avg=statistics.fmean(nxt.values());r={t:x-avg for t,x in nxt.items()}
+# Weighted ATS residual: opponents with higher frozen pregame strength
+# receive more influence, without substituting current/future ranks.
+pregame={(int(x["week"]),x["team"]):float(x["pregame_strength"]) for x in csv.DictReader((D/"pregame_all_team_ranks.csv").open())}
+pz=list(pregame.values());meanpre=statistics.fmean(pz);sdpre=statistics.pstdev(pz) or 1.
+weighted=defaultdict(list)
+for g in matched:
+ wk=int(g["week"]);h,a=g["home"],g["away"]
+ for team,opp,value in [(h,a,g["ats_home"]),(a,h,-g["ats_home"])]:
+  strength=(pregame.get((wk,opp),meanpre)-meanpre)/sdpre
+  weight=max(.65,min(1.5,1+.25*strength))
+  weighted[team].append((value,weight))
 variants={}
-for name,coef in [("market_only",0),("ats_adjust_0p25",.25),("ats_adjust_0p5",.5)]:
- ratings={t:r[t]+coef*sum(ats[t])/(len(ats[t])+3) for t in teams}
+for name,coef,kind in [("market_only",0,"raw"),("ats_unweighted_0p5",.5,"raw"),("ats_weighted_0p5",.5,"weighted")]:
+ ratings={t:r[t]+coef*(sum(v*w for v,w in weighted[t])/(sum(w for _,w in weighted[t])+3) if kind=="weighted" else sum(ats[t])/(len(ats[t])+3)) for t in teams}
  ordered=sorted(teams,key=lambda t:(-ratings[t],t))
  variants[name]=[{"rank":i+1,"team":t,"power":round(ratings[t],4),"market_base":round(r[t],4),"games":len(ats[t]),"mean_ats":round(statistics.fmean(ats[t]),3) if ats[t] else None} for i,t in enumerate(ordered)]
 (D/"market_spread_power_comparison.json").write_text(json.dumps({"warning":"Lines sourced from CFBD spread fields; closing status not verified by timestamp","assumptions":{"home_field_points":2.5,"preseason_ridge_games":1.5,"ats_shrinkage_games":3},"variants":variants},indent=2))
