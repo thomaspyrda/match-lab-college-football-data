@@ -37,6 +37,7 @@ on:
       - 'audit_cfbd_direct_advanced.py'
       - 'reconstruct_cfbd_weekly_unit_metrics.py'
       - 'reconstruct_weighted_cfbd_ppa.py'
+      - 'validate_cfbd_weekly_success.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -121,6 +122,8 @@ jobs:
         run: python reconstruct_cfbd_weekly_unit_metrics.py
       - name: Audit and reconstruct play-weighted weekly PPA
         run: python reconstruct_weighted_cfbd_ppa.py
+      - name: Validate weekly passing and rushing Success Rate denominators
+        run: python validate_cfbd_weekly_success.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
