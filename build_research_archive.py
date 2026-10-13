@@ -99,7 +99,8 @@ with (OUT/"weekly_team_metrics.csv").open("w",newline="") as stream:
     w=csv.DictWriter(stream,fieldnames=columns);w.writeheader();w.writerows(records)
 with (OUT/"games.csv").open("w",newline="") as stream:
     w=csv.DictWriter(stream,fieldnames=["season","week","game_id","home","away","home_points","away_points"]);w.writeheader();w.writerows(ledger)
-(OUT/"preseason_anchors.json").write_text((ROOT/"data"/"preseason"/f"{SEASON}.json").read_text())
+preseason_file=ROOT/"data"/"preseason"/f"{SEASON}.json"
+(OUT/"preseason_anchors.json").write_text(preseason_file.read_text() if preseason_file.exists() else json.dumps({"teams":{}},indent=2))
 (OUT/"metric_dictionary.json").write_text(json.dumps({"categories":ns["CATS"],"metric_names":metrics,"columns":columns},indent=2))
 coverage={m:sum(r.get("off_"+m) is not None for r in records) for m in metrics}
 report={"season":SEASON,"completed_games":len(ledger),"team_game_rows":len(records),"fbs_teams":len(FBS),"metrics_per_side":41,"metric_coverage_counts":coverage,"missing_advanced_rows":missing}
