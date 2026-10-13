@@ -39,7 +39,9 @@ jobs:
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
           RESEARCH_SEASON: '2026'
-        run: python build_research_archive.py
+        run: |
+          python build_research_archive.py
+          python test_market_spread_power.py
       - name: Calculate all national ranking variants
         run: python run_four_unit_research.py
       - name: Build conference research rankings
@@ -70,8 +72,6 @@ jobs:
         run: python test_pure_units_expected_residual.py
       - name: Test strict Top 50 statistical evidence cutoff
         run: python test_pure_units_top50_stat_cap.py
-      - name: Audit market spreads and test ratings
-        run: python test_market_spread_power.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
