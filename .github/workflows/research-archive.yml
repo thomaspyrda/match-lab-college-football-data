@@ -21,6 +21,7 @@ on:
       - 'test_pure_units_expected_residual.py'
       - 'test_pure_units_top50_stat_cap.py'
       - 'test_market_spread_power.py'
+      - 'test_market_no_preseason.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -42,6 +43,7 @@ jobs:
         run: |
           python build_research_archive.py
           python test_market_spread_power.py
+          python test_market_no_preseason.py
       - name: Calculate all national ranking variants
         run: python run_four_unit_research.py
       - name: Build conference research rankings
