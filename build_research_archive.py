@@ -100,6 +100,29 @@ for g in completed:
                 unit=offense.get(kind+"Plays") or {}
                 row[f"{side}_{kind}_total_ppa"]=unit.get("totalPPA")
         records.append(row)
+# Independent yardage source for optional research-only volume experiments.
+# Pass yards count recorded completed pass gains; rush yards recorded rushing plays.
+# Do not silently claim these equal official team box-score yards.
+yardage=[]
+for rec in records:
+    gid=str(rec["game_id"]);team=rec["team"];opp=rec["opponent"]
+    def calc(t):
+        pp=weekplays[gid].get(t,[])
+        passing=[p for p in pp if "Pass" in str(p.get("playType") or "") and "Sack" not in str(p.get("playType") or "") and p.get("yardsGained") is not None]
+        rushing=[p for p in pp if "Rush" in str(p.get("playType") or "") and p.get("yardsGained") is not None]
+        return {"passing":passing,"rushing":rushing}
+    mine=calc(team);theirs=calc(opp)
+    out={"game_id":gid,"team":team}
+    for side,plays in (("off",mine),("def",theirs)):
+        for kind in ("passing","rushing"):
+            selected=plays[kind]
+            count=len(selected)
+            out[f"{side}_{kind}_yards_per_game"]=sum(float(p["yardsGained"]) for p in selected) if count else ""
+            out[f"{side}_{kind}_yards_per_play"]=sum(float(p["yardsGained"]) for p in selected)/count if count else ""
+            out[f"{side}_{kind}_play_count"]=count
+    yardage.append(out)
+with (OUT/"unit_yardage_per_game.csv").open("w",newline="") as stream:
+    w=csv.DictWriter(stream,fieldnames=list(yardage[0]));w.writeheader();w.writerows(yardage)
 with (OUT/"weekly_team_metrics.csv").open("w",newline="") as stream:
     w=csv.DictWriter(stream,fieldnames=columns);w.writeheader();w.writerows(records)
 with (OUT/"games.csv").open("w",newline="") as stream:
