@@ -1,0 +1,106 @@
+{
+  "season": 2026,
+  "teams": 136,
+  "weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "rows": 816,
+  "method": "Play-weighted passing/rushing PPA and Success Rate via validated denominators; supporting measures season-to-date equal-game means; per-metric cross-team z-scores; zero-centered sparse-sample shrink n/(n+2), each unit re-standardized",
+  "metrics": {
+    "PO": [
+      [
+        "passing_ppa",
+        0.4
+      ],
+      [
+        "passing_success",
+        0.4
+      ],
+      [
+        "passing_20plus_rate",
+        0.2
+      ]
+    ],
+    "PD": [
+      [
+        "passing_ppa",
+        0.4
+      ],
+      [
+        "passing_success",
+        0.4
+      ],
+      [
+        "passing_20plus_rate",
+        0.2
+      ]
+    ],
+    "RO": [
+      [
+        "rushing_success",
+        0.25
+      ],
+      [
+        "rushing_ppa",
+        0.2
+      ],
+      [
+        "stuff_avoidance",
+        0.17
+      ],
+      [
+        "line_yards",
+        0.14
+      ],
+      [
+        "power_success",
+        0.11
+      ],
+      [
+        "second_level_yards",
+        0.08
+      ],
+      [
+        "open_field_yards",
+        0.05
+      ]
+    ],
+    "RD": [
+      [
+        "rushing_success",
+        0.25
+      ],
+      [
+        "rushing_ppa",
+        0.2
+      ],
+      [
+        "stuff_avoidance",
+        0.17
+      ],
+      [
+        "line_yards",
+        0.14
+      ],
+      [
+        "power_success",
+        0.11
+      ],
+      [
+        "second_level_yards",
+        0.08
+      ],
+      [
+        "open_field_yards",
+        0.05
+      ]
+    ]
+  },
+  "preserves_existing": true,
+  "note": "Research-only source-strength model, no opponent-adjusted scoring, no changes to existing BetWise v1.0 rankings"
+}
