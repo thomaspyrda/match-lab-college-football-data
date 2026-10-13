@@ -1,0 +1,3281 @@
+{
+  "warning": "Lines sourced from CFBD spread fields; closing status not verified by timestamp",
+  "assumptions": {
+    "home_field_points": 2.5,
+    "zero_center_regularization": 0.5,
+    "preseason_anchor": 0,
+    "ats_shrinkage_games": 3
+  },
+  "variants": {
+    "market_only": [
+      {
+        "rank": 1,
+        "team": "Ohio State",
+        "power": 26.1671,
+        "market_base": 26.1671,
+        "games": 6,
+        "mean_ats": 0.833
+      },
+      {
+        "rank": 2,
+        "team": "Notre Dame",
+        "power": 25.9474,
+        "market_base": 25.9474,
+        "games": 6,
+        "mean_ats": 2.5
+      },
+      {
+        "rank": 3,
+        "team": "Indiana",
+        "power": 25.3098,
+        "market_base": 25.3098,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 4,
+        "team": "Texas",
+        "power": 23.4313,
+        "market_base": 23.4313,
+        "games": 5,
+        "mean_ats": 0.5
+      },
+      {
+        "rank": 5,
+        "team": "Miami",
+        "power": 21.7152,
+        "market_base": 21.7152,
+        "games": 4,
+        "mean_ats": 7.125
+      },
+      {
+        "rank": 6,
+        "team": "Georgia",
+        "power": 21.5987,
+        "market_base": 21.5987,
+        "games": 5,
+        "mean_ats": 6.7
+      },
+      {
+        "rank": 7,
+        "team": "Oregon",
+        "power": 21.4003,
+        "market_base": 21.4003,
+        "games": 4,
+        "mean_ats": -12.875
+      },
+      {
+        "rank": 8,
+        "team": "USC",
+        "power": 18.2938,
+        "market_base": 18.2938,
+        "games": 7,
+        "mean_ats": -5.286
+      },
+      {
+        "rank": 9,
+        "team": "Alabama",
+        "power": 17.7328,
+        "market_base": 17.7328,
+        "games": 6,
+        "mean_ats": 10.667
+      },
+      {
+        "rank": 10,
+        "team": "LSU",
+        "power": 16.9138,
+        "market_base": 16.9138,
+        "games": 5,
+        "mean_ats": 5.3
+      },
+      {
+        "rank": 11,
+        "team": "Texas Tech",
+        "power": 16.0174,
+        "market_base": 16.0174,
+        "games": 4,
+        "mean_ats": -2.75
+      },
+      {
+        "rank": 12,
+        "team": "Oklahoma",
+        "power": 15.0557,
+        "market_base": 15.0557,
+        "games": 5,
+        "mean_ats": -4.3
+      },
+      {
+        "rank": 13,
+        "team": "Tennessee",
+        "power": 14.8565,
+        "market_base": 14.8565,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 14,
+        "team": "Florida",
+        "power": 14.8301,
+        "market_base": 14.8301,
+        "games": 5,
+        "mean_ats": -4.4
+      },
+      {
+        "rank": 15,
+        "team": "Penn State",
+        "power": 14.6196,
+        "market_base": 14.6196,
+        "games": 6,
+        "mean_ats": -4.417
+      },
+      {
+        "rank": 16,
+        "team": "Texas A&M",
+        "power": 13.7999,
+        "market_base": 13.7999,
+        "games": 6,
+        "mean_ats": -4.333
+      },
+      {
+        "rank": 17,
+        "team": "Ole Miss",
+        "power": 13.269,
+        "market_base": 13.269,
+        "games": 5,
+        "mean_ats": 0.1
+      },
+      {
+        "rank": 18,
+        "team": "Washington",
+        "power": 12.5308,
+        "market_base": 12.5308,
+        "games": 5,
+        "mean_ats": -13.6
+      },
+      {
+        "rank": 19,
+        "team": "Michigan",
+        "power": 11.6165,
+        "market_base": 11.6165,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 20,
+        "team": "Utah",
+        "power": 11.3252,
+        "market_base": 11.3252,
+        "games": 4,
+        "mean_ats": 8.5
+      },
+      {
+        "rank": 21,
+        "team": "Nebraska",
+        "power": 11.1804,
+        "market_base": 11.1804,
+        "games": 5,
+        "mean_ats": 10.2
+      },
+      {
+        "rank": 22,
+        "team": "SMU",
+        "power": 10.9762,
+        "market_base": 10.9762,
+        "games": 4,
+        "mean_ats": -10.0
+      },
+      {
+        "rank": 23,
+        "team": "BYU",
+        "power": 10.4354,
+        "market_base": 10.4354,
+        "games": 4,
+        "mean_ats": 2.25
+      },
+      {
+        "rank": 24,
+        "team": "Iowa",
+        "power": 10.3595,
+        "market_base": 10.3595,
+        "games": 5,
+        "mean_ats": 4.1
+      },
+      {
+        "rank": 25,
+        "team": "Houston",
+        "power": 10.2268,
+        "market_base": 10.2268,
+        "games": 5,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 26,
+        "team": "Auburn",
+        "power": 10.2133,
+        "market_base": 10.2133,
+        "games": 5,
+        "mean_ats": -2.7
+      },
+      {
+        "rank": 27,
+        "team": "Kansas State",
+        "power": 9.974,
+        "market_base": 9.974,
+        "games": 4,
+        "mean_ats": -8.125
+      },
+      {
+        "rank": 28,
+        "team": "Missouri",
+        "power": 9.7566,
+        "market_base": 9.7566,
+        "games": 5,
+        "mean_ats": 8.6
+      },
+      {
+        "rank": 29,
+        "team": "Louisville",
+        "power": 9.2379,
+        "market_base": 9.2379,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 30,
+        "team": "Arizona",
+        "power": 8.2958,
+        "market_base": 8.2958,
+        "games": 5,
+        "mean_ats": 4.4
+      },
+      {
+        "rank": 31,
+        "team": "Mississippi State",
+        "power": 8.0426,
+        "market_base": 8.0426,
+        "games": 5,
+        "mean_ats": 6.0
+      },
+      {
+        "rank": 32,
+        "team": "Virginia Tech",
+        "power": 7.9787,
+        "market_base": 7.9787,
+        "games": 5,
+        "mean_ats": -3.1
+      },
+      {
+        "rank": 33,
+        "team": "South Carolina",
+        "power": 7.8161,
+        "market_base": 7.8161,
+        "games": 5,
+        "mean_ats": 3.8
+      },
+      {
+        "rank": 34,
+        "team": "Virginia",
+        "power": 7.3161,
+        "market_base": 7.3161,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 35,
+        "team": "Wisconsin",
+        "power": 7.2285,
+        "market_base": 7.2285,
+        "games": 4,
+        "mean_ats": 11.625
+      },
+      {
+        "rank": 36,
+        "team": "UCLA",
+        "power": 6.8313,
+        "market_base": 6.8313,
+        "games": 5,
+        "mean_ats": 16.8
+      },
+      {
+        "rank": 37,
+        "team": "Northwestern",
+        "power": 6.7511,
+        "market_base": 6.7511,
+        "games": 4,
+        "mean_ats": 16.375
+      },
+      {
+        "rank": 38,
+        "team": "Arizona State",
+        "power": 6.2116,
+        "market_base": 6.2116,
+        "games": 4,
+        "mean_ats": -13.25
+      },
+      {
+        "rank": 39,
+        "team": "Baylor",
+        "power": 6.1792,
+        "market_base": 6.1792,
+        "games": 4,
+        "mean_ats": 10.75
+      },
+      {
+        "rank": 40,
+        "team": "Illinois",
+        "power": 6.0393,
+        "market_base": 6.0393,
+        "games": 5,
+        "mean_ats": -6.4
+      },
+      {
+        "rank": 41,
+        "team": "Florida State",
+        "power": 5.8821,
+        "market_base": 5.8821,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 42,
+        "team": "Clemson",
+        "power": 5.8145,
+        "market_base": 5.8145,
+        "games": 5,
+        "mean_ats": -6.8
+      },
+      {
+        "rank": 43,
+        "team": "Pittsburgh",
+        "power": 5.7905,
+        "market_base": 5.7905,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 44,
+        "team": "TCU",
+        "power": 5.5955,
+        "market_base": 5.5955,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 45,
+        "team": "Kentucky",
+        "power": 5.1818,
+        "market_base": 5.1818,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 46,
+        "team": "Boise State",
+        "power": 4.9108,
+        "market_base": 4.9108,
+        "games": 5,
+        "mean_ats": 8.1
+      },
+      {
+        "rank": 47,
+        "team": "Wake Forest",
+        "power": 3.8249,
+        "market_base": 3.8249,
+        "games": 6,
+        "mean_ats": 12.583
+      },
+      {
+        "rank": 48,
+        "team": "Oklahoma State",
+        "power": 3.7657,
+        "market_base": 3.7657,
+        "games": 4,
+        "mean_ats": 6.75
+      },
+      {
+        "rank": 49,
+        "team": "Duke",
+        "power": 3.1571,
+        "market_base": 3.1571,
+        "games": 4,
+        "mean_ats": 6.375
+      },
+      {
+        "rank": 50,
+        "team": "North Carolina",
+        "power": 2.9218,
+        "market_base": 2.9218,
+        "games": 4,
+        "mean_ats": 6.25
+      },
+      {
+        "rank": 51,
+        "team": "Minnesota",
+        "power": 2.8946,
+        "market_base": 2.8946,
+        "games": 5,
+        "mean_ats": -2.9
+      },
+      {
+        "rank": 52,
+        "team": "West Virginia",
+        "power": 2.3688,
+        "market_base": 2.3688,
+        "games": 5,
+        "mean_ats": -5.7
+      },
+      {
+        "rank": 53,
+        "team": "Cincinnati",
+        "power": 2.2935,
+        "market_base": 2.2935,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 54,
+        "team": "Vanderbilt",
+        "power": 2.2273,
+        "market_base": 2.2273,
+        "games": 5,
+        "mean_ats": -6.1
+      },
+      {
+        "rank": 55,
+        "team": "Michigan State",
+        "power": 2.0457,
+        "market_base": 2.0457,
+        "games": 6,
+        "mean_ats": -1.333
+      },
+      {
+        "rank": 56,
+        "team": "NC State",
+        "power": 1.8563,
+        "market_base": 1.8563,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 57,
+        "team": "Iowa State",
+        "power": 1.5965,
+        "market_base": 1.5965,
+        "games": 5,
+        "mean_ats": 5.5
+      },
+      {
+        "rank": 58,
+        "team": "Kansas",
+        "power": 1.2211,
+        "market_base": 1.2211,
+        "games": 4,
+        "mean_ats": 4.375
+      },
+      {
+        "rank": 59,
+        "team": "Maryland",
+        "power": 1.0248,
+        "market_base": 1.0248,
+        "games": 5,
+        "mean_ats": -9.9
+      },
+      {
+        "rank": 60,
+        "team": "UTSA",
+        "power": 0.6864,
+        "market_base": 0.6864,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 61,
+        "team": "UCF",
+        "power": 0.4526,
+        "market_base": 0.4526,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 62,
+        "team": "Colorado",
+        "power": 0.4208,
+        "market_base": 0.4208,
+        "games": 4,
+        "mean_ats": -8.25
+      },
+      {
+        "rank": 63,
+        "team": "Rutgers",
+        "power": 0.1875,
+        "market_base": 0.1875,
+        "games": 4,
+        "mean_ats": -10.75
+      },
+      {
+        "rank": 64,
+        "team": "Texas State",
+        "power": 0.1065,
+        "market_base": 0.1065,
+        "games": 4,
+        "mean_ats": -7.5
+      },
+      {
+        "rank": 65,
+        "team": "James Madison",
+        "power": 0.0967,
+        "market_base": 0.0967,
+        "games": 5,
+        "mean_ats": 9.1
+      },
+      {
+        "rank": 66,
+        "team": "UNLV",
+        "power": 0.0874,
+        "market_base": 0.0874,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 67,
+        "team": "Georgia Tech",
+        "power": -0.0542,
+        "market_base": -0.0542,
+        "games": 4,
+        "mean_ats": -4.625
+      },
+      {
+        "rank": 68,
+        "team": "South Florida",
+        "power": -0.1408,
+        "market_base": -0.1408,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 69,
+        "team": "Memphis",
+        "power": -0.409,
+        "market_base": -0.409,
+        "games": 5,
+        "mean_ats": 10.3
+      },
+      {
+        "rank": 70,
+        "team": "Arkansas",
+        "power": -0.7629,
+        "market_base": -0.7629,
+        "games": 5,
+        "mean_ats": -1.8
+      },
+      {
+        "rank": 71,
+        "team": "New Mexico",
+        "power": -0.8979,
+        "market_base": -0.8979,
+        "games": 4,
+        "mean_ats": 19.0
+      },
+      {
+        "rank": 72,
+        "team": "California",
+        "power": -0.9036,
+        "market_base": -0.9036,
+        "games": 5,
+        "mean_ats": -2.6
+      },
+      {
+        "rank": 73,
+        "team": "Syracuse",
+        "power": -1.1818,
+        "market_base": -1.1818,
+        "games": 4,
+        "mean_ats": -1.25
+      },
+      {
+        "rank": 74,
+        "team": "Army",
+        "power": -1.4989,
+        "market_base": -1.4989,
+        "games": 4,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 75,
+        "team": "Navy",
+        "power": -2.0269,
+        "market_base": -2.0269,
+        "games": 4,
+        "mean_ats": -5.125
+      },
+      {
+        "rank": 76,
+        "team": "Purdue",
+        "power": -2.2659,
+        "market_base": -2.2659,
+        "games": 5,
+        "mean_ats": 7.1
+      },
+      {
+        "rank": 77,
+        "team": "North Texas",
+        "power": -2.4549,
+        "market_base": -2.4549,
+        "games": 5,
+        "mean_ats": 8.8
+      },
+      {
+        "rank": 78,
+        "team": "Toledo",
+        "power": -2.5146,
+        "market_base": -2.5146,
+        "games": 5,
+        "mean_ats": -4.0
+      },
+      {
+        "rank": 79,
+        "team": "Air Force",
+        "power": -2.9677,
+        "market_base": -2.9677,
+        "games": 3,
+        "mean_ats": 5.0
+      },
+      {
+        "rank": 80,
+        "team": "Tulane",
+        "power": -3.1,
+        "market_base": -3.1,
+        "games": 5,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 81,
+        "team": "Fresno State",
+        "power": -3.4138,
+        "market_base": -3.4138,
+        "games": 5,
+        "mean_ats": 4.0
+      },
+      {
+        "rank": 82,
+        "team": "Oregon State",
+        "power": -3.529,
+        "market_base": -3.529,
+        "games": 5,
+        "mean_ats": 19.5
+      },
+      {
+        "rank": 83,
+        "team": "Boston College",
+        "power": -4.1253,
+        "market_base": -4.1253,
+        "games": 4,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 84,
+        "team": "Liberty",
+        "power": -4.1902,
+        "market_base": -4.1902,
+        "games": 5,
+        "mean_ats": 12.5
+      },
+      {
+        "rank": 85,
+        "team": "East Carolina",
+        "power": -5.2579,
+        "market_base": -5.2579,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 86,
+        "team": "Tulsa",
+        "power": -5.2763,
+        "market_base": -5.2763,
+        "games": 5,
+        "mean_ats": -0.6
+      },
+      {
+        "rank": 87,
+        "team": "Western Michigan",
+        "power": -5.4769,
+        "market_base": -5.4769,
+        "games": 5,
+        "mean_ats": 3.1
+      },
+      {
+        "rank": 88,
+        "team": "App State",
+        "power": -5.8966,
+        "market_base": -5.8966,
+        "games": 4,
+        "mean_ats": -3.75
+      },
+      {
+        "rank": 89,
+        "team": "Florida Atlantic",
+        "power": -5.9892,
+        "market_base": -5.9892,
+        "games": 4,
+        "mean_ats": 2.75
+      },
+      {
+        "rank": 90,
+        "team": "Washington State",
+        "power": -6.0372,
+        "market_base": -6.0372,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 91,
+        "team": "Stanford",
+        "power": -6.1781,
+        "market_base": -6.1781,
+        "games": 6,
+        "mean_ats": -11.25
+      },
+      {
+        "rank": 92,
+        "team": "San Diego State",
+        "power": -6.1835,
+        "market_base": -6.1835,
+        "games": 5,
+        "mean_ats": -13.7
+      },
+      {
+        "rank": 93,
+        "team": "Temple",
+        "power": -6.4647,
+        "market_base": -6.4647,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 94,
+        "team": "Jacksonville State",
+        "power": -6.6139,
+        "market_base": -6.6139,
+        "games": 4,
+        "mean_ats": 0.25
+      },
+      {
+        "rank": 95,
+        "team": "Marshall",
+        "power": -7.0235,
+        "market_base": -7.0235,
+        "games": 5,
+        "mean_ats": -10.6
+      },
+      {
+        "rank": 96,
+        "team": "Hawai'i",
+        "power": -7.2478,
+        "market_base": -7.2478,
+        "games": 6,
+        "mean_ats": -6.5
+      },
+      {
+        "rank": 97,
+        "team": "Louisiana",
+        "power": -7.2715,
+        "market_base": -7.2715,
+        "games": 5,
+        "mean_ats": 5.9
+      },
+      {
+        "rank": 98,
+        "team": "Miami (OH)",
+        "power": -7.3236,
+        "market_base": -7.3236,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 99,
+        "team": "Arkansas State",
+        "power": -7.6299,
+        "market_base": -7.6299,
+        "games": 5,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 100,
+        "team": "Troy",
+        "power": -7.7322,
+        "market_base": -7.7322,
+        "games": 4,
+        "mean_ats": 1.875
+      },
+      {
+        "rank": 101,
+        "team": "South Alabama",
+        "power": -7.7625,
+        "market_base": -7.7625,
+        "games": 5,
+        "mean_ats": 2.9
+      },
+      {
+        "rank": 102,
+        "team": "Old Dominion",
+        "power": -7.9033,
+        "market_base": -7.9033,
+        "games": 5,
+        "mean_ats": -9.0
+      },
+      {
+        "rank": 103,
+        "team": "Louisiana Tech",
+        "power": -8.0394,
+        "market_base": -8.0394,
+        "games": 4,
+        "mean_ats": 1.375
+      },
+      {
+        "rank": 104,
+        "team": "Georgia Southern",
+        "power": -8.1675,
+        "market_base": -8.1675,
+        "games": 5,
+        "mean_ats": 3.4
+      },
+      {
+        "rank": 105,
+        "team": "UConn",
+        "power": -8.5209,
+        "market_base": -8.5209,
+        "games": 5,
+        "mean_ats": 6.9
+      },
+      {
+        "rank": 106,
+        "team": "Nevada",
+        "power": -8.9262,
+        "market_base": -8.9262,
+        "games": 4,
+        "mean_ats": 8.625
+      },
+      {
+        "rank": 107,
+        "team": "Wyoming",
+        "power": -8.9709,
+        "market_base": -8.9709,
+        "games": 4,
+        "mean_ats": -2.0
+      },
+      {
+        "rank": 108,
+        "team": "Utah State",
+        "power": -9.0914,
+        "market_base": -9.0914,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 109,
+        "team": "Florida International",
+        "power": -9.2887,
+        "market_base": -9.2887,
+        "games": 4,
+        "mean_ats": 5.125
+      },
+      {
+        "rank": 110,
+        "team": "San Jose State",
+        "power": -9.3496,
+        "market_base": -9.3496,
+        "games": 5,
+        "mean_ats": 3.2
+      },
+      {
+        "rank": 111,
+        "team": "Colorado State",
+        "power": -9.5285,
+        "market_base": -9.5285,
+        "games": 4,
+        "mean_ats": -0.875
+      },
+      {
+        "rank": 112,
+        "team": "Ohio",
+        "power": -9.6796,
+        "market_base": -9.6796,
+        "games": 5,
+        "mean_ats": 2.4
+      },
+      {
+        "rank": 113,
+        "team": "Kennesaw State",
+        "power": -10.617,
+        "market_base": -10.617,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 114,
+        "team": "Delaware",
+        "power": -10.6872,
+        "market_base": -10.6872,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 115,
+        "team": "Georgia State",
+        "power": -10.8892,
+        "market_base": -10.8892,
+        "games": 4,
+        "mean_ats": 17.0
+      },
+      {
+        "rank": 116,
+        "team": "Coastal Carolina",
+        "power": -10.9454,
+        "market_base": -10.9454,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 117,
+        "team": "Central Michigan",
+        "power": -11.2431,
+        "market_base": -11.2431,
+        "games": 5,
+        "mean_ats": -1.7
+      },
+      {
+        "rank": 118,
+        "team": "UAB",
+        "power": -11.388,
+        "market_base": -11.388,
+        "games": 5,
+        "mean_ats": 0.8
+      },
+      {
+        "rank": 119,
+        "team": "Eastern Michigan",
+        "power": -11.5843,
+        "market_base": -11.5843,
+        "games": 5,
+        "mean_ats": -2.3
+      },
+      {
+        "rank": 120,
+        "team": "Western Kentucky",
+        "power": -12.4601,
+        "market_base": -12.4601,
+        "games": 5,
+        "mean_ats": -7.3
+      },
+      {
+        "rank": 121,
+        "team": "Rice",
+        "power": -13.0936,
+        "market_base": -13.0936,
+        "games": 5,
+        "mean_ats": -0.8
+      },
+      {
+        "rank": 122,
+        "team": "Middle Tennessee",
+        "power": -13.2983,
+        "market_base": -13.2983,
+        "games": 4,
+        "mean_ats": -4.125
+      },
+      {
+        "rank": 123,
+        "team": "Missouri State",
+        "power": -13.6017,
+        "market_base": -13.6017,
+        "games": 4,
+        "mean_ats": -3.875
+      },
+      {
+        "rank": 124,
+        "team": "New Mexico State",
+        "power": -13.9114,
+        "market_base": -13.9114,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 125,
+        "team": "Massachusetts",
+        "power": -14.6344,
+        "market_base": -14.6344,
+        "games": 3,
+        "mean_ats": 7.0
+      },
+      {
+        "rank": 126,
+        "team": "Southern Miss",
+        "power": -14.92,
+        "market_base": -14.92,
+        "games": 4,
+        "mean_ats": -6.0
+      },
+      {
+        "rank": 127,
+        "team": "Bowling Green",
+        "power": -15.7083,
+        "market_base": -15.7083,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 128,
+        "team": "Northern Illinois",
+        "power": -15.9337,
+        "market_base": -15.9337,
+        "games": 4,
+        "mean_ats": -6.375
+      },
+      {
+        "rank": 129,
+        "team": "Akron",
+        "power": -16.0037,
+        "market_base": -16.0037,
+        "games": 5,
+        "mean_ats": -7.1
+      },
+      {
+        "rank": 130,
+        "team": "Sam Houston",
+        "power": -16.0403,
+        "market_base": -16.0403,
+        "games": 4,
+        "mean_ats": 0.0
+      },
+      {
+        "rank": 131,
+        "team": "UL Monroe",
+        "power": -16.466,
+        "market_base": -16.466,
+        "games": 4,
+        "mean_ats": -9.5
+      },
+      {
+        "rank": 132,
+        "team": "Buffalo",
+        "power": -17.2579,
+        "market_base": -17.2579,
+        "games": 4,
+        "mean_ats": 9.25
+      },
+      {
+        "rank": 133,
+        "team": "Kent State",
+        "power": -18.2988,
+        "market_base": -18.2988,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 134,
+        "team": "UTEP",
+        "power": -18.942,
+        "market_base": -18.942,
+        "games": 5,
+        "mean_ats": -12.6
+      },
+      {
+        "rank": 135,
+        "team": "Ball State",
+        "power": -19.4701,
+        "market_base": -19.4701,
+        "games": 5,
+        "mean_ats": -5.1
+      },
+      {
+        "rank": 136,
+        "team": "Charlotte",
+        "power": -21.2296,
+        "market_base": -21.2296,
+        "games": 5,
+        "mean_ats": -7.7
+      }
+    ],
+    "ats_unweighted_0p5": [
+      {
+        "rank": 1,
+        "team": "Notre Dame",
+        "power": 26.7808,
+        "market_base": 25.9474,
+        "games": 6,
+        "mean_ats": 2.5
+      },
+      {
+        "rank": 2,
+        "team": "Ohio State",
+        "power": 26.4449,
+        "market_base": 26.1671,
+        "games": 6,
+        "mean_ats": 0.833
+      },
+      {
+        "rank": 3,
+        "team": "Indiana",
+        "power": 23.8411,
+        "market_base": 25.3098,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 4,
+        "team": "Miami",
+        "power": 23.7509,
+        "market_base": 21.7152,
+        "games": 4,
+        "mean_ats": 7.125
+      },
+      {
+        "rank": 5,
+        "team": "Georgia",
+        "power": 23.6924,
+        "market_base": 21.5987,
+        "games": 5,
+        "mean_ats": 6.7
+      },
+      {
+        "rank": 6,
+        "team": "Texas",
+        "power": 23.5875,
+        "market_base": 23.4313,
+        "games": 5,
+        "mean_ats": 0.5
+      },
+      {
+        "rank": 7,
+        "team": "Alabama",
+        "power": 21.2884,
+        "market_base": 17.7328,
+        "games": 6,
+        "mean_ats": 10.667
+      },
+      {
+        "rank": 8,
+        "team": "LSU",
+        "power": 18.57,
+        "market_base": 16.9138,
+        "games": 5,
+        "mean_ats": 5.3
+      },
+      {
+        "rank": 9,
+        "team": "Oregon",
+        "power": 17.7218,
+        "market_base": 21.4003,
+        "games": 4,
+        "mean_ats": -12.875
+      },
+      {
+        "rank": 10,
+        "team": "USC",
+        "power": 16.4438,
+        "market_base": 18.2938,
+        "games": 7,
+        "mean_ats": -5.286
+      },
+      {
+        "rank": 11,
+        "team": "Texas Tech",
+        "power": 15.2317,
+        "market_base": 16.0174,
+        "games": 4,
+        "mean_ats": -2.75
+      },
+      {
+        "rank": 12,
+        "team": "Tennessee",
+        "power": 15.2315,
+        "market_base": 14.8565,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 13,
+        "team": "Nebraska",
+        "power": 14.3679,
+        "market_base": 11.1804,
+        "games": 5,
+        "mean_ats": 10.2
+      },
+      {
+        "rank": 14,
+        "team": "Utah",
+        "power": 13.7537,
+        "market_base": 11.3252,
+        "games": 4,
+        "mean_ats": 8.5
+      },
+      {
+        "rank": 15,
+        "team": "Oklahoma",
+        "power": 13.712,
+        "market_base": 15.0557,
+        "games": 5,
+        "mean_ats": -4.3
+      },
+      {
+        "rank": 16,
+        "team": "Florida",
+        "power": 13.4551,
+        "market_base": 14.8301,
+        "games": 5,
+        "mean_ats": -4.4
+      },
+      {
+        "rank": 17,
+        "team": "Ole Miss",
+        "power": 13.3002,
+        "market_base": 13.269,
+        "games": 5,
+        "mean_ats": 0.1
+      },
+      {
+        "rank": 18,
+        "team": "Penn State",
+        "power": 13.1474,
+        "market_base": 14.6196,
+        "games": 6,
+        "mean_ats": -4.417
+      },
+      {
+        "rank": 19,
+        "team": "Missouri",
+        "power": 12.4441,
+        "market_base": 9.7566,
+        "games": 5,
+        "mean_ats": 8.6
+      },
+      {
+        "rank": 20,
+        "team": "Texas A&M",
+        "power": 12.3555,
+        "market_base": 13.7999,
+        "games": 6,
+        "mean_ats": -4.333
+      },
+      {
+        "rank": 21,
+        "team": "UCLA",
+        "power": 12.0813,
+        "market_base": 6.8313,
+        "games": 5,
+        "mean_ats": 16.8
+      },
+      {
+        "rank": 22,
+        "team": "Iowa",
+        "power": 11.6407,
+        "market_base": 10.3595,
+        "games": 5,
+        "mean_ats": 4.1
+      },
+      {
+        "rank": 23,
+        "team": "Northwestern",
+        "power": 11.4297,
+        "market_base": 6.7511,
+        "games": 4,
+        "mean_ats": 16.375
+      },
+      {
+        "rank": 24,
+        "team": "Houston",
+        "power": 11.1643,
+        "market_base": 10.2268,
+        "games": 5,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 25,
+        "team": "BYU",
+        "power": 11.0783,
+        "market_base": 10.4354,
+        "games": 4,
+        "mean_ats": 2.25
+      },
+      {
+        "rank": 26,
+        "team": "Wisconsin",
+        "power": 10.55,
+        "market_base": 7.2285,
+        "games": 4,
+        "mean_ats": 11.625
+      },
+      {
+        "rank": 27,
+        "team": "Mississippi State",
+        "power": 9.9176,
+        "market_base": 8.0426,
+        "games": 5,
+        "mean_ats": 6.0
+      },
+      {
+        "rank": 28,
+        "team": "Louisville",
+        "power": 9.7067,
+        "market_base": 9.2379,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 29,
+        "team": "Arizona",
+        "power": 9.6708,
+        "market_base": 8.2958,
+        "games": 5,
+        "mean_ats": 4.4
+      },
+      {
+        "rank": 30,
+        "team": "Michigan",
+        "power": 9.6478,
+        "market_base": 11.6165,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 31,
+        "team": "Auburn",
+        "power": 9.3695,
+        "market_base": 10.2133,
+        "games": 5,
+        "mean_ats": -2.7
+      },
+      {
+        "rank": 32,
+        "team": "Baylor",
+        "power": 9.2506,
+        "market_base": 6.1792,
+        "games": 4,
+        "mean_ats": 10.75
+      },
+      {
+        "rank": 33,
+        "team": "South Carolina",
+        "power": 9.0036,
+        "market_base": 7.8161,
+        "games": 5,
+        "mean_ats": 3.8
+      },
+      {
+        "rank": 34,
+        "team": "Washington",
+        "power": 8.2808,
+        "market_base": 12.5308,
+        "games": 5,
+        "mean_ats": -13.6
+      },
+      {
+        "rank": 35,
+        "team": "SMU",
+        "power": 8.1191,
+        "market_base": 10.9762,
+        "games": 4,
+        "mean_ats": -10.0
+      },
+      {
+        "rank": 36,
+        "team": "Wake Forest",
+        "power": 8.0193,
+        "market_base": 3.8249,
+        "games": 6,
+        "mean_ats": 12.583
+      },
+      {
+        "rank": 37,
+        "team": "Kansas State",
+        "power": 7.6526,
+        "market_base": 9.974,
+        "games": 4,
+        "mean_ats": -8.125
+      },
+      {
+        "rank": 38,
+        "team": "Boise State",
+        "power": 7.442,
+        "market_base": 4.9108,
+        "games": 5,
+        "mean_ats": 8.1
+      },
+      {
+        "rank": 39,
+        "team": "Pittsburgh",
+        "power": 7.3843,
+        "market_base": 5.7905,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 40,
+        "team": "Virginia Tech",
+        "power": 7.01,
+        "market_base": 7.9787,
+        "games": 5,
+        "mean_ats": -3.1
+      },
+      {
+        "rank": 41,
+        "team": "Kentucky",
+        "power": 6.7756,
+        "market_base": 5.1818,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 42,
+        "team": "Florida State",
+        "power": 6.1009,
+        "market_base": 5.8821,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 43,
+        "team": "Virginia",
+        "power": 5.8473,
+        "market_base": 7.3161,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 44,
+        "team": "Oklahoma State",
+        "power": 5.6942,
+        "market_base": 3.7657,
+        "games": 4,
+        "mean_ats": 6.75
+      },
+      {
+        "rank": 45,
+        "team": "Duke",
+        "power": 4.9785,
+        "market_base": 3.1571,
+        "games": 4,
+        "mean_ats": 6.375
+      },
+      {
+        "rank": 46,
+        "team": "North Carolina",
+        "power": 4.7075,
+        "market_base": 2.9218,
+        "games": 4,
+        "mean_ats": 6.25
+      },
+      {
+        "rank": 47,
+        "team": "New Mexico",
+        "power": 4.5306,
+        "market_base": -0.8979,
+        "games": 4,
+        "mean_ats": 19.0
+      },
+      {
+        "rank": 48,
+        "team": "TCU",
+        "power": 4.167,
+        "market_base": 5.5955,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 49,
+        "team": "Illinois",
+        "power": 4.0393,
+        "market_base": 6.0393,
+        "games": 5,
+        "mean_ats": -6.4
+      },
+      {
+        "rank": 50,
+        "team": "Clemson",
+        "power": 3.6895,
+        "market_base": 5.8145,
+        "games": 5,
+        "mean_ats": -6.8
+      },
+      {
+        "rank": 51,
+        "team": "Iowa State",
+        "power": 3.3152,
+        "market_base": 1.5965,
+        "games": 5,
+        "mean_ats": 5.5
+      },
+      {
+        "rank": 52,
+        "team": "James Madison",
+        "power": 2.9405,
+        "market_base": 0.0967,
+        "games": 5,
+        "mean_ats": 9.1
+      },
+      {
+        "rank": 53,
+        "team": "Memphis",
+        "power": 2.8098,
+        "market_base": -0.409,
+        "games": 5,
+        "mean_ats": 10.3
+      },
+      {
+        "rank": 54,
+        "team": "Oregon State",
+        "power": 2.5647,
+        "market_base": -3.529,
+        "games": 5,
+        "mean_ats": 19.5
+      },
+      {
+        "rank": 55,
+        "team": "Kansas",
+        "power": 2.4711,
+        "market_base": 1.2211,
+        "games": 4,
+        "mean_ats": 4.375
+      },
+      {
+        "rank": 56,
+        "team": "Arizona State",
+        "power": 2.4259,
+        "market_base": 6.2116,
+        "games": 4,
+        "mean_ats": -13.25
+      },
+      {
+        "rank": 57,
+        "team": "Minnesota",
+        "power": 1.9883,
+        "market_base": 2.8946,
+        "games": 5,
+        "mean_ats": -2.9
+      },
+      {
+        "rank": 58,
+        "team": "Cincinnati",
+        "power": 1.7578,
+        "market_base": 2.2935,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 59,
+        "team": "Michigan State",
+        "power": 1.6012,
+        "market_base": 2.0457,
+        "games": 6,
+        "mean_ats": -1.333
+      },
+      {
+        "rank": 60,
+        "team": "UCF",
+        "power": 0.9214,
+        "market_base": 0.4526,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 61,
+        "team": "UTSA",
+        "power": 0.9051,
+        "market_base": 0.6864,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 62,
+        "team": "West Virginia",
+        "power": 0.5876,
+        "market_base": 2.3688,
+        "games": 5,
+        "mean_ats": -5.7
+      },
+      {
+        "rank": 63,
+        "team": "Vanderbilt",
+        "power": 0.321,
+        "market_base": 2.2273,
+        "games": 5,
+        "mean_ats": -6.1
+      },
+      {
+        "rank": 64,
+        "team": "North Texas",
+        "power": 0.2951,
+        "market_base": -2.4549,
+        "games": 5,
+        "mean_ats": 8.8
+      },
+      {
+        "rank": 65,
+        "team": "Purdue",
+        "power": -0.0472,
+        "market_base": -2.2659,
+        "games": 5,
+        "mean_ats": 7.1
+      },
+      {
+        "rank": 66,
+        "team": "Liberty",
+        "power": -0.284,
+        "market_base": -4.1902,
+        "games": 5,
+        "mean_ats": 12.5
+      },
+      {
+        "rank": 67,
+        "team": "NC State",
+        "power": -0.4562,
+        "market_base": 1.8563,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 68,
+        "team": "UNLV",
+        "power": -1.0376,
+        "market_base": 0.0874,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 69,
+        "team": "South Florida",
+        "power": -1.2658,
+        "market_base": -0.1408,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 70,
+        "team": "Arkansas",
+        "power": -1.3254,
+        "market_base": -0.7629,
+        "games": 5,
+        "mean_ats": -1.8
+      },
+      {
+        "rank": 71,
+        "team": "Georgia Tech",
+        "power": -1.3756,
+        "market_base": -0.0542,
+        "games": 4,
+        "mean_ats": -4.625
+      },
+      {
+        "rank": 72,
+        "team": "Syracuse",
+        "power": -1.5389,
+        "market_base": -1.1818,
+        "games": 4,
+        "mean_ats": -1.25
+      },
+      {
+        "rank": 73,
+        "team": "California",
+        "power": -1.7161,
+        "market_base": -0.9036,
+        "games": 5,
+        "mean_ats": -2.6
+      },
+      {
+        "rank": 74,
+        "team": "Air Force",
+        "power": -1.7177,
+        "market_base": -2.9677,
+        "games": 3,
+        "mean_ats": 5.0
+      },
+      {
+        "rank": 75,
+        "team": "Colorado",
+        "power": -1.9364,
+        "market_base": 0.4208,
+        "games": 4,
+        "mean_ats": -8.25
+      },
+      {
+        "rank": 76,
+        "team": "Texas State",
+        "power": -2.0364,
+        "market_base": 0.1065,
+        "games": 4,
+        "mean_ats": -7.5
+      },
+      {
+        "rank": 77,
+        "team": "Maryland",
+        "power": -2.0689,
+        "market_base": 1.0248,
+        "games": 5,
+        "mean_ats": -9.9
+      },
+      {
+        "rank": 78,
+        "team": "Fresno State",
+        "power": -2.1638,
+        "market_base": -3.4138,
+        "games": 5,
+        "mean_ats": 4.0
+      },
+      {
+        "rank": 79,
+        "team": "Army",
+        "power": -2.2131,
+        "market_base": -1.4989,
+        "games": 4,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 80,
+        "team": "Rutgers",
+        "power": -2.8839,
+        "market_base": 0.1875,
+        "games": 4,
+        "mean_ats": -10.75
+      },
+      {
+        "rank": 81,
+        "team": "Boston College",
+        "power": -3.2682,
+        "market_base": -4.1253,
+        "games": 4,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 82,
+        "team": "Navy",
+        "power": -3.4912,
+        "market_base": -2.0269,
+        "games": 4,
+        "mean_ats": -5.125
+      },
+      {
+        "rank": 83,
+        "team": "Toledo",
+        "power": -3.7646,
+        "market_base": -2.5146,
+        "games": 5,
+        "mean_ats": -4.0
+      },
+      {
+        "rank": 84,
+        "team": "Tulane",
+        "power": -3.8813,
+        "market_base": -3.1,
+        "games": 5,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 85,
+        "team": "Western Michigan",
+        "power": -4.5082,
+        "market_base": -5.4769,
+        "games": 5,
+        "mean_ats": 3.1
+      },
+      {
+        "rank": 86,
+        "team": "Florida Atlantic",
+        "power": -5.2035,
+        "market_base": -5.9892,
+        "games": 4,
+        "mean_ats": 2.75
+      },
+      {
+        "rank": 87,
+        "team": "Louisiana",
+        "power": -5.4277,
+        "market_base": -7.2715,
+        "games": 5,
+        "mean_ats": 5.9
+      },
+      {
+        "rank": 88,
+        "team": "Tulsa",
+        "power": -5.4638,
+        "market_base": -5.2763,
+        "games": 5,
+        "mean_ats": -0.6
+      },
+      {
+        "rank": 89,
+        "team": "East Carolina",
+        "power": -5.7936,
+        "market_base": -5.2579,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 90,
+        "team": "Georgia State",
+        "power": -6.0321,
+        "market_base": -10.8892,
+        "games": 4,
+        "mean_ats": 17.0
+      },
+      {
+        "rank": 91,
+        "team": "Temple",
+        "power": -6.3397,
+        "market_base": -6.4647,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 92,
+        "team": "UConn",
+        "power": -6.3647,
+        "market_base": -8.5209,
+        "games": 5,
+        "mean_ats": 6.9
+      },
+      {
+        "rank": 93,
+        "team": "Nevada",
+        "power": -6.462,
+        "market_base": -8.9262,
+        "games": 4,
+        "mean_ats": 8.625
+      },
+      {
+        "rank": 94,
+        "team": "Jacksonville State",
+        "power": -6.5424,
+        "market_base": -6.6139,
+        "games": 4,
+        "mean_ats": 0.25
+      },
+      {
+        "rank": 95,
+        "team": "South Alabama",
+        "power": -6.8562,
+        "market_base": -7.7625,
+        "games": 5,
+        "mean_ats": 2.9
+      },
+      {
+        "rank": 96,
+        "team": "App State",
+        "power": -6.968,
+        "market_base": -5.8966,
+        "games": 4,
+        "mean_ats": -3.75
+      },
+      {
+        "rank": 97,
+        "team": "Georgia Southern",
+        "power": -7.105,
+        "market_base": -8.1675,
+        "games": 5,
+        "mean_ats": 3.4
+      },
+      {
+        "rank": 98,
+        "team": "Washington State",
+        "power": -7.1622,
+        "market_base": -6.0372,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 99,
+        "team": "Troy",
+        "power": -7.1965,
+        "market_base": -7.7322,
+        "games": 4,
+        "mean_ats": 1.875
+      },
+      {
+        "rank": 100,
+        "team": "Utah State",
+        "power": -7.4977,
+        "market_base": -9.0914,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 101,
+        "team": "Louisiana Tech",
+        "power": -7.6466,
+        "market_base": -8.0394,
+        "games": 4,
+        "mean_ats": 1.375
+      },
+      {
+        "rank": 102,
+        "team": "Florida International",
+        "power": -7.8244,
+        "market_base": -9.2887,
+        "games": 4,
+        "mean_ats": 5.125
+      },
+      {
+        "rank": 103,
+        "team": "San Jose State",
+        "power": -8.3496,
+        "market_base": -9.3496,
+        "games": 5,
+        "mean_ats": 3.2
+      },
+      {
+        "rank": 104,
+        "team": "Ohio",
+        "power": -8.9296,
+        "market_base": -9.6796,
+        "games": 5,
+        "mean_ats": 2.4
+      },
+      {
+        "rank": 105,
+        "team": "Arkansas State",
+        "power": -9.1924,
+        "market_base": -7.6299,
+        "games": 5,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 106,
+        "team": "Hawai'i",
+        "power": -9.4145,
+        "market_base": -7.2478,
+        "games": 6,
+        "mean_ats": -6.5
+      },
+      {
+        "rank": 107,
+        "team": "Wyoming",
+        "power": -9.5423,
+        "market_base": -8.9709,
+        "games": 4,
+        "mean_ats": -2.0
+      },
+      {
+        "rank": 108,
+        "team": "Miami (OH)",
+        "power": -9.6361,
+        "market_base": -7.3236,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 109,
+        "team": "Colorado State",
+        "power": -9.7785,
+        "market_base": -9.5285,
+        "games": 4,
+        "mean_ats": -0.875
+      },
+      {
+        "rank": 110,
+        "team": "Stanford",
+        "power": -9.9281,
+        "market_base": -6.1781,
+        "games": 6,
+        "mean_ats": -11.25
+      },
+      {
+        "rank": 111,
+        "team": "Marshall",
+        "power": -10.336,
+        "market_base": -7.0235,
+        "games": 5,
+        "mean_ats": -10.6
+      },
+      {
+        "rank": 112,
+        "team": "San Diego State",
+        "power": -10.4647,
+        "market_base": -6.1835,
+        "games": 5,
+        "mean_ats": -13.7
+      },
+      {
+        "rank": 113,
+        "team": "Old Dominion",
+        "power": -10.7158,
+        "market_base": -7.9033,
+        "games": 5,
+        "mean_ats": -9.0
+      },
+      {
+        "rank": 114,
+        "team": "Coastal Carolina",
+        "power": -10.8204,
+        "market_base": -10.9454,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 115,
+        "team": "UAB",
+        "power": -11.138,
+        "market_base": -11.388,
+        "games": 5,
+        "mean_ats": 0.8
+      },
+      {
+        "rank": 116,
+        "team": "Kennesaw State",
+        "power": -11.5813,
+        "market_base": -10.617,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 117,
+        "team": "Delaware",
+        "power": -11.6514,
+        "market_base": -10.6872,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 118,
+        "team": "Central Michigan",
+        "power": -11.7743,
+        "market_base": -11.2431,
+        "games": 5,
+        "mean_ats": -1.7
+      },
+      {
+        "rank": 119,
+        "team": "Eastern Michigan",
+        "power": -12.303,
+        "market_base": -11.5843,
+        "games": 5,
+        "mean_ats": -2.3
+      },
+      {
+        "rank": 120,
+        "team": "Massachusetts",
+        "power": -12.8844,
+        "market_base": -14.6344,
+        "games": 3,
+        "mean_ats": 7.0
+      },
+      {
+        "rank": 121,
+        "team": "Rice",
+        "power": -13.3436,
+        "market_base": -13.0936,
+        "games": 5,
+        "mean_ats": -0.8
+      },
+      {
+        "rank": 122,
+        "team": "New Mexico State",
+        "power": -13.5364,
+        "market_base": -13.9114,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 123,
+        "team": "Middle Tennessee",
+        "power": -14.4769,
+        "market_base": -13.2983,
+        "games": 4,
+        "mean_ats": -4.125
+      },
+      {
+        "rank": 124,
+        "team": "Buffalo",
+        "power": -14.6151,
+        "market_base": -17.2579,
+        "games": 4,
+        "mean_ats": 9.25
+      },
+      {
+        "rank": 125,
+        "team": "Missouri State",
+        "power": -14.7088,
+        "market_base": -13.6017,
+        "games": 4,
+        "mean_ats": -3.875
+      },
+      {
+        "rank": 126,
+        "team": "Western Kentucky",
+        "power": -14.7414,
+        "market_base": -12.4601,
+        "games": 5,
+        "mean_ats": -7.3
+      },
+      {
+        "rank": 127,
+        "team": "Sam Houston",
+        "power": -16.0403,
+        "market_base": -16.0403,
+        "games": 4,
+        "mean_ats": 0.0
+      },
+      {
+        "rank": 128,
+        "team": "Southern Miss",
+        "power": -16.6343,
+        "market_base": -14.92,
+        "games": 4,
+        "mean_ats": -6.0
+      },
+      {
+        "rank": 129,
+        "team": "Bowling Green",
+        "power": -17.1369,
+        "market_base": -15.7083,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 130,
+        "team": "Northern Illinois",
+        "power": -17.7551,
+        "market_base": -15.9337,
+        "games": 4,
+        "mean_ats": -6.375
+      },
+      {
+        "rank": 131,
+        "team": "Akron",
+        "power": -18.2225,
+        "market_base": -16.0037,
+        "games": 5,
+        "mean_ats": -7.1
+      },
+      {
+        "rank": 132,
+        "team": "UL Monroe",
+        "power": -19.1803,
+        "market_base": -16.466,
+        "games": 4,
+        "mean_ats": -9.5
+      },
+      {
+        "rank": 133,
+        "team": "Kent State",
+        "power": -20.2676,
+        "market_base": -18.2988,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 134,
+        "team": "Ball State",
+        "power": -21.0638,
+        "market_base": -19.4701,
+        "games": 5,
+        "mean_ats": -5.1
+      },
+      {
+        "rank": 135,
+        "team": "UTEP",
+        "power": -22.8795,
+        "market_base": -18.942,
+        "games": 5,
+        "mean_ats": -12.6
+      },
+      {
+        "rank": 136,
+        "team": "Charlotte",
+        "power": -23.6359,
+        "market_base": -21.2296,
+        "games": 5,
+        "mean_ats": -7.7
+      }
+    ],
+    "ats_weighted_0p5": [
+      {
+        "rank": 1,
+        "team": "Notre Dame",
+        "power": 26.5472,
+        "market_base": 25.9474,
+        "games": 6,
+        "mean_ats": 2.5
+      },
+      {
+        "rank": 2,
+        "team": "Ohio State",
+        "power": 26.3757,
+        "market_base": 26.1671,
+        "games": 6,
+        "mean_ats": 0.833
+      },
+      {
+        "rank": 3,
+        "team": "Georgia",
+        "power": 23.8713,
+        "market_base": 21.5987,
+        "games": 5,
+        "mean_ats": 6.7
+      },
+      {
+        "rank": 4,
+        "team": "Indiana",
+        "power": 23.7396,
+        "market_base": 25.3098,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 5,
+        "team": "Miami",
+        "power": 23.5976,
+        "market_base": 21.7152,
+        "games": 4,
+        "mean_ats": 7.125
+      },
+      {
+        "rank": 6,
+        "team": "Texas",
+        "power": 23.2772,
+        "market_base": 23.4313,
+        "games": 5,
+        "mean_ats": 0.5
+      },
+      {
+        "rank": 7,
+        "team": "Alabama",
+        "power": 21.243,
+        "market_base": 17.7328,
+        "games": 6,
+        "mean_ats": 10.667
+      },
+      {
+        "rank": 8,
+        "team": "LSU",
+        "power": 18.8269,
+        "market_base": 16.9138,
+        "games": 5,
+        "mean_ats": 5.3
+      },
+      {
+        "rank": 9,
+        "team": "Oregon",
+        "power": 17.9473,
+        "market_base": 21.4003,
+        "games": 4,
+        "mean_ats": -12.875
+      },
+      {
+        "rank": 10,
+        "team": "USC",
+        "power": 16.6133,
+        "market_base": 18.2938,
+        "games": 7,
+        "mean_ats": -5.286
+      },
+      {
+        "rank": 11,
+        "team": "Tennessee",
+        "power": 15.3835,
+        "market_base": 14.8565,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 12,
+        "team": "Texas Tech",
+        "power": 15.1951,
+        "market_base": 16.0174,
+        "games": 4,
+        "mean_ats": -2.75
+      },
+      {
+        "rank": 13,
+        "team": "Nebraska",
+        "power": 14.1545,
+        "market_base": 11.1804,
+        "games": 5,
+        "mean_ats": 10.2
+      },
+      {
+        "rank": 14,
+        "team": "Utah",
+        "power": 13.7066,
+        "market_base": 11.3252,
+        "games": 4,
+        "mean_ats": 8.5
+      },
+      {
+        "rank": 15,
+        "team": "Ole Miss",
+        "power": 13.4344,
+        "market_base": 13.269,
+        "games": 5,
+        "mean_ats": 0.1
+      },
+      {
+        "rank": 16,
+        "team": "Missouri",
+        "power": 13.3532,
+        "market_base": 9.7566,
+        "games": 5,
+        "mean_ats": 8.6
+      },
+      {
+        "rank": 17,
+        "team": "Oklahoma",
+        "power": 13.2983,
+        "market_base": 15.0557,
+        "games": 5,
+        "mean_ats": -4.3
+      },
+      {
+        "rank": 18,
+        "team": "Florida",
+        "power": 13.0833,
+        "market_base": 14.8301,
+        "games": 5,
+        "mean_ats": -4.4
+      },
+      {
+        "rank": 19,
+        "team": "Penn State",
+        "power": 12.4873,
+        "market_base": 14.6196,
+        "games": 6,
+        "mean_ats": -4.417
+      },
+      {
+        "rank": 20,
+        "team": "UCLA",
+        "power": 12.255,
+        "market_base": 6.8313,
+        "games": 5,
+        "mean_ats": 16.8
+      },
+      {
+        "rank": 21,
+        "team": "Northwestern",
+        "power": 12.2481,
+        "market_base": 6.7511,
+        "games": 4,
+        "mean_ats": 16.375
+      },
+      {
+        "rank": 22,
+        "team": "Iowa",
+        "power": 11.6856,
+        "market_base": 10.3595,
+        "games": 5,
+        "mean_ats": 4.1
+      },
+      {
+        "rank": 23,
+        "team": "Houston",
+        "power": 11.6281,
+        "market_base": 10.2268,
+        "games": 5,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 24,
+        "team": "Texas A&M",
+        "power": 11.5419,
+        "market_base": 13.7999,
+        "games": 6,
+        "mean_ats": -4.333
+      },
+      {
+        "rank": 25,
+        "team": "BYU",
+        "power": 11.1392,
+        "market_base": 10.4354,
+        "games": 4,
+        "mean_ats": 2.25
+      },
+      {
+        "rank": 26,
+        "team": "Wisconsin",
+        "power": 10.0502,
+        "market_base": 7.2285,
+        "games": 4,
+        "mean_ats": 11.625
+      },
+      {
+        "rank": 27,
+        "team": "Michigan",
+        "power": 10.0239,
+        "market_base": 11.6165,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 28,
+        "team": "Arizona",
+        "power": 9.9799,
+        "market_base": 8.2958,
+        "games": 5,
+        "mean_ats": 4.4
+      },
+      {
+        "rank": 29,
+        "team": "Louisville",
+        "power": 9.8865,
+        "market_base": 9.2379,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 30,
+        "team": "Baylor",
+        "power": 9.6982,
+        "market_base": 6.1792,
+        "games": 4,
+        "mean_ats": 10.75
+      },
+      {
+        "rank": 31,
+        "team": "Auburn",
+        "power": 9.1814,
+        "market_base": 10.2133,
+        "games": 5,
+        "mean_ats": -2.7
+      },
+      {
+        "rank": 32,
+        "team": "Mississippi State",
+        "power": 8.9585,
+        "market_base": 8.0426,
+        "games": 5,
+        "mean_ats": 6.0
+      },
+      {
+        "rank": 33,
+        "team": "Washington",
+        "power": 8.6287,
+        "market_base": 12.5308,
+        "games": 5,
+        "mean_ats": -13.6
+      },
+      {
+        "rank": 34,
+        "team": "SMU",
+        "power": 8.5412,
+        "market_base": 10.9762,
+        "games": 4,
+        "mean_ats": -10.0
+      },
+      {
+        "rank": 35,
+        "team": "South Carolina",
+        "power": 8.4887,
+        "market_base": 7.8161,
+        "games": 5,
+        "mean_ats": 3.8
+      },
+      {
+        "rank": 36,
+        "team": "Wake Forest",
+        "power": 8.1398,
+        "market_base": 3.8249,
+        "games": 6,
+        "mean_ats": 12.583
+      },
+      {
+        "rank": 37,
+        "team": "Boise State",
+        "power": 7.84,
+        "market_base": 4.9108,
+        "games": 5,
+        "mean_ats": 8.1
+      },
+      {
+        "rank": 38,
+        "team": "Kansas State",
+        "power": 7.2282,
+        "market_base": 9.974,
+        "games": 4,
+        "mean_ats": -8.125
+      },
+      {
+        "rank": 39,
+        "team": "Pittsburgh",
+        "power": 7.0701,
+        "market_base": 5.7905,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 40,
+        "team": "Virginia Tech",
+        "power": 6.9757,
+        "market_base": 7.9787,
+        "games": 5,
+        "mean_ats": -3.1
+      },
+      {
+        "rank": 41,
+        "team": "Oklahoma State",
+        "power": 6.9696,
+        "market_base": 3.7657,
+        "games": 4,
+        "mean_ats": 6.75
+      },
+      {
+        "rank": 42,
+        "team": "Kentucky",
+        "power": 6.8534,
+        "market_base": 5.1818,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 43,
+        "team": "Florida State",
+        "power": 6.5112,
+        "market_base": 5.8821,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 44,
+        "team": "Virginia",
+        "power": 5.2578,
+        "market_base": 7.3161,
+        "games": 5,
+        "mean_ats": -4.7
+      },
+      {
+        "rank": 45,
+        "team": "North Carolina",
+        "power": 4.9447,
+        "market_base": 2.9218,
+        "games": 4,
+        "mean_ats": 6.25
+      },
+      {
+        "rank": 46,
+        "team": "Duke",
+        "power": 4.885,
+        "market_base": 3.1571,
+        "games": 4,
+        "mean_ats": 6.375
+      },
+      {
+        "rank": 47,
+        "team": "Illinois",
+        "power": 4.2954,
+        "market_base": 6.0393,
+        "games": 5,
+        "mean_ats": -6.4
+      },
+      {
+        "rank": 48,
+        "team": "TCU",
+        "power": 4.0335,
+        "market_base": 5.5955,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 49,
+        "team": "New Mexico",
+        "power": 3.8487,
+        "market_base": -0.8979,
+        "games": 4,
+        "mean_ats": 19.0
+      },
+      {
+        "rank": 50,
+        "team": "Clemson",
+        "power": 2.838,
+        "market_base": 5.8145,
+        "games": 5,
+        "mean_ats": -6.8
+      },
+      {
+        "rank": 51,
+        "team": "James Madison",
+        "power": 2.7382,
+        "market_base": 0.0967,
+        "games": 5,
+        "mean_ats": 9.1
+      },
+      {
+        "rank": 52,
+        "team": "Iowa State",
+        "power": 2.7146,
+        "market_base": 1.5965,
+        "games": 5,
+        "mean_ats": 5.5
+      },
+      {
+        "rank": 53,
+        "team": "Oregon State",
+        "power": 2.1211,
+        "market_base": -3.529,
+        "games": 5,
+        "mean_ats": 19.5
+      },
+      {
+        "rank": 54,
+        "team": "Minnesota",
+        "power": 2.0922,
+        "market_base": 2.8946,
+        "games": 5,
+        "mean_ats": -2.9
+      },
+      {
+        "rank": 55,
+        "team": "Memphis",
+        "power": 2.002,
+        "market_base": -0.409,
+        "games": 5,
+        "mean_ats": 10.3
+      },
+      {
+        "rank": 56,
+        "team": "Arizona State",
+        "power": 1.9621,
+        "market_base": 6.2116,
+        "games": 4,
+        "mean_ats": -13.25
+      },
+      {
+        "rank": 57,
+        "team": "Cincinnati",
+        "power": 1.7228,
+        "market_base": 2.2935,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 58,
+        "team": "Michigan State",
+        "power": 1.4655,
+        "market_base": 2.0457,
+        "games": 6,
+        "mean_ats": -1.333
+      },
+      {
+        "rank": 59,
+        "team": "Kansas",
+        "power": 1.4614,
+        "market_base": 1.2211,
+        "games": 4,
+        "mean_ats": 4.375
+      },
+      {
+        "rank": 60,
+        "team": "UTSA",
+        "power": 1.2683,
+        "market_base": 0.6864,
+        "games": 5,
+        "mean_ats": 0.7
+      },
+      {
+        "rank": 61,
+        "team": "UCF",
+        "power": 1.0548,
+        "market_base": 0.4526,
+        "games": 5,
+        "mean_ats": 1.5
+      },
+      {
+        "rank": 62,
+        "team": "West Virginia",
+        "power": 0.7739,
+        "market_base": 2.3688,
+        "games": 5,
+        "mean_ats": -5.7
+      },
+      {
+        "rank": 63,
+        "team": "Vanderbilt",
+        "power": 0.3169,
+        "market_base": 2.2273,
+        "games": 5,
+        "mean_ats": -6.1
+      },
+      {
+        "rank": 64,
+        "team": "North Texas",
+        "power": 0.1398,
+        "market_base": -2.4549,
+        "games": 5,
+        "mean_ats": 8.8
+      },
+      {
+        "rank": 65,
+        "team": "Purdue",
+        "power": -0.3623,
+        "market_base": -2.2659,
+        "games": 5,
+        "mean_ats": 7.1
+      },
+      {
+        "rank": 66,
+        "team": "NC State",
+        "power": -0.5524,
+        "market_base": 1.8563,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 67,
+        "team": "South Florida",
+        "power": -1.0036,
+        "market_base": -0.1408,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 68,
+        "team": "Liberty",
+        "power": -1.0605,
+        "market_base": -4.1902,
+        "games": 5,
+        "mean_ats": 12.5
+      },
+      {
+        "rank": 69,
+        "team": "Syracuse",
+        "power": -1.3477,
+        "market_base": -1.1818,
+        "games": 4,
+        "mean_ats": -1.25
+      },
+      {
+        "rank": 70,
+        "team": "Georgia Tech",
+        "power": -1.3942,
+        "market_base": -0.0542,
+        "games": 4,
+        "mean_ats": -4.625
+      },
+      {
+        "rank": 71,
+        "team": "UNLV",
+        "power": -1.4598,
+        "market_base": 0.0874,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 72,
+        "team": "Rutgers",
+        "power": -1.4705,
+        "market_base": 0.1875,
+        "games": 4,
+        "mean_ats": -10.75
+      },
+      {
+        "rank": 73,
+        "team": "California",
+        "power": -1.7695,
+        "market_base": -0.9036,
+        "games": 5,
+        "mean_ats": -2.6
+      },
+      {
+        "rank": 74,
+        "team": "Arkansas",
+        "power": -1.8687,
+        "market_base": -0.7629,
+        "games": 5,
+        "mean_ats": -1.8
+      },
+      {
+        "rank": 75,
+        "team": "Air Force",
+        "power": -2.0135,
+        "market_base": -2.9677,
+        "games": 3,
+        "mean_ats": 5.0
+      },
+      {
+        "rank": 76,
+        "team": "Army",
+        "power": -2.2355,
+        "market_base": -1.4989,
+        "games": 4,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 77,
+        "team": "Colorado",
+        "power": -2.2642,
+        "market_base": 0.4208,
+        "games": 4,
+        "mean_ats": -8.25
+      },
+      {
+        "rank": 78,
+        "team": "Maryland",
+        "power": -2.4645,
+        "market_base": 1.0248,
+        "games": 5,
+        "mean_ats": -9.9
+      },
+      {
+        "rank": 79,
+        "team": "Texas State",
+        "power": -2.6451,
+        "market_base": 0.1065,
+        "games": 4,
+        "mean_ats": -7.5
+      },
+      {
+        "rank": 80,
+        "team": "Fresno State",
+        "power": -3.0047,
+        "market_base": -3.4138,
+        "games": 5,
+        "mean_ats": 4.0
+      },
+      {
+        "rank": 81,
+        "team": "Boston College",
+        "power": -3.0603,
+        "market_base": -4.1253,
+        "games": 4,
+        "mean_ats": 3.0
+      },
+      {
+        "rank": 82,
+        "team": "Toledo",
+        "power": -3.1577,
+        "market_base": -2.5146,
+        "games": 5,
+        "mean_ats": -4.0
+      },
+      {
+        "rank": 83,
+        "team": "Navy",
+        "power": -3.308,
+        "market_base": -2.0269,
+        "games": 4,
+        "mean_ats": -5.125
+      },
+      {
+        "rank": 84,
+        "team": "Tulane",
+        "power": -3.4008,
+        "market_base": -3.1,
+        "games": 5,
+        "mean_ats": -2.5
+      },
+      {
+        "rank": 85,
+        "team": "Western Michigan",
+        "power": -4.2029,
+        "market_base": -5.4769,
+        "games": 5,
+        "mean_ats": 3.1
+      },
+      {
+        "rank": 86,
+        "team": "Tulsa",
+        "power": -5.1325,
+        "market_base": -5.2763,
+        "games": 5,
+        "mean_ats": -0.6
+      },
+      {
+        "rank": 87,
+        "team": "Louisiana",
+        "power": -5.3791,
+        "market_base": -7.2715,
+        "games": 5,
+        "mean_ats": 5.9
+      },
+      {
+        "rank": 88,
+        "team": "Temple",
+        "power": -6.0007,
+        "market_base": -6.4647,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 89,
+        "team": "Florida Atlantic",
+        "power": -6.129,
+        "market_base": -5.9892,
+        "games": 4,
+        "mean_ats": 2.75
+      },
+      {
+        "rank": 90,
+        "team": "East Carolina",
+        "power": -6.214,
+        "market_base": -5.2579,
+        "games": 4,
+        "mean_ats": -1.875
+      },
+      {
+        "rank": 91,
+        "team": "Jacksonville State",
+        "power": -6.5656,
+        "market_base": -6.6139,
+        "games": 4,
+        "mean_ats": 0.25
+      },
+      {
+        "rank": 92,
+        "team": "App State",
+        "power": -6.6147,
+        "market_base": -5.8966,
+        "games": 4,
+        "mean_ats": -3.75
+      },
+      {
+        "rank": 93,
+        "team": "Georgia State",
+        "power": -6.6582,
+        "market_base": -10.8892,
+        "games": 4,
+        "mean_ats": 17.0
+      },
+      {
+        "rank": 94,
+        "team": "Troy",
+        "power": -6.6775,
+        "market_base": -7.7322,
+        "games": 4,
+        "mean_ats": 1.875
+      },
+      {
+        "rank": 95,
+        "team": "Nevada",
+        "power": -6.8703,
+        "market_base": -8.9262,
+        "games": 4,
+        "mean_ats": 8.625
+      },
+      {
+        "rank": 96,
+        "team": "UConn",
+        "power": -6.9541,
+        "market_base": -8.5209,
+        "games": 5,
+        "mean_ats": 6.9
+      },
+      {
+        "rank": 97,
+        "team": "Washington State",
+        "power": -6.9856,
+        "market_base": -6.0372,
+        "games": 5,
+        "mean_ats": -3.6
+      },
+      {
+        "rank": 98,
+        "team": "South Alabama",
+        "power": -7.024,
+        "market_base": -7.7625,
+        "games": 5,
+        "mean_ats": 2.9
+      },
+      {
+        "rank": 99,
+        "team": "Georgia Southern",
+        "power": -7.068,
+        "market_base": -8.1675,
+        "games": 5,
+        "mean_ats": 3.4
+      },
+      {
+        "rank": 100,
+        "team": "Utah State",
+        "power": -7.2608,
+        "market_base": -9.0914,
+        "games": 5,
+        "mean_ats": 5.1
+      },
+      {
+        "rank": 101,
+        "team": "Louisiana Tech",
+        "power": -7.5138,
+        "market_base": -8.0394,
+        "games": 4,
+        "mean_ats": 1.375
+      },
+      {
+        "rank": 102,
+        "team": "San Jose State",
+        "power": -7.7529,
+        "market_base": -9.3496,
+        "games": 5,
+        "mean_ats": 3.2
+      },
+      {
+        "rank": 103,
+        "team": "Florida International",
+        "power": -8.0689,
+        "market_base": -9.2887,
+        "games": 4,
+        "mean_ats": 5.125
+      },
+      {
+        "rank": 104,
+        "team": "Arkansas State",
+        "power": -9.1734,
+        "market_base": -7.6299,
+        "games": 5,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 105,
+        "team": "Ohio",
+        "power": -9.2179,
+        "market_base": -9.6796,
+        "games": 5,
+        "mean_ats": 2.4
+      },
+      {
+        "rank": 106,
+        "team": "Hawai'i",
+        "power": -9.2585,
+        "market_base": -7.2478,
+        "games": 6,
+        "mean_ats": -6.5
+      },
+      {
+        "rank": 107,
+        "team": "Wyoming",
+        "power": -9.3405,
+        "market_base": -8.9709,
+        "games": 4,
+        "mean_ats": -2.0
+      },
+      {
+        "rank": 108,
+        "team": "Miami (OH)",
+        "power": -9.626,
+        "market_base": -7.3236,
+        "games": 5,
+        "mean_ats": -7.4
+      },
+      {
+        "rank": 109,
+        "team": "Colorado State",
+        "power": -9.9449,
+        "market_base": -9.5285,
+        "games": 4,
+        "mean_ats": -0.875
+      },
+      {
+        "rank": 110,
+        "team": "San Diego State",
+        "power": -10.2226,
+        "market_base": -6.1835,
+        "games": 5,
+        "mean_ats": -13.7
+      },
+      {
+        "rank": 111,
+        "team": "Stanford",
+        "power": -10.4731,
+        "market_base": -6.1781,
+        "games": 6,
+        "mean_ats": -11.25
+      },
+      {
+        "rank": 112,
+        "team": "Old Dominion",
+        "power": -10.4947,
+        "market_base": -7.9033,
+        "games": 5,
+        "mean_ats": -9.0
+      },
+      {
+        "rank": 113,
+        "team": "Coastal Carolina",
+        "power": -10.6596,
+        "market_base": -10.9454,
+        "games": 5,
+        "mean_ats": 0.4
+      },
+      {
+        "rank": 114,
+        "team": "Marshall",
+        "power": -10.7348,
+        "market_base": -7.0235,
+        "games": 5,
+        "mean_ats": -10.6
+      },
+      {
+        "rank": 115,
+        "team": "UAB",
+        "power": -11.0089,
+        "market_base": -11.388,
+        "games": 5,
+        "mean_ats": 0.8
+      },
+      {
+        "rank": 116,
+        "team": "Kennesaw State",
+        "power": -11.216,
+        "market_base": -10.617,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 117,
+        "team": "Delaware",
+        "power": -11.8697,
+        "market_base": -10.6872,
+        "games": 4,
+        "mean_ats": -3.375
+      },
+      {
+        "rank": 118,
+        "team": "Massachusetts",
+        "power": -12.0885,
+        "market_base": -14.6344,
+        "games": 3,
+        "mean_ats": 7.0
+      },
+      {
+        "rank": 119,
+        "team": "Central Michigan",
+        "power": -12.4087,
+        "market_base": -11.2431,
+        "games": 5,
+        "mean_ats": -1.7
+      },
+      {
+        "rank": 120,
+        "team": "Eastern Michigan",
+        "power": -13.1604,
+        "market_base": -11.5843,
+        "games": 5,
+        "mean_ats": -2.3
+      },
+      {
+        "rank": 121,
+        "team": "Rice",
+        "power": -13.5171,
+        "market_base": -13.0936,
+        "games": 5,
+        "mean_ats": -0.8
+      },
+      {
+        "rank": 122,
+        "team": "New Mexico State",
+        "power": -13.5438,
+        "market_base": -13.9114,
+        "games": 5,
+        "mean_ats": 1.2
+      },
+      {
+        "rank": 123,
+        "team": "Missouri State",
+        "power": -14.0984,
+        "market_base": -13.6017,
+        "games": 4,
+        "mean_ats": -3.875
+      },
+      {
+        "rank": 124,
+        "team": "Western Kentucky",
+        "power": -14.3747,
+        "market_base": -12.4601,
+        "games": 5,
+        "mean_ats": -7.3
+      },
+      {
+        "rank": 125,
+        "team": "Buffalo",
+        "power": -14.8211,
+        "market_base": -17.2579,
+        "games": 4,
+        "mean_ats": 9.25
+      },
+      {
+        "rank": 126,
+        "team": "Middle Tennessee",
+        "power": -14.8932,
+        "market_base": -13.2983,
+        "games": 4,
+        "mean_ats": -4.125
+      },
+      {
+        "rank": 127,
+        "team": "Sam Houston",
+        "power": -16.1432,
+        "market_base": -16.0403,
+        "games": 4,
+        "mean_ats": 0.0
+      },
+      {
+        "rank": 128,
+        "team": "Southern Miss",
+        "power": -16.2973,
+        "market_base": -14.92,
+        "games": 4,
+        "mean_ats": -6.0
+      },
+      {
+        "rank": 129,
+        "team": "Northern Illinois",
+        "power": -17.4499,
+        "market_base": -15.9337,
+        "games": 4,
+        "mean_ats": -6.375
+      },
+      {
+        "rank": 130,
+        "team": "Bowling Green",
+        "power": -17.694,
+        "market_base": -15.7083,
+        "games": 4,
+        "mean_ats": -5.0
+      },
+      {
+        "rank": 131,
+        "team": "Akron",
+        "power": -18.0951,
+        "market_base": -16.0037,
+        "games": 5,
+        "mean_ats": -7.1
+      },
+      {
+        "rank": 132,
+        "team": "UL Monroe",
+        "power": -19.4701,
+        "market_base": -16.466,
+        "games": 4,
+        "mean_ats": -9.5
+      },
+      {
+        "rank": 133,
+        "team": "Kent State",
+        "power": -20.7256,
+        "market_base": -18.2988,
+        "games": 5,
+        "mean_ats": -6.3
+      },
+      {
+        "rank": 134,
+        "team": "Ball State",
+        "power": -20.7424,
+        "market_base": -19.4701,
+        "games": 5,
+        "mean_ats": -5.1
+      },
+      {
+        "rank": 135,
+        "team": "UTEP",
+        "power": -22.7642,
+        "market_base": -18.942,
+        "games": 5,
+        "mean_ats": -12.6
+      },
+      {
+        "rank": 136,
+        "team": "Charlotte",
+        "power": -23.2592,
+        "market_base": -21.2296,
+        "games": 5,
+        "mean_ats": -7.7
+      }
+    ]
+  }
+}
