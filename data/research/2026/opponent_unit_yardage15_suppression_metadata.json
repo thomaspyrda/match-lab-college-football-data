@@ -1,0 +1,75 @@
+{
+  "season": 2026,
+  "team_count": 136,
+  "weeks": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "records": 6528,
+  "variants": [
+    0.0,
+    1.0
+  ],
+  "formula": "positive_game_unit_z * [1 - custom_suppression(opponent_pregame_unit_rank)] with 0% for #1-25, 3% for #26-39, and linearly interpolated user anchors #40 to #136; negatives unchanged",
+  "user_suppression_anchors": [
+    [
+      40,
+      0.05
+    ],
+    [
+      50,
+      0.075
+    ],
+    [
+      60,
+      0.1
+    ],
+    [
+      70,
+      0.125
+    ],
+    [
+      80,
+      0.15
+    ],
+    [
+      90,
+      0.2
+    ],
+    [
+      100,
+      0.25
+    ],
+    [
+      110,
+      0.3
+    ],
+    [
+      120,
+      0.35
+    ],
+    [
+      130,
+      0.4
+    ],
+    [
+      136,
+      0.45
+    ]
+  ],
+  "week1": "Neutral unadjusted, no pregame prior-week 2025/2026 snapshot available",
+  "opposing_unit_map": {
+    "PO": "PD",
+    "PD": "PO",
+    "RO": "RD",
+    "RD": "RO"
+  },
+  "measurement": "Game-level per-metric z standardized from FBS games completed through each snapshot week. Passing and rushing observations weighted by exact validated eligible-play counts. n/(n+2) game-count shrinkage. Independent unit restandardization.",
+  "important": "Zero-suppression control is not numerically identical to previous cumulative source-stat unit model, because per-game z normalization differs from cumulative metric normalization. Rank comparisons must use this experiment's zero-suppression control.",
+  "zero_suppression_mean_absolute_difference_vs_previous_rating": 1.514,
+  "original_unchanged": true
+}
