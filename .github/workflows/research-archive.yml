@@ -25,6 +25,7 @@ on:
       - 'test_betwise_dominance_weights.py'
       - 'test_betwise_dominance_market_baseline.py'
       - 'test_betwise_unit_matched.py'
+      - 'backtest_betwise_2025.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -47,6 +48,8 @@ jobs:
           python build_research_archive.py
           python test_market_spread_power.py
           python test_market_no_preseason.py
+          RESEARCH_SEASON=2025 python build_research_archive.py
+          python backtest_betwise_2025.py
       - name: Calculate all national ranking variants
         run: python run_four_unit_research.py
       - name: Build conference research rankings
@@ -92,6 +95,7 @@ jobs:
           rows=list(csv.DictReader((root/'weekly_team_metrics.csv').open()))
           assert report['team_game_rows']==len(rows)>0
           assert report['metrics_per_side']==41
+          assert pathlib.Path('data/research/2025/betwise_unit_matched_2025_backtest.json').exists()
           assert (root/'top25_comparison.csv').exists()
           assert (root/'ranking_experiments.json').exists()
           assert (root/'conference_strength.csv').exists()
