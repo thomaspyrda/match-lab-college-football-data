@@ -5,7 +5,7 @@ from collections import defaultdict
 from pathlib import Path
 import test_betwise_2025_coefficients_on_2026 as prior
 D=Path("data/research/2026");base=prior.current.base;teams=prior.current.teams
-# Independent, no-preseason market-spread ordering; #70 is INELIGIBLE.
+# Independent, no-preseason market-spread ordering; #51+ are INELIGIBLE.
 market_rank={r["team"]:r["rank"] for r in json.loads((D/"market_no_preseason_comparison.json").read_text())["variants"]["market_only"]}
 assert len(market_rank)==len(teams)
 def eligible(rank):return max(0.,(51-rank)/50.)*1.5 if rank<=50 else 0.
@@ -55,7 +55,7 @@ baseline={r["team"]:r for r in prior.rows}
 for i,r in enumerate(rows,1):
  r["rank"]=i;r["previous_rank"]=baseline[r["team"]]["rank"];r["rank_change"]=r["previous_rank"]-i;r["market_rank"]=market_rank[r["team"]]
 assert len(rows)==136
-out={"label":"EXPERIMENT ONLY: strict #50 opponent-quality cutoff","formula":"25/35/25/15 with frozen 2025 fitted matched-unit betas","rank_reference":"2026 no-preseason market-only full-period strength ranks (not recursive BetWise rank)","cutoff":"Opponent rank >50 earns ZERO positive competition credit, results win credit, ATS residual, and adjusted unit game-value. Negative values retained.","competition_win_curve":"For opponent rank 1..50: 1.5*(70-rank)/69; rank>50: 0","loss_penalty":"Competition -(0.7+0.8*(rank-1)/135); results -(1+0.5*(rank-1)/135)","notes":["2026 independent market ranks reflect all available 2026 lines, not strictly pregame-safe ranks.","Z-standardization can shift relative values, but no weak-opponent event contributes a positive raw reward.","Market baseline retained because it measures absolute team strength, not a per-game weak-opponent bonus.","Both components containing wins are opponent quality adjusted; some overlap remains.","Frozen 2025 coefficients and 25/35/25/15 preserved. Production untouched."],"rows":rows,"baseline":prior.rows,"coefficients":prior.old_betas}
+out={"label":"EXPERIMENT ONLY: strict #50 opponent-quality cutoff","formula":"25/35/25/15 with frozen 2025 fitted matched-unit betas","rank_reference":"2026 no-preseason market-only full-period strength ranks (not recursive BetWise rank)","cutoff":"Opponent rank >50 earns ZERO positive competition credit, results win credit, ATS residual, and adjusted unit game-value. Negative values retained.","competition_win_curve":"For opponent rank 1..50: 1.5*(51-rank)/50; rank>50: 0","loss_penalty":"Competition -(0.7+0.8*(rank-1)/135); results -(1+0.5*(rank-1)/135)","notes":["2026 independent market ranks reflect all available 2026 lines, not strictly pregame-safe ranks.","Z-standardization can shift relative values, but no weak-opponent event contributes a positive raw reward.","Market baseline retained because it measures absolute team strength, not a per-game weak-opponent bonus.","Both components containing wins are opponent quality adjusted; some overlap remains.","Frozen 2025 coefficients and 25/35/25/15 preserved. Production untouched."],"rows":rows,"baseline":prior.rows,"coefficients":prior.old_betas}
 (D/"betwise_strict_rank50_cutoff_comparison.json").write_text(json.dumps(out,indent=2))
 with (D/"betwise_strict_rank50_cutoff_comparison.csv").open("w",newline="") as f:
  w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
