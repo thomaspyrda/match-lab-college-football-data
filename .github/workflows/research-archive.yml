@@ -27,6 +27,7 @@ on:
       - 'test_betwise_unit_matched.py'
       - 'test_betwise_2025_coefficients_on_2026.py'
       - 'test_betwise_20_45_20_15.py'
+      - 'test_betwise_strict_rank70_cutoff.py'
       - 'backtest_betwise_2025.py'
       - '.github/workflows/research-archive.yml'
 permissions:
@@ -92,6 +93,8 @@ jobs:
         run: python test_betwise_2025_coefficients_on_2026.py
       - name: Compare strengthened competition weights
         run: python test_betwise_20_45_20_15.py
+      - name: Test strict opponent rank 70 eligibility cutoff
+        run: python test_betwise_strict_rank70_cutoff.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
