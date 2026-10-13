@@ -25,6 +25,7 @@ on:
       - 'test_betwise_dominance_weights.py'
       - 'test_betwise_dominance_market_baseline.py'
       - 'test_betwise_unit_matched.py'
+      - 'test_betwise_2025_coefficients_on_2026.py'
       - 'backtest_betwise_2025.py'
       - '.github/workflows/research-archive.yml'
 permissions:
@@ -86,6 +87,8 @@ jobs:
         run: python test_betwise_dominance_market_baseline.py
       - name: Empirically fit opposing statistical unit adjustments
         run: python test_betwise_unit_matched.py
+      - name: Compare 2025 coefficients on 2026 games
+        run: python test_betwise_2025_coefficients_on_2026.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
