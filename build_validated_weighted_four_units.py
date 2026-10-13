@@ -74,7 +74,7 @@ for year in YEARS:
      if (kind,metric) not in norm:continue
      mu,sd=norm[kind,metric]
      z=(val-mu)/sd
-     pts.append(((-z if kind in ("PD","RD") and metric!="stuff_avoidance" else z),weight))
+     pts.append(((-z if kind in ("PD","RD") else z),weight))
     composite=sum(x*w for x,w in pts)/sum(w for _,w in pts) if pts else 0.
     units[t][kind]=composite*n/(n+2) if n else 0.
   scaled={}
