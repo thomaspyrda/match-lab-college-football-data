@@ -1,0 +1,38 @@
+name: Opponent unit suppression research (isolated)
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'test_opponent_unit_suppression.py'
+      - '.github/workflows/opponent-unit-suppression.yml'
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run opponent-unit suppression experiments
+        run: python -u test_opponent_unit_suppression.py
+      - name: Check coverage
+        run: |
+          python - <<'PY'
+          import csv
+          for year,n in [(2025,2176),(2026,816)]:
+              p=f'data/research/{year}/opponent_unit_suppression_weekly_comparison.csv'
+              a=list(csv.DictReader(open(p)))
+              assert len(a)==n*4*4,(year,len(a))
+              print(year,len(a))
+          PY
+      - name: Publish isolated research outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/opponent_unit_suppression* data/research/2026/opponent_unit_suppression*
+          git diff --cached --quiet || git commit -m "Publish weekly opponent-unit suppression research"
+          git push
