@@ -17,6 +17,7 @@ on:
       - 'test_pure_units_top50_win_only.py'
       - 'test_pure_units_top30_win_only.py'
       - 'test_pure_units_earned_vs_losses.py'
+      - 'test_pure_units_game_quality_adjusted.py'
       - '.github/workflows/research-archive.yml'
 permissions:
   contents: write
@@ -60,6 +61,8 @@ jobs:
         run: python test_pure_units_top30_win_only.py
       - name: Compare earned wins and universal loss penalties
         run: python test_pure_units_earned_vs_losses.py
+      - name: Test per-game quality-adjusted four-unit dominance
+        run: python test_pure_units_game_quality_adjusted.py
       - name: Verify output files and coverage
         run: |
           python - <<'PY'
@@ -87,6 +90,7 @@ jobs:
           assert (root/'pure_units_top50_win_only_comparison.csv').exists()
           assert (root/'pure_units_top30_win_only_comparison.csv').exists()
           assert (root/'pure_units_earned_vs_losses_comparison.csv').exists()
+          assert (root/'pure_units_game_quality_adjusted_comparison.csv').exists()
           assert len(set(x['team'] for x in rows))>=100
           print('Validated',len(rows),'team-game rows')
           PY
