@@ -1,0 +1,39 @@
+name: Weighted four-unit research rebuild (isolated)
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'build_validated_weighted_four_units.py'
+      - '.github/workflows/rebuild-weighted-unit-research.yml'
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild using published verified source archives
+        run: python -u build_validated_weighted_four_units.py
+      - name: Assert outputs
+        run: |
+          python - <<'PY'
+          import csv,pathlib
+          for year,expected in [(2025,2176),(2026,816)]:
+              p=pathlib.Path(f'data/research/{year}/validated_weighted_weekly_four_unit_strength.csv')
+              rows=list(csv.DictReader(p.open()))
+              assert len(rows)==expected,(year,len(rows))
+              assert all(int(row['PO_rank'])>0 for row in rows)
+              print(year, len(rows), 'verified unit rows')
+          PY
+      - name: Commit research-only outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2025/validated_weighted_weekly_four_unit* data/research/2026/validated_weighted_weekly_four_unit*
+          git diff --cached --quiet || git commit -m "Publish weighted four-unit research snapshots"
+          git push
