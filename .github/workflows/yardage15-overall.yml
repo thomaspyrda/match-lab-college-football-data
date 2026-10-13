@@ -1,0 +1,25 @@
+name: Yardage 15pct overall dominance research
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/four-unit-archive-2026]
+    paths:
+      - 'test_betwise_yardage15_overall.py'
+      - '.github/workflows/yardage15-overall.yml'
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -u test_betwise_yardage15_overall.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/research/2026/betwise_yardage15_overall_comparison.*
+          git diff --cached --quiet || git commit -m "Publish 2026 overall rankings with 15pct yardage"
+          git push
