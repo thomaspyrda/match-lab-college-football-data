@@ -1,0 +1,3829 @@
+{
+  "title": "2026 Week 6 Passing Offense Three Equal Metrics",
+  "status": "research_only",
+  "season": 2026,
+  "through_week": 6,
+  "metric_weights": {
+    "off_passing_ppa": 0.3333333333333333,
+    "off_passing_success": 0.3333333333333333,
+    "off_passing_explosiveness": 0.3333333333333333
+  },
+  "method": "Mean of FBS national percentile ranks for PPA, success rate and passing explosiveness; plus unchanged aggressive conference adjustment and top-30 opponent passing defense premium from prior tests.",
+  "limitations": [
+    "Equal game weights instead of dropback weights.",
+    "Facing a top-30 pass defense gives bonus even without verified above-expectation performance.",
+    "Passing explosiveness measures source explosiveness, not the rate of 20+ yard completions.",
+    "Week 1 metric games included, while quality premiums use pregame Weeks 2-6.",
+    "This has not been predictive-backtested."
+  ],
+  "rows": [
+    {
+      "team": "Indiana",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5701799906498364,
+        "off_passing_ppa": 0.7537028832281661,
+        "off_passing_yards_per_play": 9.910031017369727,
+        "off_passing_first_down_rate": 0.46556038047973536,
+        "off_passing_down_success": 0.3090849673202615,
+        "off_passing_explosiveness": 1.833840750872551
+      },
+      "percentiles": {
+        "off_passing_success": 97.037,
+        "off_passing_ppa": 99.259,
+        "off_passing_yards_per_play": 97.778,
+        "off_passing_first_down_rate": 97.037,
+        "off_passing_down_success": 48.148,
+        "off_passing_explosiveness": 91.852
+      },
+      "six_metric_score": 88.519,
+      "opponent_passing_defense_bonus": 7.375,
+      "conference_adjustment": 0,
+      "adjusted_score": 103.424,
+      "rank": 1,
+      "four_metric_score": 84.074,
+      "three_metric_score": 96.049
+    },
+    {
+      "team": "USC",
+      "conference": "Big Ten",
+      "games": 7,
+      "raw": {
+        "off_passing_success": 0.5960968087705654,
+        "off_passing_ppa": 0.6568582268781161,
+        "off_passing_yards_per_play": 8.932675273700303,
+        "off_passing_first_down_rate": 0.46255599034848877,
+        "off_passing_down_success": 0.4526402055864298,
+        "off_passing_explosiveness": 1.5786425711573284
+      },
+      "percentiles": {
+        "off_passing_success": 100,
+        "off_passing_ppa": 97.778,
+        "off_passing_yards_per_play": 91.111,
+        "off_passing_first_down_rate": 96.296,
+        "off_passing_down_success": 94.815,
+        "off_passing_explosiveness": 56.296
+      },
+      "six_metric_score": 89.383,
+      "opponent_passing_defense_bonus": 8.548,
+      "conference_adjustment": 0,
+      "adjusted_score": 93.239,
+      "rank": 2,
+      "four_metric_score": 87.222,
+      "three_metric_score": 84.691
+    },
+    {
+      "team": "Ohio State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.5698127968242911,
+        "off_passing_ppa": 0.533515869463643,
+        "off_passing_yards_per_play": 11.128919521024784,
+        "off_passing_first_down_rate": 0.47894357104883417,
+        "off_passing_down_success": 0.39431818181818185,
+        "off_passing_explosiveness": 1.7013826522332998
+      },
+      "percentiles": {
+        "off_passing_success": 96.296,
+        "off_passing_ppa": 94.074,
+        "off_passing_yards_per_play": 100,
+        "off_passing_first_down_rate": 99.259,
+        "off_passing_down_success": 84.444,
+        "off_passing_explosiveness": 77.778
+      },
+      "six_metric_score": 91.975,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 89.383,
+      "rank": 3,
+      "four_metric_score": 88.148,
+      "three_metric_score": 89.383
+    },
+    {
+      "team": "Georgia",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.533517316017316,
+        "off_passing_ppa": 0.5904823902745278,
+        "off_passing_yards_per_play": 8.949855477855479,
+        "off_passing_first_down_rate": 0.4052494172494172,
+        "off_passing_down_success": 0.4812911725955204,
+        "off_passing_explosiveness": 1.5664182891034524
+      },
+      "percentiles": {
+        "off_passing_success": 90.37,
+        "off_passing_ppa": 97.037,
+        "off_passing_yards_per_play": 91.852,
+        "off_passing_first_down_rate": 88.889,
+        "off_passing_down_success": 97.778,
+        "off_passing_explosiveness": 52.593
+      },
+      "six_metric_score": 86.42,
+      "opponent_passing_defense_bonus": 6.124,
+      "conference_adjustment": 0,
+      "adjusted_score": 86.124,
+      "rank": 4,
+      "four_metric_score": 84.445,
+      "three_metric_score": 80
+    },
+    {
+      "team": "Northwestern",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5821271929824562,
+        "off_passing_ppa": 0.5235218440488377,
+        "off_passing_yards_per_play": 8.449598930481283,
+        "off_passing_first_down_rate": 0.4205971479500891,
+        "off_passing_down_success": 0.4563873626373626,
+        "off_passing_explosiveness": 1.4868010383435029
+      },
+      "percentiles": {
+        "off_passing_success": 98.519,
+        "off_passing_ppa": 91.852,
+        "off_passing_yards_per_play": 82.222,
+        "off_passing_first_down_rate": 91.852,
+        "off_passing_down_success": 95.556,
+        "off_passing_explosiveness": 37.037
+      },
+      "six_metric_score": 82.84,
+      "opponent_passing_defense_bonus": 8.695,
+      "conference_adjustment": 0,
+      "adjusted_score": 84.498,
+      "rank": 5,
+      "four_metric_score": 80.741,
+      "three_metric_score": 75.803
+    },
+    {
+      "team": "Mississippi State",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5027175076896204,
+        "off_passing_ppa": 0.4472882916093881,
+        "off_passing_yards_per_play": 8.686132258546053,
+        "off_passing_first_down_rate": 0.39144648454993286,
+        "off_passing_down_success": 0.4167676767676768,
+        "off_passing_explosiveness": 1.6673027531274385
+      },
+      "percentiles": {
+        "off_passing_success": 84.444,
+        "off_passing_ppa": 86.667,
+        "off_passing_yards_per_play": 87.407,
+        "off_passing_first_down_rate": 86.667,
+        "off_passing_down_success": 88.889,
+        "off_passing_explosiveness": 67.407
+      },
+      "six_metric_score": 83.58,
+      "opponent_passing_defense_bonus": 4.67,
+      "conference_adjustment": 0,
+      "adjusted_score": 84.176,
+      "rank": 6,
+      "four_metric_score": 81.852,
+      "three_metric_score": 79.506
+    },
+    {
+      "team": "LSU",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5138298599351231,
+        "off_passing_ppa": 0.4284634528274947,
+        "off_passing_yards_per_play": 8.631761631761632,
+        "off_passing_first_down_rate": 0.3873041873041873,
+        "off_passing_down_success": 0.4332986616739477,
+        "off_passing_explosiveness": 1.7015607257443999
+      },
+      "percentiles": {
+        "off_passing_success": 88.889,
+        "off_passing_ppa": 83.704,
+        "off_passing_yards_per_play": 85.926,
+        "off_passing_first_down_rate": 84.444,
+        "off_passing_down_success": 91.852,
+        "off_passing_explosiveness": 78.519
+      },
+      "six_metric_score": 85.556,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 83.704,
+      "rank": 7,
+      "four_metric_score": 85.741,
+      "three_metric_score": 83.704
+    },
+    {
+      "team": "Illinois",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5381655649457507,
+        "off_passing_ppa": 0.3655647014158341,
+        "off_passing_yards_per_play": 8.115379556858073,
+        "off_passing_first_down_rate": 0.41356333302267007,
+        "off_passing_down_success": 0.45113450062299165,
+        "off_passing_explosiveness": 1.5668923093985037
+      },
+      "percentiles": {
+        "off_passing_success": 91.111,
+        "off_passing_ppa": 77.037,
+        "off_passing_yards_per_play": 78.519,
+        "off_passing_first_down_rate": 89.63,
+        "off_passing_down_success": 94.074,
+        "off_passing_explosiveness": 53.333
+      },
+      "six_metric_score": 80.617,
+      "opponent_passing_defense_bonus": 9.515,
+      "conference_adjustment": 0,
+      "adjusted_score": 83.342,
+      "rank": 8,
+      "four_metric_score": 78.889,
+      "three_metric_score": 73.827
+    },
+    {
+      "team": "Alabama",
+      "conference": "SEC",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.4805311355311355,
+        "off_passing_ppa": 0.4359120426367182,
+        "off_passing_yards_per_play": 8.463748631636564,
+        "off_passing_first_down_rate": 0.37421661193212924,
+        "off_passing_down_success": 0.3516437595771961,
+        "off_passing_explosiveness": 1.69767794473095
+      },
+      "percentiles": {
+        "off_passing_success": 80,
+        "off_passing_ppa": 84.444,
+        "off_passing_yards_per_play": 83.704,
+        "off_passing_first_down_rate": 80,
+        "off_passing_down_success": 72.593,
+        "off_passing_explosiveness": 74.074
+      },
+      "six_metric_score": 79.136,
+      "opponent_passing_defense_bonus": 3.764,
+      "conference_adjustment": 0,
+      "adjusted_score": 83.27,
+      "rank": 9,
+      "four_metric_score": 77.778,
+      "three_metric_score": 79.506
+    },
+    {
+      "team": "Georgia State",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5566754673897532,
+        "off_passing_ppa": 0.7571341192873959,
+        "off_passing_yards_per_play": 10.24298469387755,
+        "off_passing_first_down_rate": 0.4742772108843537,
+        "off_passing_down_success": 0.42401960784313725,
+        "off_passing_explosiveness": 2.010633825183436
+      },
+      "percentiles": {
+        "off_passing_success": 95.556,
+        "off_passing_ppa": 100,
+        "off_passing_yards_per_play": 98.519,
+        "off_passing_first_down_rate": 98.519,
+        "off_passing_down_success": 89.63,
+        "off_passing_explosiveness": 97.037
+      },
+      "six_metric_score": 96.543,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 82.531,
+      "rank": 10,
+      "four_metric_score": 95.556,
+      "three_metric_score": 97.531
+    },
+    {
+      "team": "Penn State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.45991179480143823,
+        "off_passing_ppa": 0.4752766350264895,
+        "off_passing_yards_per_play": 8.461010467468636,
+        "off_passing_first_down_rate": 0.37664483746964733,
+        "off_passing_down_success": 0.3325066137566138,
+        "off_passing_explosiveness": 1.7433868054898616
+      },
+      "percentiles": {
+        "off_passing_success": 72.593,
+        "off_passing_ppa": 88.889,
+        "off_passing_yards_per_play": 82.963,
+        "off_passing_first_down_rate": 80.741,
+        "off_passing_down_success": 61.481,
+        "off_passing_explosiveness": 82.222
+      },
+      "six_metric_score": 78.148,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 81.235,
+      "rank": 11,
+      "four_metric_score": 76.296,
+      "three_metric_score": 81.235
+    },
+    {
+      "team": "Arizona",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5075550946874476,
+        "off_passing_ppa": 0.526213245394334,
+        "off_passing_yards_per_play": 8.85892929404407,
+        "off_passing_first_down_rate": 0.3863403404217419,
+        "off_passing_down_success": 0.44042992857638164,
+        "off_passing_explosiveness": 1.7011034485242724
+      },
+      "percentiles": {
+        "off_passing_success": 85.185,
+        "off_passing_ppa": 93.333,
+        "off_passing_yards_per_play": 88.889,
+        "off_passing_first_down_rate": 83.704,
+        "off_passing_down_success": 93.333,
+        "off_passing_explosiveness": 77.037
+      },
+      "six_metric_score": 86.914,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 81.185,
+      "rank": 12,
+      "four_metric_score": 87.222,
+      "three_metric_score": 85.185
+    },
+    {
+      "team": "Ole Miss",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.548157290530362,
+        "off_passing_ppa": 0.5036794324601908,
+        "off_passing_yards_per_play": 8.198295900178254,
+        "off_passing_first_down_rate": 0.38063933452168747,
+        "off_passing_down_success": 0.4263469863469863,
+        "off_passing_explosiveness": 1.4564418989139611
+      },
+      "percentiles": {
+        "off_passing_success": 93.333,
+        "off_passing_ppa": 90.37,
+        "off_passing_yards_per_play": 79.259,
+        "off_passing_first_down_rate": 82.222,
+        "off_passing_down_success": 91.111,
+        "off_passing_explosiveness": 30.37
+      },
+      "six_metric_score": 77.778,
+      "opponent_passing_defense_bonus": 8.85,
+      "conference_adjustment": 0,
+      "adjusted_score": 80.208,
+      "rank": 13,
+      "four_metric_score": 76.296,
+      "three_metric_score": 71.358
+    },
+    {
+      "team": "Miami",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5960860746097539,
+        "off_passing_ppa": 0.6615001822748963,
+        "off_passing_yards_per_play": 9.075881789497407,
+        "off_passing_first_down_rate": 0.4870689655172414,
+        "off_passing_down_success": 0.4047619047619047,
+        "off_passing_explosiveness": 1.4543216794942775
+      },
+      "percentiles": {
+        "off_passing_success": 99.259,
+        "off_passing_ppa": 98.519,
+        "off_passing_yards_per_play": 93.333,
+        "off_passing_first_down_rate": 100,
+        "off_passing_down_success": 87.407,
+        "off_passing_explosiveness": 29.63
+      },
+      "six_metric_score": 84.691,
+      "opponent_passing_defense_bonus": 7.973,
+      "conference_adjustment": -5,
+      "adjusted_score": 78.776,
+      "rank": 14,
+      "four_metric_score": 78.704,
+      "three_metric_score": 75.803
+    },
+    {
+      "team": "Memphis",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4907529507529508,
+        "off_passing_ppa": 0.571603665351528,
+        "off_passing_yards_per_play": 10.528063186813187,
+        "off_passing_first_down_rate": 0.4308974358974359,
+        "off_passing_down_success": 0.31532356532356537,
+        "off_passing_explosiveness": 1.8976908821399596
+      },
+      "percentiles": {
+        "off_passing_success": 82.222,
+        "off_passing_ppa": 96.296,
+        "off_passing_yards_per_play": 99.259,
+        "off_passing_first_down_rate": 92.593,
+        "off_passing_down_success": 53.333,
+        "off_passing_explosiveness": 95.556
+      },
+      "six_metric_score": 86.543,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 78.358,
+      "rank": 15,
+      "four_metric_score": 81.852,
+      "three_metric_score": 91.358
+    },
+    {
+      "team": "Houston",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5792103729603729,
+        "off_passing_ppa": 0.5546422675361993,
+        "off_passing_yards_per_play": 8.549886363636364,
+        "off_passing_first_down_rate": 0.4677651515151515,
+        "off_passing_down_success": 0.48173839232662763,
+        "off_passing_explosiveness": 1.548784563563526
+      },
+      "percentiles": {
+        "off_passing_success": 97.778,
+        "off_passing_ppa": 94.815,
+        "off_passing_yards_per_play": 85.185,
+        "off_passing_first_down_rate": 97.778,
+        "off_passing_down_success": 98.519,
+        "off_passing_explosiveness": 48.148
+      },
+      "six_metric_score": 87.037,
+      "opponent_passing_defense_bonus": 2.065,
+      "conference_adjustment": -4,
+      "adjusted_score": 78.312,
+      "rank": 16,
+      "four_metric_score": 84.815,
+      "three_metric_score": 80.247
+    },
+    {
+      "team": "South Alabama",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.46793743890518086,
+        "off_passing_ppa": 0.5248591356519096,
+        "off_passing_yards_per_play": 9.585252525252525,
+        "off_passing_first_down_rate": 0.35656565656565653,
+        "off_passing_down_success": 0.3660375075620085,
+        "off_passing_explosiveness": 1.8453201543430335
+      },
+      "percentiles": {
+        "off_passing_success": 74.815,
+        "off_passing_ppa": 92.593,
+        "off_passing_yards_per_play": 97.037,
+        "off_passing_first_down_rate": 66.667,
+        "off_passing_down_success": 74.815,
+        "off_passing_explosiveness": 92.593
+      },
+      "six_metric_score": 83.086,
+      "opponent_passing_defense_bonus": 6.336,
+      "conference_adjustment": -15,
+      "adjusted_score": 78.003,
+      "rank": 17,
+      "four_metric_score": 83.704,
+      "three_metric_score": 86.667
+    },
+    {
+      "team": "Notre Dame",
+      "conference": "FBS Independents",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.5551566373675908,
+        "off_passing_ppa": 0.5714478913826327,
+        "off_passing_yards_per_play": 9.258041332868919,
+        "off_passing_first_down_rate": 0.46154611246565264,
+        "off_passing_down_success": 0.31004901960784315,
+        "off_passing_explosiveness": 1.5049380161679016
+      },
+      "percentiles": {
+        "off_passing_success": 94.815,
+        "off_passing_ppa": 95.556,
+        "off_passing_yards_per_play": 95.556,
+        "off_passing_first_down_rate": 95.556,
+        "off_passing_down_success": 49.63,
+        "off_passing_explosiveness": 39.259
+      },
+      "six_metric_score": 78.395,
+      "opponent_passing_defense_bonus": 2.88,
+      "conference_adjustment": -1.5,
+      "adjusted_score": 77.923,
+      "rank": 18,
+      "four_metric_score": 69.815,
+      "three_metric_score": 76.543
+    },
+    {
+      "team": "UConn",
+      "conference": "FBS Independents",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.43549155145929347,
+        "off_passing_ppa": 0.31183861671321156,
+        "off_passing_yards_per_play": 7.183986175115207,
+        "off_passing_first_down_rate": 0.35975422427035325,
+        "off_passing_down_success": 0.3882051282051282,
+        "off_passing_explosiveness": 1.8863252373211323
+      },
+      "percentiles": {
+        "off_passing_success": 57.037,
+        "off_passing_ppa": 68.889,
+        "off_passing_yards_per_play": 62.222,
+        "off_passing_first_down_rate": 68.889,
+        "off_passing_down_success": 82.963,
+        "off_passing_explosiveness": 94.815
+      },
+      "six_metric_score": 72.469,
+      "opponent_passing_defense_bonus": 5.472,
+      "conference_adjustment": -1.5,
+      "adjusted_score": 77.552,
+      "rank": 19,
+      "four_metric_score": 75.926,
+      "three_metric_score": 73.58
+    },
+    {
+      "team": "Florida",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5081149068322981,
+        "off_passing_ppa": 0.4146000713828052,
+        "off_passing_yards_per_play": 8.873794776797066,
+        "off_passing_first_down_rate": 0.3724346615330597,
+        "off_passing_down_success": 0.3424948116898581,
+        "off_passing_explosiveness": 1.6318397593277332
+      },
+      "percentiles": {
+        "off_passing_success": 85.926,
+        "off_passing_ppa": 82.222,
+        "off_passing_yards_per_play": 89.63,
+        "off_passing_first_down_rate": 78.519,
+        "off_passing_down_success": 66.667,
+        "off_passing_explosiveness": 64.444
+      },
+      "six_metric_score": 77.901,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 77.531,
+      "rank": 20,
+      "four_metric_score": 74.815,
+      "three_metric_score": 77.531
+    },
+    {
+      "team": "Wisconsin",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.46934885290148454,
+        "off_passing_ppa": 0.22775277802982893,
+        "off_passing_yards_per_play": 8.0303372929381,
+        "off_passing_first_down_rate": 0.37891374237140363,
+        "off_passing_down_success": 0.32314814814814813,
+        "off_passing_explosiveness": 1.6872105685471563
+      },
+      "percentiles": {
+        "off_passing_success": 75.556,
+        "off_passing_ppa": 57.037,
+        "off_passing_yards_per_play": 74.815,
+        "off_passing_first_down_rate": 81.481,
+        "off_passing_down_success": 57.037,
+        "off_passing_explosiveness": 71.111
+      },
+      "six_metric_score": 69.506,
+      "opponent_passing_defense_bonus": 8.893,
+      "conference_adjustment": 0,
+      "adjusted_score": 76.794,
+      "rank": 21,
+      "four_metric_score": 65.185,
+      "three_metric_score": 67.901
+    },
+    {
+      "team": "Wake Forest",
+      "conference": "ACC",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.4892456896551724,
+        "off_passing_ppa": 0.477368323357007,
+        "off_passing_yards_per_play": 8.642976196782012,
+        "off_passing_first_down_rate": 0.3686537573872708,
+        "off_passing_down_success": 0.45654832073596374,
+        "off_passing_explosiveness": 1.679008740316996
+      },
+      "percentiles": {
+        "off_passing_success": 81.481,
+        "off_passing_ppa": 89.63,
+        "off_passing_yards_per_play": 86.667,
+        "off_passing_first_down_rate": 74.815,
+        "off_passing_down_success": 96.296,
+        "off_passing_explosiveness": 69.63
+      },
+      "six_metric_score": 83.086,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 75.247,
+      "rank": 22,
+      "four_metric_score": 84.259,
+      "three_metric_score": 80.247
+    },
+    {
+      "team": "Texas State",
+      "conference": "Pac-12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5413801131886238,
+        "off_passing_ppa": 0.4513303957193123,
+        "off_passing_yards_per_play": 8.907696530522617,
+        "off_passing_first_down_rate": 0.4408139364661104,
+        "off_passing_down_success": 0.5249999999999999,
+        "off_passing_explosiveness": 1.699520251183753
+      },
+      "percentiles": {
+        "off_passing_success": 91.852,
+        "off_passing_ppa": 87.407,
+        "off_passing_yards_per_play": 90.37,
+        "off_passing_first_down_rate": 94.074,
+        "off_passing_down_success": 100,
+        "off_passing_explosiveness": 76.296
+      },
+      "six_metric_score": 90,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 75.185,
+      "rank": 23,
+      "four_metric_score": 88.889,
+      "three_metric_score": 85.185
+    },
+    {
+      "team": "Missouri",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4292982456140352,
+        "off_passing_ppa": 0.35195557754364076,
+        "off_passing_yards_per_play": 7.561121351766512,
+        "off_passing_first_down_rate": 0.373963133640553,
+        "off_passing_down_success": 0.27652750063236,
+        "off_passing_explosiveness": 1.7118485952932379
+      },
+      "percentiles": {
+        "off_passing_success": 56.296,
+        "off_passing_ppa": 74.074,
+        "off_passing_yards_per_play": 67.407,
+        "off_passing_first_down_rate": 79.259,
+        "off_passing_down_success": 30.37,
+        "off_passing_explosiveness": 79.259
+      },
+      "six_metric_score": 64.444,
+      "opponent_passing_defense_bonus": 4.896,
+      "conference_adjustment": 0,
+      "adjusted_score": 74.772,
+      "rank": 24,
+      "four_metric_score": 60,
+      "three_metric_score": 69.876
+    },
+    {
+      "team": "Oklahoma",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4442857142857143,
+        "off_passing_ppa": 0.3475943386931705,
+        "off_passing_yards_per_play": 7.690816634346047,
+        "off_passing_first_down_rate": 0.3381555699202758,
+        "off_passing_down_success": 0.300595238095238,
+        "off_passing_explosiveness": 1.5675187415126604
+      },
+      "percentiles": {
+        "off_passing_success": 62.963,
+        "off_passing_ppa": 73.333,
+        "off_passing_yards_per_play": 70.37,
+        "off_passing_first_down_rate": 62.963,
+        "off_passing_down_success": 42.222,
+        "off_passing_explosiveness": 54.815
+      },
+      "six_metric_score": 61.111,
+      "opponent_passing_defense_bonus": 10.515,
+      "conference_adjustment": 0,
+      "adjusted_score": 74.219,
+      "rank": 25,
+      "four_metric_score": 58.333,
+      "three_metric_score": 63.704
+    },
+    {
+      "team": "North Texas",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5116605616605616,
+        "off_passing_ppa": 0.5065601477122905,
+        "off_passing_yards_per_play": 8.802472527472528,
+        "off_passing_first_down_rate": 0.44565934065934065,
+        "off_passing_down_success": 0.34003427128427127,
+        "off_passing_explosiveness": 1.654029078864318
+      },
+      "percentiles": {
+        "off_passing_success": 87.407,
+        "off_passing_ppa": 91.111,
+        "off_passing_yards_per_play": 88.148,
+        "off_passing_first_down_rate": 94.815,
+        "off_passing_down_success": 65.185,
+        "off_passing_explosiveness": 65.926
+      },
+      "six_metric_score": 82.099,
+      "opponent_passing_defense_bonus": 3.54,
+      "conference_adjustment": -13,
+      "adjusted_score": 72.021,
+      "rank": 26,
+      "four_metric_score": 77.407,
+      "three_metric_score": 81.481
+    },
+    {
+      "team": "Utah",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5480462519936204,
+        "off_passing_ppa": 0.4407073326876406,
+        "off_passing_yards_per_play": 8.203336024229854,
+        "off_passing_first_down_rate": 0.4191115523919517,
+        "off_passing_down_success": 0.4249336576735957,
+        "off_passing_explosiveness": 1.4637549135053358
+      },
+      "percentiles": {
+        "off_passing_success": 92.593,
+        "off_passing_ppa": 85.185,
+        "off_passing_yards_per_play": 80,
+        "off_passing_first_down_rate": 91.111,
+        "off_passing_down_success": 90.37,
+        "off_passing_explosiveness": 31.852
+      },
+      "six_metric_score": 78.519,
+      "opponent_passing_defense_bonus": 5.4,
+      "conference_adjustment": -4,
+      "adjusted_score": 71.277,
+      "rank": 27,
+      "four_metric_score": 75,
+      "three_metric_score": 69.877
+    },
+    {
+      "team": "Texas",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4400447232947233,
+        "off_passing_ppa": 0.2612910800294563,
+        "off_passing_yards_per_play": 6.943372400863862,
+        "off_passing_first_down_rate": 0.3721391638317635,
+        "off_passing_down_success": 0.3390360750360751,
+        "off_passing_explosiveness": 1.6299630439844333
+      },
+      "percentiles": {
+        "off_passing_success": 59.259,
+        "off_passing_ppa": 62.222,
+        "off_passing_yards_per_play": 54.074,
+        "off_passing_first_down_rate": 77.778,
+        "off_passing_down_success": 63.704,
+        "off_passing_explosiveness": 63.704
+      },
+      "six_metric_score": 63.457,
+      "opponent_passing_defense_bonus": 9.12,
+      "conference_adjustment": 0,
+      "adjusted_score": 70.848,
+      "rank": 28,
+      "four_metric_score": 62.222,
+      "three_metric_score": 61.728
+    },
+    {
+      "team": "South Carolina",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4563734918692079,
+        "off_passing_ppa": 0.32145727294900217,
+        "off_passing_yards_per_play": 6.97564352212455,
+        "off_passing_first_down_rate": 0.3893348262304811,
+        "off_passing_down_success": 0.31458058849363196,
+        "off_passing_explosiveness": 1.5754781769970925
+      },
+      "percentiles": {
+        "off_passing_success": 69.63,
+        "off_passing_ppa": 70.37,
+        "off_passing_yards_per_play": 55.556,
+        "off_passing_first_down_rate": 85.185,
+        "off_passing_down_success": 52.593,
+        "off_passing_explosiveness": 55.556
+      },
+      "six_metric_score": 64.815,
+      "opponent_passing_defense_bonus": 5.605,
+      "conference_adjustment": 0,
+      "adjusted_score": 70.79,
+      "rank": 29,
+      "four_metric_score": 62.037,
+      "three_metric_score": 65.185
+    },
+    {
+      "team": "SMU",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5127334465195246,
+        "off_passing_ppa": 0.35943576603251326,
+        "off_passing_yards_per_play": 8.362301924165251,
+        "off_passing_first_down_rate": 0.3811073382380683,
+        "off_passing_down_success": 0.37924434911730737,
+        "off_passing_explosiveness": 1.586528813427179
+      },
+      "percentiles": {
+        "off_passing_success": 88.148,
+        "off_passing_ppa": 75.556,
+        "off_passing_yards_per_play": 80.741,
+        "off_passing_first_down_rate": 82.963,
+        "off_passing_down_success": 80.741,
+        "off_passing_explosiveness": 59.259
+      },
+      "six_metric_score": 77.901,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 69.321,
+      "rank": 30,
+      "four_metric_score": 75.926,
+      "three_metric_score": 74.321
+    },
+    {
+      "team": "Boise State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.46174719887955185,
+        "off_passing_ppa": 0.4700683759765399,
+        "off_passing_yards_per_play": 8.018555900621118,
+        "off_passing_first_down_rate": 0.36233482523444155,
+        "off_passing_down_success": 0.4017529330572809,
+        "off_passing_explosiveness": 1.6992017730729312
+      },
+      "percentiles": {
+        "off_passing_success": 74.074,
+        "off_passing_ppa": 88.148,
+        "off_passing_yards_per_play": 74.074,
+        "off_passing_first_down_rate": 71.111,
+        "off_passing_down_success": 85.185,
+        "off_passing_explosiveness": 75.556
+      },
+      "six_metric_score": 78.025,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 69.259,
+      "rank": 31,
+      "four_metric_score": 80.741,
+      "three_metric_score": 79.259
+    },
+    {
+      "team": "Oregon State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.5488438562632111,
+        "off_passing_ppa": 0.4441358501933643,
+        "off_passing_yards_per_play": 9.074939249203956,
+        "off_passing_first_down_rate": 0.4398734707558237,
+        "off_passing_down_success": 0.48347514554411103,
+        "off_passing_explosiveness": 1.5811482700923503
+      },
+      "percentiles": {
+        "off_passing_success": 94.074,
+        "off_passing_ppa": 85.926,
+        "off_passing_yards_per_play": 92.593,
+        "off_passing_first_down_rate": 93.333,
+        "off_passing_down_success": 99.259,
+        "off_passing_explosiveness": 57.037
+      },
+      "six_metric_score": 87.037,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 69.012,
+      "rank": 32,
+      "four_metric_score": 84.074,
+      "three_metric_score": 79.012
+    },
+    {
+      "team": "Virginia Tech",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4595866454689984,
+        "off_passing_ppa": 0.3878059788618474,
+        "off_passing_yards_per_play": 7.290043466495281,
+        "off_passing_first_down_rate": 0.32266126577140347,
+        "off_passing_down_success": 0.40193512627723155,
+        "off_passing_explosiveness": 1.566167035745257
+      },
+      "percentiles": {
+        "off_passing_success": 71.852,
+        "off_passing_ppa": 80,
+        "off_passing_yards_per_play": 65.185,
+        "off_passing_first_down_rate": 46.667,
+        "off_passing_down_success": 85.926,
+        "off_passing_explosiveness": 51.852
+      },
+      "six_metric_score": 66.914,
+      "opponent_passing_defense_bonus": 5.148,
+      "conference_adjustment": -5,
+      "adjusted_score": 68.049,
+      "rank": 33,
+      "four_metric_score": 72.407,
+      "three_metric_score": 67.901
+    },
+    {
+      "team": "Rutgers",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4186708089668616,
+        "off_passing_ppa": 0.22059858690930745,
+        "off_passing_yards_per_play": 7.723960567710567,
+        "off_passing_first_down_rate": 0.3720193407693408,
+        "off_passing_down_success": 0.38444669365721995,
+        "off_passing_explosiveness": 2.0858445684964515
+      },
+      "percentiles": {
+        "off_passing_success": 46.667,
+        "off_passing_ppa": 55.556,
+        "off_passing_yards_per_play": 71.111,
+        "off_passing_first_down_rate": 77.037,
+        "off_passing_down_success": 82.222,
+        "off_passing_explosiveness": 99.259
+      },
+      "six_metric_score": 71.975,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 67.161,
+      "rank": 34,
+      "four_metric_score": 70.926,
+      "three_metric_score": 67.161
+    },
+    {
+      "team": "Purdue",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.48291666666666666,
+        "off_passing_ppa": 0.37073659742781473,
+        "off_passing_yards_per_play": 7.835218253968255,
+        "off_passing_first_down_rate": 0.3451851851851852,
+        "off_passing_down_success": 0.3720647773279352,
+        "off_passing_explosiveness": 1.3800574668212457
+      },
+      "percentiles": {
+        "off_passing_success": 80.741,
+        "off_passing_ppa": 77.778,
+        "off_passing_yards_per_play": 71.852,
+        "off_passing_first_down_rate": 64.444,
+        "off_passing_down_success": 77.778,
+        "off_passing_explosiveness": 14.074
+      },
+      "six_metric_score": 64.444,
+      "opponent_passing_defense_bonus": 9.1,
+      "conference_adjustment": 0,
+      "adjusted_score": 66.631,
+      "rank": 35,
+      "four_metric_score": 62.593,
+      "three_metric_score": 57.531
+    },
+    {
+      "team": "Nebraska",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.47144445612746927,
+        "off_passing_ppa": 0.3173955351741081,
+        "off_passing_yards_per_play": 7.020355867487709,
+        "off_passing_first_down_rate": 0.3895896069497217,
+        "off_passing_down_success": 0.4802229941279612,
+        "off_passing_explosiveness": 1.5625888900987355
+      },
+      "percentiles": {
+        "off_passing_success": 76.296,
+        "off_passing_ppa": 69.63,
+        "off_passing_yards_per_play": 57.778,
+        "off_passing_first_down_rate": 85.926,
+        "off_passing_down_success": 97.037,
+        "off_passing_explosiveness": 50.37
+      },
+      "six_metric_score": 72.84,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 65.432,
+      "rank": 36,
+      "four_metric_score": 73.333,
+      "three_metric_score": 65.432
+    },
+    {
+      "team": "Louisville",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.46090909090909093,
+        "off_passing_ppa": 0.3625154471997012,
+        "off_passing_yards_per_play": 8.056022727272728,
+        "off_passing_first_down_rate": 0.3302272727272727,
+        "off_passing_down_success": 0.2971033868092692,
+        "off_passing_explosiveness": 1.5880455488052792
+      },
+      "percentiles": {
+        "off_passing_success": 73.333,
+        "off_passing_ppa": 76.296,
+        "off_passing_yards_per_play": 75.556,
+        "off_passing_first_down_rate": 54.815,
+        "off_passing_down_success": 39.259,
+        "off_passing_explosiveness": 60.741
+      },
+      "six_metric_score": 63.333,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 65.123,
+      "rank": 37,
+      "four_metric_score": 62.407,
+      "three_metric_score": 70.123
+    },
+    {
+      "team": "Iowa",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.47517913557840963,
+        "off_passing_ppa": 0.29145045307422657,
+        "off_passing_yards_per_play": 6.887736729644624,
+        "off_passing_first_down_rate": 0.36665204678362573,
+        "off_passing_down_success": 0.27999999999999997,
+        "off_passing_explosiveness": 1.3809588545128095
+      },
+      "percentiles": {
+        "off_passing_success": 77.778,
+        "off_passing_ppa": 66.667,
+        "off_passing_yards_per_play": 52.593,
+        "off_passing_first_down_rate": 73.333,
+        "off_passing_down_success": 31.852,
+        "off_passing_explosiveness": 15.556
+      },
+      "six_metric_score": 52.963,
+      "opponent_passing_defense_bonus": 8.805,
+      "conference_adjustment": 0,
+      "adjusted_score": 62.139,
+      "rank": 38,
+      "four_metric_score": 47.963,
+      "three_metric_score": 53.334
+    },
+    {
+      "team": "Oklahoma State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.509966290893015,
+        "off_passing_ppa": 0.30984327630898456,
+        "off_passing_yards_per_play": 9.40874301704043,
+        "off_passing_first_down_rate": 0.41785603046378905,
+        "off_passing_down_success": 0.290327380952381,
+        "off_passing_explosiveness": 1.512119274856739
+      },
+      "percentiles": {
+        "off_passing_success": 86.667,
+        "off_passing_ppa": 68.148,
+        "off_passing_yards_per_play": 96.296,
+        "off_passing_first_down_rate": 90.37,
+        "off_passing_down_success": 36.296,
+        "off_passing_explosiveness": 41.481
+      },
+      "six_metric_score": 69.877,
+      "opponent_passing_defense_bonus": 0.613,
+      "conference_adjustment": -4,
+      "adjusted_score": 62.045,
+      "rank": 39,
+      "four_metric_score": 58.148,
+      "three_metric_score": 65.432
+    },
+    {
+      "team": "Florida State",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.39422779918452616,
+        "off_passing_ppa": 0.22601720633105962,
+        "off_passing_yards_per_play": 6.998334162850291,
+        "off_passing_first_down_rate": 0.3342539181248858,
+        "off_passing_down_success": 0.3476737297789929,
+        "off_passing_explosiveness": 1.920101889184436
+      },
+      "percentiles": {
+        "off_passing_success": 40.741,
+        "off_passing_ppa": 56.296,
+        "off_passing_yards_per_play": 57.037,
+        "off_passing_first_down_rate": 60.741,
+        "off_passing_down_success": 70.37,
+        "off_passing_explosiveness": 96.296
+      },
+      "six_metric_score": 63.58,
+      "opponent_passing_defense_bonus": 2.547,
+      "conference_adjustment": -5,
+      "adjusted_score": 61.991,
+      "rank": 40,
+      "four_metric_score": 65.926,
+      "three_metric_score": 64.444
+    },
+    {
+      "team": "Oregon",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.367495004995005,
+        "off_passing_ppa": 0.19052978072073,
+        "off_passing_yards_per_play": 7.619967532467532,
+        "off_passing_first_down_rate": 0.274905303030303,
+        "off_passing_down_success": 0.2683040643566959,
+        "off_passing_explosiveness": 1.856743240092467
+      },
+      "percentiles": {
+        "off_passing_success": 25.185,
+        "off_passing_ppa": 50.37,
+        "off_passing_yards_per_play": 68.889,
+        "off_passing_first_down_rate": 20.741,
+        "off_passing_down_success": 25.926,
+        "off_passing_explosiveness": 93.333
+      },
+      "six_metric_score": 47.407,
+      "opponent_passing_defense_bonus": 4.907,
+      "conference_adjustment": 0,
+      "adjusted_score": 61.203,
+      "rank": 41,
+      "four_metric_score": 48.703,
+      "three_metric_score": 56.296
+    },
+    {
+      "team": "James Madison",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.44405624432423896,
+        "off_passing_ppa": 0.40233332661015275,
+        "off_passing_yards_per_play": 7.192144450586331,
+        "off_passing_first_down_rate": 0.3623207446598492,
+        "off_passing_down_success": 0.33950724637681157,
+        "off_passing_explosiveness": 1.6979416932915417
+      },
+      "percentiles": {
+        "off_passing_success": 62.222,
+        "off_passing_ppa": 81.481,
+        "off_passing_yards_per_play": 62.963,
+        "off_passing_first_down_rate": 70.37,
+        "off_passing_down_success": 64.444,
+        "off_passing_explosiveness": 74.815
+      },
+      "six_metric_score": 69.383,
+      "opponent_passing_defense_bonus": 2.17,
+      "conference_adjustment": -15,
+      "adjusted_score": 60.009,
+      "rank": 42,
+      "four_metric_score": 70.74,
+      "three_metric_score": 72.839
+    },
+    {
+      "team": "Baylor",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3866286345233714,
+        "off_passing_ppa": 0.28390837242003264,
+        "off_passing_yards_per_play": 7.227808857808858,
+        "off_passing_first_down_rate": 0.32592074592074594,
+        "off_passing_down_success": 0.3195991488382793,
+        "off_passing_explosiveness": 1.8265230202363485
+      },
+      "percentiles": {
+        "off_passing_success": 34.815,
+        "off_passing_ppa": 65.926,
+        "off_passing_yards_per_play": 64.444,
+        "off_passing_first_down_rate": 49.63,
+        "off_passing_down_success": 54.815,
+        "off_passing_explosiveness": 90.37
+      },
+      "six_metric_score": 60,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 59.704,
+      "rank": 43,
+      "four_metric_score": 61.481,
+      "three_metric_score": 63.704
+    },
+    {
+      "team": "Fresno State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4588659247482777,
+        "off_passing_ppa": 0.3727373777521713,
+        "off_passing_yards_per_play": 6.182975622681505,
+        "off_passing_first_down_rate": 0.3339467408585056,
+        "off_passing_down_success": 0.39068273774156126,
+        "off_passing_explosiveness": 1.5834366197945893
+      },
+      "percentiles": {
+        "off_passing_success": 71.111,
+        "off_passing_ppa": 78.519,
+        "off_passing_yards_per_play": 35.556,
+        "off_passing_first_down_rate": 60,
+        "off_passing_down_success": 83.704,
+        "off_passing_explosiveness": 57.778
+      },
+      "six_metric_score": 64.444,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 59.136,
+      "rank": 44,
+      "four_metric_score": 72.778,
+      "three_metric_score": 69.136
+    },
+    {
+      "team": "Vanderbilt",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3908813033813034,
+        "off_passing_ppa": 0.1680287116752261,
+        "off_passing_yards_per_play": 6.770692792074371,
+        "off_passing_first_down_rate": 0.27376224909119645,
+        "off_passing_down_success": 0.2763888888888889,
+        "off_passing_explosiveness": 1.7693064519112052
+      },
+      "percentiles": {
+        "off_passing_success": 38.519,
+        "off_passing_ppa": 44.444,
+        "off_passing_yards_per_play": 48.148,
+        "off_passing_first_down_rate": 19.259,
+        "off_passing_down_success": 29.63,
+        "off_passing_explosiveness": 85.185
+      },
+      "six_metric_score": 44.198,
+      "opponent_passing_defense_bonus": 2.88,
+      "conference_adjustment": 0,
+      "adjusted_score": 58.929,
+      "rank": 45,
+      "four_metric_score": 49.444,
+      "three_metric_score": 56.049
+    },
+    {
+      "team": "Duke",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.44363929146537845,
+        "off_passing_ppa": 0.3268317542496323,
+        "off_passing_yards_per_play": 7.339170692431562,
+        "off_passing_first_down_rate": 0.37097423510466987,
+        "off_passing_down_success": 0.38275842595102555,
+        "off_passing_explosiveness": 1.5162202870897923
+      },
+      "percentiles": {
+        "off_passing_success": 61.481,
+        "off_passing_ppa": 71.111,
+        "off_passing_yards_per_play": 65.926,
+        "off_passing_first_down_rate": 76.296,
+        "off_passing_down_success": 81.481,
+        "off_passing_explosiveness": 42.963
+      },
+      "six_metric_score": 66.543,
+      "opponent_passing_defense_bonus": 3.987,
+      "conference_adjustment": -5,
+      "adjusted_score": 57.505,
+      "rank": 46,
+      "four_metric_score": 64.259,
+      "three_metric_score": 58.518
+    },
+    {
+      "team": "Syracuse",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.40194091149973504,
+        "off_passing_ppa": 0.13141551360588752,
+        "off_passing_yards_per_play": 7.091745041745042,
+        "off_passing_first_down_rate": 0.3282286407286407,
+        "off_passing_down_success": 0.3094600142013935,
+        "off_passing_explosiveness": 1.8065903346141525
+      },
+      "percentiles": {
+        "off_passing_success": 42.963,
+        "off_passing_ppa": 39.259,
+        "off_passing_yards_per_play": 60.741,
+        "off_passing_first_down_rate": 53.333,
+        "off_passing_down_success": 48.889,
+        "off_passing_explosiveness": 89.63
+      },
+      "six_metric_score": 55.802,
+      "opponent_passing_defense_bonus": 4.13,
+      "conference_adjustment": -5,
+      "adjusted_score": 56.414,
+      "rank": 47,
+      "four_metric_score": 55.185,
+      "three_metric_score": 57.284
+    },
+    {
+      "team": "TCU",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4261204481792717,
+        "off_passing_ppa": 0.20492794799701963,
+        "off_passing_yards_per_play": 7.882232203226118,
+        "off_passing_first_down_rate": 0.3637592968221771,
+        "off_passing_down_success": 0.23054954304954303,
+        "off_passing_explosiveness": 1.6872411636025926
+      },
+      "percentiles": {
+        "off_passing_success": 54.074,
+        "off_passing_ppa": 52.593,
+        "off_passing_yards_per_play": 72.593,
+        "off_passing_first_down_rate": 71.852,
+        "off_passing_down_success": 13.333,
+        "off_passing_explosiveness": 71.852
+      },
+      "six_metric_score": 56.049,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 55.506,
+      "rank": 48,
+      "four_metric_score": 47.963,
+      "three_metric_score": 59.506
+    },
+    {
+      "team": "Minnesota",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4222790748585899,
+        "off_passing_ppa": 0.14227941336836056,
+        "off_passing_yards_per_play": 6.198519739281464,
+        "off_passing_first_down_rate": 0.30053156528696606,
+        "off_passing_down_success": 0.2144055791653045,
+        "off_passing_explosiveness": 1.547488916255983
+      },
+      "percentiles": {
+        "off_passing_success": 51.852,
+        "off_passing_ppa": 41.481,
+        "off_passing_yards_per_play": 36.296,
+        "off_passing_first_down_rate": 34.815,
+        "off_passing_down_success": 11.852,
+        "off_passing_explosiveness": 47.407
+      },
+      "six_metric_score": 37.284,
+      "opponent_passing_defense_bonus": 8.32,
+      "conference_adjustment": 0,
+      "adjusted_score": 55.233,
+      "rank": 49,
+      "four_metric_score": 38.148,
+      "three_metric_score": 46.913
+    },
+    {
+      "team": "Michigan",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.44328609986504725,
+        "off_passing_ppa": 0.15916802635450428,
+        "off_passing_yards_per_play": 6.912969924812029,
+        "off_passing_first_down_rate": 0.33001253132832076,
+        "off_passing_down_success": 0.3706782106782107,
+        "off_passing_explosiveness": 1.5117647235023695
+      },
+      "percentiles": {
+        "off_passing_success": 60.741,
+        "off_passing_ppa": 42.222,
+        "off_passing_yards_per_play": 53.333,
+        "off_passing_first_down_rate": 54.074,
+        "off_passing_down_success": 76.296,
+        "off_passing_explosiveness": 40.741
+      },
+      "six_metric_score": 54.568,
+      "opponent_passing_defense_bonus": 6.7,
+      "conference_adjustment": 0,
+      "adjusted_score": 54.601,
+      "rank": 50,
+      "four_metric_score": 55,
+      "three_metric_score": 47.901
+    },
+    {
+      "team": "NC State",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4718080467626747,
+        "off_passing_ppa": 0.29898191442377536,
+        "off_passing_yards_per_play": 5.9791463954002655,
+        "off_passing_first_down_rate": 0.3281070322865988,
+        "off_passing_down_success": 0.3243856633562516,
+        "off_passing_explosiveness": 1.4297039196968124
+      },
+      "percentiles": {
+        "off_passing_success": 77.037,
+        "off_passing_ppa": 67.407,
+        "off_passing_yards_per_play": 31.852,
+        "off_passing_first_down_rate": 52.593,
+        "off_passing_down_success": 58.519,
+        "off_passing_explosiveness": 24.444
+      },
+      "six_metric_score": 51.975,
+      "opponent_passing_defense_bonus": 3.245,
+      "conference_adjustment": -5,
+      "adjusted_score": 54.541,
+      "rank": 51,
+      "four_metric_score": 56.852,
+      "three_metric_score": 56.296
+    },
+    {
+      "team": "BYU",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4767521367521368,
+        "off_passing_ppa": 0.35925162665007626,
+        "off_passing_yards_per_play": 9.179509803921569,
+        "off_passing_first_down_rate": 0.34946623093681917,
+        "off_passing_down_success": 0.2966680535330421,
+        "off_passing_explosiveness": 1.397800900629885
+      },
+      "percentiles": {
+        "off_passing_success": 78.519,
+        "off_passing_ppa": 74.815,
+        "off_passing_yards_per_play": 94.815,
+        "off_passing_first_down_rate": 65.926,
+        "off_passing_down_success": 38.519,
+        "off_passing_explosiveness": 19.259
+      },
+      "six_metric_score": 61.975,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 53.531,
+      "rank": 52,
+      "four_metric_score": 52.778,
+      "three_metric_score": 57.531
+    },
+    {
+      "team": "Kentucky",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.44581308581308576,
+        "off_passing_ppa": 0.17162218329470774,
+        "off_passing_yards_per_play": 6.86034404192299,
+        "off_passing_first_down_rate": 0.3244133059922533,
+        "off_passing_down_success": 0.29914529914529914,
+        "off_passing_explosiveness": 1.3925153789468763
+      },
+      "percentiles": {
+        "off_passing_success": 65.185,
+        "off_passing_ppa": 46.667,
+        "off_passing_yards_per_play": 50.37,
+        "off_passing_first_down_rate": 48.148,
+        "off_passing_down_success": 40.741,
+        "off_passing_explosiveness": 18.519
+      },
+      "six_metric_score": 44.938,
+      "opponent_passing_defense_bonus": 9.368,
+      "conference_adjustment": 0,
+      "adjusted_score": 52.825,
+      "rank": 53,
+      "four_metric_score": 42.778,
+      "three_metric_score": 43.457
+    },
+    {
+      "team": "Georgia Tech",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4457413200834254,
+        "off_passing_ppa": 0.2177971176031395,
+        "off_passing_yards_per_play": 6.505081826012058,
+        "off_passing_first_down_rate": 0.35951425721927555,
+        "off_passing_down_success": 0.3307109557109557,
+        "off_passing_explosiveness": 1.5087720725213576
+      },
+      "percentiles": {
+        "off_passing_success": 64.444,
+        "off_passing_ppa": 54.074,
+        "off_passing_yards_per_play": 42.222,
+        "off_passing_first_down_rate": 68.148,
+        "off_passing_down_success": 60.741,
+        "off_passing_explosiveness": 40
+      },
+      "six_metric_score": 54.938,
+      "opponent_passing_defense_bonus": 3.987,
+      "conference_adjustment": -5,
+      "adjusted_score": 51.826,
+      "rank": 54,
+      "four_metric_score": 54.815,
+      "three_metric_score": 52.839
+    },
+    {
+      "team": "Liberty",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4579420337678052,
+        "off_passing_ppa": 0.4150601028839234,
+        "off_passing_yards_per_play": 8.432613641383151,
+        "off_passing_first_down_rate": 0.3681679678122509,
+        "off_passing_down_success": 0.34178354978354974,
+        "off_passing_explosiveness": 1.5876097704614018
+      },
+      "percentiles": {
+        "off_passing_success": 70.37,
+        "off_passing_ppa": 82.963,
+        "off_passing_yards_per_play": 81.481,
+        "off_passing_first_down_rate": 74.074,
+        "off_passing_down_success": 65.926,
+        "off_passing_explosiveness": 60
+      },
+      "six_metric_score": 72.469,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 51.111,
+      "rank": 55,
+      "four_metric_score": 69.815,
+      "three_metric_score": 71.111
+    },
+    {
+      "team": "Cincinnati",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4119358854652972,
+        "off_passing_ppa": 0.19596001970764615,
+        "off_passing_yards_per_play": 6.745563433706816,
+        "off_passing_first_down_rate": 0.3188404528478058,
+        "off_passing_down_success": 0.30662280701754385,
+        "off_passing_explosiveness": 1.528389771765577
+      },
+      "percentiles": {
+        "off_passing_success": 45.926,
+        "off_passing_ppa": 51.111,
+        "off_passing_yards_per_play": 46.667,
+        "off_passing_first_down_rate": 45.185,
+        "off_passing_down_success": 47.407,
+        "off_passing_explosiveness": 45.185
+      },
+      "six_metric_score": 46.914,
+      "opponent_passing_defense_bonus": 7.667,
+      "conference_adjustment": -4,
+      "adjusted_score": 51.074,
+      "rank": 56,
+      "four_metric_score": 47.407,
+      "three_metric_score": 47.407
+    },
+    {
+      "team": "Louisiana Tech",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4186884362067961,
+        "off_passing_ppa": 0.12346900803602887,
+        "off_passing_yards_per_play": 6.557980820636193,
+        "off_passing_first_down_rate": 0.3142792702485966,
+        "off_passing_down_success": 0.3443055555555556,
+        "off_passing_explosiveness": 1.8294001488150897
+      },
+      "percentiles": {
+        "off_passing_success": 47.407,
+        "off_passing_ppa": 36.296,
+        "off_passing_yards_per_play": 45.185,
+        "off_passing_first_down_rate": 41.481,
+        "off_passing_down_success": 68.148,
+        "off_passing_explosiveness": 91.111
+      },
+      "six_metric_score": 54.938,
+      "opponent_passing_defense_bonus": 7.775,
+      "conference_adjustment": -15,
+      "adjusted_score": 51.046,
+      "rank": 57,
+      "four_metric_score": 60.74,
+      "three_metric_score": 58.271
+    },
+    {
+      "team": "Navy",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3758661359280554,
+        "off_passing_ppa": 0.26323325853934715,
+        "off_passing_yards_per_play": 8.468563512361467,
+        "off_passing_first_down_rate": 0.32798828913716516,
+        "off_passing_down_success": 0.25899122807017544,
+        "off_passing_explosiveness": 2.0832988224470212
+      },
+      "percentiles": {
+        "off_passing_success": 28.889,
+        "off_passing_ppa": 62.963,
+        "off_passing_yards_per_play": 84.444,
+        "off_passing_first_down_rate": 51.852,
+        "off_passing_down_success": 22.222,
+        "off_passing_explosiveness": 98.519
+      },
+      "six_metric_score": 58.148,
+      "opponent_passing_defense_bonus": 0.295,
+      "conference_adjustment": -13,
+      "adjusted_score": 50.752,
+      "rank": 58,
+      "four_metric_score": 53.148,
+      "three_metric_score": 63.457
+    },
+    {
+      "team": "Temple",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3753215654077723,
+        "off_passing_ppa": 0.2458487394833288,
+        "off_passing_yards_per_play": 7.457588170200614,
+        "off_passing_first_down_rate": 0.3322026486756622,
+        "off_passing_down_success": 0.3053030303030303,
+        "off_passing_explosiveness": 1.8625171810123233
+      },
+      "percentiles": {
+        "off_passing_success": 28.148,
+        "off_passing_ppa": 59.259,
+        "off_passing_yards_per_play": 66.667,
+        "off_passing_first_down_rate": 56.296,
+        "off_passing_down_success": 46.667,
+        "off_passing_explosiveness": 94.074
+      },
+      "six_metric_score": 58.519,
+      "opponent_passing_defense_bonus": 3.168,
+      "conference_adjustment": -13,
+      "adjusted_score": 50.662,
+      "rank": 59,
+      "four_metric_score": 57.037,
+      "three_metric_score": 60.494
+    },
+    {
+      "team": "Massachusetts",
+      "conference": "Mid-American",
+      "games": 3,
+      "raw": {
+        "off_passing_success": 0.4938977879481312,
+        "off_passing_ppa": 0.39728423854748796,
+        "off_passing_yards_per_play": 7.935644263638163,
+        "off_passing_first_down_rate": 0.3611040483656807,
+        "off_passing_down_success": 0.4377599524658348,
+        "off_passing_explosiveness": 1.563054938793808
+      },
+      "percentiles": {
+        "off_passing_success": 82.963,
+        "off_passing_ppa": 80.741,
+        "off_passing_yards_per_play": 73.333,
+        "off_passing_first_down_rate": 69.63,
+        "off_passing_down_success": 92.593,
+        "off_passing_explosiveness": 51.111
+      },
+      "six_metric_score": 75.062,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 49.605,
+      "rank": 60,
+      "four_metric_score": 76.852,
+      "three_metric_score": 71.605
+    },
+    {
+      "team": "Texas Tech",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.45210113960113957,
+        "off_passing_ppa": 0.24904851897029973,
+        "off_passing_yards_per_play": 6.793816137566138,
+        "off_passing_first_down_rate": 0.3370122354497354,
+        "off_passing_down_success": 0.404959051069108,
+        "off_passing_explosiveness": 1.4118181541719834
+      },
+      "percentiles": {
+        "off_passing_success": 67.407,
+        "off_passing_ppa": 60,
+        "off_passing_yards_per_play": 48.889,
+        "off_passing_first_down_rate": 62.222,
+        "off_passing_down_success": 88.148,
+        "off_passing_explosiveness": 20.741
+      },
+      "six_metric_score": 57.901,
+      "opponent_passing_defense_bonus": 3.835,
+      "conference_adjustment": -4,
+      "adjusted_score": 49.218,
+      "rank": 61,
+      "four_metric_score": 59.074,
+      "three_metric_score": 49.383
+    },
+    {
+      "team": "Army",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3940909090909091,
+        "off_passing_ppa": 0.2327222542660563,
+        "off_passing_yards_per_play": 6.216212121212122,
+        "off_passing_first_down_rate": 0.286969696969697,
+        "off_passing_down_success": 0.3196178821178821,
+        "off_passing_explosiveness": 1.779929597819177
+      },
+      "percentiles": {
+        "off_passing_success": 40,
+        "off_passing_ppa": 58.519,
+        "off_passing_yards_per_play": 37.778,
+        "off_passing_first_down_rate": 25.926,
+        "off_passing_down_success": 55.556,
+        "off_passing_explosiveness": 86.667
+      },
+      "six_metric_score": 50.741,
+      "opponent_passing_defense_bonus": 0.295,
+      "conference_adjustment": -13,
+      "adjusted_score": 49.024,
+      "rank": 62,
+      "four_metric_score": 60.185,
+      "three_metric_score": 61.729
+    },
+    {
+      "team": "West Virginia",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3389385307346327,
+        "off_passing_ppa": 0.13370387335477338,
+        "off_passing_yards_per_play": 8.115096554286959,
+        "off_passing_first_down_rate": 0.32244800676584784,
+        "off_passing_down_success": 0.3451496329757199,
+        "off_passing_explosiveness": 2.2537165480973584
+      },
+      "percentiles": {
+        "off_passing_success": 12.593,
+        "off_passing_ppa": 40,
+        "off_passing_yards_per_play": 77.778,
+        "off_passing_first_down_rate": 45.926,
+        "off_passing_down_success": 68.889,
+        "off_passing_explosiveness": 100
+      },
+      "six_metric_score": 57.531,
+      "opponent_passing_defense_bonus": 1.91,
+      "conference_adjustment": -4,
+      "adjusted_score": 48.774,
+      "rank": 63,
+      "four_metric_score": 55.37,
+      "three_metric_score": 50.864
+    },
+    {
+      "team": "North Carolina",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4259199134199134,
+        "off_passing_ppa": 0.1256866087476217,
+        "off_passing_yards_per_play": 7.028192640692641,
+        "off_passing_first_down_rate": 0.36866883116883115,
+        "off_passing_down_success": 0.3251529559192098,
+        "off_passing_explosiveness": 1.5138132879705384
+      },
+      "percentiles": {
+        "off_passing_success": 53.333,
+        "off_passing_ppa": 37.778,
+        "off_passing_yards_per_play": 58.519,
+        "off_passing_first_down_rate": 75.556,
+        "off_passing_down_success": 60,
+        "off_passing_explosiveness": 42.222
+      },
+      "six_metric_score": 54.568,
+      "opponent_passing_defense_bonus": 8.773,
+      "conference_adjustment": -5,
+      "adjusted_score": 48.217,
+      "rank": 64,
+      "four_metric_score": 48.333,
+      "three_metric_score": 44.444
+    },
+    {
+      "team": "Kansas",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3608601917425447,
+        "off_passing_ppa": 0.0920979279900915,
+        "off_passing_yards_per_play": 7.68379679144385,
+        "off_passing_first_down_rate": 0.33940646528881824,
+        "off_passing_down_success": 0.29251893939393936,
+        "off_passing_explosiveness": 1.7639246356100569
+      },
+      "percentiles": {
+        "off_passing_success": 21.481,
+        "off_passing_ppa": 29.63,
+        "off_passing_yards_per_play": 69.63,
+        "off_passing_first_down_rate": 63.704,
+        "off_passing_down_success": 37.037,
+        "off_passing_explosiveness": 83.704
+      },
+      "six_metric_score": 50.864,
+      "opponent_passing_defense_bonus": 7.08,
+      "conference_adjustment": -4,
+      "adjusted_score": 48.018,
+      "rank": 65,
+      "four_metric_score": 42.963,
+      "three_metric_score": 44.938
+    },
+    {
+      "team": "Colorado State",
+      "conference": "Pac-12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.44468495698674726,
+        "off_passing_ppa": 0.2085824616532687,
+        "off_passing_yards_per_play": 6.758636675532065,
+        "off_passing_first_down_rate": 0.3064902187617552,
+        "off_passing_down_success": 0.3762928248222366,
+        "off_passing_explosiveness": 1.5672387897572475
+      },
+      "percentiles": {
+        "off_passing_success": 63.704,
+        "off_passing_ppa": 53.333,
+        "off_passing_yards_per_play": 47.407,
+        "off_passing_first_down_rate": 38.519,
+        "off_passing_down_success": 79.259,
+        "off_passing_explosiveness": 54.074
+      },
+      "six_metric_score": 56.049,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 47.037,
+      "rank": 66,
+      "four_metric_score": 62.593,
+      "three_metric_score": 57.037
+    },
+    {
+      "team": "Iowa State",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4102712659440163,
+        "off_passing_ppa": 0.18020132104838066,
+        "off_passing_yards_per_play": 6.082041471087587,
+        "off_passing_first_down_rate": 0.3140887273373882,
+        "off_passing_down_success": 0.24104761904761904,
+        "off_passing_explosiveness": 1.4579572471637245
+      },
+      "percentiles": {
+        "off_passing_success": 44.444,
+        "off_passing_ppa": 48.148,
+        "off_passing_yards_per_play": 34.815,
+        "off_passing_first_down_rate": 40.741,
+        "off_passing_down_success": 16.296,
+        "off_passing_explosiveness": 31.111
+      },
+      "six_metric_score": 35.926,
+      "opponent_passing_defense_bonus": 8.996,
+      "conference_adjustment": -4,
+      "adjusted_score": 46.23,
+      "rank": 67,
+      "four_metric_score": 35,
+      "three_metric_score": 41.234
+    },
+    {
+      "team": "Toledo",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.41927950310559015,
+        "off_passing_ppa": 0.33708768772897224,
+        "off_passing_yards_per_play": 8.088346416300379,
+        "off_passing_first_down_rate": 0.3494041990972937,
+        "off_passing_down_success": 0.27467538126361657,
+        "off_passing_explosiveness": 1.758330796919432
+      },
+      "percentiles": {
+        "off_passing_success": 48.148,
+        "off_passing_ppa": 72.593,
+        "off_passing_yards_per_play": 76.296,
+        "off_passing_first_down_rate": 65.185,
+        "off_passing_down_success": 28.889,
+        "off_passing_explosiveness": 82.963
+      },
+      "six_metric_score": 62.346,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 45.901,
+      "rank": 68,
+      "four_metric_score": 58.148,
+      "three_metric_score": 67.901
+    },
+    {
+      "team": "Virginia",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4510309930423782,
+        "off_passing_ppa": 0.32753896042768516,
+        "off_passing_yards_per_play": 6.814925970388154,
+        "off_passing_first_down_rate": 0.33443377350940373,
+        "off_passing_down_success": 0.25425305688463584,
+        "off_passing_explosiveness": 1.3001836015877117
+      },
+      "percentiles": {
+        "off_passing_success": 66.667,
+        "off_passing_ppa": 71.852,
+        "off_passing_yards_per_play": 49.63,
+        "off_passing_first_down_rate": 61.481,
+        "off_passing_down_success": 20,
+        "off_passing_explosiveness": 6.667
+      },
+      "six_metric_score": 46.049,
+      "opponent_passing_defense_bonus": 2.36,
+      "conference_adjustment": -5,
+      "adjusted_score": 45.755,
+      "rank": 69,
+      "four_metric_score": 41.297,
+      "three_metric_score": 48.395
+    },
+    {
+      "team": "Marshall",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.44142791762013733,
+        "off_passing_ppa": 0.2548470678937579,
+        "off_passing_yards_per_play": 6.456706680715369,
+        "off_passing_first_down_rate": 0.3121050001315132,
+        "off_passing_down_success": 0.31443331178625294,
+        "off_passing_explosiveness": 1.4743828074897096
+      },
+      "percentiles": {
+        "off_passing_success": 60,
+        "off_passing_ppa": 61.481,
+        "off_passing_yards_per_play": 39.259,
+        "off_passing_first_down_rate": 40,
+        "off_passing_down_success": 51.852,
+        "off_passing_explosiveness": 35.556
+      },
+      "six_metric_score": 48.025,
+      "opponent_passing_defense_bonus": 6.785,
+      "conference_adjustment": -15,
+      "adjusted_score": 44.131,
+      "rank": 70,
+      "four_metric_score": 52.222,
+      "three_metric_score": 52.346
+    },
+    {
+      "team": "Michigan State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.4540276822060503,
+        "off_passing_ppa": 0.08336968255154663,
+        "off_passing_yards_per_play": 5.768347840928487,
+        "off_passing_first_down_rate": 0.3645075951527565,
+        "off_passing_down_success": 0.3333984114876563,
+        "off_passing_explosiveness": 1.3222765382837427
+      },
+      "percentiles": {
+        "off_passing_success": 68.889,
+        "off_passing_ppa": 28.148,
+        "off_passing_yards_per_play": 22.963,
+        "off_passing_first_down_rate": 72.593,
+        "off_passing_down_success": 62.222,
+        "off_passing_explosiveness": 8.148
+      },
+      "six_metric_score": 43.827,
+      "opponent_passing_defense_bonus": 9.016,
+      "conference_adjustment": 0,
+      "adjusted_score": 44.078,
+      "rank": 71,
+      "four_metric_score": 41.852,
+      "three_metric_score": 35.062
+    },
+    {
+      "team": "UCF",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.37218869365928187,
+        "off_passing_ppa": 0.16379036644449255,
+        "off_passing_yards_per_play": 6.202829131652661,
+        "off_passing_first_down_rate": 0.2559332824038706,
+        "off_passing_down_success": 0.3002587991718426,
+        "off_passing_explosiveness": 1.6772809698016065
+      },
+      "percentiles": {
+        "off_passing_success": 26.667,
+        "off_passing_ppa": 42.963,
+        "off_passing_yards_per_play": 37.037,
+        "off_passing_first_down_rate": 11.852,
+        "off_passing_down_success": 41.481,
+        "off_passing_explosiveness": 68.889
+      },
+      "six_metric_score": 38.148,
+      "opponent_passing_defense_bonus": 1.524,
+      "conference_adjustment": -4,
+      "adjusted_score": 43.697,
+      "rank": 72,
+      "four_metric_score": 45,
+      "three_metric_score": 46.173
+    },
+    {
+      "team": "Georgia Southern",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.44770218228498065,
+        "off_passing_ppa": 0.2772883163107188,
+        "off_passing_yards_per_play": 6.543388960205391,
+        "off_passing_first_down_rate": 0.3322283470512724,
+        "off_passing_down_success": 0.321464303670186,
+        "off_passing_explosiveness": 1.4477756506902568
+      },
+      "percentiles": {
+        "off_passing_success": 65.926,
+        "off_passing_ppa": 64.444,
+        "off_passing_yards_per_play": 42.963,
+        "off_passing_first_down_rate": 57.037,
+        "off_passing_down_success": 56.296,
+        "off_passing_explosiveness": 28.889
+      },
+      "six_metric_score": 52.593,
+      "opponent_passing_defense_bonus": 4.032,
+      "conference_adjustment": -15,
+      "adjusted_score": 42.118,
+      "rank": 73,
+      "four_metric_score": 53.889,
+      "three_metric_score": 53.086
+    },
+    {
+      "team": "Jacksonville State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.5201881451881452,
+        "off_passing_ppa": 0.38432119652571933,
+        "off_passing_yards_per_play": 9.164682539682541,
+        "off_passing_first_down_rate": 0.3925747863247864,
+        "off_passing_down_success": 0.3763341921236658,
+        "off_passing_explosiveness": 1.3805432421302892
+      },
+      "percentiles": {
+        "off_passing_success": 89.63,
+        "off_passing_ppa": 79.259,
+        "off_passing_yards_per_play": 94.074,
+        "off_passing_first_down_rate": 87.407,
+        "off_passing_down_success": 80,
+        "off_passing_explosiveness": 14.815
+      },
+      "six_metric_score": 74.198,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 41.235,
+      "rank": 74,
+      "four_metric_score": 65.926,
+      "three_metric_score": 61.235
+    },
+    {
+      "team": "Miami (OH)",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.36567546583850935,
+        "off_passing_ppa": 0.27952928898608864,
+        "off_passing_yards_per_play": 7.192832674571806,
+        "off_passing_first_down_rate": 0.3257258759547089,
+        "off_passing_down_success": 0.30343434343434345,
+        "off_passing_explosiveness": 2.048284519807176
+      },
+      "percentiles": {
+        "off_passing_success": 24.444,
+        "off_passing_ppa": 65.185,
+        "off_passing_yards_per_play": 63.704,
+        "off_passing_first_down_rate": 48.889,
+        "off_passing_down_success": 43.704,
+        "off_passing_explosiveness": 97.778
+      },
+      "six_metric_score": 57.284,
+      "opponent_passing_defense_bonus": 0.59,
+      "conference_adjustment": -22,
+      "adjusted_score": 41.059,
+      "rank": 75,
+      "four_metric_score": 57.778,
+      "three_metric_score": 62.469
+    },
+    {
+      "team": "Troy",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4273143115942029,
+        "off_passing_ppa": 0.18728903994532617,
+        "off_passing_yards_per_play": 7.117905138339921,
+        "off_passing_first_down_rate": 0.33340872493046403,
+        "off_passing_down_success": 0.2845414899387913,
+        "off_passing_explosiveness": 1.6066976363559338
+      },
+      "percentiles": {
+        "off_passing_success": 55.556,
+        "off_passing_ppa": 49.63,
+        "off_passing_yards_per_play": 61.481,
+        "off_passing_first_down_rate": 59.259,
+        "off_passing_down_success": 33.333,
+        "off_passing_explosiveness": 61.481
+      },
+      "six_metric_score": 53.457,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 40.556,
+      "rank": 76,
+      "four_metric_score": 50,
+      "three_metric_score": 55.556
+    },
+    {
+      "team": "Kansas State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.43764213896702375,
+        "off_passing_ppa": 0.19852197885666287,
+        "off_passing_yards_per_play": 6.373054653679654,
+        "off_passing_first_down_rate": 0.33224837662337664,
+        "off_passing_down_success": 0.37286231884057974,
+        "off_passing_explosiveness": 1.4145700657833062
+      },
+      "percentiles": {
+        "off_passing_success": 57.778,
+        "off_passing_ppa": 51.852,
+        "off_passing_yards_per_play": 38.519,
+        "off_passing_first_down_rate": 57.778,
+        "off_passing_down_success": 78.519,
+        "off_passing_explosiveness": 22.222
+      },
+      "six_metric_score": 51.111,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 39.951,
+      "rank": 77,
+      "four_metric_score": 52.593,
+      "three_metric_score": 43.951
+    },
+    {
+      "team": "New Mexico",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4525,
+        "off_passing_ppa": 0.23234345664457567,
+        "off_passing_yards_per_play": 7.067058966861598,
+        "off_passing_first_down_rate": 0.32412280701754387,
+        "off_passing_down_success": 0.3489583333333333,
+        "off_passing_explosiveness": 1.435224684873793
+      },
+      "percentiles": {
+        "off_passing_success": 68.148,
+        "off_passing_ppa": 57.778,
+        "off_passing_yards_per_play": 60,
+        "off_passing_first_down_rate": 47.407,
+        "off_passing_down_success": 71.111,
+        "off_passing_explosiveness": 25.926
+      },
+      "six_metric_score": 55.062,
+      "opponent_passing_defense_bonus": 3.68,
+      "conference_adjustment": -15,
+      "adjusted_score": 39.297,
+      "rank": 78,
+      "four_metric_score": 55.741,
+      "three_metric_score": 50.617
+    },
+    {
+      "team": "Arkansas State",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.494621732356166,
+        "off_passing_ppa": 0.17106580854748646,
+        "off_passing_yards_per_play": 8.090649672907738,
+        "off_passing_first_down_rate": 0.394900462440785,
+        "off_passing_down_success": 0.3454084967320261,
+        "off_passing_explosiveness": 1.4465790192785755
+      },
+      "percentiles": {
+        "off_passing_success": 83.704,
+        "off_passing_ppa": 45.185,
+        "off_passing_yards_per_play": 77.037,
+        "off_passing_first_down_rate": 88.148,
+        "off_passing_down_success": 69.63,
+        "off_passing_explosiveness": 26.667
+      },
+      "six_metric_score": 65.062,
+      "opponent_passing_defense_bonus": 2.065,
+      "conference_adjustment": -15,
+      "adjusted_score": 38.917,
+      "rank": 79,
+      "four_metric_score": 56.297,
+      "three_metric_score": 51.852
+    },
+    {
+      "team": "Pittsburgh",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.37690407582132684,
+        "off_passing_ppa": 0.12120215022833918,
+        "off_passing_yards_per_play": 6.622077606358111,
+        "off_passing_first_down_rate": 0.32685928003740067,
+        "off_passing_down_success": 0.29596153846153844,
+        "off_passing_explosiveness": 1.6109491716192657
+      },
+      "percentiles": {
+        "off_passing_success": 30.37,
+        "off_passing_ppa": 35.556,
+        "off_passing_yards_per_play": 45.926,
+        "off_passing_first_down_rate": 50.37,
+        "off_passing_down_success": 37.778,
+        "off_passing_explosiveness": 62.222
+      },
+      "six_metric_score": 43.704,
+      "opponent_passing_defense_bonus": 0.59,
+      "conference_adjustment": -5,
+      "adjusted_score": 38.306,
+      "rank": 80,
+      "four_metric_score": 41.482,
+      "three_metric_score": 42.716
+    },
+    {
+      "team": "Florida Atlantic",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4803858422279475,
+        "off_passing_ppa": 0.2498074836716322,
+        "off_passing_yards_per_play": 6.981964794464794,
+        "off_passing_first_down_rate": 0.3182743182743183,
+        "off_passing_down_success": 0.40261308739569607,
+        "off_passing_explosiveness": 1.369228777945345
+      },
+      "percentiles": {
+        "off_passing_success": 79.259,
+        "off_passing_ppa": 60.741,
+        "off_passing_yards_per_play": 56.296,
+        "off_passing_first_down_rate": 44.444,
+        "off_passing_down_success": 86.667,
+        "off_passing_explosiveness": 12.593
+      },
+      "six_metric_score": 56.667,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 37.864,
+      "rank": 81,
+      "four_metric_score": 59.815,
+      "three_metric_score": 50.864
+    },
+    {
+      "team": "Coastal Carolina",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.36072039072039075,
+        "off_passing_ppa": 0.18591727610773431,
+        "off_passing_yards_per_play": 5.878144078144079,
+        "off_passing_first_down_rate": 0.2953357753357754,
+        "off_passing_down_success": 0.3334153933220147,
+        "off_passing_explosiveness": 1.7857725112148592
+      },
+      "percentiles": {
+        "off_passing_success": 20.741,
+        "off_passing_ppa": 48.889,
+        "off_passing_yards_per_play": 30.37,
+        "off_passing_first_down_rate": 30.37,
+        "off_passing_down_success": 62.963,
+        "off_passing_explosiveness": 88.148
+      },
+      "six_metric_score": 46.914,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 37.593,
+      "rank": 82,
+      "four_metric_score": 55.185,
+      "three_metric_score": 52.593
+    },
+    {
+      "team": "UNLV",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.38248313573903414,
+        "off_passing_ppa": 0.1664819126308556,
+        "off_passing_yards_per_play": 6.552708437073763,
+        "off_passing_first_down_rate": 0.2980598828949421,
+        "off_passing_down_success": 0.23409909909909912,
+        "off_passing_explosiveness": 1.7277575258902425
+      },
+      "percentiles": {
+        "off_passing_success": 33.333,
+        "off_passing_ppa": 43.704,
+        "off_passing_yards_per_play": 44.444,
+        "off_passing_first_down_rate": 33.333,
+        "off_passing_down_success": 14.074,
+        "off_passing_explosiveness": 80.741
+      },
+      "six_metric_score": 41.605,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 37.593,
+      "rank": 83,
+      "four_metric_score": 42.963,
+      "three_metric_score": 52.593
+    },
+    {
+      "team": "Washington",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.41935372880653315,
+        "off_passing_ppa": 0.17134882891062214,
+        "off_passing_yards_per_play": 5.995778770393214,
+        "off_passing_first_down_rate": 0.3165763245322609,
+        "off_passing_down_success": 0.23678653154625695,
+        "off_passing_explosiveness": 1.3894583591041967
+      },
+      "percentiles": {
+        "off_passing_success": 48.889,
+        "off_passing_ppa": 45.926,
+        "off_passing_yards_per_play": 32.593,
+        "off_passing_first_down_rate": 42.963,
+        "off_passing_down_success": 14.815,
+        "off_passing_explosiveness": 17.037
+      },
+      "six_metric_score": 33.704,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 37.284,
+      "rank": 84,
+      "four_metric_score": 31.667,
+      "three_metric_score": 37.284
+    },
+    {
+      "team": "Louisiana",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3943290777849601,
+        "off_passing_ppa": 0.21914051551792912,
+        "off_passing_yards_per_play": 7.576311188811189,
+        "off_passing_first_down_rate": 0.35683899433899435,
+        "off_passing_down_success": 0.31724612041612976,
+        "off_passing_explosiveness": 1.5837646223719255
+      },
+      "percentiles": {
+        "off_passing_success": 41.481,
+        "off_passing_ppa": 54.815,
+        "off_passing_yards_per_play": 68.148,
+        "off_passing_first_down_rate": 67.407,
+        "off_passing_down_success": 54.074,
+        "off_passing_explosiveness": 58.519
+      },
+      "six_metric_score": 57.407,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 36.605,
+      "rank": 85,
+      "four_metric_score": 52.222,
+      "three_metric_score": 51.605
+    },
+    {
+      "team": "Texas A&M",
+      "conference": "SEC",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.3783413788794618,
+        "off_passing_ppa": 0.11004445029608523,
+        "off_passing_yards_per_play": 5.446766688061618,
+        "off_passing_first_down_rate": 0.2616793802047332,
+        "off_passing_down_success": 0.29729698642742125,
+        "off_passing_explosiveness": 1.3789424992015535
+      },
+      "percentiles": {
+        "off_passing_success": 31.111,
+        "off_passing_ppa": 34.815,
+        "off_passing_yards_per_play": 14.815,
+        "off_passing_first_down_rate": 14.815,
+        "off_passing_down_success": 40,
+        "off_passing_explosiveness": 13.333
+      },
+      "six_metric_score": 24.815,
+      "opponent_passing_defense_bonus": 7.776,
+      "conference_adjustment": 0,
+      "adjusted_score": 34.196,
+      "rank": 86,
+      "four_metric_score": 29.815,
+      "three_metric_score": 26.42
+    },
+    {
+      "team": "San Jose State",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4381707317073171,
+        "off_passing_ppa": 0.26497813625672906,
+        "off_passing_yards_per_play": 6.545528455284552,
+        "off_passing_first_down_rate": 0.31813377679231336,
+        "off_passing_down_success": 0.21632776430730397,
+        "off_passing_explosiveness": 1.4341533942127045
+      },
+      "percentiles": {
+        "off_passing_success": 58.519,
+        "off_passing_ppa": 63.704,
+        "off_passing_yards_per_play": 43.704,
+        "off_passing_first_down_rate": 43.704,
+        "off_passing_down_success": 12.593,
+        "off_passing_explosiveness": 25.185
+      },
+      "six_metric_score": 41.235,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 34.136,
+      "rank": 87,
+      "four_metric_score": 40,
+      "three_metric_score": 49.136
+    },
+    {
+      "team": "Arizona State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.390625,
+        "off_passing_ppa": 0.05786252040256456,
+        "off_passing_yards_per_play": 5.875868055555555,
+        "off_passing_first_down_rate": 0.2760416666666667,
+        "off_passing_down_success": 0.34971395881006867,
+        "off_passing_explosiveness": 1.4466642441010669
+      },
+      "percentiles": {
+        "off_passing_success": 37.778,
+        "off_passing_ppa": 23.704,
+        "off_passing_yards_per_play": 28.889,
+        "off_passing_first_down_rate": 21.481,
+        "off_passing_down_success": 71.852,
+        "off_passing_explosiveness": 27.407
+      },
+      "six_metric_score": 35.185,
+      "opponent_passing_defense_bonus": 8.26,
+      "conference_adjustment": -4,
+      "adjusted_score": 33.89,
+      "rank": 88,
+      "four_metric_score": 40.185,
+      "three_metric_score": 29.63
+    },
+    {
+      "team": "Nevada",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3567546583850931,
+        "off_passing_ppa": 0.12409091117146576,
+        "off_passing_yards_per_play": 6.881554089026916,
+        "off_passing_first_down_rate": 0.3036231884057971,
+        "off_passing_down_success": 0.35648341694537344,
+        "off_passing_explosiveness": 1.7891170026804224
+      },
+      "percentiles": {
+        "off_passing_success": 20,
+        "off_passing_ppa": 37.037,
+        "off_passing_yards_per_play": 51.111,
+        "off_passing_first_down_rate": 37.037,
+        "off_passing_down_success": 74.074,
+        "off_passing_explosiveness": 88.889
+      },
+      "six_metric_score": 51.358,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 33.642,
+      "rank": 89,
+      "four_metric_score": 55,
+      "three_metric_score": 48.642
+    },
+    {
+      "team": "Tulane",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3292300172945334,
+        "off_passing_ppa": 0.07192665583163675,
+        "off_passing_yards_per_play": 5.855587450184224,
+        "off_passing_first_down_rate": 0.2605919618016392,
+        "off_passing_down_success": 0.26209404388714735,
+        "off_passing_explosiveness": 1.7820429811005893
+      },
+      "percentiles": {
+        "off_passing_success": 10.37,
+        "off_passing_ppa": 25.926,
+        "off_passing_yards_per_play": 27.407,
+        "off_passing_first_down_rate": 14.074,
+        "off_passing_down_success": 22.963,
+        "off_passing_explosiveness": 87.407
+      },
+      "six_metric_score": 31.358,
+      "opponent_passing_defense_bonus": 5.31,
+      "conference_adjustment": -13,
+      "adjusted_score": 33.544,
+      "rank": 90,
+      "four_metric_score": 36.666,
+      "three_metric_score": 41.234
+    },
+    {
+      "team": "UCLA",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.38732057416267945,
+        "off_passing_ppa": 0.025843784614467104,
+        "off_passing_yards_per_play": 6.881787878787878,
+        "off_passing_first_down_rate": 0.3097878787878788,
+        "off_passing_down_success": 0.303869357187435,
+        "off_passing_explosiveness": 1.5193625160259538
+      },
+      "percentiles": {
+        "off_passing_success": 35.556,
+        "off_passing_ppa": 17.037,
+        "off_passing_yards_per_play": 51.852,
+        "off_passing_first_down_rate": 39.259,
+        "off_passing_down_success": 44.444,
+        "off_passing_explosiveness": 43.704
+      },
+      "six_metric_score": 38.642,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 32.099,
+      "rank": 91,
+      "four_metric_score": 35.185,
+      "three_metric_score": 32.099
+    },
+    {
+      "team": "Auburn",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.39031136238873837,
+        "off_passing_ppa": 0.034659029451783965,
+        "off_passing_yards_per_play": 5.821532304215231,
+        "off_passing_first_down_rate": 0.2996057381423235,
+        "off_passing_down_success": 0.3518999518999518,
+        "off_passing_explosiveness": 1.4681572657302862
+      },
+      "percentiles": {
+        "off_passing_success": 37.037,
+        "off_passing_ppa": 20,
+        "off_passing_yards_per_play": 24.444,
+        "off_passing_first_down_rate": 34.074,
+        "off_passing_down_success": 73.333,
+        "off_passing_explosiveness": 33.333
+      },
+      "six_metric_score": 37.037,
+      "opponent_passing_defense_bonus": 1.58,
+      "conference_adjustment": 0,
+      "adjusted_score": 31.703,
+      "rank": 92,
+      "four_metric_score": 40.926,
+      "three_metric_score": 30.123
+    },
+    {
+      "team": "Tennessee",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.36508002492260366,
+        "off_passing_ppa": 0.02882263459613278,
+        "off_passing_yards_per_play": 5.705167476201959,
+        "off_passing_first_down_rate": 0.274608322711771,
+        "off_passing_down_success": 0.2380786484047354,
+        "off_passing_explosiveness": 1.4729239181133489
+      },
+      "percentiles": {
+        "off_passing_success": 23.704,
+        "off_passing_ppa": 17.778,
+        "off_passing_yards_per_play": 19.259,
+        "off_passing_first_down_rate": 20,
+        "off_passing_down_success": 15.556,
+        "off_passing_explosiveness": 34.074
+      },
+      "six_metric_score": 21.728,
+      "opponent_passing_defense_bonus": 5.352,
+      "conference_adjustment": 0,
+      "adjusted_score": 30.537,
+      "rank": 93,
+      "four_metric_score": 22.778,
+      "three_metric_score": 25.185
+    },
+    {
+      "team": "Stanford",
+      "conference": "ACC",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.33438265094611846,
+        "off_passing_ppa": 0.13948176843848506,
+        "off_passing_yards_per_play": 6.470964247109937,
+        "off_passing_first_down_rate": 0.2913513874526186,
+        "off_passing_down_success": 0.19671102246566644,
+        "off_passing_explosiveness": 1.4467968233307527
+      },
+      "percentiles": {
+        "off_passing_success": 11.852,
+        "off_passing_ppa": 40.741,
+        "off_passing_yards_per_play": 40,
+        "off_passing_first_down_rate": 27.407,
+        "off_passing_down_success": 6.667,
+        "off_passing_explosiveness": 28.148
+      },
+      "six_metric_score": 25.802,
+      "opponent_passing_defense_bonus": 7.67,
+      "conference_adjustment": -5,
+      "adjusted_score": 29.584,
+      "rank": 94,
+      "four_metric_score": 21.852,
+      "three_metric_score": 26.914
+    },
+    {
+      "team": "Utah State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.30607659303988555,
+        "off_passing_ppa": -0.0928685685515768,
+        "off_passing_yards_per_play": 5.142221449758991,
+        "off_passing_first_down_rate": 0.2436535965888024,
+        "off_passing_down_success": 0.2732608695652174,
+        "off_passing_explosiveness": 1.7651440829063454
+      },
+      "percentiles": {
+        "off_passing_success": 6.667,
+        "off_passing_ppa": 6.667,
+        "off_passing_yards_per_play": 9.63,
+        "off_passing_first_down_rate": 8.148,
+        "off_passing_down_success": 27.407,
+        "off_passing_explosiveness": 84.444
+      },
+      "six_metric_score": 23.827,
+      "opponent_passing_defense_bonus": 6.988,
+      "conference_adjustment": -10,
+      "adjusted_score": 29.581,
+      "rank": 95,
+      "four_metric_score": 31.296,
+      "three_metric_score": 32.593
+    },
+    {
+      "team": "Arkansas",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.39620011567379987,
+        "off_passing_ppa": 0.009912177509023318,
+        "off_passing_yards_per_play": 5.7227014792556,
+        "off_passing_first_down_rate": 0.30544862287662683,
+        "off_passing_down_success": 0.18768074031231924,
+        "off_passing_explosiveness": 1.2941258288642585
+      },
+      "percentiles": {
+        "off_passing_success": 42.222,
+        "off_passing_ppa": 14.815,
+        "off_passing_yards_per_play": 20.741,
+        "off_passing_first_down_rate": 37.778,
+        "off_passing_down_success": 5.185,
+        "off_passing_explosiveness": 5.926
+      },
+      "six_metric_score": 21.111,
+      "opponent_passing_defense_bonus": 6.18,
+      "conference_adjustment": 0,
+      "adjusted_score": 27.168,
+      "rank": 96,
+      "four_metric_score": 17.037,
+      "three_metric_score": 20.988
+    },
+    {
+      "team": "Maryland",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3761278335191379,
+        "off_passing_ppa": -0.11334889966750021,
+        "off_passing_yards_per_play": 5.765739090810029,
+        "off_passing_first_down_rate": 0.28908292470306196,
+        "off_passing_down_success": 0.2880203619909502,
+        "off_passing_explosiveness": 1.3979395246064583
+      },
+      "percentiles": {
+        "off_passing_success": 29.63,
+        "off_passing_ppa": 5.926,
+        "off_passing_yards_per_play": 22.222,
+        "off_passing_first_down_rate": 26.667,
+        "off_passing_down_success": 35.556,
+        "off_passing_explosiveness": 20
+      },
+      "six_metric_score": 23.333,
+      "opponent_passing_defense_bonus": 8.512,
+      "conference_adjustment": 0,
+      "adjusted_score": 27.031,
+      "rank": 97,
+      "four_metric_score": 22.778,
+      "three_metric_score": 18.519
+    },
+    {
+      "team": "Kent State",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.35655046722490946,
+        "off_passing_ppa": 0.10118403196528492,
+        "off_passing_yards_per_play": 4.920602344515388,
+        "off_passing_first_down_rate": 0.26775953515083945,
+        "off_passing_down_success": 0.266882907752473,
+        "off_passing_explosiveness": 1.6793669839057739
+      },
+      "percentiles": {
+        "off_passing_success": 19.259,
+        "off_passing_ppa": 32.593,
+        "off_passing_yards_per_play": 5.185,
+        "off_passing_first_down_rate": 17.778,
+        "off_passing_down_success": 25.185,
+        "off_passing_explosiveness": 70.37
+      },
+      "six_metric_score": 28.395,
+      "opponent_passing_defense_bonus": 7.375,
+      "conference_adjustment": -22,
+      "adjusted_score": 26.116,
+      "rank": 98,
+      "four_metric_score": 36.852,
+      "three_metric_score": 40.741
+    },
+    {
+      "team": "California",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.35513613392996285,
+        "off_passing_ppa": -0.004983737399123811,
+        "off_passing_yards_per_play": 5.909257754867853,
+        "off_passing_first_down_rate": 0.2619675820517335,
+        "off_passing_down_success": 0.2518308080808081,
+        "off_passing_explosiveness": 1.5209725683545496
+      },
+      "percentiles": {
+        "off_passing_success": 17.778,
+        "off_passing_ppa": 14.074,
+        "off_passing_yards_per_play": 31.111,
+        "off_passing_first_down_rate": 15.556,
+        "off_passing_down_success": 18.519,
+        "off_passing_explosiveness": 44.444
+      },
+      "six_metric_score": 23.58,
+      "opponent_passing_defense_bonus": 5.605,
+      "conference_adjustment": -5,
+      "adjusted_score": 26.037,
+      "rank": 99,
+      "four_metric_score": 23.704,
+      "three_metric_score": 25.432
+    },
+    {
+      "team": "Boston College",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3236071399864503,
+        "off_passing_ppa": 0.031640663011878595,
+        "off_passing_yards_per_play": 5.867267167698202,
+        "off_passing_first_down_rate": 0.26038798366384575,
+        "off_passing_down_success": 0.26289335664335667,
+        "off_passing_explosiveness": 1.633686782129164
+      },
+      "percentiles": {
+        "off_passing_success": 8.889,
+        "off_passing_ppa": 18.519,
+        "off_passing_yards_per_play": 28.148,
+        "off_passing_first_down_rate": 13.333,
+        "off_passing_down_success": 23.704,
+        "off_passing_explosiveness": 65.185
+      },
+      "six_metric_score": 26.296,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 25.864,
+      "rank": 100,
+      "four_metric_score": 29.074,
+      "three_metric_score": 30.864
+    },
+    {
+      "team": "Southern Miss",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4272875816993464,
+        "off_passing_ppa": 0.08293888479744471,
+        "off_passing_yards_per_play": 7.0434726522187825,
+        "off_passing_first_down_rate": 0.3307533539731682,
+        "off_passing_down_success": 0.19876018589253885,
+        "off_passing_explosiveness": 1.4881557496425488
+      },
+      "percentiles": {
+        "off_passing_success": 54.815,
+        "off_passing_ppa": 27.407,
+        "off_passing_yards_per_play": 59.259,
+        "off_passing_first_down_rate": 55.556,
+        "off_passing_down_success": 8.889,
+        "off_passing_explosiveness": 37.778
+      },
+      "six_metric_score": 40.617,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 25,
+      "rank": 101,
+      "four_metric_score": 32.222,
+      "three_metric_score": 40
+    },
+    {
+      "team": "App State",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3857142857142857,
+        "off_passing_ppa": 0.12687823132095646,
+        "off_passing_yards_per_play": 6.480357142857143,
+        "off_passing_first_down_rate": 0.3273809523809524,
+        "off_passing_down_success": 0.3023387096774194,
+        "off_passing_explosiveness": 1.540143097346053
+      },
+      "percentiles": {
+        "off_passing_success": 34.074,
+        "off_passing_ppa": 38.519,
+        "off_passing_yards_per_play": 40.741,
+        "off_passing_first_down_rate": 51.111,
+        "off_passing_down_success": 42.963,
+        "off_passing_explosiveness": 46.667
+      },
+      "six_metric_score": 42.346,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 24.753,
+      "rank": 102,
+      "four_metric_score": 40.556,
+      "three_metric_score": 39.753
+    },
+    {
+      "team": "Colorado",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.378435971983613,
+        "off_passing_ppa": -0.020491197860421567,
+        "off_passing_yards_per_play": 5.501670707199592,
+        "off_passing_first_down_rate": 0.2938708837070826,
+        "off_passing_down_success": 0.27935139573070605,
+        "off_passing_explosiveness": 1.4907799785731557
+      },
+      "percentiles": {
+        "off_passing_success": 31.852,
+        "off_passing_ppa": 11.852,
+        "off_passing_yards_per_play": 17.778,
+        "off_passing_first_down_rate": 29.63,
+        "off_passing_down_success": 31.111,
+        "off_passing_explosiveness": 38.519
+      },
+      "six_metric_score": 26.79,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 23.408,
+      "rank": 103,
+      "four_metric_score": 28.334,
+      "three_metric_score": 27.408
+    },
+    {
+      "team": "Ohio",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.42047364400305576,
+        "off_passing_ppa": 0.17629974292428913,
+        "off_passing_yards_per_play": 5.472859689330278,
+        "off_passing_first_down_rate": 0.29649096002037173,
+        "off_passing_down_success": 0.37142857142857144,
+        "off_passing_explosiveness": 1.4834504348350988
+      },
+      "percentiles": {
+        "off_passing_success": 51.111,
+        "off_passing_ppa": 47.407,
+        "off_passing_yards_per_play": 15.556,
+        "off_passing_first_down_rate": 31.111,
+        "off_passing_down_success": 77.037,
+        "off_passing_explosiveness": 36.296
+      },
+      "six_metric_score": 43.086,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 22.938,
+      "rank": 104,
+      "four_metric_score": 52.963,
+      "three_metric_score": 44.938
+    },
+    {
+      "team": "New Mexico State",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3635837280998571,
+        "off_passing_ppa": -0.04970176970287029,
+        "off_passing_yards_per_play": 5.815778755294884,
+        "off_passing_first_down_rate": 0.30107418268708586,
+        "off_passing_down_success": 0.310050505050505,
+        "off_passing_explosiveness": 1.6964399535703918
+      },
+      "percentiles": {
+        "off_passing_success": 22.963,
+        "off_passing_ppa": 10.37,
+        "off_passing_yards_per_play": 23.704,
+        "off_passing_first_down_rate": 35.556,
+        "off_passing_down_success": 50.37,
+        "off_passing_explosiveness": 73.333
+      },
+      "six_metric_score": 36.049,
+      "opponent_passing_defense_bonus": 6.475,
+      "conference_adjustment": -20,
+      "adjusted_score": 22.03,
+      "rank": 105,
+      "four_metric_score": 39.259,
+      "three_metric_score": 35.555
+    },
+    {
+      "team": "Delaware",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3561777275012569,
+        "off_passing_ppa": 0.07150420902049154,
+        "off_passing_yards_per_play": 6.017331932773109,
+        "off_passing_first_down_rate": 0.27836134453781514,
+        "off_passing_down_success": 0.19772727272727272,
+        "off_passing_explosiveness": 1.672186926783153
+      },
+      "percentiles": {
+        "off_passing_success": 18.519,
+        "off_passing_ppa": 25.185,
+        "off_passing_yards_per_play": 33.333,
+        "off_passing_first_down_rate": 23.704,
+        "off_passing_down_success": 8.148,
+        "off_passing_explosiveness": 68.148
+      },
+      "six_metric_score": 29.506,
+      "opponent_passing_defense_bonus": 3.245,
+      "conference_adjustment": -20,
+      "adjusted_score": 20.529,
+      "rank": 106,
+      "four_metric_score": 30,
+      "three_metric_score": 37.284
+    },
+    {
+      "team": "East Carolina",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3218984962406015,
+        "off_passing_ppa": -0.03506564761033318,
+        "off_passing_yards_per_play": 5.187974671527303,
+        "off_passing_first_down_rate": 0.23552726513252828,
+        "off_passing_down_success": 0.2066008662335499,
+        "off_passing_explosiveness": 1.7277607093810268
+      },
+      "percentiles": {
+        "off_passing_success": 7.407,
+        "off_passing_ppa": 11.111,
+        "off_passing_yards_per_play": 11.111,
+        "off_passing_first_down_rate": 5.926,
+        "off_passing_down_success": 11.111,
+        "off_passing_explosiveness": 81.481
+      },
+      "six_metric_score": 21.358,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 20.333,
+      "rank": 107,
+      "four_metric_score": 27.777,
+      "three_metric_score": 33.333
+    },
+    {
+      "team": "Old Dominion",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.25192246580517563,
+        "off_passing_ppa": -0.21289711038336634,
+        "off_passing_yards_per_play": 4.108373418017092,
+        "off_passing_first_down_rate": 0.19060179563816373,
+        "off_passing_down_success": 0.27368461007591444,
+        "off_passing_explosiveness": 1.726098337725169
+      },
+      "percentiles": {
+        "off_passing_success": 1.481,
+        "off_passing_ppa": 3.704,
+        "off_passing_yards_per_play": 2.222,
+        "off_passing_first_down_rate": 1.481,
+        "off_passing_down_success": 28.148,
+        "off_passing_explosiveness": 80
+      },
+      "six_metric_score": 19.506,
+      "opponent_passing_defense_bonus": 4.256,
+      "conference_adjustment": -15,
+      "adjusted_score": 17.651,
+      "rank": 108,
+      "four_metric_score": 28.333,
+      "three_metric_score": 28.395
+    },
+    {
+      "team": "Missouri State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.29415014091157243,
+        "off_passing_ppa": 0.04363245275050136,
+        "off_passing_yards_per_play": 5.475338304947051,
+        "off_passing_first_down_rate": 0.21298727759883557,
+        "off_passing_down_success": 0.18142857142857144,
+        "off_passing_explosiveness": 1.7722860393162934
+      },
+      "percentiles": {
+        "off_passing_success": 4.444,
+        "off_passing_ppa": 20.741,
+        "off_passing_yards_per_play": 16.296,
+        "off_passing_first_down_rate": 2.222,
+        "off_passing_down_success": 3.704,
+        "off_passing_explosiveness": 85.926
+      },
+      "six_metric_score": 22.222,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 17.037,
+      "rank": 109,
+      "four_metric_score": 28.704,
+      "three_metric_score": 37.037
+    },
+    {
+      "team": "Florida International",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4228816526610644,
+        "off_passing_ppa": 0.10793163278996332,
+        "off_passing_yards_per_play": 6.956738846089231,
+        "off_passing_first_down_rate": 0.3151969784241726,
+        "off_passing_down_success": 0.28561165845648606,
+        "off_passing_explosiveness": 1.4249913006698889
+      },
+      "percentiles": {
+        "off_passing_success": 52.593,
+        "off_passing_ppa": 33.333,
+        "off_passing_yards_per_play": 54.815,
+        "off_passing_first_down_rate": 42.222,
+        "off_passing_down_success": 34.074,
+        "off_passing_explosiveness": 23.704
+      },
+      "six_metric_score": 40.123,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 16.543,
+      "rank": 110,
+      "four_metric_score": 35.926,
+      "three_metric_score": 36.543
+    },
+    {
+      "team": "UL Monroe",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3794676494676495,
+        "off_passing_ppa": 0.05921651723621782,
+        "off_passing_yards_per_play": 5.831827420546933,
+        "off_passing_first_down_rate": 0.27775891537324465,
+        "off_passing_down_success": 0.25496031746031744,
+        "off_passing_explosiveness": 1.473243533134362
+      },
+      "percentiles": {
+        "off_passing_success": 32.593,
+        "off_passing_ppa": 24.444,
+        "off_passing_yards_per_play": 26.667,
+        "off_passing_first_down_rate": 22.963,
+        "off_passing_down_success": 20.741,
+        "off_passing_explosiveness": 34.815
+      },
+      "six_metric_score": 27.037,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 15.617,
+      "rank": 111,
+      "four_metric_score": 28.148,
+      "three_metric_score": 30.617
+    },
+    {
+      "team": "Ball State",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3524891774891775,
+        "off_passing_ppa": 0.10909532492875458,
+        "off_passing_yards_per_play": 4.850652446333224,
+        "off_passing_first_down_rate": 0.27290845399944874,
+        "off_passing_down_success": 0.2549773755656109,
+        "off_passing_explosiveness": 1.615172245814152
+      },
+      "percentiles": {
+        "off_passing_success": 15.556,
+        "off_passing_ppa": 34.074,
+        "off_passing_yards_per_play": 4.444,
+        "off_passing_first_down_rate": 18.519,
+        "off_passing_down_success": 21.481,
+        "off_passing_explosiveness": 62.963
+      },
+      "six_metric_score": 26.173,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 15.531,
+      "rank": 112,
+      "four_metric_score": 33.518,
+      "three_metric_score": 37.531
+    },
+    {
+      "team": "San Diego State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.26766841853798373,
+        "off_passing_ppa": -0.23420144737747534,
+        "off_passing_yards_per_play": 4.370756489886924,
+        "off_passing_first_down_rate": 0.18141264532568882,
+        "off_passing_down_success": 0.17320915926179084,
+        "off_passing_explosiveness": 1.663161115316898
+      },
+      "percentiles": {
+        "off_passing_success": 2.963,
+        "off_passing_ppa": 2.222,
+        "off_passing_yards_per_play": 2.963,
+        "off_passing_first_down_rate": 0.741,
+        "off_passing_down_success": 2.963,
+        "off_passing_explosiveness": 66.667
+      },
+      "six_metric_score": 13.086,
+      "opponent_passing_defense_bonus": 1.152,
+      "conference_adjustment": -10,
+      "adjusted_score": 15.103,
+      "rank": 113,
+      "four_metric_score": 18.704,
+      "three_metric_score": 23.951
+    },
+    {
+      "team": "UAB",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3692600337258271,
+        "off_passing_ppa": -0.14453286025254813,
+        "off_passing_yards_per_play": 5.8246393653767345,
+        "off_passing_first_down_rate": 0.29673483207462487,
+        "off_passing_down_success": 0.3435281385281385,
+        "off_passing_explosiveness": 1.56186135688479
+      },
+      "percentiles": {
+        "off_passing_success": 25.926,
+        "off_passing_ppa": 4.444,
+        "off_passing_yards_per_play": 25.185,
+        "off_passing_first_down_rate": 31.852,
+        "off_passing_down_success": 67.407,
+        "off_passing_explosiveness": 48.889
+      },
+      "six_metric_score": 33.951,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 13.42,
+      "rank": 114,
+      "four_metric_score": 36.666,
+      "three_metric_score": 26.42
+    },
+    {
+      "team": "South Florida",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.4197963659147869,
+        "off_passing_ppa": 0.04774263085685086,
+        "off_passing_yards_per_play": 5.349931077694235,
+        "off_passing_first_down_rate": 0.33237468671679193,
+        "off_passing_down_success": 0.3130311738070359,
+        "off_passing_explosiveness": 1.1969442033505426
+      },
+      "percentiles": {
+        "off_passing_success": 49.63,
+        "off_passing_ppa": 22.222,
+        "off_passing_yards_per_play": 13.333,
+        "off_passing_first_down_rate": 58.519,
+        "off_passing_down_success": 51.111,
+        "off_passing_explosiveness": 1.481
+      },
+      "six_metric_score": 32.716,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 11.444,
+      "rank": 115,
+      "four_metric_score": 31.111,
+      "three_metric_score": 24.444
+    },
+    {
+      "team": "UTEP",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.2946373626373626,
+        "off_passing_ppa": -0.3413612076776094,
+        "off_passing_yards_per_play": 4.037214247740564,
+        "off_passing_first_down_rate": 0.21586390217969167,
+        "off_passing_down_success": 0.1301903325432737,
+        "off_passing_explosiveness": 1.5618990753767104
+      },
+      "percentiles": {
+        "off_passing_success": 5.185,
+        "off_passing_ppa": 0.741,
+        "off_passing_yards_per_play": 1.481,
+        "off_passing_first_down_rate": 3.704,
+        "off_passing_down_success": 0,
+        "off_passing_explosiveness": 49.63
+      },
+      "six_metric_score": 10.123,
+      "opponent_passing_defense_bonus": 7.555,
+      "conference_adjustment": -15,
+      "adjusted_score": 11.074,
+      "rank": 116,
+      "four_metric_score": 13.889,
+      "three_metric_score": 18.519
+    },
+    {
+      "team": "Western Kentucky",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3226595059076262,
+        "off_passing_ppa": -0.07103401193162355,
+        "off_passing_yards_per_play": 5.090510116755302,
+        "off_passing_first_down_rate": 0.2651025429427226,
+        "off_passing_down_success": 0.26637744476178205,
+        "off_passing_explosiveness": 1.6936284242375976
+      },
+      "percentiles": {
+        "off_passing_success": 8.148,
+        "off_passing_ppa": 7.407,
+        "off_passing_yards_per_play": 8.148,
+        "off_passing_first_down_rate": 16.296,
+        "off_passing_down_success": 24.444,
+        "off_passing_explosiveness": 72.593
+      },
+      "six_metric_score": 22.84,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 9.383,
+      "rank": 117,
+      "four_metric_score": 28.148,
+      "three_metric_score": 29.383
+    },
+    {
+      "team": "Sam Houston",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4107045281187158,
+        "off_passing_ppa": 0.011595498790729006,
+        "off_passing_yards_per_play": 5.7369790184921765,
+        "off_passing_first_down_rate": 0.21758001422475107,
+        "off_passing_down_success": 0.2863612836438923,
+        "off_passing_explosiveness": 1.389808743334738
+      },
+      "percentiles": {
+        "off_passing_success": 45.185,
+        "off_passing_ppa": 15.556,
+        "off_passing_yards_per_play": 21.481,
+        "off_passing_first_down_rate": 4.444,
+        "off_passing_down_success": 34.815,
+        "off_passing_explosiveness": 17.778
+      },
+      "six_metric_score": 23.21,
+      "opponent_passing_defense_bonus": 2.853,
+      "conference_adjustment": -20,
+      "adjusted_score": 9.026,
+      "rank": 118,
+      "four_metric_score": 28.334,
+      "three_metric_score": 26.173
+    },
+    {
+      "team": "Clemson",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.35239393939393937,
+        "off_passing_ppa": -0.05560373273334833,
+        "off_passing_yards_per_play": 4.981586373943517,
+        "off_passing_first_down_rate": 0.2467994227994228,
+        "off_passing_down_success": 0.2529166666666666,
+        "off_passing_explosiveness": 1.327634033924815
+      },
+      "percentiles": {
+        "off_passing_success": 14.815,
+        "off_passing_ppa": 8.889,
+        "off_passing_yards_per_play": 6.667,
+        "off_passing_first_down_rate": 9.63,
+        "off_passing_down_success": 19.259,
+        "off_passing_explosiveness": 8.889
+      },
+      "six_metric_score": 11.358,
+      "opponent_passing_defense_bonus": 2.83,
+      "conference_adjustment": -5,
+      "adjusted_score": 8.694,
+      "rank": 119,
+      "four_metric_score": 12.963,
+      "three_metric_score": 10.864
+    },
+    {
+      "team": "Tulsa",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.35481782117937727,
+        "off_passing_ppa": 0.09969781724781683,
+        "off_passing_yards_per_play": 5.713462161974748,
+        "off_passing_first_down_rate": 0.2834796102530656,
+        "off_passing_down_success": 0.1855388471177945,
+        "off_passing_explosiveness": 1.3865231093796602
+      },
+      "percentiles": {
+        "off_passing_success": 17.037,
+        "off_passing_ppa": 30.37,
+        "off_passing_yards_per_play": 20,
+        "off_passing_first_down_rate": 25.185,
+        "off_passing_down_success": 4.444,
+        "off_passing_explosiveness": 16.296
+      },
+      "six_metric_score": 18.889,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 8.234,
+      "rank": 120,
+      "four_metric_score": 17.037,
+      "three_metric_score": 21.234
+    },
+    {
+      "team": "Wyoming",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.4020512155720867,
+        "off_passing_ppa": 0.016048702034485884,
+        "off_passing_yards_per_play": 5.70482240082966,
+        "off_passing_first_down_rate": 0.3025542968827905,
+        "off_passing_down_success": 0.36890223303266784,
+        "off_passing_explosiveness": 1.347917857713543
+      },
+      "percentiles": {
+        "off_passing_success": 43.704,
+        "off_passing_ppa": 16.296,
+        "off_passing_yards_per_play": 18.519,
+        "off_passing_first_down_rate": 36.296,
+        "off_passing_down_success": 75.556,
+        "off_passing_explosiveness": 9.63
+      },
+      "six_metric_score": 33.333,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 8.21,
+      "rank": 121,
+      "four_metric_score": 36.296,
+      "three_metric_score": 23.21
+    },
+    {
+      "team": "Bowling Green",
+      "conference": "Mid-American",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.354746468479865,
+        "off_passing_ppa": -0.06716404098573418,
+        "off_passing_yards_per_play": 5.331930775004778,
+        "off_passing_first_down_rate": 0.23720388924373742,
+        "off_passing_down_success": 0.19047619047619047,
+        "off_passing_explosiveness": 1.5327521938110782
+      },
+      "percentiles": {
+        "off_passing_success": 16.296,
+        "off_passing_ppa": 8.148,
+        "off_passing_yards_per_play": 12.593,
+        "off_passing_first_down_rate": 6.667,
+        "off_passing_down_success": 5.926,
+        "off_passing_explosiveness": 45.926
+      },
+      "six_metric_score": 15.926,
+      "opponent_passing_defense_bonus": 6.195,
+      "conference_adjustment": -22,
+      "adjusted_score": 7.652,
+      "rank": 122,
+      "four_metric_score": 19.074,
+      "three_metric_score": 23.457
+    },
+    {
+      "team": "UTSA",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3614944912698763,
+        "off_passing_ppa": 0.10056194357136672,
+        "off_passing_yards_per_play": 5.829728020240354,
+        "off_passing_first_down_rate": 0.24563273171233985,
+        "off_passing_down_success": 0.3245897435897436,
+        "off_passing_explosiveness": 1.3191205396747798
+      },
+      "percentiles": {
+        "off_passing_success": 22.222,
+        "off_passing_ppa": 31.852,
+        "off_passing_yards_per_play": 25.926,
+        "off_passing_first_down_rate": 8.889,
+        "off_passing_down_success": 59.259,
+        "off_passing_explosiveness": 7.407
+      },
+      "six_metric_score": 25.926,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 7.494,
+      "rank": 123,
+      "four_metric_score": 30.185,
+      "three_metric_score": 20.494
+    },
+    {
+      "team": "Hawai'i",
+      "conference": "Mountain West",
+      "games": 6,
+      "raw": {
+        "off_passing_success": 0.3743127520728697,
+        "off_passing_ppa": 0.07687514104922168,
+        "off_passing_yards_per_play": 5.498257839042634,
+        "off_passing_first_down_rate": 0.26527139439875286,
+        "off_passing_down_success": 0.2486976557804047,
+        "off_passing_explosiveness": 1.361753789193967
+      },
+      "percentiles": {
+        "off_passing_success": 27.407,
+        "off_passing_ppa": 26.667,
+        "off_passing_yards_per_play": 17.037,
+        "off_passing_first_down_rate": 17.037,
+        "off_passing_down_success": 17.778,
+        "off_passing_explosiveness": 11.111
+      },
+      "six_metric_score": 19.506,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 6.728,
+      "rank": 124,
+      "four_metric_score": 20.741,
+      "three_metric_score": 21.728
+    },
+    {
+      "team": "Kennesaw State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.39148705096073516,
+        "off_passing_ppa": 0.08628537880543045,
+        "off_passing_yards_per_play": 6.500515873015873,
+        "off_passing_first_down_rate": 0.2917063492063492,
+        "off_passing_down_success": 0.3046130952380952,
+        "off_passing_explosiveness": 1.2465049465739466
+      },
+      "percentiles": {
+        "off_passing_success": 39.259,
+        "off_passing_ppa": 28.889,
+        "off_passing_yards_per_play": 41.481,
+        "off_passing_first_down_rate": 28.889,
+        "off_passing_down_success": 45.926,
+        "off_passing_explosiveness": 3.704
+      },
+      "six_metric_score": 31.358,
+      "opponent_passing_defense_bonus": 2.655,
+      "conference_adjustment": -20,
+      "adjusted_score": 6.606,
+      "rank": 125,
+      "four_metric_score": 29.444,
+      "three_metric_score": 23.951
+    },
+    {
+      "team": "Charlotte",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3290617428548463,
+        "off_passing_ppa": -0.05379920562125211,
+        "off_passing_yards_per_play": 5.877619793999104,
+        "off_passing_first_down_rate": 0.21422227198089266,
+        "off_passing_down_success": 0.14558365610997187,
+        "off_passing_explosiveness": 1.4679252008901866
+      },
+      "percentiles": {
+        "off_passing_success": 9.63,
+        "off_passing_ppa": 9.63,
+        "off_passing_yards_per_play": 29.63,
+        "off_passing_first_down_rate": 2.963,
+        "off_passing_down_success": 1.481,
+        "off_passing_explosiveness": 32.593
+      },
+      "six_metric_score": 14.321,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 4.284,
+      "rank": 126,
+      "four_metric_score": 13.334,
+      "three_metric_score": 17.284
+    },
+    {
+      "team": "Western Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.41988819875776395,
+        "off_passing_ppa": 0.033219277472594635,
+        "off_passing_yards_per_play": 6.051146856364246,
+        "off_passing_first_down_rate": 0.2913556652687087,
+        "off_passing_down_success": 0.3038974358974359,
+        "off_passing_explosiveness": 1.2558355542625574
+      },
+      "percentiles": {
+        "off_passing_success": 50.37,
+        "off_passing_ppa": 19.259,
+        "off_passing_yards_per_play": 34.074,
+        "off_passing_first_down_rate": 28.148,
+        "off_passing_down_success": 45.185,
+        "off_passing_explosiveness": 5.185
+      },
+      "six_metric_score": 30.37,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 2.938,
+      "rank": 127,
+      "four_metric_score": 30,
+      "three_metric_score": 24.938
+    },
+    {
+      "team": "Eastern Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.38849230479665264,
+        "off_passing_ppa": 0.1003362295616578,
+        "off_passing_yards_per_play": 5.125123152709359,
+        "off_passing_first_down_rate": 0.25537393640841916,
+        "off_passing_down_success": 0.32382352941176473,
+        "off_passing_explosiveness": 1.2172195895786433
+      },
+      "percentiles": {
+        "off_passing_success": 36.296,
+        "off_passing_ppa": 31.111,
+        "off_passing_yards_per_play": 8.889,
+        "off_passing_first_down_rate": 11.111,
+        "off_passing_down_success": 57.778,
+        "off_passing_explosiveness": 2.222
+      },
+      "six_metric_score": 24.568,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 1.21,
+      "rank": 128,
+      "four_metric_score": 31.852,
+      "three_metric_score": 23.21
+    },
+    {
+      "team": "Middle Tennessee",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.33208121109224675,
+        "off_passing_ppa": 0.04390018929944453,
+        "off_passing_yards_per_play": 5.204831242532856,
+        "off_passing_first_down_rate": 0.2774417562724014,
+        "off_passing_down_success": 0.19923510466988728,
+        "off_passing_explosiveness": 1.4134592910765802
+      },
+      "percentiles": {
+        "off_passing_success": 11.111,
+        "off_passing_ppa": 21.481,
+        "off_passing_yards_per_play": 11.852,
+        "off_passing_first_down_rate": 22.222,
+        "off_passing_down_success": 9.63,
+        "off_passing_explosiveness": 21.481
+      },
+      "six_metric_score": 16.296,
+      "opponent_passing_defense_bonus": 1.475,
+      "conference_adjustment": -20,
+      "adjusted_score": -0.501,
+      "rank": 129,
+      "four_metric_score": 15.926,
+      "three_metric_score": 18.024
+    },
+    {
+      "team": "Akron",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.3503126503126503,
+        "off_passing_ppa": 0.05200174544907961,
+        "off_passing_yards_per_play": 5.149344915472964,
+        "off_passing_first_down_rate": 0.24685507807459026,
+        "off_passing_down_success": 0.24303284950343773,
+        "off_passing_explosiveness": 1.4175244077432059
+      },
+      "percentiles": {
+        "off_passing_success": 14.074,
+        "off_passing_ppa": 22.963,
+        "off_passing_yards_per_play": 10.37,
+        "off_passing_first_down_rate": 10.37,
+        "off_passing_down_success": 17.037,
+        "off_passing_explosiveness": 22.963
+      },
+      "six_metric_score": 16.296,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": -2,
+      "rank": 130,
+      "four_metric_score": 19.259,
+      "three_metric_score": 20
+    },
+    {
+      "team": "Northern Illinois",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.3473084886128365,
+        "off_passing_ppa": -0.13888667162522905,
+        "off_passing_yards_per_play": 5.443026004728132,
+        "off_passing_first_down_rate": 0.2980412022965214,
+        "off_passing_down_success": 0.1975371120107962,
+        "off_passing_explosiveness": 1.243655205967919
+      },
+      "percentiles": {
+        "off_passing_success": 13.333,
+        "off_passing_ppa": 5.185,
+        "off_passing_yards_per_play": 14.074,
+        "off_passing_first_down_rate": 32.593,
+        "off_passing_down_success": 7.407,
+        "off_passing_explosiveness": 2.963
+      },
+      "six_metric_score": 12.593,
+      "opponent_passing_defense_bonus": 2.807,
+      "conference_adjustment": -15,
+      "adjusted_score": -5.033,
+      "rank": 131,
+      "four_metric_score": 7.222,
+      "three_metric_score": 7.16
+    },
+    {
+      "team": "Rice",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.246547127622979,
+        "off_passing_ppa": -0.3083240220293185,
+        "off_passing_yards_per_play": 5.027154613532322,
+        "off_passing_first_down_rate": 0.28158986266571406,
+        "off_passing_down_success": 0.2037995337995338,
+        "off_passing_explosiveness": 1.3687088714778124
+      },
+      "percentiles": {
+        "off_passing_success": 0.741,
+        "off_passing_ppa": 1.481,
+        "off_passing_yards_per_play": 7.407,
+        "off_passing_first_down_rate": 24.444,
+        "off_passing_down_success": 10.37,
+        "off_passing_explosiveness": 11.852
+      },
+      "six_metric_score": 9.383,
+      "opponent_passing_defense_bonus": 2.016,
+      "conference_adjustment": -13,
+      "adjusted_score": -6.293,
+      "rank": 132,
+      "four_metric_score": 6.111,
+      "three_metric_score": 4.691
+    },
+    {
+      "team": "Buffalo",
+      "conference": "Mid-American",
+      "games": 4,
+      "raw": {
+        "off_passing_success": 0.28566017316017317,
+        "off_passing_ppa": -0.01451263110220364,
+        "off_passing_yards_per_play": 4.766103896103896,
+        "off_passing_first_down_rate": 0.24055194805194804,
+        "off_passing_down_success": 0.14232954545454546,
+        "off_passing_explosiveness": 1.3593783595214948
+      },
+      "percentiles": {
+        "off_passing_success": 3.704,
+        "off_passing_ppa": 13.333,
+        "off_passing_yards_per_play": 3.704,
+        "off_passing_first_down_rate": 7.407,
+        "off_passing_down_success": 0.741,
+        "off_passing_explosiveness": 10.37
+      },
+      "six_metric_score": 6.543,
+      "opponent_passing_defense_bonus": 6.195,
+      "conference_adjustment": -22,
+      "adjusted_score": -6.669,
+      "rank": 133,
+      "four_metric_score": 7.037,
+      "three_metric_score": 9.136
+    },
+    {
+      "team": "Washington State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.29481717113296063,
+        "off_passing_ppa": -0.21376119115969314,
+        "off_passing_yards_per_play": 3.8100828995565834,
+        "off_passing_first_down_rate": 0.23258627337574705,
+        "off_passing_down_success": 0.1603174603174603,
+        "off_passing_explosiveness": 1.096128171517184
+      },
+      "percentiles": {
+        "off_passing_success": 5.926,
+        "off_passing_ppa": 2.963,
+        "off_passing_yards_per_play": 0.741,
+        "off_passing_first_down_rate": 5.185,
+        "off_passing_down_success": 2.222,
+        "off_passing_explosiveness": 0.741
+      },
+      "six_metric_score": 2.963,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": -6.79,
+      "rank": 134,
+      "four_metric_score": 2.963,
+      "three_metric_score": 3.21
+    },
+    {
+      "team": "Air Force",
+      "conference": "Mountain West",
+      "games": 3,
+      "raw": {
+        "off_passing_success": 0.23076923076923075,
+        "off_passing_ppa": -1.2195774000270592,
+        "off_passing_yards_per_play": 3.58974358974359,
+        "off_passing_first_down_rate": 0.25641025641025644,
+        "off_passing_down_success": 0.28221343873517785,
+        "off_passing_explosiveness": 1.2481815129865061
+      },
+      "percentiles": {
+        "off_passing_success": 0,
+        "off_passing_ppa": 0,
+        "off_passing_yards_per_play": 0,
+        "off_passing_first_down_rate": 12.593,
+        "off_passing_down_success": 32.593,
+        "off_passing_explosiveness": 4.444
+      },
+      "six_metric_score": 8.272,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": -13.519,
+      "rank": 135,
+      "four_metric_score": 9.259,
+      "three_metric_score": 1.481
+    },
+    {
+      "team": "Central Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_passing_success": 0.25382395382395384,
+        "off_passing_ppa": -0.015557004784052475,
+        "off_passing_yards_per_play": 4.953336123721519,
+        "off_passing_first_down_rate": 0.18011526449660326,
+        "off_passing_down_success": 0.27144522144522143,
+        "off_passing_explosiveness": 1.081411552658853
+      },
+      "percentiles": {
+        "off_passing_success": 2.222,
+        "off_passing_ppa": 12.593,
+        "off_passing_yards_per_play": 5.926,
+        "off_passing_first_down_rate": 0,
+        "off_passing_down_success": 26.667,
+        "off_passing_explosiveness": 0
+      },
+      "six_metric_score": 7.901,
+      "opponent_passing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": -17.062,
+      "rank": 136,
+      "four_metric_score": 10.37,
+      "three_metric_score": 4.938
+    }
+  ]
+}
