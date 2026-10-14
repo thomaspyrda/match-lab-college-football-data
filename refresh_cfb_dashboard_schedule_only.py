@@ -80,12 +80,28 @@ def main():
             "classification": "FBS" if canon(name) in fbs else "FCS/Other",
         }
 
+    # Resolve current FBS identity and logos even when old dashboard cards lack them.
+    def update_brand(t):
+        row = fbs.get(canon(t.get("name", "")), {})
+        if not row:
+            return t
+        logos = row.get("logos") or []
+        result = dict(t)
+        result["espn_id"] = result.get("espn_id") or row.get("id")
+        result["abbr"] = result.get("abbr") or row.get("abbreviation")
+        result["logo"] = result.get("logo") or (logos[0] if logos else None)
+        result["alternate_logo"] = result.get("alternate_logo") or (logos[1] if len(logos) > 1 else None)
+        result["color"] = result.get("color") or row.get("color")
+        return result
+
     games = []
     for game_id, g in fixtures.items():
         cached = by_id.get(game_id)
         if cached:
             row = dict(cached)
             row["kickoff"] = g.get("startDate")
+            row["away"] = update_brand(row["away"])
+            row["home"] = update_brand(row["home"])
         else:
             row = {
                 "game_id": game_id, "season": g.get("season"), "week": g.get("week"),
