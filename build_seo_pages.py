@@ -132,6 +132,15 @@ h2{{margin-top:2rem}}
 .data-table th:nth-child(1),.data-table td:nth-child(1){{width:6%}}
 .data-table th:nth-child(2),.data-table td:nth-child(2){{width:15%}}
 .data-table th:nth-child(3),.data-table td:nth-child(3){{width:8%}}
+/* SOS ranking table: slightly wider SOS rank; balanced non-team columns. */
+.sos-ranking-table .data-table{{table-layout:fixed;width:100%;min-width:790px}}
+.sos-ranking-table .data-table th:nth-child(1),.sos-ranking-table .data-table td:nth-child(1){{width:11%}}
+.sos-ranking-table .data-table th:nth-child(2),.sos-ranking-table .data-table td:nth-child(2){{width:20%}}
+.sos-ranking-table .data-table th:nth-child(n+3),.sos-ranking-table .data-table td:nth-child(n+3){{width:17.25%}}
+.sos-ranking-table .help-wrap{{max-width:none;gap:5px}}
+.sos-ranking-table .help-btn{{flex:0 0 16px}}
+.sos-ranking-table .data-table th{{overflow:visible}}
+
 .note{{border-left:3px solid #00ff41;padding:10px 14px;background:#101410;color:#d7d7d7}}
 @media(max-width:900px){{
  .grid,.metrics,.archive-list{{grid-template-columns:1fr}}
@@ -462,6 +471,8 @@ def write_live_data_pages(now):
     sos_rows=sorted(sos_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-strength-of-schedule-rankings"; d.mkdir(exist_ok=True)
     table=ranking_table(sos_rows,[("rank","SOS Rank"),("team","Team"),("raw","Opp Strength Avg"),("strength_rank","Team Rank"),("strength","Team Strength"),("record","Record")])
+    # Keep Team wide; distribute remaining SOS columns evenly with room for tooltip icons.
+    table=table.replace("class='data-table-wrap'", "class='data-table-wrap sos-ranking-table'", 1)
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Strength of Schedule Rankings</h1>
 <p class="page-intro">{context}. Current strength-of-schedule rankings based only on opponents already faced, not future schedule projections. Tap or click any <b>?</b> for metric definitions.</p>
 {ranking_hero()}
