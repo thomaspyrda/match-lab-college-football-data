@@ -79,6 +79,34 @@ def build_metric_rows(away, home):
                      "home_offense_rank": rank(home, off), "away_defense_rank": rank(away, de)})
     return rows
 
+def build_factors(away, home, rows, conference_game=False, neutral_site=False):
+    edges = []
+    for row in rows:
+        for off_side, def_side in (("away", "home"), ("home", "away")):
+            off_rank = row.get(off_side + "_offense_rank")
+            def_rank = row.get(def_side + "_defense_rank")
+            if isinstance(off_rank, int) and isinstance(def_rank, int):
+                gap = abs(off_rank - def_rank)
+                if gap >= 12:
+                    edge_side = off_side if off_rank < def_rank else def_side
+                    edges.append((gap, {"type": "matchup_edge", "metric": row["label"],
+                                        "team": away["name"] if edge_side == "away" else home["name"],
+                                        "edge_unit": "offense" if off_rank < def_rank else "defense",
+                                        "offense_side": off_side, "direction": "rank gap", "gap": gap}))
+    factors = [item for _, item in sorted(edges, key=lambda entry: entry[0], reverse=True)[:5]]
+    if conference_game:
+        factors.append({"type": "game_context", "detail": "conference matchup"})
+    if neutral_site:
+        factors.append({"type": "game_context", "detail": "neutral-site matchup"})
+    return factors[:8]
+
+def player_placeholders(team):
+    slots = [("QB", "Projected starting QB"), ("RB", "Top usage RB"),
+             ("WR", "Top usage WR"), ("TE", "Top usage TE"),
+             ("Skill", "Next skill player")]
+    return [{"team": team.get("abbr") or team["name"], "name": "Player data pending",
+             "position": pos, "usage": [], "placeholder": True, "slot": slot} for pos, slot in slots]
+
 def rest_days(team, kickoff, all_fixtures):
     last = None
     for game in all_fixtures:
@@ -225,6 +253,12 @@ def main():
         elif not any(m.get("away_offense") is not None or m.get("home_defense") is not None
                      for m in row["matchup_metrics"]):
             row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
+        # Restore complete detail-section structures for newly added schedule games.
+        if not row.get("trends"):
+            row["trends"] = build_factors(row["away"], row["home"], row["matchup_metrics"],
+                                           g.get("conferenceGame"), g.get("neutralSite"))
+        if not row.get("players"):
+            row["players"] = player_placeholders(row["away"]) + player_placeholders(row["home"])
         start = parse_date(g.get("startDate"))
         row["rest_days"] = {
             "away": rest_days(g["awayTeam"], start, season_games),
