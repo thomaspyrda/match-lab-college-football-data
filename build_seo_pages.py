@@ -263,6 +263,22 @@ def write_urlset(path,urls,lastmod):
 
 
 def current_rankings_data():
+    frozen_path=DATA/"frozen_conference_rankings_2026_week6.json"
+    p=DATA/"current_rankings.json"
+    if frozen_path.exists():
+        base=json.loads(p.read_text(encoding="utf-8"))
+        approved=json.loads(frozen_path.read_text(encoding="utf-8"))
+        assert approved.get("frozen") and len(approved["rows"])==136
+        aliases={"Ole Miss":"Mississippi","UTSA":"Texas-San Antonio","San Jose State":"San José State"}
+        teams={r["team"]:r for r in base["teams"]}
+        for z in approved["rows"]:
+            r=teams[aliases.get(z["team"],z["team"])]
+            r.update(overall_strength_rank=z["overall_rank"],national_strength_rank=z["overall_rank"],overall_strength_score=z["overall_score"],strength_score=z["overall_score"],offensive_strength_rank=z["offense_rank"],offensive_strength=z["offense_score"],defensive_strength_rank=z["defense_rank"],defensive_strength=z["defense_score"],passing_offense_strength=z["passing_offense"],rushing_offense_strength=z["rushing_offense"],passing_defense_strength=z["passing_defense"],rushing_defense_strength=z["rushing_defense"],average_defense_faced_frozen=z["avg_defense_faced"],average_offense_faced_frozen=z["avg_offense_faced"],team_strength_sd=None,offensive_strength_sd=None,defensive_strength_sd=None)
+        base["teams"]=sorted(teams.values(),key=lambda x:x["overall_strength_rank"])
+        base["model"]["status"]="conference_adjusted_frozen_2026_week6"
+        base["snapshot_type"]="approved_frozen_week6"
+        return base
+def current_rankings_data():
     p=DATA/"current_rankings.json"
     if not p.exists():
         return {"teams":[],"week":None,"through_week":None,"season":None,"generated_at":None}
