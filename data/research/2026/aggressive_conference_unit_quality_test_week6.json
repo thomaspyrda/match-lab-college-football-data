@@ -1,0 +1,4962 @@
+{
+  "title": "Aggressive conference and opposing-unit strength adjustment – exploratory 2026 Week 6",
+  "status": "RESEARCH CANDIDATE, not production",
+  "baseline": "Approved frozen 2026 Week 6 conference ranking",
+  "conference_factors": {
+    "SEC": 0,
+    "Big Ten": 0,
+    "Big 12": -4,
+    "ACC": -5,
+    "FBS Independents": -1.5,
+    "Pac-12": -10,
+    "American Athletic": -13,
+    "Mountain West": -15,
+    "Sun Belt": -15,
+    "Conference USA": -20,
+    "Mid-American": -22
+  },
+  "method": "For PO,RO,PD,RD remove prior conference point adjustment, apply new stronger conference point adjustment, plus opposing matched-unit pregame rank premium. Premium=12*(31-rank)/30 if opponent unit rank<=30, otherwise zero. Aggregate = 65% best top-30 unit faced + 35% average bonus across matched games (including zeroes). Offense/Defense equal mean of adjusted units. Overall = baseline overall + 0.55*average change in offense and defense scores.",
+  "limitations": [
+    "Matched pregame ranks include Weeks 2-6 only; Week 1 excluded.",
+    "Premium for facing good units does not independently measure actual performance against that unit, although baseline performance does.",
+    "Potential double counting because baseline units were already opponent adjusted.",
+    "No out-of-sample calibration or formal prediction validation; cannot claim this is more accurate."
+  ],
+  "rows": [
+    {
+      "team": "Georgia",
+      "conference": "SEC",
+      "previous_overall_rank": 2,
+      "previous_offense_rank": 2,
+      "previous_defense_rank": 19,
+      "previous_overall_score": 80.14,
+      "previous_offense_score": 72.41,
+      "previous_defense_score": 63.01,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Oklahoma",
+        "Alabama"
+      ],
+      "top30_defense_opponents": [
+        "Oklahoma",
+        "Vanderbilt",
+        "Alabama"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.124,
+        "rushing_offense": 8.828,
+        "passing_defense": 6.819999999999999,
+        "rushing_defense": 6.336
+      },
+      "units": {
+        "passing_offense": 84.304,
+        "rushing_offense": 75.468,
+        "passing_defense": 69.76,
+        "rushing_defense": 69.416
+      },
+      "offense_score": 79.886,
+      "defense_score": 69.588,
+      "overall_score": 84.005,
+      "overall_rank": 1,
+      "offense_rank": 1,
+      "defense_rank": 15
+    },
+    {
+      "team": "Notre Dame",
+      "conference": "FBS Independents",
+      "previous_overall_rank": 1,
+      "previous_offense_rank": 4,
+      "previous_defense_rank": 1,
+      "previous_overall_score": 82.48,
+      "previous_offense_score": 70.64,
+      "previous_defense_score": 79.58,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Purdue"
+      ],
+      "top30_defense_opponents": [
+        "Michigan State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.88,
+        "rushing_offense": 0,
+        "passing_defense": 4.6080000000000005,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 77.7,
+        "rushing_offense": 66.46,
+        "passing_defense": 76.718,
+        "rushing_defense": 87.05
+      },
+      "offense_score": 72.08,
+      "defense_score": 81.884,
+      "overall_score": 83.51,
+      "overall_rank": 2,
+      "offense_rank": 10,
+      "defense_rank": 1
+    },
+    {
+      "team": "Indiana",
+      "conference": "Big Ten",
+      "previous_overall_rank": 4,
+      "previous_offense_rank": 11,
+      "previous_defense_rank": 21,
+      "previous_overall_score": 78.02,
+      "previous_offense_score": 68.47,
+      "previous_defense_score": 60.97,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Northwestern",
+        "Nebraska"
+      ],
+      "top30_defense_opponents": [
+        "Nebraska"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.375,
+        "rushing_offense": 0,
+        "passing_defense": 7.965000000000001,
+        "rushing_defense": 8.26
+      },
+      "units": {
+        "passing_offense": 86.375,
+        "rushing_offense": 57.94,
+        "passing_defense": 63.315,
+        "rushing_defense": 74.84
+      },
+      "offense_score": 72.157,
+      "defense_score": 69.078,
+      "overall_score": 81.264,
+      "overall_rank": 3,
+      "offense_rank": 9,
+      "defense_rank": 16
+    },
+    {
+      "team": "Miami",
+      "conference": "ACC",
+      "previous_overall_rank": 3,
+      "previous_offense_rank": 6,
+      "previous_defense_rank": 10,
+      "previous_overall_score": 79.46,
+      "previous_offense_score": 70.49,
+      "previous_defense_score": 69.08,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Wake Forest",
+        "Central Michigan"
+      ],
+      "top30_defense_opponents": [
+        "Clemson"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.973333333333334,
+        "rushing_offense": 0,
+        "passing_defense": 0.6133333333333333,
+        "rushing_defense": 7.280000000000001
+      },
+      "units": {
+        "passing_offense": 87.093,
+        "rushing_offense": 55.86,
+        "passing_defense": 53.513,
+        "rushing_defense": 86.54
+      },
+      "offense_score": 71.477,
+      "defense_score": 70.026,
+      "overall_score": 79.992,
+      "overall_rank": 4,
+      "offense_rank": 11,
+      "defense_rank": 14
+    },
+    {
+      "team": "Alabama",
+      "conference": "SEC",
+      "previous_overall_rank": 8,
+      "previous_offense_rank": 1,
+      "previous_defense_rank": 15,
+      "previous_overall_score": 74.48,
+      "previous_offense_score": 72.83,
+      "previous_defense_score": 65.35,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Florida State",
+        "South Carolina",
+        "Mississippi State",
+        "Georgia"
+      ],
+      "top30_defense_opponents": [
+        "Mississippi State",
+        "Georgia"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.7640000000000002,
+        "rushing_offense": 8.12,
+        "passing_defense": 6.924000000000001,
+        "rushing_defense": 10.004
+      },
+      "units": {
+        "passing_offense": 72.794,
+        "rushing_offense": 84.76,
+        "passing_defense": 59.344,
+        "rushing_defense": 88.294
+      },
+      "offense_score": 78.777,
+      "defense_score": 73.819,
+      "overall_score": 78.444,
+      "overall_rank": 5,
+      "offense_rank": 2,
+      "defense_rank": 9
+    },
+    {
+      "team": "Ohio State",
+      "conference": "Big Ten",
+      "previous_overall_rank": 7,
+      "previous_offense_rank": 3,
+      "previous_defense_rank": 7,
+      "previous_overall_score": 75.54,
+      "previous_offense_score": 71.69,
+      "previous_defense_score": 70.75,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Texas",
+        "Illinois"
+      ],
+      "top30_defense_opponents": [
+        "Iowa"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 7.776000000000001,
+        "passing_defense": 7.044,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 83.24,
+        "rushing_offense": 67.916,
+        "passing_defense": 91.504,
+        "rushing_defense": 57.03
+      },
+      "offense_score": 75.578,
+      "defense_score": 74.267,
+      "overall_score": 77.576,
+      "overall_rank": 6,
+      "offense_rank": 5,
+      "defense_rank": 8
+    },
+    {
+      "team": "Utah",
+      "conference": "Big 12",
+      "previous_overall_rank": 5,
+      "previous_offense_rank": 10,
+      "previous_defense_rank": 9,
+      "previous_overall_score": 76.05,
+      "previous_offense_score": 69.17,
+      "previous_defense_score": 70,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Iowa State",
+        "Kansas"
+      ],
+      "top30_defense_opponents": [
+        "Iowa State",
+        "Kansas"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.3999999999999995,
+        "rushing_offense": 8.105,
+        "passing_defense": 0,
+        "rushing_defense": 6.285
+      },
+      "units": {
+        "passing_offense": 70.76,
+        "rushing_offense": 76.085,
+        "passing_defense": 60.8,
+        "rushing_defense": 80.485
+      },
+      "offense_score": 73.422,
+      "defense_score": 70.642,
+      "overall_score": 77.396,
+      "overall_rank": 7,
+      "offense_rank": 8,
+      "defense_rank": 13
+    },
+    {
+      "team": "Texas",
+      "conference": "SEC",
+      "previous_overall_rank": 10,
+      "previous_offense_rank": 56,
+      "previous_defense_rank": 5,
+      "previous_overall_score": 72.25,
+      "previous_offense_score": 50.29,
+      "previous_defense_score": 71.4,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ohio State",
+        "Tennessee"
+      ],
+      "top30_defense_opponents": [
+        "Ohio State",
+        "Tennessee",
+        "Oklahoma"
+      ],
+      "quality_premiums": {
+        "passing_offense": 9.120000000000001,
+        "rushing_offense": 6.094999999999999,
+        "passing_defense": 7.375,
+        "rushing_defense": 7.375
+      },
+      "units": {
+        "passing_offense": 61.04,
+        "rushing_offense": 54.755,
+        "passing_defense": 81.715,
+        "rushing_defense": 75.825
+      },
+      "offense_score": 57.898,
+      "defense_score": 78.77,
+      "overall_score": 76.369,
+      "overall_rank": 8,
+      "offense_rank": 30,
+      "defense_rank": 4
+    },
+    {
+      "team": "UCLA",
+      "conference": "Big Ten",
+      "previous_overall_rank": 6,
+      "previous_offense_rank": 17,
+      "previous_defense_rank": 4,
+      "previous_overall_score": 75.79,
+      "previous_offense_score": 62.84,
+      "previous_defense_score": 72.61,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Maryland"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 1.18,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 46.8,
+        "rushing_offense": 78.86,
+        "passing_defense": 70.35,
+        "rushing_defense": 76.04
+      },
+      "offense_score": 62.83,
+      "defense_score": 73.195,
+      "overall_score": 75.948,
+      "overall_rank": 9,
+      "offense_rank": 20,
+      "defense_rank": 10
+    },
+    {
+      "team": "USC",
+      "conference": "Big Ten",
+      "previous_overall_rank": 12,
+      "previous_offense_rank": 5,
+      "previous_defense_rank": 50,
+      "previous_overall_score": 69.72,
+      "previous_offense_score": 70.61,
+      "previous_defense_score": 50.16,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Penn State"
+      ],
+      "top30_defense_opponents": [
+        "Oregon",
+        "Washington",
+        "Penn State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.548,
+        "rushing_offense": 7.2,
+        "passing_defense": 3.744,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 93.498,
+        "rushing_offense": 63.46,
+        "passing_defense": 43.204,
+        "rushing_defense": 60.86
+      },
+      "offense_score": 78.479,
+      "defense_score": 52.032,
+      "overall_score": 72.399,
+      "overall_rank": 10,
+      "offense_rank": 3,
+      "defense_rank": 48
+    },
+    {
+      "team": "BYU",
+      "conference": "Big 12",
+      "previous_overall_rank": 9,
+      "previous_offense_rank": 25,
+      "previous_defense_rank": 12,
+      "previous_overall_score": 73.64,
+      "previous_offense_score": 59.84,
+      "previous_defense_score": 66.69,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 51.71,
+        "rushing_offense": 62.98,
+        "passing_defense": 67.05,
+        "rushing_defense": 61.33
+      },
+      "offense_score": 57.345,
+      "defense_score": 64.19,
+      "overall_score": 72.266,
+      "overall_rank": 11,
+      "offense_rank": 33,
+      "defense_rank": 18
+    },
+    {
+      "team": "Missouri",
+      "conference": "SEC",
+      "previous_overall_rank": 13,
+      "previous_offense_rank": 39,
+      "previous_defense_rank": 11,
+      "previous_overall_score": 68.55,
+      "previous_offense_score": 54.6,
+      "previous_defense_score": 67.89,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Mississippi State",
+        "Florida"
+      ],
+      "top30_defense_opponents": [
+        "Troy",
+        "Mississippi State",
+        "Texas A&M"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.896,
+        "rushing_offense": 4.416,
+        "passing_defense": 7.155999999999999,
+        "rushing_defense": 8.42
+      },
+      "units": {
+        "passing_offense": 65.476,
+        "rushing_offense": 53.036,
+        "passing_defense": 67.106,
+        "rushing_defense": 84.26
+      },
+      "offense_score": 59.256,
+      "defense_score": 75.683,
+      "overall_score": 71.973,
+      "overall_rank": 12,
+      "offense_rank": 25,
+      "defense_rank": 6
+    },
+    {
+      "team": "Texas Tech",
+      "conference": "Big 12",
+      "previous_overall_rank": 11,
+      "previous_offense_rank": 42,
+      "previous_defense_rank": 31,
+      "previous_overall_score": 71.16,
+      "previous_offense_score": 53.57,
+      "previous_defense_score": 57.2,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Houston"
+      ],
+      "top30_defense_opponents": [
+        "Sam Houston",
+        "Colorado"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.8350000000000004,
+        "rushing_offense": 2.95,
+        "passing_defense": 2.95,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 51.755,
+        "rushing_offense": 57.17,
+        "passing_defense": 52.58,
+        "rushing_defense": 59.78
+      },
+      "offense_score": 54.463,
+      "defense_score": 56.18,
+      "overall_score": 71.125,
+      "overall_rank": 13,
+      "offense_rank": 40,
+      "defense_rank": 37
+    },
+    {
+      "team": "Nebraska",
+      "conference": "Big Ten",
+      "previous_overall_rank": 14,
+      "previous_offense_rank": 14,
+      "previous_defense_rank": 13,
+      "previous_overall_score": 67.62,
+      "previous_offense_score": 64.22,
+      "previous_defense_score": 66.42,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Indiana"
+      ],
+      "top30_defense_opponents": [
+        "Indiana"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 4.425000000000001,
+        "passing_defense": 8.850000000000001,
+        "rushing_defense": 4.13
+      },
+      "units": {
+        "passing_offense": 55.39,
+        "rushing_offense": 77.485,
+        "passing_defense": 79.46,
+        "rushing_defense": 66.36
+      },
+      "offense_score": 66.438,
+      "defense_score": 72.91,
+      "overall_score": 70.015,
+      "overall_rank": 14,
+      "offense_rank": 16,
+      "defense_rank": 11
+    },
+    {
+      "team": "Mississippi State",
+      "conference": "SEC",
+      "previous_overall_rank": 18,
+      "previous_offense_rank": 12,
+      "previous_defense_rank": 40,
+      "previous_overall_score": 65.48,
+      "previous_offense_score": 66.88,
+      "previous_defense_score": 53.54,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "South Carolina",
+        "Alabama"
+      ],
+      "top30_defense_opponents": [
+        "South Carolina",
+        "Missouri",
+        "Alabama"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.67,
+        "rushing_offense": 8.68,
+        "passing_defense": 6.32,
+        "rushing_defense": 8.265
+      },
+      "units": {
+        "passing_offense": 76.03,
+        "rushing_offense": 71.09,
+        "passing_defense": 58.52,
+        "rushing_defense": 63.155
+      },
+      "offense_score": 73.56,
+      "defense_score": 60.838,
+      "overall_score": 69.324,
+      "overall_rank": 15,
+      "offense_rank": 7,
+      "defense_rank": 23
+    },
+    {
+      "team": "Ole Miss",
+      "conference": "SEC",
+      "previous_overall_rank": 19,
+      "previous_offense_rank": 13,
+      "previous_defense_rank": 83,
+      "previous_overall_score": 65.42,
+      "previous_offense_score": 65.51,
+      "previous_defense_score": 43.87,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "LSU",
+        "Florida"
+      ],
+      "top30_defense_opponents": [
+        "LSU"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.850000000000001,
+        "rushing_offense": 8.850000000000001,
+        "passing_defense": 5.015,
+        "rushing_defense": 4.95
+      },
+      "units": {
+        "passing_offense": 81.46,
+        "rushing_offense": 67.27,
+        "passing_defense": 47.405,
+        "rushing_defense": 50.3
+      },
+      "offense_score": 74.365,
+      "defense_score": 48.852,
+      "overall_score": 69.225,
+      "overall_rank": 16,
+      "offense_rank": 6,
+      "defense_rank": 55
+    },
+    {
+      "team": "LSU",
+      "conference": "SEC",
+      "previous_overall_rank": 15,
+      "previous_offense_rank": 15,
+      "previous_defense_rank": 2,
+      "previous_overall_score": 67.36,
+      "previous_offense_score": 63.79,
+      "previous_defense_score": 75.97,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ole Miss",
+        "Kentucky"
+      ],
+      "top30_defense_opponents": [
+        "Texas A&M"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 6.195000000000001,
+        "passing_defense": 2.36,
+        "rushing_defense": 0.66
+      },
+      "units": {
+        "passing_offense": 70.11,
+        "rushing_offense": 63.655,
+        "passing_defense": 71.18,
+        "rushing_defense": 83.77
+      },
+      "offense_score": 66.882,
+      "defense_score": 77.475,
+      "overall_score": 68.624,
+      "overall_rank": 17,
+      "offense_rank": 15,
+      "defense_rank": 5
+    },
+    {
+      "team": "Northwestern",
+      "conference": "Big Ten",
+      "previous_overall_rank": 21,
+      "previous_offense_rank": 8,
+      "previous_defense_rank": 44,
+      "previous_overall_score": 64.91,
+      "previous_offense_score": 69.57,
+      "previous_defense_score": 52.3,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Indiana",
+        "Penn State"
+      ],
+      "top30_defense_opponents": [
+        "Colorado",
+        "Indiana",
+        "Penn State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.695,
+        "rushing_offense": 6.465000000000001,
+        "passing_defense": 9.41,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 82.275,
+        "rushing_offense": 72.025,
+        "passing_defense": 66.97,
+        "rushing_defense": 47.03
+      },
+      "offense_score": 77.15,
+      "defense_score": 57,
+      "overall_score": 68.287,
+      "overall_rank": 18,
+      "offense_rank": 4,
+      "defense_rank": 34
+    },
+    {
+      "team": "Wisconsin",
+      "conference": "Big Ten",
+      "previous_overall_rank": 24,
+      "previous_offense_rank": 54,
+      "previous_defense_rank": 8,
+      "previous_overall_score": 64.37,
+      "previous_offense_score": 50.98,
+      "previous_defense_score": 70.21,
+      "conference_change": 0,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Penn State"
+      ],
+      "top30_defense_opponents": [
+        "Penn State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.893333333333333,
+        "rushing_offense": 6.746666666666667,
+        "passing_defense": 8.586666666666666,
+        "rushing_defense": 1.2266666666666666
+      },
+      "units": {
+        "passing_offense": 64.803,
+        "rushing_offense": 52.797,
+        "passing_defense": 87.817,
+        "rushing_defense": 62.417
+      },
+      "offense_score": 58.8,
+      "defense_score": 75.117,
+      "overall_score": 67.87,
+      "overall_rank": 19,
+      "offense_rank": 27,
+      "defense_rank": 7
+    },
+    {
+      "team": "Kentucky",
+      "conference": "SEC",
+      "previous_overall_rank": 27,
+      "previous_offense_rank": 38,
+      "previous_defense_rank": 45,
+      "previous_overall_score": 63.61,
+      "previous_offense_score": 55.11,
+      "previous_defense_score": 52.2,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Alabama",
+        "South Alabama",
+        "South Carolina",
+        "LSU"
+      ],
+      "top30_defense_opponents": [
+        "Alabama",
+        "Texas A&M",
+        "LSU"
+      ],
+      "quality_premiums": {
+        "passing_offense": 9.368,
+        "rushing_offense": 10.236,
+        "passing_defense": 3.4200000000000004,
+        "rushing_defense": 6.868
+      },
+      "units": {
+        "passing_offense": 59.298,
+        "rushing_offense": 70.526,
+        "passing_defense": 53.94,
+        "rushing_defense": 60.748
+      },
+      "offense_score": 64.912,
+      "defense_score": 57.344,
+      "overall_score": 67.72,
+      "overall_rank": 20,
+      "offense_rank": 19,
+      "defense_rank": 32
+    },
+    {
+      "team": "Tennessee",
+      "conference": "SEC",
+      "previous_overall_rank": 17,
+      "previous_offense_rank": 52,
+      "previous_defense_rank": 22,
+      "previous_overall_score": 65.52,
+      "previous_offense_score": 51.28,
+      "previous_defense_score": 60.37,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Georgia Tech",
+        "Auburn"
+      ],
+      "top30_defense_opponents": [
+        "Georgia Tech",
+        "Texas",
+        "Auburn"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.352,
+        "rushing_offense": 2.5920000000000005,
+        "passing_defense": 2.3040000000000003,
+        "rushing_defense": 2.016
+      },
+      "units": {
+        "passing_offense": 38.512,
+        "rushing_offense": 71.992,
+        "passing_defense": 72.224,
+        "rushing_defense": 52.846
+      },
+      "offense_score": 55.252,
+      "defense_score": 62.535,
+      "overall_score": 67.208,
+      "overall_rank": 21,
+      "offense_rank": 37,
+      "defense_rank": 20
+    },
+    {
+      "team": "Iowa",
+      "conference": "Big Ten",
+      "previous_overall_rank": 25,
+      "previous_offense_rank": 46,
+      "previous_defense_rank": 42,
+      "previous_overall_score": 63.69,
+      "previous_offense_score": 52.21,
+      "previous_defense_score": 53.03,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ohio State"
+      ],
+      "top30_defense_opponents": [
+        "Michigan",
+        "Ohio State",
+        "Washington"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.805,
+        "rushing_offense": 6.6,
+        "passing_defense": 8.26,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 61.975,
+        "rushing_offense": 57.85,
+        "passing_defense": 45.55,
+        "rushing_defense": 68.78
+      },
+      "offense_score": 59.913,
+      "defense_score": 57.165,
+      "overall_score": 66.945,
+      "overall_rank": 22,
+      "offense_rank": 23,
+      "defense_rank": 33
+    },
+    {
+      "team": "Houston",
+      "conference": "Big 12",
+      "previous_overall_rank": 16,
+      "previous_offense_rank": 7,
+      "previous_defense_rank": 63,
+      "previous_overall_score": 65.92,
+      "previous_offense_score": 70.17,
+      "previous_defense_score": 48.34,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Kansas State"
+      ],
+      "top30_defense_opponents": [
+        "UCF",
+        "Kansas State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.065,
+        "rushing_offense": 1.18,
+        "passing_defense": 0,
+        "rushing_defense": 5.9
+      },
+      "units": {
+        "passing_offense": 74.695,
+        "rushing_offense": 63.89,
+        "passing_defense": 40.36,
+        "rushing_defense": 57.23
+      },
+      "offense_score": 69.292,
+      "defense_score": 48.795,
+      "overall_score": 65.804,
+      "overall_rank": 23,
+      "offense_rank": 13,
+      "defense_rank": 56
+    },
+    {
+      "team": "Wake Forest",
+      "conference": "ACC",
+      "previous_overall_rank": 20,
+      "previous_offense_rank": 23,
+      "previous_defense_rank": 29,
+      "previous_overall_score": 65.13,
+      "previous_offense_score": 60.26,
+      "previous_defense_score": 58.01,
+      "conference_change": -3,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Miami"
+      ],
+      "top30_defense_opponents": [
+        "Miami"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 2.3040000000000003,
+        "passing_defense": 7.488,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 60.58,
+        "rushing_offense": 56.244,
+        "passing_defense": 50.928,
+        "rushing_defense": 66.57
+      },
+      "offense_score": 58.412,
+      "defense_score": 58.749,
+      "overall_score": 64.825,
+      "overall_rank": 24,
+      "offense_rank": 28,
+      "defense_rank": 27
+    },
+    {
+      "team": "Michigan",
+      "conference": "Big Ten",
+      "previous_overall_rank": 33,
+      "previous_offense_rank": 59,
+      "previous_defense_rank": 3,
+      "previous_overall_score": 61.09,
+      "previous_offense_score": 49.94,
+      "previous_defense_score": 75.85,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Oklahoma"
+      ],
+      "top30_defense_opponents": [
+        "Oklahoma",
+        "Iowa"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.700000000000001,
+        "rushing_offense": 8.959999999999999,
+        "passing_defense": 7.670000000000001,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 55.44,
+        "rushing_offense": 60.1,
+        "passing_defense": 84.55,
+        "rushing_defense": 74.81
+      },
+      "offense_score": 57.77,
+      "defense_score": 79.68,
+      "overall_score": 64.297,
+      "overall_rank": 25,
+      "offense_rank": 31,
+      "defense_rank": 2
+    },
+    {
+      "team": "Arizona",
+      "conference": "Big 12",
+      "previous_overall_rank": 23,
+      "previous_offense_rank": 24,
+      "previous_defense_rank": 32,
+      "previous_overall_score": 64.5,
+      "previous_offense_score": 60.03,
+      "previous_defense_score": 56.92,
+      "conference_change": -2.5,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Cincinnati"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0.5760000000000001
+      },
+      "units": {
+        "passing_offense": 65.88,
+        "rushing_offense": 49.18,
+        "passing_defense": 60.72,
+        "rushing_defense": 48.706
+      },
+      "offense_score": 57.53,
+      "defense_score": 54.713,
+      "overall_score": 63.206,
+      "overall_rank": 26,
+      "offense_rank": 32,
+      "defense_rank": 44
+    },
+    {
+      "team": "Oklahoma",
+      "conference": "SEC",
+      "previous_overall_rank": 39,
+      "previous_offense_rank": 114,
+      "previous_defense_rank": 6,
+      "previous_overall_score": 58.08,
+      "previous_offense_score": 33.37,
+      "previous_defense_score": 71.33,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Michigan",
+        "New Mexico",
+        "Georgia"
+      ],
+      "top30_defense_opponents": [
+        "Michigan",
+        "New Mexico",
+        "Georgia",
+        "Texas"
+      ],
+      "quality_premiums": {
+        "passing_offense": 10.515,
+        "rushing_offense": 7.965000000000001,
+        "passing_defense": 6.195000000000001,
+        "rushing_defense": 9.535
+      },
+      "units": {
+        "passing_offense": 62.615,
+        "rushing_offense": 22.605,
+        "passing_defense": 78.465,
+        "rushing_defense": 79.935
+      },
+      "offense_score": 42.61,
+      "defense_score": 79.2,
+      "overall_score": 62.785,
+      "overall_rank": 27,
+      "offense_rank": 75,
+      "defense_rank": 3
+    },
+    {
+      "team": "Pittsburgh",
+      "conference": "ACC",
+      "previous_overall_rank": 26,
+      "previous_offense_rank": 70,
+      "previous_defense_rank": 16,
+      "previous_overall_score": 63.63,
+      "previous_offense_score": 46.19,
+      "previous_defense_score": 65.11,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Syracuse",
+        "Virginia Tech"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0.59,
+        "rushing_offense": 4.79,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 39.47,
+        "rushing_offense": 52.3,
+        "passing_defense": 45.47,
+        "rushing_defense": 78.75
+      },
+      "offense_score": 45.885,
+      "defense_score": 62.11,
+      "overall_score": 62.721,
+      "overall_rank": 28,
+      "offense_rank": 69,
+      "defense_rank": 21
+    },
+    {
+      "team": "Oklahoma State",
+      "conference": "Big 12",
+      "previous_overall_rank": 28,
+      "previous_offense_rank": 36,
+      "previous_defense_rank": 43,
+      "previous_overall_score": 63.55,
+      "previous_offense_score": 55.71,
+      "previous_defense_score": 52.64,
+      "conference_change": -2.5,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Oregon",
+        "West Virginia"
+      ],
+      "top30_defense_opponents": [
+        "Oregon",
+        "UCF"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0.6133333333333333,
+        "rushing_offense": 0.30666666666666664,
+        "passing_defense": 1.84,
+        "rushing_defense": 0.6133333333333333
+      },
+      "units": {
+        "passing_offense": 57.813,
+        "rushing_offense": 49.527,
+        "passing_defense": 56.67,
+        "rushing_defense": 46.053
+      },
+      "offense_score": 53.67,
+      "defense_score": 51.361,
+      "overall_score": 62.637,
+      "overall_rank": 29,
+      "offense_rank": 42,
+      "defense_rank": 50
+    },
+    {
+      "team": "Baylor",
+      "conference": "Big 12",
+      "previous_overall_rank": 29,
+      "previous_offense_rank": 65,
+      "previous_defense_rank": 20,
+      "previous_overall_score": 62.27,
+      "previous_offense_score": 47.19,
+      "previous_defense_score": 61.98,
+      "conference_change": -2.5,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Colorado"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 4.6000000000000005,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 50.16,
+        "rushing_offense": 43.82,
+        "passing_defense": 53.39,
+        "rushing_defense": 65.57
+      },
+      "offense_score": 46.99,
+      "defense_score": 59.48,
+      "overall_score": 61.528,
+      "overall_rank": 30,
+      "offense_rank": 65,
+      "defense_rank": 26
+    },
+    {
+      "team": "Oregon",
+      "conference": "Big Ten",
+      "previous_overall_rank": 40,
+      "previous_offense_rank": 87,
+      "previous_defense_rank": 35,
+      "previous_overall_score": 57.58,
+      "previous_offense_score": 41.77,
+      "previous_defense_score": 55.97,
+      "conference_change": 0,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "USC",
+        "UCLA"
+      ],
+      "top30_defense_opponents": [
+        "USC",
+        "UCLA"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.906666666666666,
+        "rushing_offense": 3.8866666666666667,
+        "passing_defense": 8.893333333333333,
+        "rushing_defense": 9.666666666666668
+      },
+      "units": {
+        "passing_offense": 55.137,
+        "rushing_offense": 37.187,
+        "passing_defense": 61.653,
+        "rushing_defense": 68.847
+      },
+      "offense_score": 46.162,
+      "defense_score": 65.25,
+      "overall_score": 61.34,
+      "overall_rank": 31,
+      "offense_rank": 68,
+      "defense_rank": 17
+    },
+    {
+      "team": "Duke",
+      "conference": "ACC",
+      "previous_overall_rank": 32,
+      "previous_offense_rank": 44,
+      "previous_defense_rank": 27,
+      "previous_overall_score": 61.38,
+      "previous_offense_score": 52.71,
+      "previous_defense_score": 58.16,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Illinois"
+      ],
+      "top30_defense_opponents": [
+        "Illinois"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.986666666666667,
+        "rushing_offense": 0,
+        "passing_defense": 6.133333333333334,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 51.377,
+        "rushing_offense": 52.04,
+        "passing_defense": 59.453,
+        "rushing_defense": 57
+      },
+      "offense_score": 51.709,
+      "defense_score": 58.227,
+      "overall_score": 61.123,
+      "overall_rank": 32,
+      "offense_rank": 50,
+      "defense_rank": 28
+    },
+    {
+      "team": "Florida",
+      "conference": "SEC",
+      "previous_overall_rank": 37,
+      "previous_offense_rank": 16,
+      "previous_defense_rank": 93,
+      "previous_overall_score": 59.23,
+      "previous_offense_score": 63.63,
+      "previous_defense_score": 41.3,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Auburn",
+        "Ole Miss",
+        "South Carolina"
+      ],
+      "top30_defense_opponents": [
+        "Auburn"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 5.015,
+        "passing_defense": 0.59,
+        "rushing_defense": 5.800000000000001
+      },
+      "units": {
+        "passing_offense": 68.81,
+        "rushing_offense": 63.465,
+        "passing_defense": 38.94,
+        "rushing_defense": 50.05
+      },
+      "offense_score": 66.138,
+      "defense_score": 44.495,
+      "overall_score": 60.798,
+      "overall_rank": 33,
+      "offense_rank": 17,
+      "defense_rank": 64
+    },
+    {
+      "team": "Boise State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 31,
+      "previous_offense_rank": 22,
+      "previous_defense_rank": 64,
+      "previous_overall_score": 62.05,
+      "previous_offense_score": 60.38,
+      "previous_defense_score": 48.34,
+      "conference_change": -6,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Memphis"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 6.49,
+        "rushing_defense": 7.08
+      },
+      "units": {
+        "passing_offense": 50.72,
+        "rushing_offense": 58.05,
+        "passing_defense": 42.44,
+        "rushing_defense": 55.8
+      },
+      "offense_score": 54.385,
+      "defense_score": 49.12,
+      "overall_score": 60.616,
+      "overall_rank": 34,
+      "offense_rank": 41,
+      "defense_rank": 54
+    },
+    {
+      "team": "SMU",
+      "conference": "ACC",
+      "previous_overall_rank": 30,
+      "previous_offense_rank": 37,
+      "previous_defense_rank": 28,
+      "previous_overall_score": 62.13,
+      "previous_offense_score": 55.37,
+      "previous_defense_score": 58.13,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Louisville"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0.30666666666666664,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 62.48,
+        "rushing_offense": 42.27,
+        "passing_defense": 65.157,
+        "rushing_defense": 45.41
+      },
+      "offense_score": 52.375,
+      "defense_score": 55.283,
+      "overall_score": 60.523,
+      "overall_rank": 35,
+      "offense_rank": 47,
+      "defense_rank": 42
+    },
+    {
+      "team": "James Madison",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 22,
+      "previous_offense_rank": 48,
+      "previous_defense_rank": 48,
+      "previous_overall_score": 64.74,
+      "previous_offense_score": 52.01,
+      "previous_defense_score": 50.37,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "San Diego State",
+        "Old Dominion"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.17,
+        "rushing_offense": 2.95,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 43.82,
+        "rushing_offense": 47.32,
+        "passing_defense": 38,
+        "rushing_defense": 44.75
+      },
+      "offense_score": 45.57,
+      "defense_score": 41.375,
+      "overall_score": 60.495,
+      "overall_rank": 36,
+      "offense_rank": 72,
+      "defense_rank": 74
+    },
+    {
+      "team": "Auburn",
+      "conference": "SEC",
+      "previous_overall_rank": 41,
+      "previous_offense_rank": 43,
+      "previous_defense_rank": 30,
+      "previous_overall_score": 57.27,
+      "previous_offense_score": 52.81,
+      "previous_defense_score": 57.57,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Florida",
+        "Vanderbilt",
+        "Tennessee"
+      ],
+      "top30_defense_opponents": [
+        "Florida",
+        "Tennessee"
+      ],
+      "quality_premiums": {
+        "passing_offense": 1.58,
+        "rushing_offense": 0,
+        "passing_defense": 3.245,
+        "rushing_defense": 7.85
+      },
+      "units": {
+        "passing_offense": 43.64,
+        "rushing_offense": 63.56,
+        "passing_defense": 61.105,
+        "rushing_defense": 65.14
+      },
+      "offense_score": 53.6,
+      "defense_score": 63.123,
+      "overall_score": 59.014,
+      "overall_rank": 37,
+      "offense_rank": 43,
+      "defense_rank": 19
+    },
+    {
+      "team": "Virginia Tech",
+      "conference": "ACC",
+      "previous_overall_rank": 43,
+      "previous_offense_rank": 57,
+      "previous_defense_rank": 26,
+      "previous_overall_score": 57.13,
+      "previous_offense_score": 50.22,
+      "previous_defense_score": 58.54,
+      "conference_change": -3,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Maryland"
+      ],
+      "top30_defense_opponents": [
+        "Maryland",
+        "Pittsburgh",
+        "California"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.148,
+        "rushing_offense": 6.819999999999999,
+        "passing_defense": 0.864,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 65.038,
+        "rushing_offense": 41.37,
+        "passing_defense": 47.194,
+        "rushing_defense": 64.75
+      },
+      "offense_score": 53.204,
+      "defense_score": 55.972,
+      "overall_score": 57.244,
+      "overall_rank": 38,
+      "offense_rank": 44,
+      "defense_rank": 39
+    },
+    {
+      "team": "Cincinnati",
+      "conference": "Big 12",
+      "previous_overall_rank": 42,
+      "previous_offense_rank": 41,
+      "previous_defense_rank": 90,
+      "previous_overall_score": 57.24,
+      "previous_offense_score": 53.92,
+      "previous_defense_score": 42.31,
+      "conference_change": -2.5,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Kansas State"
+      ],
+      "top30_defense_opponents": [
+        "Kansas State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.666666666666667,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 1.5333333333333334
+      },
+      "units": {
+        "passing_offense": 51.947,
+        "rushing_offense": 58.56,
+        "passing_defense": 43.26,
+        "rushing_defense": 37.903
+      },
+      "offense_score": 55.254,
+      "defense_score": 40.581,
+      "overall_score": 57.131,
+      "overall_rank": 39,
+      "offense_rank": 36,
+      "defense_rank": 77
+    },
+    {
+      "team": "Air Force",
+      "conference": "Mountain West",
+      "previous_overall_rank": 34,
+      "previous_offense_rank": 80,
+      "previous_defense_rank": 49,
+      "previous_overall_score": 61.07,
+      "previous_offense_score": 43.68,
+      "previous_defense_score": 50.32,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Nevada",
+        "Navy"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 4.1
+      },
+      "units": {
+        "passing_offense": 11.37,
+        "rushing_offense": 57.99,
+        "passing_defense": 48.61,
+        "rushing_defense": 38.13
+      },
+      "offense_score": 34.68,
+      "defense_score": 43.37,
+      "overall_score": 56.684,
+      "overall_rank": 40,
+      "offense_rank": 93,
+      "defense_rank": 66
+    },
+    {
+      "team": "Texas A&M",
+      "conference": "SEC",
+      "previous_overall_rank": 50,
+      "previous_offense_rank": 76,
+      "previous_defense_rank": 41,
+      "previous_overall_score": 53.1,
+      "previous_offense_score": 44.43,
+      "previous_defense_score": 53.3,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "LSU",
+        "Missouri"
+      ],
+      "top30_defense_opponents": [
+        "LSU",
+        "Missouri"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.776000000000001,
+        "rushing_offense": 9.172,
+        "passing_defense": 2.3040000000000003,
+        "rushing_defense": 4.032
+      },
+      "units": {
+        "passing_offense": 43.306,
+        "rushing_offense": 62.512,
+        "passing_defense": 52.134,
+        "rushing_defense": 60.802
+      },
+      "offense_score": 52.909,
+      "defense_score": 56.468,
+      "overall_score": 56.303,
+      "overall_rank": 41,
+      "offense_rank": 45,
+      "defense_rank": 35
+    },
+    {
+      "team": "Memphis",
+      "conference": "American Athletic",
+      "previous_overall_rank": 35,
+      "previous_offense_rank": 9,
+      "previous_defense_rank": 96,
+      "previous_overall_score": 60.18,
+      "previous_offense_score": 69.29,
+      "previous_defense_score": 40.36,
+      "conference_change": -8,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 61.46,
+        "rushing_offense": 61.13,
+        "passing_defense": 44.97,
+        "rushing_defense": 19.75
+      },
+      "offense_score": 61.295,
+      "defense_score": 32.36,
+      "overall_score": 55.781,
+      "overall_rank": 42,
+      "offense_rank": 21,
+      "defense_rank": 102
+    },
+    {
+      "team": "New Mexico",
+      "conference": "Mountain West",
+      "previous_overall_rank": 38,
+      "previous_offense_rank": 58,
+      "previous_defense_rank": 17,
+      "previous_overall_score": 59.05,
+      "previous_offense_score": 50.01,
+      "previous_defense_score": 63.89,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Oklahoma"
+      ],
+      "top30_defense_opponents": [
+        "Oklahoma"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.68,
+        "rushing_offense": 4.293333333333333,
+        "passing_defense": 2.7600000000000002,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 35.68,
+        "rushing_offense": 54.313,
+        "passing_defense": 55.57,
+        "rushing_defense": 56.98
+      },
+      "offense_score": 44.996,
+      "defense_score": 56.275,
+      "overall_score": 55.577,
+      "overall_rank": 43,
+      "offense_rank": 73,
+      "defense_rank": 36
+    },
+    {
+      "team": "Penn State",
+      "conference": "Big Ten",
+      "previous_overall_rank": 47,
+      "previous_offense_rank": 49,
+      "previous_defense_rank": 36,
+      "previous_overall_score": 54.37,
+      "previous_offense_score": 51.71,
+      "previous_defense_score": 55.77,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Northwestern",
+        "USC"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 8.764,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 59.16,
+        "rushing_offense": 44.27,
+        "passing_defense": 76.854,
+        "rushing_defense": 43.45
+      },
+      "offense_score": 51.715,
+      "defense_score": 60.152,
+      "overall_score": 55.576,
+      "overall_rank": 44,
+      "offense_rank": 49,
+      "defense_rank": 24
+    },
+    {
+      "team": "South Carolina",
+      "conference": "SEC",
+      "previous_overall_rank": 56,
+      "previous_offense_rank": 28,
+      "previous_defense_rank": 68,
+      "previous_overall_score": 51.06,
+      "previous_offense_score": 58.47,
+      "previous_defense_score": 47.11,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Mississippi State",
+        "Alabama",
+        "Florida"
+      ],
+      "top30_defense_opponents": [
+        "Mississippi State",
+        "Alabama"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.6049999999999995,
+        "rushing_offense": 9.22,
+        "passing_defense": 7.815,
+        "rushing_defense": 9.03
+      },
+      "units": {
+        "passing_offense": 60.135,
+        "rushing_offense": 71.62,
+        "passing_defense": 45.545,
+        "rushing_defense": 65.52
+      },
+      "offense_score": 65.877,
+      "defense_score": 55.532,
+      "overall_score": 55.413,
+      "overall_rank": 45,
+      "offense_rank": 18,
+      "defense_rank": 41
+    },
+    {
+      "team": "Minnesota",
+      "conference": "Big Ten",
+      "previous_overall_rank": 55,
+      "previous_offense_rank": 116,
+      "previous_defense_rank": 62,
+      "previous_overall_score": 51.16,
+      "previous_offense_score": 32.97,
+      "previous_defense_score": 48.7,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Mississippi State",
+        "Michigan",
+        "Purdue"
+      ],
+      "top30_defense_opponents": [
+        "Mississippi State",
+        "Washington",
+        "Michigan"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.32,
+        "rushing_offense": 8.068,
+        "passing_defense": 5.296,
+        "rushing_defense": 7.776000000000001
+      },
+      "units": {
+        "passing_offense": 54.83,
+        "rushing_offense": 27.508,
+        "passing_defense": 69.676,
+        "rushing_defense": 40.796
+      },
+      "offense_score": 41.169,
+      "defense_score": 55.236,
+      "overall_score": 55.212,
+      "overall_rank": 46,
+      "offense_rank": 79,
+      "defense_rank": 43
+    },
+    {
+      "team": "Virginia",
+      "conference": "ACC",
+      "previous_overall_rank": 45,
+      "previous_offense_rank": 33,
+      "previous_defense_rank": 58,
+      "previous_overall_score": 55.9,
+      "previous_offense_score": 56.55,
+      "previous_defense_score": 49.1,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "West Virginia",
+        "Syracuse"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.36,
+        "rushing_offense": 3.245,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 50.17,
+        "rushing_offense": 62.545,
+        "passing_defense": 50.44,
+        "rushing_defense": 41.77
+      },
+      "offense_score": 56.358,
+      "defense_score": 46.105,
+      "overall_score": 55.024,
+      "overall_rank": 47,
+      "offense_rank": 34,
+      "defense_rank": 62
+    },
+    {
+      "team": "North Carolina",
+      "conference": "ACC",
+      "previous_overall_rank": 59,
+      "previous_offense_rank": 94,
+      "previous_defense_rank": 59,
+      "previous_overall_score": 50.28,
+      "previous_offense_score": 39.83,
+      "previous_defense_score": 49.01,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Notre Dame"
+      ],
+      "top30_defense_opponents": [
+        "Clemson",
+        "Notre Dame",
+        "Pittsburgh"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.773333333333333,
+        "rushing_offense": 9,
+        "passing_defense": 7.973333333333334,
+        "rushing_defense": 7.973333333333334
+      },
+      "units": {
+        "passing_offense": 50.783,
+        "rushing_offense": 40.64,
+        "passing_defense": 64.803,
+        "rushing_defense": 43.153
+      },
+      "offense_score": 45.712,
+      "defense_score": 53.978,
+      "overall_score": 53.264,
+      "overall_rank": 48,
+      "offense_rank": 70,
+      "defense_rank": 45
+    },
+    {
+      "team": "Liberty",
+      "conference": "Conference USA",
+      "previous_overall_rank": 36,
+      "previous_offense_rank": 26,
+      "previous_defense_rank": 34,
+      "previous_overall_score": 59.85,
+      "previous_offense_score": 59.23,
+      "previous_defense_score": 56.05,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 39.13,
+        "rushing_offense": 55.33,
+        "passing_defense": 48.41,
+        "rushing_defense": 39.69
+      },
+      "offense_score": 47.23,
+      "defense_score": 44.05,
+      "overall_score": 53.25,
+      "overall_rank": 49,
+      "offense_rank": 63,
+      "defense_rank": 65
+    },
+    {
+      "team": "UTSA",
+      "conference": "American Athletic",
+      "previous_overall_rank": 44,
+      "previous_offense_rank": 69,
+      "previous_defense_rank": 69,
+      "previous_overall_score": 56.89,
+      "previous_offense_score": 46.41,
+      "previous_defense_score": 47.1,
+      "conference_change": -8,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Texas State",
+        "Texas"
+      ],
+      "top30_defense_opponents": [
+        "Texas State",
+        "South Florida"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 2.444,
+        "passing_defense": 1.18,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 24.66,
+        "rushing_offense": 54.614,
+        "passing_defense": 45.23,
+        "rushing_defense": 34.14
+      },
+      "offense_score": 39.637,
+      "defense_score": 39.685,
+      "overall_score": 52.988,
+      "overall_rank": 50,
+      "offense_rank": 85,
+      "defense_rank": 84
+    },
+    {
+      "team": "Kansas State",
+      "conference": "Big 12",
+      "previous_overall_rank": 52,
+      "previous_offense_rank": 30,
+      "previous_defense_rank": 78,
+      "previous_overall_score": 52.77,
+      "previous_offense_score": 57.17,
+      "previous_defense_score": 44.64,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Cincinnati",
+        "Houston"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 5.3100000000000005,
+        "rushing_defense": 1.805
+      },
+      "units": {
+        "passing_offense": 45.25,
+        "rushing_offense": 64.1,
+        "passing_defense": 52.46,
+        "rushing_defense": 38.935
+      },
+      "offense_score": 54.675,
+      "defense_score": 45.698,
+      "overall_score": 52.375,
+      "overall_rank": 51,
+      "offense_rank": 38,
+      "defense_rank": 63
+    },
+    {
+      "team": "Louisville",
+      "conference": "ACC",
+      "previous_overall_rank": 51,
+      "previous_offense_rank": 20,
+      "previous_defense_rank": 88,
+      "previous_overall_score": 52.88,
+      "previous_offense_score": 62.08,
+      "previous_defense_score": 42.41,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "SMU",
+        "Wake Forest"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 3.8350000000000004,
+        "rushing_defense": 0.59
+      },
+      "units": {
+        "passing_offense": 58.22,
+        "rushing_offense": 59.94,
+        "passing_defense": 41.765,
+        "rushing_defense": 41.47
+      },
+      "offense_score": 59.08,
+      "defense_score": 41.617,
+      "overall_score": 51.837,
+      "overall_rank": 52,
+      "offense_rank": 26,
+      "defense_rank": 72
+    },
+    {
+      "team": "Washington",
+      "conference": "Big Ten",
+      "previous_overall_rank": 62,
+      "previous_offense_rank": 82,
+      "previous_defense_rank": 33,
+      "previous_overall_score": 49.32,
+      "previous_offense_score": 43.43,
+      "previous_defense_score": 56.89,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "USC"
+      ],
+      "top30_defense_opponents": [
+        "USC",
+        "Iowa"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 6.735000000000001,
+        "passing_defense": 8.850000000000001,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 49.16,
+        "rushing_offense": 44.445,
+        "passing_defense": 60.89,
+        "rushing_defense": 61.74
+      },
+      "offense_score": 46.802,
+      "defense_score": 61.315,
+      "overall_score": 51.464,
+      "overall_rank": 53,
+      "offense_rank": 66,
+      "defense_rank": 22
+    },
+    {
+      "team": "Clemson",
+      "conference": "ACC",
+      "previous_overall_rank": 61,
+      "previous_offense_rank": 107,
+      "previous_defense_rank": 66,
+      "previous_overall_score": 50.12,
+      "previous_offense_score": 35.75,
+      "previous_defense_score": 48.16,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Miami"
+      ],
+      "top30_defense_opponents": [
+        "North Carolina",
+        "Miami"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.83,
+        "rushing_offense": 6.195000000000001,
+        "passing_defense": 8.555,
+        "rushing_defense": 2.95
+      },
+      "units": {
+        "passing_offense": 34.58,
+        "rushing_offense": 39.945,
+        "passing_defense": 74.995,
+        "rushing_defense": 26.83
+      },
+      "offense_score": 37.263,
+      "defense_score": 50.913,
+      "overall_score": 51.293,
+      "overall_rank": 54,
+      "offense_rank": 88,
+      "defense_rank": 52
+    },
+    {
+      "team": "Arizona State",
+      "conference": "Big 12",
+      "previous_overall_rank": 63,
+      "previous_offense_rank": 89,
+      "previous_defense_rank": 47,
+      "previous_overall_score": 49.2,
+      "previous_offense_score": 41.56,
+      "previous_defense_score": 51.39,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Texas A&M"
+      ],
+      "top30_defense_opponents": [
+        "Texas A&M",
+        "Baylor"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.26,
+        "rushing_offense": 8.09,
+        "passing_defense": 1.18,
+        "rushing_defense": 5.6049999999999995
+      },
+      "units": {
+        "passing_offense": 47.81,
+        "rushing_offense": 46.67,
+        "passing_defense": 51.77,
+        "rushing_defense": 52.795
+      },
+      "offense_score": 47.24,
+      "defense_score": 52.282,
+      "overall_score": 51.007,
+      "overall_rank": 55,
+      "offense_rank": 62,
+      "defense_rank": 46
+    },
+    {
+      "team": "Illinois",
+      "conference": "Big Ten",
+      "previous_overall_rank": 66,
+      "previous_offense_rank": 21,
+      "previous_defense_rank": 106,
+      "previous_overall_score": 47.7,
+      "previous_offense_score": 61.44,
+      "previous_defense_score": 34.65,
+      "conference_change": 0,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ohio State"
+      ],
+      "top30_defense_opponents": [
+        "Duke",
+        "Ohio State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 9.515,
+        "rushing_offense": 6.784999999999999,
+        "passing_defense": 7.375,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 74.055,
+        "rushing_offense": 65.125,
+        "passing_defense": 31.725,
+        "rushing_defense": 44.94
+      },
+      "offense_score": 69.59,
+      "defense_score": 38.332,
+      "overall_score": 50.954,
+      "overall_rank": 56,
+      "offense_rank": 12,
+      "defense_rank": 85
+    },
+    {
+      "team": "Oregon State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 49,
+      "previous_offense_rank": 19,
+      "previous_defense_rank": 73,
+      "previous_overall_score": 53.87,
+      "previous_offense_score": 62.19,
+      "previous_defense_score": 46.03,
+      "conference_change": -6,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 58.06,
+        "rushing_offense": 54.33,
+        "passing_defense": 40.46,
+        "rushing_defense": 39.61
+      },
+      "offense_score": 56.195,
+      "defense_score": 40.035,
+      "overall_score": 50.573,
+      "overall_rank": 57,
+      "offense_rank": 35,
+      "defense_rank": 81
+    },
+    {
+      "team": "Georgia State",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 46,
+      "previous_offense_rank": 35,
+      "previous_defense_rank": 61,
+      "previous_overall_score": 54.91,
+      "previous_offense_score": 56.02,
+      "previous_defense_score": 48.88,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "UCF"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 2.95,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 58.26,
+        "rushing_offense": 38.73,
+        "passing_defense": 48.66,
+        "rushing_defense": 31.09
+      },
+      "offense_score": 48.495,
+      "defense_score": 39.875,
+      "overall_score": 50.364,
+      "overall_rank": 58,
+      "offense_rank": 57,
+      "defense_rank": 82
+    },
+    {
+      "team": "Purdue",
+      "conference": "Big Ten",
+      "previous_overall_rank": 79,
+      "previous_offense_rank": 27,
+      "previous_defense_rank": 120,
+      "previous_overall_score": 45.38,
+      "previous_offense_score": 58.8,
+      "previous_defense_score": 30.11,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Wake Forest",
+        "UCLA",
+        "Notre Dame",
+        "Illinois"
+      ],
+      "top30_defense_opponents": [
+        "Wake Forest",
+        "UCLA",
+        "Notre Dame"
+      ],
+      "quality_premiums": {
+        "passing_offense": 9.1,
+        "rushing_offense": 7.572000000000001,
+        "passing_defense": 6.336,
+        "rushing_defense": 9.788
+      },
+      "units": {
+        "passing_offense": 77.49,
+        "rushing_offense": 56.782,
+        "passing_defense": 42.866,
+        "rushing_defense": 33.488
+      },
+      "offense_score": 67.136,
+      "defense_score": 38.177,
+      "overall_score": 49.891,
+      "overall_rank": 59,
+      "offense_rank": 14,
+      "defense_rank": 86
+    },
+    {
+      "team": "Florida State",
+      "conference": "ACC",
+      "previous_overall_rank": 68,
+      "previous_offense_rank": 29,
+      "previous_defense_rank": 105,
+      "previous_overall_score": 47.65,
+      "previous_offense_score": 58.08,
+      "previous_defense_score": 34.67,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Alabama",
+        "Virginia"
+      ],
+      "top30_defense_opponents": [
+        "Alabama",
+        "Virginia"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.546666666666667,
+        "rushing_offense": 8.893333333333333,
+        "passing_defense": 5.213333333333333,
+        "rushing_defense": 6.813333333333334
+      },
+      "units": {
+        "passing_offense": 50.077,
+        "rushing_offense": 71.513,
+        "passing_defense": 40.053,
+        "rushing_defense": 35.323
+      },
+      "offense_score": 60.795,
+      "defense_score": 37.688,
+      "overall_score": 49.227,
+      "overall_rank": 60,
+      "offense_rank": 22,
+      "defense_rank": 88
+    },
+    {
+      "team": "Florida Atlantic",
+      "conference": "American Athletic",
+      "previous_overall_rank": 53,
+      "previous_offense_rank": 72,
+      "previous_defense_rank": 75,
+      "previous_overall_score": 52.18,
+      "previous_offense_score": 45.63,
+      "previous_defense_score": 45.43,
+      "conference_change": -8,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Florida International"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 6.133333333333334,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 42.96,
+        "rushing_offense": 38.443,
+        "passing_defense": 39.63,
+        "rushing_defense": 35.23
+      },
+      "offense_score": 40.701,
+      "defense_score": 37.43,
+      "overall_score": 48.625,
+      "overall_rank": 61,
+      "offense_rank": 81,
+      "defense_rank": 89
+    },
+    {
+      "team": "Vanderbilt",
+      "conference": "SEC",
+      "previous_overall_rank": 80,
+      "previous_offense_rank": 77,
+      "previous_defense_rank": 54,
+      "previous_overall_score": 45.1,
+      "previous_offense_score": 44.02,
+      "previous_defense_score": 49.5,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Auburn",
+        "Georgia",
+        "Ole Miss"
+      ],
+      "top30_defense_opponents": [
+        "Auburn",
+        "Georgia"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.88,
+        "rushing_offense": 8.716,
+        "passing_defense": 4.311999999999999,
+        "rushing_defense": 8.856
+      },
+      "units": {
+        "passing_offense": 48.33,
+        "rushing_offense": 51.306,
+        "passing_defense": 52.132,
+        "rushing_defense": 60.036
+      },
+      "offense_score": 49.818,
+      "defense_score": 56.084,
+      "overall_score": 48.505,
+      "overall_rank": 62,
+      "offense_rank": 54,
+      "defense_rank": 38
+    },
+    {
+      "team": "Michigan State",
+      "conference": "Big Ten",
+      "previous_overall_rank": 90,
+      "previous_offense_rank": 75,
+      "previous_defense_rank": 56,
+      "previous_overall_score": 43.83,
+      "previous_offense_score": 44.55,
+      "previous_defense_score": 49.22,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Notre Dame",
+        "Nebraska",
+        "Illinois"
+      ],
+      "top30_defense_opponents": [
+        "Notre Dame",
+        "Nebraska",
+        "Wisconsin"
+      ],
+      "quality_premiums": {
+        "passing_offense": 9.016,
+        "rushing_offense": 7.488,
+        "passing_defense": 7.4799999999999995,
+        "rushing_defense": 8.792
+      },
+      "units": {
+        "passing_offense": 52.696,
+        "rushing_offense": 52.908,
+        "passing_defense": 50.4,
+        "rushing_defense": 64.322
+      },
+      "offense_score": 52.802,
+      "defense_score": 57.361,
+      "overall_score": 48.338,
+      "overall_rank": 63,
+      "offense_rank": 46,
+      "defense_rank": 31
+    },
+    {
+      "team": "Jacksonville State",
+      "conference": "Conference USA",
+      "previous_overall_rank": 48,
+      "previous_offense_rank": 53,
+      "previous_defense_rank": 79,
+      "previous_overall_score": 53.99,
+      "previous_offense_score": 51.13,
+      "previous_defense_score": 44.48,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ohio",
+        "Middle Tennessee"
+      ],
+      "top30_defense_opponents": [
+        "Georgia Southern",
+        "Middle Tennessee"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 1.25,
+        "passing_defense": 0,
+        "rushing_defense": 3.455
+      },
+      "units": {
+        "passing_offense": 42.98,
+        "rushing_offense": 36.53,
+        "passing_defense": 37.61,
+        "rushing_defense": 30.795
+      },
+      "offense_score": 39.755,
+      "defense_score": 34.203,
+      "overall_score": 48.036,
+      "overall_rank": 64,
+      "offense_rank": 84,
+      "defense_rank": 99
+    },
+    {
+      "team": "UCF",
+      "conference": "Big 12",
+      "previous_overall_rank": 71,
+      "previous_offense_rank": 98,
+      "previous_defense_rank": 39,
+      "previous_overall_score": 46.41,
+      "previous_offense_score": 38.55,
+      "previous_defense_score": 53.82,
+      "conference_change": -2.5,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Pittsburgh",
+        "Georgia State",
+        "Houston"
+      ],
+      "top30_defense_opponents": [
+        "Pittsburgh",
+        "Oklahoma State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 1.524,
+        "rushing_offense": 6.048000000000001,
+        "passing_defense": 7.547999999999999,
+        "rushing_defense": 5.632000000000001
+      },
+      "units": {
+        "passing_offense": 40.004,
+        "rushing_offense": 39.668,
+        "passing_defense": 50.398,
+        "rushing_defense": 65.412
+      },
+      "offense_score": 39.836,
+      "defense_score": 57.905,
+      "overall_score": 47.887,
+      "overall_rank": 65,
+      "offense_rank": 83,
+      "defense_rank": 29
+    },
+    {
+      "team": "Iowa State",
+      "conference": "Big 12",
+      "previous_overall_rank": 81,
+      "previous_offense_rank": 86,
+      "previous_defense_rank": 80,
+      "previous_overall_score": 45.01,
+      "previous_offense_score": 41.95,
+      "previous_defense_score": 44.39,
+      "conference_change": -2.5,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Iowa",
+        "Utah",
+        "BYU"
+      ],
+      "top30_defense_opponents": [
+        "Iowa",
+        "Utah"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.996,
+        "rushing_offense": 8.064,
+        "passing_defense": 3.456,
+        "rushing_defense": 8.18
+      },
+      "units": {
+        "passing_offense": 45.896,
+        "rushing_offense": 50.054,
+        "passing_defense": 46.826,
+        "rushing_defense": 48.59
+      },
+      "offense_score": 47.975,
+      "defense_score": 47.708,
+      "overall_score": 47.579,
+      "overall_rank": 66,
+      "offense_rank": 59,
+      "defense_rank": 58
+    },
+    {
+      "team": "Louisiana",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 64,
+      "previous_offense_rank": 83,
+      "previous_defense_rank": 57,
+      "previous_overall_score": 49.04,
+      "previous_offense_score": 43.29,
+      "previous_defense_score": 49.16,
+      "conference_change": -9,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "USC",
+        "UAB"
+      ],
+      "top30_defense_opponents": [
+        "USC"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 7.776000000000001,
+        "passing_defense": 8.64,
+        "rushing_defense": 5.4719999999999995
+      },
+      "units": {
+        "passing_offense": 30.48,
+        "rushing_offense": 45.876,
+        "passing_defense": 41.48,
+        "rushing_defense": 52.942
+      },
+      "offense_score": 38.178,
+      "defense_score": 47.211,
+      "overall_score": 47.098,
+      "overall_rank": 67,
+      "offense_rank": 86,
+      "defense_rank": 59
+    },
+    {
+      "team": "North Texas",
+      "conference": "American Athletic",
+      "previous_overall_rank": 60,
+      "previous_offense_rank": 40,
+      "previous_defense_rank": 107,
+      "previous_overall_score": 50.16,
+      "previous_offense_score": 54.11,
+      "previous_defense_score": 33.47,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "UNLV"
+      ],
+      "top30_defense_opponents": [
+        "UNLV"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.54,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 2.36
+      },
+      "units": {
+        "passing_offense": 64.2,
+        "rushing_offense": 31.56,
+        "passing_defense": 15.15,
+        "rushing_defense": 38.14
+      },
+      "offense_score": 47.88,
+      "defense_score": 26.645,
+      "overall_score": 46.57,
+      "overall_rank": 68,
+      "offense_rank": 60,
+      "defense_rank": 112
+    },
+    {
+      "team": "South Florida",
+      "conference": "American Athletic",
+      "previous_overall_rank": 57,
+      "previous_offense_rank": 93,
+      "previous_defense_rank": 67,
+      "previous_overall_score": 50.55,
+      "previous_offense_score": 40.07,
+      "previous_defense_score": 47.92,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Temple"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 2.6550000000000002
+      },
+      "units": {
+        "passing_offense": 30.68,
+        "rushing_offense": 33.47,
+        "passing_defense": 44.59,
+        "rushing_defense": 37.895
+      },
+      "offense_score": 32.075,
+      "defense_score": 41.243,
+      "overall_score": 46.515,
+      "overall_rank": 69,
+      "offense_rank": 102,
+      "defense_rank": 76
+    },
+    {
+      "team": "TCU",
+      "conference": "Big 12",
+      "previous_overall_rank": 77,
+      "previous_offense_rank": 97,
+      "previous_defense_rank": 14,
+      "previous_overall_score": 45.59,
+      "previous_offense_score": 38.63,
+      "previous_defense_score": 66.12,
+      "conference_change": -2.5,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Arkansas State",
+        "BYU"
+      ],
+      "top30_defense_opponents": [
+        "UCF"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0.30666666666666664,
+        "passing_defense": 7.36,
+        "rushing_defense": 9.053333333333333
+      },
+      "units": {
+        "passing_offense": 46.26,
+        "rushing_offense": 26.317,
+        "passing_defense": 75.56,
+        "rushing_defense": 68.093
+      },
+      "offense_score": 36.288,
+      "defense_score": 71.827,
+      "overall_score": 46.515,
+      "overall_rank": 70,
+      "offense_rank": 91,
+      "defense_rank": 12
+    },
+    {
+      "team": "UNLV",
+      "conference": "Mountain West",
+      "previous_overall_rank": 58,
+      "previous_offense_rank": 81,
+      "previous_defense_rank": 82,
+      "previous_overall_score": 50.51,
+      "previous_offense_score": 43.64,
+      "previous_defense_score": 44.14,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "North Texas"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 1.5333333333333334,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 30.32,
+        "rushing_offense": 38.96,
+        "passing_defense": 50.743,
+        "rushing_defense": 21.07
+      },
+      "offense_score": 34.64,
+      "defense_score": 35.907,
+      "overall_score": 45.771,
+      "overall_rank": 71,
+      "offense_rank": 95,
+      "defense_rank": 95
+    },
+    {
+      "team": "UConn",
+      "conference": "FBS Independents",
+      "previous_overall_rank": 82,
+      "previous_offense_rank": 32,
+      "previous_defense_rank": 92,
+      "previous_overall_score": 44.94,
+      "previous_offense_score": 56.57,
+      "previous_defense_score": 41.48,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Syracuse"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.4719999999999995,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 63.322,
+        "rushing_offense": 55.29,
+        "passing_defense": 30.86,
+        "rushing_defense": 52.1
+      },
+      "offense_score": 59.306,
+      "defense_score": 41.48,
+      "overall_score": 45.692,
+      "overall_rank": 72,
+      "offense_rank": 24,
+      "defense_rank": 73
+    },
+    {
+      "team": "Kansas",
+      "conference": "Big 12",
+      "previous_overall_rank": 85,
+      "previous_offense_rank": 45,
+      "previous_defense_rank": 38,
+      "previous_overall_score": 44.12,
+      "previous_offense_score": 52.53,
+      "previous_defense_score": 54.18,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Utah"
+      ],
+      "top30_defense_opponents": [
+        "Utah"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.08,
+        "rushing_offense": 2.065,
+        "passing_defense": 3.54,
+        "rushing_defense": 5.015
+      },
+      "units": {
+        "passing_offense": 51.84,
+        "rushing_offense": 57.365,
+        "passing_defense": 51.52,
+        "rushing_defense": 60.395
+      },
+      "offense_score": 54.603,
+      "defense_score": 55.958,
+      "overall_score": 45.179,
+      "overall_rank": 73,
+      "offense_rank": 39,
+      "defense_rank": 40
+    },
+    {
+      "team": "Toledo",
+      "conference": "Mid-American",
+      "previous_overall_rank": 54,
+      "previous_offense_rank": 66,
+      "previous_defense_rank": 60,
+      "previous_overall_score": 52,
+      "previous_offense_score": 47.02,
+      "previous_defense_score": 48.99,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 32.76,
+        "rushing_offense": 35.28,
+        "passing_defense": 28.91,
+        "rushing_defense": 43.08
+      },
+      "offense_score": 34.02,
+      "defense_score": 35.995,
+      "overall_score": 44.851,
+      "overall_rank": 74,
+      "offense_rank": 97,
+      "defense_rank": 93
+    },
+    {
+      "team": "NC State",
+      "conference": "ACC",
+      "previous_overall_rank": 83,
+      "previous_offense_rank": 67,
+      "previous_defense_rank": 103,
+      "previous_overall_score": 44.66,
+      "previous_offense_score": 46.53,
+      "previous_defense_score": 35.48,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "App State",
+        "Wake Forest"
+      ],
+      "top30_defense_opponents": [
+        "Vanderbilt",
+        "Wake Forest"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.245,
+        "rushing_offense": 0.885,
+        "passing_defense": 1.58,
+        "rushing_defense": 7.08
+      },
+      "units": {
+        "passing_offense": 57.645,
+        "rushing_offense": 33.545,
+        "passing_defense": 28.33,
+        "rushing_defense": 45.28
+      },
+      "offense_score": 45.595,
+      "defense_score": 36.805,
+      "overall_score": 44.767,
+      "overall_rank": 75,
+      "offense_rank": 71,
+      "defense_rank": 91
+    },
+    {
+      "team": "West Virginia",
+      "conference": "Big 12",
+      "previous_overall_rank": 84,
+      "previous_offense_rank": 50,
+      "previous_defense_rank": 121,
+      "previous_overall_score": 44.59,
+      "previous_offense_score": 51.65,
+      "previous_defense_score": 29.94,
+      "conference_change": -2.5,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Virginia",
+        "Arizona"
+      ],
+      "top30_defense_opponents": [
+        "Virginia",
+        "Arizona"
+      ],
+      "quality_premiums": {
+        "passing_offense": 1.9100000000000001,
+        "rushing_offense": 0,
+        "passing_defense": 6.959999999999999,
+        "rushing_defense": 2.065
+      },
+      "units": {
+        "passing_offense": 40.13,
+        "rushing_offense": 60.08,
+        "passing_defense": 15.56,
+        "rushing_defense": 48.345
+      },
+      "offense_score": 50.105,
+      "defense_score": 31.953,
+      "overall_score": 44.719,
+      "overall_rank": 76,
+      "offense_rank": 53,
+      "defense_rank": 106
+    },
+    {
+      "team": "Army",
+      "conference": "American Athletic",
+      "previous_overall_rank": 65,
+      "previous_offense_rank": 34,
+      "previous_defense_rank": 118,
+      "previous_overall_score": 48.15,
+      "previous_offense_score": 56.24,
+      "previous_defense_score": 30.77,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "South Florida"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0.295,
+        "rushing_offense": 4.72,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 36.425,
+        "rushing_offense": 65.08,
+        "passing_defense": 22.91,
+        "rushing_defense": 22.64
+      },
+      "offense_score": 50.752,
+      "defense_score": 22.775,
+      "overall_score": 44.442,
+      "overall_rank": 77,
+      "offense_rank": 52,
+      "defense_rank": 118
+    },
+    {
+      "team": "Fresno State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 69,
+      "previous_offense_rank": 95,
+      "previous_defense_rank": 94,
+      "previous_overall_score": 47.08,
+      "previous_offense_score": 39.31,
+      "previous_defense_score": 40.75,
+      "conference_change": -6,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Boise State"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 2.36
+      },
+      "units": {
+        "passing_offense": 46.09,
+        "rushing_offense": 20.52,
+        "passing_defense": 39.98,
+        "rushing_defense": 31.88
+      },
+      "offense_score": 33.305,
+      "defense_score": 35.93,
+      "overall_score": 44.103,
+      "overall_rank": 78,
+      "offense_rank": 99,
+      "defense_rank": 94
+    },
+    {
+      "team": "Nevada",
+      "conference": "Mountain West",
+      "previous_overall_rank": 67,
+      "previous_offense_rank": 68,
+      "previous_defense_rank": 51,
+      "previous_overall_score": 47.69,
+      "previous_offense_score": 46.46,
+      "previous_defense_score": 49.95,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Middle Tennessee"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 3.3733333333333335
+      },
+      "units": {
+        "passing_offense": 25.79,
+        "rushing_offense": 49.13,
+        "passing_defense": 50.91,
+        "rushing_defense": 34.373
+      },
+      "offense_score": 37.46,
+      "defense_score": 42.641,
+      "overall_score": 43.205,
+      "overall_rank": 79,
+      "offense_rank": 87,
+      "defense_rank": 70
+    },
+    {
+      "team": "California",
+      "conference": "ACC",
+      "previous_overall_rank": 92,
+      "previous_offense_rank": 122,
+      "previous_defense_rank": 74,
+      "previous_overall_score": 43.37,
+      "previous_offense_score": 30.32,
+      "previous_defense_score": 45.98,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Clemson",
+        "Virginia Tech"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.6049999999999995,
+        "rushing_offense": 4.72,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 40.615,
+        "rushing_offense": 24.34,
+        "passing_defense": 52.79,
+        "rushing_defense": 33.17
+      },
+      "offense_score": 32.477,
+      "defense_score": 42.98,
+      "overall_score": 43.138,
+      "overall_rank": 80,
+      "offense_rank": 101,
+      "defense_rank": 68
+    },
+    {
+      "team": "South Alabama",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 72,
+      "previous_offense_rank": 31,
+      "previous_defense_rank": 130,
+      "previous_overall_score": 46.26,
+      "previous_offense_score": 57.07,
+      "previous_defense_score": 21.49,
+      "conference_change": -9,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Ohio"
+      ],
+      "top30_defense_opponents": [
+        "Tulane"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.336,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 2.5920000000000005
+      },
+      "units": {
+        "passing_offense": 56.436,
+        "rushing_offense": 46.04,
+        "passing_defense": 9.58,
+        "rushing_defense": 17.992
+      },
+      "offense_score": 51.238,
+      "defense_score": 13.786,
+      "overall_score": 42.538,
+      "overall_rank": 81,
+      "offense_rank": 51,
+      "defense_rank": 129
+    },
+    {
+      "team": "Louisiana Tech",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 89,
+      "previous_offense_rank": 108,
+      "previous_defense_rank": 81,
+      "previous_overall_score": 43.84,
+      "previous_offense_score": 35.74,
+      "previous_defense_score": 44.33,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "LSU",
+        "Army"
+      ],
+      "top30_defense_opponents": [
+        "LSU",
+        "Louisiana"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.775,
+        "rushing_offense": 9.29,
+        "passing_defense": 1.58,
+        "rushing_defense": 7.845000000000001
+      },
+      "units": {
+        "passing_offense": 43.055,
+        "rushing_offense": 27.49,
+        "passing_defense": 37.06,
+        "rushing_defense": 43.015
+      },
+      "offense_score": 35.273,
+      "defense_score": 40.038,
+      "overall_score": 42.531,
+      "overall_rank": 82,
+      "offense_rank": 92,
+      "defense_rank": 80
+    },
+    {
+      "team": "Boston College",
+      "conference": "ACC",
+      "previous_overall_rank": 95,
+      "previous_offense_rank": 90,
+      "previous_defense_rank": 23,
+      "previous_overall_score": 42.58,
+      "previous_offense_score": 41.43,
+      "previous_defense_score": 58.78,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "SMU"
+      ],
+      "top30_defense_opponents": [
+        "Virginia Tech"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 5.5200000000000005,
+        "passing_defense": 3.986666666666667,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 30.61,
+        "rushing_offense": 51.76,
+        "passing_defense": 65.867,
+        "rushing_defense": 49.69
+      },
+      "offense_score": 41.185,
+      "defense_score": 57.779,
+      "overall_score": 42.237,
+      "overall_rank": 83,
+      "offense_rank": 78,
+      "defense_rank": 30
+    },
+    {
+      "team": "Syracuse",
+      "conference": "ACC",
+      "previous_overall_rank": 96,
+      "previous_offense_rank": 71,
+      "previous_defense_rank": 52,
+      "previous_overall_score": 42.2,
+      "previous_offense_score": 46,
+      "previous_defense_score": 49.94,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Virginia"
+      ],
+      "top30_defense_opponents": [
+        "Pittsburgh"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.13,
+        "rushing_offense": 7.375,
+        "passing_defense": 0.295,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 50.25,
+        "rushing_offense": 47.245,
+        "passing_defense": 59.355,
+        "rushing_defense": 34.82
+      },
+      "offense_score": 48.748,
+      "defense_score": 47.087,
+      "overall_score": 42.171,
+      "overall_rank": 84,
+      "offense_rank": 56,
+      "defense_rank": 60
+    },
+    {
+      "team": "Georgia Tech",
+      "conference": "ACC",
+      "previous_overall_rank": 93,
+      "previous_offense_rank": 62,
+      "previous_defense_rank": 71,
+      "previous_overall_score": 42.84,
+      "previous_offense_score": 48.34,
+      "previous_defense_score": 46.36,
+      "conference_change": -3,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Duke"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.986666666666667,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 50.327,
+        "rushing_offense": 44.34,
+        "passing_defense": 44.08,
+        "rushing_defense": 42.63
+      },
+      "offense_score": 47.334,
+      "defense_score": 43.355,
+      "overall_score": 41.737,
+      "overall_rank": 85,
+      "offense_rank": 61,
+      "defense_rank": 67
+    },
+    {
+      "team": "East Carolina",
+      "conference": "American Athletic",
+      "previous_overall_rank": 74,
+      "previous_offense_rank": 118,
+      "previous_defense_rank": 25,
+      "previous_overall_score": 45.96,
+      "previous_offense_score": 32.5,
+      "previous_defense_score": 58.7,
+      "conference_change": -8,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 17.57,
+        "rushing_offense": 31.43,
+        "passing_defense": 49.99,
+        "rushing_defense": 51.41
+      },
+      "offense_score": 24.5,
+      "defense_score": 50.7,
+      "overall_score": 41.56,
+      "overall_rank": 86,
+      "offense_rank": 116,
+      "defense_rank": 53
+    },
+    {
+      "team": "Troy",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 76,
+      "previous_offense_rank": 73,
+      "previous_defense_rank": 77,
+      "previous_overall_score": 45.61,
+      "previous_offense_score": 45.25,
+      "previous_defense_score": 44.65,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Missouri"
+      ],
+      "top30_defense_opponents": [
+        "Missouri"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 1.5333333333333334,
+        "passing_defense": 4.293333333333333,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 31.62,
+        "rushing_offense": 42.403,
+        "passing_defense": 35.003,
+        "rushing_defense": 40.59
+      },
+      "offense_score": 37.011,
+      "defense_score": 37.797,
+      "overall_score": 41.46,
+      "overall_rank": 87,
+      "offense_rank": 89,
+      "defense_rank": 87
+    },
+    {
+      "team": "Texas State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 87,
+      "previous_offense_rank": 18,
+      "previous_defense_rank": 89,
+      "previous_overall_score": 43.91,
+      "previous_offense_score": 62.52,
+      "previous_defense_score": 42.34,
+      "conference_change": -6,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "North Texas"
+      ],
+      "top30_defense_opponents": [
+        "North Texas"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 3.68,
+        "passing_defense": 1.84,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 56.31,
+        "rushing_offense": 60.41,
+        "passing_defense": 24.04,
+        "rushing_defense": 50.49
+      },
+      "offense_score": 58.36,
+      "defense_score": 37.265,
+      "overall_score": 41.37,
+      "overall_rank": 88,
+      "offense_rank": 29,
+      "defense_rank": 90
+    },
+    {
+      "team": "Wyoming",
+      "conference": "Mountain West",
+      "previous_overall_rank": 73,
+      "previous_offense_rank": 60,
+      "previous_defense_rank": 100,
+      "previous_overall_score": 45.99,
+      "previous_offense_score": 49.36,
+      "previous_defense_score": 37.58,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Central Michigan"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 1.2266666666666666
+      },
+      "units": {
+        "passing_offense": 23.98,
+        "rushing_offense": 56.74,
+        "passing_defense": 35.63,
+        "rushing_defense": 22.767
+      },
+      "offense_score": 40.36,
+      "defense_score": 29.199,
+      "overall_score": 41.21,
+      "overall_rank": 89,
+      "offense_rank": 82,
+      "defense_rank": 107
+    },
+    {
+      "team": "Colorado",
+      "conference": "Big 12",
+      "previous_overall_rank": 98,
+      "previous_offense_rank": 103,
+      "previous_defense_rank": 24,
+      "previous_overall_score": 41.6,
+      "previous_offense_score": 37.15,
+      "previous_defense_score": 58.7,
+      "conference_change": -2.5,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Texas Tech"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0.30666666666666664,
+        "rushing_defense": 6.440000000000001
+      },
+      "units": {
+        "passing_offense": 37.09,
+        "rushing_offense": 32.21,
+        "passing_defense": 46.437,
+        "rushing_defense": 72.72
+      },
+      "offense_score": 34.65,
+      "defense_score": 59.578,
+      "overall_score": 41.154,
+      "overall_rank": 90,
+      "offense_rank": 94,
+      "defense_rank": 25
+    },
+    {
+      "team": "Arkansas",
+      "conference": "SEC",
+      "previous_overall_rank": 107,
+      "previous_offense_rank": 84,
+      "previous_defense_rank": 99,
+      "previous_overall_score": 36.26,
+      "previous_offense_score": 42.7,
+      "previous_defense_score": 38.37,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Georgia",
+        "Tennessee"
+      ],
+      "top30_defense_opponents": [
+        "Georgia",
+        "Texas A&M",
+        "Tennessee"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.18,
+        "rushing_offense": 6.840000000000001,
+        "passing_defense": 7.776000000000001,
+        "rushing_defense": 8.884
+      },
+      "units": {
+        "passing_offense": 49.79,
+        "rushing_offense": 48.64,
+        "passing_defense": 54.496,
+        "rushing_defense": 38.904
+      },
+      "offense_score": 49.215,
+      "defense_score": 46.7,
+      "overall_score": 40.342,
+      "overall_rank": 91,
+      "offense_rank": 55,
+      "defense_rank": 61
+    },
+    {
+      "team": "Utah State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 102,
+      "previous_offense_rank": 123,
+      "previous_defense_rank": 46,
+      "previous_overall_score": 40.64,
+      "previous_offense_score": 27.01,
+      "previous_defense_score": 51.92,
+      "conference_change": -6,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Utah",
+        "Boise State"
+      ],
+      "top30_defense_opponents": [
+        "Washington",
+        "Utah",
+        "Troy"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.9879999999999995,
+        "rushing_offense": 3.624,
+        "passing_defense": 4.896,
+        "rushing_defense": 6.0680000000000005
+      },
+      "units": {
+        "passing_offense": 24.628,
+        "rushing_offense": 28.004,
+        "passing_defense": 51.896,
+        "rushing_defense": 50.918
+      },
+      "offense_score": 26.316,
+      "defense_score": 51.407,
+      "overall_score": 40.308,
+      "overall_rank": 92,
+      "offense_rank": 115,
+      "defense_rank": 49
+    },
+    {
+      "team": "Florida International",
+      "conference": "Conference USA",
+      "previous_overall_rank": 70,
+      "previous_offense_rank": 119,
+      "previous_defense_rank": 18,
+      "previous_overall_score": 46.8,
+      "previous_offense_score": 32.07,
+      "previous_defense_score": 63.35,
+      "conference_change": -12,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 31.25,
+        "rushing_offense": 8.89,
+        "passing_defense": 48.8,
+        "rushing_defense": 53.9
+      },
+      "offense_score": 20.07,
+      "defense_score": 51.35,
+      "overall_score": 40.2,
+      "overall_rank": 93,
+      "offense_rank": 123,
+      "defense_rank": 51
+    },
+    {
+      "team": "Maryland",
+      "conference": "Big Ten",
+      "previous_overall_rank": 108,
+      "previous_offense_rank": 112,
+      "previous_defense_rank": 85,
+      "previous_overall_score": 35.69,
+      "previous_offense_score": 34.03,
+      "previous_defense_score": 43.29,
+      "conference_change": 0,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "UCLA",
+        "Nebraska",
+        "Ohio State"
+      ],
+      "top30_defense_opponents": [
+        "Virginia Tech",
+        "Nebraska",
+        "Ohio State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 8.511999999999999,
+        "rushing_offense": 6.272000000000001,
+        "passing_defense": 8.52,
+        "rushing_defense": 9.312000000000001
+      },
+      "units": {
+        "passing_offense": 47.722,
+        "rushing_offense": 35.122,
+        "passing_defense": 52.73,
+        "rushing_defense": 51.692
+      },
+      "offense_score": 41.422,
+      "defense_score": 52.211,
+      "overall_score": 40.176,
+      "overall_rank": 94,
+      "offense_rank": 77,
+      "defense_rank": 47
+    },
+    {
+      "team": "Navy",
+      "conference": "American Athletic",
+      "previous_overall_rank": 86,
+      "previous_offense_rank": 63,
+      "previous_defense_rank": 53,
+      "previous_overall_score": 44.02,
+      "previous_offense_score": 48.3,
+      "previous_defense_score": 49.89,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Florida Atlantic"
+      ],
+      "top30_defense_opponents": [
+        "Air Force",
+        "Tulsa"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0.295,
+        "rushing_offense": 0.59,
+        "passing_defense": 0,
+        "rushing_defense": 1.77
+      },
+      "units": {
+        "passing_offense": 22.485,
+        "rushing_offense": 59.01,
+        "passing_defense": 30.12,
+        "rushing_defense": 55.44
+      },
+      "offense_score": 40.748,
+      "defense_score": 42.78,
+      "overall_score": 39.988,
+      "overall_rank": 95,
+      "offense_rank": 80,
+      "defense_rank": 69
+    },
+    {
+      "team": "Tulsa",
+      "conference": "American Athletic",
+      "previous_overall_rank": 91,
+      "previous_offense_rank": 91,
+      "previous_defense_rank": 86,
+      "previous_overall_score": 43.72,
+      "previous_offense_score": 40.88,
+      "previous_defense_score": 42.75,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "North Texas"
+      ],
+      "top30_defense_opponents": [
+        "Sam Houston"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 1.77,
+        "passing_defense": 1.18,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 23.76,
+        "rushing_offense": 43.76,
+        "passing_defense": 32.89,
+        "rushing_defense": 37.79
+      },
+      "offense_score": 33.76,
+      "defense_score": 35.34,
+      "overall_score": 39.724,
+      "overall_rank": 96,
+      "offense_rank": 98,
+      "defense_rank": 97
+    },
+    {
+      "team": "Western Michigan",
+      "conference": "Mid-American",
+      "previous_overall_rank": 75,
+      "previous_offense_rank": 105,
+      "previous_defense_rank": 98,
+      "previous_overall_score": 45.93,
+      "previous_offense_score": 36.46,
+      "previous_defense_score": 39,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Boise State"
+      ],
+      "top30_defense_opponents": [
+        "Boise State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 1.475,
+        "passing_defense": 0,
+        "rushing_defense": 3.8350000000000004
+      },
+      "units": {
+        "passing_offense": 17.1,
+        "rushing_offense": 31.295,
+        "passing_defense": 24.61,
+        "rushing_defense": 31.235
+      },
+      "offense_score": 24.198,
+      "defense_score": 27.922,
+      "overall_score": 39.511,
+      "overall_rank": 97,
+      "offense_rank": 117,
+      "defense_rank": 109
+    },
+    {
+      "team": "App State",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 88,
+      "previous_offense_rank": 124,
+      "previous_defense_rank": 55,
+      "previous_overall_score": 43.89,
+      "previous_offense_score": 26.44,
+      "previous_defense_score": 49.23,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 32.69,
+        "rushing_offense": 2.19,
+        "passing_defense": 45.56,
+        "rushing_defense": 34.9
+      },
+      "offense_score": 17.44,
+      "defense_score": 40.23,
+      "overall_score": 38.94,
+      "overall_rank": 98,
+      "offense_rank": 125,
+      "defense_rank": 79
+    },
+    {
+      "team": "Ohio",
+      "conference": "Mid-American",
+      "previous_overall_rank": 78,
+      "previous_offense_rank": 74,
+      "previous_defense_rank": 110,
+      "previous_overall_score": 45.44,
+      "previous_offense_score": 44.78,
+      "previous_defense_score": 31.75,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Central Michigan"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 2.6550000000000002
+      },
+      "units": {
+        "passing_offense": 18.24,
+        "rushing_offense": 45.32,
+        "passing_defense": 12.66,
+        "rushing_defense": 27.495
+      },
+      "offense_score": 31.78,
+      "defense_score": 20.078,
+      "overall_score": 38.655,
+      "overall_rank": 99,
+      "offense_rank": 103,
+      "defense_rank": 122
+    },
+    {
+      "team": "Tulane",
+      "conference": "American Athletic",
+      "previous_overall_rank": 99,
+      "previous_offense_rank": 106,
+      "previous_defense_rank": 97,
+      "previous_overall_score": 41.54,
+      "previous_offense_score": 36.26,
+      "previous_defense_score": 39.04,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Kansas State",
+        "Army"
+      ],
+      "top30_defense_opponents": [
+        "Kansas State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 5.3100000000000005,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 5.14
+      },
+      "units": {
+        "passing_offense": 24.93,
+        "rushing_offense": 36.89,
+        "passing_defense": 32.8,
+        "rushing_defense": 34.43
+      },
+      "offense_score": 30.91,
+      "defense_score": 33.615,
+      "overall_score": 38.577,
+      "overall_rank": 100,
+      "offense_rank": 104,
+      "defense_rank": 100
+    },
+    {
+      "team": "San Jose State",
+      "conference": "Mountain West",
+      "previous_overall_rank": 97,
+      "previous_offense_rank": 110,
+      "previous_defense_rank": 72,
+      "previous_overall_score": 41.73,
+      "previous_offense_score": 34.99,
+      "previous_defense_score": 46.33,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Wyoming"
+      ],
+      "top30_defense_opponents": [
+        "Fresno State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 1.84,
+        "passing_defense": 0,
+        "rushing_defense": 7.973333333333334
+      },
+      "units": {
+        "passing_offense": 39.08,
+        "rushing_offense": 14.74,
+        "passing_defense": 45.16,
+        "rushing_defense": 37.483
+      },
+      "offense_score": 26.91,
+      "defense_score": 41.322,
+      "overall_score": 38.131,
+      "overall_rank": 101,
+      "offense_rank": 112,
+      "defense_rank": 75
+    },
+    {
+      "team": "UAB",
+      "conference": "American Athletic",
+      "previous_overall_rank": 101,
+      "previous_offense_rank": 101,
+      "previous_defense_rank": 87,
+      "previous_overall_score": 40.65,
+      "previous_offense_score": 37.4,
+      "previous_defense_score": 42.7,
+      "conference_change": -8,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Memphis"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 7.08,
+        "rushing_defense": 2.95
+      },
+      "units": {
+        "passing_offense": 17.99,
+        "rushing_offense": 40.81,
+        "passing_defense": 55.15,
+        "rushing_defense": 24.28
+      },
+      "offense_score": 29.4,
+      "defense_score": 39.715,
+      "overall_score": 37.629,
+      "overall_rank": 102,
+      "offense_rank": 108,
+      "defense_rank": 83
+    },
+    {
+      "team": "Stanford",
+      "conference": "ACC",
+      "previous_overall_rank": 112,
+      "previous_offense_rank": 100,
+      "previous_defense_rank": 123,
+      "previous_overall_score": 34.82,
+      "previous_offense_score": 37.49,
+      "previous_defense_score": 27.41,
+      "conference_change": -3,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Notre Dame"
+      ],
+      "top30_defense_opponents": [
+        "Notre Dame"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.670000000000001,
+        "rushing_offense": 7.08,
+        "passing_defense": 7.375,
+        "rushing_defense": 7.965000000000001
+      },
+      "units": {
+        "passing_offense": 48.52,
+        "rushing_offense": 35.21,
+        "passing_defense": 37.215,
+        "rushing_defense": 26.945
+      },
+      "offense_score": 41.865,
+      "defense_score": 32.08,
+      "overall_score": 37.307,
+      "overall_rank": 103,
+      "offense_rank": 76,
+      "defense_rank": 104
+    },
+    {
+      "team": "Temple",
+      "conference": "American Athletic",
+      "previous_overall_rank": 104,
+      "previous_offense_rank": 55,
+      "previous_defense_rank": 114,
+      "previous_overall_score": 38.11,
+      "previous_offense_score": 50.81,
+      "previous_defense_score": 31.38,
+      "conference_change": -8,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Penn State",
+        "Army"
+      ],
+      "top30_defense_opponents": [
+        "Penn State",
+        "Toledo",
+        "South Florida"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.168,
+        "rushing_offense": 7.312,
+        "passing_defense": 8.568,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 40.628,
+        "rushing_offense": 55.462,
+        "passing_defense": 27.738,
+        "rushing_defense": 27.59
+      },
+      "offense_score": 48.045,
+      "defense_score": 27.664,
+      "overall_score": 36.328,
+      "overall_rank": 104,
+      "offense_rank": 58,
+      "defense_rank": 110
+    },
+    {
+      "team": "Marshall",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 103,
+      "previous_offense_rank": 64,
+      "previous_defense_rank": 124,
+      "previous_overall_score": 38.92,
+      "previous_offense_score": 47.63,
+      "previous_defense_score": 25.87,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "James Madison"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.784999999999999,
+        "rushing_offense": 4.425000000000001,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 43.135,
+        "rushing_offense": 45.335,
+        "passing_defense": 12.01,
+        "rushing_defense": 21.73
+      },
+      "offense_score": 44.235,
+      "defense_score": 16.87,
+      "overall_score": 35.511,
+      "overall_rank": 105,
+      "offense_rank": 74,
+      "defense_rank": 124
+    },
+    {
+      "team": "Massachusetts",
+      "conference": "Mid-American",
+      "previous_overall_rank": 94,
+      "previous_offense_rank": 79,
+      "previous_defense_rank": 76,
+      "previous_overall_score": 42.61,
+      "previous_offense_score": 43.76,
+      "previous_defense_score": 45.03,
+      "conference_change": -13,
+      "opponents_evaluated": 2,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 39.32,
+        "rushing_offense": 22.21,
+        "passing_defense": 36.15,
+        "rushing_defense": 27.91
+      },
+      "offense_score": 30.765,
+      "defense_score": 32.03,
+      "overall_score": 35.461,
+      "overall_rank": 106,
+      "offense_rank": 105,
+      "defense_rank": 105
+    },
+    {
+      "team": "Rutgers",
+      "conference": "Big Ten",
+      "previous_overall_rank": 119,
+      "previous_offense_rank": 61,
+      "previous_defense_rank": 116,
+      "previous_overall_score": 32.33,
+      "previous_offense_score": 48.66,
+      "previous_defense_score": 31.09,
+      "conference_change": 0,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Boston College",
+        "USC",
+        "Indiana"
+      ],
+      "top30_defense_opponents": [
+        "USC",
+        "Indiana"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 7.426666666666666,
+        "passing_defense": 10.153333333333332,
+        "rushing_defense": 1.06
+      },
+      "units": {
+        "passing_offense": 56.07,
+        "rushing_offense": 48.667,
+        "passing_defense": 41.733,
+        "rushing_defense": 31.66
+      },
+      "offense_score": 52.368,
+      "defense_score": 36.697,
+      "overall_score": 34.892,
+      "overall_rank": 107,
+      "offense_rank": 48,
+      "defense_rank": 92
+    },
+    {
+      "team": "Miami (OH)",
+      "conference": "Mid-American",
+      "previous_overall_rank": 100,
+      "previous_offense_rank": 96,
+      "previous_defense_rank": 101,
+      "previous_overall_score": 40.69,
+      "previous_offense_score": 39.17,
+      "previous_defense_score": 36.64,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Cincinnati",
+        "Massachusetts"
+      ],
+      "top30_defense_opponents": [
+        "UConn"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0.59,
+        "rushing_offense": 0,
+        "passing_defense": 2.065,
+        "rushing_defense": 1.475
+      },
+      "units": {
+        "passing_offense": 32.98,
+        "rushing_offense": 19.95,
+        "passing_defense": 17.445,
+        "rushing_defense": 33.365
+      },
+      "offense_score": 26.465,
+      "defense_score": 25.405,
+      "overall_score": 34.106,
+      "overall_rank": 108,
+      "offense_rank": 114,
+      "defense_rank": 114
+    },
+    {
+      "team": "Georgia Southern",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 106,
+      "previous_offense_rank": 88,
+      "previous_defense_rank": 95,
+      "previous_overall_score": 37.02,
+      "previous_offense_score": 41.58,
+      "previous_defense_score": 40.45,
+      "conference_change": -9,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Jacksonville State",
+        "Houston",
+        "James Madison"
+      ],
+      "top30_defense_opponents": [
+        "James Madison"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.032,
+        "rushing_offense": 0,
+        "passing_defense": 4.32,
+        "rushing_defense": 3.484
+      },
+      "units": {
+        "passing_offense": 40.042,
+        "rushing_offense": 29.15,
+        "passing_defense": 34.98,
+        "rushing_defense": 35.724
+      },
+      "offense_score": 34.596,
+      "defense_score": 35.352,
+      "overall_score": 33.697,
+      "overall_rank": 109,
+      "offense_rank": 96,
+      "defense_rank": 96
+    },
+    {
+      "team": "Arkansas State",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 111,
+      "previous_offense_rank": 51,
+      "previous_defense_rank": 131,
+      "previous_overall_score": 35.18,
+      "previous_offense_score": 51.34,
+      "previous_defense_score": 20.86,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "South Alabama"
+      ],
+      "top30_defense_opponents": [
+        "Louisiana"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.065,
+        "rushing_offense": 7.670000000000001,
+        "passing_defense": 4.72,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 50.145,
+        "rushing_offense": 44.26,
+        "passing_defense": 13.71,
+        "rushing_defense": 14.73
+      },
+      "offense_score": 47.203,
+      "defense_score": 14.22,
+      "overall_score": 32.216,
+      "overall_rank": 110,
+      "offense_rank": 64,
+      "defense_rank": 128
+    },
+    {
+      "team": "Eastern Michigan",
+      "conference": "Mid-American",
+      "previous_overall_rank": 105,
+      "previous_offense_rank": 102,
+      "previous_defense_rank": 111,
+      "previous_overall_score": 37.62,
+      "previous_offense_score": 37.29,
+      "previous_defense_score": 31.59,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Michigan State",
+        "Massachusetts"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 7.535,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 14.66,
+        "rushing_offense": 41.445,
+        "passing_defense": 11.09,
+        "rushing_defense": 26.09
+      },
+      "offense_score": 28.053,
+      "defense_score": 18.59,
+      "overall_score": 31.505,
+      "overall_rank": 111,
+      "offense_rank": 110,
+      "defense_rank": 123
+    },
+    {
+      "team": "Coastal Carolina",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 109,
+      "previous_offense_rank": 85,
+      "previous_defense_rank": 112,
+      "previous_overall_score": 35.49,
+      "previous_offense_score": 41.98,
+      "previous_defense_score": 31.49,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Liberty"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 2.6550000000000002,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 30.83,
+        "rushing_offense": 35.13,
+        "passing_defense": 21.265,
+        "rushing_defense": 26.37
+      },
+      "offense_score": 32.98,
+      "defense_score": 23.818,
+      "overall_score": 30.905,
+      "overall_rank": 112,
+      "offense_rank": 100,
+      "defense_rank": 117
+    },
+    {
+      "team": "Colorado State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 118,
+      "previous_offense_rank": 47,
+      "previous_defense_rank": 136,
+      "previous_overall_score": 33.44,
+      "previous_offense_score": 52.2,
+      "previous_defense_score": 10.21,
+      "conference_change": -6,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "BYU"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 5.213333333333333
+      },
+      "units": {
+        "passing_offense": 44.96,
+        "rushing_offense": 47.45,
+        "passing_defense": -4.05,
+        "rushing_defense": 17.693
+      },
+      "offense_score": 46.205,
+      "defense_score": 6.822,
+      "overall_score": 30.86,
+      "overall_rank": 113,
+      "offense_rank": 67,
+      "defense_rank": 136
+    },
+    {
+      "team": "New Mexico State",
+      "conference": "Conference USA",
+      "previous_overall_rank": 110,
+      "previous_offense_rank": 109,
+      "previous_defense_rank": 84,
+      "previous_overall_score": 35.18,
+      "previous_offense_score": 35.52,
+      "previous_defense_score": 43.37,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Hawai'i"
+      ],
+      "top30_defense_opponents": [
+        "Hawai'i",
+        "New Mexico",
+        "Florida International"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.475000000000001,
+        "rushing_offense": 5.015,
+        "passing_defense": 0,
+        "rushing_defense": 4.425000000000001
+      },
+      "units": {
+        "passing_offense": 23.775,
+        "rushing_offense": 34.755,
+        "passing_defense": 32.68,
+        "rushing_defense": 34.495
+      },
+      "offense_score": 29.265,
+      "defense_score": 33.587,
+      "overall_score": 30.77,
+      "overall_rank": 114,
+      "offense_rank": 109,
+      "defense_rank": 101
+    },
+    {
+      "team": "Hawai'i",
+      "conference": "Mountain West",
+      "previous_overall_rank": 114,
+      "previous_offense_rank": 99,
+      "previous_defense_rank": 102,
+      "previous_overall_score": 34.74,
+      "previous_offense_score": 38.42,
+      "previous_defense_score": 35.58,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Wyoming"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 4.72
+      },
+      "units": {
+        "passing_offense": 24.14,
+        "rushing_offense": 34.7,
+        "passing_defense": 34.1,
+        "rushing_defense": 23.77
+      },
+      "offense_score": 29.42,
+      "defense_score": 28.935,
+      "overall_score": 30.438,
+      "overall_rank": 115,
+      "offense_rank": 106,
+      "defense_rank": 108
+    },
+    {
+      "team": "San Diego State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 121,
+      "previous_offense_rank": 130,
+      "previous_defense_rank": 119,
+      "previous_overall_score": 31.05,
+      "previous_offense_score": 21.92,
+      "previous_defense_score": 30.66,
+      "conference_change": -6,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "UCLA",
+        "Texas State",
+        "Oregon State"
+      ],
+      "top30_defense_opponents": [
+        "UCLA"
+      ],
+      "quality_premiums": {
+        "passing_offense": 1.1520000000000001,
+        "rushing_offense": 1.44,
+        "passing_defense": 6.18,
+        "rushing_defense": 8.864
+      },
+      "units": {
+        "passing_offense": 7.812,
+        "rushing_offense": 26.62,
+        "passing_defense": 25.38,
+        "rushing_defense": 38.974
+      },
+      "offense_score": 17.216,
+      "defense_score": 32.177,
+      "overall_score": 30.174,
+      "overall_rank": 116,
+      "offense_rank": 126,
+      "defense_rank": 103
+    },
+    {
+      "team": "Old Dominion",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 115,
+      "previous_offense_rank": 135,
+      "previous_defense_rank": 37,
+      "previous_overall_score": 33.9,
+      "previous_offense_score": 11.15,
+      "previous_defense_score": 55.62,
+      "conference_change": -9,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Georgia State"
+      ],
+      "top30_defense_opponents": [
+        "James Madison",
+        "Georgia State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 4.255999999999999,
+        "rushing_offense": 0,
+        "passing_defense": 4.32,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 3.406,
+        "rushing_offense": 5.16,
+        "passing_defense": 52.64,
+        "rushing_defense": 44.91
+      },
+      "offense_score": 4.283,
+      "defense_score": 48.775,
+      "overall_score": 30.129,
+      "overall_rank": 117,
+      "offense_rank": 136,
+      "defense_rank": 57
+    },
+    {
+      "team": "Central Michigan",
+      "conference": "Mid-American",
+      "previous_overall_rank": 113,
+      "previous_offense_rank": 117,
+      "previous_defense_rank": 133,
+      "previous_overall_score": 34.79,
+      "previous_offense_score": 32.78,
+      "previous_defense_score": 20.24,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Miami",
+        "Ohio"
+      ],
+      "top30_defense_opponents": [
+        "Miami"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0.885,
+        "passing_defense": 7.08,
+        "rushing_defense": 4.425000000000001
+      },
+      "units": {
+        "passing_offense": -7.77,
+        "rushing_offense": 48.205,
+        "passing_defense": 27.48,
+        "rushing_defense": -1.495
+      },
+      "offense_score": 20.218,
+      "defense_score": 12.992,
+      "overall_score": 29.342,
+      "overall_rank": 118,
+      "offense_rank": 122,
+      "defense_rank": 130
+    },
+    {
+      "team": "Middle Tennessee",
+      "conference": "Conference USA",
+      "previous_overall_rank": 117,
+      "previous_offense_rank": 115,
+      "previous_defense_rank": 113,
+      "previous_overall_score": 33.57,
+      "previous_offense_score": 33.05,
+      "previous_defense_score": 31.4,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Nevada",
+        "Jacksonville State"
+      ],
+      "top30_defense_opponents": [
+        "Jacksonville State",
+        "Kansas"
+      ],
+      "quality_premiums": {
+        "passing_offense": 1.475,
+        "rushing_offense": 0.295,
+        "passing_defense": 4.13,
+        "rushing_defense": 7.375
+      },
+      "units": {
+        "passing_offense": 19.495,
+        "rushing_offense": 24.385,
+        "passing_defense": 33.23,
+        "rushing_defense": 17.075
+      },
+      "offense_score": 21.94,
+      "defense_score": 25.152,
+      "overall_score": 28.797,
+      "overall_rank": 119,
+      "offense_rank": 118,
+      "defense_rank": 116
+    },
+    {
+      "team": "Delaware",
+      "conference": "Conference USA",
+      "previous_overall_rank": 116,
+      "previous_offense_rank": 120,
+      "previous_defense_rank": 108,
+      "previous_overall_score": 33.57,
+      "previous_offense_score": 31.42,
+      "previous_defense_score": 32.58,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Virginia",
+        "Liberty"
+      ],
+      "top30_defense_opponents": [
+        "Liberty"
+      ],
+      "quality_premiums": {
+        "passing_offense": 3.245,
+        "rushing_offense": 0,
+        "passing_defense": 6.945,
+        "rushing_defense": 2.57
+      },
+      "units": {
+        "passing_offense": 27.745,
+        "rushing_offense": 14.33,
+        "passing_defense": 29.415,
+        "rushing_defense": 21.27
+      },
+      "offense_score": 21.038,
+      "defense_score": 25.343,
+      "overall_score": 28.725,
+      "overall_rank": 120,
+      "offense_rank": 120,
+      "defense_rank": 115
+    },
+    {
+      "team": "Buffalo",
+      "conference": "Mid-American",
+      "previous_overall_rank": 120,
+      "previous_offense_rank": 129,
+      "previous_defense_rank": 104,
+      "previous_overall_score": 32.28,
+      "previous_offense_score": 22.16,
+      "previous_defense_score": 35.4,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Penn State"
+      ],
+      "top30_defense_opponents": [
+        "Penn State",
+        "Toledo"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.195000000000001,
+        "rushing_offense": 5.870000000000001,
+        "passing_defense": 8.26,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 13.765,
+        "rushing_offense": 16.63,
+        "passing_defense": 28.61,
+        "rushing_defense": 24.45
+      },
+      "offense_score": 15.197,
+      "defense_score": 26.53,
+      "overall_score": 27.926,
+      "overall_rank": 121,
+      "offense_rank": 128,
+      "defense_rank": 113
+    },
+    {
+      "team": "Rice",
+      "conference": "American Athletic",
+      "previous_overall_rank": 125,
+      "previous_offense_rank": 126,
+      "previous_defense_rank": 70,
+      "previous_overall_score": 28.08,
+      "previous_offense_score": 25.48,
+      "previous_defense_score": 46.4,
+      "conference_change": -8,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "Notre Dame"
+      ],
+      "top30_defense_opponents": [
+        "Notre Dame",
+        "Fresno State",
+        "East Carolina"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.016,
+        "rushing_offense": 5.5760000000000005,
+        "passing_defense": 3.744,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 5.226,
+        "rushing_offense": 37.316,
+        "passing_defense": 51.064,
+        "rushing_defense": 29.49
+      },
+      "offense_score": 21.271,
+      "defense_score": 40.277,
+      "overall_score": 25.239,
+      "overall_rank": 122,
+      "offense_rank": 119,
+      "defense_rank": 78
+    },
+    {
+      "team": "Washington State",
+      "conference": "Pac-12",
+      "previous_overall_rank": 126,
+      "previous_offense_rank": 134,
+      "previous_defense_rank": 65,
+      "previous_overall_score": 28.04,
+      "previous_offense_score": 14.32,
+      "previous_defense_score": 48.31,
+      "conference_change": -6,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 6.35,
+        "rushing_offense": 10.28,
+        "passing_defense": 41.37,
+        "rushing_defense": 43.26
+      },
+      "offense_score": 8.315,
+      "defense_score": 42.315,
+      "overall_score": 24.74,
+      "overall_rank": 123,
+      "offense_rank": 134,
+      "defense_rank": 71
+    },
+    {
+      "team": "Kennesaw State",
+      "conference": "Conference USA",
+      "previous_overall_rank": 122,
+      "previous_offense_rank": 92,
+      "previous_defense_rank": 117,
+      "previous_overall_score": 29.83,
+      "previous_offense_score": 40.08,
+      "previous_defense_score": 30.99,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Tennessee",
+        "Jacksonville State"
+      ],
+      "top30_defense_opponents": [
+        "Tennessee"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.6550000000000002,
+        "rushing_offense": 0,
+        "passing_defense": 3.245,
+        "rushing_defense": 3.8350000000000004
+      },
+      "units": {
+        "passing_offense": 28.145,
+        "rushing_offense": 30.67,
+        "passing_defense": 17.235,
+        "rushing_defense": 27.825
+      },
+      "offense_score": 29.407,
+      "defense_score": 22.53,
+      "overall_score": 24.568,
+      "overall_rank": 124,
+      "offense_rank": 107,
+      "defense_rank": 119
+    },
+    {
+      "team": "Bowling Green",
+      "conference": "Mid-American",
+      "previous_overall_rank": 123,
+      "previous_offense_rank": 132,
+      "previous_defense_rank": 115,
+      "previous_overall_score": 29.27,
+      "previous_offense_score": 20.05,
+      "previous_defense_score": 31.32,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Nebraska",
+        "Miami (OH)"
+      ],
+      "top30_defense_opponents": [
+        "Nebraska"
+      ],
+      "quality_premiums": {
+        "passing_offense": 6.195000000000001,
+        "rushing_offense": 0,
+        "passing_defense": 0.9550000000000001,
+        "rushing_defense": 6.195000000000001
+      },
+      "units": {
+        "passing_offense": 19.185,
+        "rushing_offense": 1.12,
+        "passing_defense": 35.635,
+        "rushing_defense": 8.165
+      },
+      "offense_score": 10.152,
+      "defense_score": 21.9,
+      "overall_score": 23.958,
+      "overall_rank": 125,
+      "offense_rank": 132,
+      "defense_rank": 120
+    },
+    {
+      "team": "Western Kentucky",
+      "conference": "Conference USA",
+      "previous_overall_rank": 124,
+      "previous_offense_rank": 127,
+      "previous_defense_rank": 122,
+      "previous_overall_score": 29.13,
+      "previous_offense_score": 25.05,
+      "previous_defense_score": 29.45,
+      "conference_change": -12,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Indiana"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 8.850000000000001,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 12.77,
+        "rushing_offense": 13.32,
+        "passing_defense": 38.54,
+        "rushing_defense": 5.22
+      },
+      "offense_score": 13.045,
+      "defense_score": 21.88,
+      "overall_score": 23.747,
+      "overall_rank": 126,
+      "offense_rank": 130,
+      "defense_rank": 121
+    },
+    {
+      "team": "Southern Miss",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 127,
+      "previous_offense_rank": 78,
+      "previous_defense_rank": 126,
+      "previous_overall_score": 27.47,
+      "previous_offense_score": 43.91,
+      "previous_defense_score": 25.32,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [
+        "Auburn"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 3.8350000000000004,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 38.35,
+        "rushing_offense": 35.295,
+        "passing_defense": 29.76,
+        "rushing_defense": 2.87
+      },
+      "offense_score": 36.823,
+      "defense_score": 16.315,
+      "overall_score": 23.045,
+      "overall_rank": 127,
+      "offense_rank": 90,
+      "defense_rank": 125
+    },
+    {
+      "team": "Sam Houston",
+      "conference": "Conference USA",
+      "previous_overall_rank": 128,
+      "previous_offense_rank": 125,
+      "previous_defense_rank": 91,
+      "previous_overall_score": 27.15,
+      "previous_offense_score": 26.3,
+      "previous_defense_score": 41.51,
+      "conference_change": -12,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Tulsa",
+        "Liberty"
+      ],
+      "top30_defense_opponents": [
+        "Tulsa",
+        "Liberty"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.8533333333333335,
+        "rushing_offense": 1.2266666666666666,
+        "passing_defense": 3.3466666666666667,
+        "rushing_defense": 7.053333333333333
+      },
+      "units": {
+        "passing_offense": 28.443,
+        "rushing_offense": 4.237,
+        "passing_defense": 54.247,
+        "rushing_defense": 15.163
+      },
+      "offense_score": 16.34,
+      "defense_score": 34.705,
+      "overall_score": 22.54,
+      "overall_rank": 128,
+      "offense_rank": 127,
+      "defense_rank": 98
+    },
+    {
+      "team": "Kent State",
+      "conference": "Mid-American",
+      "previous_overall_rank": 131,
+      "previous_offense_rank": 131,
+      "previous_defense_rank": 128,
+      "previous_overall_score": 25.15,
+      "previous_offense_score": 20.34,
+      "previous_defense_score": 22.9,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Ohio State",
+        "Ohio"
+      ],
+      "top30_defense_opponents": [
+        "Ohio State"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.375,
+        "rushing_offense": 0,
+        "passing_defense": 5.6049999999999995,
+        "rushing_defense": 5.9
+      },
+      "units": {
+        "passing_offense": 25.825,
+        "rushing_offense": -3.78,
+        "passing_defense": 3.955,
+        "rushing_defense": 27.36
+      },
+      "offense_score": 11.022,
+      "defense_score": 15.657,
+      "overall_score": 20.596,
+      "overall_rank": 129,
+      "offense_rank": 131,
+      "defense_rank": 127
+    },
+    {
+      "team": "UL Monroe",
+      "conference": "Sun Belt",
+      "previous_overall_rank": 132,
+      "previous_offense_rank": 104,
+      "previous_defense_rank": 134,
+      "previous_overall_score": 24.01,
+      "previous_offense_score": 36.77,
+      "previous_defense_score": 17.79,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "UAB"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 3.68
+      },
+      "units": {
+        "passing_offense": 31.16,
+        "rushing_offense": 24.37,
+        "passing_defense": 6.85,
+        "rushing_defense": 14.4
+      },
+      "offense_score": 27.765,
+      "defense_score": 10.625,
+      "overall_score": 19.563,
+      "overall_rank": 130,
+      "offense_rank": 111,
+      "defense_rank": 134
+    },
+    {
+      "team": "Missouri State",
+      "conference": "Conference USA",
+      "previous_overall_rank": 130,
+      "previous_offense_rank": 121,
+      "previous_defense_rank": 127,
+      "previous_overall_score": 25.26,
+      "previous_offense_score": 31.06,
+      "previous_defense_score": 24.57,
+      "conference_change": -12,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 11.64,
+        "rushing_offense": 26.48,
+        "passing_defense": 9.19,
+        "rushing_defense": 15.95
+      },
+      "offense_score": 19.06,
+      "defense_score": 12.57,
+      "overall_score": 18.66,
+      "overall_rank": 131,
+      "offense_rank": 124,
+      "defense_rank": 132
+    },
+    {
+      "team": "Northern Illinois",
+      "conference": "Mountain West",
+      "previous_overall_rank": 133,
+      "previous_offense_rank": 111,
+      "previous_defense_rank": 135,
+      "previous_overall_score": 23.07,
+      "previous_offense_score": 34.11,
+      "previous_defense_score": 17.05,
+      "conference_change": -9,
+      "opponents_evaluated": 3,
+      "top30_offense_opponents": [
+        "Georgia State"
+      ],
+      "top30_defense_opponents": [
+        "Georgia State",
+        "Air Force"
+      ],
+      "quality_premiums": {
+        "passing_offense": 2.806666666666667,
+        "rushing_offense": 0,
+        "passing_defense": 0.92,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 29.327,
+        "rushing_offense": 23.7,
+        "passing_defense": 8.55,
+        "rushing_defense": 8.46
+      },
+      "offense_score": 26.514,
+      "defense_score": 8.505,
+      "overall_score": 18.631,
+      "overall_rank": 132,
+      "offense_rank": 113,
+      "defense_rank": 135
+    },
+    {
+      "team": "Akron",
+      "conference": "Mid-American",
+      "previous_overall_rank": 129,
+      "previous_offense_rank": 113,
+      "previous_defense_rank": 125,
+      "previous_overall_score": 25.61,
+      "previous_offense_score": 33.96,
+      "previous_defense_score": 25.67,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 13.13,
+        "rushing_offense": 28.79,
+        "passing_defense": 20.09,
+        "rushing_defense": 5.25
+      },
+      "offense_score": 20.96,
+      "defense_score": 12.67,
+      "overall_score": 18.46,
+      "overall_rank": 133,
+      "offense_rank": 121,
+      "defense_rank": 131
+    },
+    {
+      "team": "Charlotte",
+      "conference": "American Athletic",
+      "previous_overall_rank": 135,
+      "previous_offense_rank": 133,
+      "previous_defense_rank": 109,
+      "previous_overall_score": 20.81,
+      "previous_offense_score": 16.53,
+      "previous_defense_score": 32.02,
+      "conference_change": -8,
+      "opponents_evaluated": 5,
+      "top30_offense_opponents": [
+        "App State",
+        "Memphis",
+        "North Texas"
+      ],
+      "top30_defense_opponents": [],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 0,
+        "passing_defense": 5.716000000000001,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 15.87,
+        "rushing_offense": 1.19,
+        "passing_defense": 17.126,
+        "rushing_defense": 36.63
+      },
+      "offense_score": 8.53,
+      "defense_score": 26.878,
+      "overall_score": 17.196,
+      "overall_rank": 134,
+      "offense_rank": 133,
+      "defense_rank": 111
+    },
+    {
+      "team": "Ball State",
+      "conference": "Mid-American",
+      "previous_overall_rank": 134,
+      "previous_offense_rank": 128,
+      "previous_defense_rank": 132,
+      "previous_overall_score": 21.07,
+      "previous_offense_score": 23.79,
+      "previous_defense_score": 20.74,
+      "conference_change": -13,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "Toledo",
+        "Northwestern"
+      ],
+      "top30_defense_opponents": [
+        "Toledo"
+      ],
+      "quality_premiums": {
+        "passing_offense": 0,
+        "rushing_offense": 5.9,
+        "passing_defense": 6.285,
+        "rushing_defense": 0
+      },
+      "units": {
+        "passing_offense": 16.39,
+        "rushing_offense": 11.09,
+        "passing_defense": 4.855,
+        "rushing_defense": 16.91
+      },
+      "offense_score": 13.74,
+      "defense_score": 10.883,
+      "overall_score": 15.596,
+      "overall_rank": 135,
+      "offense_rank": 129,
+      "defense_rank": 133
+    },
+    {
+      "team": "UTEP",
+      "conference": "Mountain West",
+      "previous_overall_rank": 136,
+      "previous_offense_rank": 136,
+      "previous_defense_rank": 129,
+      "previous_overall_score": 17.54,
+      "previous_offense_score": 10.23,
+      "previous_defense_score": 22.41,
+      "conference_change": -9,
+      "opponents_evaluated": 4,
+      "top30_offense_opponents": [
+        "New Mexico",
+        "Nevada"
+      ],
+      "top30_defense_opponents": [
+        "Michigan",
+        "New Mexico"
+      ],
+      "quality_premiums": {
+        "passing_offense": 7.555,
+        "rushing_offense": 0,
+        "passing_defense": 0,
+        "rushing_defense": 4.55
+      },
+      "units": {
+        "passing_offense": 6.385,
+        "rushing_offense": 3.62,
+        "passing_defense": 2.88,
+        "rushing_defense": 28.48
+      },
+      "offense_score": 5.002,
+      "defense_score": 15.68,
+      "overall_score": 14.252,
+      "overall_rank": 136,
+      "offense_rank": 135,
+      "defense_rank": 126
+    }
+  ]
+}
