@@ -88,11 +88,13 @@ def main():
 
     # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
     market_by_id = {}
+    successful_line_weeks = set()
     for week in sorted({int(g.get("week") or 0) for g in fixtures.values()}):
         if week < 1:
             continue
         try:
             offers = request("/lines", year=year, seasonType="regular", week=week)
+            successful_line_weeks.add(week)
         except Exception as exc:
             print(f"Lines unavailable for week {week}: {exc}; leaving existing market unchanged")
             continue
@@ -152,6 +154,8 @@ def main():
         # Refresh current available spread and O/U; do not invent prices or claim opening lines.
         if game_id in market_by_id:
             row["market"] = {**(row.get("market") or {}), **market_by_id[game_id]}
+        elif int(g.get("week") or 0) in successful_line_weeks:
+            row["market"] = {"spread": None, "total": None, "home_moneyline": None, "away_moneyline": None, "provider": None, "line_type": "unavailable"}
         elif not cached:
             row["market"]["line_type"] = "unavailable"
         games.append(row)
