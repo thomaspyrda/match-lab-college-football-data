@@ -88,10 +88,10 @@ def build_factors(away, home, rows, conference_game=False, neutral_site=False):
             if isinstance(off_rank, int) and isinstance(def_rank, int):
                 gap = abs(off_rank - def_rank)
                 if gap >= 12:
-                    edge_side = off_side if off_rank < def_rank else def_side
+                    edge_side = off_side if off_rank > def_rank else def_side
                     edges.append((gap, {"type": "matchup_edge", "metric": row["label"],
                                         "team": away["name"] if edge_side == "away" else home["name"],
-                                        "edge_unit": "offense" if off_rank < def_rank else "defense",
+                                        "edge_unit": "offense" if off_rank > def_rank else "defense",
                                         "offense_side": off_side, "direction": "rank gap", "gap": gap}))
     factors = [item for _, item in sorted(edges, key=lambda entry: entry[0], reverse=True)[:5]]
     if conference_game:
