@@ -383,7 +383,7 @@ def write_live_data_pages(now):
             "rank":rank,
             "team":r.get("team"),
             "strength":score,
-            "sd":f'{r.get("team_strength_sd"):+.2f}' if r.get("team_strength_sd") is not None else "—",
+
             "offense":r.get("offensive_strength"),
             "defense":r.get("defensive_strength"),
             "sos":r.get("schedule_strength_rank"),
@@ -392,7 +392,7 @@ def write_live_data_pages(now):
         })
     strength_rows=sorted(strength_rows,key=lambda r:(r["rank"] or 999,r["team"]))
     d=ROOT/"college-football-team-strength-rankings"; d.mkdir(exist_ok=True)
-    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("sd","SD"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
+    table=ranking_table(strength_rows,[("rank","Rank"),("team","Team"),("sos","SOS"),("strength","Team Strength"),("offense","Offense"),("defense","Defense"),("ap","AP"),("record","Record")])
     body=f"""<p class="eyebrow">CFB MATCH LAB · LIVE DATA</p><h1>{season} College Football Team Strength Rankings</h1>
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_hero()}
@@ -447,8 +447,7 @@ def write_live_data_pages(now):
                     if r.get(key) is None:
                         raise ValueError(f"Missing frozen unit metric {key}: {r.get('team')}")
                     row[key]=r[key]
-            else:
-                row["sd"]=f'{r.get("offensive_strength_sd"):+.2f}' if is_offense and r.get("offensive_strength_sd") is not None else (f'{r.get("defensive_strength_sd"):+.2f}' if not is_offense and r.get("defensive_strength_sd") is not None else "—")
+
             rows.append(row)
         rows=sorted(rows,key=lambda r:(r["rank"] or 999,r["team"]))
         d=ROOT/slug_name
@@ -458,8 +457,6 @@ def write_live_data_pages(now):
         columns=[("rank","Rank"),("team","Team"),("ap","AP"),("score",label)]
         if frozen:
             columns.extend(unit_fields)
-        else:
-            columns.append(("sd","SD"))
         columns.extend([("opp_quality",opponent_label),("sos_rank","SOS Rank"),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
         table=ranking_table(rows,columns)
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
