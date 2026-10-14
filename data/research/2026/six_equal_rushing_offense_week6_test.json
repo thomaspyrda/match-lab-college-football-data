@@ -1,0 +1,4919 @@
+{
+  "title": "2026 Week 6 rushing offense six-metric equal-weight test",
+  "season": 2026,
+  "through_week": 6,
+  "status": "research_only",
+  "weights": {
+    "success_rate": 0.16666666666666666,
+    "epa_ppa": 0.16666666666666666,
+    "adjusted_line_yards": 0.16666666666666666,
+    "stuff_rate_avoidance": 0.16666666666666666,
+    "second_level_and_open_field": 0.16666666666666666,
+    "explosive_rushing": 0.16666666666666666
+  },
+  "method": "For each team, use arithmetic means of FBS-opponent game metrics through Week 6. Calculate 0–100 cross-team percentile for each source metric; composite of second-level and open-field percentiles; take exact equal mean of six metrics; add aggressive conference adjustment and original 0–12 point pregame opposing rush-defense top-30 premium (65% max, 35% mean). Stuff avoidance is already a higher-is-better negative rate. No manual team overrides.",
+  "limitations": [
+    "Game-level equal weighting rather than rushing-play weighting; Week 1 included for metrics while opponent-premium data only Weeks 2–6.",
+    "Six metrics have equal weights in base; conference and opponent adjustments are additive external adjustments.",
+    "These source metrics may differ from user-reported season ranks due to timeframe, FBS-only scope, and data definitions.",
+    "Opponent premium rewards facing a top rushing defense irrespective of performance against it; predictive validation not yet performed."
+  ],
+  "rows": [
+    {
+      "team": "Alabama",
+      "conference": "SEC",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.5313822751322751,
+        "off_rushing_ppa": 0.3043502150601794,
+        "off_line_yards": 3.3506080146705144,
+        "off_stuff_avoidance": -0.1513428932178932,
+        "off_second_level_yards": 1.2370598845598846,
+        "off_open_field_yards": 1.741574975949976,
+        "off_rushing_explosiveness": 1.0873956436774854
+      },
+      "pct": {
+        "off_rushing_success": 97.77777777777777,
+        "off_rushing_ppa": 97.77777777777777,
+        "off_line_yards": 85.18518518518519,
+        "off_stuff_avoidance": 74.81481481481481,
+        "off_second_level_yards": 84.44444444444444,
+        "off_open_field_yards": 86.66666666666667,
+        "off_rushing_explosiveness": 85.92592592592592
+      },
+      "metric_scores": {
+        "success_rate": 97.778,
+        "epa_ppa": 97.778,
+        "adjusted_line_yards": 85.185,
+        "stuff_rate_avoidance": 74.815,
+        "second_level_and_open_field": 85.556,
+        "explosive_rushing": 85.926
+      },
+      "equal_six_metric_score": 87.84,
+      "opponent_rushing_defense_bonus": 8.12,
+      "conference_adjustment": 0,
+      "adjusted_score": 95.96,
+      "rank": 1
+    },
+    {
+      "team": "UCLA",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5294712876591087,
+        "off_rushing_ppa": 0.2963461171334129,
+        "off_line_yards": 3.674784625417788,
+        "off_stuff_avoidance": -0.12740989181194612,
+        "off_second_level_yards": 1.380925595965948,
+        "off_open_field_yards": 2.1795825035810363,
+        "off_rushing_explosiveness": 1.0303163129504538
+      },
+      "pct": {
+        "off_rushing_success": 97.03703703703704,
+        "off_rushing_ppa": 97.03703703703704,
+        "off_line_yards": 99.25925925925925,
+        "off_stuff_avoidance": 88.88888888888889,
+        "off_second_level_yards": 97.03703703703704,
+        "off_open_field_yards": 94.81481481481481,
+        "off_rushing_explosiveness": 77.03703703703704
+      },
+      "metric_scores": {
+        "success_rate": 97.037,
+        "epa_ppa": 97.037,
+        "adjusted_line_yards": 99.259,
+        "stuff_rate_avoidance": 88.889,
+        "second_level_and_open_field": 95.926,
+        "explosive_rushing": 77.037
+      },
+      "equal_six_metric_score": 92.531,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 92.531,
+      "rank": 2
+    },
+    {
+      "team": "Nebraska",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5105787476280834,
+        "off_rushing_ppa": 0.37033002298258255,
+        "off_line_yards": 3.314280834914611,
+        "off_stuff_avoidance": -0.177865275142315,
+        "off_second_level_yards": 1.392561669829222,
+        "off_open_field_yards": 1.983434535104364,
+        "off_rushing_explosiveness": 1.2300578501834092
+      },
+      "pct": {
+        "off_rushing_success": 91.85185185185185,
+        "off_rushing_ppa": 100,
+        "off_line_yards": 84.44444444444444,
+        "off_stuff_avoidance": 54.81481481481482,
+        "off_second_level_yards": 97.77777777777777,
+        "off_open_field_yards": 91.85185185185185,
+        "off_rushing_explosiveness": 93.33333333333333
+      },
+      "metric_scores": {
+        "success_rate": 91.852,
+        "epa_ppa": 100,
+        "adjusted_line_yards": 84.444,
+        "stuff_rate_avoidance": 54.815,
+        "second_level_and_open_field": 94.815,
+        "explosive_rushing": 93.333
+      },
+      "equal_six_metric_score": 86.543,
+      "opponent_rushing_defense_bonus": 4.425,
+      "conference_adjustment": 0,
+      "adjusted_score": 90.968,
+      "rank": 3
+    },
+    {
+      "team": "Utah",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5030163955116931,
+        "off_rushing_ppa": 0.34770626223216566,
+        "off_line_yards": 3.448641324262263,
+        "off_stuff_avoidance": -0.2014857541853951,
+        "off_second_level_yards": 1.4082383680216273,
+        "off_open_field_yards": 2.079362704384079,
+        "off_rushing_explosiveness": 1.2765505971877091
+      },
+      "pct": {
+        "off_rushing_success": 89.62962962962963,
+        "off_rushing_ppa": 98.51851851851852,
+        "off_line_yards": 92.5925925925926,
+        "off_stuff_avoidance": 38.51851851851852,
+        "off_second_level_yards": 98.51851851851852,
+        "off_open_field_yards": 94.07407407407408,
+        "off_rushing_explosiveness": 96.29629629629629
+      },
+      "metric_scores": {
+        "success_rate": 89.63,
+        "epa_ppa": 98.519,
+        "adjusted_line_yards": 92.593,
+        "stuff_rate_avoidance": 38.519,
+        "second_level_and_open_field": 96.296,
+        "explosive_rushing": 96.296
+      },
+      "equal_six_metric_score": 85.309,
+      "opponent_rushing_defense_bonus": 8.105,
+      "conference_adjustment": -4,
+      "adjusted_score": 89.414,
+      "rank": 4
+    },
+    {
+      "team": "South Carolina",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4776602229188436,
+        "off_rushing_ppa": 0.21253511654614443,
+        "off_line_yards": 3.4147683733890632,
+        "off_stuff_avoidance": -0.1513161534206159,
+        "off_second_level_yards": 1.1255191365992583,
+        "off_open_field_yards": 2.0773393160817095,
+        "off_rushing_explosiveness": 1.0045912567402382
+      },
+      "pct": {
+        "off_rushing_success": 80,
+        "off_rushing_ppa": 85.18518518518519,
+        "off_line_yards": 90.37037037037037,
+        "off_stuff_avoidance": 75.55555555555556,
+        "off_second_level_yards": 68.14814814814815,
+        "off_open_field_yards": 93.33333333333333,
+        "off_rushing_explosiveness": 68.14814814814815
+      },
+      "metric_scores": {
+        "success_rate": 80,
+        "epa_ppa": 85.185,
+        "adjusted_line_yards": 90.37,
+        "stuff_rate_avoidance": 75.556,
+        "second_level_and_open_field": 80.741,
+        "explosive_rushing": 68.148
+      },
+      "equal_six_metric_score": 80,
+      "opponent_rushing_defense_bonus": 9.22,
+      "conference_adjustment": 0,
+      "adjusted_score": 89.22,
+      "rank": 5
+    },
+    {
+      "team": "Florida State",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4754383500056198,
+        "off_rushing_ppa": 0.27429644350371474,
+        "off_line_yards": 3.3685767933306914,
+        "off_stuff_avoidance": -0.14818117283768034,
+        "off_second_level_yards": 1.130420129789462,
+        "off_open_field_yards": 1.3966553850203796,
+        "off_rushing_explosiveness": 1.0764896438197473
+      },
+      "pct": {
+        "off_rushing_success": 79.25925925925925,
+        "off_rushing_ppa": 95.55555555555556,
+        "off_line_yards": 87.4074074074074,
+        "off_stuff_avoidance": 80,
+        "off_second_level_yards": 69.62962962962963,
+        "off_open_field_yards": 71.11111111111111,
+        "off_rushing_explosiveness": 83.70370370370371
+      },
+      "metric_scores": {
+        "success_rate": 79.259,
+        "epa_ppa": 95.556,
+        "adjusted_line_yards": 87.407,
+        "stuff_rate_avoidance": 80,
+        "second_level_and_open_field": 70.37,
+        "explosive_rushing": 83.704
+      },
+      "equal_six_metric_score": 82.716,
+      "opponent_rushing_defense_bonus": 8.893,
+      "conference_adjustment": -5,
+      "adjusted_score": 86.609,
+      "rank": 6
+    },
+    {
+      "team": "Georgia",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5369395711500975,
+        "off_rushing_ppa": 0.20623384599863695,
+        "off_line_yards": 3.6132943469785572,
+        "off_stuff_avoidance": -0.10136452241715399,
+        "off_second_level_yards": 1.2109161793372318,
+        "off_open_field_yards": 1.3607212475633528,
+        "off_rushing_explosiveness": 0.7203529108590837
+      },
+      "pct": {
+        "off_rushing_success": 98.51851851851852,
+        "off_rushing_ppa": 82.22222222222223,
+        "off_line_yards": 97.03703703703704,
+        "off_stuff_avoidance": 97.77777777777777,
+        "off_second_level_yards": 81.48148148148148,
+        "off_open_field_yards": 67.4074074074074,
+        "off_rushing_explosiveness": 14.074074074074074
+      },
+      "metric_scores": {
+        "success_rate": 98.519,
+        "epa_ppa": 82.222,
+        "adjusted_line_yards": 97.037,
+        "stuff_rate_avoidance": 97.778,
+        "second_level_and_open_field": 74.444,
+        "explosive_rushing": 14.074
+      },
+      "equal_six_metric_score": 77.346,
+      "opponent_rushing_defense_bonus": 8.828,
+      "conference_adjustment": 0,
+      "adjusted_score": 86.174,
+      "rank": 7
+    },
+    {
+      "team": "Tennessee",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4803030303030303,
+        "off_rushing_ppa": 0.2723994977126175,
+        "off_line_yards": 3.3818686868686867,
+        "off_stuff_avoidance": -0.15,
+        "off_second_level_yards": 1.2297979797979797,
+        "off_open_field_yards": 1.3868686868686868,
+        "off_rushing_explosiveness": 1.0126953708267772
+      },
+      "pct": {
+        "off_rushing_success": 81.48148148148148,
+        "off_rushing_ppa": 94.81481481481481,
+        "off_line_yards": 89.62962962962963,
+        "off_stuff_avoidance": 77.03703703703704,
+        "off_second_level_yards": 83.70370370370371,
+        "off_open_field_yards": 68.14814814814815,
+        "off_rushing_explosiveness": 71.11111111111111
+      },
+      "metric_scores": {
+        "success_rate": 81.481,
+        "epa_ppa": 94.815,
+        "adjusted_line_yards": 89.63,
+        "stuff_rate_avoidance": 77.037,
+        "second_level_and_open_field": 75.926,
+        "explosive_rushing": 71.111
+      },
+      "equal_six_metric_score": 81.667,
+      "opponent_rushing_defense_bonus": 2.592,
+      "conference_adjustment": 0,
+      "adjusted_score": 84.259,
+      "rank": 8
+    },
+    {
+      "team": "Notre Dame",
+      "conference": "FBS Independents",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.5638547533708823,
+        "off_rushing_ppa": 0.3488862530599295,
+        "off_line_yards": 3.359575972862263,
+        "off_stuff_avoidance": -0.0955879842976617,
+        "off_second_level_yards": 0.9569401775046936,
+        "off_open_field_yards": 1.393795869602321,
+        "off_rushing_explosiveness": 0.9764034062968107
+      },
+      "pct": {
+        "off_rushing_success": 100,
+        "off_rushing_ppa": 99.25925925925925,
+        "off_line_yards": 86.66666666666667,
+        "off_stuff_avoidance": 99.25925925925925,
+        "off_second_level_yards": 36.2962962962963,
+        "off_open_field_yards": 68.88888888888889,
+        "off_rushing_explosiveness": 60
+      },
+      "metric_scores": {
+        "success_rate": 100,
+        "epa_ppa": 99.259,
+        "adjusted_line_yards": 86.667,
+        "stuff_rate_avoidance": 99.259,
+        "second_level_and_open_field": 52.593,
+        "explosive_rushing": 60
+      },
+      "equal_six_metric_score": 82.963,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -1.5,
+      "adjusted_score": 81.463,
+      "rank": 9
+    },
+    {
+      "team": "Mississippi State",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4898395721925134,
+        "off_rushing_ppa": 0.21056763150568064,
+        "off_line_yards": 3.1537349970291144,
+        "off_stuff_avoidance": -0.1858526440879382,
+        "off_second_level_yards": 1.1588175876411169,
+        "off_open_field_yards": 1.5956743909685085,
+        "off_rushing_explosiveness": 0.9552258837112936
+      },
+      "pct": {
+        "off_rushing_success": 84.44444444444444,
+        "off_rushing_ppa": 84.44444444444444,
+        "off_line_yards": 74.81481481481481,
+        "off_stuff_avoidance": 48.148148148148145,
+        "off_second_level_yards": 75.55555555555556,
+        "off_open_field_yards": 79.25925925925925,
+        "off_rushing_explosiveness": 55.55555555555556
+      },
+      "metric_scores": {
+        "success_rate": 84.444,
+        "epa_ppa": 84.444,
+        "adjusted_line_yards": 74.815,
+        "stuff_rate_avoidance": 48.148,
+        "second_level_and_open_field": 77.407,
+        "explosive_rushing": 55.556
+      },
+      "equal_six_metric_score": 70.802,
+      "opponent_rushing_defense_bonus": 8.68,
+      "conference_adjustment": 0,
+      "adjusted_score": 79.482,
+      "rank": 10
+    },
+    {
+      "team": "Kansas State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5293010752688172,
+        "off_rushing_ppa": 0.23206169904765644,
+        "off_line_yards": 3.2476702508960575,
+        "off_stuff_avoidance": -0.1403225806451613,
+        "off_second_level_yards": 1.2279121863799283,
+        "off_open_field_yards": 2.2319444444444443,
+        "off_rushing_explosiveness": 0.9439759388859026
+      },
+      "pct": {
+        "off_rushing_success": 96.29629629629629,
+        "off_rushing_ppa": 91.85185185185185,
+        "off_line_yards": 80,
+        "off_stuff_avoidance": 85.18518518518519,
+        "off_second_level_yards": 82.96296296296296,
+        "off_open_field_yards": 96.29629629629629,
+        "off_rushing_explosiveness": 53.333333333333336
+      },
+      "metric_scores": {
+        "success_rate": 96.296,
+        "epa_ppa": 91.852,
+        "adjusted_line_yards": 80,
+        "stuff_rate_avoidance": 85.185,
+        "second_level_and_open_field": 89.63,
+        "explosive_rushing": 53.333
+      },
+      "equal_six_metric_score": 82.716,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 78.716,
+      "rank": 11
+    },
+    {
+      "team": "BYU",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5163497758047257,
+        "off_rushing_ppa": 0.2945556563234247,
+        "off_line_yards": 3.3129278054472713,
+        "off_stuff_avoidance": -0.18322020574523357,
+        "off_second_level_yards": 1.2874395530124116,
+        "off_open_field_yards": 1.6670744715794772,
+        "off_rushing_explosiveness": 1.0641387817852075
+      },
+      "pct": {
+        "off_rushing_success": 94.81481481481481,
+        "off_rushing_ppa": 96.29629629629629,
+        "off_line_yards": 83.70370370370371,
+        "off_stuff_avoidance": 49.629629629629626,
+        "off_second_level_yards": 91.85185185185185,
+        "off_open_field_yards": 82.96296296296296,
+        "off_rushing_explosiveness": 81.48148148148148
+      },
+      "metric_scores": {
+        "success_rate": 94.815,
+        "epa_ppa": 96.296,
+        "adjusted_line_yards": 83.704,
+        "stuff_rate_avoidance": 49.63,
+        "second_level_and_open_field": 87.407,
+        "explosive_rushing": 81.481
+      },
+      "equal_six_metric_score": 82.222,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 78.222,
+      "rank": 12
+    },
+    {
+      "team": "Auburn",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.438671679197995,
+        "off_rushing_ppa": 0.1590080750002141,
+        "off_line_yards": 3.269715538847118,
+        "off_stuff_avoidance": -0.1524812030075188,
+        "off_second_level_yards": 1.2553383458646616,
+        "off_open_field_yards": 1.6254385964912281,
+        "off_rushing_explosiveness": 1.075955943883876
+      },
+      "pct": {
+        "off_rushing_success": 61.48148148148148,
+        "off_rushing_ppa": 74.81481481481481,
+        "off_line_yards": 81.48148148148148,
+        "off_stuff_avoidance": 74.07407407407408,
+        "off_second_level_yards": 87.4074074074074,
+        "off_open_field_yards": 80.74074074074075,
+        "off_rushing_explosiveness": 82.96296296296296
+      },
+      "metric_scores": {
+        "success_rate": 61.481,
+        "epa_ppa": 74.815,
+        "adjusted_line_yards": 81.481,
+        "stuff_rate_avoidance": 74.074,
+        "second_level_and_open_field": 84.074,
+        "explosive_rushing": 82.963
+      },
+      "equal_six_metric_score": 76.481,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 76.481,
+      "rank": 13
+    },
+    {
+      "team": "Ohio State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.4984622345455474,
+        "off_rushing_ppa": 0.15253511434565,
+        "off_line_yards": 3.2711896037392694,
+        "off_stuff_avoidance": -0.15077238798744919,
+        "off_second_level_yards": 1.0245326874511895,
+        "off_open_field_yards": 0.8185680871919797,
+        "off_rushing_explosiveness": 0.893523283823081
+      },
+      "pct": {
+        "off_rushing_success": 88.14814814814815,
+        "off_rushing_ppa": 72.5925925925926,
+        "off_line_yards": 82.22222222222223,
+        "off_stuff_avoidance": 76.29629629629629,
+        "off_second_level_yards": 48.148148148148145,
+        "off_open_field_yards": 37.03703703703704,
+        "off_rushing_explosiveness": 42.22222222222222
+      },
+      "metric_scores": {
+        "success_rate": 88.148,
+        "epa_ppa": 72.593,
+        "adjusted_line_yards": 82.222,
+        "stuff_rate_avoidance": 76.296,
+        "second_level_and_open_field": 42.593,
+        "explosive_rushing": 42.222
+      },
+      "equal_six_metric_score": 67.346,
+      "opponent_rushing_defense_bonus": 7.776,
+      "conference_adjustment": 0,
+      "adjusted_score": 75.122,
+      "rank": 14
+    },
+    {
+      "team": "Kentucky",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4874824325298709,
+        "off_rushing_ppa": 0.14093213914013974,
+        "off_line_yards": 2.9688906905870853,
+        "off_stuff_avoidance": -0.1664633869187949,
+        "off_second_level_yards": 1.0020408293653076,
+        "off_open_field_yards": 1.7360658724226083,
+        "off_rushing_explosiveness": 0.8986908490996022
+      },
+      "pct": {
+        "off_rushing_success": 82.96296296296296,
+        "off_rushing_ppa": 68.88888888888889,
+        "off_line_yards": 50.370370370370374,
+        "off_stuff_avoidance": 65.92592592592592,
+        "off_second_level_yards": 45.18518518518518,
+        "off_open_field_yards": 85.92592592592592,
+        "off_rushing_explosiveness": 46.666666666666664
+      },
+      "metric_scores": {
+        "success_rate": 82.963,
+        "epa_ppa": 68.889,
+        "adjusted_line_yards": 50.37,
+        "stuff_rate_avoidance": 65.926,
+        "second_level_and_open_field": 65.556,
+        "explosive_rushing": 46.667
+      },
+      "equal_six_metric_score": 63.395,
+      "opponent_rushing_defense_bonus": 10.236,
+      "conference_adjustment": 0,
+      "adjusted_score": 73.631,
+      "rank": 15
+    },
+    {
+      "team": "Illinois",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.44961496836496834,
+        "off_rushing_ppa": 0.12222531979262415,
+        "off_line_yards": 3.2526973026973023,
+        "off_stuff_avoidance": -0.1274017649017649,
+        "off_second_level_yards": 1.0616466866466867,
+        "off_open_field_yards": 1.0605394605394605,
+        "off_rushing_explosiveness": 0.8770082666559487
+      },
+      "pct": {
+        "off_rushing_success": 68.14814814814815,
+        "off_rushing_ppa": 64.44444444444444,
+        "off_line_yards": 80.74074074074075,
+        "off_stuff_avoidance": 89.62962962962963,
+        "off_second_level_yards": 54.81481481481482,
+        "off_open_field_yards": 48.888888888888886,
+        "off_rushing_explosiveness": 37.77777777777778
+      },
+      "metric_scores": {
+        "success_rate": 68.148,
+        "epa_ppa": 64.444,
+        "adjusted_line_yards": 80.741,
+        "stuff_rate_avoidance": 89.63,
+        "second_level_and_open_field": 51.852,
+        "explosive_rushing": 37.778
+      },
+      "equal_six_metric_score": 65.432,
+      "opponent_rushing_defense_bonus": 6.785,
+      "conference_adjustment": 0,
+      "adjusted_score": 72.217,
+      "rank": 16
+    },
+    {
+      "team": "West Virginia",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.45572042534337615,
+        "off_rushing_ppa": 0.1505863983058628,
+        "off_line_yards": 3.172453965440851,
+        "off_stuff_avoidance": -0.15606734603455913,
+        "off_second_level_yards": 1.150896174863388,
+        "off_open_field_yards": 1.594100575985822,
+        "off_rushing_explosiveness": 1.041129403718931
+      },
+      "pct": {
+        "off_rushing_success": 73.33333333333333,
+        "off_rushing_ppa": 71.11111111111111,
+        "off_line_yards": 75.55555555555556,
+        "off_stuff_avoidance": 71.85185185185185,
+        "off_second_level_yards": 74.07407407407408,
+        "off_open_field_yards": 78.51851851851852,
+        "off_rushing_explosiveness": 79.25925925925925
+      },
+      "metric_scores": {
+        "success_rate": 73.333,
+        "epa_ppa": 71.111,
+        "adjusted_line_yards": 75.556,
+        "stuff_rate_avoidance": 71.852,
+        "second_level_and_open_field": 76.296,
+        "explosive_rushing": 79.259
+      },
+      "equal_six_metric_score": 74.568,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 70.568,
+      "rank": 17
+    },
+    {
+      "team": "Ole Miss",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5167727406692044,
+        "off_rushing_ppa": 0.17049241054727626,
+        "off_line_yards": 2.9063772013586022,
+        "off_stuff_avoidance": -0.20363892630093972,
+        "off_second_level_yards": 1.1631725929796444,
+        "off_open_field_yards": 0.8334008981080938,
+        "off_rushing_explosiveness": 0.961260953470007
+      },
+      "pct": {
+        "off_rushing_success": 95.55555555555556,
+        "off_rushing_ppa": 76.29629629629629,
+        "off_line_yards": 45.925925925925924,
+        "off_stuff_avoidance": 36.2962962962963,
+        "off_second_level_yards": 77.03703703703704,
+        "off_open_field_yards": 38.51851851851852,
+        "off_rushing_explosiveness": 57.03703703703704
+      },
+      "metric_scores": {
+        "success_rate": 95.556,
+        "epa_ppa": 76.296,
+        "adjusted_line_yards": 45.926,
+        "stuff_rate_avoidance": 36.296,
+        "second_level_and_open_field": 57.778,
+        "explosive_rushing": 57.037
+      },
+      "equal_six_metric_score": 61.481,
+      "opponent_rushing_defense_bonus": 8.85,
+      "conference_adjustment": 0,
+      "adjusted_score": 70.331,
+      "rank": 18
+    },
+    {
+      "team": "Texas Tech",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5062138999520404,
+        "off_rushing_ppa": 0.2013974545456339,
+        "off_line_yards": 3.1326580756372024,
+        "off_stuff_avoidance": -0.21166009828248916,
+        "off_second_level_yards": 1.3669832697346929,
+        "off_open_field_yards": 1.7252243329093424,
+        "off_rushing_explosiveness": 0.9907959990626958
+      },
+      "pct": {
+        "off_rushing_success": 91.11111111111111,
+        "off_rushing_ppa": 81.48148148148148,
+        "off_line_yards": 71.11111111111111,
+        "off_stuff_avoidance": 28.88888888888889,
+        "off_second_level_yards": 95.55555555555556,
+        "off_open_field_yards": 85.18518518518519,
+        "off_rushing_explosiveness": 64.44444444444444
+      },
+      "metric_scores": {
+        "success_rate": 91.111,
+        "epa_ppa": 81.481,
+        "adjusted_line_yards": 71.111,
+        "stuff_rate_avoidance": 28.889,
+        "second_level_and_open_field": 90.37,
+        "explosive_rushing": 64.444
+      },
+      "equal_six_metric_score": 71.235,
+      "opponent_rushing_defense_bonus": 2.95,
+      "conference_adjustment": -4,
+      "adjusted_score": 70.185,
+      "rank": 19
+    },
+    {
+      "team": "Northwestern",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.45516612442078275,
+        "off_rushing_ppa": 0.1673818595177125,
+        "off_line_yards": 2.8826635364290643,
+        "off_stuff_avoidance": -0.18865843438824803,
+        "off_second_level_yards": 1.2129177758059746,
+        "off_open_field_yards": 1.6258010450557032,
+        "off_rushing_explosiveness": 0.9684142758052078
+      },
+      "pct": {
+        "off_rushing_success": 72.5925925925926,
+        "off_rushing_ppa": 75.55555555555556,
+        "off_line_yards": 44.44444444444444,
+        "off_stuff_avoidance": 46.666666666666664,
+        "off_second_level_yards": 82.22222222222223,
+        "off_open_field_yards": 81.48148148148148,
+        "off_rushing_explosiveness": 59.25925925925926
+      },
+      "metric_scores": {
+        "success_rate": 72.593,
+        "epa_ppa": 75.556,
+        "adjusted_line_yards": 44.444,
+        "stuff_rate_avoidance": 46.667,
+        "second_level_and_open_field": 81.852,
+        "explosive_rushing": 59.259
+      },
+      "equal_six_metric_score": 63.395,
+      "opponent_rushing_defense_bonus": 6.465,
+      "conference_adjustment": 0,
+      "adjusted_score": 69.86,
+      "rank": 20
+    },
+    {
+      "team": "Cincinnati",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3911697621375041,
+        "off_rushing_ppa": 0.15616251520179839,
+        "off_line_yards": 3.1200065167807103,
+        "off_stuff_avoidance": -0.14750325839035516,
+        "off_second_level_yards": 1.1733870967741935,
+        "off_open_field_yards": 1.685850439882698,
+        "off_rushing_explosiveness": 1.2997199037055027
+      },
+      "pct": {
+        "off_rushing_success": 38.51851851851852,
+        "off_rushing_ppa": 74.07407407407408,
+        "off_line_yards": 69.62962962962963,
+        "off_stuff_avoidance": 80.74074074074075,
+        "off_second_level_yards": 78.51851851851852,
+        "off_open_field_yards": 83.70370370370371,
+        "off_rushing_explosiveness": 98.51851851851852
+      },
+      "metric_scores": {
+        "success_rate": 38.519,
+        "epa_ppa": 74.074,
+        "adjusted_line_yards": 69.63,
+        "stuff_rate_avoidance": 80.741,
+        "second_level_and_open_field": 81.111,
+        "explosive_rushing": 98.519
+      },
+      "equal_six_metric_score": 73.765,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 69.765,
+      "rank": 21
+    },
+    {
+      "team": "Miami",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4969721889952153,
+        "off_rushing_ppa": 0.2137365835751954,
+        "off_line_yards": 3.6160935007974477,
+        "off_stuff_avoidance": -0.11712519936204147,
+        "off_second_level_yards": 1.1137235845295055,
+        "off_open_field_yards": 0.8018465909090908,
+        "off_rushing_explosiveness": 0.8321218013742115
+      },
+      "pct": {
+        "off_rushing_success": 87.4074074074074,
+        "off_rushing_ppa": 85.92592592592592,
+        "off_line_yards": 97.77777777777777,
+        "off_stuff_avoidance": 93.33333333333333,
+        "off_second_level_yards": 66.66666666666667,
+        "off_open_field_yards": 34.074074074074076,
+        "off_rushing_explosiveness": 28.14814814814815
+      },
+      "metric_scores": {
+        "success_rate": 87.407,
+        "epa_ppa": 85.926,
+        "adjusted_line_yards": 97.778,
+        "stuff_rate_avoidance": 93.333,
+        "second_level_and_open_field": 50.37,
+        "explosive_rushing": 28.148
+      },
+      "equal_six_metric_score": 73.827,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 68.827,
+      "rank": 22
+    },
+    {
+      "team": "Army",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5132646525034696,
+        "off_rushing_ppa": 0.22788124695840503,
+        "off_line_yards": 3.353271417872544,
+        "off_stuff_avoidance": -0.12815178042838982,
+        "off_second_level_yards": 1.0755353659365081,
+        "off_open_field_yards": 1.2263606358233774,
+        "off_rushing_explosiveness": 0.8827229265791107
+      },
+      "pct": {
+        "off_rushing_success": 93.33333333333333,
+        "off_rushing_ppa": 91.11111111111111,
+        "off_line_yards": 85.92592592592592,
+        "off_stuff_avoidance": 88.14814814814815,
+        "off_second_level_yards": 57.77777777777778,
+        "off_open_field_yards": 61.48148148148148,
+        "off_rushing_explosiveness": 39.25925925925926
+      },
+      "metric_scores": {
+        "success_rate": 93.333,
+        "epa_ppa": 91.111,
+        "adjusted_line_yards": 85.926,
+        "stuff_rate_avoidance": 88.148,
+        "second_level_and_open_field": 59.63,
+        "explosive_rushing": 39.259
+      },
+      "equal_six_metric_score": 76.235,
+      "opponent_rushing_defense_bonus": 4.72,
+      "conference_adjustment": -13,
+      "adjusted_score": 67.955,
+      "rank": 23
+    },
+    {
+      "team": "New Mexico",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4486268939393939,
+        "off_rushing_ppa": 0.21770440027641616,
+        "off_line_yards": 3.3105823863636363,
+        "off_stuff_avoidance": -0.1143465909090909,
+        "off_second_level_yards": 1.125,
+        "off_open_field_yards": 0.7402935606060606,
+        "off_rushing_explosiveness": 1.2014386164074833
+      },
+      "pct": {
+        "off_rushing_success": 67.4074074074074,
+        "off_rushing_ppa": 88.14814814814815,
+        "off_line_yards": 82.96296296296296,
+        "off_stuff_avoidance": 94.07407407407408,
+        "off_second_level_yards": 67.4074074074074,
+        "off_open_field_yards": 25.925925925925927,
+        "off_rushing_explosiveness": 91.85185185185185
+      },
+      "metric_scores": {
+        "success_rate": 67.407,
+        "epa_ppa": 88.148,
+        "adjusted_line_yards": 82.963,
+        "stuff_rate_avoidance": 94.074,
+        "second_level_and_open_field": 46.667,
+        "explosive_rushing": 91.852
+      },
+      "equal_six_metric_score": 78.519,
+      "opponent_rushing_defense_bonus": 4.293,
+      "conference_adjustment": -15,
+      "adjusted_score": 67.812,
+      "rank": 24
+    },
+    {
+      "team": "Wake Forest",
+      "conference": "ACC",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.47894322069734363,
+        "off_rushing_ppa": 0.22038352596384628,
+        "off_line_yards": 3.1494198413613703,
+        "off_stuff_avoidance": -0.16824680608413742,
+        "off_second_level_yards": 1.1913057894129857,
+        "off_open_field_yards": 1.0769014531195942,
+        "off_rushing_explosiveness": 0.9270771431221155
+      },
+      "pct": {
+        "off_rushing_success": 80.74074074074075,
+        "off_rushing_ppa": 89.62962962962963,
+        "off_line_yards": 72.5925925925926,
+        "off_stuff_avoidance": 62.22222222222222,
+        "off_second_level_yards": 80.74074074074075,
+        "off_open_field_yards": 50.370370370370374,
+        "off_rushing_explosiveness": 51.111111111111114
+      },
+      "metric_scores": {
+        "success_rate": 80.741,
+        "epa_ppa": 89.63,
+        "adjusted_line_yards": 72.593,
+        "stuff_rate_avoidance": 62.222,
+        "second_level_and_open_field": 65.556,
+        "explosive_rushing": 51.111
+      },
+      "equal_six_metric_score": 70.309,
+      "opponent_rushing_defense_bonus": 2.304,
+      "conference_adjustment": -5,
+      "adjusted_score": 67.613,
+      "rank": 25
+    },
+    {
+      "team": "Memphis",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.48970110136973516,
+        "off_rushing_ppa": 0.1932597025576768,
+        "off_line_yards": 3.4306960998638565,
+        "off_stuff_avoidance": -0.16351876562409595,
+        "off_second_level_yards": 1.285753158237129,
+        "off_open_field_yards": 1.9652435594858002,
+        "off_rushing_explosiveness": 1.0052700262255823
+      },
+      "pct": {
+        "off_rushing_success": 83.70370370370371,
+        "off_rushing_ppa": 80,
+        "off_line_yards": 91.85185185185185,
+        "off_stuff_avoidance": 67.4074074074074,
+        "off_second_level_yards": 91.11111111111111,
+        "off_open_field_yards": 91.11111111111111,
+        "off_rushing_explosiveness": 68.88888888888889
+      },
+      "metric_scores": {
+        "success_rate": 83.704,
+        "epa_ppa": 80,
+        "adjusted_line_yards": 91.852,
+        "stuff_rate_avoidance": 67.407,
+        "second_level_and_open_field": 91.111,
+        "explosive_rushing": 68.889
+      },
+      "equal_six_metric_score": 80.494,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 67.494,
+      "rank": 26
+    },
+    {
+      "team": "Indiana",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4048629531388152,
+        "off_rushing_ppa": 0.18226167563630163,
+        "off_line_yards": 3.0978952952673464,
+        "off_stuff_avoidance": -0.15481292754432502,
+        "off_second_level_yards": 1.0633047140397411,
+        "off_open_field_yards": 2.363548559728233,
+        "off_rushing_explosiveness": 0.9922095755659148
+      },
+      "pct": {
+        "off_rushing_success": 42.96296296296296,
+        "off_rushing_ppa": 78.51851851851852,
+        "off_line_yards": 67.4074074074074,
+        "off_stuff_avoidance": 72.5925925925926,
+        "off_second_level_yards": 55.55555555555556,
+        "off_open_field_yards": 98.51851851851852,
+        "off_rushing_explosiveness": 65.18518518518519
+      },
+      "metric_scores": {
+        "success_rate": 42.963,
+        "epa_ppa": 78.519,
+        "adjusted_line_yards": 67.407,
+        "stuff_rate_avoidance": 72.593,
+        "second_level_and_open_field": 77.037,
+        "explosive_rushing": 65.185
+      },
+      "equal_six_metric_score": 67.284,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 67.284,
+      "rank": 27
+    },
+    {
+      "team": "Louisville",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4866543013601837,
+        "off_rushing_ppa": 0.2200402698857046,
+        "off_line_yards": 2.858079121902651,
+        "off_stuff_avoidance": -0.22139760080936552,
+        "off_second_level_yards": 1.3366639366639366,
+        "off_open_field_yards": 3.607559698736169,
+        "off_rushing_explosiveness": 1.2618311520877732
+      },
+      "pct": {
+        "off_rushing_success": 82.22222222222223,
+        "off_rushing_ppa": 88.88888888888889,
+        "off_line_yards": 42.22222222222222,
+        "off_stuff_avoidance": 25.185185185185187,
+        "off_second_level_yards": 94.07407407407408,
+        "off_open_field_yards": 100,
+        "off_rushing_explosiveness": 95.55555555555556
+      },
+      "metric_scores": {
+        "success_rate": 82.222,
+        "epa_ppa": 88.889,
+        "adjusted_line_yards": 42.222,
+        "stuff_rate_avoidance": 25.185,
+        "second_level_and_open_field": 97.037,
+        "explosive_rushing": 95.556
+      },
+      "equal_six_metric_score": 71.852,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 66.852,
+      "rank": 28
+    },
+    {
+      "team": "Boise State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.46617444174067374,
+        "off_rushing_ppa": 0.22570061190303137,
+        "off_line_yards": 3.368945695804996,
+        "off_stuff_avoidance": -0.11311758629534881,
+        "off_second_level_yards": 0.9480237169221383,
+        "off_open_field_yards": 1.2409688858384809,
+        "off_rushing_explosiveness": 0.978117619029188
+      },
+      "pct": {
+        "off_rushing_success": 77.77777777777777,
+        "off_rushing_ppa": 90.37037037037037,
+        "off_line_yards": 88.14814814814815,
+        "off_stuff_avoidance": 94.81481481481481,
+        "off_second_level_yards": 34.81481481481482,
+        "off_open_field_yards": 62.96296296296296,
+        "off_rushing_explosiveness": 60.74074074074074
+      },
+      "metric_scores": {
+        "success_rate": 77.778,
+        "epa_ppa": 90.37,
+        "adjusted_line_yards": 88.148,
+        "stuff_rate_avoidance": 94.815,
+        "second_level_and_open_field": 48.889,
+        "explosive_rushing": 60.741
+      },
+      "equal_six_metric_score": 76.79,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 66.79,
+      "rank": 29
+    },
+    {
+      "team": "Air Force",
+      "conference": "Mountain West",
+      "games": 3,
+      "raw": {
+        "off_rushing_success": 0.4906247441251126,
+        "off_rushing_ppa": 0.24557136055661885,
+        "off_line_yards": 3.462281622414268,
+        "off_stuff_avoidance": -0.10688312751687845,
+        "off_second_level_yards": 1.0909239781752678,
+        "off_open_field_yards": 0.8600448106711923,
+        "off_rushing_explosiveness": 0.9899374510710777
+      },
+      "pct": {
+        "off_rushing_success": 85.18518518518519,
+        "off_rushing_ppa": 92.5925925925926,
+        "off_line_yards": 94.07407407407408,
+        "off_stuff_avoidance": 96.29629629629629,
+        "off_second_level_yards": 62.96296296296296,
+        "off_open_field_yards": 40.74074074074074,
+        "off_rushing_explosiveness": 63.7037037037037
+      },
+      "metric_scores": {
+        "success_rate": 85.185,
+        "epa_ppa": 92.593,
+        "adjusted_line_yards": 94.074,
+        "stuff_rate_avoidance": 96.296,
+        "second_level_and_open_field": 51.852,
+        "explosive_rushing": 63.704
+      },
+      "equal_six_metric_score": 80.617,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 65.617,
+      "rank": 30
+    },
+    {
+      "team": "Iowa State",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4131128936423055,
+        "off_rushing_ppa": 0.1128548908194752,
+        "off_line_yards": 3.0690894830659534,
+        "off_stuff_avoidance": -0.22891681521093288,
+        "off_second_level_yards": 1.2755288175876411,
+        "off_open_field_yards": 2.1859756387403446,
+        "off_rushing_explosiveness": 1.0420052321401105
+      },
+      "pct": {
+        "off_rushing_success": 45.18518518518518,
+        "off_rushing_ppa": 60.74074074074074,
+        "off_line_yards": 64.44444444444444,
+        "off_stuff_avoidance": 22.962962962962962,
+        "off_second_level_yards": 89.62962962962963,
+        "off_open_field_yards": 95.55555555555556,
+        "off_rushing_explosiveness": 80
+      },
+      "metric_scores": {
+        "success_rate": 45.185,
+        "epa_ppa": 60.741,
+        "adjusted_line_yards": 64.444,
+        "stuff_rate_avoidance": 22.963,
+        "second_level_and_open_field": 92.593,
+        "explosive_rushing": 80
+      },
+      "equal_six_metric_score": 60.988,
+      "opponent_rushing_defense_bonus": 8.064,
+      "conference_adjustment": -4,
+      "adjusted_score": 65.052,
+      "rank": 31
+    },
+    {
+      "team": "Houston",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.49170309365431314,
+        "off_rushing_ppa": 0.15567069005606993,
+        "off_line_yards": 3.456116091225847,
+        "off_stuff_avoidance": -0.12440397001372609,
+        "off_second_level_yards": 1.1356498785767077,
+        "off_open_field_yards": 0.8146288670678914,
+        "off_rushing_explosiveness": 0.6922423933737927
+      },
+      "pct": {
+        "off_rushing_success": 85.92592592592592,
+        "off_rushing_ppa": 73.33333333333333,
+        "off_line_yards": 93.33333333333333,
+        "off_stuff_avoidance": 90.37037037037037,
+        "off_second_level_yards": 71.85185185185185,
+        "off_open_field_yards": 35.55555555555556,
+        "off_rushing_explosiveness": 10.37037037037037
+      },
+      "metric_scores": {
+        "success_rate": 85.926,
+        "epa_ppa": 73.333,
+        "adjusted_line_yards": 93.333,
+        "stuff_rate_avoidance": 90.37,
+        "second_level_and_open_field": 53.704,
+        "explosive_rushing": 10.37
+      },
+      "equal_six_metric_score": 67.84,
+      "opponent_rushing_defense_bonus": 1.18,
+      "conference_adjustment": -4,
+      "adjusted_score": 65.02,
+      "rank": 32
+    },
+    {
+      "team": "Duke",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4001676280268205,
+        "off_rushing_ppa": 0.20792278540610937,
+        "off_line_yards": 3.1124898983983837,
+        "off_stuff_avoidance": -0.17620121219219395,
+        "off_second_level_yards": 1.2781541885046703,
+        "off_open_field_yards": 1.2146539103446254,
+        "off_rushing_explosiveness": 1.2030751877012718
+      },
+      "pct": {
+        "off_rushing_success": 41.48148148148148,
+        "off_rushing_ppa": 82.96296296296296,
+        "off_line_yards": 68.88888888888889,
+        "off_stuff_avoidance": 57.03703703703704,
+        "off_second_level_yards": 90.37037037037037,
+        "off_open_field_yards": 60,
+        "off_rushing_explosiveness": 92.5925925925926
+      },
+      "metric_scores": {
+        "success_rate": 41.481,
+        "epa_ppa": 82.963,
+        "adjusted_line_yards": 68.889,
+        "stuff_rate_avoidance": 57.037,
+        "second_level_and_open_field": 75.185,
+        "explosive_rushing": 92.593
+      },
+      "equal_six_metric_score": 69.691,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 64.691,
+      "rank": 33
+    },
+    {
+      "team": "Virginia",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.45717460317460323,
+        "off_rushing_ppa": 0.14958156904325884,
+        "off_line_yards": 3.369399066293184,
+        "off_stuff_avoidance": -0.14886834733893556,
+        "off_second_level_yards": 1.0571316526610643,
+        "off_open_field_yards": 0.7447357609710551,
+        "off_rushing_explosiveness": 0.8957735969945262
+      },
+      "pct": {
+        "off_rushing_success": 74.07407407407408,
+        "off_rushing_ppa": 70.37037037037037,
+        "off_line_yards": 88.88888888888889,
+        "off_stuff_avoidance": 78.51851851851852,
+        "off_second_level_yards": 54.074074074074076,
+        "off_open_field_yards": 27.40740740740741,
+        "off_rushing_explosiveness": 43.7037037037037
+      },
+      "metric_scores": {
+        "success_rate": 74.074,
+        "epa_ppa": 70.37,
+        "adjusted_line_yards": 88.889,
+        "stuff_rate_avoidance": 78.519,
+        "second_level_and_open_field": 40.741,
+        "explosive_rushing": 43.704
+      },
+      "equal_six_metric_score": 66.049,
+      "opponent_rushing_defense_bonus": 3.245,
+      "conference_adjustment": -5,
+      "adjusted_score": 64.294,
+      "rank": 34
+    },
+    {
+      "team": "Liberty",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5422512285012285,
+        "off_rushing_ppa": 0.24728988921976242,
+        "off_line_yards": 3.486980343980344,
+        "off_stuff_avoidance": -0.11869910494910493,
+        "off_second_level_yards": 1.3773297648297649,
+        "off_open_field_yards": 1.767077922077922,
+        "off_rushing_explosiveness": 0.8441470833353751
+      },
+      "pct": {
+        "off_rushing_success": 99.25925925925925,
+        "off_rushing_ppa": 93.33333333333333,
+        "off_line_yards": 94.81481481481481,
+        "off_stuff_avoidance": 92.5925925925926,
+        "off_second_level_yards": 96.29629629629629,
+        "off_open_field_yards": 88.14814814814815,
+        "off_rushing_explosiveness": 33.333333333333336
+      },
+      "metric_scores": {
+        "success_rate": 99.259,
+        "epa_ppa": 93.333,
+        "adjusted_line_yards": 94.815,
+        "stuff_rate_avoidance": 92.593,
+        "second_level_and_open_field": 92.222,
+        "explosive_rushing": 33.333
+      },
+      "equal_six_metric_score": 84.259,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 64.259,
+      "rank": 35
+    },
+    {
+      "team": "Nevada",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4935009520262977,
+        "off_rushing_ppa": 0.25986989345794476,
+        "off_line_yards": 3.1063056503148667,
+        "off_stuff_avoidance": -0.1953671008970548,
+        "off_second_level_yards": 1.2903142684248676,
+        "off_open_field_yards": 2.3423421176877395,
+        "off_rushing_explosiveness": 1.1250516015421932
+      },
+      "pct": {
+        "off_rushing_success": 86.66666666666667,
+        "off_rushing_ppa": 94.07407407407408,
+        "off_line_yards": 68.14814814814815,
+        "off_stuff_avoidance": 40.74074074074074,
+        "off_second_level_yards": 92.5925925925926,
+        "off_open_field_yards": 97.77777777777777,
+        "off_rushing_explosiveness": 88.88888888888889
+      },
+      "metric_scores": {
+        "success_rate": 86.667,
+        "epa_ppa": 94.074,
+        "adjusted_line_yards": 68.148,
+        "stuff_rate_avoidance": 40.741,
+        "second_level_and_open_field": 95.185,
+        "explosive_rushing": 88.889
+      },
+      "equal_six_metric_score": 78.951,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 63.951,
+      "rank": 36
+    },
+    {
+      "team": "Temple",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4526808738383691,
+        "off_rushing_ppa": 0.13866523335017017,
+        "off_line_yards": 3.5112205639079455,
+        "off_stuff_avoidance": -0.1686791465966039,
+        "off_second_level_yards": 1.2572963800904977,
+        "off_open_field_yards": 1.6036253831557439,
+        "off_rushing_explosiveness": 0.8818380022922498
+      },
+      "pct": {
+        "off_rushing_success": 71.85185185185185,
+        "off_rushing_ppa": 66.66666666666667,
+        "off_line_yards": 95.55555555555556,
+        "off_stuff_avoidance": 60.74074074074074,
+        "off_second_level_yards": 88.14814814814815,
+        "off_open_field_yards": 80,
+        "off_rushing_explosiveness": 38.51851851851852
+      },
+      "metric_scores": {
+        "success_rate": 71.852,
+        "epa_ppa": 66.667,
+        "adjusted_line_yards": 95.556,
+        "stuff_rate_avoidance": 60.741,
+        "second_level_and_open_field": 84.074,
+        "explosive_rushing": 38.519
+      },
+      "equal_six_metric_score": 69.568,
+      "opponent_rushing_defense_bonus": 7.312,
+      "conference_adjustment": -13,
+      "adjusted_score": 63.88,
+      "rank": 37
+    },
+    {
+      "team": "Wyoming",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.5061831550802139,
+        "off_rushing_ppa": 0.2155956831451326,
+        "off_line_yards": 3.717877435064935,
+        "off_stuff_avoidance": -0.10676486503692387,
+        "off_second_level_yards": 1.4617273045581871,
+        "off_open_field_yards": 1.036756748153807,
+        "off_rushing_explosiveness": 0.8014993905953658
+      },
+      "pct": {
+        "off_rushing_success": 90.37037037037037,
+        "off_rushing_ppa": 86.66666666666667,
+        "off_line_yards": 100,
+        "off_stuff_avoidance": 97.03703703703704,
+        "off_second_level_yards": 100,
+        "off_open_field_yards": 47.407407407407405,
+        "off_rushing_explosiveness": 24.444444444444443
+      },
+      "metric_scores": {
+        "success_rate": 90.37,
+        "epa_ppa": 86.667,
+        "adjusted_line_yards": 100,
+        "stuff_rate_avoidance": 97.037,
+        "second_level_and_open_field": 73.704,
+        "explosive_rushing": 24.444
+      },
+      "equal_six_metric_score": 78.704,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 63.704,
+      "rank": 38
+    },
+    {
+      "team": "Michigan",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4132277327935223,
+        "off_rushing_ppa": 0.0701075640592534,
+        "off_line_yards": 3.2153280701754383,
+        "off_stuff_avoidance": -0.12049527665317139,
+        "off_second_level_yards": 0.8540276653171389,
+        "off_open_field_yards": 0.4273141025641026,
+        "off_rushing_explosiveness": 0.8978402521689104
+      },
+      "pct": {
+        "off_rushing_success": 45.925925925925924,
+        "off_rushing_ppa": 48.888888888888886,
+        "off_line_yards": 78.51851851851852,
+        "off_stuff_avoidance": 91.85185185185185,
+        "off_second_level_yards": 22.962962962962962,
+        "off_open_field_yards": 6.666666666666667,
+        "off_rushing_explosiveness": 45.18518518518518
+      },
+      "metric_scores": {
+        "success_rate": 45.926,
+        "epa_ppa": 48.889,
+        "adjusted_line_yards": 78.519,
+        "stuff_rate_avoidance": 91.852,
+        "second_level_and_open_field": 14.815,
+        "explosive_rushing": 45.185
+      },
+      "equal_six_metric_score": 54.198,
+      "opponent_rushing_defense_bonus": 8.96,
+      "conference_adjustment": 0,
+      "adjusted_score": 63.158,
+      "rank": 39
+    },
+    {
+      "team": "Navy",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.44483853311439514,
+        "off_rushing_ppa": 0.10943820281578995,
+        "off_line_yards": 3.422718938149973,
+        "off_stuff_avoidance": -0.1321246122970261,
+        "off_second_level_yards": 1.1334802043422734,
+        "off_open_field_yards": 1.866543513957307,
+        "off_rushing_explosiveness": 1.0095738532560754
+      },
+      "pct": {
+        "off_rushing_success": 65.92592592592592,
+        "off_rushing_ppa": 58.51851851851852,
+        "off_line_yards": 91.11111111111111,
+        "off_stuff_avoidance": 87.4074074074074,
+        "off_second_level_yards": 71.11111111111111,
+        "off_open_field_yards": 89.62962962962963,
+        "off_rushing_explosiveness": 69.62962962962963
+      },
+      "metric_scores": {
+        "success_rate": 65.926,
+        "epa_ppa": 58.519,
+        "adjusted_line_yards": 91.111,
+        "stuff_rate_avoidance": 87.407,
+        "second_level_and_open_field": 80.37,
+        "explosive_rushing": 69.63
+      },
+      "equal_six_metric_score": 75.494,
+      "opponent_rushing_defense_bonus": 0.59,
+      "conference_adjustment": -13,
+      "adjusted_score": 63.084,
+      "rank": 40
+    },
+    {
+      "team": "Iowa",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.37242872070458277,
+        "off_rushing_ppa": 0.029704684804732474,
+        "off_line_yards": 3.041580235856098,
+        "off_stuff_avoidance": -0.14726775140568243,
+        "off_second_level_yards": 1.047692690451311,
+        "off_open_field_yards": 1.212063492063492,
+        "off_rushing_explosiveness": 1.013473209429592
+      },
+      "pct": {
+        "off_rushing_success": 25.925925925925927,
+        "off_rushing_ppa": 41.48148148148148,
+        "off_line_yards": 60,
+        "off_stuff_avoidance": 82.22222222222223,
+        "off_second_level_yards": 52.592592592592595,
+        "off_open_field_yards": 59.25925925925926,
+        "off_rushing_explosiveness": 71.85185185185185
+      },
+      "metric_scores": {
+        "success_rate": 25.926,
+        "epa_ppa": 41.481,
+        "adjusted_line_yards": 60,
+        "stuff_rate_avoidance": 82.222,
+        "second_level_and_open_field": 55.926,
+        "explosive_rushing": 71.852
+      },
+      "equal_six_metric_score": 56.235,
+      "opponent_rushing_defense_bonus": 6.6,
+      "conference_adjustment": 0,
+      "adjusted_score": 62.835,
+      "rank": 41
+    },
+    {
+      "team": "LSU",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.436895435197143,
+        "off_rushing_ppa": 0.10785427796407258,
+        "off_line_yards": 3.035798730937251,
+        "off_stuff_avoidance": -0.16902365622479473,
+        "off_second_level_yards": 1.1017093883602422,
+        "off_open_field_yards": 1.0597032948076592,
+        "off_rushing_explosiveness": 0.8946464225995487
+      },
+      "pct": {
+        "off_rushing_success": 59.25925925925926,
+        "off_rushing_ppa": 57.77777777777778,
+        "off_line_yards": 58.51851851851852,
+        "off_stuff_avoidance": 60,
+        "off_second_level_yards": 65.18518518518519,
+        "off_open_field_yards": 48.148148148148145,
+        "off_rushing_explosiveness": 42.96296296296296
+      },
+      "metric_scores": {
+        "success_rate": 59.259,
+        "epa_ppa": 57.778,
+        "adjusted_line_yards": 58.519,
+        "stuff_rate_avoidance": 60,
+        "second_level_and_open_field": 56.667,
+        "explosive_rushing": 42.963
+      },
+      "equal_six_metric_score": 55.864,
+      "opponent_rushing_defense_bonus": 6.195,
+      "conference_adjustment": 0,
+      "adjusted_score": 62.059,
+      "rank": 42
+    },
+    {
+      "team": "Wisconsin",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3361823361823362,
+        "off_rushing_ppa": 0.17133181974269512,
+        "off_line_yards": 2.9267017704517704,
+        "off_stuff_avoidance": -0.14749949124949124,
+        "off_second_level_yards": 0.7613324175824177,
+        "off_open_field_yards": 0.5709579772079773,
+        "off_rushing_explosiveness": 1.25795938136409
+      },
+      "pct": {
+        "off_rushing_success": 12.592592592592593,
+        "off_rushing_ppa": 77.03703703703704,
+        "off_line_yards": 47.407407407407405,
+        "off_stuff_avoidance": 81.48148148148148,
+        "off_second_level_yards": 8.148148148148149,
+        "off_open_field_yards": 14.814814814814815,
+        "off_rushing_explosiveness": 94.81481481481481
+      },
+      "metric_scores": {
+        "success_rate": 12.593,
+        "epa_ppa": 77.037,
+        "adjusted_line_yards": 47.407,
+        "stuff_rate_avoidance": 81.481,
+        "second_level_and_open_field": 11.481,
+        "explosive_rushing": 94.815
+      },
+      "equal_six_metric_score": 54.136,
+      "opponent_rushing_defense_bonus": 6.747,
+      "conference_adjustment": 0,
+      "adjusted_score": 60.882,
+      "rank": 43
+    },
+    {
+      "team": "Oregon State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5110270774976657,
+        "off_rushing_ppa": 0.1299576337265867,
+        "off_line_yards": 3.52680578898226,
+        "off_stuff_avoidance": -0.09241830065359477,
+        "off_second_level_yards": 1.0230625583566761,
+        "off_open_field_yards": 1.1505042016806724,
+        "off_rushing_explosiveness": 0.7611893425977203
+      },
+      "pct": {
+        "off_rushing_success": 92.5925925925926,
+        "off_rushing_ppa": 65.18518518518519,
+        "off_line_yards": 96.29629629629629,
+        "off_stuff_avoidance": 100,
+        "off_second_level_yards": 46.666666666666664,
+        "off_open_field_yards": 54.074074074074076,
+        "off_rushing_explosiveness": 20
+      },
+      "metric_scores": {
+        "success_rate": 92.593,
+        "epa_ppa": 65.185,
+        "adjusted_line_yards": 96.296,
+        "stuff_rate_avoidance": 100,
+        "second_level_and_open_field": 50.37,
+        "explosive_rushing": 20
+      },
+      "equal_six_metric_score": 70.741,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 60.741,
+      "rank": 44
+    },
+    {
+      "team": "Kansas",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.45136930868838765,
+        "off_rushing_ppa": 0.06828480534136752,
+        "off_line_yards": 3.1535916614452795,
+        "off_stuff_avoidance": -0.15814275271512113,
+        "off_second_level_yards": 1.1628876879699248,
+        "off_open_field_yards": 0.5762518274853801,
+        "off_rushing_explosiveness": 0.9935478573116903
+      },
+      "pct": {
+        "off_rushing_success": 69.62962962962963,
+        "off_rushing_ppa": 48.148148148148145,
+        "off_line_yards": 74.07407407407408,
+        "off_stuff_avoidance": 70.37037037037037,
+        "off_second_level_yards": 76.29629629629629,
+        "off_open_field_yards": 17.77777777777778,
+        "off_rushing_explosiveness": 65.92592592592592
+      },
+      "metric_scores": {
+        "success_rate": 69.63,
+        "epa_ppa": 48.148,
+        "adjusted_line_yards": 74.074,
+        "stuff_rate_avoidance": 70.37,
+        "second_level_and_open_field": 47.037,
+        "explosive_rushing": 65.926
+      },
+      "equal_six_metric_score": 62.531,
+      "opponent_rushing_defense_bonus": 2.065,
+      "conference_adjustment": -4,
+      "adjusted_score": 60.596,
+      "rank": 45
+    },
+    {
+      "team": "South Alabama",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.43568101739530307,
+        "off_rushing_ppa": 0.19315854359428894,
+        "off_line_yards": 3.1520718836718835,
+        "off_stuff_avoidance": -0.12306093906093904,
+        "off_second_level_yards": 1.0825016887874033,
+        "off_open_field_yards": 1.1342446125303267,
+        "off_rushing_explosiveness": 1.1322665332042867
+      },
+      "pct": {
+        "off_rushing_success": 58.51851851851852,
+        "off_rushing_ppa": 79.25925925925925,
+        "off_line_yards": 73.33333333333333,
+        "off_stuff_avoidance": 91.11111111111111,
+        "off_second_level_yards": 60,
+        "off_open_field_yards": 52.592592592592595,
+        "off_rushing_explosiveness": 89.62962962962963
+      },
+      "metric_scores": {
+        "success_rate": 58.519,
+        "epa_ppa": 79.259,
+        "adjusted_line_yards": 73.333,
+        "stuff_rate_avoidance": 91.111,
+        "second_level_and_open_field": 56.296,
+        "explosive_rushing": 89.63
+      },
+      "equal_six_metric_score": 74.691,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 59.691,
+      "rank": 46
+    },
+    {
+      "team": "USC",
+      "conference": "Big Ten",
+      "games": 7,
+      "raw": {
+        "off_rushing_success": 0.46180619565984776,
+        "off_rushing_ppa": 0.04382611701346579,
+        "off_line_yards": 3.199204100750965,
+        "off_stuff_avoidance": -0.17964943322889262,
+        "off_second_level_yards": 1.1580156167841673,
+        "off_open_field_yards": 0.6654296716923292,
+        "off_rushing_explosiveness": 0.7230278651738311
+      },
+      "pct": {
+        "off_rushing_success": 75.55555555555556,
+        "off_rushing_ppa": 43.7037037037037,
+        "off_line_yards": 77.77777777777777,
+        "off_stuff_avoidance": 51.851851851851855,
+        "off_second_level_yards": 74.81481481481481,
+        "off_open_field_yards": 20.74074074074074,
+        "off_rushing_explosiveness": 14.814814814814815
+      },
+      "metric_scores": {
+        "success_rate": 75.556,
+        "epa_ppa": 43.704,
+        "adjusted_line_yards": 77.778,
+        "stuff_rate_avoidance": 51.852,
+        "second_level_and_open_field": 47.778,
+        "explosive_rushing": 14.815
+      },
+      "equal_six_metric_score": 51.914,
+      "opponent_rushing_defense_bonus": 7.2,
+      "conference_adjustment": 0,
+      "adjusted_score": 59.114,
+      "rank": 47
+    },
+    {
+      "team": "Pittsburgh",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.43346024373867315,
+        "off_rushing_ppa": 0.09335779476214631,
+        "off_line_yards": 3.0580805309514973,
+        "off_stuff_avoidance": -0.16804921665618405,
+        "off_second_level_yards": 1.0951959636426902,
+        "off_open_field_yards": 1.207295640926733,
+        "off_rushing_explosiveness": 0.9510248826767341
+      },
+      "pct": {
+        "off_rushing_success": 54.81481481481482,
+        "off_rushing_ppa": 55.55555555555556,
+        "off_line_yards": 61.48148148148148,
+        "off_stuff_avoidance": 62.96296296296296,
+        "off_second_level_yards": 64.44444444444444,
+        "off_open_field_yards": 57.77777777777778,
+        "off_rushing_explosiveness": 54.81481481481482
+      },
+      "metric_scores": {
+        "success_rate": 54.815,
+        "epa_ppa": 55.556,
+        "adjusted_line_yards": 61.481,
+        "stuff_rate_avoidance": 62.963,
+        "second_level_and_open_field": 61.111,
+        "explosive_rushing": 54.815
+      },
+      "equal_six_metric_score": 58.457,
+      "opponent_rushing_defense_bonus": 4.79,
+      "conference_adjustment": -5,
+      "adjusted_score": 58.247,
+      "rank": 48
+    },
+    {
+      "team": "Texas State",
+      "conference": "Pac-12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4670295055821371,
+        "off_rushing_ppa": 0.1042778178437846,
+        "off_line_yards": 3.129863835725678,
+        "off_stuff_avoidance": -0.1540659888357257,
+        "off_second_level_yards": 1.1283363237639552,
+        "off_open_field_yards": 2.3407595693779903,
+        "off_rushing_explosiveness": 0.7965189132207573
+      },
+      "pct": {
+        "off_rushing_success": 78.51851851851852,
+        "off_rushing_ppa": 57.03703703703704,
+        "off_line_yards": 70.37037037037037,
+        "off_stuff_avoidance": 73.33333333333333,
+        "off_second_level_yards": 68.88888888888889,
+        "off_open_field_yards": 97.03703703703704,
+        "off_rushing_explosiveness": 23.703703703703702
+      },
+      "metric_scores": {
+        "success_rate": 78.519,
+        "epa_ppa": 57.037,
+        "adjusted_line_yards": 70.37,
+        "stuff_rate_avoidance": 73.333,
+        "second_level_and_open_field": 82.963,
+        "explosive_rushing": 23.704
+      },
+      "equal_six_metric_score": 64.321,
+      "opponent_rushing_defense_bonus": 3.68,
+      "conference_adjustment": -10,
+      "adjusted_score": 58.001,
+      "rank": 49
+    },
+    {
+      "team": "Texas A&M",
+      "conference": "SEC",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.42413419913419914,
+        "off_rushing_ppa": 0.0635252190717969,
+        "off_line_yards": 2.9106493506493507,
+        "off_stuff_avoidance": -0.16685765215176981,
+        "off_second_level_yards": 0.8809078176725236,
+        "off_open_field_yards": 0.8581550802139039,
+        "off_rushing_explosiveness": 0.9096947498731071
+      },
+      "pct": {
+        "off_rushing_success": 48.888888888888886,
+        "off_rushing_ppa": 47.407407407407405,
+        "off_line_yards": 46.666666666666664,
+        "off_stuff_avoidance": 65.18518518518519,
+        "off_second_level_yards": 25.925925925925927,
+        "off_open_field_yards": 40,
+        "off_rushing_explosiveness": 48.148148148148145
+      },
+      "metric_scores": {
+        "success_rate": 48.889,
+        "epa_ppa": 47.407,
+        "adjusted_line_yards": 46.667,
+        "stuff_rate_avoidance": 65.185,
+        "second_level_and_open_field": 32.963,
+        "explosive_rushing": 48.148
+      },
+      "equal_six_metric_score": 48.21,
+      "opponent_rushing_defense_bonus": 9.172,
+      "conference_adjustment": 0,
+      "adjusted_score": 57.382,
+      "rank": 50
+    },
+    {
+      "team": "Purdue",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4473368090929067,
+        "off_rushing_ppa": 0.08426659157870284,
+        "off_line_yards": 2.7986061484988314,
+        "off_stuff_avoidance": -0.18071776432752043,
+        "off_second_level_yards": 0.9006407382992748,
+        "off_open_field_yards": 0.7671621421865324,
+        "off_rushing_explosiveness": 0.98090853184253
+      },
+      "pct": {
+        "off_rushing_success": 66.66666666666667,
+        "off_rushing_ppa": 51.851851851851855,
+        "off_line_yards": 35.55555555555556,
+        "off_stuff_avoidance": 50.370370370370374,
+        "off_second_level_yards": 29.62962962962963,
+        "off_open_field_yards": 30.37037037037037,
+        "off_rushing_explosiveness": 62.22222222222222
+      },
+      "metric_scores": {
+        "success_rate": 66.667,
+        "epa_ppa": 51.852,
+        "adjusted_line_yards": 35.556,
+        "stuff_rate_avoidance": 50.37,
+        "second_level_and_open_field": 30,
+        "explosive_rushing": 62.222
+      },
+      "equal_six_metric_score": 49.444,
+      "opponent_rushing_defense_bonus": 7.572,
+      "conference_adjustment": 0,
+      "adjusted_score": 57.016,
+      "rank": 51
+    },
+    {
+      "team": "North Texas",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.38773448773448776,
+        "off_rushing_ppa": 0.1973179990021825,
+        "off_line_yards": 3.0596707736707733,
+        "off_stuff_avoidance": -0.17221223221223222,
+        "off_second_level_yards": 1.1449361749361748,
+        "off_open_field_yards": 1.8792995892995894,
+        "off_rushing_explosiveness": 1.3123743773587988
+      },
+      "pct": {
+        "off_rushing_success": 36.2962962962963,
+        "off_rushing_ppa": 80.74074074074075,
+        "off_line_yards": 62.22222222222222,
+        "off_stuff_avoidance": 59.25925925925926,
+        "off_second_level_yards": 73.33333333333333,
+        "off_open_field_yards": 90.37037037037037,
+        "off_rushing_explosiveness": 99.25925925925925
+      },
+      "metric_scores": {
+        "success_rate": 36.296,
+        "epa_ppa": 80.741,
+        "adjusted_line_yards": 62.222,
+        "stuff_rate_avoidance": 59.259,
+        "second_level_and_open_field": 81.852,
+        "explosive_rushing": 99.259
+      },
+      "equal_six_metric_score": 69.938,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 56.938,
+      "rank": 52
+    },
+    {
+      "team": "UConn",
+      "conference": "FBS Independents",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.44095102283337584,
+        "off_rushing_ppa": 0.13929148924587537,
+        "off_line_yards": 2.9600469682822625,
+        "off_stuff_avoidance": -0.20382389723566194,
+        "off_second_level_yards": 1.1047406275641571,
+        "off_open_field_yards": 1.753987041281159,
+        "off_rushing_explosiveness": 0.966267004410666
+      },
+      "pct": {
+        "off_rushing_success": 63.7037037037037,
+        "off_rushing_ppa": 67.4074074074074,
+        "off_line_yards": 48.888888888888886,
+        "off_stuff_avoidance": 34.81481481481482,
+        "off_second_level_yards": 65.92592592592592,
+        "off_open_field_yards": 87.4074074074074,
+        "off_rushing_explosiveness": 57.77777777777778
+      },
+      "metric_scores": {
+        "success_rate": 63.704,
+        "epa_ppa": 67.407,
+        "adjusted_line_yards": 48.889,
+        "stuff_rate_avoidance": 34.815,
+        "second_level_and_open_field": 76.667,
+        "explosive_rushing": 57.778
+      },
+      "equal_six_metric_score": 58.21,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -1.5,
+      "adjusted_score": 56.71,
+      "rank": 53
+    },
+    {
+      "team": "Ohio",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.5159396924914167,
+        "off_rushing_ppa": 0.17600975764653654,
+        "off_line_yards": 3.6299713390058215,
+        "off_stuff_avoidance": -0.0967368263919988,
+        "off_second_level_yards": 1.3520301537542916,
+        "off_open_field_yards": 0.9726451709210331,
+        "off_rushing_explosiveness": 0.8386301444697859
+      },
+      "pct": {
+        "off_rushing_success": 94.07407407407408,
+        "off_rushing_ppa": 77.77777777777777,
+        "off_line_yards": 98.51851851851852,
+        "off_stuff_avoidance": 98.51851851851852,
+        "off_second_level_yards": 94.81481481481481,
+        "off_open_field_yards": 45.925925925925924,
+        "off_rushing_explosiveness": 30.37037037037037
+      },
+      "metric_scores": {
+        "success_rate": 94.074,
+        "epa_ppa": 77.778,
+        "adjusted_line_yards": 98.519,
+        "stuff_rate_avoidance": 98.519,
+        "second_level_and_open_field": 70.37,
+        "explosive_rushing": 30.37
+      },
+      "equal_six_metric_score": 78.272,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 56.272,
+      "rank": 54
+    },
+    {
+      "team": "Louisiana",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.41010199311141005,
+        "off_rushing_ppa": 0.11146616538464978,
+        "off_line_yards": 3.0660486494738146,
+        "off_stuff_avoidance": -0.1763097384816479,
+        "off_second_level_yards": 1.24593172472355,
+        "off_open_field_yards": 1.1322480464836708,
+        "off_rushing_explosiveness": 1.1188064010069434
+      },
+      "pct": {
+        "off_rushing_success": 44.44444444444444,
+        "off_rushing_ppa": 59.25925925925926,
+        "off_line_yards": 63.7037037037037,
+        "off_stuff_avoidance": 56.2962962962963,
+        "off_second_level_yards": 85.92592592592592,
+        "off_open_field_yards": 51.851851851851855,
+        "off_rushing_explosiveness": 88.14814814814815
+      },
+      "metric_scores": {
+        "success_rate": 44.444,
+        "epa_ppa": 59.259,
+        "adjusted_line_yards": 63.704,
+        "stuff_rate_avoidance": 56.296,
+        "second_level_and_open_field": 68.889,
+        "explosive_rushing": 88.148
+      },
+      "equal_six_metric_score": 63.457,
+      "opponent_rushing_defense_bonus": 7.776,
+      "conference_adjustment": -15,
+      "adjusted_score": 56.233,
+      "rank": 55
+    },
+    {
+      "team": "Arizona",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4613553113553114,
+        "off_rushing_ppa": 0.14305885945614727,
+        "off_line_yards": 2.9664761904761905,
+        "off_stuff_avoidance": -0.21395604395604395,
+        "off_second_level_yards": 1.2733699633699633,
+        "off_open_field_yards": 1.0701465201465201,
+        "off_rushing_explosiveness": 0.996631764740575
+      },
+      "pct": {
+        "off_rushing_success": 74.81481481481481,
+        "off_rushing_ppa": 69.62962962962963,
+        "off_line_yards": 49.629629629629626,
+        "off_stuff_avoidance": 27.40740740740741,
+        "off_second_level_yards": 88.88888888888889,
+        "off_open_field_yards": 49.629629629629626,
+        "off_rushing_explosiveness": 66.66666666666667
+      },
+      "metric_scores": {
+        "success_rate": 74.815,
+        "epa_ppa": 69.63,
+        "adjusted_line_yards": 49.63,
+        "stuff_rate_avoidance": 27.407,
+        "second_level_and_open_field": 69.259,
+        "explosive_rushing": 66.667
+      },
+      "equal_six_metric_score": 59.568,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 55.568,
+      "rank": 56
+    },
+    {
+      "team": "Colorado State",
+      "conference": "Pac-12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.44473294775714134,
+        "off_rushing_ppa": 0.21735438471617607,
+        "off_line_yards": 2.811744630444227,
+        "off_stuff_avoidance": -0.17965440697295537,
+        "off_second_level_yards": 0.9637062832627349,
+        "off_open_field_yards": 1.4787899152818507,
+        "off_rushing_explosiveness": 1.1566711137931667
+      },
+      "pct": {
+        "off_rushing_success": 65.18518518518519,
+        "off_rushing_ppa": 87.4074074074074,
+        "off_line_yards": 37.77777777777778,
+        "off_stuff_avoidance": 51.111111111111114,
+        "off_second_level_yards": 38.51851851851852,
+        "off_open_field_yards": 74.81481481481481,
+        "off_rushing_explosiveness": 90.37037037037037
+      },
+      "metric_scores": {
+        "success_rate": 65.185,
+        "epa_ppa": 87.407,
+        "adjusted_line_yards": 37.778,
+        "stuff_rate_avoidance": 51.111,
+        "second_level_and_open_field": 56.667,
+        "explosive_rushing": 90.37
+      },
+      "equal_six_metric_score": 64.753,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 54.753,
+      "rank": 57
+    },
+    {
+      "team": "James Madison",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4431674305130904,
+        "off_rushing_ppa": 0.1400290127508613,
+        "off_line_yards": 3.245265296716336,
+        "off_stuff_avoidance": -0.14925744041052283,
+        "off_second_level_yards": 1.0817558871510595,
+        "off_open_field_yards": 1.8602125181155231,
+        "off_rushing_explosiveness": 0.8413915848724141
+      },
+      "pct": {
+        "off_rushing_success": 64.44444444444444,
+        "off_rushing_ppa": 68.14814814814815,
+        "off_line_yards": 79.25925925925925,
+        "off_stuff_avoidance": 77.77777777777777,
+        "off_second_level_yards": 59.25925925925926,
+        "off_open_field_yards": 88.88888888888889,
+        "off_rushing_explosiveness": 31.85185185185185
+      },
+      "metric_scores": {
+        "success_rate": 64.444,
+        "epa_ppa": 68.148,
+        "adjusted_line_yards": 79.259,
+        "stuff_rate_avoidance": 77.778,
+        "second_level_and_open_field": 74.074,
+        "explosive_rushing": 31.852
+      },
+      "equal_six_metric_score": 65.926,
+      "opponent_rushing_defense_bonus": 2.95,
+      "conference_adjustment": -15,
+      "adjusted_score": 53.876,
+      "rank": 58
+    },
+    {
+      "team": "Boston College",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.43741458763705704,
+        "off_rushing_ppa": 0.07938136114835952,
+        "off_line_yards": 2.7325067535356746,
+        "off_stuff_avoidance": -0.24740187509931671,
+        "off_second_level_yards": 1.4282377244557447,
+        "off_open_field_yards": 1.20880343238519,
+        "off_rushing_explosiveness": 1.0832068865207125
+      },
+      "pct": {
+        "off_rushing_success": 60,
+        "off_rushing_ppa": 51.111111111111114,
+        "off_line_yards": 29.62962962962963,
+        "off_stuff_avoidance": 11.851851851851851,
+        "off_second_level_yards": 99.25925925925925,
+        "off_open_field_yards": 58.51851851851852,
+        "off_rushing_explosiveness": 85.18518518518519
+      },
+      "metric_scores": {
+        "success_rate": 60,
+        "epa_ppa": 51.111,
+        "adjusted_line_yards": 29.63,
+        "stuff_rate_avoidance": 11.852,
+        "second_level_and_open_field": 78.889,
+        "explosive_rushing": 85.185
+      },
+      "equal_six_metric_score": 52.778,
+      "opponent_rushing_defense_bonus": 5.52,
+      "conference_adjustment": -5,
+      "adjusted_score": 53.298,
+      "rank": 59
+    },
+    {
+      "team": "Georgia Tech",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4345878136200717,
+        "off_rushing_ppa": 0.112052176372064,
+        "off_line_yards": 2.982228195937873,
+        "off_stuff_avoidance": -0.23596176821983272,
+        "off_second_level_yards": 1.2497013142174433,
+        "off_open_field_yards": 1.6403823178016725,
+        "off_rushing_explosiveness": 1.0199521338855637
+      },
+      "pct": {
+        "off_rushing_success": 57.77777777777778,
+        "off_rushing_ppa": 60,
+        "off_line_yards": 51.111111111111114,
+        "off_stuff_avoidance": 18.51851851851852,
+        "off_second_level_yards": 86.66666666666667,
+        "off_open_field_yards": 82.22222222222223,
+        "off_rushing_explosiveness": 74.07407407407408
+      },
+      "metric_scores": {
+        "success_rate": 57.778,
+        "epa_ppa": 60,
+        "adjusted_line_yards": 51.111,
+        "stuff_rate_avoidance": 18.519,
+        "second_level_and_open_field": 84.444,
+        "explosive_rushing": 74.074
+      },
+      "equal_six_metric_score": 57.654,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 52.654,
+      "rank": 60
+    },
+    {
+      "team": "Vanderbilt",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3830134482308395,
+        "off_rushing_ppa": 0.07489990426506318,
+        "off_line_yards": 2.765391602782907,
+        "off_stuff_avoidance": -0.2115783485348703,
+        "off_second_level_yards": 0.9726745378919291,
+        "off_open_field_yards": 0.7746768507638073,
+        "off_rushing_explosiveness": 1.0705780861729495
+      },
+      "pct": {
+        "off_rushing_success": 31.85185185185185,
+        "off_rushing_ppa": 49.629629629629626,
+        "off_line_yards": 33.333333333333336,
+        "off_stuff_avoidance": 29.62962962962963,
+        "off_second_level_yards": 40,
+        "off_open_field_yards": 31.11111111111111,
+        "off_rushing_explosiveness": 82.22222222222223
+      },
+      "metric_scores": {
+        "success_rate": 31.852,
+        "epa_ppa": 49.63,
+        "adjusted_line_yards": 33.333,
+        "stuff_rate_avoidance": 29.63,
+        "second_level_and_open_field": 35.556,
+        "explosive_rushing": 82.222
+      },
+      "equal_six_metric_score": 43.704,
+      "opponent_rushing_defense_bonus": 8.716,
+      "conference_adjustment": 0,
+      "adjusted_score": 52.42,
+      "rank": 61
+    },
+    {
+      "team": "Baylor",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.38731760145918837,
+        "off_rushing_ppa": 0.09281397796928863,
+        "off_line_yards": 2.669985831541919,
+        "off_stuff_avoidance": -0.19157791023386098,
+        "off_second_level_yards": 0.823875480424728,
+        "off_open_field_yards": 2.0384453781512604,
+        "off_rushing_explosiveness": 1.2531350667158128
+      },
+      "pct": {
+        "off_rushing_success": 35.55555555555556,
+        "off_rushing_ppa": 53.333333333333336,
+        "off_line_yards": 23.703703703703702,
+        "off_stuff_avoidance": 45.18518518518518,
+        "off_second_level_yards": 17.77777777777778,
+        "off_open_field_yards": 92.5925925925926,
+        "off_rushing_explosiveness": 94.07407407407408
+      },
+      "metric_scores": {
+        "success_rate": 35.556,
+        "epa_ppa": 53.333,
+        "adjusted_line_yards": 23.704,
+        "stuff_rate_avoidance": 45.185,
+        "second_level_and_open_field": 55.185,
+        "explosive_rushing": 94.074
+      },
+      "equal_six_metric_score": 51.173,
+      "opponent_rushing_defense_bonus": 4.6,
+      "conference_adjustment": -4,
+      "adjusted_score": 51.773,
+      "rank": 62
+    },
+    {
+      "team": "Tulsa",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.35899951899951904,
+        "off_rushing_ppa": 0.15065273286042746,
+        "off_line_yards": 3.041415103415104,
+        "off_stuff_avoidance": -0.10966810966810966,
+        "off_second_level_yards": 0.8535064935064935,
+        "off_open_field_yards": 1.2276671476671477,
+        "off_rushing_explosiveness": 1.028725181357538
+      },
+      "pct": {
+        "off_rushing_success": 22.22222222222222,
+        "off_rushing_ppa": 71.85185185185185,
+        "off_line_yards": 59.25925925925926,
+        "off_stuff_avoidance": 95.55555555555556,
+        "off_second_level_yards": 22.22222222222222,
+        "off_open_field_yards": 62.22222222222222,
+        "off_rushing_explosiveness": 75.55555555555556
+      },
+      "metric_scores": {
+        "success_rate": 22.222,
+        "epa_ppa": 71.852,
+        "adjusted_line_yards": 59.259,
+        "stuff_rate_avoidance": 95.556,
+        "second_level_and_open_field": 42.222,
+        "explosive_rushing": 75.556
+      },
+      "equal_six_metric_score": 61.111,
+      "opponent_rushing_defense_bonus": 1.77,
+      "conference_adjustment": -13,
+      "adjusted_score": 49.881,
+      "rank": 63
+    },
+    {
+      "team": "UTSA",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.500334845189059,
+        "off_rushing_ppa": 0.2099927236748365,
+        "off_line_yards": 2.8598994538806872,
+        "off_stuff_avoidance": -0.19393923265608365,
+        "off_second_level_yards": 1.0923115194150044,
+        "off_open_field_yards": 1.301315314481418,
+        "off_rushing_explosiveness": 0.8697019797086545
+      },
+      "pct": {
+        "off_rushing_success": 88.88888888888889,
+        "off_rushing_ppa": 83.70370370370371,
+        "off_line_yards": 42.96296296296296,
+        "off_stuff_avoidance": 42.96296296296296,
+        "off_second_level_yards": 63.7037037037037,
+        "off_open_field_yards": 65.92592592592592,
+        "off_rushing_explosiveness": 36.2962962962963
+      },
+      "metric_scores": {
+        "success_rate": 88.889,
+        "epa_ppa": 83.704,
+        "adjusted_line_yards": 42.963,
+        "stuff_rate_avoidance": 42.963,
+        "second_level_and_open_field": 64.815,
+        "explosive_rushing": 36.296
+      },
+      "equal_six_metric_score": 59.938,
+      "opponent_rushing_defense_bonus": 2.444,
+      "conference_adjustment": -13,
+      "adjusted_score": 49.382,
+      "rank": 64
+    },
+    {
+      "team": "Arizona State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.42239098704615946,
+        "off_rushing_ppa": -0.06606366444968817,
+        "off_line_yards": 3.0816935778142676,
+        "off_stuff_avoidance": -0.18529921547162925,
+        "off_second_level_yards": 1.2445721583652618,
+        "off_open_field_yards": 1.2208538587848932,
+        "off_rushing_explosiveness": 0.6492616836636397
+      },
+      "pct": {
+        "off_rushing_success": 47.407407407407405,
+        "off_rushing_ppa": 23.703703703703702,
+        "off_line_yards": 65.18518518518519,
+        "off_stuff_avoidance": 48.888888888888886,
+        "off_second_level_yards": 85.18518518518519,
+        "off_open_field_yards": 60.74074074074074,
+        "off_rushing_explosiveness": 8.88888888888889
+      },
+      "metric_scores": {
+        "success_rate": 47.407,
+        "epa_ppa": 23.704,
+        "adjusted_line_yards": 65.185,
+        "stuff_rate_avoidance": 48.889,
+        "second_level_and_open_field": 72.963,
+        "explosive_rushing": 8.889
+      },
+      "equal_six_metric_score": 44.506,
+      "opponent_rushing_defense_bonus": 8.09,
+      "conference_adjustment": -4,
+      "adjusted_score": 48.596,
+      "rank": 65
+    },
+    {
+      "team": "Florida",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4275304659498208,
+        "off_rushing_ppa": 0.09284309175632796,
+        "off_line_yards": 2.471091218637993,
+        "off_stuff_avoidance": -0.23483512544802868,
+        "off_second_level_yards": 1.0772688172043012,
+        "off_open_field_yards": 1.7066039426523296,
+        "off_rushing_explosiveness": 0.9114713268005297
+      },
+      "pct": {
+        "off_rushing_success": 51.851851851851855,
+        "off_rushing_ppa": 54.074074074074076,
+        "off_line_yards": 14.074074074074074,
+        "off_stuff_avoidance": 19.25925925925926,
+        "off_second_level_yards": 58.51851851851852,
+        "off_open_field_yards": 84.44444444444444,
+        "off_rushing_explosiveness": 48.888888888888886
+      },
+      "metric_scores": {
+        "success_rate": 51.852,
+        "epa_ppa": 54.074,
+        "adjusted_line_yards": 14.074,
+        "stuff_rate_avoidance": 19.259,
+        "second_level_and_open_field": 71.481,
+        "explosive_rushing": 48.889
+      },
+      "equal_six_metric_score": 43.272,
+      "opponent_rushing_defense_bonus": 5.015,
+      "conference_adjustment": 0,
+      "adjusted_score": 48.287,
+      "rank": 66
+    },
+    {
+      "team": "Missouri",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3714285714285715,
+        "off_rushing_ppa": 0.09305861283365437,
+        "off_line_yards": 2.792534632034632,
+        "off_stuff_avoidance": -0.19238095238095237,
+        "off_second_level_yards": 0.8768614718614719,
+        "off_open_field_yards": 1.413008658008658,
+        "off_rushing_explosiveness": 0.9463038177106347
+      },
+      "pct": {
+        "off_rushing_success": 25.185185185185187,
+        "off_rushing_ppa": 54.81481481481482,
+        "off_line_yards": 34.81481481481482,
+        "off_stuff_avoidance": 43.7037037037037,
+        "off_second_level_yards": 25.185185185185187,
+        "off_open_field_yards": 71.85185185185185,
+        "off_rushing_explosiveness": 54.074074074074076
+      },
+      "metric_scores": {
+        "success_rate": 25.185,
+        "epa_ppa": 54.815,
+        "adjusted_line_yards": 34.815,
+        "stuff_rate_avoidance": 43.704,
+        "second_level_and_open_field": 48.519,
+        "explosive_rushing": 54.074
+      },
+      "equal_six_metric_score": 43.519,
+      "opponent_rushing_defense_bonus": 4.416,
+      "conference_adjustment": 0,
+      "adjusted_score": 47.935,
+      "rank": 67
+    },
+    {
+      "team": "Michigan State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.4276414218169537,
+        "off_rushing_ppa": 0.001953640745483015,
+        "off_line_yards": 2.944037255150287,
+        "off_stuff_avoidance": -0.17419115163796017,
+        "off_second_level_yards": 0.7922705589327931,
+        "off_open_field_yards": 0.5721234380276934,
+        "off_rushing_explosiveness": 0.8069263295282596
+      },
+      "pct": {
+        "off_rushing_success": 52.592592592592595,
+        "off_rushing_ppa": 34.81481481481482,
+        "off_line_yards": 48.148148148148145,
+        "off_stuff_avoidance": 58.51851851851852,
+        "off_second_level_yards": 11.851851851851851,
+        "off_open_field_yards": 15.555555555555555,
+        "off_rushing_explosiveness": 25.925925925925927
+      },
+      "metric_scores": {
+        "success_rate": 52.593,
+        "epa_ppa": 34.815,
+        "adjusted_line_yards": 48.148,
+        "stuff_rate_avoidance": 58.519,
+        "second_level_and_open_field": 13.704,
+        "explosive_rushing": 25.926
+      },
+      "equal_six_metric_score": 38.951,
+      "opponent_rushing_defense_bonus": 7.488,
+      "conference_adjustment": 0,
+      "adjusted_score": 46.439,
+      "rank": 68
+    },
+    {
+      "team": "Florida Atlantic",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.39067071272953624,
+        "off_rushing_ppa": 0.1167729445847337,
+        "off_line_yards": 2.987850529100529,
+        "off_stuff_avoidance": -0.14216853408029878,
+        "off_second_level_yards": 0.6717203548085902,
+        "off_open_field_yards": 0.40244708994708994,
+        "off_rushing_explosiveness": 1.0349946039744098
+      },
+      "pct": {
+        "off_rushing_success": 37.77777777777778,
+        "off_rushing_ppa": 62.22222222222222,
+        "off_line_yards": 52.592592592592595,
+        "off_stuff_avoidance": 83.70370370370371,
+        "off_second_level_yards": 3.7037037037037037,
+        "off_open_field_yards": 5.185185185185185,
+        "off_rushing_explosiveness": 78.51851851851852
+      },
+      "metric_scores": {
+        "success_rate": 37.778,
+        "epa_ppa": 62.222,
+        "adjusted_line_yards": 52.593,
+        "stuff_rate_avoidance": 83.704,
+        "second_level_and_open_field": 4.444,
+        "explosive_rushing": 78.519
+      },
+      "equal_six_metric_score": 53.21,
+      "opponent_rushing_defense_bonus": 6.133,
+      "conference_adjustment": -13,
+      "adjusted_score": 46.343,
+      "rank": 69
+    },
+    {
+      "team": "Eastern Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.452120709382151,
+        "off_rushing_ppa": 0.13713867799366994,
+        "off_line_yards": 3.0197028032036615,
+        "off_stuff_avoidance": -0.1671659038901602,
+        "off_second_level_yards": 1.0903428680396643,
+        "off_open_field_yards": 0.8167028985507248,
+        "off_rushing_explosiveness": 0.9595331561390454
+      },
+      "pct": {
+        "off_rushing_success": 70.37037037037037,
+        "off_rushing_ppa": 65.92592592592592,
+        "off_line_yards": 57.77777777777778,
+        "off_stuff_avoidance": 63.7037037037037,
+        "off_second_level_yards": 62.22222222222222,
+        "off_open_field_yards": 36.2962962962963,
+        "off_rushing_explosiveness": 56.2962962962963
+      },
+      "metric_scores": {
+        "success_rate": 70.37,
+        "epa_ppa": 65.926,
+        "adjusted_line_yards": 57.778,
+        "stuff_rate_avoidance": 63.704,
+        "second_level_and_open_field": 49.259,
+        "explosive_rushing": 56.296
+      },
+      "equal_six_metric_score": 60.556,
+      "opponent_rushing_defense_bonus": 7.535,
+      "conference_adjustment": -22,
+      "adjusted_score": 46.091,
+      "rank": 70
+    },
+    {
+      "team": "Arkansas",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.35946428571428574,
+        "off_rushing_ppa": -0.05663378295008792,
+        "off_line_yards": 2.594154761904762,
+        "off_stuff_avoidance": -0.16136904761904763,
+        "off_second_level_yards": 0.906904761904762,
+        "off_open_field_yards": 0.6761904761904762,
+        "off_rushing_explosiveness": 1.012631983148084
+      },
+      "pct": {
+        "off_rushing_success": 22.962962962962962,
+        "off_rushing_ppa": 26.666666666666668,
+        "off_line_yards": 18.51851851851852,
+        "off_stuff_avoidance": 69.62962962962963,
+        "off_second_level_yards": 31.11111111111111,
+        "off_open_field_yards": 21.48148148148148,
+        "off_rushing_explosiveness": 70.37037037037037
+      },
+      "metric_scores": {
+        "success_rate": 22.963,
+        "epa_ppa": 26.667,
+        "adjusted_line_yards": 18.519,
+        "stuff_rate_avoidance": 69.63,
+        "second_level_and_open_field": 26.296,
+        "explosive_rushing": 70.37
+      },
+      "equal_six_metric_score": 39.074,
+      "opponent_rushing_defense_bonus": 6.84,
+      "conference_adjustment": 0,
+      "adjusted_score": 45.914,
+      "rank": 71
+    },
+    {
+      "team": "Troy",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.44080579861564584,
+        "off_rushing_ppa": 0.09958318948890418,
+        "off_line_yards": 2.8528035348918204,
+        "off_stuff_avoidance": -0.2069565974489574,
+        "off_second_level_yards": 1.3059509816725436,
+        "off_open_field_yards": 1.5535022419572506,
+        "off_rushing_explosiveness": 1.0299114410090786
+      },
+      "pct": {
+        "off_rushing_success": 62.96296296296296,
+        "off_rushing_ppa": 56.2962962962963,
+        "off_line_yards": 41.48148148148148,
+        "off_stuff_avoidance": 34.074074074074076,
+        "off_second_level_yards": 93.33333333333333,
+        "off_open_field_yards": 76.29629629629629,
+        "off_rushing_explosiveness": 76.29629629629629
+      },
+      "metric_scores": {
+        "success_rate": 62.963,
+        "epa_ppa": 56.296,
+        "adjusted_line_yards": 41.481,
+        "stuff_rate_avoidance": 34.074,
+        "second_level_and_open_field": 84.815,
+        "explosive_rushing": 76.296
+      },
+      "equal_six_metric_score": 59.321,
+      "opponent_rushing_defense_bonus": 1.533,
+      "conference_adjustment": -15,
+      "adjusted_score": 45.854,
+      "rank": 72
+    },
+    {
+      "team": "Arkansas State",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4620334448160535,
+        "off_rushing_ppa": 0.0754351738229284,
+        "off_line_yards": 3.017870680044593,
+        "off_stuff_avoidance": -0.17701672240802674,
+        "off_second_level_yards": 1.0462296544035676,
+        "off_open_field_yards": 0.6441159420289855,
+        "off_rushing_explosiveness": 0.8497023187147636
+      },
+      "pct": {
+        "off_rushing_success": 76.29629629629629,
+        "off_rushing_ppa": 50.370370370370374,
+        "off_line_yards": 56.2962962962963,
+        "off_stuff_avoidance": 55.55555555555556,
+        "off_second_level_yards": 51.851851851851855,
+        "off_open_field_yards": 20,
+        "off_rushing_explosiveness": 35.55555555555556
+      },
+      "metric_scores": {
+        "success_rate": 76.296,
+        "epa_ppa": 50.37,
+        "adjusted_line_yards": 56.296,
+        "stuff_rate_avoidance": 55.556,
+        "second_level_and_open_field": 35.926,
+        "explosive_rushing": 35.556
+      },
+      "equal_six_metric_score": 51.667,
+      "opponent_rushing_defense_bonus": 7.67,
+      "conference_adjustment": -15,
+      "adjusted_score": 44.337,
+      "rank": 73
+    },
+    {
+      "team": "UAB",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.42324074074074075,
+        "off_rushing_ppa": 0.04698410706525853,
+        "off_line_yards": 3.0908148148148147,
+        "off_stuff_avoidance": -0.14194444444444443,
+        "off_second_level_yards": 0.9444444444444444,
+        "off_open_field_yards": 0.8299074074074074,
+        "off_rushing_explosiveness": 0.9793891514827358
+      },
+      "pct": {
+        "off_rushing_success": 48.148148148148145,
+        "off_rushing_ppa": 45.18518518518518,
+        "off_line_yards": 66.66666666666667,
+        "off_stuff_avoidance": 84.44444444444444,
+        "off_second_level_yards": 34.074074074074076,
+        "off_open_field_yards": 37.77777777777778,
+        "off_rushing_explosiveness": 61.48148148148148
+      },
+      "metric_scores": {
+        "success_rate": 48.148,
+        "epa_ppa": 45.185,
+        "adjusted_line_yards": 66.667,
+        "stuff_rate_avoidance": 84.444,
+        "second_level_and_open_field": 35.926,
+        "explosive_rushing": 61.481
+      },
+      "equal_six_metric_score": 56.975,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 43.975,
+      "rank": 74
+    },
+    {
+      "team": "Oklahoma State",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4630600358422939,
+        "off_rushing_ppa": -0.014066834562312783,
+        "off_line_yards": 3.00645257296467,
+        "off_stuff_avoidance": -0.16698028673835125,
+        "off_second_level_yards": 1.054121863799283,
+        "off_open_field_yards": 0.9084357398873528,
+        "off_rushing_explosiveness": 0.5692984811411818
+      },
+      "pct": {
+        "off_rushing_success": 77.03703703703704,
+        "off_rushing_ppa": 31.85185185185185,
+        "off_line_yards": 55.55555555555556,
+        "off_stuff_avoidance": 64.44444444444444,
+        "off_second_level_yards": 53.333333333333336,
+        "off_open_field_yards": 41.48148148148148,
+        "off_rushing_explosiveness": 4.444444444444445
+      },
+      "metric_scores": {
+        "success_rate": 77.037,
+        "epa_ppa": 31.852,
+        "adjusted_line_yards": 55.556,
+        "stuff_rate_avoidance": 64.444,
+        "second_level_and_open_field": 47.407,
+        "explosive_rushing": 4.444
+      },
+      "equal_six_metric_score": 46.79,
+      "opponent_rushing_defense_bonus": 0.307,
+      "conference_adjustment": -4,
+      "adjusted_score": 43.097,
+      "rank": 75
+    },
+    {
+      "team": "Texas",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4274234904880066,
+        "off_rushing_ppa": 0.01316919040092548,
+        "off_line_yards": 2.7498895781637716,
+        "off_stuff_avoidance": -0.20136062861869314,
+        "off_second_level_yards": 1.0831182795698926,
+        "off_open_field_yards": 0.5929032258064517,
+        "off_rushing_explosiveness": 0.7747937136779992
+      },
+      "pct": {
+        "off_rushing_success": 51.111111111111114,
+        "off_rushing_ppa": 36.2962962962963,
+        "off_line_yards": 31.11111111111111,
+        "off_stuff_avoidance": 39.25925925925926,
+        "off_second_level_yards": 60.74074074074074,
+        "off_open_field_yards": 18.51851851851852,
+        "off_rushing_explosiveness": 21.48148148148148
+      },
+      "metric_scores": {
+        "success_rate": 51.111,
+        "epa_ppa": 36.296,
+        "adjusted_line_yards": 31.111,
+        "stuff_rate_avoidance": 39.259,
+        "second_level_and_open_field": 39.63,
+        "explosive_rushing": 21.481
+      },
+      "equal_six_metric_score": 36.481,
+      "opponent_rushing_defense_bonus": 6.095,
+      "conference_adjustment": 0,
+      "adjusted_score": 42.576,
+      "rank": 76
+    },
+    {
+      "team": "UNLV",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.37412255778876846,
+        "off_rushing_ppa": 0.04495025865018458,
+        "off_line_yards": 3.047969763934196,
+        "off_stuff_avoidance": -0.1484443509067312,
+        "off_second_level_yards": 1.0288435230979691,
+        "off_open_field_yards": 1.5857890490722226,
+        "off_rushing_explosiveness": 0.9973812856277113
+      },
+      "pct": {
+        "off_rushing_success": 28.14814814814815,
+        "off_rushing_ppa": 44.44444444444444,
+        "off_line_yards": 60.74074074074074,
+        "off_stuff_avoidance": 79.25925925925925,
+        "off_second_level_yards": 49.629629629629626,
+        "off_open_field_yards": 77.03703703703704,
+        "off_rushing_explosiveness": 67.4074074074074
+      },
+      "metric_scores": {
+        "success_rate": 28.148,
+        "epa_ppa": 44.444,
+        "adjusted_line_yards": 60.741,
+        "stuff_rate_avoidance": 79.259,
+        "second_level_and_open_field": 63.333,
+        "explosive_rushing": 67.407
+      },
+      "equal_six_metric_score": 57.222,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 42.222,
+      "rank": 77
+    },
+    {
+      "team": "Georgia State",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.43072707343807093,
+        "off_rushing_ppa": 0.024771049719128087,
+        "off_line_yards": 3.177080288637194,
+        "off_stuff_avoidance": -0.20195926196565583,
+        "off_second_level_yards": 1.187116368286445,
+        "off_open_field_yards": 1.4658156740957253,
+        "off_rushing_explosiveness": 0.883161134019534
+      },
+      "pct": {
+        "off_rushing_success": 53.333333333333336,
+        "off_rushing_ppa": 40.74074074074074,
+        "off_line_yards": 76.29629629629629,
+        "off_stuff_avoidance": 37.77777777777778,
+        "off_second_level_yards": 79.25925925925925,
+        "off_open_field_yards": 73.33333333333333,
+        "off_rushing_explosiveness": 40
+      },
+      "metric_scores": {
+        "success_rate": 53.333,
+        "epa_ppa": 40.741,
+        "adjusted_line_yards": 76.296,
+        "stuff_rate_avoidance": 37.778,
+        "second_level_and_open_field": 76.296,
+        "explosive_rushing": 40
+      },
+      "equal_six_metric_score": 54.074,
+      "opponent_rushing_defense_bonus": 2.95,
+      "conference_adjustment": -15,
+      "adjusted_score": 42.024,
+      "rank": 78
+    },
+    {
+      "team": "Tulane",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3478549186944989,
+        "off_rushing_ppa": 0.11575370813348065,
+        "off_line_yards": 2.6521174989428364,
+        "off_stuff_avoidance": -0.1784290547034175,
+        "off_second_level_yards": 0.9691625341175566,
+        "off_open_field_yards": 2.4630338676815438,
+        "off_rushing_explosiveness": 1.2831531341045428
+      },
+      "pct": {
+        "off_rushing_success": 17.77777777777778,
+        "off_rushing_ppa": 61.48148148148148,
+        "off_line_yards": 22.22222222222222,
+        "off_stuff_avoidance": 53.333333333333336,
+        "off_second_level_yards": 39.25925925925926,
+        "off_open_field_yards": 99.25925925925925,
+        "off_rushing_explosiveness": 97.03703703703704
+      },
+      "metric_scores": {
+        "success_rate": 17.778,
+        "epa_ppa": 61.481,
+        "adjusted_line_yards": 22.222,
+        "stuff_rate_avoidance": 53.333,
+        "second_level_and_open_field": 69.259,
+        "explosive_rushing": 97.037
+      },
+      "equal_six_metric_score": 53.519,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 40.519,
+      "rank": 79
+    },
+    {
+      "team": "Penn State",
+      "conference": "Big Ten",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.38474863629662387,
+        "off_rushing_ppa": 0.017745802085040566,
+        "off_line_yards": 2.789230060445231,
+        "off_stuff_avoidance": -0.14023662096417513,
+        "off_second_level_yards": 0.8404479335593886,
+        "off_open_field_yards": 0.7550964830376596,
+        "off_rushing_explosiveness": 0.7637070412523523
+      },
+      "pct": {
+        "off_rushing_success": 33.333333333333336,
+        "off_rushing_ppa": 37.03703703703704,
+        "off_line_yards": 34.074074074074076,
+        "off_stuff_avoidance": 85.92592592592592,
+        "off_second_level_yards": 20,
+        "off_open_field_yards": 28.88888888888889,
+        "off_rushing_explosiveness": 20.74074074074074
+      },
+      "metric_scores": {
+        "success_rate": 33.333,
+        "epa_ppa": 37.037,
+        "adjusted_line_yards": 34.074,
+        "stuff_rate_avoidance": 85.926,
+        "second_level_and_open_field": 24.444,
+        "explosive_rushing": 20.741
+      },
+      "equal_six_metric_score": 39.259,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": 0,
+      "adjusted_score": 39.259,
+      "rank": 80
+    },
+    {
+      "team": "Syracuse",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4036506368028107,
+        "off_rushing_ppa": 0.04096262841743308,
+        "off_line_yards": 2.594853974527888,
+        "off_stuff_avoidance": -0.20115832235397452,
+        "off_second_level_yards": 0.7775636802810716,
+        "off_open_field_yards": 0.9286506368028107,
+        "off_rushing_explosiveness": 0.9116617187790542
+      },
+      "pct": {
+        "off_rushing_success": 42.22222222222222,
+        "off_rushing_ppa": 42.96296296296296,
+        "off_line_yards": 19.25925925925926,
+        "off_stuff_avoidance": 40,
+        "off_second_level_yards": 9.62962962962963,
+        "off_open_field_yards": 42.96296296296296,
+        "off_rushing_explosiveness": 49.629629629629626
+      },
+      "metric_scores": {
+        "success_rate": 42.222,
+        "epa_ppa": 42.963,
+        "adjusted_line_yards": 19.259,
+        "stuff_rate_avoidance": 40,
+        "second_level_and_open_field": 26.296,
+        "explosive_rushing": 49.63
+      },
+      "equal_six_metric_score": 36.728,
+      "opponent_rushing_defense_bonus": 7.375,
+      "conference_adjustment": -5,
+      "adjusted_score": 39.103,
+      "rank": 81
+    },
+    {
+      "team": "Toledo",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.39622385620915035,
+        "off_rushing_ppa": 0.08491385802337756,
+        "off_line_yards": 3.006030718954248,
+        "off_stuff_avoidance": -0.15733986928104574,
+        "off_second_level_yards": 0.9522532679738562,
+        "off_open_field_yards": 1.3957058823529414,
+        "off_rushing_explosiveness": 1.164924112702502
+      },
+      "pct": {
+        "off_rushing_success": 40,
+        "off_rushing_ppa": 52.592592592592595,
+        "off_line_yards": 54.81481481481482,
+        "off_stuff_avoidance": 71.11111111111111,
+        "off_second_level_yards": 35.55555555555556,
+        "off_open_field_yards": 70.37037037037037,
+        "off_rushing_explosiveness": 91.11111111111111
+      },
+      "metric_scores": {
+        "success_rate": 40,
+        "epa_ppa": 52.593,
+        "adjusted_line_yards": 54.815,
+        "stuff_rate_avoidance": 71.111,
+        "second_level_and_open_field": 52.963,
+        "explosive_rushing": 91.111
+      },
+      "equal_six_metric_score": 60.432,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 38.432,
+      "rank": 82
+    },
+    {
+      "team": "Hawai'i",
+      "conference": "Mountain West",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.43816818215145364,
+        "off_rushing_ppa": -0.021390995100914884,
+        "off_line_yards": 3.1823557639919198,
+        "off_stuff_avoidance": -0.16859126345830358,
+        "off_second_level_yards": 1.1633334094471948,
+        "off_open_field_yards": 1.198943616682116,
+        "off_rushing_explosiveness": 0.7915079190623134
+      },
+      "pct": {
+        "off_rushing_success": 60.74074074074074,
+        "off_rushing_ppa": 30.37037037037037,
+        "off_line_yards": 77.03703703703704,
+        "off_stuff_avoidance": 61.48148148148148,
+        "off_second_level_yards": 77.77777777777777,
+        "off_open_field_yards": 57.03703703703704,
+        "off_rushing_explosiveness": 22.22222222222222
+      },
+      "metric_scores": {
+        "success_rate": 60.741,
+        "epa_ppa": 30.37,
+        "adjusted_line_yards": 77.037,
+        "stuff_rate_avoidance": 61.481,
+        "second_level_and_open_field": 67.407,
+        "explosive_rushing": 22.222
+      },
+      "equal_six_metric_score": 53.21,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 38.21,
+      "rank": 83
+    },
+    {
+      "team": "New Mexico State",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.38902473870215803,
+        "off_rushing_ppa": -0.009120775069987546,
+        "off_line_yards": 2.876849913527333,
+        "off_stuff_avoidance": -0.14464095044740205,
+        "off_second_level_yards": 1.0232385893676215,
+        "off_open_field_yards": 1.3273840138356268,
+        "off_rushing_explosiveness": 0.9824541956472348
+      },
+      "pct": {
+        "off_rushing_success": 37.03703703703704,
+        "off_rushing_ppa": 33.333333333333336,
+        "off_line_yards": 43.7037037037037,
+        "off_stuff_avoidance": 82.96296296296296,
+        "off_second_level_yards": 47.407407407407405,
+        "off_open_field_yards": 66.66666666666667,
+        "off_rushing_explosiveness": 62.96296296296296
+      },
+      "metric_scores": {
+        "success_rate": 37.037,
+        "epa_ppa": 33.333,
+        "adjusted_line_yards": 43.704,
+        "stuff_rate_avoidance": 82.963,
+        "second_level_and_open_field": 57.037,
+        "explosive_rushing": 62.963
+      },
+      "equal_six_metric_score": 52.84,
+      "opponent_rushing_defense_bonus": 5.015,
+      "conference_adjustment": -20,
+      "adjusted_score": 37.855,
+      "rank": 84
+    },
+    {
+      "team": "Central Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.43425124482293265,
+        "off_rushing_ppa": 0.0409094379897514,
+        "off_line_yards": 2.9942053492484524,
+        "off_stuff_avoidance": -0.16628682116431664,
+        "off_second_level_yards": 1.033097747684862,
+        "off_open_field_yards": 0.9615169388989717,
+        "off_rushing_explosiveness": 1.0811579602417491
+      },
+      "pct": {
+        "off_rushing_success": 57.03703703703704,
+        "off_rushing_ppa": 42.22222222222222,
+        "off_line_yards": 54.074074074074076,
+        "off_stuff_avoidance": 66.66666666666667,
+        "off_second_level_yards": 51.111111111111114,
+        "off_open_field_yards": 45.18518518518518,
+        "off_rushing_explosiveness": 84.44444444444444
+      },
+      "metric_scores": {
+        "success_rate": 57.037,
+        "epa_ppa": 42.222,
+        "adjusted_line_yards": 54.074,
+        "stuff_rate_avoidance": 66.667,
+        "second_level_and_open_field": 48.148,
+        "explosive_rushing": 84.444
+      },
+      "equal_six_metric_score": 58.765,
+      "opponent_rushing_defense_bonus": 0.885,
+      "conference_adjustment": -22,
+      "adjusted_score": 37.65,
+      "rank": 85
+    },
+    {
+      "team": "Coastal Carolina",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3861624579124579,
+        "off_rushing_ppa": 0.01866252214767474,
+        "off_line_yards": 3.0829140572390576,
+        "off_stuff_avoidance": -0.1754688552188552,
+        "off_second_level_yards": 1.1318425925925926,
+        "off_open_field_yards": 1.1987121212121212,
+        "off_rushing_explosiveness": 0.9123040824166132
+      },
+      "pct": {
+        "off_rushing_success": 34.81481481481482,
+        "off_rushing_ppa": 39.25925925925926,
+        "off_line_yards": 65.92592592592592,
+        "off_stuff_avoidance": 57.77777777777778,
+        "off_second_level_yards": 70.37037037037037,
+        "off_open_field_yards": 56.2962962962963,
+        "off_rushing_explosiveness": 50.370370370370374
+      },
+      "metric_scores": {
+        "success_rate": 34.815,
+        "epa_ppa": 39.259,
+        "adjusted_line_yards": 65.926,
+        "stuff_rate_avoidance": 57.778,
+        "second_level_and_open_field": 63.333,
+        "explosive_rushing": 50.37
+      },
+      "equal_six_metric_score": 51.914,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 36.914,
+      "rank": 86
+    },
+    {
+      "team": "Utah State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.328709106984969,
+        "off_rushing_ppa": -0.03032212302997011,
+        "off_line_yards": 2.8848479221927503,
+        "off_stuff_avoidance": -0.21317418213969938,
+        "off_second_level_yards": 1.02709991158267,
+        "off_open_field_yards": 1.5313262599469495,
+        "off_rushing_explosiveness": 1.0607022008115359
+      },
+      "pct": {
+        "off_rushing_success": 9.62962962962963,
+        "off_rushing_ppa": 28.14814814814815,
+        "off_line_yards": 45.18518518518518,
+        "off_stuff_avoidance": 28.14814814814815,
+        "off_second_level_yards": 48.888888888888886,
+        "off_open_field_yards": 75.55555555555556,
+        "off_rushing_explosiveness": 80.74074074074075
+      },
+      "metric_scores": {
+        "success_rate": 9.63,
+        "epa_ppa": 28.148,
+        "adjusted_line_yards": 45.185,
+        "stuff_rate_avoidance": 28.148,
+        "second_level_and_open_field": 62.222,
+        "explosive_rushing": 80.741
+      },
+      "equal_six_metric_score": 42.346,
+      "opponent_rushing_defense_bonus": 3.624,
+      "conference_adjustment": -10,
+      "adjusted_score": 35.97,
+      "rank": 87
+    },
+    {
+      "team": "Virginia Tech",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4134339742571111,
+        "off_rushing_ppa": -0.028195231998778703,
+        "off_line_yards": 2.4907327824566976,
+        "off_stuff_avoidance": -0.2480956618464961,
+        "off_second_level_yards": 0.8487645002383599,
+        "off_open_field_yards": 0.8075305895439376,
+        "off_rushing_explosiveness": 1.0173921951460887
+      },
+      "pct": {
+        "off_rushing_success": 46.666666666666664,
+        "off_rushing_ppa": 29.62962962962963,
+        "off_line_yards": 14.814814814814815,
+        "off_stuff_avoidance": 11.11111111111111,
+        "off_second_level_yards": 21.48148148148148,
+        "off_open_field_yards": 34.81481481481482,
+        "off_rushing_explosiveness": 73.33333333333333
+      },
+      "metric_scores": {
+        "success_rate": 46.667,
+        "epa_ppa": 29.63,
+        "adjusted_line_yards": 14.815,
+        "stuff_rate_avoidance": 11.111,
+        "second_level_and_open_field": 28.148,
+        "explosive_rushing": 73.333
+      },
+      "equal_six_metric_score": 33.951,
+      "opponent_rushing_defense_bonus": 6.82,
+      "conference_adjustment": -5,
+      "adjusted_score": 35.771,
+      "rank": 88
+    },
+    {
+      "team": "Washington",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.35842775820005424,
+        "off_rushing_ppa": -0.05405113912516378,
+        "off_line_yards": 2.8054887503388453,
+        "off_stuff_avoidance": -0.19404987801572243,
+        "off_second_level_yards": 0.8256248305773923,
+        "off_open_field_yards": 0.7920276497695852,
+        "off_rushing_explosiveness": 0.7583601625130105
+      },
+      "pct": {
+        "off_rushing_success": 21.48148148148148,
+        "off_rushing_ppa": 27.40740740740741,
+        "off_line_yards": 37.03703703703704,
+        "off_stuff_avoidance": 42.22222222222222,
+        "off_second_level_yards": 18.51851851851852,
+        "off_open_field_yards": 32.592592592592595,
+        "off_rushing_explosiveness": 19.25925925925926
+      },
+      "metric_scores": {
+        "success_rate": 21.481,
+        "epa_ppa": 27.407,
+        "adjusted_line_yards": 37.037,
+        "stuff_rate_avoidance": 42.222,
+        "second_level_and_open_field": 25.556,
+        "explosive_rushing": 19.259
+      },
+      "equal_six_metric_score": 28.827,
+      "opponent_rushing_defense_bonus": 6.735,
+      "conference_adjustment": 0,
+      "adjusted_score": 35.562,
+      "rank": 89
+    },
+    {
+      "team": "Western Michigan",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.42653033241268534,
+        "off_rushing_ppa": 0.12163828282759356,
+        "off_line_yards": 2.9852850091085386,
+        "off_stuff_avoidance": -0.16267262149615092,
+        "off_second_level_yards": 0.9801737478208066,
+        "off_open_field_yards": 0.9334391099096981,
+        "off_rushing_explosiveness": 0.9684002040075759
+      },
+      "pct": {
+        "off_rushing_success": 49.629629629629626,
+        "off_rushing_ppa": 63.7037037037037,
+        "off_line_yards": 51.851851851851855,
+        "off_stuff_avoidance": 68.88888888888889,
+        "off_second_level_yards": 40.74074074074074,
+        "off_open_field_yards": 44.44444444444444,
+        "off_rushing_explosiveness": 58.51851851851852
+      },
+      "metric_scores": {
+        "success_rate": 49.63,
+        "epa_ppa": 63.704,
+        "adjusted_line_yards": 51.852,
+        "stuff_rate_avoidance": 68.889,
+        "second_level_and_open_field": 42.593,
+        "explosive_rushing": 58.519
+      },
+      "equal_six_metric_score": 55.864,
+      "opponent_rushing_defense_bonus": 1.475,
+      "conference_adjustment": -22,
+      "adjusted_score": 35.339,
+      "rank": 90
+    },
+    {
+      "team": "Maryland",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3256842105263158,
+        "off_rushing_ppa": -0.030026874477699063,
+        "off_line_yards": 2.4503789473684208,
+        "off_stuff_avoidance": -0.22210526315789475,
+        "off_second_level_yards": 0.812842105263158,
+        "off_open_field_yards": 0.7222105263157894,
+        "off_rushing_explosiveness": 1.0305529877323745
+      },
+      "pct": {
+        "off_rushing_success": 8.148148148148149,
+        "off_rushing_ppa": 28.88888888888889,
+        "off_line_yards": 12.592592592592593,
+        "off_stuff_avoidance": 24.444444444444443,
+        "off_second_level_yards": 14.814814814814815,
+        "off_open_field_yards": 25.185185185185187,
+        "off_rushing_explosiveness": 77.77777777777777
+      },
+      "metric_scores": {
+        "success_rate": 8.148,
+        "epa_ppa": 28.889,
+        "adjusted_line_yards": 12.593,
+        "stuff_rate_avoidance": 24.444,
+        "second_level_and_open_field": 20,
+        "explosive_rushing": 77.778
+      },
+      "equal_six_metric_score": 28.642,
+      "opponent_rushing_defense_bonus": 6.272,
+      "conference_adjustment": 0,
+      "adjusted_score": 34.914,
+      "rank": 91
+    },
+    {
+      "team": "Rutgers",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4312681974970999,
+        "off_rushing_ppa": -0.1810892125224587,
+        "off_line_yards": 2.6665333784029484,
+        "off_stuff_avoidance": -0.17863508208559642,
+        "off_second_level_yards": 0.6103366905074685,
+        "off_open_field_yards": 0.5521091811414391,
+        "off_rushing_explosiveness": 0.7260196320461814
+      },
+      "pct": {
+        "off_rushing_success": 54.074074074074076,
+        "off_rushing_ppa": 5.925925925925926,
+        "off_line_yards": 22.962962962962962,
+        "off_stuff_avoidance": 52.592592592592595,
+        "off_second_level_yards": 1.4814814814814814,
+        "off_open_field_yards": 14.074074074074074,
+        "off_rushing_explosiveness": 15.555555555555555
+      },
+      "metric_scores": {
+        "success_rate": 54.074,
+        "epa_ppa": 5.926,
+        "adjusted_line_yards": 22.963,
+        "stuff_rate_avoidance": 52.593,
+        "second_level_and_open_field": 7.778,
+        "explosive_rushing": 15.556
+      },
+      "equal_six_metric_score": 26.481,
+      "opponent_rushing_defense_bonus": 7.427,
+      "conference_adjustment": 0,
+      "adjusted_score": 33.908,
+      "rank": 92
+    },
+    {
+      "team": "SMU",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4339330024813896,
+        "off_rushing_ppa": 0.022674141114015858,
+        "off_line_yards": 2.7296009098428455,
+        "off_stuff_avoidance": -0.20366595769821577,
+        "off_second_level_yards": 0.896387214935602,
+        "off_open_field_yards": 1.1581885856079406,
+        "off_rushing_explosiveness": 0.8313250958542097
+      },
+      "pct": {
+        "off_rushing_success": 55.55555555555556,
+        "off_rushing_ppa": 40,
+        "off_line_yards": 28.88888888888889,
+        "off_stuff_avoidance": 35.55555555555556,
+        "off_second_level_yards": 28.88888888888889,
+        "off_open_field_yards": 54.81481481481482,
+        "off_rushing_explosiveness": 27.40740740740741
+      },
+      "metric_scores": {
+        "success_rate": 55.556,
+        "epa_ppa": 40,
+        "adjusted_line_yards": 28.889,
+        "stuff_rate_avoidance": 35.556,
+        "second_level_and_open_field": 41.852,
+        "explosive_rushing": 27.407
+      },
+      "equal_six_metric_score": 38.21,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -5,
+      "adjusted_score": 33.21,
+      "rank": 93
+    },
+    {
+      "team": "Jacksonville State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4523517846339988,
+        "off_rushing_ppa": 0.11722806487385808,
+        "off_line_yards": 2.9893378201250256,
+        "off_stuff_avoidance": -0.20266938898971565,
+        "off_second_level_yards": 0.9991404517039726,
+        "off_open_field_yards": 0.787787356321839,
+        "off_rushing_explosiveness": 0.885953093732698
+      },
+      "pct": {
+        "off_rushing_success": 71.11111111111111,
+        "off_rushing_ppa": 62.96296296296296,
+        "off_line_yards": 53.333333333333336,
+        "off_stuff_avoidance": 37.03703703703704,
+        "off_second_level_yards": 42.96296296296296,
+        "off_open_field_yards": 31.85185185185185,
+        "off_rushing_explosiveness": 41.48148148148148
+      },
+      "metric_scores": {
+        "success_rate": 71.111,
+        "epa_ppa": 62.963,
+        "adjusted_line_yards": 53.333,
+        "stuff_rate_avoidance": 37.037,
+        "second_level_and_open_field": 37.407,
+        "explosive_rushing": 41.481
+      },
+      "equal_six_metric_score": 50.556,
+      "opponent_rushing_defense_bonus": 1.25,
+      "conference_adjustment": -20,
+      "adjusted_score": 31.806,
+      "rank": 94
+    },
+    {
+      "team": "North Carolina",
+      "conference": "ACC",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.38314668423364073,
+        "off_rushing_ppa": -0.08564695641322737,
+        "off_line_yards": 2.761244327331284,
+        "off_stuff_avoidance": -0.20987724031202293,
+        "off_second_level_yards": 1.0738220716481586,
+        "off_open_field_yards": 0.3391293891293891,
+        "off_rushing_explosiveness": 0.7019401531978934
+      },
+      "pct": {
+        "off_rushing_success": 32.592592592592595,
+        "off_rushing_ppa": 20.74074074074074,
+        "off_line_yards": 31.85185185185185,
+        "off_stuff_avoidance": 32.592592592592595,
+        "off_second_level_yards": 57.03703703703704,
+        "off_open_field_yards": 0.7407407407407407,
+        "off_rushing_explosiveness": 11.11111111111111
+      },
+      "metric_scores": {
+        "success_rate": 32.593,
+        "epa_ppa": 20.741,
+        "adjusted_line_yards": 31.852,
+        "stuff_rate_avoidance": 32.593,
+        "second_level_and_open_field": 28.889,
+        "explosive_rushing": 11.111
+      },
+      "equal_six_metric_score": 26.296,
+      "opponent_rushing_defense_bonus": 9,
+      "conference_adjustment": -5,
+      "adjusted_score": 30.296,
+      "rank": 95
+    },
+    {
+      "team": "Rice",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3549755340732784,
+        "off_rushing_ppa": -0.11141322556776556,
+        "off_line_yards": 2.5322105263157897,
+        "off_stuff_avoidance": -0.2245542427497315,
+        "off_second_level_yards": 0.9618999880654016,
+        "off_open_field_yards": 1.4679627640529895,
+        "off_rushing_explosiveness": 1.1074968011947117
+      },
+      "pct": {
+        "off_rushing_success": 20,
+        "off_rushing_ppa": 17.037037037037038,
+        "off_line_yards": 17.037037037037038,
+        "off_stuff_avoidance": 23.703703703703702,
+        "off_second_level_yards": 37.77777777777778,
+        "off_open_field_yards": 74.07407407407408,
+        "off_rushing_explosiveness": 87.4074074074074
+      },
+      "metric_scores": {
+        "success_rate": 20,
+        "epa_ppa": 17.037,
+        "adjusted_line_yards": 17.037,
+        "stuff_rate_avoidance": 23.704,
+        "second_level_and_open_field": 55.926,
+        "explosive_rushing": 87.407
+      },
+      "equal_six_metric_score": 36.852,
+      "opponent_rushing_defense_bonus": 5.576,
+      "conference_adjustment": -13,
+      "adjusted_score": 29.428,
+      "rank": 96
+    },
+    {
+      "team": "Oregon",
+      "conference": "Big Ten",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3856860632183908,
+        "off_rushing_ppa": -0.17792910635472323,
+        "off_line_yards": 2.6130028735632185,
+        "off_stuff_avoidance": -0.20918143358876118,
+        "off_second_level_yards": 0.8611809546615581,
+        "off_open_field_yards": 0.8482299648786717,
+        "off_rushing_explosiveness": 0.7477951181221005
+      },
+      "pct": {
+        "off_rushing_success": 34.074074074074076,
+        "off_rushing_ppa": 7.407407407407407,
+        "off_line_yards": 20,
+        "off_stuff_avoidance": 33.333333333333336,
+        "off_second_level_yards": 24.444444444444443,
+        "off_open_field_yards": 39.25925925925926,
+        "off_rushing_explosiveness": 16.296296296296298
+      },
+      "metric_scores": {
+        "success_rate": 34.074,
+        "epa_ppa": 7.407,
+        "adjusted_line_yards": 20,
+        "stuff_rate_avoidance": 33.333,
+        "second_level_and_open_field": 31.852,
+        "explosive_rushing": 16.296
+      },
+      "equal_six_metric_score": 23.827,
+      "opponent_rushing_defense_bonus": 3.887,
+      "conference_adjustment": 0,
+      "adjusted_score": 27.714,
+      "rank": 97
+    },
+    {
+      "team": "Southern Miss",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.37335839598997494,
+        "off_rushing_ppa": 0.01844772475673579,
+        "off_line_yards": 3.019228070175439,
+        "off_stuff_avoidance": -0.14018796992481203,
+        "off_second_level_yards": 0.7538596491228069,
+        "off_open_field_yards": 0.575,
+        "off_rushing_explosiveness": 0.6093906018304738
+      },
+      "pct": {
+        "off_rushing_success": 27.40740740740741,
+        "off_rushing_ppa": 38.51851851851852,
+        "off_line_yards": 57.03703703703704,
+        "off_stuff_avoidance": 86.66666666666667,
+        "off_second_level_yards": 5.925925925925926,
+        "off_open_field_yards": 16.296296296296298,
+        "off_rushing_explosiveness": 8.148148148148149
+      },
+      "metric_scores": {
+        "success_rate": 27.407,
+        "epa_ppa": 38.519,
+        "adjusted_line_yards": 57.037,
+        "stuff_rate_avoidance": 86.667,
+        "second_level_and_open_field": 11.111,
+        "explosive_rushing": 8.148
+      },
+      "equal_six_metric_score": 38.148,
+      "opponent_rushing_defense_bonus": 3.835,
+      "conference_adjustment": -15,
+      "adjusted_score": 26.983,
+      "rank": 98
+    },
+    {
+      "team": "South Florida",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.45068579495304756,
+        "off_rushing_ppa": 0.051825140415491834,
+        "off_line_yards": 2.7187165279730947,
+        "off_stuff_avoidance": -0.2164724776709197,
+        "off_second_level_yards": 1.031543264027035,
+        "off_open_field_yards": 0.6787149678391063,
+        "off_rushing_explosiveness": 0.8473678113236065
+      },
+      "pct": {
+        "off_rushing_success": 68.88888888888889,
+        "off_rushing_ppa": 45.925925925925924,
+        "off_line_yards": 26.666666666666668,
+        "off_stuff_avoidance": 25.925925925925927,
+        "off_second_level_yards": 50.370370370370374,
+        "off_open_field_yards": 22.22222222222222,
+        "off_rushing_explosiveness": 34.81481481481482
+      },
+      "metric_scores": {
+        "success_rate": 68.889,
+        "epa_ppa": 45.926,
+        "adjusted_line_yards": 26.667,
+        "stuff_rate_avoidance": 25.926,
+        "second_level_and_open_field": 36.296,
+        "explosive_rushing": 34.815
+      },
+      "equal_six_metric_score": 39.753,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 26.753,
+      "rank": 99
+    },
+    {
+      "team": "UCF",
+      "conference": "Big 12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3731321310268679,
+        "off_rushing_ppa": -0.09283983133525968,
+        "off_line_yards": 2.2079965648386697,
+        "off_stuff_avoidance": -0.24566310882100356,
+        "off_second_level_yards": 0.981278370752055,
+        "off_open_field_yards": 1.141994847258005,
+        "off_rushing_explosiveness": 0.8433157988270661
+      },
+      "pct": {
+        "off_rushing_success": 26.666666666666668,
+        "off_rushing_ppa": 19.25925925925926,
+        "off_line_yards": 5.185185185185185,
+        "off_stuff_avoidance": 12.592592592592593,
+        "off_second_level_yards": 41.48148148148148,
+        "off_open_field_yards": 53.333333333333336,
+        "off_rushing_explosiveness": 32.592592592592595
+      },
+      "metric_scores": {
+        "success_rate": 26.667,
+        "epa_ppa": 19.259,
+        "adjusted_line_yards": 5.185,
+        "stuff_rate_avoidance": 12.593,
+        "second_level_and_open_field": 47.407,
+        "explosive_rushing": 32.593
+      },
+      "equal_six_metric_score": 23.951,
+      "opponent_rushing_defense_bonus": 6.048,
+      "conference_adjustment": -4,
+      "adjusted_score": 25.999,
+      "rank": 100
+    },
+    {
+      "team": "Marshall",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.42713344923871244,
+        "off_rushing_ppa": 0.018007936028561856,
+        "off_line_yards": 2.8297576523892314,
+        "off_stuff_avoidance": -0.21002107370528425,
+        "off_second_level_yards": 1.0165507612876035,
+        "off_open_field_yards": 0.9206111374532426,
+        "off_rushing_explosiveness": 0.7132010877290806
+      },
+      "pct": {
+        "off_rushing_success": 50.370370370370374,
+        "off_rushing_ppa": 37.77777777777778,
+        "off_line_yards": 38.51851851851852,
+        "off_stuff_avoidance": 31.11111111111111,
+        "off_second_level_yards": 45.925925925925924,
+        "off_open_field_yards": 42.22222222222222,
+        "off_rushing_explosiveness": 12.592592592592593
+      },
+      "metric_scores": {
+        "success_rate": 50.37,
+        "epa_ppa": 37.778,
+        "adjusted_line_yards": 38.519,
+        "stuff_rate_avoidance": 31.111,
+        "second_level_and_open_field": 44.074,
+        "explosive_rushing": 12.593
+      },
+      "equal_six_metric_score": 35.741,
+      "opponent_rushing_defense_bonus": 4.425,
+      "conference_adjustment": -15,
+      "adjusted_score": 25.166,
+      "rank": 101
+    },
+    {
+      "team": "Akron",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.4342379245605052,
+        "off_rushing_ppa": 0.0028888623759286635,
+        "off_line_yards": 3.148306878306878,
+        "off_stuff_avoidance": -0.18854753370882404,
+        "off_second_level_yards": 1.1883085850827786,
+        "off_open_field_yards": 0.6259088581669227,
+        "off_rushing_explosiveness": 0.7536889576649852
+      },
+      "pct": {
+        "off_rushing_success": 56.2962962962963,
+        "off_rushing_ppa": 35.55555555555556,
+        "off_line_yards": 71.85185185185185,
+        "off_stuff_avoidance": 47.407407407407405,
+        "off_second_level_yards": 80,
+        "off_open_field_yards": 19.25925925925926,
+        "off_rushing_explosiveness": 17.77777777777778
+      },
+      "metric_scores": {
+        "success_rate": 56.296,
+        "epa_ppa": 35.556,
+        "adjusted_line_yards": 71.852,
+        "stuff_rate_avoidance": 47.407,
+        "second_level_and_open_field": 49.63,
+        "explosive_rushing": 17.778
+      },
+      "equal_six_metric_score": 46.42,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 24.42,
+      "rank": 102
+    },
+    {
+      "team": "Stanford",
+      "conference": "ACC",
+      "games": 6,
+      "raw": {
+        "off_rushing_success": 0.34496413430236955,
+        "off_rushing_ppa": -0.08282962664410515,
+        "off_line_yards": 2.645624952683776,
+        "off_stuff_avoidance": -0.23820879703232642,
+        "off_second_level_yards": 0.7453431372549019,
+        "off_open_field_yards": 0.8004745817245817,
+        "off_rushing_explosiveness": 0.8459681116162182
+      },
+      "pct": {
+        "off_rushing_success": 17.037037037037038,
+        "off_rushing_ppa": 21.48148148148148,
+        "off_line_yards": 21.48148148148148,
+        "off_stuff_avoidance": 16.296296296296298,
+        "off_second_level_yards": 5.185185185185185,
+        "off_open_field_yards": 33.333333333333336,
+        "off_rushing_explosiveness": 34.074074074074076
+      },
+      "metric_scores": {
+        "success_rate": 17.037,
+        "epa_ppa": 21.481,
+        "adjusted_line_yards": 21.481,
+        "stuff_rate_avoidance": 16.296,
+        "second_level_and_open_field": 19.259,
+        "explosive_rushing": 34.074
+      },
+      "equal_six_metric_score": 21.605,
+      "opponent_rushing_defense_bonus": 7.08,
+      "conference_adjustment": -5,
+      "adjusted_score": 23.685,
+      "rank": 103
+    },
+    {
+      "team": "Colorado",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.37446450451771796,
+        "off_rushing_ppa": -0.23921632453108593,
+        "off_line_yards": 2.8313586078034145,
+        "off_stuff_avoidance": -0.1782913492652788,
+        "off_second_level_yards": 0.9305360760479975,
+        "off_open_field_yards": 0.68587422502116,
+        "off_rushing_explosiveness": 0.6082218458452953
+      },
+      "pct": {
+        "off_rushing_success": 28.88888888888889,
+        "off_rushing_ppa": 2.2222222222222223,
+        "off_line_yards": 39.25925925925926,
+        "off_stuff_avoidance": 54.074074074074076,
+        "off_second_level_yards": 32.592592592592595,
+        "off_open_field_yards": 22.962962962962962,
+        "off_rushing_explosiveness": 7.407407407407407
+      },
+      "metric_scores": {
+        "success_rate": 28.889,
+        "epa_ppa": 2.222,
+        "adjusted_line_yards": 39.259,
+        "stuff_rate_avoidance": 54.074,
+        "second_level_and_open_field": 27.778,
+        "explosive_rushing": 7.407
+      },
+      "equal_six_metric_score": 26.605,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -4,
+      "adjusted_score": 22.605,
+      "rank": 104
+    },
+    {
+      "team": "Georgia Southern",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3957759784075574,
+        "off_rushing_ppa": -0.016185199871820977,
+        "off_line_yards": 2.844437921727395,
+        "off_stuff_avoidance": -0.19131578947368422,
+        "off_second_level_yards": 0.8063765182186236,
+        "off_open_field_yards": 1.2462010796221321,
+        "off_rushing_explosiveness": 0.813626585296521
+      },
+      "pct": {
+        "off_rushing_success": 39.25925925925926,
+        "off_rushing_ppa": 31.11111111111111,
+        "off_line_yards": 40,
+        "off_stuff_avoidance": 45.925925925925924,
+        "off_second_level_yards": 13.333333333333334,
+        "off_open_field_yards": 64.44444444444444,
+        "off_rushing_explosiveness": 26.666666666666668
+      },
+      "metric_scores": {
+        "success_rate": 39.259,
+        "epa_ppa": 31.111,
+        "adjusted_line_yards": 40,
+        "stuff_rate_avoidance": 45.926,
+        "second_level_and_open_field": 38.889,
+        "explosive_rushing": 26.667
+      },
+      "equal_six_metric_score": 36.975,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 21.975,
+      "rank": 105
+    },
+    {
+      "team": "California",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3774273504273504,
+        "off_rushing_ppa": -0.10662523793948964,
+        "off_line_yards": 2.212581766381766,
+        "off_stuff_avoidance": -0.2633589743589744,
+        "off_second_level_yards": 0.9045099715099717,
+        "off_open_field_yards": 0.5394074074074073,
+        "off_rushing_explosiveness": 0.8992674105406466
+      },
+      "pct": {
+        "off_rushing_success": 29.62962962962963,
+        "off_rushing_ppa": 17.77777777777778,
+        "off_line_yards": 5.925925925925926,
+        "off_stuff_avoidance": 5.925925925925926,
+        "off_second_level_yards": 30.37037037037037,
+        "off_open_field_yards": 13.333333333333334,
+        "off_rushing_explosiveness": 47.407407407407405
+      },
+      "metric_scores": {
+        "success_rate": 29.63,
+        "epa_ppa": 17.778,
+        "adjusted_line_yards": 5.926,
+        "stuff_rate_avoidance": 5.926,
+        "second_level_and_open_field": 21.852,
+        "explosive_rushing": 47.407
+      },
+      "equal_six_metric_score": 21.42,
+      "opponent_rushing_defense_bonus": 4.72,
+      "conference_adjustment": -5,
+      "adjusted_score": 21.14,
+      "rank": 106
+    },
+    {
+      "team": "Kennesaw State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3972578505086245,
+        "off_rushing_ppa": 0.054746036796349026,
+        "off_line_yards": 3.0659204997788585,
+        "off_stuff_avoidance": -0.244344316674038,
+        "off_second_level_yards": 1.1376437417072092,
+        "off_open_field_yards": 0.3551028306059265,
+        "off_rushing_explosiveness": 0.8759572517480476
+      },
+      "pct": {
+        "off_rushing_success": 40.74074074074074,
+        "off_rushing_ppa": 46.666666666666664,
+        "off_line_yards": 62.96296296296296,
+        "off_stuff_avoidance": 14.074074074074074,
+        "off_second_level_yards": 72.5925925925926,
+        "off_open_field_yards": 2.2222222222222223,
+        "off_rushing_explosiveness": 37.03703703703704
+      },
+      "metric_scores": {
+        "success_rate": 40.741,
+        "epa_ppa": 46.667,
+        "adjusted_line_yards": 62.963,
+        "stuff_rate_avoidance": 14.074,
+        "second_level_and_open_field": 37.407,
+        "explosive_rushing": 37.037
+      },
+      "equal_six_metric_score": 39.815,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 19.815,
+      "rank": 107
+    },
+    {
+      "team": "Oklahoma",
+      "conference": "SEC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3407858606067651,
+        "off_rushing_ppa": -0.3065578661611449,
+        "off_line_yards": 2.3745984204652997,
+        "off_stuff_avoidance": -0.2653402783611024,
+        "off_second_level_yards": 0.7611036398420297,
+        "off_open_field_yards": 1.1592922836827202,
+        "off_rushing_explosiveness": 0.4126497913589424
+      },
+      "pct": {
+        "off_rushing_success": 15.555555555555555,
+        "off_rushing_ppa": 0,
+        "off_line_yards": 9.62962962962963,
+        "off_stuff_avoidance": 4.444444444444445,
+        "off_second_level_yards": 6.666666666666667,
+        "off_open_field_yards": 55.55555555555556,
+        "off_rushing_explosiveness": 0.7407407407407407
+      },
+      "metric_scores": {
+        "success_rate": 15.556,
+        "epa_ppa": 0,
+        "adjusted_line_yards": 9.63,
+        "stuff_rate_avoidance": 4.444,
+        "second_level_and_open_field": 31.111,
+        "explosive_rushing": 0.741
+      },
+      "equal_six_metric_score": 10.247,
+      "opponent_rushing_defense_bonus": 7.965,
+      "conference_adjustment": 0,
+      "adjusted_score": 18.212,
+      "rank": 108
+    },
+    {
+      "team": "Clemson",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.2900434362934363,
+        "off_rushing_ppa": -0.06573025117173728,
+        "off_line_yards": 2.333603588978589,
+        "off_stuff_avoidance": -0.26192070317070315,
+        "off_second_level_yards": 0.7857802445302445,
+        "off_open_field_yards": 1.1085826898326898,
+        "off_rushing_explosiveness": 0.7955221622423754
+      },
+      "pct": {
+        "off_rushing_success": 2.962962962962963,
+        "off_rushing_ppa": 24.444444444444443,
+        "off_line_yards": 7.407407407407407,
+        "off_stuff_avoidance": 6.666666666666667,
+        "off_second_level_yards": 11.11111111111111,
+        "off_open_field_yards": 51.111111111111114,
+        "off_rushing_explosiveness": 22.962962962962962
+      },
+      "metric_scores": {
+        "success_rate": 2.963,
+        "epa_ppa": 24.444,
+        "adjusted_line_yards": 7.407,
+        "stuff_rate_avoidance": 6.667,
+        "second_level_and_open_field": 31.111,
+        "explosive_rushing": 22.963
+      },
+      "equal_six_metric_score": 15.926,
+      "opponent_rushing_defense_bonus": 6.195,
+      "conference_adjustment": -5,
+      "adjusted_score": 17.121,
+      "rank": 109
+    },
+    {
+      "team": "Washington State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.272406015037594,
+        "off_rushing_ppa": -0.18948938205935495,
+        "off_line_yards": 2.6890451127819546,
+        "off_stuff_avoidance": -0.24844611528822053,
+        "off_second_level_yards": 0.9079448621553883,
+        "off_open_field_yards": 0.7094987468671679,
+        "off_rushing_explosiveness": 1.0958279380134501
+      },
+      "pct": {
+        "off_rushing_success": 1.4814814814814814,
+        "off_rushing_ppa": 4.444444444444445,
+        "off_line_yards": 25.185185185185187,
+        "off_stuff_avoidance": 10.37037037037037,
+        "off_second_level_yards": 31.85185185185185,
+        "off_open_field_yards": 24.444444444444443,
+        "off_rushing_explosiveness": 86.66666666666667
+      },
+      "metric_scores": {
+        "success_rate": 1.481,
+        "epa_ppa": 4.444,
+        "adjusted_line_yards": 25.185,
+        "stuff_rate_avoidance": 10.37,
+        "second_level_and_open_field": 28.148,
+        "explosive_rushing": 86.667
+      },
+      "equal_six_metric_score": 26.049,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 16.049,
+      "rank": 110
+    },
+    {
+      "team": "Buffalo",
+      "conference": "Mid-American",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.2631104651162791,
+        "off_rushing_ppa": -0.005782268386358161,
+        "off_line_yards": 2.3457005813953486,
+        "off_stuff_avoidance": -0.20989825581395352,
+        "off_second_level_yards": 0.5435174418604651,
+        "off_open_field_yards": 0.7418750000000001,
+        "off_rushing_explosiveness": 1.3239168058764519
+      },
+      "pct": {
+        "off_rushing_success": 0.7407407407407407,
+        "off_rushing_ppa": 34.074074074074076,
+        "off_line_yards": 8.88888888888889,
+        "off_stuff_avoidance": 31.85185185185185,
+        "off_second_level_yards": 0.7407407407407407,
+        "off_open_field_yards": 26.666666666666668,
+        "off_rushing_explosiveness": 100
+      },
+      "metric_scores": {
+        "success_rate": 0.741,
+        "epa_ppa": 34.074,
+        "adjusted_line_yards": 8.889,
+        "stuff_rate_avoidance": 31.852,
+        "second_level_and_open_field": 13.704,
+        "explosive_rushing": 100
+      },
+      "equal_six_metric_score": 31.543,
+      "opponent_rushing_defense_bonus": 5.87,
+      "conference_adjustment": -22,
+      "adjusted_score": 15.413,
+      "rank": 111
+    },
+    {
+      "team": "Minnesota",
+      "conference": "Big Ten",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3389282531194296,
+        "off_rushing_ppa": -0.2523233471700821,
+        "off_line_yards": 2.0366321301247767,
+        "off_stuff_avoidance": -0.2426047237076649,
+        "off_second_level_yards": 0.356421568627451,
+        "off_open_field_yards": 0.38125,
+        "off_rushing_explosiveness": 0.5488123525496589
+      },
+      "pct": {
+        "off_rushing_success": 14.814814814814815,
+        "off_rushing_ppa": 1.4814814814814814,
+        "off_line_yards": 1.4814814814814814,
+        "off_stuff_avoidance": 14.814814814814815,
+        "off_second_level_yards": 0,
+        "off_open_field_yards": 3.7037037037037037,
+        "off_rushing_explosiveness": 2.962962962962963
+      },
+      "metric_scores": {
+        "success_rate": 14.815,
+        "epa_ppa": 1.481,
+        "adjusted_line_yards": 1.481,
+        "stuff_rate_avoidance": 14.815,
+        "second_level_and_open_field": 1.852,
+        "explosive_rushing": 2.963
+      },
+      "equal_six_metric_score": 6.235,
+      "opponent_rushing_defense_bonus": 8.068,
+      "conference_adjustment": 0,
+      "adjusted_score": 14.303,
+      "rank": 112
+    },
+    {
+      "team": "Old Dominion",
+      "conference": "Sun Belt",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.29848522167487684,
+        "off_rushing_ppa": -0.14543007666364743,
+        "off_line_yards": 1.087481116584565,
+        "off_stuff_avoidance": -0.35077586206896555,
+        "off_second_level_yards": 0.99933908045977,
+        "off_open_field_yards": 1.5895073891625615,
+        "off_rushing_explosiveness": 1.2924086314092356
+      },
+      "pct": {
+        "off_rushing_success": 3.7037037037037037,
+        "off_rushing_ppa": 11.851851851851851,
+        "off_line_yards": 0,
+        "off_stuff_avoidance": 0,
+        "off_second_level_yards": 43.7037037037037,
+        "off_open_field_yards": 77.77777777777777,
+        "off_rushing_explosiveness": 97.77777777777777
+      },
+      "metric_scores": {
+        "success_rate": 3.704,
+        "epa_ppa": 11.852,
+        "adjusted_line_yards": 0,
+        "stuff_rate_avoidance": 0,
+        "second_level_and_open_field": 60.741,
+        "explosive_rushing": 97.778
+      },
+      "equal_six_metric_score": 29.012,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 14.012,
+      "rank": 113
+    },
+    {
+      "team": "San Diego State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3191575091575091,
+        "off_rushing_ppa": -0.17439127245542427,
+        "off_line_yards": 2.7628717948717947,
+        "off_stuff_avoidance": -0.23234432234432237,
+        "off_second_level_yards": 0.815970695970696,
+        "off_open_field_yards": 0.4438095238095238,
+        "off_rushing_explosiveness": 0.9325968105581077
+      },
+      "pct": {
+        "off_rushing_success": 5.925925925925926,
+        "off_rushing_ppa": 8.88888888888889,
+        "off_line_yards": 32.592592592592595,
+        "off_stuff_avoidance": 21.48148148148148,
+        "off_second_level_yards": 16.296296296296298,
+        "off_open_field_yards": 8.148148148148149,
+        "off_rushing_explosiveness": 52.592592592592595
+      },
+      "metric_scores": {
+        "success_rate": 5.926,
+        "epa_ppa": 8.889,
+        "adjusted_line_yards": 32.593,
+        "stuff_rate_avoidance": 21.481,
+        "second_level_and_open_field": 12.222,
+        "explosive_rushing": 52.593
+      },
+      "equal_six_metric_score": 22.284,
+      "opponent_rushing_defense_bonus": 1.44,
+      "conference_adjustment": -10,
+      "adjusted_score": 13.724,
+      "rank": 114
+    },
+    {
+      "team": "Miami (OH)",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3427034568616719,
+        "off_rushing_ppa": -0.010977555517884641,
+        "off_line_yards": 2.692671678633139,
+        "off_stuff_avoidance": -0.16326711527522889,
+        "off_second_level_yards": 0.8546406301984394,
+        "off_open_field_yards": 0.933425630788714,
+        "off_rushing_explosiveness": 0.8396112224779401
+      },
+      "pct": {
+        "off_rushing_success": 16.296296296296298,
+        "off_rushing_ppa": 32.592592592592595,
+        "off_line_yards": 25.925925925925927,
+        "off_stuff_avoidance": 68.14814814814815,
+        "off_second_level_yards": 23.703703703703702,
+        "off_open_field_yards": 43.7037037037037,
+        "off_rushing_explosiveness": 31.11111111111111
+      },
+      "metric_scores": {
+        "success_rate": 16.296,
+        "epa_ppa": 32.593,
+        "adjusted_line_yards": 25.926,
+        "stuff_rate_avoidance": 68.148,
+        "second_level_and_open_field": 33.704,
+        "explosive_rushing": 31.111
+      },
+      "equal_six_metric_score": 34.63,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 12.63,
+      "rank": 115
+    },
+    {
+      "team": "East Carolina",
+      "conference": "American Athletic",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.33665212496481844,
+        "off_rushing_ppa": -0.059469639304542514,
+        "off_line_yards": 2.004925415142133,
+        "off_stuff_avoidance": -0.25972769490571346,
+        "off_second_level_yards": 0.9818990993526597,
+        "off_open_field_yards": 1.2435969603152266,
+        "off_rushing_explosiveness": 0.930707760595864
+      },
+      "pct": {
+        "off_rushing_success": 13.333333333333334,
+        "off_rushing_ppa": 25.925925925925927,
+        "off_line_yards": 0.7407407407407407,
+        "off_stuff_avoidance": 8.148148148148149,
+        "off_second_level_yards": 42.22222222222222,
+        "off_open_field_yards": 63.7037037037037,
+        "off_rushing_explosiveness": 51.851851851851855
+      },
+      "metric_scores": {
+        "success_rate": 13.333,
+        "epa_ppa": 25.926,
+        "adjusted_line_yards": 0.741,
+        "stuff_rate_avoidance": 8.148,
+        "second_level_and_open_field": 52.963,
+        "explosive_rushing": 51.852
+      },
+      "equal_six_metric_score": 25.494,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": 12.494,
+      "rank": 116
+    },
+    {
+      "team": "Fresno State",
+      "conference": "Pac-12",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.33556665909607086,
+        "off_rushing_ppa": -0.06551544576602783,
+        "off_line_yards": 2.5244787644787645,
+        "off_stuff_avoidance": -0.28010447422212126,
+        "off_second_level_yards": 0.8879854644560528,
+        "off_open_field_yards": 1.3945037474449238,
+        "off_rushing_explosiveness": 0.8374717973272823
+      },
+      "pct": {
+        "off_rushing_success": 11.851851851851851,
+        "off_rushing_ppa": 25.185185185185187,
+        "off_line_yards": 16.296296296296298,
+        "off_stuff_avoidance": 2.962962962962963,
+        "off_second_level_yards": 27.40740740740741,
+        "off_open_field_yards": 69.62962962962963,
+        "off_rushing_explosiveness": 29.62962962962963
+      },
+      "metric_scores": {
+        "success_rate": 11.852,
+        "epa_ppa": 25.185,
+        "adjusted_line_yards": 16.296,
+        "stuff_rate_avoidance": 2.963,
+        "second_level_and_open_field": 48.519,
+        "explosive_rushing": 29.63
+      },
+      "equal_six_metric_score": 22.407,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -10,
+      "adjusted_score": 12.407,
+      "rank": 117
+    },
+    {
+      "team": "TCU",
+      "conference": "Big 12",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3530561178587494,
+        "off_rushing_ppa": -0.17696724031163524,
+        "off_line_yards": 2.3898588618983356,
+        "off_stuff_avoidance": -0.2140547683310841,
+        "off_second_level_yards": 0.706646423751687,
+        "off_open_field_yards": 0.5287196356275303,
+        "off_rushing_explosiveness": 0.7174258582802211
+      },
+      "pct": {
+        "off_rushing_success": 19.25925925925926,
+        "off_rushing_ppa": 8.148148148148149,
+        "off_line_yards": 11.11111111111111,
+        "off_stuff_avoidance": 26.666666666666668,
+        "off_second_level_yards": 4.444444444444445,
+        "off_open_field_yards": 12.592592592592593,
+        "off_rushing_explosiveness": 13.333333333333334
+      },
+      "metric_scores": {
+        "success_rate": 19.259,
+        "epa_ppa": 8.148,
+        "adjusted_line_yards": 11.111,
+        "stuff_rate_avoidance": 26.667,
+        "second_level_and_open_field": 8.519,
+        "explosive_rushing": 13.333
+      },
+      "equal_six_metric_score": 14.506,
+      "opponent_rushing_defense_bonus": 0.307,
+      "conference_adjustment": -4,
+      "adjusted_score": 10.813,
+      "rank": 118
+    },
+    {
+      "team": "Ball State",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3203890160183066,
+        "off_rushing_ppa": -0.1138709484529776,
+        "off_line_yards": 2.515606559877956,
+        "off_stuff_avoidance": -0.23274752097635393,
+        "off_second_level_yards": 0.8440045766590389,
+        "off_open_field_yards": 0.7655072463768116,
+        "off_rushing_explosiveness": 1.0156331803384082
+      },
+      "pct": {
+        "off_rushing_success": 7.407407407407407,
+        "off_rushing_ppa": 16.296296296296298,
+        "off_line_yards": 15.555555555555555,
+        "off_stuff_avoidance": 20,
+        "off_second_level_yards": 20.74074074074074,
+        "off_open_field_yards": 29.62962962962963,
+        "off_rushing_explosiveness": 72.5925925925926
+      },
+      "metric_scores": {
+        "success_rate": 7.407,
+        "epa_ppa": 16.296,
+        "adjusted_line_yards": 15.556,
+        "stuff_rate_avoidance": 20,
+        "second_level_and_open_field": 25.185,
+        "explosive_rushing": 72.593
+      },
+      "equal_six_metric_score": 26.173,
+      "opponent_rushing_defense_bonus": 5.9,
+      "conference_adjustment": -22,
+      "adjusted_score": 10.073,
+      "rank": 119
+    },
+    {
+      "team": "UL Monroe",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3564473684210526,
+        "off_rushing_ppa": -0.09139510238045656,
+        "off_line_yards": 2.8048815789473687,
+        "off_stuff_avoidance": -0.19519736842105262,
+        "off_second_level_yards": 0.8135197368421052,
+        "off_open_field_yards": 0.6878947368421053,
+        "off_rushing_explosiveness": 0.7131461141636894
+      },
+      "pct": {
+        "off_rushing_success": 20.74074074074074,
+        "off_rushing_ppa": 20,
+        "off_line_yards": 36.2962962962963,
+        "off_stuff_avoidance": 41.48148148148148,
+        "off_second_level_yards": 15.555555555555555,
+        "off_open_field_yards": 23.703703703703702,
+        "off_rushing_explosiveness": 11.851851851851851
+      },
+      "metric_scores": {
+        "success_rate": 20.741,
+        "epa_ppa": 20,
+        "adjusted_line_yards": 36.296,
+        "stuff_rate_avoidance": 41.481,
+        "second_level_and_open_field": 19.63,
+        "explosive_rushing": 11.852
+      },
+      "equal_six_metric_score": 25,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 10,
+      "rank": 120
+    },
+    {
+      "team": "Missouri State",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.4392857142857143,
+        "off_rushing_ppa": -0.1828506493953516,
+        "off_line_yards": 2.6766666666666667,
+        "off_stuff_avoidance": -0.19226190476190477,
+        "off_second_level_yards": 0.831547619047619,
+        "off_open_field_yards": 0.9892857142857143,
+        "off_rushing_explosiveness": 0.5810997275552284
+      },
+      "pct": {
+        "off_rushing_success": 62.22222222222222,
+        "off_rushing_ppa": 5.185185185185185,
+        "off_line_yards": 24.444444444444443,
+        "off_stuff_avoidance": 44.44444444444444,
+        "off_second_level_yards": 19.25925925925926,
+        "off_open_field_yards": 46.666666666666664,
+        "off_rushing_explosiveness": 5.925925925925926
+      },
+      "metric_scores": {
+        "success_rate": 62.222,
+        "epa_ppa": 5.185,
+        "adjusted_line_yards": 24.444,
+        "stuff_rate_avoidance": 44.444,
+        "second_level_and_open_field": 32.963,
+        "explosive_rushing": 5.926
+      },
+      "equal_six_metric_score": 29.198,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": 9.198,
+      "rank": 121
+    },
+    {
+      "team": "Louisiana Tech",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3266488413547237,
+        "off_rushing_ppa": -0.12425559752929773,
+        "off_line_yards": 2.1835561497326204,
+        "off_stuff_avoidance": -0.28097147950089124,
+        "off_second_level_yards": 1,
+        "off_open_field_yards": 1.2471033868092691,
+        "off_rushing_explosiveness": 0.5711926211545713
+      },
+      "pct": {
+        "off_rushing_success": 8.88888888888889,
+        "off_rushing_ppa": 14.074074074074074,
+        "off_line_yards": 3.7037037037037037,
+        "off_stuff_avoidance": 1.4814814814814814,
+        "off_second_level_yards": 44.44444444444444,
+        "off_open_field_yards": 65.18518518518519,
+        "off_rushing_explosiveness": 5.185185185185185
+      },
+      "metric_scores": {
+        "success_rate": 8.889,
+        "epa_ppa": 14.074,
+        "adjusted_line_yards": 3.704,
+        "stuff_rate_avoidance": 1.481,
+        "second_level_and_open_field": 54.815,
+        "explosive_rushing": 5.185
+      },
+      "equal_six_metric_score": 14.691,
+      "opponent_rushing_defense_bonus": 9.29,
+      "conference_adjustment": -15,
+      "adjusted_score": 8.981,
+      "rank": 122
+    },
+    {
+      "team": "NC State",
+      "conference": "ACC",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.33884126083785754,
+        "off_rushing_ppa": -0.16683992535243253,
+        "off_line_yards": 2.5732679077870513,
+        "off_stuff_avoidance": -0.24529292601896122,
+        "off_second_level_yards": 0.7613029738270805,
+        "off_open_field_yards": 0.46109330686330113,
+        "off_rushing_explosiveness": 0.553481689077756
+      },
+      "pct": {
+        "off_rushing_success": 14.074074074074074,
+        "off_rushing_ppa": 10.37037037037037,
+        "off_line_yards": 17.77777777777778,
+        "off_stuff_avoidance": 13.333333333333334,
+        "off_second_level_yards": 7.407407407407407,
+        "off_open_field_yards": 8.88888888888889,
+        "off_rushing_explosiveness": 3.7037037037037037
+      },
+      "metric_scores": {
+        "success_rate": 14.074,
+        "epa_ppa": 10.37,
+        "adjusted_line_yards": 17.778,
+        "stuff_rate_avoidance": 13.333,
+        "second_level_and_open_field": 8.148,
+        "explosive_rushing": 3.704
+      },
+      "equal_six_metric_score": 11.235,
+      "opponent_rushing_defense_bonus": 0.885,
+      "conference_adjustment": -5,
+      "adjusted_score": 7.12,
+      "rank": 123
+    },
+    {
+      "team": "Middle Tennessee",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3690967590967591,
+        "off_rushing_ppa": -0.0814750080173826,
+        "off_line_yards": 2.7377242307242304,
+        "off_stuff_avoidance": -0.24205218205218204,
+        "off_second_level_yards": 1.0696957996957999,
+        "off_open_field_yards": 0.4711290511290512,
+        "off_rushing_explosiveness": 0.8321866107069019
+      },
+      "pct": {
+        "off_rushing_success": 24.444444444444443,
+        "off_rushing_ppa": 22.22222222222222,
+        "off_line_yards": 30.37037037037037,
+        "off_stuff_avoidance": 15.555555555555555,
+        "off_second_level_yards": 56.2962962962963,
+        "off_open_field_yards": 9.62962962962963,
+        "off_rushing_explosiveness": 28.88888888888889
+      },
+      "metric_scores": {
+        "success_rate": 24.444,
+        "epa_ppa": 22.222,
+        "adjusted_line_yards": 30.37,
+        "stuff_rate_avoidance": 15.556,
+        "second_level_and_open_field": 32.963,
+        "explosive_rushing": 28.889
+      },
+      "equal_six_metric_score": 25.741,
+      "opponent_rushing_defense_bonus": 0.295,
+      "conference_adjustment": -20,
+      "adjusted_score": 6.036,
+      "rank": 124
+    },
+    {
+      "team": "UTEP",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.28464027716349694,
+        "off_rushing_ppa": -0.10350456232822916,
+        "off_line_yards": 2.1872703818369454,
+        "off_stuff_avoidance": -0.2660813799203892,
+        "off_second_level_yards": 0.8941957835765886,
+        "off_open_field_yards": 0.47931446262715605,
+        "off_rushing_explosiveness": 1.0272000308941152
+      },
+      "pct": {
+        "off_rushing_success": 2.2222222222222223,
+        "off_rushing_ppa": 18.51851851851852,
+        "off_line_yards": 4.444444444444445,
+        "off_stuff_avoidance": 3.7037037037037037,
+        "off_second_level_yards": 28.14814814814815,
+        "off_open_field_yards": 10.37037037037037,
+        "off_rushing_explosiveness": 74.81481481481481
+      },
+      "metric_scores": {
+        "success_rate": 2.222,
+        "epa_ppa": 18.519,
+        "adjusted_line_yards": 4.444,
+        "stuff_rate_avoidance": 3.704,
+        "second_level_and_open_field": 19.259,
+        "explosive_rushing": 74.815
+      },
+      "equal_six_metric_score": 20.494,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 5.494,
+      "rank": 125
+    },
+    {
+      "team": "Northern Illinois",
+      "conference": "Mountain West",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3191652097902098,
+        "off_rushing_ppa": -0.12362576864621247,
+        "off_line_yards": 2.7193946678321677,
+        "off_stuff_avoidance": -0.25830419580419584,
+        "off_second_level_yards": 1.0877403846153846,
+        "off_open_field_yards": 0.7522945804195804,
+        "off_rushing_explosiveness": 0.7546246204994718
+      },
+      "pct": {
+        "off_rushing_success": 6.666666666666667,
+        "off_rushing_ppa": 14.814814814814815,
+        "off_line_yards": 27.40740740740741,
+        "off_stuff_avoidance": 9.62962962962963,
+        "off_second_level_yards": 61.48148148148148,
+        "off_open_field_yards": 28.14814814814815,
+        "off_rushing_explosiveness": 18.51851851851852
+      },
+      "metric_scores": {
+        "success_rate": 6.667,
+        "epa_ppa": 14.815,
+        "adjusted_line_yards": 27.407,
+        "stuff_rate_avoidance": 9.63,
+        "second_level_and_open_field": 44.815,
+        "explosive_rushing": 18.519
+      },
+      "equal_six_metric_score": 20.309,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 5.309,
+      "rank": 126
+    },
+    {
+      "team": "San Jose State",
+      "conference": "Mountain West",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.31120022277917014,
+        "off_rushing_ppa": -0.07335965589207905,
+        "off_line_yards": 2.7243338902812586,
+        "off_stuff_avoidance": -0.2113088276246171,
+        "off_second_level_yards": 0.7850898078529658,
+        "off_open_field_yards": 0.36587719298245613,
+        "off_rushing_explosiveness": 0.7514223107052975
+      },
+      "pct": {
+        "off_rushing_success": 4.444444444444445,
+        "off_rushing_ppa": 22.962962962962962,
+        "off_line_yards": 28.14814814814815,
+        "off_stuff_avoidance": 30.37037037037037,
+        "off_second_level_yards": 10.37037037037037,
+        "off_open_field_yards": 2.962962962962963,
+        "off_rushing_explosiveness": 17.037037037037038
+      },
+      "metric_scores": {
+        "success_rate": 4.444,
+        "epa_ppa": 22.963,
+        "adjusted_line_yards": 28.148,
+        "stuff_rate_avoidance": 30.37,
+        "second_level_and_open_field": 6.667,
+        "explosive_rushing": 17.037
+      },
+      "equal_six_metric_score": 18.272,
+      "opponent_rushing_defense_bonus": 1.84,
+      "conference_adjustment": -15,
+      "adjusted_score": 5.112,
+      "rank": 127
+    },
+    {
+      "team": "Massachusetts",
+      "conference": "Mid-American",
+      "games": 3,
+      "raw": {
+        "off_rushing_success": 0.40891812865497074,
+        "off_rushing_ppa": -0.12729105044455555,
+        "off_line_yards": 2.8512508122157243,
+        "off_stuff_avoidance": -0.23247238466536713,
+        "off_second_level_yards": 0.9416504223521768,
+        "off_open_field_yards": 0.42979207277452885,
+        "off_rushing_explosiveness": 0.6816460562891553
+      },
+      "pct": {
+        "off_rushing_success": 43.7037037037037,
+        "off_rushing_ppa": 13.333333333333334,
+        "off_line_yards": 40.74074074074074,
+        "off_stuff_avoidance": 20.74074074074074,
+        "off_second_level_yards": 33.333333333333336,
+        "off_open_field_yards": 7.407407407407407,
+        "off_rushing_explosiveness": 9.62962962962963
+      },
+      "metric_scores": {
+        "success_rate": 43.704,
+        "epa_ppa": 13.333,
+        "adjusted_line_yards": 40.741,
+        "stuff_rate_avoidance": 20.741,
+        "second_level_and_open_field": 20.37,
+        "explosive_rushing": 9.63
+      },
+      "equal_six_metric_score": 24.753,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": 2.753,
+      "rank": 128
+    },
+    {
+      "team": "App State",
+      "conference": "Sun Belt",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3322616407982262,
+        "off_rushing_ppa": -0.16390217379187608,
+        "off_line_yards": 2.455238095238095,
+        "off_stuff_avoidance": -0.2803568788934643,
+        "off_second_level_yards": 0.819023334389188,
+        "off_open_field_yards": 0.3480371660859466,
+        "off_rushing_explosiveness": 0.89751042777396
+      },
+      "pct": {
+        "off_rushing_success": 10.37037037037037,
+        "off_rushing_ppa": 11.11111111111111,
+        "off_line_yards": 13.333333333333334,
+        "off_stuff_avoidance": 2.2222222222222223,
+        "off_second_level_yards": 17.037037037037038,
+        "off_open_field_yards": 1.4814814814814814,
+        "off_rushing_explosiveness": 44.44444444444444
+      },
+      "metric_scores": {
+        "success_rate": 10.37,
+        "epa_ppa": 11.111,
+        "adjusted_line_yards": 13.333,
+        "stuff_rate_avoidance": 2.222,
+        "second_level_and_open_field": 9.259,
+        "explosive_rushing": 44.444
+      },
+      "equal_six_metric_score": 15.123,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -15,
+      "adjusted_score": 0.123,
+      "rank": 129
+    },
+    {
+      "team": "Delaware",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.379545946112965,
+        "off_rushing_ppa": -0.11776615637839512,
+        "off_line_yards": 2.626090911197627,
+        "off_stuff_avoidance": -0.23094333209739218,
+        "off_second_level_yards": 0.9599555061179088,
+        "off_open_field_yards": 0.5089528488443951,
+        "off_rushing_explosiveness": 0.5249313488229291
+      },
+      "pct": {
+        "off_rushing_success": 30.37037037037037,
+        "off_rushing_ppa": 15.555555555555555,
+        "off_line_yards": 20.74074074074074,
+        "off_stuff_avoidance": 22.22222222222222,
+        "off_second_level_yards": 37.03703703703704,
+        "off_open_field_yards": 11.851851851851851,
+        "off_rushing_explosiveness": 2.2222222222222223
+      },
+      "metric_scores": {
+        "success_rate": 30.37,
+        "epa_ppa": 15.556,
+        "adjusted_line_yards": 20.741,
+        "stuff_rate_avoidance": 22.222,
+        "second_level_and_open_field": 24.444,
+        "explosive_rushing": 2.222
+      },
+      "equal_six_metric_score": 19.259,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": -0.741,
+      "rank": 130
+    },
+    {
+      "team": "Charlotte",
+      "conference": "American Athletic",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.31334798534798536,
+        "off_rushing_ppa": -0.28046467323527813,
+        "off_line_yards": 2.400868498168498,
+        "off_stuff_avoidance": -0.25876556776556775,
+        "off_second_level_yards": 0.8095970695970696,
+        "off_open_field_yards": 1.426769230769231,
+        "off_rushing_explosiveness": 0.24603883242448427
+      },
+      "pct": {
+        "off_rushing_success": 5.185185185185185,
+        "off_rushing_ppa": 0.7407407407407407,
+        "off_line_yards": 11.851851851851851,
+        "off_stuff_avoidance": 8.88888888888889,
+        "off_second_level_yards": 14.074074074074074,
+        "off_open_field_yards": 72.5925925925926,
+        "off_rushing_explosiveness": 0
+      },
+      "metric_scores": {
+        "success_rate": 5.185,
+        "epa_ppa": 0.741,
+        "adjusted_line_yards": 11.852,
+        "stuff_rate_avoidance": 8.889,
+        "second_level_and_open_field": 43.333,
+        "explosive_rushing": 0
+      },
+      "equal_six_metric_score": 11.667,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -13,
+      "adjusted_score": -1.333,
+      "rank": 131
+    },
+    {
+      "team": "Sam Houston",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.3826465201465201,
+        "off_rushing_ppa": -0.1798994445480247,
+        "off_line_yards": 2.1779075091575093,
+        "off_stuff_avoidance": -0.29322344322344324,
+        "off_second_level_yards": 0.8878663003663003,
+        "off_open_field_yards": 0.4919413919413919,
+        "off_rushing_explosiveness": 0.8831890819729289
+      },
+      "pct": {
+        "off_rushing_success": 31.11111111111111,
+        "off_rushing_ppa": 6.666666666666667,
+        "off_line_yards": 2.962962962962963,
+        "off_stuff_avoidance": 0.7407407407407407,
+        "off_second_level_yards": 26.666666666666668,
+        "off_open_field_yards": 11.11111111111111,
+        "off_rushing_explosiveness": 40.74074074074074
+      },
+      "metric_scores": {
+        "success_rate": 31.111,
+        "epa_ppa": 6.667,
+        "adjusted_line_yards": 2.963,
+        "stuff_rate_avoidance": 0.741,
+        "second_level_and_open_field": 18.889,
+        "explosive_rushing": 40.741
+      },
+      "equal_six_metric_score": 16.852,
+      "opponent_rushing_defense_bonus": 1.227,
+      "conference_adjustment": -20,
+      "adjusted_score": -1.921,
+      "rank": 132
+    },
+    {
+      "team": "Western Kentucky",
+      "conference": "Conference USA",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.3688205128205128,
+        "off_rushing_ppa": -0.14203224295087677,
+        "off_line_yards": 2.3436410256410256,
+        "off_stuff_avoidance": -0.2605897435897436,
+        "off_second_level_yards": 0.7947435897435897,
+        "off_open_field_yards": 0.5752564102564103,
+        "off_rushing_explosiveness": 0.8044079806063122
+      },
+      "pct": {
+        "off_rushing_success": 23.703703703703702,
+        "off_rushing_ppa": 12.592592592592593,
+        "off_line_yards": 8.148148148148149,
+        "off_stuff_avoidance": 7.407407407407407,
+        "off_second_level_yards": 12.592592592592593,
+        "off_open_field_yards": 17.037037037037038,
+        "off_rushing_explosiveness": 25.185185185185187
+      },
+      "metric_scores": {
+        "success_rate": 23.704,
+        "epa_ppa": 12.593,
+        "adjusted_line_yards": 8.148,
+        "stuff_rate_avoidance": 7.407,
+        "second_level_and_open_field": 14.815,
+        "explosive_rushing": 25.185
+      },
+      "equal_six_metric_score": 15.309,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": -4.691,
+      "rank": 133
+    },
+    {
+      "team": "Kent State",
+      "conference": "Mid-American",
+      "games": 5,
+      "raw": {
+        "off_rushing_success": 0.23699398162812796,
+        "off_rushing_ppa": -0.2173434444791918,
+        "off_line_yards": 2.388072853975293,
+        "off_stuff_avoidance": -0.23704888607327632,
+        "off_second_level_yards": 0.6579495301446521,
+        "off_open_field_yards": 0.4100073909830007,
+        "off_rushing_explosiveness": 0.8978817209090806
+      },
+      "pct": {
+        "off_rushing_success": 0,
+        "off_rushing_ppa": 2.962962962962963,
+        "off_line_yards": 10.37037037037037,
+        "off_stuff_avoidance": 17.037037037037038,
+        "off_second_level_yards": 2.962962962962963,
+        "off_open_field_yards": 5.925925925925926,
+        "off_rushing_explosiveness": 45.925925925925924
+      },
+      "metric_scores": {
+        "success_rate": 0,
+        "epa_ppa": 2.963,
+        "adjusted_line_yards": 10.37,
+        "stuff_rate_avoidance": 17.037,
+        "second_level_and_open_field": 4.444,
+        "explosive_rushing": 45.926
+      },
+      "equal_six_metric_score": 13.457,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": -8.543,
+      "rank": 134
+    },
+    {
+      "team": "Florida International",
+      "conference": "Conference USA",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.33335084033613444,
+        "off_rushing_ppa": -0.16968978711306582,
+        "off_line_yards": 2.3043522408963586,
+        "off_stuff_avoidance": -0.23650210084033613,
+        "off_second_level_yards": 0.7637605042016806,
+        "off_open_field_yards": 0.3871323529411765,
+        "off_rushing_explosiveness": 0.6008229822261762
+      },
+      "pct": {
+        "off_rushing_success": 11.11111111111111,
+        "off_rushing_ppa": 9.62962962962963,
+        "off_line_yards": 6.666666666666667,
+        "off_stuff_avoidance": 17.77777777777778,
+        "off_second_level_yards": 8.88888888888889,
+        "off_open_field_yards": 4.444444444444445,
+        "off_rushing_explosiveness": 6.666666666666667
+      },
+      "metric_scores": {
+        "success_rate": 11.111,
+        "epa_ppa": 9.63,
+        "adjusted_line_yards": 6.667,
+        "stuff_rate_avoidance": 17.778,
+        "second_level_and_open_field": 6.667,
+        "explosive_rushing": 6.667
+      },
+      "equal_six_metric_score": 9.753,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -20,
+      "adjusted_score": -10.247,
+      "rank": 135
+    },
+    {
+      "team": "Bowling Green",
+      "conference": "Mid-American",
+      "games": 4,
+      "raw": {
+        "off_rushing_success": 0.34935897435897434,
+        "off_rushing_ppa": -0.19650138239809925,
+        "off_line_yards": 2.1090109890109887,
+        "off_stuff_avoidance": -0.265018315018315,
+        "off_second_level_yards": 0.6304029304029304,
+        "off_open_field_yards": 0.24065934065934064,
+        "off_rushing_explosiveness": 0.5002846496903208
+      },
+      "pct": {
+        "off_rushing_success": 18.51851851851852,
+        "off_rushing_ppa": 3.7037037037037037,
+        "off_line_yards": 2.2222222222222223,
+        "off_stuff_avoidance": 5.185185185185185,
+        "off_second_level_yards": 2.2222222222222223,
+        "off_open_field_yards": 0,
+        "off_rushing_explosiveness": 1.4814814814814814
+      },
+      "metric_scores": {
+        "success_rate": 18.519,
+        "epa_ppa": 3.704,
+        "adjusted_line_yards": 2.222,
+        "stuff_rate_avoidance": 5.185,
+        "second_level_and_open_field": 1.111,
+        "explosive_rushing": 1.481
+      },
+      "equal_six_metric_score": 5.37,
+      "opponent_rushing_defense_bonus": 0,
+      "conference_adjustment": -22,
+      "adjusted_score": -16.63,
+      "rank": 136
+    }
+  ]
+}
