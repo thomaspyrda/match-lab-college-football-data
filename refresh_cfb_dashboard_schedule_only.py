@@ -31,6 +31,26 @@ def canon(value):
                "Appalachian State": "App State", "FIU": "Florida International", "San Jose State": "San José State"}
     return aliases.get(str(value), str(value)).casefold()
 
+def to_number(value):
+    try:
+        return float(value) if value is not None and str(value).strip() else None
+    except (ValueError, TypeError):
+        return None
+
+def choose_market(game):
+    # CFBD /lines is a current odds snapshot, NOT a guaranteed opening-line archive.
+    offers = game.get("lines") or []
+    preferred = ("consensus", "draftkings", "fanduel", "betmgm", "caesars", "espn bet", "bovada")
+    offers = sorted(offers, key=lambda x: next((i for i, p in enumerate(preferred) if p in str(x.get("provider") or "").lower()), len(preferred)))
+    for offer in offers:
+        spread = to_number(offer.get("spread"))
+        total = to_number(offer.get("overUnder"))
+        if spread is not None or total is not None:
+            return {"spread": spread, "total": total, "home_moneyline": to_number(offer.get("homeMoneyline")),
+                    "away_moneyline": to_number(offer.get("awayMoneyline")), "provider": offer.get("provider"),
+                    "line_type": "available", "formatted_spread": offer.get("formattedSpread")}
+    return None
+
 def main():
     now = datetime.now(timezone.utc)
     end = now + timedelta(days=7)
@@ -65,6 +85,23 @@ def main():
 
     if not fixtures:
         raise RuntimeError("No upcoming FBS games from CFBD; refusing empty publication")
+
+    # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
+    market_by_id = {}
+    for week in sorted({int(g.get("week") or 0) for g in fixtures.values()}):
+        if week < 1:
+            continue
+        try:
+            offers = request("/lines", year=year, seasonType="regular", week=week)
+        except Exception as exc:
+            print(f"Lines unavailable for week {week}: {exc}; leaving existing market unchanged")
+            continue
+        for game in offers:
+            market = choose_market(game)
+            if market:
+                market_by_id[str(game.get("id"))] = market
+    print(f"CFBD available odds for {len(market_by_id)} of {len(fixtures)} upcoming games")
+
 
     def team(name, side, fixture):
         cached = known_teams.get(canon(name), {})
@@ -112,6 +149,11 @@ def main():
                 "weather": {"summary": "Forecast unavailable"}, "matchup_metrics": [],
                 "featured_mismatch": None, "market_trends": [], "players": [], "trends": []
             }
+        # Refresh current available spread and O/U; do not invent prices or claim opening lines.
+        if game_id in market_by_id:
+            row["market"] = {**(row.get("market") or {}), **market_by_id[game_id]}
+        elif not cached:
+            row["market"]["line_type"] = "unavailable"
         games.append(row)
     games.sort(key=lambda x: x["kickoff"])
     # Coverage is compared against every FBS-involved matchup returned by the source.
