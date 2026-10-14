@@ -137,17 +137,18 @@ function renderDetail(){
  <section class="section">${factors()}</section>
  <section class="section"><div class="section-head section-head-solo"><div><p class="eyebrow">PLAYER OPPORTUNITY</p></div></div>${playerOpportunity()}</section>`}
 function selectGame(id){selectedGame=dashboard.games.find(g=>String(g.game_id)===String(id));document.querySelectorAll(".game-card").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===String(id))));$("#gameDetail").hidden=false;renderDetail()}
-const dayKey=g=>{if(!g.kickoff)return"tbd";return new Intl.DateTimeFormat("en-US",{weekday:"long",timeZone:"America/New_York"}).format(new Date(g.kickoff))};
+const dayKey=g=>{if(!g.kickoff)return"tbd";const d=new Date(g.kickoff);return Number.isNaN(d.getTime())?"tbd":new Intl.DateTimeFormat("en-CA",{year:"numeric",month:"2-digit",day:"2-digit",timeZone:"America/New_York"}).format(d)};
 function renderGameRail(){
- const games=activeDay==="all"?dashboard.games:dashboard.games.filter(g=>dayKey(g)===activeDay);
+ const q=($("#teamSearch")?.value||"").trim().toLowerCase();const games=dashboard.games.filter(g=>(activeDay==="all"||dayKey(g)===activeDay)&&(!q||`${g.away.name} ${g.home.name}`.toLowerCase().includes(q)));
  $("#games").innerHTML=games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="${selectedGame&&String(selectedGame.game_id)===String(g.game_id)}"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(g.away.name)}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(g.home.name)}</b></span></span><span class="markets"><span>${esc(spreadLabel(g))}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("")||'<p class="empty game-rail-empty">No games scheduled for this day.</p>';
  document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));
  $("#games").scrollTo({left:0,behavior:"auto"});
 }
 function renderDayFilters(){
- const days=[...new Set(dashboard.games.map(dayKey))];
- $("#dayFilters").innerHTML=[["all","All"],...days.map(d=>[d,d.slice(0,3)])].map(([key,label])=>`<button type="button" class="day-filter${activeDay===key?" active":""}" data-day="${esc(key)}">${esc(label)}</button>`).join("");
+ const days=[...new Set(dashboard.games.map(dayKey))].filter(d=>d!=="tbd").sort();
+ $("#dayFilters").innerHTML=[["all","All Games"],...days.map(d=>[d,new Date(d+"T12:00:00Z").toLocaleDateString("en-US",{timeZone:"UTC",weekday:"short",month:"short",day:"numeric"})])].map(([key,label])=>`<button type="button" class="day-filter${activeDay===key?" active":""}" data-day="${esc(key)}" aria-pressed="${activeDay===key}">${esc(label)}</button>`).join("");
  document.querySelectorAll(".day-filter").forEach(b=>b.addEventListener("click",()=>{activeDay=b.dataset.day;renderDayFilters();renderGameRail()}));
+ $("#teamSearch").oninput=()=>renderGameRail();
 }
 function scrollGames(direction){const rail=$("#games");rail.scrollBy({left:direction*Math.max(280,rail.clientWidth*.72),behavior:"smooth"})}
 function render(){const d=new Date(dashboard.slate.generated_at);$("#updated").textContent="Updated "+d.toLocaleString("en-US",{month:"short",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"});renderDayFilters();renderGameRail();$("#gamesPrev").onclick=()=>scrollGames(-1);$("#gamesNext").onclick=()=>scrollGames(1);$("#gameDetail").hidden=true}
