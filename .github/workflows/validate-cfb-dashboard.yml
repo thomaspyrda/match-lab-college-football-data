@@ -1,8 +1,7 @@
 name: Validate CFB Dashboard foundation
 'on':
   workflow_dispatch: {}
-  schedule:
-    - cron: "37 */6 * * *"
+  # Scheduled preview regeneration disabled: use isolated schedule-only workflow.
   push:
     branches: [cfb-dashboard-foundation]
     paths:
