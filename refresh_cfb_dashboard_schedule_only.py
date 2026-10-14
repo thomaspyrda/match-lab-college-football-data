@@ -51,6 +51,50 @@ def choose_market(game):
                     "line_type": "available", "formatted_spread": offer.get("formattedSpread")}
     return None
 
+METRIC_PAIRS = [
+    ("Sack Rate Allowed", "Sack Rate", "sack_rate_allowed", "sack_rate", "percent"),
+    ("Havoc Allowed", "Havoc", "havoc_allowed", "havoc", "percent"),
+    ("Turnovers", "Turnovers Forced", "turnovers", "turnovers_forced", "count"),
+    ("Success Rate", "Defensive Success Rate", "overall_success", "defensive_success", "percent"),
+    ("EPA / Play", "EPA / Play Allowed", "offensive_efficiency", "defensive_efficiency", "decimal"),
+    ("Passing Success Rate", "Defensive Pass Success Rate", "passing_success", "defensive_passing_success", "percent"),
+    ("Rushing Success Rate", "Defensive Rush Success Rate", "rushing_success", "defensive_rushing_success", "percent"),
+    ("Explosiveness", "Explosiveness Allowed", "explosiveness", "defensive_explosiveness", "decimal"),
+    ("Points per Opportunity", "Points per Opportunity Allowed", "finishing_drives", "defensive_finishing_drives", "decimal"),
+    ("Third Down Conversion", "Third Down Defense", "third_down_conversion", "defensive_third_down_conversion", "percent"),
+    ("Red Zone TD Rate", "Red Zone TD Defense", "red_zone_td_rate", "defensive_red_zone_td_rate", "percent"),
+]
+
+def build_metric_rows(away, home):
+    def val(team, key):
+        return ((team.get("advanced") or {}).get("raw") or {}).get(key)
+    def rank(team, key):
+        return (team.get("advanced") or {}).get(key)
+    rows = []
+    for label, defense_label, off, de, fmt in METRIC_PAIRS:
+        rows.append({"label": label, "offense_label": label, "defense_label": defense_label, "format": fmt,
+                     "away_offense": val(away, off), "home_defense": val(home, de),
+                     "home_offense": val(home, off), "away_defense": val(away, de),
+                     "away_offense_rank": rank(away, off), "home_defense_rank": rank(home, de),
+                     "home_offense_rank": rank(home, off), "away_defense_rank": rank(away, de)})
+    return rows
+
+def rest_days(team, kickoff, all_fixtures):
+    last = None
+    for game in all_fixtures:
+        game_date = parse_date(game.get("startDate"))
+        if not game_date or not game_date < kickoff:
+            continue
+        if canon(team) not in (canon(game.get("homeTeam")), canon(game.get("awayTeam"))):
+            continue
+        if game.get("homePoints") is None or game.get("awayPoints") is None:
+            continue
+        if last is None or game_date > last:
+            last = game_date
+    if last is None:
+        return None
+    return (kickoff.astimezone(ET).date() - last.astimezone(ET).date()).days
+
 def main():
     now = datetime.now(timezone.utc)
     end = now + timedelta(days=7)
@@ -72,8 +116,10 @@ def main():
     # Request individual weeks; season-wide endpoints may omit future fixtures.
     year = now.astimezone(ET).year
     fixtures = {}
+    season_games = []
     for week in range(1, 18):
         rows = request("/games", year=year, seasonType="regular", week=week)
+        season_games.extend(rows)
         for g in rows:
             kickoff = parse_date(g.get("startDate"))
             if not kickoff or not now <= kickoff < end:
@@ -85,6 +131,18 @@ def main():
 
     if not fixtures:
         raise RuntimeError("No upcoming FBS games from CFBD; refusing empty publication")
+
+    # Reuse source advanced statistics without recomputing or editing any rankings.
+    upcoming_path = ROOT / "data/upcoming.json"
+    source_games = json.loads(upcoming_path.read_text(encoding="utf-8")).get("games", []) if upcoming_path.exists() else []
+    source_by_id = {str(g.get("game_id")): g for g in source_games}
+    advanced_by_team = {}
+    for sg in source_games:
+        for side in ("away", "home"):
+            team_name = sg.get(side)
+            profile = sg.get(side + "_profile") or {}
+            if team_name and profile.get("advanced"):
+                advanced_by_team[canon(team_name)] = profile
 
     # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
     market_by_id = {}
@@ -158,6 +216,20 @@ def main():
             row["market"] = {"spread": None, "total": None, "home_moneyline": None, "away_moneyline": None, "provider": None, "line_type": "unavailable"}
         elif not cached:
             row["market"]["line_type"] = "unavailable"
+        # Every matchup gets the full comparison grid, with missing stats clearly unavailable.
+        source = source_by_id.get(game_id) or {}
+        away_profile = (source.get("away_profile") or advanced_by_team.get(canon(g["awayTeam"])) or {})
+        home_profile = (source.get("home_profile") or advanced_by_team.get(canon(g["homeTeam"])) or {})
+        if not row.get("matchup_metrics"):
+            row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
+        elif not any(m.get("away_offense") is not None or m.get("home_defense") is not None
+                     for m in row["matchup_metrics"]):
+            row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
+        start = parse_date(g.get("startDate"))
+        row["rest_days"] = {
+            "away": rest_days(g["awayTeam"], start, season_games),
+            "home": rest_days(g["homeTeam"], start, season_games),
+        } if start else {"away": None, "home": None}
         games.append(row)
     games.sort(key=lambda x: x["kickoff"])
     # Coverage is compared against every FBS-involved matchup returned by the source.
