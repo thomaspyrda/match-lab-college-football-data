@@ -343,6 +343,9 @@ def ranking_table(rows,columns):
 def write_live_data_pages(now):
     data=current_rankings_data()
     teams=data.get("teams") or []
+    if data.get("model",{}).get("status")=="conference_adjusted_frozen_2026_week6":
+        if len(teams)!=136 or len({r.get("team") for r in teams})!=136:
+            raise ValueError("Frozen rankings must include exactly 136 unique teams")
     season=data.get("season") or now.year
     week=data.get("week")
     through=data.get("through_week")
@@ -402,41 +405,51 @@ def write_live_data_pages(now):
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Strength of Schedule Rankings | CFB Match Lab",f"Current {season} college football strength of schedule rankings based on opponent strength already faced, with full-FBS SOS percentiles from CFB Match Lab.",f"{BASE}/college-football-strength-of-schedule-rankings/",body),encoding="utf-8")
 
-    def unit_strength_page(field,rank_field,label,slug_name,opponent_label,multiplier_field,opponent_quality_field):
+    def unit_strength_page(field,rank_field,label,slug_name,opponent_label,opponent_quality_field):
+        frozen = data.get("model", {}).get("status") == "conference_adjusted_frozen_2026_week6"
+        is_offense = field == "offensive_strength"
+        unit_fields = (("passing_offense_strength","Passing Offense"),("rushing_offense_strength","Rushing Offense")) if is_offense else (("passing_defense_strength","Passing Defense"),("rushing_defense_strength","Rushing Defense"))
         rows=[]
         for r in teams:
             score=r.get(field)
             rank=r.get(rank_field)
             if score is None or rank is None:
                 continue
-            rows.append({
-                "rank":rank,
-                "team":r.get("team"),
-                "score":score,
-                "sd":f'{r.get("offensive_strength_sd"):+.2f}' if field=="offensive_strength" and r.get("offensive_strength_sd") is not None else (f'{r.get("defensive_strength_sd"):+.2f}' if field=="defensive_strength" and r.get("defensive_strength_sd") is not None else "—"),
+            row={
+                "rank":rank, "team":r.get("team"), "score":score,
                 "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
-                "opp_quality":r.get(opponent_quality_field),
+                "opp_quality":r.get("average_defense_faced_frozen" if is_offense else "average_offense_faced_frozen") if frozen else r.get(opponent_quality_field),
                 "overall_rank":r.get("overall_strength_rank"),
                 "overall":r.get("overall_strength_score"),
-                "sos":r.get("schedule_strength_score"),
+                "sos_rank":r.get("schedule_strength_rank"),
                 "record":r.get("record") or "—",
-            })
+            }
+            if frozen:
+                for key,_label in unit_fields:
+                    if r.get(key) is None:
+                        raise ValueError(f"Missing frozen unit metric {key}: {r.get('team')}")
+                    row[key]=r[key]
+            else:
+                row["sd"]=f'{r.get("offensive_strength_sd"):+.2f}' if is_offense and r.get("offensive_strength_sd") is not None else (f'{r.get("defensive_strength_sd"):+.2f}' if not is_offense and r.get("defensive_strength_sd") is not None else "—")
+            rows.append(row)
         rows=sorted(rows,key=lambda r:(r["rank"] or 999,r["team"]))
         d=ROOT/slug_name
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        sd_key="offense_sd" if field=="offensive_strength" else "defense_sd"
-        rows_for_table=[]
-        for row in rows:
-            row=dict(row); row[sd_key]=row.pop("sd"); rows_for_table.append(row)
-        table=ranking_table(rows_for_table,[("rank","Rank"),("team","Team"),("ap","AP"),("score",label),(sd_key,"SD"),("opp_quality",opponent_label),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
+        columns=[("rank","Rank"),("team","Team"),("ap","AP"),("score",label)]
+        if frozen:
+            columns.extend(unit_fields)
+        else:
+            columns.append(("sd","SD"))
+        columns.extend([("opp_quality",opponent_label),("sos_rank","SOS Rank"),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
+        table=ranking_table(rows,columns)
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
-<p class="page-intro">{context}. Current opponent-adjusted {label.lower()} rankings based on completed games. Tap or click any <b>?</b> in the table headers for metric definitions and context.</p>
+<p class="page-intro">{context}. {"Approved frozen conference-adjusted ratings through Week 6." if frozen else "Current opponent-adjusted ratings based on completed games."} Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_hero()}
-{ranking_tabs("offense" if field=="offensive_strength" else "defense")}
+{ranking_tabs("offense" if is_offense else "defense")}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
-        (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab, adjusted for the quality of opposing units faced.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
+        (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
 
     # Remove stale efficiency pages from the deployment so Google is not offered
     # two competing concepts for the same underlying data.
@@ -445,8 +458,8 @@ def write_live_data_pages(now):
         if p.exists():
             shutil.rmtree(p)
 
-    unit_strength_page("offensive_strength","offensive_strength_rank","Offensive Strength","college-football-offensive-strength-rankings","Avg Defense Faced","offensive_multiplier","opponent_defensive_quality")
-    unit_strength_page("defensive_strength","defensive_strength_rank","Defensive Strength","college-football-defensive-strength-rankings","Avg Offense Faced","defensive_multiplier","opponent_offensive_quality")
+    unit_strength_page("offensive_strength","offensive_strength_rank","Offensive Strength","college-football-offensive-strength-rankings","Avg Defense Faced","opponent_defensive_quality")
+    unit_strength_page("defensive_strength","defensive_strength_rank","Defensive Strength","college-football-defensive-strength-rankings","Avg Offense Faced","opponent_offensive_quality")
 
 def main():
     # Retain multi-sport team directories and refresh any newly collected seasons.
