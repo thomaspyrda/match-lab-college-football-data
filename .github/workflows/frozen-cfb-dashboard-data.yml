@@ -1,0 +1,59 @@
+name: Frozen CFB Dashboard Data
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 */6 * * *"
+permissions:
+  contents: write
+concurrency:
+  group: frozen-cfb-dashboard-data
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cfb-dashboard-foundation
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dashboard test dependencies
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Refresh data from established builder sources
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python refresh_match_lab.py
+      - name: Restore validated v15 profile inputs
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          PYTHONPATH: .
+        run: |
+          MODEL_WEEK=$(python -c 'import json; print(int(json.load(open("data/current_rankings.json"))["week"]))')
+          if [ ! -f "data/experiments/recursive_unit_strength_v15_2026_week_${MODEL_WEEK}.json" ]; then
+            MODEL_WEEK="$MODEL_WEEK" python experiment_dominance_v15.py
+          fi
+          python promote_v15_live.py
+      - name: Refresh venue metadata
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python cfb_dashboard/pipeline/refresh_venues.py
+      - name: Run original data tests and build
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m pytest -q cfb_dashboard/tests
+          python -m cfb_dashboard.pipeline.build_dashboard
+          python cfb_dashboard/pipeline/validate_launch.py
+      - name: Publish JSON only; never overwrite current UI
+        run: |
+          git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/matchlab-main
+          cp cfb_dashboard/data/dashboard.json /tmp/matchlab-main/cfb-dashboard-preview/data/dashboard.json
+          cd /tmp/matchlab-main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cfb-dashboard-preview/data/dashboard.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish validated frozen CFB Dashboard data"
+          git pull --rebase origin main
+          git push origin main
