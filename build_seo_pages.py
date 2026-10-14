@@ -262,7 +262,7 @@ def write_urlset(path,urls,lastmod):
     path.write_text("\n".join(rows),encoding="utf-8")
 
 
-def current_rankings_data():
+def _current_rankings_with_frozen_overlay():
     frozen_path=DATA/"frozen_conference_rankings_2026_week6.json"
     p=DATA/"current_rankings.json"
     if frozen_path.exists():
@@ -280,6 +280,8 @@ def current_rankings_data():
         return base
 def current_rankings_data():
     p=DATA/"current_rankings.json"
+    if (DATA/"frozen_conference_rankings_2026_week6.json").exists():
+        return _current_rankings_with_frozen_overlay()
     if not p.exists():
         return {"teams":[],"week":None,"through_week":None,"season":None,"generated_at":None}
     return json.loads(p.read_text(encoding="utf-8"))
