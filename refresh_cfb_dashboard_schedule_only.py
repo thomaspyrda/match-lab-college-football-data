@@ -51,33 +51,93 @@ def choose_market(game):
                     "line_type": "available", "formatted_spread": offer.get("formattedSpread")}
     return None
 
+# Source: CFBD /stats/season/advanced and /stats/season.
+# A rank is an ordinal among the current FBS membership, never a percentile.
 METRIC_PAIRS = [
-    ("Sack Rate Allowed", "Sack Rate", "sack_rate_allowed", "sack_rate", "percent"),
-    ("Havoc Allowed", "Havoc", "havoc_allowed", "havoc", "percent"),
-    ("Turnovers", "Turnovers Forced", "turnovers", "turnovers_forced", "count"),
-    ("Success Rate", "Defensive Success Rate", "overall_success", "defensive_success", "percent"),
-    ("EPA / Play", "EPA / Play Allowed", "offensive_efficiency", "defensive_efficiency", "decimal"),
-    ("Passing Success Rate", "Defensive Pass Success Rate", "passing_success", "defensive_passing_success", "percent"),
-    ("Rushing Success Rate", "Defensive Rush Success Rate", "rushing_success", "defensive_rushing_success", "percent"),
-    ("Explosiveness", "Explosiveness Allowed", "explosiveness", "defensive_explosiveness", "decimal"),
-    ("Points per Opportunity", "Points per Opportunity Allowed", "finishing_drives", "defensive_finishing_drives", "decimal"),
-    ("Third Down Conversion", "Third Down Defense", "third_down_conversion", "defensive_third_down_conversion", "percent"),
-    ("Red Zone TD Rate", "Red Zone TD Defense", "red_zone_td_rate", "defensive_red_zone_td_rate", "percent"),
+    ("Success Rate", "Defensive Success Rate", ("successRate",), "percent", False),
+    ("PPA / Play", "PPA / Play Allowed", ("ppa",), "decimal", False),
+    ("Passing Success Rate", "Defensive Pass Success Rate", ("passingPlays", "successRate"), "percent", False),
+    ("Passing PPA / Play", "Passing PPA / Play Allowed", ("passingPlays", "ppa"), "decimal", False),
+    ("Rushing Success Rate", "Defensive Rush Success Rate", ("rushingPlays", "successRate"), "percent", False),
+    ("Rushing PPA / Play", "Rushing PPA / Play Allowed", ("rushingPlays", "ppa"), "decimal", False),
+    ("Explosiveness", "Explosiveness Allowed", ("explosiveness",), "decimal", False),
+    ("Passing Explosiveness", "Passing Explosiveness Allowed", ("passingPlays", "explosiveness"), "decimal", False),
+    ("Rushing Explosiveness", "Rushing Explosiveness Allowed", ("rushingPlays", "explosiveness"), "decimal", False),
+    ("Points per Opportunity", "Points per Opportunity Allowed", ("pointsPerOpportunity",), "decimal", False),
+    ("Havoc Allowed", "Defensive Havoc", ("havoc", "total"), "percent", True),
+    ("Stuff Rate Allowed", "Defensive Stuff Rate", ("stuffRate",), "percent", True),
+    ("Power Success", "Power Success Allowed", ("powerSuccess",), "percent", False),
+    ("Line Yards", "Line Yards Allowed", ("lineYards",), "decimal", False),
+    ("Second Level Yards", "Second Level Yards Allowed", ("secondLevelYards",), "decimal", False),
+    ("Open Field Yards", "Open Field Yards Allowed", ("openFieldYards",), "decimal", False),
 ]
 
-def build_metric_rows(away, home):
-    def val(team, key):
-        return ((team.get("advanced") or {}).get("raw") or {}).get(key)
-    def rank(team, key):
-        return (team.get("advanced") or {}).get(key)
+def nested(obj, keys):
+    for key in keys:
+        if not isinstance(obj, dict):
+            return None
+        obj = obj.get(key)
+    return to_number(obj)
+
+def build_rank_tables(advanced, fbs):
+    tables = {}
+    for _, _, path, _, offense_reverse in METRIC_PAIRS:
+        for unit in ("offense", "defense"):
+            reverse = (not offense_reverse) if unit == "offense" else offense_reverse
+            # Defense is normally better when allowing less; havoc and stuff rate are exceptions.
+            vals = {}
+            for team, record in advanced.items():
+                if team in fbs:
+                    val = nested(record.get(unit) or {}, path)
+                    if val is not None:
+                        vals[team] = val
+            ordered = sorted(set(vals.values()), reverse=reverse)
+            # Competition ranking, respecting ties.
+            value_rank = {v: 1 + sum(1 for other in vals.values() if (other > v if reverse else other < v)) for v in ordered}
+            tables[(unit, path)] = {team: value_rank[value] for team, value in vals.items()}
+    return tables
+
+def build_metric_rows(away, home, advanced, ranks):
     rows = []
-    for label, defense_label, off, de, fmt in METRIC_PAIRS:
-        rows.append({"label": label, "offense_label": label, "defense_label": defense_label, "format": fmt,
-                     "away_offense": val(away, off), "home_defense": val(home, de),
-                     "home_offense": val(home, off), "away_defense": val(away, de),
-                     "away_offense_rank": rank(away, off), "home_defense_rank": rank(home, de),
-                     "home_offense_rank": rank(home, off), "away_defense_rank": rank(away, de)})
+    for label, defense_label, path, fmt, _ in METRIC_PAIRS:
+        def value(team, unit):
+            return nested((advanced.get(canon(team)) or {}).get(unit) or {}, path)
+        def position(team, unit):
+            return ranks.get((unit, path), {}).get(canon(team))
+        rows.append({"label": label, "offense_label": label, "defense_label": defense_label,
+                     "format": fmt, "rank_type": "ordinal",
+                     "away_offense": value(away, "offense"), "home_defense": value(home, "defense"),
+                     "home_offense": value(home, "offense"), "away_defense": value(away, "defense"),
+                     "away_offense_rank": position(away, "offense"), "home_defense_rank": position(home, "defense"),
+                     "home_offense_rank": position(home, "offense"), "away_defense_rank": position(away, "defense")})
     return rows
+
+def usage_cards(team, rows):
+    eligible = [p for p in rows if canon(p.get("team")) == canon(team) and
+                str(p.get("position") or "").upper() in ("QB", "RB", "WR", "TE")]
+    def score(p):
+        return to_number((p.get("usage") or {}).get("overall")) or 0
+    eligible.sort(key=score, reverse=True)
+    selected = []
+    for position in ("QB", "RB", "WR", "TE"):
+        candidate = next((p for p in eligible if p.get("position", "").upper() == position and p not in selected), None)
+        if candidate:
+            selected.append(candidate)
+    extra = next((p for p in eligible if p not in selected), None)
+    if extra:
+        selected.append(extra)
+    cards = []
+    labels = [("overall", "Overall Usage"), ("firstDown", "1st Down Usage"),
+              ("secondDown", "2nd Down Usage"), ("thirdDown", "3rd Down Usage"),
+              ("standardDowns", "Standard Down Usage"), ("passingDowns", "Passing Down Usage"),
+              ("rush", "Rush Usage"), ("pass", "Pass Usage")]
+    for p in selected:
+        raw = p.get("usage") or {}
+        cards.append({"team": team, "name": p.get("name"), "position": p.get("position"),
+                      "player_id": p.get("id"), "source": "CFBD /player/usage",
+                      "usage": [{"label": label, "value": raw[key]} for key, label in labels
+                                if raw.get(key) is not None and (key != "pass" or p.get("position") == "QB")]})
+    return cards
 
 def build_factors(away, home, rows, conference_game=False, neutral_site=False):
     edges = []
@@ -180,6 +240,19 @@ def main():
             if team_name and profile.get("advanced"):
                 advanced_by_team[canon(team_name)] = profile
 
+    # Fetch nationwide source data before assigning an ordinal FBS rank.
+    advanced_rows = request("/stats/season/advanced", year=year)
+    advanced_season = {canon(row.get("team")): row for row in advanced_rows if row.get("team")}
+    if len([team for team in advanced_season if team in fbs]) < 110:
+        raise RuntimeError("CFBD advanced statistics incomplete; refusing to publish partial rankings")
+    ordinal_ranks = build_rank_tables(advanced_season, fbs)
+    # Player usage is an independent CFBD endpoint, not part of the schedule API.
+    try:
+        player_usage_rows = request("/player/usage", year=year)
+    except Exception as exc:
+        print(f"Player usage unavailable: {exc}; keeping verified existing player cards")
+        player_usage_rows = []
+
     # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
     market_by_id = {}
     successful_line_weeks = set()
@@ -256,17 +329,17 @@ def main():
         source = source_by_id.get(game_id) or {}
         away_profile = (source.get("away_profile") or advanced_by_team.get(canon(g["awayTeam"])) or {})
         home_profile = (source.get("home_profile") or advanced_by_team.get(canon(g["homeTeam"])) or {})
-        if not row.get("matchup_metrics"):
-            row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
-        elif not any(m.get("away_offense") is not None or m.get("home_defense") is not None
-                     for m in row["matchup_metrics"]):
-            row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
+        row["matchup_metrics"] = build_metric_rows(g["awayTeam"], g["homeTeam"], advanced_season, ordinal_ranks)
         # Restore complete detail-section structures for newly added schedule games.
         row["trends"] = build_factors(row["away"], row["home"], row["matchup_metrics"],
                                        g.get("conferenceGame"), g.get("neutralSite"))
         # The previously cached featured mismatch used inverted ordinal-rank logic.
         row["featured_mismatch"] = None
-        if not row.get("players") or all(p.get("placeholder") for p in row["players"]):
+        away_cards = usage_cards(g["awayTeam"], player_usage_rows)
+        home_cards = usage_cards(g["homeTeam"], player_usage_rows)
+        if away_cards and home_cards:
+            row["players"] = away_cards + home_cards
+        elif not row.get("players"):
             row["players"] = (known_players.get(canon(g["awayTeam"])) or player_placeholders(row["away"])) + (known_players.get(canon(g["homeTeam"])) or player_placeholders(row["home"]))
         start = parse_date(g.get("startDate"))
         row["rest_days"] = {
