@@ -12,7 +12,7 @@ const color=(t,i)=>{const primary=t.color,alt=t.alternate_color;if(primary&&isDa
 const logo=t=>t.alternate_logo&&isDark(t.color)?t.alternate_logo:(t.logo||t.alternate_logo||"");
 const abbr=t=>t.abbr||t.name.split(/\\s+/).map(x=>x[0]).join("").slice(0,4).toUpperCase();
 const teamLogo=(t,cls="team-logo")=>{const src=logo(t),initials=`<span class="${cls} logo-fallback" aria-label="${esc(t.name)}">${esc(abbr(t))}</span>`;if(!src)return initials;const secondary=t.alternate_logo&&src!==t.alternate_logo?t.alternate_logo:"";return `<span class="team-logo-wrap"><img class="${cls}" src="${esc(src)}" alt="${esc(t.name)} logo" loading="lazy" onerror="if(this.dataset.secondary){this.src=this.dataset.secondary;this.dataset.secondary=''}else{this.hidden=true;this.nextElementSibling.hidden=false}" data-secondary="${esc(secondary)}"><span class="${cls} logo-fallback" hidden>${esc(abbr(t))}</span></span>`};
-const rank=v=>v==null?"—":Number(v)+"th";
+const rank=v=>v==null?"—":`#${Number(v)}`;
 const rawVal=(v,fmt)=>{if(v==null)return"—";const n=Number(v);if(!Number.isFinite(n))return"—";if(fmt==="percent")return (n*100).toFixed(1)+"%";if(fmt==="decimal")return n.toFixed(3);return String(v)};
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
 const spreadLabel=g=>{if(g.market?.spread===null||g.market?.spread===undefined||g.market?.spread==="")return "—";const s=Number(g.market.spread);if(!Number.isFinite(s))return "—";if(s===0)return "PK";const team=s<0?abbr(g.home):abbr(g.away);return `${team} ${s>0?"+":""}${s}`};
@@ -49,8 +49,8 @@ function metricCard(m,type){
    [selectedGame.away,0,isOff?m.away_offense:m.away_defense,isOff?m.away_offense_rank:m.away_defense_rank],
    [selectedGame.home,1,isOff?m.home_offense:m.home_defense,isOff?m.home_offense_rank:m.home_defense_rank]
  ];
- const line=([t,i,v,r])=>`<div class="metric-team" style="--team-color:${color(t,i)}"><span class="metric-team-name">${teamLogo(t,"metric-logo")}<b>${esc(abbr(t))}</b></span><span class="metric-number">${rawVal(v,m.format)}</span><span class="metric-rank"><b>${rank(r)}</b><small>FBS percentile</small></span><span class="metric-track"><i style="width:${r==null?2:Math.max(2,Math.min(100,Number(r)))}%"></i></span></div>`;
- return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(label)}<button class="info" aria-label="About ${esc(label)}" data-tip="${esc(HELP[label]||"Current-season FBS statistic from CollegeFootballData.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>FBS PERCENTILE</b></span></div>${values.map(line).join("")}</article>`
+ const line=([t,i,v,r])=>`<div class="metric-team" style="--team-color:${color(t,i)}"><span class="metric-team-name">${teamLogo(t,"metric-logo")}<b>${esc(abbr(t))}</b></span><span class="metric-number">${rawVal(v,m.format)}</span><span class="metric-rank"><b>${rank(r)}</b><small>FBS rank</small></span><span class="metric-track"><i style="width:${r==null?2:Math.max(2,Math.min(100,100*(1-(Number(r)-1)/Math.max(1,dashboard?.slate?.fbs_count-1||135))))}%"></i></span></div>`;
+ return `<article class="metric-card"><div class="metric-title"><span><small class="metric-kicker">${kicker} METRIC</small><span class="metric-name">${esc(label)}<button class="info" aria-label="About ${esc(label)}" data-tip="${esc(HELP[label]||"Current-season FBS statistic from CollegeFootballData.")}">?</button></span></span><span class="rank-heading"><i>SEASON STAT</i><b>FBS RANK</b></span></div>${values.map(line).join("")}</article>`
 }
 function pair(m){return metricCard(m,"offense")+metricCard(m,"defense")}
 function marketTrendRow(t){
@@ -85,7 +85,7 @@ function collegePlayerCard(player,team){
 }
 function playerOpportunity(){
  const players=selectedGame.players||[];
- const half=players.length/2;
+ const half=Math.ceil(players.length/2);
  return `<div class="players">${players.map((player,i)=>collegePlayerCard(player,i<half?selectedGame.away:selectedGame.home)).join("")}</div>`;
 }
 function formSchedule(){
@@ -135,7 +135,7 @@ function renderDetail(){
  $("#gameDetail").innerHTML=`<div class="matchup-title"><div><p class="eyebrow">${kickoff(g)}</p><div class="matchup-teams"><span>${mainTeamLogo(g.away)}<b>${esc(g.away.name)}</b></span><i>at</i><span>${mainTeamLogo(g.home)}<b>${esc(g.home.name)}</b></span></div></div><div class="market-strip">${markets}</div></div>
  <section class="season-overview"><p>SEASON SNAPSHOT · COMPLETED GAMES</p><div class="season-overview-grid">${season(g.away,0)}${season(g.home,1)}</div></section>
  <section class="section"><div class="section-head"><div><p class="eyebrow">TRENDS & SITUATIONAL CONTEXT</p><h3>The matchup at a glance</h3></div><span class="subtle">Tap ? for definitions</span></div><div class="trend-groups">${marketResults()}${formSchedule()}</div></section>
-<section class="section"><div class="section-head"><div><p class="eyebrow">EFFICIENCY & FBS PERCENTILE</p><h3>How the teams compare</h3></div><span class="subtle">Higher percentile = better</span></div><details class="reading-guide"><summary>How to read these numbers</summary><div><p><b>Season Stat</b> is the current raw season statistic from CollegeFootballData.</p><p><b>FBS Percentile</b> is a 1–100 performance score among FBS teams for the exact statistic. Higher is better.</p><p><b>Each row</b> pairs an offensive metric with its corresponding defensive metric.</p></div></details><div class="metric-columns-head"><span>OFFENSIVE METRICS</span><span>DEFENSIVE METRICS</span></div><div class="grid">${orderMetrics(g.matchup_metrics||[]).map(pair).join("")}</div></section>
+<section class="section"><div class="section-head"><div><p class="eyebrow">EFFICIENCY & FBS RANKINGS</p><h3>How the teams compare</h3></div><span class="subtle">FBS #1 = best in each metric</span></div><details class="reading-guide"><summary>How to read these numbers</summary><div><p><b>Season Stat</b> is the current raw season statistic from CollegeFootballData.</p><p><b>FBS Rank</b> is the current-season ordinal national ranking for this exact metric. #1 is best; tied results share a rank.</p><p><b>Each row</b> pairs an offensive metric with its corresponding defensive metric.</p></div></details><div class="metric-columns-head"><span>OFFENSIVE METRICS</span><span>DEFENSIVE METRICS</span></div><div class="grid">${orderMetrics(g.matchup_metrics||[]).map(pair).join("")}</div></section>
  <section class="section">${feature()}</section>
  
  <section class="section">${factors()}</section>
