@@ -123,7 +123,7 @@ def usage_cards(team, rows, production=None):
         candidate = next((p for p in eligible if p.get("position", "").upper() == position and p not in selected), None)
         if candidate:
             selected.append(candidate)
-    extra = next((p for p in eligible if p not in selected), None)
+    extra = next((p for p in eligible if p not in selected and str(p.get("position") or "").upper() in ("RB", "WR", "TE")), None)
     if extra:
         selected.append(extra)
     cards = []
@@ -140,6 +140,7 @@ def usage_cards(team, rows, production=None):
     for card in cards:
         stats = (production or {}).get((canon(team), str(card["name"]).casefold()), {})
         card["production"] = stats
+        card["slot"] = "Additional skill player" if card is cards[-1] and len(cards) > 4 else "Season usage"
     return cards
 
 def player_production(rows, team_games):
@@ -292,6 +293,25 @@ def main():
                 completed_by_team[key] = completed_by_team.get(key, 0) + 1
     player_stats = player_production(player_stat_rows, completed_by_team)
 
+    # Refresh recent form from completed official games; cached snapshots become stale.
+    form_by_team = {}
+    for game in season_games:
+        when = parse_date(game.get("startDate"))
+        hp, ap = game.get("homePoints"), game.get("awayPoints")
+        if when is None or when >= now or hp is None or ap is None:
+            continue
+        for side, other, scored, allowed, location in (
+            ("home", "away", hp, ap, "H"), ("away", "home", ap, hp, "A")):
+            name = game.get(side + "Team")
+            if not name:
+                continue
+            form_by_team.setdefault(canon(name), []).append(
+                (when, {"result": "W" if scored > allowed else "L" if scored < allowed else "T",
+                        "opponent": game.get(other + "Team"), "location": location,
+                        "score": f"{scored}-{allowed}", "game_id": game.get("id")}))
+    for name in form_by_team:
+        form_by_team[name].sort(key=lambda entry: entry[0], reverse=True)
+
     # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
     market_by_id = {}
     successful_line_weeks = set()
@@ -357,6 +377,10 @@ def main():
                 "weather": {"summary": "Forecast unavailable"}, "matchup_metrics": [],
                 "featured_mismatch": None, "market_trends": [], "players": [], "trends": []
             }
+        for side, name in (("away", g["awayTeam"]), ("home", g["homeTeam"])):
+            team_form = dict(row[side].get("form") or {})
+            team_form["last_five"] = [entry for _, entry in form_by_team.get(canon(name), [])[:5]]
+            row[side]["form"] = team_form
         # Refresh current available spread and O/U; do not invent prices or claim opening lines.
         if game_id in market_by_id:
             row["market"] = {**(row.get("market") or {}), **market_by_id[game_id]}
