@@ -126,6 +126,10 @@ function factorSentence(t){
  return `${edgeTeam.name}'s FBS #${defRank??"—"} corresponding defense faces ${offenseTeam.name}'s FBS #${offRank??"—"} ${t.metric}, an edge that could help ${edgeTeam.name} ${impact}.`;
 }
 function factors(){const items=(selectedGame.trends||[]).slice(0,8).map(t=>{let title=t.metric||"Game context",detail=factorSentence(t);return `<li><span>${t.type==="matchup_edge"?"↗":"!"}</span><p><small>${esc((t.type||"CONTEXT").replaceAll("_"," "))}</small><b>${esc(title)}</b><span class="factor-detail">${esc(detail)}</span></p></li>`}).join("");return `<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>${items}</ul></section>`}
+
+/* Dashboard only: show upcoming matchups, never completed games or past dates. */
+function bwTodayET(){const p=Object.fromEntries(new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date()).map(x=>[x.type,x.value]));return p.year+"-"+p.month+"-"+p.day}
+function bwUpcoming(g,date){const s=String(g.status||g.state||g.game_status||"").toLowerCase();if(/final|complete|closed|finished|postponed|cancelled|canceled/.test(s))return false;return typeof date==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(date)&&date>=bwTodayET()}
 function renderDetail(){
  const g=selectedGame,m=g.market||{},ml=(m.away_moneyline!=null||m.home_moneyline!=null)?`ML ${abbr(g.away)} ${m.away_moneyline??"—"} · ${abbr(g.home)} ${m.home_moneyline??"—"}`:"ML —",markets=[`Spread ${spreadLabel(g)}`,`Total ${m.total??"—"}`,ml,g.weather?.summary||"Weather unavailable"].map(x=>`<span class="pill">${esc(x)}</span>`).join("");
  $("#gameDetail").innerHTML=`<div class="matchup-title"><div><p class="eyebrow">${kickoff(g)}</p><div class="matchup-teams"><span>${mainTeamLogo(g.away)}<b>${esc(g.away.name)}</b></span><i>at</i><span>${mainTeamLogo(g.home)}<b>${esc(g.home.name)}</b></span></div></div><div class="market-strip">${markets}</div></div>
@@ -139,13 +143,13 @@ function renderDetail(){
 function selectGame(id){selectedGame=dashboard.games.find(g=>String(g.game_id)===String(id));document.querySelectorAll(".game-card").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.id===String(id))));$("#gameDetail").hidden=false;renderDetail()}
 const dayKey=g=>{if(!g.kickoff)return"tbd";const d=new Date(g.kickoff);return Number.isNaN(d.getTime())?"tbd":(()=>{const p=Object.fromEntries(new Intl.DateTimeFormat("en-US",{year:"numeric",month:"2-digit",day:"2-digit",timeZone:"America/New_York"}).formatToParts(d).map(x=>[x.type,x.value]));return `${p.year}-${p.month}-${p.day}`})()};
 function renderGameRail(){
- const q=($("#teamSearch")?.value||"").trim().toLowerCase();const games=dashboard.games.filter(g=>(activeDay==="all"||dayKey(g)===activeDay)&&(!q||`${g.away.name} ${g.home.name}`.toLowerCase().includes(q)));
+ const q=($("#teamSearch")?.value||"").trim().toLowerCase();const games=dashboard.games.filter(g=>bwUpcoming(g,dayKey(g))&&(activeDay==="all"||dayKey(g)===activeDay)&&(!q||`${g.away.name} ${g.home.name}`.toLowerCase().includes(q)));
  $("#games").innerHTML=games.map(g=>`<button class="game-card" data-id="${g.game_id}" aria-pressed="${selectedGame&&String(selectedGame.game_id)===String(g.game_id)}"><span class="game-time">${kickoff(g)}</span><span class="teams"><span>${teamLogo(g.away,"rail-logo")}<b>${esc(g.away.name)}</b></span><span>${teamLogo(g.home,"rail-logo")}<b>${esc(g.home.name)}</b></span></span><span class="markets"><span>${esc(spreadLabel(g))}</span><span>O/U ${esc(g.market?.total??"—")}</span></span></button>`).join("")||'<p class="empty game-rail-empty">No games scheduled for this day.</p>';
  document.querySelectorAll(".game-card").forEach(b=>b.addEventListener("click",()=>selectGame(b.dataset.id)));
  $("#games").scrollTo({left:0,behavior:"auto"});
 }
 function renderDayFilters(){
- const days=[...new Set(dashboard.games.map(dayKey))].filter(d=>d!=="tbd").sort();
+ const days=[...new Set(dashboard.games.filter(g=>bwUpcoming(g,dayKey(g))).map(dayKey))].filter(d=>d!=="tbd").sort();
  $("#dayFilters").innerHTML=[["all","All Games"],...days.map(d=>[d,new Date(d+"T12:00:00Z").toLocaleDateString("en-US",{timeZone:"UTC",weekday:"short",month:"short",day:"numeric"})])].map(([key,label])=>`<button type="button" class="day-filter${activeDay===key?" active":""}" data-day="${esc(key)}" aria-pressed="${activeDay===key}">${esc(label)}</button>`).join("");
  document.querySelectorAll(".day-filter").forEach(b=>b.addEventListener("click",()=>{activeDay=b.dataset.day;renderDayFilters();renderGameRail()}));
  $("#teamSearch").oninput=()=>renderGameRail();
