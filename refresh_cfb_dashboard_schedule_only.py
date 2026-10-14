@@ -112,7 +112,7 @@ def build_metric_rows(away, home, advanced, ranks):
                      "home_offense_rank": position(home, "offense"), "away_defense_rank": position(away, "defense")})
     return rows
 
-def usage_cards(team, rows):
+def usage_cards(team, rows, production=None):
     eligible = [p for p in rows if canon(p.get("team")) == canon(team) and
                 str(p.get("position") or "").upper() in ("QB", "RB", "WR", "TE")]
     def score(p):
@@ -137,7 +137,31 @@ def usage_cards(team, rows):
                       "player_id": p.get("id"), "source": "CFBD /player/usage",
                       "usage": [{"label": label, "value": raw[key]} for key, label in labels
                                 if raw.get(key) is not None and (key != "pass" or p.get("position") == "QB")]})
+    for card in cards:
+        stats = (production or {}).get((canon(team), str(card["name"]).casefold()), {})
+        card["production"] = stats
     return cards
+
+def player_production(rows, team_games):
+    output = {}
+    maps = {"passing": {"YDS": "pass_yards", "TD": "pass_tds", "INT": "interceptions", "ATT": "pass_attempts", "COM": "completions"},
+            "rushing": {"YDS": "rush_yards", "TD": "rush_tds", "CAR": "carries"},
+            "receiving": {"YDS": "rec_yards", "TD": "rec_tds", "REC": "receptions"}}
+    for item in rows:
+        team = canon(item.get("team", ""))
+        name = str(item.get("player") or item.get("name") or "").casefold()
+        category = str(item.get("category") or "").lower()
+        field = maps.get(category, {}).get(str(item.get("statType") or "").upper())
+        value = to_number(item.get("stat"))
+        if not name or not field or value is None:
+            continue
+        entry = output.setdefault((team, name), {"totals": {}, "per_game": {}})
+        entry["totals"][field] = value
+    for (team, _), item in output.items():
+        n = team_games.get(team, 0)
+        if n:
+            item["per_game"] = {key: round(value/n, 1) for key, value in item["totals"].items()}
+    return output
 
 def build_factors(away, home, rows, conference_game=False, neutral_site=False):
     edges = []
@@ -253,6 +277,21 @@ def main():
         print(f"Player usage unavailable: {exc}; keeping verified existing player cards")
         player_usage_rows = []
 
+    try:
+        player_stat_rows = request("/stats/player/season", year=year)
+    except Exception as exc:
+        print(f"Player production unavailable: {exc}; keeping usage cards without unverified totals")
+        player_stat_rows = []
+    completed_by_team = {}
+    for game in season_games:
+        if game.get("homePoints") is None or game.get("awayPoints") is None:
+            continue
+        for name in (game.get("homeTeam"), game.get("awayTeam")):
+            if name:
+                key = canon(name)
+                completed_by_team[key] = completed_by_team.get(key, 0) + 1
+    player_stats = player_production(player_stat_rows, completed_by_team)
+
     # Fetch CFBD market snapshots for only the weeks represented in the seven-day slate.
     market_by_id = {}
     successful_line_weeks = set()
@@ -335,8 +374,8 @@ def main():
                                        g.get("conferenceGame"), g.get("neutralSite"))
         # The previously cached featured mismatch used inverted ordinal-rank logic.
         row["featured_mismatch"] = None
-        away_cards = usage_cards(g["awayTeam"], player_usage_rows)
-        home_cards = usage_cards(g["homeTeam"], player_usage_rows)
+        away_cards = usage_cards(g["awayTeam"], player_usage_rows, player_stats)
+        home_cards = usage_cards(g["homeTeam"], player_usage_rows, player_stats)
         if away_cards or home_cards:
             prior = row.get("players") or []
             row["players"] = (away_cards or known_players.get(canon(g["awayTeam"])) or player_placeholders(row["away"])) + (home_cards or known_players.get(canon(g["homeTeam"])) or player_placeholders(row["home"]))
@@ -353,6 +392,8 @@ def main():
     if len(games) != len(fixtures):
         raise RuntimeError("Coverage check failed")
     existing["slate"]["fbs_count"] = len(fbs)
+    if any(not g.get("matchup_metrics") for g in games):
+        raise RuntimeError("Empty comparison grid; refusing dashboard publication")
     existing["games"] = games
     existing.setdefault("slate", {})["generated_at"] = now.isoformat()
     existing["slate"]["schedule_source"] = "CFBD /games weekly; FBS membership"
