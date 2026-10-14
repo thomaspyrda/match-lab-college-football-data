@@ -144,9 +144,9 @@ def usage_cards(team, rows, production=None):
 
 def player_production(rows, team_games):
     output = {}
-    maps = {"passing": {"YDS": "pass_yards", "TD": "pass_tds", "INT": "interceptions", "ATT": "pass_attempts", "COM": "completions"},
-            "rushing": {"YDS": "rush_yards", "TD": "rush_tds", "CAR": "carries"},
-            "receiving": {"YDS": "rec_yards", "TD": "rec_tds", "REC": "receptions"}}
+    maps = {"passing": {"YDS": "passing_yards", "TD": "passing_tds", "INT": "interceptions", "ATT": "attempts", "COM": "completions"},
+            "rushing": {"YDS": "rushing_yards", "TD": "rushing_tds", "CAR": "carries"},
+            "receiving": {"YDS": "receiving_yards", "TD": "receiving_tds", "REC": "receptions"}}
     for item in rows:
         team = canon(item.get("team", ""))
         name = str(item.get("player") or item.get("name") or "").casefold()
