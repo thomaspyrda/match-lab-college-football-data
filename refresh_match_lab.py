@@ -290,6 +290,9 @@ def live_strength(week):
    out["UConn"]=out.pop("Connecticut")
  return out
 
+# Dashboard schedule membership must not depend on available strength rankings.
+schedule_fbs_rows=api("/teams/fbs",year=now.year)
+schedule_fbs={canon_team(x.get("school")) for x in schedule_fbs_rows if x.get("school")}
 all_upcoming=[]
 for week in candidate_weeks:
  future=api("/games",year=now.year,seasonType="regular",week=week)
@@ -300,14 +303,14 @@ for week in candidate_weeks:
   if not (now<=kickoff<=end):continue
   home=g.get("homeTeam");away=g.get("awayTeam");line=fl.get(str(g.get("id")),{})
   hp=board.get(home,{});ap=board.get(away,{})
-  if hp.get("national_strength_rank") is None and ap.get("national_strength_rank") is None: continue
+  if canon_team(home) not in schedule_fbs and canon_team(away) not in schedule_fbs: continue
   hp["classification"]="FBS" if hp.get("national_strength_rank") is not None else "FCS/Other"
   ap["classification"]="FBS" if ap.get("national_strength_rank") is not None else "FCS/Other"
   home_prior=[x for x in games if (x.get("homeTeam")==home or x.get("awayTeam")==home) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   away_prior=[x for x in games if (x.get("homeTeam")==away or x.get("awayTeam")==away) and x.get("homePoints") is not None and dt(x.get("startDate"))<kickoff]
   all_upcoming.append({"game_id":str(g.get("id")),"season":now.year,"week":week,"start_date":g.get("startDate"),"venue":g.get("venue"),"venue_id":g.get("venueId"),"home":home,"away":away,"home_id":g.get("homeId"),"away_id":g.get("awayId"),"home_conference":g.get("homeConference"),"away_conference":g.get("awayConference"),"conference_game":bool(g.get("conferenceGame")),"neutral_site":bool(g.get("neutralSite")),"spread":num(line.get("spread")),"over_under":num(line.get("overUnder")),"home_moneyline":num(line.get("homeMoneyline")),"away_moneyline":num(line.get("awayMoneyline")),"provider":line.get("provider"),"home_profile":hp|{"recent_form":form(home,home_prior),"advanced":adv(now.year,week,home)},"away_profile":ap|{"recent_form":form(away,away_prior),"advanced":adv(now.year,week,away)},"favorite_side":"home" if num(line.get("spread")) is not None and num(line.get("spread"))<0 else ("away" if num(line.get("spread")) is not None and num(line.get("spread"))>0 else None),"result":None})
 # Cache current FBS branding from CFBD so dashboard builds never depend on a second provider.
-team_rows=api("/teams/fbs",year=now.year)
+team_rows=schedule_fbs_rows
 fbs_teams={canon_team(row.get("school")) for row in team_rows if row.get("school")}
 team_meta={}
 for row in team_rows:
