@@ -64,7 +64,7 @@ function marketResults(){
 const usagePct=v=>v==null?"—":`${Math.round((Number(v)<=1?Number(v)*100:Number(v))*10)/10}%`;
 function qbEfficiency(player){
  const metric=player.efficiency;
- if(player.position!=="QB")return "";
+ if(String(player.position||"").toUpperCase()!=="QB" || !metric)return "";
  const value=metric?.value==null?"—":`${Number(metric.value)>=0?"+":""}${Number(metric.value).toFixed(3)}`;
  const rank=metric?.qualified&&metric.rank?`#${metric.rank} / ${metric.qualifying_count}`:"Not qualified";
  return `<div class="qb-efficiency"><div><small>${esc(metric?.label||"Passing PPA")}</small><strong>${value}</strong></div><div><small>QB RANK <button class="info" data-tip="${esc(metric?.help||"Rank appears after the quarterback meets the qualifying sample.")}" aria-label="About QB rank">?</button></small><strong>${rank}</strong></div></div>`;
@@ -89,13 +89,17 @@ function playerOpportunity(){
  return `<div class="players">${players.map((player,i)=>collegePlayerCard(player,i<half?selectedGame.away:selectedGame.home)).join("")}</div>`;
 }
 function formSchedule(){
- const fmt=t=>(t.form?.last_five||[]).map(x=>x.result).join(" · ")||"—";
+ const fmt=t=>(t.form?.last_five||[]).map(x=>`${x.result}${x.score?" "+x.score:""}`).join(" · ")||"—";
  const compactOpp=x=>x.opponent_abbr||String(x.opponent||"").split(/\s+/).filter(Boolean).map(w=>w[0]).join("").slice(0,5).toUpperCase();
  const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+compactOpp(x)).join(" · ")||"—";
  const rest=t=>{const value=t===selectedGame.away?selectedGame.rest_days?.away:selectedGame.rest_days?.home;return Number.isInteger(value)&&value>=0?`${value} days`:"—"};
  const row=(label,a,h,note,seq=false)=>`<article class="context-card${seq?" context-card--sequence":""}"><strong>${label}</strong><div class="context-sides"><span style="--team-color:${color(selectedGame.away,0)}"><small>${esc(abbr(selectedGame.away))}</small><b>${esc(a)}</b></span><i>VS</i><span style="--team-color:${color(selectedGame.home,1)}"><small>${esc(abbr(selectedGame.home))}</small><b>${esc(h)}</b></span></div><p>${note}</p></article>`;
  return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Days between each team's most recent completed game and kickoff.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
-function feature(){const f=selectedGame.featured_mismatch;if(!f)return"";const off=f.side?.startsWith("away")?selectedGame.away:selectedGame.home,def=off===selectedGame.away?selectedGame.home:selectedGame.away;return `<section class="efficiency-feature"><div class="feature-head"><span>◎</span><div><p>FEATURED MATCHUP · LARGEST FBS-PERCENTILE GAP</p><h4>${esc(f.metric)}</h4></div></div><div class="feature-values"><span style="--team-color:${color(off,0)}">${teamLogo(off,"trend-logo")}<small>${esc(abbr(off))} · offense · ${f.offense_rank??"—"}th percentile</small><b>${rawVal(f.offense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span><i>VS</i><span style="--team-color:${color(def,1)}">${teamLogo(def,"trend-logo")}<small>${esc(abbr(def))} · defense · ${f.opponent_defense_rank??"—"}th percentile</small><b>${rawVal(f.opponent_defense_value,(selectedGame.matchup_metrics||[]).find(x=>x.label===f.metric)?.format)}</b></span></div><p><b>Why it matters:</b> This is the largest FBS-percentile gap among the displayed source statistics. Percentile gap: ${f.rank_gap} points.</p></section>`}
+function feature(){
+ const f=selectedGame.featured_mismatch;
+ if(!f)return "";
+ return "";
+}
 function factorSentence(t){
  if(t.type!=="matchup_edge"){
   if(t.type==="bounce_back")return `${t.team} is coming off a loss, making response and early-game execution an important situational factor.`;
