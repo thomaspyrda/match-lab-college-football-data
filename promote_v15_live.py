@@ -43,6 +43,10 @@ def load_week(w):
     assert d["schema_version"]=="experimental-15.0" and d["public_ui"] is False
     return d
 cur=json.loads((DATA/"current_rankings.json").read_text())
+# Approved 2026 conference-weighted snapshot is immutable until explicitly unfrozen.
+if cur.get("model",{}).get("status")=="conference_adjusted_frozen_2026_week6":
+    print("Preserving explicitly approved frozen conference-adjusted 2026 Week 6 rankings")
+    raise SystemExit(0)
 week=int(cur["week"]); v=load_week(week)
 if not v: raise SystemExit(f"Missing validated v15 Week {week} output")
 rows={canon(r["team"]):r for r in v["rankings"]}; n=len(rows)
