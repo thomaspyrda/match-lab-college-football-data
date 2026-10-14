@@ -84,7 +84,287 @@
     </script>
     <link rel="stylesheet" href="styles.css?v=side-arrows-20261007" />
   <link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation.js?v=2" defer></script>
-<link rel="stylesheet" href="/sports-research/rankings-navigation.css?v=2"></head>
+<link rel="stylesheet" href="/sports-research/rankings-navigation.css?v=2"><style id="betwise-dashboard-sales-css">
+.betwise-cta{--green:#00ff41;--text:#f4f4f4;--number-font:"DM Sans",Arial,sans-serif;color:#f4f4f4;font-family:"Outfit",Arial,sans-serif}
+.betwise-cta .eyebrow{color:#00ff41;font-weight:800;letter-spacing:.16em;font-size:11px}
+.betwise-cta {
+  overflow: hidden;
+  margin: 10px 0 70px;
+  border: 1px solid rgba(0, 255, 65, 0.28);
+  border-radius: 22px;
+  background:
+    linear-gradient(rgba(0, 255, 65, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0, rgba(0, 255, 65, 0.12), transparent 38%),
+    #030604;
+  background-size: 42px 42px, 42px 42px, auto, auto;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+}
+.betwise-collage {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  background-image:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.02) 42%, #030604 100%),
+    url("https://matchlab.parlaycalculator.bet/assets/betwise-cfb-vip-collage.webp");
+  background-position: center;
+  background-size: cover;
+  isolation: isolate;
+}
+.betwise-collage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(3, 6, 4, 0.48), transparent 18%, transparent 82%, rgba(3, 6, 4, 0.48)),
+    radial-gradient(circle at 50% 100%, rgba(0, 255, 65, 0.2), transparent 34%);
+}
+.betwise-collage p {
+  margin: 0;
+  padding: 8px 13px;
+  border: 1px solid rgba(0, 255, 65, 0.48);
+  border-radius: 999px;
+  background: rgba(2, 8, 4, 0.84);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.betwise-intro {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: -20px auto 0;
+  padding: 56px 54px 34px;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(180deg, rgba(3, 6, 4, 0.98), rgba(3, 6, 4, 0.94));
+  text-align: center;
+}
+.betwise-intro .eyebrow {
+  margin: 0 0 16px;
+}
+.betwise-intro h2 {
+  max-width: 790px;
+  margin: 0 auto 16px;
+  font-size: clamp(30px, 4.5vw, 55px);
+  line-height: 1.02;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+.betwise-intro h2 em {
+  color: var(--green);
+  font-style: normal;
+}
+.betwise-intro > p:last-child {
+  max-width: 730px;
+  margin: 0 auto;
+  color: #b8c9bd;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.betwise-offers {
+  display: grid;
+  grid-template-columns: 0.88fr 1.12fr;
+  gap: 16px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 34px 28px;
+}
+.betwise-offer {
+  display: flex;
+  flex-direction: column;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 17px;
+  background: linear-gradient(145deg, rgba(13, 28, 17, 0.96), rgba(5, 12, 8, 0.97));
+}
+.betwise-offer.vip-offer {
+  border-color: rgba(0, 255, 65, 0.58);
+  background:
+    radial-gradient(circle at 92% 5%, rgba(0, 255, 65, 0.15), transparent 34%),
+    linear-gradient(145deg, rgba(10, 31, 16, 0.98), rgba(4, 12, 7, 0.98));
+  box-shadow: 0 0 34px rgba(0, 255, 65, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.offer-label {
+  align-self: flex-start;
+  margin-bottom: 17px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d8e7dc;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+.vip-offer .offer-label {
+  background: var(--green);
+  color: #021006;
+}
+.betwise-offer h3 {
+  margin: 0 0 8px;
+  font-size: clamp(23px, 2.6vw, 31px);
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.betwise-offer > p {
+  margin: 0 0 20px;
+  color: #b8c9bd;
+}
+.betwise-offer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+.betwise-offer li {
+  padding: 7px 9px;
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 255, 65, 0.055);
+  color: #dce9df;
+  font-size: 12px;
+  line-height: 1.15;
+}
+.offer-button {
+  min-height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 13px 17px;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  color: #031006;
+  background: var(--green);
+  font-size: 14px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.offer-button.secondary {
+  color: var(--green);
+  background: transparent;
+}
+.offer-button:hover,
+.offer-button:focus-visible,
+.vip-plan:hover,
+.vip-plan:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.2);
+}
+.vip-pricing {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.vip-plan {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 13px 8px 11px;
+  border: 1px solid rgba(0, 255, 65, 0.22);
+  border-radius: 10px;
+  background: rgba(0, 255, 65, 0.045);
+  color: var(--text);
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.vip-plan.featured {
+  border-color: rgba(0, 255, 65, 0.78);
+  background: rgba(0, 255, 65, 0.11);
+}
+.vip-plan span {
+  margin-bottom: 5px;
+  color: #bed0c2;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+.vip-plan strong {
+  color: var(--green);
+  font: 900 25px/1 var(--number-font);
+  letter-spacing: -1px;
+}
+.vip-plan small {
+  min-height: 25px;
+  margin-top: 5px;
+  color: #b8c9bd;
+  font-size: 9px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.vip-plan b {
+  margin-top: 9px;
+  color: var(--green);
+  font-size: 10px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.betwise-disclaimer {
+  margin: 0;
+  padding: 0 24px 28px;
+  color: #839488;
+  font-size: 11px;
+  text-align: center;
+}
+@media(max-width:760px){
+  .betwise-cta {
+    margin-bottom: 48px;
+    border-radius: 15px;
+  }
+  .betwise-collage {
+    min-height: 238px;
+  }
+  .betwise-intro {
+    margin-top: -10px;
+    padding: 44px 22px 24px;
+  }
+  .betwise-intro h2 {
+    letter-spacing: -1px;
+  }
+  .betwise-offers {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 22px;
+  }
+  .betwise-offer {
+    padding: 23px;
+  }
+  .vip-pricing {
+    grid-template-columns: 1fr;
+  }
+  .vip-plan {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    text-align: left;
+  }
+  .vip-plan strong {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+  }
+  .vip-plan small {
+    min-height: 0;
+    margin-top: 0;
+  }
+  .vip-plan b {
+    grid-column: 1 / -1;
+  }
+
+}
+
+.betwise-slate{--green:#00ff41;margin:30px 0 20px;padding:32px;border:1px solid rgba(0,255,65,.42);border-radius:20px;background:linear-gradient(110deg,#07140b,#101713);color:#fff;text-align:center}.betwise-slate .slate-label{color:#00ff41;font-size:12px;font-weight:800;letter-spacing:.15em}.betwise-slate h2{font-size:clamp(24px,4vw,42px);margin:12px 0}.betwise-slate p{max-width:650px;margin:12px auto 24px;color:#c4d4c8}.betwise-slate a{display:inline-block;padding:13px 28px;color:#051409;background:#00ff41;border-radius:9px;font-weight:900;text-decoration:none}
+</style><style id="betwise-slate-cta-css">.betwise-slate-cta{margin:30px 0 22px;padding:36px 25px;text-align:center;border:1px solid rgba(0,255,65,.45);border-radius:18px;background:linear-gradient(130deg,#09190d,#040904);color:#f5fff7}.betwise-slate-cta .slate-kicker{font-size:12px;font-weight:900;letter-spacing:.15em;color:#00ff41}.betwise-slate-cta h2{font-size:clamp(25px,4vw,42px);line-height:1.15;margin:10px 0}.betwise-slate-cta p:not(.slate-kicker){max-width:690px;color:#c4d1c8;margin:10px auto 23px}.betwise-slate-cta a{display:inline-block;background:#00ff41;color:#041407;padding:13px 25px;border-radius:9px;text-decoration:none;font-weight:900}</style></head>
   <body>
     <header class="site-header"><div class="header-inner">
       <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="BetWise and ParlayCalculator.bet home"><img src="https://matchlab.parlaycalculator.bet/assets/betwise-logo.png" alt="BetWise Sports Picks" width="240" height="240" /></a>
@@ -130,7 +410,104 @@
         <div class="game-rail-navigation"><button id="gamesPrev" type="button" class="game-scroll-arrow" aria-label="Scroll matchups left" aria-controls="games">‹</button><div id="games" class="game-rail" aria-label="Upcoming games"></div><button id="gamesNext" type="button" class="game-scroll-arrow" aria-label="Scroll matchups right" aria-controls="games">›</button></div>
         <div id="gameDetail" class="game-detail"></div>
       </section>
-    </main>
+    <section class="betwise-slate-cta" aria-labelledby="betwiseCfbSlateTitle"><p class="slate-kicker">CFB SATURDAY SLATE</p><h2 id="betwiseCfbSlateTitle">10 researched selections. One Saturday Slate.</h2><p>Our weekly CFB Saturday Slate features 10 researched college football selections for $5. Released separately from VIP All Access.</p><a href="https://betwisesportspicks.com/" target="_blank" rel="noopener noreferrer">Explore the $5 CFB Slate →</a></section>
+<section class="betwise-cta" aria-labelledby="betwiseCtaTitle">
+        <div
+          class="betwise-collage"
+          role="img"
+          aria-label="NBA research promotional stadium collage"
+        >
+          <p>BUILT FOR COLLEGE FOOTBALL SATURDAYS</p>
+        </div>
+        <div class="betwise-intro">
+          <p class="eyebrow">FROM MATCHUP CONTEXT TO A BETTING PLAN</p>
+          <h2 id="betwiseCtaTitle">
+            You found the context. <em>Now see where BetWise lands.</em>
+          </h2>
+          <p>
+            CFB Dashboard helps you understand the situation. BetWise brings the
+            next layer—today’s matchups, injuries, recent form, trends and
+            market information—to help you focus on the strongest betting
+            opportunities.
+          </p>
+        </div>
+        <div class="betwise-offers">
+          <article class="betwise-offer free-offer">
+            <span class="offer-label">FREE DAILY</span>
+            <h3>Free Daily Picks</h3>
+            <p>
+              Get two single-game picks and one player prop every day. One
+              selection is featured as the WISE Pick of the Day with the full
+              research breakdown.
+            </p>
+            <ul>
+              <li>2 single-game picks</li>
+              <li>1 player prop</li>
+              <li>WISE Pick research</li>
+              <li>Delivered on Telegram</li>
+            </ul>
+            <a
+              class="offer-button secondary"
+              href="https://t.me/betwisefreedaily"
+              target="_blank"
+              rel="noopener noreferrer"
+              >See Today’s Free Picks</a
+            >
+          </article>
+          <article class="betwise-offer vip-offer">
+            <span class="offer-label">VIP ALL ACCESS</span>
+            <h3>The complete BetWise card.</h3>
+            <p>
+              Get the complete daily card across NFL, NBA, MLB, college
+              football and college basketball.
+            </p>
+            <div class="vip-pricing" aria-label="VIP All Access pricing">
+              <a
+                class="vip-plan"
+                href="https://betwisesportspicks.com/shop/b7416632-6aa5-4cc4-9823-424027a4ed9b?pageViewSource=lib_view&amp;referrer=https%3A%2F%2Fbetwisesportspicks.com%2F&amp;show_back_button=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Choose BetWise VIP All Access weekly for $10"
+              >
+                <span>WEEKLY</span><strong>$10</strong><small>per week</small>
+                <b>Choose Weekly</b>
+              </a>
+              <a
+                class="vip-plan featured"
+                href="https://betwisesportspicks.com/shop/409e73ac-7852-49ae-b329-2d74368e7610?pageViewSource=lib_view&amp;referrer=https%3A%2F%2Fbetwisesportspicks.com%2F&amp;show_back_button=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Choose BetWise VIP All Access monthly for $30"
+              >
+                <span>MONTHLY</span><strong>$30</strong
+                ><small>MOST POPULAR · ≈ $1/DAY</small><b>Choose Monthly</b>
+              </a>
+              <a
+                class="vip-plan"
+                href="https://betwisesportspicks.com/shop/785306ab-5c10-41d9-a163-48a3f9b21470?pageViewSource=lib_view&amp;referrer=https%3A%2F%2Fbetwisesportspicks.com%2F&amp;show_back_button=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Choose BetWise VIP All Access yearly for $300"
+              >
+                <span>ANNUAL</span><strong>$300</strong><small>save $60</small>
+                <b>Choose Annual</b>
+              </a>
+            </div>
+            <ul>
+              <li>5+ daily picks</li>
+              <li>3+ props</li>
+              <li>1 WISE parlay</li>
+              <li>All major sports</li>
+            </ul>
+          </article>
+        </div>
+        <p class="betwise-disclaimer">
+          Research and analysis are provided for informational purposes and do
+          not guarantee outcomes. Please wager responsibly. 21+ where
+          applicable.
+        </p>
+      </section>
+</main>
     <footer>BetWise research tools provide informational context only. Always verify current markets and player availability.</footer>
     <script src="app.js?v=player-production-20261007"></script>
   </body>
