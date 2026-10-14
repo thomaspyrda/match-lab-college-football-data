@@ -129,6 +129,14 @@ def main():
     existing = json.loads(OUT.read_text(encoding="utf-8"))
     old_games = existing.get("games", [])
     by_id = {str(x.get("game_id")): x for x in old_games}
+    known_players = {}
+    for old in old_games:
+        cards = old.get("players") or []
+        if len(cards) >= 10:
+            for side, subset in (("away", cards[:5]), ("home", cards[5:10])):
+                identity = (old.get(side) or {}).get("name")
+                if identity and any(not p.get("placeholder") for p in subset):
+                    known_players[canon(identity)] = subset
     known_teams = {}
     for game in old_games:
         for side in ("away", "home"):
@@ -257,8 +265,8 @@ def main():
         if not row.get("trends"):
             row["trends"] = build_factors(row["away"], row["home"], row["matchup_metrics"],
                                            g.get("conferenceGame"), g.get("neutralSite"))
-        if not row.get("players"):
-            row["players"] = player_placeholders(row["away"]) + player_placeholders(row["home"])
+        if not row.get("players") or all(p.get("placeholder") for p in row["players"]):
+            row["players"] = (known_players.get(canon(g["awayTeam"])) or player_placeholders(row["away"])) + (known_players.get(canon(g["homeTeam"])) or player_placeholders(row["home"]))
         start = parse_date(g.get("startDate"))
         row["rest_days"] = {
             "away": rest_days(g["awayTeam"], start, season_games),
