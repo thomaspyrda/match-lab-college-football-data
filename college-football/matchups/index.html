@@ -135,4 +135,50 @@ document.addEventListener('click',function(e){
  }
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape')document.querySelectorAll('.help-wrap.open').forEach(w=>w.classList.remove('open'))});
+</script><style>
+.data-table th .sort-label{appearance:none;border:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:left;padding:2px 0;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.data-table th .sort-label:hover,.data-table th .sort-label:focus-visible{color:#00ff41;outline-offset:3px}
+.data-table th .sort-label:after{content:'⇅';opacity:.48;font-size:.82rem}
+.data-table th[aria-sort="ascending"] .sort-label:after{content:'▲';color:#00ff41;opacity:1}
+.data-table th[aria-sort="descending"] .sort-label:after{content:'▼';color:#00ff41;opacity:1}
+</style>
+<script>
+(function(){
+document.querySelectorAll('.data-table').forEach(function(table){
+ var tbody=table.tBodies[0],ths=Array.from(table.tHead?.rows[0]?.cells||[]);
+ if(!tbody||!ths.length)return;
+ var rows=Array.from(tbody.rows);
+ function text(row,i){return(row.cells[i]?.textContent||'').trim();}
+ function parse(value){
+  if(!value||value==='—'||value==='-'||value==='N/A')return null;
+  var m=value.match(/^#?(-?\d+(?:\.\d+)?)$/);
+  if(m)return Number(m[1]);
+  var record=value.match(/^(\d+)\s*-\s*(\d+)(?:\s*-\s*\d+)?$/);
+  if(record)return Number(record[1])/(Number(record[1])+Number(record[2])||1);
+  return null;
+ }
+ ths.forEach(function(th,i){
+  var label=th.querySelector('.help-wrap > span:first-child');
+  if(!label)return;
+  var title=label.textContent.trim(),btn=document.createElement('button');
+  btn.type='button';btn.className='sort-label';btn.textContent=title;btn.setAttribute('aria-label','Sort by '+title);
+  label.replaceWith(btn);th.setAttribute('aria-sort','none');
+  var previousDir=null;
+  btn.addEventListener('click',function(){
+   var ascending=previousDir===null?(/^(Rank|SOS|SOS Rank|Team Rank|AP)$/i.test(title)||title==='Team'):previousDir==='descending';
+   previousDir=ascending?'ascending':'descending';
+   ths.forEach(function(x){x.setAttribute('aria-sort',x===th?previousDir:'none');});
+   var index=new Map(rows.map(function(r,n){return[r,n]}));
+   rows.sort(function(a,b){
+    var av=text(a,i),bv=text(b,i),an=parse(av),bn=parse(bv);
+    if(an===null&&bn!==null)return 1;
+    if(bn===null&&an!==null)return -1;
+    var v=(an!==null&&bn!==null)?an-bn:av.localeCompare(bv,undefined,{numeric:true,sensitivity:'base'});
+    return (ascending?v:-v)||index.get(a)-index.get(b);
+   });
+   rows.forEach(function(row){tbody.appendChild(row);});
+  });
+ });
+});
+})();
 </script></body></html>
