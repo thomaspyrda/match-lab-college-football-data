@@ -262,9 +262,10 @@ def main():
                      for m in row["matchup_metrics"]):
             row["matchup_metrics"] = build_metric_rows(away_profile, home_profile)
         # Restore complete detail-section structures for newly added schedule games.
-        if not row.get("trends"):
-            row["trends"] = build_factors(row["away"], row["home"], row["matchup_metrics"],
-                                           g.get("conferenceGame"), g.get("neutralSite"))
+        row["trends"] = build_factors(row["away"], row["home"], row["matchup_metrics"],
+                                       g.get("conferenceGame"), g.get("neutralSite"))
+        # The previously cached featured mismatch used inverted ordinal-rank logic.
+        row["featured_mismatch"] = None
         if not row.get("players") or all(p.get("placeholder") for p in row["players"]):
             row["players"] = (known_players.get(canon(g["awayTeam"])) or player_placeholders(row["away"])) + (known_players.get(canon(g["homeTeam"])) or player_placeholders(row["home"]))
         start = parse_date(g.get("startDate"))
