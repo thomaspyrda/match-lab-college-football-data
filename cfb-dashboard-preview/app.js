@@ -111,36 +111,66 @@ function feature(){
  if(!f)return "";
  return "";
 }
+
 function factorSentence(t){
+ const game=selectedGame;
  if(t.type!=="matchup_edge"){
-  if(t.type==="bounce_back")return `${t.team} is coming off a loss, making response and early-game execution an important situational factor.`;
-  if(t.type==="ranked_context")return `${t.team} enters as the ranked team, increasing the importance of handling the road environment without giving away early possessions.`;
-  if(t.type==="game_context")return t.detail==="conference matchup"?"Conference familiarity can reduce schematic surprises and make execution in high-leverage downs more important.":t.detail||"This game context could influence the matchup.";
-  return t.detail||"This situational factor could influence the matchup.";
+  if(t.type==="bounce_back"){
+   const team=[game.away,game.home].find(x=>x.name===t.team);
+   const last=team?.form?.last_five?.at(-1);
+   return last?.result==="L"?t.team+" lost its last completed game"+(last.opponent?" against "+last.opponent:"")+". Watch whether it improves early-down execution and avoids another slow start.":t.team+" is coming off a loss. Its response in early drives and high-leverage downs is worth watching.";
+  }
+  if(t.type==="ranked_context")return t.team+" enters with an AP ranking. The ranking provides context, but its execution against this opponent matters more than the label.";
+  if(t.type==="strength_gap"){
+   const a=game.away.team_strength_rank,h=game.home.team_strength_rank;
+   if(Number.isFinite(Number(a))&&Number.isFinite(Number(h)))return game.away.name+" sits at Team Strength #"+a+" and "+game.home.name+" at #"+h+". This overall quality gap is context, not proof of an advantage in every individual unit.";
+   return "There is a gap in overall Team Strength ratings. Check the individual offensive and defensive matchups before treating it as an edge.";
+  }
+  if(t.type==="game_context"){
+   if(game.context?.conference_game)return game.away.name+" and "+game.home.name+" meet in conference play, where familiarity can put greater weight on third-down conversions, turnovers and red-zone execution.";
+   if(game.context?.neutral_site)return "With neither team at its usual home stadium, monitor travel, crowd composition and early-game adjustments rather than assuming a standard home-field advantage.";
+   return t.detail||"Game location and scheduling provide important context for this matchup.";
+  }
+  return t.detail||"Review this situational factor alongside the measured team statistics.";
  }
- const row=(selectedGame.matchup_metrics||[]).find(m=>m.label===t.metric);
- const edgeTeam=t.team===selectedGame.away.name?selectedGame.away:selectedGame.home;
- const other=edgeTeam===selectedGame.away?selectedGame.home:selectedGame.away;
- if(!row)return `${edgeTeam.name}'s ${t.metric} advantage could help it control efficiency in this matchup.`;
- const offenseIsAway=t.offense_side==="away";
- const offenseTeam=offenseIsAway?selectedGame.away:selectedGame.home;
- const defenseTeam=offenseIsAway?selectedGame.home:selectedGame.away;
- const offRank=offenseIsAway?row.away_offense_rank:row.home_offense_rank;
- const defRank=offenseIsAway?row.home_defense_rank:row.away_defense_rank;
- const impact={
-  "Success Rate":t.edge_unit==="offense"?"stay ahead of the chains and avoid obvious passing downs":"force more unsuccessful early-down plays and create longer conversion situations",
-  "EPA / Play":t.edge_unit==="offense"?"create more scoring value per snap and punish inefficient possessions":"limit scoring value per snap and force the offense to sustain longer drives",
-  "Passing Success Rate":t.edge_unit==="offense"?"complete efficient passes often enough to sustain drives and attack favorable coverage":"disrupt the passing game and force more low-efficiency throws or difficult third downs",
-  "Rushing Success Rate":t.edge_unit==="offense"?"keep manageable down-and-distance situations and preserve play-action options":"make the run game inefficient and push the offense toward more predictable passing situations",
-  "Explosiveness":t.edge_unit==="offense"?"generate chunk plays that shorten drives and create faster scoring opportunities":"limit chunk gains and make the offense execute consistently over longer drives",
-  "Points per Opportunity":t.edge_unit==="offense"?"turn scoring chances into more points and capitalize when drives cross into scoring territory":"hold scoring opportunities to fewer points and keep drives from becoming touchdowns",
-  "Third Down Conversion":t.edge_unit==="offense"?"extend drives and create additional possession and scoring volume":"get off the field more often and reduce the opponent's total scoring opportunities",
-  "Red Zone TD Rate":t.edge_unit==="offense"?"finish red-zone possessions with touchdowns instead of settling for field goals":"force more red-zone possessions to end without touchdowns and compress the scoring margin"
- }[t.metric]||"turn that efficiency advantage into better down-and-distance outcomes";
- if(t.edge_unit==="offense")return `${edgeTeam.name}'s FBS #${offRank??"—"} ${t.metric} faces ${defenseTeam.name}'s FBS #${defRank??"—"} corresponding defense, an edge that could help ${edgeTeam.name} ${impact}.`;
- return `${edgeTeam.name}'s FBS #${defRank??"—"} corresponding defense faces ${offenseTeam.name}'s FBS #${offRank??"—"} ${t.metric}, an edge that could help ${edgeTeam.name} ${impact}.`;
+ const row=(game.matchup_metrics||[]).find(m=>m.label===t.metric);
+ const away=t.offense_side==="away",off=away?game.away:game.home,def=away?game.home:game.away;
+ if(!row)return "The source comparison for "+t.metric+" is unavailable, so no numerical advantage is claimed.";
+ const or=away?row.away_offense_rank:row.home_offense_rank,dr=away?row.home_defense_rank:row.away_defense_rank;
+ const ov=away?row.away_offense:row.home_offense,dv=away?row.home_defense:row.away_defense;
+ const offLabel=row.offense_label||row.label,defLabel=row.defense_label||row.label;
+ const value=(v)=>rawVal(v,row.format);
+ const offInfo=off.name+" posts "+value(ov)+" "+offLabel.toLowerCase()+" (FBS "+(or==null?"unranked":"#"+or)+")";
+ const defInfo=def.name+" allows "+value(dv)+" "+defLabel.toLowerCase()+" (FBS "+(dr==null?"unranked":"#"+dr)+")";
+ const explanations={
+  "Sack Rate Allowed":["Protection versus pressure","Sack prevention against the opposing pass rush can affect passing efficiency, field position and drive sustainability."],
+  "Havoc Allowed":["Disruption and ball security","Tackles for loss, disrupted throws and forced fumbles can derail otherwise efficient possessions."],
+  "Turnovers":["Possession leverage","Giveaways against the opposing takeaway ability can swing field position and reduce scoring opportunities."],
+  "Success Rate":["Down-to-down efficiency","The better side of this matchup can more consistently win downs and avoid difficult third-down situations."],
+  "EPA / Play":["Scoring efficiency per snap","A sustained advantage in per-play scoring value can create separation without requiring explosive gains."],
+  "Passing Success Rate":["Passing-down matchup","Efficient throws against this pass defense may determine whether drives continue or stall."],
+  "Rushing Success Rate":["Rushing matchup","The run-game efficiency matchup affects manageable distances, play-action options and time of possession."],
+  "Explosiveness":["Explosive-play matchup","Chunk plays can shorten drives, while limiting them forces longer, more consistent possessions."],
+  "Points per Opportunity":["Scoring-chance conversion","Finishing drives once scoring opportunities develop can separate teams with similar yardage totals."],
+  "Third Down Conversion":["Third-down execution","Extending drives against this defense affects possession count, field position and scoring chances."],
+  "Red Zone TD Rate":["Red-zone efficiency","Touchdown conversion rather than field goals can have an outsized impact on the final margin."]
+ };
+ const picked=explanations[t.metric]||["Unit matchup","The difference in these measured units may influence which team controls efficient possessions."];
+ const favored=(or!=null&&dr!=null)?(or<dr?off.name:dr<or?def.name:null):null;
+ const verdict=favored?" The national ranks favor "+favored+" in this comparison.":" The national ranks suggest a relatively balanced comparison.";
+ return offInfo+"; "+defInfo+"."+verdict+" "+picked[1];
 }
-function factors(){const items=(selectedGame.trends||[]).slice(0,8).map(t=>{let title=t.metric||"Game context",detail=factorSentence(t);return `<li><span>${t.type==="matchup_edge"?"↗":"!"}</span><p><small>${esc((t.type||"CONTEXT").replaceAll("_"," "))}</small><b>${esc(title)}</b><span class="factor-detail">${esc(detail)}</span></p></li>`}).join("");return `<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>${items}</ul></section>`}
+function factors(){
+ const names={"Sack Rate Allowed":"Protection vs. pressure","Havoc Allowed":"Disruption matchup","Turnovers":"Turnover-pressure matchup","Success Rate":"Early-down matchup","EPA / Play":"Per-play efficiency","Passing Success Rate":"Passing-down matchup","Rushing Success Rate":"Rushing matchup","Explosiveness":"Explosive-play matchup","Points per Opportunity":"Scoring-opportunity matchup","Third Down Conversion":"Third-down matchup","Red Zone TD Rate":"Red-zone matchup"};
+ const items=(selectedGame.trends||[]).slice(0,8).map(t=>{
+  const title=t.type==="matchup_edge"?(names[t.metric]||t.metric):t.type==="bounce_back"?"Response after a loss":t.type==="strength_gap"?"Overall team-strength gap":t.type==="game_context"?"Game setting":t.type==="ranked_context"?"Ranked-team context":"Situational factor";
+  const detail=factorSentence(t);
+  const label=t.type==="matchup_edge"?"MATCHUP DISCREPANCY":t.type==="bounce_back"?"RECENT FORM":t.type==="strength_gap"?"TEAM STRENGTH":"GAME CONTEXT";
+  return '<li><span>'+(t.type==="matchup_edge"?"↗":"!")+'</span><p><small>'+esc(label)+'</small><b>'+esc(title)+'</b><span class="factor-detail">'+esc(detail)+'</span></p></li>';
+ }).join("");
+ return '<section class="factor-panel"><div class="factor-heading"><div><p class="eyebrow">KEY MATCHUP FACTORS</p><h3>What deserves the closest attention</h3></div><span>Largest matchup discrepancies—not a prediction</span></div><ul>'+items+'</ul></section>';
+}
+
 
 /* Dashboard only: show upcoming matchups, never completed games or past dates. */
 function bwTodayET(){const p=Object.fromEntries(new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date()).map(x=>[x.type,x.value]));return p.year+"-"+p.month+"-"+p.day}
