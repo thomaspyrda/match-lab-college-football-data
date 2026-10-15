@@ -2,14 +2,14 @@
   "schema_version": 1,
   "season": "2026\u201327",
   "season_type": "Preseason",
-  "updated_at": "2026-10-14T22:34:46.699753+00:00",
+  "updated_at": "2026-10-15T01:25:40.275238+00:00",
   "completed_games": 45,
   "games": [
     {
       "id": "401898404",
       "date": "2026-10-14T23:30Z",
       "label": "Wed Oct 14 \u00b7 7:30 PM ET",
-      "status": "Scheduled",
+      "status": "In Progress",
       "away": {
         "id": "17",
         "team_id": "nba:espn:17",
@@ -1293,7 +1293,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/17",
-        "roster_updated_at": "2026-10-14T22:34:46.210081+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.634331+00:00"
       },
       "home": {
         "id": "14",
@@ -2765,7 +2765,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/14",
-        "roster_updated_at": "2026-10-14T22:34:46.334585+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.746635+00:00"
       },
       "metrics": [
         {
@@ -3152,19 +3152,19 @@
       "venue": "Kaseya Center",
       "neutral": false,
       "market": {
-        "spread": "MIA -4.5",
-        "total": 233.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898404",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-14T23:30:00+00:00"
     },
     {
       "id": "401898405",
       "date": "2026-10-14T23:30Z",
       "label": "Wed Oct 14 \u00b7 7:30 PM ET",
-      "status": "Scheduled",
+      "status": "In Progress",
       "away": {
         "id": "30",
         "team_id": "nba:espn:30",
@@ -4386,7 +4386,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/30",
-        "roster_updated_at": "2026-10-14T22:34:46.310044+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.763052+00:00"
       },
       "home": {
         "id": "2",
@@ -5856,7 +5856,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/2",
-        "roster_updated_at": "2026-10-14T22:34:46.224313+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.626943+00:00"
       },
       "metrics": [
         {
@@ -6243,19 +6243,19 @@
       "venue": "TD Garden",
       "neutral": false,
       "market": {
-        "spread": "BOS -7.5",
-        "total": 224.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898405",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-14T23:30:00+00:00"
     },
     {
       "id": "401898722",
       "date": "2026-10-15T00:00Z",
       "label": "Wed Oct 14 \u00b7 8:00 PM ET",
-      "status": "Scheduled",
+      "status": "Halftime",
       "away": {
         "id": "21",
         "team_id": "nba:espn:21",
@@ -7625,7 +7625,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/21",
-        "roster_updated_at": "2026-10-14T22:34:46.542853+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.167593+00:00"
       },
       "home": {
         "id": "24",
@@ -8773,35 +8773,35 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4703421",
-            "name": "Taelon Peter",
+            "id": "nba:espn:player:4433176",
+            "name": "RJ Davis",
             "position": "G",
-            "jersey": "8",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4703421.png",
-            "games": 2,
-            "pm_games": 2,
+            "jersey": "14",
+            "headshot": null,
+            "games": 3,
+            "pm_games": 3,
             "per_game": {
-              "minutes": 13.0,
-              "points": 1.5,
+              "minutes": 8.7,
+              "points": 2.3,
               "rebounds": 1.0,
-              "assists": 0.5,
-              "turnovers": 0.0,
+              "assists": 0.7,
+              "turnovers": 1.3,
               "blocks": 0.0,
-              "steals": 0.5
+              "steals": 0.0
             },
-            "plus_minus": -3.5,
+            "plus_minus": -1.0,
             "totals": {
-              "fgm": 1.0,
-              "fga": 5.0,
+              "fgm": 3.0,
+              "fga": 11.0,
               "ftm": 0.0,
-              "fta": 0.0,
+              "fta": 2.0,
               "tpm": 1.0,
               "tpa": 4.0,
               "blocks": 0.0,
-              "steals": 1.0
+              "steals": 0.0
             },
             "final_two_minutes_fg_pct": null,
-            "fg_pct": 20.0,
+            "fg_pct": 27.27272727272727,
             "three_pct": 25.0,
             "bpm": null,
             "vorp": null,
@@ -8859,11 +8859,11 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4277880",
-            "name": "Malik Williams",
-            "position": "C",
-            "jersey": "35",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4277880.png",
+            "id": "nba:espn:player:4279815",
+            "name": "Terry Taylor",
+            "position": "F",
+            "jersey": "\u2014",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4279815.png",
             "games": 0,
             "per_game": {},
             "plus_minus": null,
@@ -8908,7 +8908,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/24",
-        "roster_updated_at": "2026-10-14T22:34:46.699475+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.263107+00:00"
       },
       "metrics": [
         {
@@ -9295,19 +9295,19 @@
       "venue": "Frost Bank Center",
       "neutral": false,
       "market": {
-        "spread": "SA -10.5",
-        "total": 222.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898722",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T00:00:00+00:00"
     },
     {
       "id": "401901825",
       "date": "2026-10-15T00:00Z",
       "label": "Wed Oct 14 \u00b7 8:00 PM ET",
-      "status": "Scheduled",
+      "status": "Halftime",
       "away": {
         "id": "3",
         "team_id": "nba:espn:3",
@@ -10688,7 +10688,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/3",
-        "roster_updated_at": "2026-10-14T22:34:46.550087+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.126871+00:00"
       },
       "home": {
         "id": "6",
@@ -11983,7 +11983,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/6",
-        "roster_updated_at": "2026-10-14T22:34:46.558085+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.115178+00:00"
       },
       "metrics": [
         {
@@ -12370,19 +12370,19 @@
       "venue": "American Airlines Center",
       "neutral": false,
       "market": {
-        "spread": "NO -5.5",
-        "total": 230.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901825",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T00:00:00+00:00"
     },
     {
       "id": "401908942",
       "date": "2026-10-15T00:00Z",
       "label": "Wed Oct 14 \u00b7 8:00 PM ET",
-      "status": "Scheduled",
+      "status": "Halftime",
       "away": {
         "id": "4",
         "team_id": "nba:espn:4",
@@ -13768,7 +13768,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/4",
-        "roster_updated_at": "2026-10-14T22:34:46.219511+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.654631+00:00"
       },
       "home": {
         "id": "15",
@@ -15261,7 +15261,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/15",
-        "roster_updated_at": "2026-10-14T22:34:46.297703+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.744020+00:00"
       },
       "metrics": [
         {
@@ -15648,19 +15648,19 @@
       "venue": "Fiserv Forum",
       "neutral": false,
       "market": {
-        "spread": "CHI -4.5",
-        "total": 232.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908942",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T00:00:00+00:00"
     },
     {
       "id": "401914125",
       "date": "2026-10-15T00:00Z",
       "label": "Wed Oct 14 \u00b7 8:00 PM ET",
-      "status": "Scheduled",
+      "status": "Halftime",
       "away": {
         "id": "8",
         "team_id": "nba:espn:8",
@@ -16972,7 +16972,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/8",
-        "roster_updated_at": "2026-10-14T22:34:46.237533+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.652010+00:00"
       },
       "home": {
         "id": "16",
@@ -18456,7 +18456,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/16",
-        "roster_updated_at": "2026-10-14T22:34:46.484013+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.856801+00:00"
       },
       "metrics": [
         {
@@ -18843,13 +18843,13 @@
       "venue": "Target Center",
       "neutral": false,
       "market": {
-        "spread": "MIN -4.5",
-        "total": 227.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914125",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T00:00:00+00:00"
     },
     {
       "id": "401918011",
@@ -20296,7 +20296,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/7",
-        "roster_updated_at": "2026-10-14T22:34:46.463653+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.861753+00:00"
       },
       "home": {
         "id": "12",
@@ -21087,41 +21087,6 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4845363",
-            "name": "Cam Christie",
-            "position": "G",
-            "jersey": "24",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4845363.png",
-            "games": 2,
-            "pm_games": 2,
-            "per_game": {
-              "minutes": 24.5,
-              "points": 8.0,
-              "rebounds": 5.5,
-              "assists": 1.5,
-              "turnovers": 3.0,
-              "blocks": 0.0,
-              "steals": 0.5
-            },
-            "plus_minus": -3.5,
-            "totals": {
-              "fgm": 4.0,
-              "fga": 11.0,
-              "ftm": 8.0,
-              "fta": 8.0,
-              "tpm": 0.0,
-              "tpa": 3.0,
-              "blocks": 0.0,
-              "steals": 1.0
-            },
-            "final_two_minutes_fg_pct": null,
-            "fg_pct": 36.36363636363637,
-            "three_pct": 0.0,
-            "bpm": null,
-            "vorp": null,
-            "vorp_percentile": null
-          },
-          {
             "id": "nba:espn:player:5105832",
             "name": "Nick Martinelli",
             "position": "F",
@@ -21588,7 +21553,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/12",
-        "roster_updated_at": "2026-10-14T22:34:46.468860+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.062445+00:00"
       },
       "metrics": [
         {
@@ -21977,11 +21942,11 @@
       "market": {
         "spread": "DEN -4.5",
         "total": 225.5,
-        "provider": "Draft Kings",
-        "observed_at": "2026-10-14T22:34:46.699753+00:00"
+        "provider": "DraftKings",
+        "observed_at": "2026-10-15T01:25:40.275238+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401918011",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401908945",
@@ -23341,41 +23306,6 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4395623",
-            "name": "Trey Jemison III",
-            "position": "C",
-            "jersey": "50",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395623.png",
-            "games": 1,
-            "pm_games": 1,
-            "per_game": {
-              "minutes": 8.0,
-              "points": 0.0,
-              "rebounds": 6.0,
-              "assists": 1.0,
-              "turnovers": 1.0,
-              "blocks": 0.0,
-              "steals": 0.0
-            },
-            "plus_minus": -5.0,
-            "totals": {
-              "fgm": 0.0,
-              "fga": 2.0,
-              "ftm": 0.0,
-              "fta": 0.0,
-              "tpm": 0.0,
-              "tpa": 0.0,
-              "blocks": 0.0,
-              "steals": 0.0
-            },
-            "final_two_minutes_fg_pct": null,
-            "fg_pct": 0.0,
-            "three_pct": null,
-            "bpm": null,
-            "vorp": null,
-            "vorp_percentile": null
-          },
-          {
             "id": "nba:espn:player:4897696",
             "name": "Jamarion Sharp",
             "position": "C",
@@ -23460,7 +23390,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/28",
-        "roster_updated_at": "2026-10-14T22:34:46.206329+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.600563+00:00"
       },
       "home": {
         "id": "18",
@@ -24997,7 +24927,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/18",
-        "roster_updated_at": "2026-10-14T22:34:46.212873+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.680058+00:00"
       },
       "metrics": [
         {
@@ -25390,7 +25320,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908945",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401908622",
@@ -26736,7 +26666,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/25",
-        "roster_updated_at": "2026-10-14T22:34:46.472808+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.987548+00:00"
       },
       "home": {
         "id": "10",
@@ -27999,7 +27929,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/10",
-        "roster_updated_at": "2026-10-14T22:34:46.560492+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.274903+00:00"
       },
       "metrics": [
         {
@@ -28392,7 +28322,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908622",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898406",
@@ -29869,7 +29799,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/14",
-        "roster_updated_at": "2026-10-14T22:34:46.334585+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.746635+00:00"
       },
       "home": {
         "id": "19",
@@ -31187,7 +31117,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/19",
-        "roster_updated_at": "2026-10-14T22:34:46.295188+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.782391+00:00"
       },
       "metrics": [
         {
@@ -31580,7 +31510,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898406",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898407",
@@ -33055,7 +32985,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/2",
-        "roster_updated_at": "2026-10-14T22:34:46.224313+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.626943+00:00"
       },
       "home": {
         "id": "20",
@@ -34373,7 +34303,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/20",
-        "roster_updated_at": "2026-10-14T22:34:46.207454+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.630599+00:00"
       },
       "metrics": [
         {
@@ -34766,7 +34696,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898407",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401908946",
@@ -36126,41 +36056,6 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4395623",
-            "name": "Trey Jemison III",
-            "position": "C",
-            "jersey": "50",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395623.png",
-            "games": 1,
-            "pm_games": 1,
-            "per_game": {
-              "minutes": 8.0,
-              "points": 0.0,
-              "rebounds": 6.0,
-              "assists": 1.0,
-              "turnovers": 1.0,
-              "blocks": 0.0,
-              "steals": 0.0
-            },
-            "plus_minus": -5.0,
-            "totals": {
-              "fgm": 0.0,
-              "fga": 2.0,
-              "ftm": 0.0,
-              "fta": 0.0,
-              "tpm": 0.0,
-              "tpa": 0.0,
-              "blocks": 0.0,
-              "steals": 0.0
-            },
-            "final_two_minutes_fg_pct": null,
-            "fg_pct": 0.0,
-            "three_pct": null,
-            "bpm": null,
-            "vorp": null,
-            "vorp_percentile": null
-          },
-          {
             "id": "nba:espn:player:4897696",
             "name": "Jamarion Sharp",
             "position": "C",
@@ -36245,7 +36140,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/28",
-        "roster_updated_at": "2026-10-14T22:34:46.206329+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.600563+00:00"
       },
       "home": {
         "id": "8",
@@ -37558,7 +37453,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/8",
-        "roster_updated_at": "2026-10-14T22:34:46.237533+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.652010+00:00"
       },
       "metrics": [
         {
@@ -37951,7 +37846,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908946",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401914126",
@@ -39449,7 +39344,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/15",
-        "roster_updated_at": "2026-10-14T22:34:46.297703+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.744020+00:00"
       },
       "home": {
         "id": "11",
@@ -40734,7 +40629,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/11",
-        "roster_updated_at": "2026-10-14T22:34:46.282773+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.010885+00:00"
       },
       "metrics": [
         {
@@ -41127,7 +41022,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914126",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898408",
@@ -42544,7 +42439,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/1",
-        "roster_updated_at": "2026-10-14T22:34:46.299799+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.801017+00:00"
       },
       "home": {
         "id": "6",
@@ -43839,7 +43734,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/6",
-        "roster_updated_at": "2026-10-14T22:34:46.558085+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.115178+00:00"
       },
       "metrics": [
         {
@@ -44232,7 +44127,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898408",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898843",
@@ -45652,7 +45547,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/23",
-        "roster_updated_at": "2026-10-14T22:34:46.552040+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.109869+00:00"
       },
       "home": {
         "id": "24",
@@ -46800,35 +46695,35 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4703421",
-            "name": "Taelon Peter",
+            "id": "nba:espn:player:4433176",
+            "name": "RJ Davis",
             "position": "G",
-            "jersey": "8",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4703421.png",
-            "games": 2,
-            "pm_games": 2,
+            "jersey": "14",
+            "headshot": null,
+            "games": 3,
+            "pm_games": 3,
             "per_game": {
-              "minutes": 13.0,
-              "points": 1.5,
+              "minutes": 8.7,
+              "points": 2.3,
               "rebounds": 1.0,
-              "assists": 0.5,
-              "turnovers": 0.0,
+              "assists": 0.7,
+              "turnovers": 1.3,
               "blocks": 0.0,
-              "steals": 0.5
+              "steals": 0.0
             },
-            "plus_minus": -3.5,
+            "plus_minus": -1.0,
             "totals": {
-              "fgm": 1.0,
-              "fga": 5.0,
+              "fgm": 3.0,
+              "fga": 11.0,
               "ftm": 0.0,
-              "fta": 0.0,
+              "fta": 2.0,
               "tpm": 1.0,
               "tpa": 4.0,
               "blocks": 0.0,
-              "steals": 1.0
+              "steals": 0.0
             },
             "final_two_minutes_fg_pct": null,
-            "fg_pct": 20.0,
+            "fg_pct": 27.27272727272727,
             "three_pct": 25.0,
             "bpm": null,
             "vorp": null,
@@ -46886,11 +46781,11 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4277880",
-            "name": "Malik Williams",
-            "position": "C",
-            "jersey": "35",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4277880.png",
+            "id": "nba:espn:player:4279815",
+            "name": "Terry Taylor",
+            "position": "F",
+            "jersey": "\u2014",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4279815.png",
             "games": 0,
             "per_game": {},
             "plus_minus": null,
@@ -46935,7 +46830,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/24",
-        "roster_updated_at": "2026-10-14T22:34:46.699475+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.263107+00:00"
       },
       "metrics": [
         {
@@ -47328,7 +47223,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898843",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401901822",
@@ -48556,7 +48451,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/30",
-        "roster_updated_at": "2026-10-14T22:34:46.310044+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.763052+00:00"
       },
       "home": {
         "id": "29",
@@ -49964,7 +49859,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/29",
-        "roster_updated_at": "2026-10-14T22:34:46.587547+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.205889+00:00"
       },
       "metrics": [
         {
@@ -50357,7 +50252,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901822",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401906509",
@@ -51728,7 +51623,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/27",
-        "roster_updated_at": "2026-10-14T22:34:46.314335+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.799760+00:00"
       },
       "home": {
         "id": "3",
@@ -53110,7 +53005,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/3",
-        "roster_updated_at": "2026-10-14T22:34:46.550087+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.126871+00:00"
       },
       "metrics": [
         {
@@ -53503,7 +53398,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401906509",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401908943",
@@ -54992,7 +54887,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/16",
-        "roster_updated_at": "2026-10-14T22:34:46.484013+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.856801+00:00"
       },
       "home": {
         "id": "4",
@@ -56379,7 +56274,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/4",
-        "roster_updated_at": "2026-10-14T22:34:46.219511+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.654631+00:00"
       },
       "metrics": [
         {
@@ -56772,7 +56667,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908943",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898409",
@@ -58056,7 +57951,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/22",
-        "roster_updated_at": "2026-10-14T22:34:46.482300+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.047141+00:00"
       },
       "home": {
         "id": "9",
@@ -59422,7 +59317,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/9",
-        "roster_updated_at": "2026-10-14T22:34:46.483308+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.931801+00:00"
       },
       "metrics": [
         {
@@ -59815,7 +59710,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898409",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401908948",
@@ -61244,7 +61139,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/26",
-        "roster_updated_at": "2026-10-14T22:34:46.475627+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.068370+00:00"
       },
       "home": {
         "id": "21",
@@ -62615,7 +62510,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/21",
-        "roster_updated_at": "2026-10-14T22:34:46.542853+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.167593+00:00"
       },
       "metrics": [
         {
@@ -63008,7 +62903,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908948",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     },
     {
       "id": "401898719",
@@ -64455,7 +64350,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/7",
-        "roster_updated_at": "2026-10-14T22:34:46.463653+00:00"
+        "roster_updated_at": "2026-10-15T01:25:39.861753+00:00"
       },
       "home": {
         "id": "13",
@@ -65676,41 +65571,6 @@
             "vorp_percentile": null
           },
           {
-            "id": "nba:espn:player:4397134",
-            "name": "Cole Swider",
-            "position": "F",
-            "jersey": "41",
-            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4397134.png",
-            "games": 3,
-            "pm_games": 3,
-            "per_game": {
-              "minutes": 6.7,
-              "points": 4.0,
-              "rebounds": 1.0,
-              "assists": 0.0,
-              "turnovers": 0.0,
-              "blocks": 0.3,
-              "steals": 0.0
-            },
-            "plus_minus": -5.7,
-            "totals": {
-              "fgm": 3.0,
-              "fga": 10.0,
-              "ftm": 3.0,
-              "fta": 3.0,
-              "tpm": 3.0,
-              "tpa": 4.0,
-              "blocks": 1.0,
-              "steals": 0.0
-            },
-            "final_two_minutes_fg_pct": null,
-            "fg_pct": 30.0,
-            "three_pct": 75.0,
-            "bpm": null,
-            "vorp": null,
-            "vorp_percentile": null
-          },
-          {
             "id": "nba:espn:player:4897943",
             "name": "Dalton Knecht",
             "position": "F",
@@ -66008,7 +65868,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/13",
-        "roster_updated_at": "2026-10-14T22:34:46.473524+00:00"
+        "roster_updated_at": "2026-10-15T01:25:40.170260+00:00"
       },
       "metrics": [
         {
@@ -66401,7 +66261,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898719",
-      "profile_cutoff": "2026-10-14T22:34:46.699753+00:00"
+      "profile_cutoff": "2026-10-15T01:25:40.275238+00:00"
     }
   ],
   "coverage": {
