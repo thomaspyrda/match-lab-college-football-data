@@ -8,7 +8,8 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 let dashboard,selectedGame,activeDay="all";
 const hexRgb=h=>{const x=String(h||"").replace("#","");if(!/^[0-9a-f]{6}$/i.test(x))return null;return [0,2,4].map(i=>parseInt(x.slice(i,i+2),16))};
 const isDark=h=>{const rgb=hexRgb(h);if(!rgb)return false;const [r,g,b]=rgb.map(v=>v/255);const lin=[r,g,b].map(v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*lin[0]+.7152*lin[1]+.0722*lin[2]<.16};
-const color=(t,i)=>{const primary=t.color,alt=t.alternate_color;if(primary&&isDark(primary)&&alt&&!isDark(alt))return alt;return primary||alt||(i===0?"#4aa8ff":"#9a78ff")};
+const luminance=h=>{const rgb=hexRgb(h);if(!rgb)return 0;const [r,g,b]=rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*r+.7152*g+.0722*b};
+const color=(t,i)=>{const primary=t.color,alt=t.alternate_color;const visible=h=>!!hexRgb(h)&&luminance(h)>=.32;if(visible(primary))return primary;if(visible(alt))return alt;return "#ffffff"};
 const logo=t=>t.alternate_logo&&isDark(t.color)?t.alternate_logo:(t.logo||t.alternate_logo||"");
 const abbr=t=>t.abbr||t.name.split(/\\s+/).map(x=>x[0]).join("").slice(0,4).toUpperCase();
 const teamLogo=(t,cls="team-logo")=>{const src=logo(t),initials=`<span class="${cls} logo-fallback" aria-label="${esc(t.name)}">${esc(abbr(t))}</span>`;if(!src)return initials;const secondary=t.alternate_logo&&src!==t.alternate_logo?t.alternate_logo:"";return `<span class="team-logo-wrap"><img class="${cls}" src="${esc(src)}" alt="${esc(t.name)} logo" loading="lazy" onerror="if(this.dataset.secondary){this.src=this.dataset.secondary;this.dataset.secondary=''}else{this.hidden=true;this.nextElementSibling.hidden=false}" data-secondary="${esc(secondary)}"><span class="${cls} logo-fallback" hidden>${esc(abbr(t))}</span></span>`};
@@ -92,9 +93,19 @@ function formSchedule(){
  const fmt=t=>(t.form?.last_five||[]).map(x=>`${x.result}${x.score?" "+x.score:""}`).join(" · ")||"—";
  const compactOpp=x=>x.opponent_abbr||String(x.opponent||"").split(/\s+/).filter(Boolean).map(w=>w[0]).join("").slice(0,5).toUpperCase();
  const travel=t=>(t.form?.last_five||[]).map(x=>(x.location==="A"?"@":"")+compactOpp(x)).join(" · ")||"—";
- const rest=t=>{const value=t===selectedGame.away?selectedGame.rest_days?.away:selectedGame.rest_days?.home;return Number.isInteger(value)&&value>=0?`${value} days`:"—"};
+ const rest=t=>{
+ const kickoff=selectedGame.kickoff?new Date(selectedGame.kickoff):null;
+ if(!kickoff||!Number.isFinite(kickoff.getTime()))return "—";
+ const games=(t.form?.last_five||[]).filter(g=>g.start_date&&["W","L","T"].includes(String(g.result||"").toUpperCase()));
+ const last=games.map(g=>new Date(g.start_date)).filter(d=>Number.isFinite(d.getTime())&&d<kickoff).sort((a,b)=>b-a)[0];
+ if(!last)return "—";
+ const dayNumber=d=>{const parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(d);
+ const get=type=>Number(parts.find(p=>p.type===type)?.value);return Date.UTC(get("year"),get("month")-1,get("day"))/86400000};
+ const gap=dayNumber(kickoff)-dayNumber(last);
+ return gap>=1?String(gap-1)+" days":"—";
+};
  const row=(label,a,h,note,seq=false)=>`<article class="context-card${seq?" context-card--sequence":""}"><strong>${label}</strong><div class="context-sides"><span style="--team-color:${color(selectedGame.away,0)}"><small>${esc(abbr(selectedGame.away))}</small><b>${esc(a)}</b></span><i>VS</i><span style="--team-color:${color(selectedGame.home,1)}"><small>${esc(abbr(selectedGame.home))}</small><b>${esc(h)}</b></span></div><p>${note}</p></article>`;
- return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Days between each team's most recent completed game and kickoff.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
+ return `<section class="context-panel"><div class="context-title"><span>◷</span><div><h4>Form & Schedule</h4><p>Recent results, recovery time and travel context at a glance.</p></div></div><div class="context-grid">${row("Last five games",fmt(selectedGame.away),fmt(selectedGame.home),"Last 5 Results",true)}${row("Rest before kickoff",rest(selectedGame.away),rest(selectedGame.home),"Full calendar days off between the most recent completed game and kickoff, excluding game days.")}${row("Travel sequence",travel(selectedGame.away),travel(selectedGame.home),"Last 5 Game Locations",true)}${row("Game setting",selectedGame.context?.neutral_site?"Neutral": "Road",selectedGame.context?.neutral_site?"Neutral":"Home",selectedGame.context?.conference_game?"Conference matchup.":"Non-conference matchup.")}</div></section>`}
 function feature(){
  const f=selectedGame.featured_mismatch;
  if(!f)return "";
