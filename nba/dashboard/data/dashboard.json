@@ -2,14 +2,14 @@
   "schema_version": 1,
   "season": "2026\u201327",
   "season_type": "Preseason",
-  "updated_at": "2026-10-15T22:12:12.781779+00:00",
+  "updated_at": "2026-10-16T01:16:08.426703+00:00",
   "completed_games": 52,
   "games": [
     {
       "id": "401908945",
       "date": "2026-10-15T23:30Z",
       "label": "Thu Oct 15 \u00b7 7:30 PM ET",
-      "status": "Scheduled",
+      "status": "In Progress",
       "away": {
         "id": "28",
         "team_id": "nba:espn:28",
@@ -1153,6 +1153,41 @@
             "vorp_percentile": null
           },
           {
+            "id": "nba:espn:player:4590360",
+            "name": "Chucky Hepburn",
+            "position": "G",
+            "jersey": "24",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4590360.png",
+            "games": 2,
+            "pm_games": 2,
+            "per_game": {
+              "minutes": 13.0,
+              "points": 5.5,
+              "rebounds": 2.0,
+              "assists": 1.0,
+              "turnovers": 1.0,
+              "blocks": 0.0,
+              "steals": 1.5
+            },
+            "plus_minus": -8.0,
+            "totals": {
+              "fgm": 4.0,
+              "fga": 6.0,
+              "ftm": 2.0,
+              "fta": 3.0,
+              "tpm": 1.0,
+              "tpa": 2.0,
+              "blocks": 0.0,
+              "steals": 3.0
+            },
+            "final_two_minutes_fg_pct": null,
+            "fg_pct": 66.66666666666666,
+            "three_pct": 50.0,
+            "bpm": null,
+            "vorp": null,
+            "vorp_percentile": null
+          },
+          {
             "id": "nba:espn:player:4433138",
             "name": "Nimari Burnett",
             "position": "G",
@@ -1363,6 +1398,41 @@
             "vorp_percentile": null
           },
           {
+            "id": "nba:espn:player:4395623",
+            "name": "Trey Jemison III",
+            "position": "C",
+            "jersey": "50",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395623.png",
+            "games": 1,
+            "pm_games": 1,
+            "per_game": {
+              "minutes": 8.0,
+              "points": 0.0,
+              "rebounds": 6.0,
+              "assists": 1.0,
+              "turnovers": 1.0,
+              "blocks": 0.0,
+              "steals": 0.0
+            },
+            "plus_minus": -5.0,
+            "totals": {
+              "fgm": 0.0,
+              "fga": 2.0,
+              "ftm": 0.0,
+              "fta": 0.0,
+              "tpm": 0.0,
+              "tpa": 0.0,
+              "blocks": 0.0,
+              "steals": 0.0
+            },
+            "final_two_minutes_fg_pct": null,
+            "fg_pct": 0.0,
+            "three_pct": null,
+            "bpm": null,
+            "vorp": null,
+            "vorp_percentile": null
+          },
+          {
             "id": "nba:espn:player:4897696",
             "name": "Jamarion Sharp",
             "position": "C",
@@ -1447,7 +1517,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/28",
-        "roster_updated_at": "2026-10-15T22:12:12.468561+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.887394+00:00"
       },
       "home": {
         "id": "18",
@@ -2984,7 +3054,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/18",
-        "roster_updated_at": "2026-10-15T22:12:12.466448+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.982248+00:00"
       },
       "metrics": [
         {
@@ -3371,19 +3441,19 @@
       "venue": "Madison Square Garden",
       "neutral": false,
       "market": {
-        "spread": "NY -5.5",
-        "total": 226.5,
-        "provider": "DraftKings",
-        "observed_at": "2026-10-15T22:12:12.781779+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908945",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-15T23:30:00+00:00"
     },
     {
       "id": "401908622",
       "date": "2026-10-16T00:30Z",
       "label": "Thu Oct 15 \u00b7 8:30 PM ET",
-      "status": "Scheduled",
+      "status": "In Progress",
       "away": {
         "id": "25",
         "team_id": "nba:espn:25",
@@ -4723,7 +4793,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/25",
-        "roster_updated_at": "2026-10-15T22:12:12.640660+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.168921+00:00"
       },
       "home": {
         "id": "10",
@@ -5986,7 +6056,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/10",
-        "roster_updated_at": "2026-10-15T22:12:12.742046+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.409306+00:00"
       },
       "metrics": [
         {
@@ -6373,13 +6443,13 @@
       "venue": "Toyota Center (Houston)",
       "neutral": false,
       "market": {
-        "spread": "OKC -3.5",
-        "total": 226.5,
-        "provider": "DraftKings",
-        "observed_at": "2026-10-15T22:12:12.781779+00:00"
+        "spread": null,
+        "total": null,
+        "provider": null,
+        "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908622",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T00:30:00+00:00"
     },
     {
       "id": "401898406",
@@ -7969,7 +8039,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/14",
-        "roster_updated_at": "2026-10-15T22:12:12.563639+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.044628+00:00"
       },
       "home": {
         "id": "19",
@@ -9287,7 +9357,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/19",
-        "roster_updated_at": "2026-10-15T22:12:12.660573+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.020663+00:00"
       },
       "metrics": [
         {
@@ -9680,7 +9750,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898406",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401898407",
@@ -11215,7 +11285,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/2",
-        "roster_updated_at": "2026-10-15T22:12:12.470394+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.825841+00:00"
       },
       "home": {
         "id": "20",
@@ -12533,7 +12603,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/20",
-        "roster_updated_at": "2026-10-15T22:12:12.490875+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.839263+00:00"
       },
       "metrics": [
         {
@@ -12926,7 +12996,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898407",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401908946",
@@ -14076,6 +14146,41 @@
             "vorp_percentile": null
           },
           {
+            "id": "nba:espn:player:4590360",
+            "name": "Chucky Hepburn",
+            "position": "G",
+            "jersey": "24",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4590360.png",
+            "games": 2,
+            "pm_games": 2,
+            "per_game": {
+              "minutes": 13.0,
+              "points": 5.5,
+              "rebounds": 2.0,
+              "assists": 1.0,
+              "turnovers": 1.0,
+              "blocks": 0.0,
+              "steals": 1.5
+            },
+            "plus_minus": -8.0,
+            "totals": {
+              "fgm": 4.0,
+              "fga": 6.0,
+              "ftm": 2.0,
+              "fta": 3.0,
+              "tpm": 1.0,
+              "tpa": 2.0,
+              "blocks": 0.0,
+              "steals": 3.0
+            },
+            "final_two_minutes_fg_pct": null,
+            "fg_pct": 66.66666666666666,
+            "three_pct": 50.0,
+            "bpm": null,
+            "vorp": null,
+            "vorp_percentile": null
+          },
+          {
             "id": "nba:espn:player:4433138",
             "name": "Nimari Burnett",
             "position": "G",
@@ -14286,6 +14391,41 @@
             "vorp_percentile": null
           },
           {
+            "id": "nba:espn:player:4395623",
+            "name": "Trey Jemison III",
+            "position": "C",
+            "jersey": "50",
+            "headshot": "https://a.espncdn.com/i/headshots/nba/players/full/4395623.png",
+            "games": 1,
+            "pm_games": 1,
+            "per_game": {
+              "minutes": 8.0,
+              "points": 0.0,
+              "rebounds": 6.0,
+              "assists": 1.0,
+              "turnovers": 1.0,
+              "blocks": 0.0,
+              "steals": 0.0
+            },
+            "plus_minus": -5.0,
+            "totals": {
+              "fgm": 0.0,
+              "fga": 2.0,
+              "ftm": 0.0,
+              "fta": 0.0,
+              "tpm": 0.0,
+              "tpa": 0.0,
+              "blocks": 0.0,
+              "steals": 0.0
+            },
+            "final_two_minutes_fg_pct": null,
+            "fg_pct": 0.0,
+            "three_pct": null,
+            "bpm": null,
+            "vorp": null,
+            "vorp_percentile": null
+          },
+          {
             "id": "nba:espn:player:4897696",
             "name": "Jamarion Sharp",
             "position": "C",
@@ -14370,7 +14510,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/28",
-        "roster_updated_at": "2026-10-15T22:12:12.468561+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.887394+00:00"
       },
       "home": {
         "id": "8",
@@ -15796,7 +15936,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/8",
-        "roster_updated_at": "2026-10-15T22:12:12.461096+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.821881+00:00"
       },
       "metrics": [
         {
@@ -16189,7 +16329,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908946",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401914126",
@@ -17747,7 +17887,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/15",
-        "roster_updated_at": "2026-10-15T22:12:12.558724+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.976316+00:00"
       },
       "home": {
         "id": "11",
@@ -19032,7 +19172,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/11",
-        "roster_updated_at": "2026-10-15T22:12:12.561339+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.994009+00:00"
       },
       "metrics": [
         {
@@ -19425,7 +19565,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401914126",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401898408",
@@ -20842,7 +20982,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/1",
-        "roster_updated_at": "2026-10-15T22:12:12.554751+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.039091+00:00"
       },
       "home": {
         "id": "6",
@@ -22213,7 +22353,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/6",
-        "roster_updated_at": "2026-10-15T22:12:12.737423+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.323404+00:00"
       },
       "metrics": [
         {
@@ -22606,7 +22746,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898408",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401898843",
@@ -24026,7 +24166,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/23",
-        "roster_updated_at": "2026-10-15T22:12:12.724098+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.263210+00:00"
       },
       "home": {
         "id": "24",
@@ -25369,7 +25509,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/24",
-        "roster_updated_at": "2026-10-15T22:12:12.731298+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.348772+00:00"
       },
       "metrics": [
         {
@@ -25762,7 +25902,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898843",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401901822",
@@ -27050,7 +27190,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/30",
-        "roster_updated_at": "2026-10-15T22:12:12.566705+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.073191+00:00"
       },
       "home": {
         "id": "29",
@@ -28458,7 +28598,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/29",
-        "roster_updated_at": "2026-10-15T22:12:12.781177+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.426313+00:00"
       },
       "metrics": [
         {
@@ -28851,7 +28991,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401901822",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401906509",
@@ -30222,7 +30362,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/27",
-        "roster_updated_at": "2026-10-15T22:12:12.557229+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.145099+00:00"
       },
       "home": {
         "id": "3",
@@ -31768,7 +31908,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/3",
-        "roster_updated_at": "2026-10-15T22:12:12.751407+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.329960+00:00"
       },
       "metrics": [
         {
@@ -32161,7 +32301,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401906509",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401908943",
@@ -33657,7 +33797,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/16",
-        "roster_updated_at": "2026-10-15T22:12:12.634490+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.083369+00:00"
       },
       "home": {
         "id": "4",
@@ -35104,7 +35244,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/4",
-        "roster_updated_at": "2026-10-15T22:12:12.464938+00:00"
+        "roster_updated_at": "2026-10-16T01:16:07.980676+00:00"
       },
       "metrics": [
         {
@@ -35497,7 +35637,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908943",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401898409",
@@ -36781,7 +36921,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/22",
-        "roster_updated_at": "2026-10-15T22:12:12.621568+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.098386+00:00"
       },
       "home": {
         "id": "9",
@@ -38147,7 +38287,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/9",
-        "roster_updated_at": "2026-10-15T22:12:12.656863+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.201028+00:00"
       },
       "metrics": [
         {
@@ -38540,7 +38680,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898409",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401908948",
@@ -39969,7 +40109,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/26",
-        "roster_updated_at": "2026-10-15T22:12:12.688406+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.248283+00:00"
       },
       "home": {
         "id": "21",
@@ -41453,7 +41593,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/21",
-        "roster_updated_at": "2026-10-15T22:12:12.697211+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.271346+00:00"
       },
       "metrics": [
         {
@@ -41846,7 +41986,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401908948",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     },
     {
       "id": "401898719",
@@ -43351,7 +43491,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/7",
-        "roster_updated_at": "2026-10-15T22:12:12.573693+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.085844+00:00"
       },
       "home": {
         "id": "13",
@@ -44869,7 +45009,7 @@
           }
         ],
         "roster_source": "https://www.espn.com/nba/team/roster/_/id/13",
-        "roster_updated_at": "2026-10-15T22:12:12.680591+00:00"
+        "roster_updated_at": "2026-10-16T01:16:08.221682+00:00"
       },
       "metrics": [
         {
@@ -45262,7 +45402,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401898719",
-      "profile_cutoff": "2026-10-15T22:12:12.781779+00:00"
+      "profile_cutoff": "2026-10-16T01:16:08.426703+00:00"
     }
   ],
   "coverage": {
