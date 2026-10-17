@@ -404,6 +404,39 @@ jobs:
         if: steps.reconcile.outcome == 'failure'
         run: exit 1
 
+  historical-2026-audit:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate historical retrieval and standings code
+        run: |
+          python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+          python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+      - name: Audit team identities
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2026 completed games without publication
+        run: python stage_mlb_historical_season.py --year 2026
+      - name: Reconcile 2026 regular-season official standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2026
+      - name: Upload isolated 2026 validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2026-audit-not-for-publication
+          path: |
+            mlb/data/historical-stage-2026.json
+            mlb/data/historical-reconciliation-2026.json
+          retention-days: 14
+      - name: Require 2026 W-L reconciliation
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
+
   consolidate-historical-archive:
     if: github.event_name == 'push'
     needs: [historical-stage, historical-2015-smoke, historical-2016-smoke, historical-2017-smoke, historical-2018-smoke, historical-2019-smoke, historical-2021-smoke, historical-2022-smoke, historical-2023-smoke, historical-2024-smoke, historical-2025-smoke]
