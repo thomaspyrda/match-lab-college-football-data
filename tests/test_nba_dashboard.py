@@ -42,6 +42,15 @@ class NBADataTests(unittest.TestCase):
         self.assertIsNone(p['players'][0]['totals']['blocks'])
         self.assertIsNone(p['players'][0]['per_game']['steals'])
     def test_zero_attempt_shooting_is_missing(self):self.assertIsNone(nba.ratio(0,0,100))
+    def test_regular_season_upcoming_over_preseason(self):
+        now=datetime(2026,10,17,16,tzinfo=timezone.utc)
+        def event(key,phase,date,done=False):
+            return {'id':key,'date':date,'season':{'type':phase},'status':{'type':{'completed':done}}}
+        events={'pre':event('pre',1,'2026-10-16T20:00:00Z',True),
+                'reg':event('reg',2,'2026-10-20T23:00:00Z')}
+        self.assertEqual(nba.select_display_phase(events,now),2)
+        self.assertEqual(nba.season_history([{'id':'pre','season':2027,'phase':1}],2027,2),[])
+
     def test_seasons_and_preseason_never_mix(self):
         games=[{'id':'pre','season':2027,'phase':1},{'id':'reg','season':2027,'phase':2},{'id':'old','season':2026,'phase':2}]
         self.assertEqual([g['id'] for g in nba.season_history(games,2027,2)],['reg'])
