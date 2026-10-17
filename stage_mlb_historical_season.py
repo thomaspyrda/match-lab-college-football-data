@@ -63,7 +63,7 @@ def stage_season(year, crosswalk, fetcher=fetch):
         if rec["phase"]=="regular":
             counts[rec["home"]["slug"]]+=1
             counts[rec["away"]["slug"]]+=1
-    expected_by_slug={slug:(58 if year==2020 and slug in ("detroit-tigers","st-louis-cardinals") else 60 if year==2020 else 162) for slug in counts}
+    expected_by_slug={slug:(58 if year==2020 and slug in ("detroit-tigers","st-louis-cardinals") else 60 if year==2020 else 161 if year==2021 and slug in ("atlanta-braves","colorado-rockies") else 162) for slug in counts}
     expected=60 if year==2020 else 162
     coverage={"regular_games":sum(v["phase"]=="regular" for v in games.values()),
         "postseason_games":sum(v["phase"]!="regular" for v in games.values()),
