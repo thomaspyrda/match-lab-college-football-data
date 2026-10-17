@@ -83,9 +83,10 @@ def main():
                     continue
                 g.update(fields);count["imported"]+=1
         report[slug]=dict(count)
-        if count["imported"] and not args.dry_run:
-            path.write_text(json.dumps(doc,separators=(",",":"),ensure_ascii=False)+"\n")
+        if count["imported"]:
             changed+=1
+            if not args.dry_run:
+                path.write_text(json.dumps(doc,separators=(",",":"),ensure_ascii=False)+"\n")
     totals=Counter()
     for item in report.values():totals.update(item)
     summary={"dry_run":args.dry_run,"teams_updated":changed,"totals":dict(totals),"teams":report}
