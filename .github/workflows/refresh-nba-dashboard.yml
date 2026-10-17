@@ -8,6 +8,11 @@ on:
     paths:
       - refresh_nba_dashboard.py
       - tests/test_nba_dashboard.py
+      - daily_backfill_core.py
+      - stage_nba_team_backfill.py
+      - publish_nba_team_backfill.py
+      - tests/test_stage_nba_team_backfill.py
+      - tests/test_publish_nba_team_backfill.py
       - .github/workflows/refresh-nba-dashboard.yml
 permissions:
   contents: write
@@ -23,14 +28,22 @@ jobs:
         with:
           python-version: '3.12'
       - name: Test season boundaries and pregame isolation
-        run: python -m unittest discover -s tests -p test_nba_dashboard.py
+        run: |
+          python -m unittest discover -s tests -p test_nba_dashboard.py
+          python -m unittest discover -s tests -p test_daily_backfill_core.py
+          python -m unittest discover -s tests -p test_stage_nba_team_backfill.py
+          python -m unittest discover -s tests -p test_publish_nba_team_backfill.py
       - name: Refresh NBA games and player box scores
         run: python refresh_nba_dashboard.py
-      - name: Publish NBA snapshot
+      - name: Prepare 2026-27 completed-game team backfill
+        run: |
+          python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
+          python publish_nba_team_backfill.py --publish
+      - name: Publish NBA snapshot and verified 2026-27 team games
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add nba/dashboard/data
+          git add nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
           git pull --rebase -X theirs origin main
