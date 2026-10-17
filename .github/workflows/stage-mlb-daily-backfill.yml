@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - stage_mlb_daily_backfill.py
+      - audit_mlb_team_crosswalk.py
       - tests/test_stage_mlb_daily_backfill.py
       - .github/workflows/stage-mlb-daily-backfill.yml
 permissions:
@@ -21,11 +22,15 @@ jobs:
           python-version: '3.12'
       - name: Verify adapter with test fixtures
         run: python -m unittest discover -s tests -p test_stage_mlb_daily_backfill.py -v
+      - name: Verify MLB-to-ESPN identities for all 30 teams
+        run: python audit_mlb_team_crosswalk.py
       - name: Stage recent MLB final games and player box scores
         run: python stage_mlb_daily_backfill.py --lookback-days 3
       - name: Store audit report
         uses: actions/upload-artifact@v4
         with:
           name: mlb-daily-backfill-preview
-          path: mlb/data/daily-backfill-preview.json
+          path: |
+            mlb/data/daily-backfill-preview.json
+            mlb/data/mlb-team-identity-audit.json
           retention-days: 14
