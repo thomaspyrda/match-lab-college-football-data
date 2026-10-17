@@ -2,7 +2,7 @@ name: Frozen CFB Dashboard Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 */6 * * *"
+    - cron: "15 10 * * *"
 permissions:
   contents: write
 concurrency:
