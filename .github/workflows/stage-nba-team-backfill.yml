@@ -7,8 +7,10 @@ on:
     branches: [main]
     paths:
       - stage_nba_team_backfill.py
+      - publish_nba_team_backfill.py
       - daily_backfill_core.py
       - tests/test_stage_nba_team_backfill.py
+      - tests/test_publish_nba_team_backfill.py
       - .github/workflows/stage-nba-team-backfill.yml
 permissions:
   contents: read
@@ -24,8 +26,11 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_daily_backfill_core.py -v
           python -m unittest discover -s tests -p test_stage_nba_team_backfill.py -v
+          python -m unittest discover -s tests -p test_publish_nba_team_backfill.py -v
       - name: Stage season game records (no publication)
         run: python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
+      - name: Validate team-page publication without writing
+        run: python publish_nba_team_backfill.py
       - name: Preserve staging report for review
         uses: actions/upload-artifact@v4
         with:
