@@ -20,11 +20,13 @@ jobs:
       - name: Player season-stat probe unit tests
         run: python -m unittest discover -s tests -p test_probe_mlb_player_season_stats.py -v
       - name: Query one 2025 team for historical hitting and pitching
-        run: python probe_mlb_player_season_stats.py --year 2025 --team-id 144
+        run: |
+          python probe_mlb_player_season_stats.py --year 2025 --team-id 144
+          python probe_mlb_player_season_stats.py --year 2020 --team-id 144
       - name: Save isolated audit report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mlb-player-stats-2025-probe-no-publication
-          path: mlb/data/player-stats-probe-2025.json
+          path: mlb/data/player-stats-probe-*.json
           retention-days: 14
