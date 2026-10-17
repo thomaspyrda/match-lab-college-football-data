@@ -8,6 +8,8 @@ on:
       - reconcile_mlb_historical_standings.py
       - tests/test_reconcile_mlb_historical_standings.py
       - combine_mlb_historical_staging.py
+      - dry_run_mlb_page_updates.py
+      - tests/test_dry_run_mlb_page_updates.py
       - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
   workflow_dispatch:
@@ -423,6 +425,18 @@ jobs:
         run: python combine_mlb_historical_staging.py
       - name: Simulate updates to all thirty existing MLB pages
         run: python dry_run_mlb_page_updates.py --archive mlb/data/historical-combined-preview.json --out mlb/data/historical-page-dry-run-report.json
+      - name: Enforce audited page readiness for historical seasons
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('mlb/data/historical-page-dry-run-report.json').read_text())
+          assert report['teams']==30, 'Expected 30 MLB team pages'
+          assert report['regular_games_added']>25000, 'Historical regular season data missing'
+          assert report['publication_ready'] is True, report['coverage_gate']
+          assert report['coverage_gate']=='PASS_STANDINGS_AND_STRUCTURE'
+          print('Historical publication readiness gate passed; no live files changed')
+          PY
       - name: Upload consolidated archive and page audit
         if: always()
         uses: actions/upload-artifact@v4
