@@ -14,6 +14,7 @@ on:
       - build_mlb_publication_review.py
       - verify_mlb_publication_review.py
       - prepare_mlb_rollback_snapshot.py
+      - verify_mlb_rollback_snapshot.py
       - tests/test_dry_run_mlb_page_updates.py
       - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
@@ -492,6 +493,8 @@ jobs:
         run: python verify_mlb_publication_review.py
       - name: Snapshot all thirty existing pages for offline rollback review
         run: python prepare_mlb_rollback_snapshot.py
+      - name: Independently verify thirty rollback snapshots
+        run: python verify_mlb_rollback_snapshot.py
       - name: Save review-only pages and checksums
         uses: actions/upload-artifact@v4
         with:
