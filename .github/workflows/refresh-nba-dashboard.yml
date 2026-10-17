@@ -33,5 +33,5 @@ jobs:
           git add nba/dashboard/data
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
-          git pull --rebase origin main
+          git pull --rebase -X theirs origin main
           git push origin main
