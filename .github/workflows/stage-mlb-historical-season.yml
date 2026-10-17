@@ -50,6 +50,89 @@ jobs:
           path: mlb/data/historical-stage-${{ inputs.year || '2020' }}.json
           retention-days: 14
 
+  historical-2022-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2022 season without publication
+        run: python stage_mlb_historical_season.py --year 2022
+      - name: Save 2022 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2022
+          path: mlb/data/historical-stage-2022.json
+          retention-days: 14
+
+  historical-2023-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2023 season without publication
+        run: python stage_mlb_historical_season.py --year 2023
+      - name: Save 2023 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2023
+          path: mlb/data/historical-stage-2023.json
+          retention-days: 14
+
+  historical-2024-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2024 season without publication
+        run: python stage_mlb_historical_season.py --year 2024
+      - name: Save 2024 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2024
+          path: mlb/data/historical-stage-2024.json
+          retention-days: 14
+
+  historical-2025-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2025 season without publication
+        run: python stage_mlb_historical_season.py --year 2025
+      - name: Save 2025 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2025
+          path: mlb/data/historical-stage-2025.json
+          retention-days: 14
   historical-2021-smoke:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
