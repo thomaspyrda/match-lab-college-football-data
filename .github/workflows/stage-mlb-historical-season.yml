@@ -47,12 +47,21 @@ jobs:
         env:
           STAGE_YEAR: ${{ inputs.year || '2020' }}
         run: python stage_mlb_historical_season.py --year "$STAGE_YEAR"
+      - name: Reconcile 2020 official season wins and losses
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2020
       - name: Store historical season results as run artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-${{ inputs.year || '2020' }}
-          path: mlb/data/historical-stage-${{ inputs.year || '2020' }}.json
+          path: |
+            mlb/data/historical-stage-${{ inputs.year || '2020' }}.json
+            mlb/data/historical-reconciliation-2020.json
           retention-days: 14
+      - name: Enforce 2020 standings reconciliation
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2015-smoke:
     if: github.event_name == 'push'
@@ -275,9 +284,18 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2021 season (no publication)
         run: python stage_mlb_historical_season.py --year 2021
+      - name: Reconcile 2021 official season wins and losses
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2021
       - name: Save 2021 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2021
-          path: mlb/data/historical-stage-2021.json
+          path: |
+            mlb/data/historical-stage-2021.json
+            mlb/data/historical-reconciliation-2021.json
           retention-days: 14
+      - name: Enforce 2021 standings reconciliation
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
