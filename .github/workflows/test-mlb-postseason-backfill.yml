@@ -1,0 +1,27 @@
+name: Test MLB Postseason Backfill
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - test_mlb_postseason_backfill.py
+      - .github/workflows/test-mlb-postseason-backfill.yml
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate MLB postseason final scores and player box scores
+        run: python test_mlb_postseason_backfill.py --start 2026-10-12 --end 2026-10-17
+      - name: Save audited report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-postseason-backfill-smoke-test
+          path: mlb/data/postseason-backfill-smoke-test.json
+          retention-days: 14
