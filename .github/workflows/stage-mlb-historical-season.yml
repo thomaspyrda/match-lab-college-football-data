@@ -1,0 +1,43 @@
+name: Stage MLB Historical Season
+on:
+  workflow_dispatch:
+    inputs:
+      year:
+        description: "MLB season to stage (2015-2026)"
+        required: true
+        type: choice
+        options:
+          - '2026'
+          - '2025'
+          - '2024'
+          - '2023'
+          - '2022'
+          - '2021'
+          - '2020'
+          - '2019'
+          - '2018'
+          - '2017'
+          - '2016'
+          - '2015'
+permissions:
+  contents: read
+jobs:
+  historical-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical retrieval unit tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Audit 30-team crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage selected historical season with no publication
+        run: python stage_mlb_historical_season.py --year ${{ inputs.year }}
+      - name: Store historical season results privately as run artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-${{ inputs.year }}
+          path: mlb/data/historical-stage-${{ inputs.year }}.json
+          retention-days: 14
