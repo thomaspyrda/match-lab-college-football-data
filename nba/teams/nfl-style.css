@@ -146,3 +146,8 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 .nba-nfl-format .nba-schedule-table td.nba-market-win{color:#7cdb9a;font-weight:800}
 .nba-nfl-format .nba-schedule-table td.nba-market-loss{color:#ed8f8f;font-weight:800}
 .nba-nfl-format .nba-schedule-table td.nba-market-push{color:#b9b9b9;font-weight:700}
+
+/* NBA betting records: retain a single line even with nonzero pushes. */
+.nba-nfl-format .nba-tile.nba-betting-tile strong{font-size:clamp(14px,1.45vw,25px);white-space:nowrap;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+@media(max-width:840px){.nba-nfl-format .nba-tile.nba-betting-tile strong{font-size:clamp(15px,3vw,25px)}}
+@media(max-width:570px){.nba-nfl-format .nba-tile.nba-betting-tile strong{font-size:clamp(15px,4.1vw,23px)}}
