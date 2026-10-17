@@ -24,9 +24,10 @@ def probe(year,team_id,fetcher=fetch):
                 pid=player.get("id")
                 stat=split.get("stat") or {}
                 if not pid or not stat:continue
-                if split.get("team") and str(split["team"].get("id"))!=str(team_id):continue
+                if not split.get("team") or str(split["team"].get("id"))!=str(team_id):
+                    raise ValueError("Missing or mismatched team attribution for player "+str(pid))
                 rows.append({"player_id":int(pid),"name":player.get("fullName"),
-                  "team_id":str(team_id),"season":year,"group":group,"stats":stat})
+                  "team_id":str(team_id),"season":year,"group":group,"stats":stat,"attribution":"explicit_team_split"})
         unique={p["player_id"] for p in rows}
         if len(unique)!=len(rows):raise ValueError("Duplicate player season entries: "+group)
         required=("gamesPlayed","atBats","hits") if group=="hitting" else ("gamesPlayed","inningsPitched","era")
