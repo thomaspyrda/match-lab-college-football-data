@@ -341,13 +341,13 @@
   if (!document.querySelector('link[data-nba-modern-layout]')) {
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.css?v=restore-20261010';
+    css.href = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.css?v=ats-color-20261017';
     css.dataset.nbaModernLayout = 'true';
     document.head.append(css);
   }
   if (!document.querySelector('script[data-nba-modern-layout]')) {
     const js = document.createElement('script');
-    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=restore-20261010';
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=ats-color-20261017';
     js.dataset.nbaModernLayout = 'true';
     document.body.append(js);
   }
