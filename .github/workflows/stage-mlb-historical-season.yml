@@ -1,5 +1,11 @@
 name: Stage MLB Historical Season
 on:
+  push:
+    branches: [main]
+    paths:
+      - stage_mlb_historical_season.py
+      - tests/test_stage_mlb_historical_season.py
+      - .github/workflows/stage-mlb-historical-season.yml
   workflow_dispatch:
     inputs:
       year:
@@ -34,10 +40,12 @@ jobs:
       - name: Audit 30-team crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage selected historical season with no publication
-        run: python stage_mlb_historical_season.py --year ${{ inputs.year }}
-      - name: Store historical season results privately as run artifact
+        env:
+          STAGE_YEAR: ${{ inputs.year || '2020' }}
+        run: python stage_mlb_historical_season.py --year "$STAGE_YEAR"
+      - name: Store historical season results as run artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mlb-historical-stage-${{ inputs.year }}
-          path: mlb/data/historical-stage-${{ inputs.year }}.json
+          name: mlb-historical-stage-${{ inputs.year || '2020' }}
+          path: mlb/data/historical-stage-${{ inputs.year || '2020' }}.json
           retention-days: 14
