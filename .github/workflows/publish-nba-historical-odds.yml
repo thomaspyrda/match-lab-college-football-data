@@ -1,0 +1,39 @@
+name: Publish NBA historical odds backfill
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-nba-historical-odds.yml
+permissions:
+  contents: write
+concurrency:
+  group: nba-historical-backfill
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Backfill verified historical lines from the approved archive
+        run: python backfill_nba_historical_odds.py
+      - name: Validate unchanged scores and grading logic
+        run: |
+          python -m unittest discover -s tests -p test_nba_historical_lines.py
+      - name: Commit team-season betting columns and coverage report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nba/teams/data/*-season-details.json nba/teams/data/backfill-audit.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Backfill NBA historical game spreads ATS and totals 2015-2026'
+          for attempt in 1 2 3; do
+            git pull --rebase -X theirs origin main
+            if git push origin main; then exit 0; fi
+          done
+          exit 1
