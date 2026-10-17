@@ -11,6 +11,7 @@ on:
       - merge_mlb_daily_backfill.py
       - preview_mlb_team_page_backfill.py
       - dry_run_mlb_page_updates.py
+      - tests/test_dry_run_mlb_page_updates.py
       - tests/test_merge_mlb_daily_backfill.py
       - tests/test_stage_mlb_daily_backfill.py
       - .github/workflows/stage-mlb-daily-backfill.yml
@@ -28,6 +29,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_daily_backfill.py -v
           python -m unittest discover -s tests -p test_merge_mlb_daily_backfill.py -v
+          python -m unittest discover -s tests -p test_dry_run_mlb_page_updates.py -v
       - name: Verify MLB-to-ESPN identities for all 30 teams
         run: python audit_mlb_team_crosswalk.py
       - name: Stage recent MLB final games and player box scores
