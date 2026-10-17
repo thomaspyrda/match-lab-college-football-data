@@ -15,6 +15,20 @@ class MLBPlayerProbeTests(unittest.TestCase):
     def test_empty_stats_not_approved(self):
         r=probe(2025,144,lambda url:{"stats":[]})
         self.assertFalse(r["complete"])
+    def test_missing_team_attribution_rejected(self):
+        def missing(url):
+            r=fixture(url)
+            del r["stats"][0]["splits"][0]["team"]
+            return r
+        with self.assertRaisesRegex(ValueError,"team attribution"):
+            probe(2025,144,missing)
+    def test_wrong_team_attribution_rejected(self):
+        def wrong(url):
+            r=fixture(url)
+            r["stats"][0]["splits"][0]["team"]["id"]=147
+            return r
+        with self.assertRaisesRegex(ValueError,"team attribution"):
+            probe(2025,144,wrong)
     def test_duplicate_player_rejected(self):
         def duplicated(url):
             r=fixture(url)
