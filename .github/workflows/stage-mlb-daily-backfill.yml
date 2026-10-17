@@ -10,6 +10,7 @@ on:
       - audit_mlb_team_crosswalk.py
       - merge_mlb_daily_backfill.py
       - preview_mlb_team_page_backfill.py
+      - dry_run_mlb_page_updates.py
       - tests/test_merge_mlb_daily_backfill.py
       - tests/test_stage_mlb_daily_backfill.py
       - .github/workflows/stage-mlb-daily-backfill.yml
@@ -35,6 +36,8 @@ jobs:
         run: python merge_mlb_daily_backfill.py
       - name: Validate adapter against all MLB team pages
         run: python preview_mlb_team_page_backfill.py
+      - name: Dry-run MLB page updates without publishing
+        run: python dry_run_mlb_page_updates.py
       - name: Store audit report
         uses: actions/upload-artifact@v4
         with:
@@ -44,4 +47,5 @@ jobs:
             mlb/data/mlb-team-identity-audit.json
             mlb/data/internal-backfill-archive-preview.json
             mlb/data/team-page-adapter-preview.json
+            mlb/data/team-page-dry-run-report.json
           retention-days: 14
