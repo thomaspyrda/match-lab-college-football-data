@@ -425,6 +425,36 @@ jobs:
         run: python combine_mlb_historical_staging.py
       - name: Simulate updates to all thirty existing MLB pages
         run: python dry_run_mlb_page_updates.py --archive mlb/data/historical-combined-preview.json --out mlb/data/historical-page-dry-run-report.json
+      - name: Verify rendered HTML payload structure remains intact
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from dry_run_mlb_page_updates import transform, PATTERN
+          archive=json.loads(Path('mlb/data/historical-combined-preview.json').read_text())
+          pages=sorted(Path('mlb/teams').glob('*/index.html'))
+          assert len(pages)==30
+          total=0
+          for page in pages:
+              before=page.read_text()
+              after,report=transform(before,archive,page.parent.name)
+              source=PATTERN.search(before)
+              updated=PATTERN.search(after)
+              assert source and updated
+              assert before[:source.start()]==after[:updated.start()], page
+              assert before[source.end():]==after[updated.end():], page
+              seed=json.loads(source.group(2))
+              result=json.loads(updated.group(2))
+              assert seed['team_id']==result['team_id'], page
+              assert [v['key'] for v in seed['seasons']]==[v['key'] for v in result['seasons']], page
+              for old,new in zip(seed['seasons'],result['seasons']):
+                  for key,value in old.items():
+                      if key not in ('games','game_data_coverage'):
+                          assert new.get(key)==value, (page,key)
+              total+=report['added_regular_games']
+          assert total==50386, total
+          print(f'Validated {len(pages)} HTML payloads, {total} team-game entries, without modifying files')
+          PY
       - name: Enforce audited page readiness for historical seasons
         run: |
           python - <<'PY'
