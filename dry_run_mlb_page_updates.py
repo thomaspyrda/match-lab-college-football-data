@@ -25,8 +25,19 @@ def transform(html,archive,slug):
             gid=str(row["game_id"])
             if gid in original:
                 g=original[gid]
-                for field in ("date","result"):
-                    if g.get(field) is not None and g[field]!=row[field]:raise ValueError("Conflict: "+gid+" "+field)
+                expected={
+                    "date":row["date"],
+                    "result":row["result"],
+                    "score":str(row["score_for"])+"–"+str(row["score_against"]),
+                    "location":row["location"],
+                    "opponent":row["opponent_slug"].replace("-"," ").title()
+                }
+                for field,value in expected.items():
+                    if g.get(field) is not None and str(g[field]).strip()!=str(value):
+                        # Allow either standard score separator when comparing scores.
+                        if field=="score" and str(g[field]).replace("-","–").strip()==str(value):
+                            continue
+                        raise ValueError("Conflict: "+gid+" "+field)
                 continue
             original[gid]={"game_id":gid,"date":row["date"],"opponent":row["opponent_slug"].replace("-"," ").title(),
                 "result":row["result"],"score":str(row["score_for"])+"–"+str(row["score_against"]),
