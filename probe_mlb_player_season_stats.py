@@ -29,7 +29,11 @@ def probe(year,team_id,fetcher=fetch):
                   "team_id":str(team_id),"season":year,"group":group,"stats":stat})
         unique={p["player_id"] for p in rows}
         if len(unique)!=len(rows):raise ValueError("Duplicate player season entries: "+group)
-        groups[group]={"records":rows,"count":len(rows),"complete":bool(rows),"endpoint":url}
+        required=("gamesPlayed","atBats","hits") if group=="hitting" else ("gamesPlayed","inningsPitched","era")
+        field_coverage={key:sum(row["stats"].get(key) is not None for row in rows) for key in required}
+        groups[group]={"records":rows,"count":len(rows),"complete":bool(rows),
+            "field_coverage":field_coverage,"missing_core_fields":{
+                key:len(rows)-n for key,n in field_coverage.items()},"endpoint":url}
     return {"status":"PLAYER_STATS_PROBE_ONLY_NO_PUBLICATION",
         "season":year,"team_id":str(team_id),"groups":groups,
         "complete":all(g["complete"] for g in groups.values())}
@@ -38,13 +42,13 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--year",type=int,default=2025)
     p.add_argument("--team-id",type=int,default=144,help="MLB team ID (144 = Atlanta Braves)")
-    p.add_argument("--out",default="mlb/data/player-stats-probe-2025.json")
+    p.add_argument("--out",default=None)
     a=p.parse_args()
     result=probe(a.year,a.team_id)
-    dest=Path(a.out);dest.parent.mkdir(parents=True,exist_ok=True)
+    dest=Path(a.out or f"mlb/data/player-stats-probe-{a.year}-{a.team_id}.json");dest.parent.mkdir(parents=True,exist_ok=True)
     dest.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps({"status":result["status"],"year":a.year,"team_id":a.team_id,
         "hitting":result["groups"]["hitting"]["count"],
-        "pitching":result["groups"]["pitching"]["count"],"complete":result["complete"],"published":False}))
+        "pitching":result["groups"]["pitching"]["count"],"field_coverage":{g:result["groups"][g]["field_coverage"] for g in GROUPS},"complete":result["complete"],"published":False}))
     if not result["complete"]:raise SystemExit("Player season-stat endpoint probe incomplete; no publication")
 if __name__=="__main__":main()
