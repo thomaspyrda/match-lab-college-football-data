@@ -63,12 +63,13 @@ def stage_season(year, crosswalk, fetcher=fetch):
         if rec["phase"]=="regular":
             counts[rec["home"]["slug"]]+=1
             counts[rec["away"]["slug"]]+=1
+    expected_by_slug={slug:(58 if year==2020 and slug in ("detroit-tigers","st-louis-cardinals") else 60 if year==2020 else 162) for slug in counts}
     expected=60 if year==2020 else 162
     coverage={"regular_games":sum(v["phase"]=="regular" for v in games.values()),
         "postseason_games":sum(v["phase"]!="regular" for v in games.values()),
-        "teams_at_expected":sum(n==expected for n in counts.values()),
-        "teams_below_expected":sum(n<expected for n in counts.values()),
-        "teams_over_expected":sum(n>expected for n in counts.values()),
+        "teams_at_expected":sum(n==expected_by_slug[slug] for slug,n in counts.items()),
+        "teams_below_expected":sum(n<expected_by_slug[slug] for slug,n in counts.items()),
+        "teams_over_expected":sum(n>expected_by_slug[slug] for slug,n in counts.items()),
         "min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
         "expected_games_per_team":expected,"not_final":skipped,"quarantined_scoreless_games":len(warnings),"identical_duplicates_ignored":duplicate_identical}
     return {"status":"HISTORICAL_STAGING_ONLY","season":year,"games":games,"coverage":coverage,"warnings":warnings}
