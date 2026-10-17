@@ -43,6 +43,11 @@ class HistoricalStageTests(unittest.TestCase):
             return r
         with self.assertRaisesRegex(ValueError,"Conflicting duplicate"):
             stage_season(2020,crosswalk(),conflicting)
+    def test_2021_exception_targets(self):
+        def empty(url): return {"dates":[]}
+        result=stage_season(2021,crosswalk(),empty)
+        self.assertEqual(result["coverage"]["regular_games"],0)
+        self.assertEqual(result["coverage"]["teams_below_expected"],30)
     def test_invalid_score_rejected(self):
         def invalid(url):
             r=fixture(url)
