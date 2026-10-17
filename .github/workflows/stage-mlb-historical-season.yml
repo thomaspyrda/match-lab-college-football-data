@@ -80,12 +80,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2015 season without publication
         run: python stage_mlb_historical_season.py --year 2015
+      - name: Reconcile 2015 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2015
       - name: Save 2015 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2015
-          path: mlb/data/historical-stage-2015.json
+          path: |
+            mlb/data/historical-stage-2015.json
+            mlb/data/historical-reconciliation-2015.json
           retention-days: 14
+      - name: Enforce 2015 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2016-smoke:
     if: github.event_name == 'push'
@@ -103,12 +112,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2016 season without publication
         run: python stage_mlb_historical_season.py --year 2016
+      - name: Reconcile 2016 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2016
       - name: Save 2016 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2016
-          path: mlb/data/historical-stage-2016.json
+          path: |
+            mlb/data/historical-stage-2016.json
+            mlb/data/historical-reconciliation-2016.json
           retention-days: 14
+      - name: Enforce 2016 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2017-smoke:
     if: github.event_name == 'push'
@@ -126,12 +144,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2017 season without publication
         run: python stage_mlb_historical_season.py --year 2017
+      - name: Reconcile 2017 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2017
       - name: Save 2017 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2017
-          path: mlb/data/historical-stage-2017.json
+          path: |
+            mlb/data/historical-stage-2017.json
+            mlb/data/historical-reconciliation-2017.json
           retention-days: 14
+      - name: Enforce 2017 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2018-smoke:
     if: github.event_name == 'push'
@@ -149,12 +176,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2018 season without publication
         run: python stage_mlb_historical_season.py --year 2018
+      - name: Reconcile 2018 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2018
       - name: Save 2018 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2018
-          path: mlb/data/historical-stage-2018.json
+          path: |
+            mlb/data/historical-stage-2018.json
+            mlb/data/historical-reconciliation-2018.json
           retention-days: 14
+      - name: Enforce 2018 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2019-smoke:
     if: github.event_name == 'push'
@@ -172,12 +208,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2019 season without publication
         run: python stage_mlb_historical_season.py --year 2019
+      - name: Reconcile 2019 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2019
       - name: Save 2019 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2019
-          path: mlb/data/historical-stage-2019.json
+          path: |
+            mlb/data/historical-stage-2019.json
+            mlb/data/historical-reconciliation-2019.json
           retention-days: 14
+      - name: Enforce 2019 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
   historical-2022-smoke:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
@@ -194,12 +239,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2022 season without publication
         run: python stage_mlb_historical_season.py --year 2022
+      - name: Reconcile 2022 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2022
       - name: Save 2022 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2022
-          path: mlb/data/historical-stage-2022.json
+          path: |
+            mlb/data/historical-stage-2022.json
+            mlb/data/historical-reconciliation-2022.json
           retention-days: 14
+      - name: Enforce 2022 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2023-smoke:
     if: github.event_name == 'push'
@@ -217,12 +271,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2023 season without publication
         run: python stage_mlb_historical_season.py --year 2023
+      - name: Reconcile 2023 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2023
       - name: Save 2023 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2023
-          path: mlb/data/historical-stage-2023.json
+          path: |
+            mlb/data/historical-stage-2023.json
+            mlb/data/historical-reconciliation-2023.json
           retention-days: 14
+      - name: Enforce 2023 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2024-smoke:
     if: github.event_name == 'push'
@@ -240,12 +303,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2024 season without publication
         run: python stage_mlb_historical_season.py --year 2024
+      - name: Reconcile 2024 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2024
       - name: Save 2024 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2024
-          path: mlb/data/historical-stage-2024.json
+          path: |
+            mlb/data/historical-stage-2024.json
+            mlb/data/historical-reconciliation-2024.json
           retention-days: 14
+      - name: Enforce 2024 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
 
   historical-2025-smoke:
     if: github.event_name == 'push'
@@ -263,12 +335,21 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2025 season without publication
         run: python stage_mlb_historical_season.py --year 2025
+      - name: Reconcile 2025 with official MLB standings
+        id: reconcile
+        continue-on-error: true
+        run: python reconcile_mlb_historical_standings.py --year 2025
       - name: Save 2025 audit artifact
         uses: actions/upload-artifact@v4
         with:
           name: mlb-historical-stage-2025
-          path: mlb/data/historical-stage-2025.json
+          path: |
+            mlb/data/historical-stage-2025.json
+            mlb/data/historical-reconciliation-2025.json
           retention-days: 14
+      - name: Enforce 2025 official standings match
+        if: steps.reconcile.outcome == 'failure'
+        run: exit 1
   historical-2021-smoke:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
