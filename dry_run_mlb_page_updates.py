@@ -56,7 +56,24 @@ def main():
         html=page.read_text();new,result=transform(html,archive,page.parent.name)
         if '<script type="application/json" id="team-season-data">' not in new:raise ValueError("Lost page data")
         results.append(result)
-    report={"status":"NO_PUBLICATION","teams":len(results),"regular_games_added":sum(x["added_regular_games"] for x in results)//2,
+    # Coverage is assessed separately from the success of the import pipeline.
+    coverage={}
+    for year in range(2015,2026):
+        counts={page.parent.name:0 for page in pages}
+        for game in archive.get("games",{}).values():
+            if game.get("phase")!="regular" or int(game.get("season",-1))!=year:
+                continue
+            for side in ("home","away"):
+                slug=game.get(side,{}).get("slug")
+                if slug in counts:counts[slug]+=1
+        coverage[str(year)]={"min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
+            "teams_with_162_games":sum(n==162 for n in counts.values()),
+            "teams_below_162_games":sum(n<162 for n in counts.values())}
+    complete=all(row["teams_with_162_games"]==30 for row in coverage.values())
+    report={"publication_ready":complete,
+        "coverage_gate":"PASS" if complete else "BLOCKED_INCOMPLETE_HISTORICAL_ARCHIVE",
+        "historical_season_coverage":coverage,
+        "status":"NO_PUBLICATION","teams":len(results),"regular_games_added":sum(x["added_regular_games"] for x in results)//2,
       "postseason_games_kept_separate":sum(x["postseason_games_not_merged"] for x in results)//2,"details":results}
     Path(a.out).write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps({k:v for k,v in report.items() if k!="details"}))
