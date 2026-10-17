@@ -1,0 +1,34 @@
+name: Complete 2025-26 NBA odds backfill
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - fill_nba_2026_remaining_odds.py
+      - .github/workflows/complete-nba-2026-odds.yml
+permissions:
+  contents: write
+concurrency:
+  group: nba-2026-odds-backfill
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import verified remaining NBA odds
+        run: python fill_nba_2026_remaining_odds.py
+      - name: Commit all 30 team season detail updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nba/teams/data/*-season-details.json nba/teams/data/2026-backfill-final-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Complete 2025-26 NBA ATS and O-U game-level backfill'
+          git pull --rebase -X theirs origin main
+          git push origin main
