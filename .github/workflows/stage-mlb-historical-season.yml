@@ -48,6 +48,7 @@ jobs:
           STAGE_YEAR: ${{ inputs.year || '2020' }}
         run: python stage_mlb_historical_season.py --year "$STAGE_YEAR"
       - name: Reconcile 2020 official season wins and losses
+        if: github.event_name == 'push'
         id: reconcile
         continue-on-error: true
         run: python reconcile_mlb_historical_standings.py --year 2020
