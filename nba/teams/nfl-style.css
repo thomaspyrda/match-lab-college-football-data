@@ -141,3 +141,8 @@ body.nba-nfl-format{font-family:"Outfit",system-ui,sans-serif!important;backgrou
 .nba-nfl-format .nba-schedule-table a:hover{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:1000px){.nba-nfl-format .nba-season-leader-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.nba-nfl-format .nba-season-leader-grid{grid-template-columns:1fr}}
+
+/* NFL-style outcome coding for every NBA season schedule. */
+.nba-nfl-format .nba-schedule-table td.nba-market-win{color:#7cdb9a;font-weight:800}
+.nba-nfl-format .nba-schedule-table td.nba-market-loss{color:#ed8f8f;font-weight:800}
+.nba-nfl-format .nba-schedule-table td.nba-market-push{color:#b9b9b9;font-weight:700}
