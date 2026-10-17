@@ -1,0 +1,25 @@
+name: Audit 2025-26 NBA missing odds source
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - audit_nba_2026_gap_source.py
+      - .github/workflows/audit-nba-2026-gap-source.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check candidate odds against actual NBA schedule and scores
+        run: python audit_nba_2026_gap_source.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nba-2026-gap-audit
+          path: nba/teams/data/2026-gap-source-audit.json
