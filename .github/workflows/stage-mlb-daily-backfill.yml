@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths:
       - stage_mlb_daily_backfill.py
+      - stage_mlb_historical_season.py
+      - tests/test_stage_mlb_historical_season.py
       - audit_mlb_team_crosswalk.py
       - merge_mlb_daily_backfill.py
       - preview_mlb_team_page_backfill.py
@@ -28,6 +30,7 @@ jobs:
       - name: Verify adapter with test fixtures
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_daily_backfill.py -v
+          python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_merge_mlb_daily_backfill.py -v
           python -m unittest discover -s tests -p test_dry_run_mlb_page_updates.py -v
       - name: Verify MLB-to-ESPN identities for all 30 teams
