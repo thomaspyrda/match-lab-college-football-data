@@ -12,13 +12,15 @@ def parsed(s):return json.loads(PATTERN.search(s).group(2))
 class MLBPageSafety(unittest.TestCase):
     def test_historical_coverage_counts_both_teams(self):
         audit=historical_coverage(archive(),["baltimore-orioles","boston-red-sox"])
-        self.assertEqual(audit["2026"]["min_team_games"],0) if "2026" in audit else None
         self.assertEqual(audit["2025"]["teams_below_expected"],2)
+        self.assertEqual(audit["2025"]["teams_at_expected"],0)
+        self.assertEqual(audit["2020"]["expected_games_per_team"],60)
     def test_invalid_same_team_is_not_counted(self):
         data=archive()
         data["games"]["9"]["away"]["slug"]="baltimore-orioles"
         audit=historical_coverage(data,["baltimore-orioles","boston-red-sox"])
         self.assertEqual(audit["2025"]["min_team_games"],0)
+        self.assertEqual(audit["2025"]["invalid_team_games"],0)
     def test_regular_idempotent(self):
         h=html();a=archive()
         once,report=transform(h,a,"baltimore-orioles")
