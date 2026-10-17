@@ -1,0 +1,32 @@
+name: Stage MLB 2025 League Player Stats
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - stage_mlb_league_player_stats.py
+      - tests/test_stage_mlb_league_player_stats.py
+      - .github/workflows/stage-mlb-league-player-stats.yml
+permissions:
+  contents: read
+jobs:
+  league-player-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: League player-stage regression tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_league_player_stats.py -v
+      - name: Audit all 30 MLB identities
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage all 30 teams for 2025 with no publication
+        run: python stage_mlb_league_player_stats.py --year 2025
+      - name: Upload audit artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2025-league-player-stats-no-publication
+          path: mlb/data/mlb-player-league-2025.json
+          retention-days: 14
