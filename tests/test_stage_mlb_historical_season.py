@@ -31,8 +31,18 @@ class HistoricalStageTests(unittest.TestCase):
             r=fixture(url)
             r["dates"][0]["games"].append(dict(r["dates"][0]["games"][0]))
             return r
-        with self.assertRaisesRegex(ValueError,"Duplicate"):
-            stage_season(2020,crosswalk(),repeated)
+        result=stage_season(2020,crosswalk(),repeated)
+        self.assertEqual(result["coverage"]["identical_duplicates_ignored"],1)
+        self.assertEqual(result["coverage"]["regular_games"],1)
+    def test_conflicting_duplicate_rejected(self):
+        def conflicting(url):
+            r=fixture(url)
+            duplicate=__import__("copy").deepcopy(r["dates"][0]["games"][0])
+            duplicate["teams"]["home"]["score"]=8
+            r["dates"][0]["games"].append(duplicate)
+            return r
+        with self.assertRaisesRegex(ValueError,"Conflicting duplicate"):
+            stage_season(2020,crosswalk(),conflicting)
     def test_invalid_score_rejected(self):
         def invalid(url):
             r=fixture(url)
