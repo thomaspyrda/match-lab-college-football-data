@@ -394,3 +394,41 @@ jobs:
       - name: Enforce 2021 standings reconciliation
         if: steps.reconcile.outcome == 'failure'
         run: exit 1
+
+  consolidate-historical-archive:
+    if: github.event_name == 'push'
+    needs: [historical-stage, historical-2015-smoke, historical-2016-smoke, historical-2017-smoke, historical-2018-smoke, historical-2019-smoke, historical-2021-smoke, historical-2022-smoke, historical-2023-smoke, historical-2024-smoke, historical-2025-smoke]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Download reconciled historical staging artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: mlb-historical-stage-*
+          path: mlb/data
+          merge-multiple: true
+      - name: Verify all eleven seasons and their standings reports are present
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for year in range(2015,2026):
+              for prefix in ('historical-stage','historical-reconciliation'):
+                  path=Path(f'mlb/data/{prefix}-{year}.json')
+                  if not path.is_file(): raise SystemExit(f'Missing validated artifact: {path}')
+          PY
+      - name: Assemble audited archive with zero live page writes
+        run: python combine_mlb_historical_staging.py
+      - name: Simulate updates to all thirty existing MLB pages
+        run: python dry_run_mlb_page_updates.py --archive mlb/data/historical-combined-preview.json --out mlb/data/historical-page-dry-run-report.json
+      - name: Upload consolidated archive and page audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-consolidation-audit
+          path: |
+            mlb/data/historical-combined-preview.json
+            mlb/data/historical-page-dry-run-report.json
+          retention-days: 14
