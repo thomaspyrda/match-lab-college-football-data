@@ -7,6 +7,8 @@ on:
       - tests/test_stage_mlb_historical_season.py
       - reconcile_mlb_historical_standings.py
       - tests/test_reconcile_mlb_historical_standings.py
+      - combine_mlb_historical_staging.py
+      - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
   workflow_dispatch:
     inputs:
@@ -41,6 +43,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Audit 30-team crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage selected historical season with no publication
@@ -76,6 +79,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2015 season without publication
@@ -108,6 +112,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2016 season without publication
@@ -140,6 +145,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2017 season without publication
@@ -172,6 +178,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2018 season without publication
@@ -204,6 +211,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2019 season without publication
@@ -235,6 +243,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2022 season without publication
@@ -267,6 +276,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2023 season without publication
@@ -299,6 +309,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2024 season without publication
@@ -331,6 +342,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2025 season without publication
@@ -362,6 +374,7 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
           python -m unittest discover -s tests -p test_reconcile_mlb_historical_standings.py -v
+          python -m unittest discover -s tests -p test_combine_mlb_historical_staging.py -v
       - name: Validate 30-team identity crosswalk
         run: python audit_mlb_team_crosswalk.py
       - name: Stage 2021 season (no publication)
