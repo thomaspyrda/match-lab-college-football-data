@@ -1,0 +1,30 @@
+name: Probe MLB Player Season Stats
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - probe_mlb_player_season_stats.py
+      - tests/test_probe_mlb_player_season_stats.py
+      - .github/workflows/probe-mlb-player-season-stats.yml
+permissions:
+  contents: read
+jobs:
+  player-stat-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Player season-stat probe unit tests
+        run: python -m unittest discover -s tests -p test_probe_mlb_player_season_stats.py -v
+      - name: Query one 2025 team for historical hitting and pitching
+        run: python probe_mlb_player_season_stats.py --year 2025 --team-id 144
+      - name: Save isolated audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-player-stats-2025-probe-no-publication
+          path: mlb/data/player-stats-probe-2025.json
+          retention-days: 14
