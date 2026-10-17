@@ -1,0 +1,31 @@
+name: Stage MLB Daily Backfill
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '55 10 * * *'
+  push:
+    branches: [main]
+    paths:
+      - stage_mlb_daily_backfill.py
+      - tests/test_stage_mlb_daily_backfill.py
+      - .github/workflows/stage-mlb-daily-backfill.yml
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify adapter with test fixtures
+        run: python -m unittest discover -s tests -p test_stage_mlb_daily_backfill.py -v
+      - name: Stage recent MLB final games and player box scores
+        run: python stage_mlb_daily_backfill.py --lookback-days 3
+      - name: Store audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-daily-backfill-preview
+          path: mlb/data/daily-backfill-preview.json
+          retention-days: 14
