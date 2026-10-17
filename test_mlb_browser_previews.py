@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Chromium smoke tests for nonpublished MLB HTML previews."""
 import json
+import re
 import threading
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from functools import partial
@@ -36,7 +37,8 @@ def main():
                     assert page.locator("#schedule tbody tr").count()==12,slug
                     page.locator("#wiseMoreGames").click()
                     expanded=page.locator("#schedule tbody tr").count()
-                    seed=page.evaluate("""() => JSON.parse(document.querySelector('#team-season-data').textContent)""")
+                    html=(root/"mlb"/"teams"/slug/"index.html").read_text()
+                    seed=json.loads(re.search(r'<script type="application/json" id="team-season-data">(.*?)</script>',html,re.S).group(1))
                     expected=len(next(season for season in seed["seasons"] if season["key"]=="2018")["games"])
                     assert expanded==expected,(slug,expanded,expected)
                     assert "undefined" not in page.locator("#schedule").inner_text().lower(),slug
