@@ -17,6 +17,15 @@ class HistoricalStageTests(unittest.TestCase):
         self.assertEqual(r["coverage"]["postseason_games"],1)
         self.assertEqual(r["coverage"]["expected_games_per_team"],60)
         self.assertEqual(r["games"]["10"]["player_data_coverage"],"not_loaded")
+    def test_scoreless_final_is_quarantined(self):
+        def scoreless(url):
+            r=fixture(url)
+            del r["dates"][0]["games"][0]["teams"]["home"]["score"]
+            return r
+        result=stage_season(2020,crosswalk(),scoreless)
+        self.assertEqual(result["coverage"]["quarantined_scoreless_games"],1)
+        self.assertEqual(result["coverage"]["regular_games"],0)
+        self.assertEqual(result["warnings"][0]["game_id"],"10")
     def test_duplicate_rejected(self):
         def repeated(url):
             r=fixture(url)
