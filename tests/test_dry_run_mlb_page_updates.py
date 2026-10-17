@@ -22,6 +22,17 @@ class MLBPageSafety(unittest.TestCase):
         output,report=transform(html(),archive("world_series"),"baltimore-orioles")
         self.assertEqual(parsed(output)["seasons"][0]["games"],[])
         self.assertEqual(report["postseason_games_not_merged"],1)
+    def test_conflicting_existing_score_rejected(self):
+        once,_=transform(html(),archive(),"baltimore-orioles")
+        with self.assertRaisesRegex(ValueError,"score"):
+            transform(once,archive(runs=6),"baltimore-orioles")
+    def test_conflicting_existing_location_rejected(self):
+        once,_=transform(html(),archive(),"baltimore-orioles")
+        data=json.loads(PATTERN.search(once).group(2))
+        data["seasons"][0]["games"][0]["location"]="Away"
+        changed=PATTERN.sub(lambda m:m.group(1)+json.dumps(data)+m.group(3),once)
+        with self.assertRaisesRegex(ValueError,"location"):
+            transform(changed,archive(),"baltimore-orioles")
     def test_conflicting_existing_result_rejected(self):
         once,_=transform(html(),archive(),"baltimore-orioles")
         with self.assertRaises(ValueError):
