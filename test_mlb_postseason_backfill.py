@@ -27,7 +27,8 @@ def run(start,end):
                 summary["not_final"]+=1;continue
             sides=game["teams"];home=sides["home"];away=sides["away"]
             if "score" not in home or "score" not in away:
-                summary["unscored_final_status"]+=1\n                warnings.append(f"{gid}: marked final but no schedule score; not imported");continue
+                summary["unscored_final_status"]+=1
+                warnings.append(f"{gid}: marked final but no schedule score; not imported");continue
             dt=game.get("officialDate") or game["gameDate"][:10]
             observed=datetime.now(timezone.utc).isoformat()
             GameObservation("mlb",str(gid),observed,dt,str(home["team"]["id"]),str(away["team"]["id"]),"final",int(home["score"]),int(away["score"])).validate()
