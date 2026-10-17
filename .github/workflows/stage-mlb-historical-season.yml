@@ -10,6 +10,7 @@ on:
       - combine_mlb_historical_staging.py
       - dry_run_mlb_page_updates.py
       - build_mlb_render_previews.py
+      - test_mlb_browser_previews.py
       - tests/test_dry_run_mlb_page_updates.py
       - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
@@ -470,6 +471,12 @@ jobs:
           PY
       - name: Build three isolated HTML render previews
         run: python build_mlb_render_previews.py
+      - name: Set up Chromium for isolated browser test
+        run: |
+          python -m pip install playwright==1.58.0
+          python -m playwright install --with-deps chromium
+      - name: Verify season selector and game expansion in Chromium
+        run: python test_mlb_browser_previews.py
       - name: Upload isolated browser-preview files
         uses: actions/upload-artifact@v4
         with:
