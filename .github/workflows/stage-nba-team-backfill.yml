@@ -1,0 +1,34 @@
+name: Stage NBA Daily Team Backfill
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 11 * * *'
+  push:
+    branches: [main]
+    paths:
+      - stage_nba_team_backfill.py
+      - daily_backfill_core.py
+      - tests/test_stage_nba_team_backfill.py
+      - .github/workflows/stage-nba-team-backfill.yml
+permissions:
+  contents: read
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate NBA staging logic
+        run: |
+          python -m unittest discover -s tests -p test_daily_backfill_core.py -v
+          python -m unittest discover -s tests -p test_stage_nba_team_backfill.py -v
+      - name: Stage season game records (no publication)
+        run: python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
+      - name: Preserve staging report for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: nba-season-backfill-preview
+          path: nba/dashboard/data/season-team-backfill-preview.json
+          retention-days: 14
