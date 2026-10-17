@@ -11,6 +11,7 @@ on:
       - dry_run_mlb_page_updates.py
       - build_mlb_render_previews.py
       - test_mlb_browser_previews.py
+      - build_mlb_publication_review.py
       - tests/test_dry_run_mlb_page_updates.py
       - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
@@ -482,6 +483,14 @@ jobs:
         with:
           name: mlb-browser-render-previews
           path: mlb/data/html-preview/
+          retention-days: 14
+      - name: Generate review-only historical page package
+        run: python build_mlb_publication_review.py
+      - name: Save review-only pages and checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-publication-review-no-deployment
+          path: mlb/data/publication-review/
           retention-days: 14
       - name: Upload consolidated archive and page audit
         if: always()
