@@ -146,6 +146,17 @@ def roster(team_id):
 
 def season_history(games,season,phase):return [g for g in games if g['season']==season and g['phase']==phase]
 
+def select_display_phase(events, now):
+    """Prefer imminent regular-season games over finished preseason games."""
+    upcoming=[e for e in events.values() if not e['status']['type'].get('completed') and stamp(e['date'])>=now-timedelta(hours=8)]
+    recent=[e['season']['type'] for e in events.values() if stamp(e['date'])<=now]
+    current=max(recent) if recent else 1
+    if current==1 and any(e['season']['type']==2 for e in upcoming):
+        return 2
+    if current==3:
+        return 3
+    return current if recent else (min(upcoming,key=lambda e:e['date'])['season']['type'] if upcoming else 2)
+
 def main():
     now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();season=today.year+(today.month>=7)
     registry=json.loads((ROOT/'data/sports/team-registry.json').read_text());teams={t['espn_id']:t for t in registry['teams'] if t['sport']=='nba'}
@@ -164,12 +175,10 @@ def main():
     for g in old.values():
         g['game_id']='nba:espn:game:'+g['id']
         if g['id'] in events:g['neutral']=events[g['id']]['competitions'][0].get('neutralSite',False)
-    phases=[e['season']['type'] for e in events.values() if stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date()<=today]
-    latest_phase=max(phases) if phases else (min(events.values(),key=lambda e:e['date'])['season']['type'] if events else 2)
+    latest_phase=select_display_phase(events,now)
     history=season_history(old.values(),season,latest_phase)
     refreshed=datetime.now(UTC)
     slate=[e for e in events.values() if e['season']['type']==latest_phase and not e['status']['type'].get('completed') and stamp(e['date'])>=now-timedelta(hours=8)]
-    if not slate:slate=sorted([e for e in events.values() if e['season']['type']==latest_phase],key=lambda e:e['date'],reverse=True)[:5]
     output=[]
     for event in sorted(slate,key=lambda e:e['date']):
         tip=stamp(event['date']);cutoff=min(tip,refreshed);profiles={i:profile(i,history,cutoff) for i in teams}
@@ -190,7 +199,7 @@ def main():
           'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':provider,'observed_at':refreshed.isoformat() if line else None},
           'source':'https://www.espn.com/nba/game/_/gameId/'+event['id'],'profile_cutoff':cutoff.isoformat()})
     data={'schema_version':1,'season':f'{season-1}–{str(season)[2:]}','season_type':{1:'Preseason',2:'Regular season',3:'Playoffs'}[latest_phase],'updated_at':refreshed.isoformat(),
-      'completed_games':len(history),'games':output,'coverage':{'bpm':'Unavailable from this feed','vorp':'Unavailable from this feed','injuries':'Not yet connected; verify current availability','refresh':'Hourly snapshot, not a live scoreboard'},
+      'completed_games':len(history),'games':output,'coverage':{'bpm':'Unavailable from this feed','vorp':'Unavailable from this feed','injuries':'Not yet connected; verify current availability','refresh':'Daily statistics with afternoon pregame snapshots; not a live scoreboard'},
       'methodology':'Ratings use estimated possessions: average of both teams’ FGA − OREB + TO + 0.44 × FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.'}
     dest=ROOT/'nba/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,indent=2)+'\n');cache_path.write_text(json.dumps({'schema_version':1,'games':list(old.values())},indent=2)+'\n')
     assert len(teams)==30 and output,'No NBA teams or slate loaded'
