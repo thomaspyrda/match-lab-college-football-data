@@ -31,6 +31,15 @@ def main():
                     assert "undefined" not in page.locator("#schedule").inner_text().lower(),slug
                     page.locator("#wiseSeasonSelect").select_option("2025")
                     assert page.locator("#schedule tbody tr").count()==12,slug
+                    # Verify a full historical season can be expanded without undefined cells.
+                    page.locator("#wiseSeasonSelect").select_option("2018")
+                    assert page.locator("#schedule tbody tr").count()==12,slug
+                    page.locator("#wiseMoreGames").click()
+                    expanded=page.locator("#schedule tbody tr").count()
+                    seed=page.evaluate("""() => JSON.parse(document.querySelector('#team-season-data').textContent)""")
+                    expected=len(next(season for season in seed["seasons"] if season["key"]=="2018")["games"])
+                    assert expanded==expected,(slug,expanded,expected)
+                    assert "undefined" not in page.locator("#schedule").inner_text().lower(),slug
                     results.append({"team":slug,"2020_rows_after_expansion":count,"2025_first_page_rows":12})
                     page.close()
             finally:
