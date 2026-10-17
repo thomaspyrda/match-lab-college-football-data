@@ -66,10 +66,11 @@ def main():
             for side in ("home","away"):
                 slug=game.get(side,{}).get("slug")
                 if slug in counts:counts[slug]+=1
-        coverage[str(year)]={"min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
-            "teams_with_162_games":sum(n==162 for n in counts.values()),
-            "teams_below_162_games":sum(n<162 for n in counts.values())}
-    complete=all(row["teams_with_162_games"]==30 for row in coverage.values())
+        expected=60 if year==2020 else 162
+        coverage[str(year)]={"expected_games_per_team":expected,"min_team_games":min(counts.values()),
+            "max_team_games":max(counts.values()),"teams_at_expected":sum(n==expected for n in counts.values()),
+            "teams_below_expected":sum(n<expected for n in counts.values())}
+    complete=all(row["teams_at_expected"]==30 for row in coverage.values())
     report={"publication_ready":complete,
         "coverage_gate":"PASS" if complete else "BLOCKED_INCOMPLETE_HISTORICAL_ARCHIVE",
         "historical_season_coverage":coverage,
