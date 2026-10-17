@@ -62,8 +62,10 @@ def refresh(sport, route, destination):
         if sport == "mlb":
             sides = {c.get("homeAway"): c for c in comp.get("competitors", [])}
             for side in ("home", "away"):
-                if isinstance(game.get(side), dict):
-                    game[side]["probable"] = next(
+                team_ref = game.get(side)
+                team = team_ref if isinstance(team_ref, dict) else data.get("teams", {}).get(str(team_ref))
+                if isinstance(team, dict):
+                    team["probable"] = next(
                         (x.get("athlete", {}).get("displayName") for x in sides.get(side, {}).get("probables", []) if x.get("athlete")),
                         None,
                     )
