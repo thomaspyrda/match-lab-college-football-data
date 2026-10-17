@@ -21,14 +21,13 @@ def stage_season(year, crosswalk, fetcher=fetch):
     games={}
     skipped=0
     warnings=[]
+    duplicate_identical=0
     for day in payload.get("dates",[]):
         for g in day.get("games",[]):
             if g.get("status",{}).get("abstractGameState")!="Final":
                 skipped+=1
                 continue
             gid=str(g["gamePk"])
-            if gid in games:
-                raise ValueError("Duplicate game ID "+gid)
             home=g["teams"]["home"]
             away=g["teams"]["away"]
             hid=str(home["team"]["id"])
@@ -48,11 +47,17 @@ def stage_season(year, crosswalk, fetcher=fetch):
             date=g.get("officialDate") or g["gameDate"][:10]
             if not date.startswith(str(year)+"-"):
                 raise ValueError("Date outside requested season "+gid)
-            games[gid]={"game_id":gid,"date":date,"season":year,"phase":phase,
+            record={"game_id":gid,"date":date,"season":year,"phase":phase,
                 "home":{"slug":mapping[hid]["slug"],"mlb_id":hid,"runs":hscore},
                 "away":{"slug":mapping[aid]["slug"],"mlb_id":aid,"runs":ascore},
                 "player_records":{},"player_data_coverage":"not_loaded",
                 "source":"MLB Stats API","market":None}
+            if gid in games:
+                if games[gid]!=record:
+                    raise ValueError("Conflicting duplicate game ID "+gid)
+                duplicate_identical+=1
+                continue
+            games[gid]=record
     counts={x["slug"]:0 for x in mapping.values()}
     for rec in games.values():
         if rec["phase"]=="regular":
@@ -65,7 +70,7 @@ def stage_season(year, crosswalk, fetcher=fetch):
         "teams_below_expected":sum(n<expected for n in counts.values()),
         "teams_over_expected":sum(n>expected for n in counts.values()),
         "min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
-        "expected_games_per_team":expected,"not_final":skipped,"quarantined_scoreless_games":len(warnings)}
+        "expected_games_per_team":expected,"not_final":skipped,"quarantined_scoreless_games":len(warnings),"identical_duplicates_ignored":duplicate_identical}
     return {"status":"HISTORICAL_STAGING_ONLY","season":year,"games":games,"coverage":coverage,"warnings":warnings}
 
 def main():
