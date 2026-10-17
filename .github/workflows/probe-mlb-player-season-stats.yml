@@ -8,6 +8,8 @@ on:
       - tests/test_probe_mlb_player_season_stats.py
       - audit_mlb_traded_player.py
       - tests/test_audit_mlb_traded_player.py
+      - audit_mlb_multi_team_player_stats.py
+      - tests/test_audit_mlb_multi_team_player_stats.py
       - .github/workflows/probe-mlb-player-season-stats.yml
 permissions:
   contents: read
@@ -31,6 +33,16 @@ jobs:
         with:
           name: mlb-traded-player-audit-no-publication
           path: mlb/data/traded-player-2023-bader-audit.json
+          retention-days: 14
+      - name: Test generalized multi-team player splits
+        run: python -m unittest discover -s tests -p test_audit_mlb_multi_team_player_stats.py -v
+      - name: Audit Braves and Yankees player attribution for 2025
+        run: python audit_mlb_multi_team_player_stats.py
+      - name: Save cross-team audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-cross-team-player-audit-no-publication
+          path: mlb/data/cross-team-player-audit-2025.json
           retention-days: 14
       - name: Query one 2025 team for historical hitting and pitching
         run: |
