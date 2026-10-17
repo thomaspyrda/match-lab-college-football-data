@@ -47,6 +47,34 @@ def transform(html,archive,slug):
         season["game_data_coverage"]="partial_verified_game_results"
     output=PATTERN.sub(lambda _:m.group(1)+json.dumps(current,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")+m.group(3),html,count=1)
     return output,{"slug":slug,"added_regular_games":changed,"postseason_games_not_merged":sum(len(v["postseason"]) for v in info["backfill_seasons"].values())}
+def historical_coverage(archive,slugs):
+    """Read-only per-season game coverage audit, counting each game once per team."""
+    coverage={}
+    for year in range(2015,2026):
+        counts={slug:0 for slug in slugs}
+        duplicate_team_games=0
+        seen=set()
+        for gid,game in archive.get("games",{}).items():
+            if game.get("phase")!="regular" or int(game.get("season",-1))!=year:
+                continue
+            home=game.get("home",{}).get("slug")
+            away=game.get("away",{}).get("slug")
+            if home==away or home not in counts or away not in counts or str(gid) in seen:
+                duplicate_team_games+=1
+                continue
+            seen.add(str(gid))
+            counts[home]+=1
+            counts[away]+=1
+        # 2026 is not yet complete; final full-season threshold applies only after season end.
+        expected=60 if year==2020 else 162
+        coverage[str(year)]={"expected_games_per_team":expected,
+            "min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
+            "teams_at_expected":sum(n==expected for n in counts.values()),
+            "teams_below_expected":sum(n<expected for n in counts.values()),
+            "teams_over_expected":sum(n>expected for n in counts.values()),
+            "invalid_team_games":duplicate_team_games}
+    return coverage
+
 def main():
     p=argparse.ArgumentParser();p.add_argument("--archive",default="mlb/data/internal-backfill-archive-preview.json");p.add_argument("--out",default="mlb/data/team-page-dry-run-report.json");a=p.parse_args()
     archive=json.loads(Path(a.archive).read_text());pages=list(Path("mlb/teams").glob("*/index.html"))
@@ -56,21 +84,8 @@ def main():
         html=page.read_text();new,result=transform(html,archive,page.parent.name)
         if '<script type="application/json" id="team-season-data">' not in new:raise ValueError("Lost page data")
         results.append(result)
-    # Coverage is assessed separately from the success of the import pipeline.
-    coverage={}
-    for year in range(2015,2026):
-        counts={page.parent.name:0 for page in pages}
-        for game in archive.get("games",{}).values():
-            if game.get("phase")!="regular" or int(game.get("season",-1))!=year:
-                continue
-            for side in ("home","away"):
-                slug=game.get(side,{}).get("slug")
-                if slug in counts:counts[slug]+=1
-        expected=60 if year==2020 else 162
-        coverage[str(year)]={"expected_games_per_team":expected,"min_team_games":min(counts.values()),
-            "max_team_games":max(counts.values()),"teams_at_expected":sum(n==expected for n in counts.values()),
-            "teams_below_expected":sum(n<expected for n in counts.values())}
-    complete=all(row["teams_at_expected"]==30 for row in coverage.values())
+    coverage=historical_coverage(archive,[page.parent.name for page in pages])
+    complete=all(row["teams_at_expected"]==30 and row["teams_over_expected"]==0 for row in coverage.values())
     report={"publication_ready":complete,
         "coverage_gate":"PASS" if complete else "BLOCKED_INCOMPLETE_HISTORICAL_ARCHIVE",
         "historical_season_coverage":coverage,
