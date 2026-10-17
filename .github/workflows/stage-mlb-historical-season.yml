@@ -9,6 +9,7 @@ on:
       - tests/test_reconcile_mlb_historical_standings.py
       - combine_mlb_historical_staging.py
       - dry_run_mlb_page_updates.py
+      - build_mlb_render_previews.py
       - tests/test_dry_run_mlb_page_updates.py
       - tests/test_combine_mlb_historical_staging.py
       - .github/workflows/stage-mlb-historical-season.yml
@@ -467,6 +468,14 @@ jobs:
           assert report['coverage_gate']=='PASS_STANDINGS_AND_STRUCTURE'
           print('Historical publication readiness gate passed; no live files changed')
           PY
+      - name: Build three isolated HTML render previews
+        run: python build_mlb_render_previews.py
+      - name: Upload isolated browser-preview files
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-browser-render-previews
+          path: mlb/data/html-preview/
+          retention-days: 14
       - name: Upload consolidated archive and page audit
         if: always()
         uses: actions/upload-artifact@v4
