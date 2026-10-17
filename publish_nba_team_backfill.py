@@ -19,6 +19,9 @@ def apply_manifest(manifest, directory=DATA, write=False):
         path=directory/(slug+"-season-details.json")
         obj=json.loads(path.read_text())
         previous=obj.get("seasons",{}).get("2027",{})
+        if not rows and not previous.get("games"):
+            counts["unmodified_teams"]+=1
+            continue
         old={str(g["game_id"]):g for g in previous.get("games",[])}
         for row in rows:
             game_id=str(row["game_id"])
