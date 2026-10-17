@@ -67,7 +67,7 @@ def historical_coverage(archive,slugs):
             counts[away]+=1
         # 2026 is not yet complete; final full-season threshold applies only after season end.
         expected=60 if year==2020 else 162
-        expectations={slug:(58 if year==2020 and slug in ("detroit-tigers","st-louis-cardinals") else expected) for slug in counts}
+        expectations={slug:(58 if year==2020 and slug in ("detroit-tigers","st-louis-cardinals") else 161 if year==2021 and slug in ("atlanta-braves","colorado-rockies") else expected) for slug in counts}
         coverage[str(year)]={"expected_games_per_team":expected,
             "min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
             "teams_at_expected":sum(n==expectations[slug] for slug,n in counts.items()),
