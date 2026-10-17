@@ -6,6 +6,8 @@ on:
     paths:
       - probe_mlb_player_season_stats.py
       - tests/test_probe_mlb_player_season_stats.py
+      - audit_mlb_traded_player.py
+      - tests/test_audit_mlb_traded_player.py
       - .github/workflows/probe-mlb-player-season-stats.yml
 permissions:
   contents: read
@@ -19,6 +21,17 @@ jobs:
           python-version: '3.12'
       - name: Player season-stat probe unit tests
         run: python -m unittest discover -s tests -p test_probe_mlb_player_season_stats.py -v
+      - name: Validate traded-player split handling
+        run: python -m unittest discover -s tests -p test_audit_mlb_traded_player.py -v
+      - name: Query 2023 traded-player team splits
+        run: python audit_mlb_traded_player.py
+      - name: Save traded-player audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-traded-player-audit-no-publication
+          path: mlb/data/traded-player-2023-bader-audit.json
+          retention-days: 14
       - name: Query one 2025 team for historical hitting and pitching
         run: |
           python probe_mlb_player_season_stats.py --year 2025 --team-id 144
