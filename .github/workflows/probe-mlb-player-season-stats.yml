@@ -23,6 +23,7 @@ jobs:
         run: |
           python probe_mlb_player_season_stats.py --year 2025 --team-id 144
           python probe_mlb_player_season_stats.py --year 2020 --team-id 144
+          python probe_mlb_player_season_stats.py --year 2025 --team-id 147
       - name: Save isolated audit report
         if: always()
         uses: actions/upload-artifact@v4
