@@ -347,7 +347,7 @@
   }
   if (!document.querySelector('script[data-nba-modern-layout]')) {
     const js = document.createElement('script');
-    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=season-ats-ou-20261017';
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=season-ats-ou-20261017b';
     js.dataset.nbaModernLayout = 'true';
     document.body.append(js);
   }
