@@ -19,7 +19,7 @@ def main():
             try:
                 for slug in ("atlanta-braves","chicago-cubs","detroit-tigers"):
                     page=browser.new_page(viewport={"width":1360,"height":900})
-                    page.goto(f"http://127.0.0.1:{server.server_port}/mlb/teams/{slug}/index.html",wait_until="domcontentloaded")
+                    page.goto(f"http://127.0.0.1:{server.server_port}/mlb/teams/{slug}/",wait_until="domcontentloaded")
                     page.locator("#wiseSeasonSelect").select_option("2020")
                     rows=page.locator("#schedule tbody tr")
                     assert rows.count()==12,(slug,rows.count())
