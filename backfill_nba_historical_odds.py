@@ -2,7 +2,7 @@
 """One-time, conservatively matched historical NBA odds backfill.
 Game-level odds are source-recorded, NOT represented as verified closing lines.
 """
-import csv, io, json, urllib.request
+import argparse, csv, io, json, urllib.request
 from pathlib import Path
 from collections import Counter
 
@@ -47,6 +47,9 @@ def fill(game,row):
             "odds_line_type":"published_unspecified"}
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--dry-run",action="store_true")
+    args=parser.parse_args()
     with urllib.request.urlopen(URL,timeout=60) as response:
         raw=response.read().decode("utf-8")
     by_date={}
@@ -80,12 +83,14 @@ def main():
                     continue
                 g.update(fields);count["imported"]+=1
         report[slug]=dict(count)
-        if count["imported"]:
+        if count["imported"] and not args.dry_run:
             path.write_text(json.dumps(doc,separators=(",",":"),ensure_ascii=False)+"\n")
             changed+=1
     totals=Counter()
     for item in report.values():totals.update(item)
-    print(json.dumps({"teams_updated":changed,"totals":dict(totals),"teams":report},indent=2))
+    summary={"dry_run":args.dry_run,"teams_updated":changed,"totals":dict(totals),"teams":report}
+    print(json.dumps(summary,indent=2))
+    (ROOT/"nba/teams/data/backfill-audit.json").write_text(json.dumps(summary,indent=2)+"\n")
     if changed<25 or totals["imported"]<1000:
         raise SystemExit("Insufficient reliable matching; investigate before publishing")
 
