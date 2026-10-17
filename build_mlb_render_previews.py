@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Create local-only representative MLB team HTML previews from audited archive."""
-import argparse,json
+import argparse,json,shutil
 from pathlib import Path
 from dry_run_mlb_page_updates import transform
 
@@ -20,6 +20,10 @@ def main():
         target.parent.mkdir(parents=True,exist_ok=True)
         target.write_text(html)
         manifest[slug]=report
+    assets=out/"sports-research"
+    assets.mkdir(parents=True,exist_ok=True)
+    for name in ("mlb-cbb-team-layout-draft-v15.js","mlb-cbb-team-layout-draft-v14.css"):
+        shutil.copy2(Path("sports-research")/name,assets/name)
     (out/"preview-manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
     print(json.dumps({"status":"LOCAL_PREVIEW_ONLY","teams":list(manifest),"published":False}))
 if __name__=="__main__":main()
