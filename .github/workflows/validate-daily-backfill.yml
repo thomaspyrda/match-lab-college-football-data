@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - daily_backfill_core.py
+      - stage_nba_team_backfill.py
       - tests/test_daily_backfill_core.py
+      - tests/test_stage_nba_team_backfill.py
       - .github/workflows/validate-daily-backfill.yml
 permissions:
   contents: read
@@ -18,4 +20,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: Validate shared game and betting-market logic
-        run: python -m unittest discover -s tests -p test_daily_backfill_core.py -v
+        run: |
+          python -m unittest discover -s tests -p test_daily_backfill_core.py -v
+          python -m unittest discover -s tests -p test_stage_nba_team_backfill.py -v
