@@ -4,7 +4,7 @@ function seasonGames(detail, fallback) {
   return detail.games.map(game => {
     const betting = fallback.find(g => g.game_id === game.game_id ||
       (g.date?.slice(0, 10) === game.date && (g.opponent_name === game.opponent_name || g.opponent_slug === game.opponent_slug)));
-    return {...game, ...Object.fromEntries(['spread','total','ats_result','ou_result'].filter(k => betting?.[k] != null).map(k => [k, betting[k]]))};
+    return {...game, ...Object.fromEntries(['spread','total','ats_result','ou_result'].filter(k => game[k] == null && betting?.[k] != null).map(k => [k, betting[k]]))};
   });
 }
 function scheduleTable(games) {
