@@ -1,0 +1,26 @@
+name: Audit NBA historical odds backfill
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - backfill_nba_historical_odds.py
+      - .github/workflows/audit-nba-odds-backfill.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit all NBA historical game matches without publishing
+        run: python backfill_nba_historical_odds.py --dry-run
+      - name: Upload per-team coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: nba-historical-odds-backfill-audit
+          path: nba/teams/data/backfill-audit.json
+          retention-days: 14
