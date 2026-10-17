@@ -50,6 +50,110 @@ jobs:
           path: mlb/data/historical-stage-${{ inputs.year || '2020' }}.json
           retention-days: 14
 
+  historical-2015-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2015 season without publication
+        run: python stage_mlb_historical_season.py --year 2015
+      - name: Save 2015 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2015
+          path: mlb/data/historical-stage-2015.json
+          retention-days: 14
+
+  historical-2016-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2016 season without publication
+        run: python stage_mlb_historical_season.py --year 2016
+      - name: Save 2016 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2016
+          path: mlb/data/historical-stage-2016.json
+          retention-days: 14
+
+  historical-2017-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2017 season without publication
+        run: python stage_mlb_historical_season.py --year 2017
+      - name: Save 2017 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2017
+          path: mlb/data/historical-stage-2017.json
+          retention-days: 14
+
+  historical-2018-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2018 season without publication
+        run: python stage_mlb_historical_season.py --year 2018
+      - name: Save 2018 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2018
+          path: mlb/data/historical-stage-2018.json
+          retention-days: 14
+
+  historical-2019-smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Historical staging tests
+        run: python -m unittest discover -s tests -p test_stage_mlb_historical_season.py -v
+      - name: Validate 30-team identity crosswalk
+        run: python audit_mlb_team_crosswalk.py
+      - name: Stage 2019 season without publication
+        run: python stage_mlb_historical_season.py --year 2019
+      - name: Save 2019 audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-stage-2019
+          path: mlb/data/historical-stage-2019.json
+          retention-days: 14
   historical-2022-smoke:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
