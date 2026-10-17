@@ -20,6 +20,7 @@ def stage_season(year, crosswalk, fetcher=fetch):
     payload=fetcher(f"/schedule?sportId=1&startDate={year}-01-01&endDate={year}-12-31&gameTypes=R,D,L,W,F")
     games={}
     skipped=0
+    warnings=[]
     for day in payload.get("dates",[]):
         for g in day.get("games",[]):
             if g.get("status",{}).get("abstractGameState")!="Final":
@@ -35,7 +36,8 @@ def stage_season(year, crosswalk, fetcher=fetch):
             if hid not in mapping or aid not in mapping or hid==aid:
                 raise ValueError("Unknown or identical team ID in "+gid)
             if "score" not in home or "score" not in away:
-                raise ValueError("Missing final score in "+gid)
+                warnings.append({"game_id":gid,"reason":"final_status_missing_score","date":g.get("officialDate") or g.get("gameDate","")[:10]})
+                continue
             hscore=home["score"]
             ascore=away["score"]
             if type(hscore)!=int or type(ascore)!=int or min(hscore,ascore)<0:
@@ -63,8 +65,8 @@ def stage_season(year, crosswalk, fetcher=fetch):
         "teams_below_expected":sum(n<expected for n in counts.values()),
         "teams_over_expected":sum(n>expected for n in counts.values()),
         "min_team_games":min(counts.values()),"max_team_games":max(counts.values()),
-        "expected_games_per_team":expected,"not_final":skipped}
-    return {"status":"HISTORICAL_STAGING_ONLY","season":year,"games":games,"coverage":coverage}
+        "expected_games_per_team":expected,"not_final":skipped,"quarantined_scoreless_games":len(warnings)}
+    return {"status":"HISTORICAL_STAGING_ONLY","season":year,"games":games,"coverage":coverage,"warnings":warnings}
 
 def main():
     p=argparse.ArgumentParser()
