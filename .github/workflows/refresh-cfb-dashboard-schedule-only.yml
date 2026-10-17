@@ -1,6 +1,8 @@
 name: Refresh CFB Dashboard schedule only
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '5 19 * * *'
   push:
     branches: [main]
     paths:
@@ -13,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   update-schedule:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
