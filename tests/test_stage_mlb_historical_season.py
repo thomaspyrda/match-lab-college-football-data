@@ -48,6 +48,16 @@ class HistoricalStageTests(unittest.TestCase):
         result=stage_season(2021,crosswalk(),empty)
         self.assertEqual(result["coverage"]["regular_games"],0)
         self.assertEqual(result["coverage"]["teams_below_expected"],30)
+    def test_2026_canceled_finale_expected_team_totals(self):
+        mapping=crosswalk()
+        mapping["teams"]["1"]["slug"]="baltimore-orioles"
+        mapping["teams"]["2"]["slug"]="new-york-yankees"
+        result=stage_season(2026,mapping,lambda url: {"dates":[]})
+        self.assertEqual(result["coverage"]["teams_below_expected"],30)
+        # Explicitly verify these two teams are expected to play 161, not 162.
+        self.assertEqual(result["coverage"]["expected_team_game_counts"]["baltimore-orioles"],161)
+        self.assertEqual(result["coverage"]["expected_team_game_counts"]["new-york-yankees"],161)
+        self.assertEqual(result["coverage"]["expected_team_game_counts"]["team-3"],162)
     def test_invalid_score_rejected(self):
         def invalid(url):
             r=fixture(url)
