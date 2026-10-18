@@ -5,6 +5,7 @@ on:
       - audit/mlb-player-historical-2015-2026
     paths:
       - '.github/workflows/audit-mlb-historical-hitters.yml'
+      - 'tests/test_audit_mlb_historical_leader_coverage.py'
       - 'audit_mlb_historical_leader_coverage.py'
   workflow_dispatch:
 permissions:
@@ -16,6 +17,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Fast mocked verification tests
+        run: python -m unittest discover -s tests -p test_audit_mlb_historical_leader_coverage.py -v
       - name: Retrieve consolidated archived review
         env:
           GH_TOKEN: ${{ github.token }}
