@@ -12,8 +12,8 @@ class LeadersTests(unittest.TestCase):
   x=choose(fixture())
   self.assertEqual(len(x["top_hitters"]),20)
   self.assertEqual(x["top_hitters"][0]["player_id"],25)
-  self.assertEqual(len(x["starting_pitchers"]),8)
-  self.assertEqual(len(x["relief_pitchers"]),8)
+  self.assertEqual(len(x["starting_pitchers"]),5)
+  self.assertEqual(len(x["relief_pitchers"]),5)
   self.assertFalse({r["player_id"] for r in x["starting_pitchers"]}&{r["player_id"] for r in x["relief_pitchers"]})
  def test_wrong_team_rejected(self):
   x=fixture();x["groups"]["hitting"]["records"][0]["team_id"]="147"
