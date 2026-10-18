@@ -524,7 +524,7 @@ def write_live_data_pages(now):
         if d.exists():
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
-        columns=[("rank","Rank"),("team","Team"),("ap","AP"),("score",label)]
+        columns=[("rank","Rank"),("team","Team"),("score",label)]
         columns.extend(unit_fields)
         columns.extend([("sos_rank","SOS Rank"),("record","Record"),("opp_quality",opponent_label)])
         table=ranking_table(rows,columns)
