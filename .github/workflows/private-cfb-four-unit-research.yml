@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/private-cfb-four-unit-research.yml
+      - research_four_unit_nonrecursive_2026.py
 permissions:
   contents: read
 jobs:
