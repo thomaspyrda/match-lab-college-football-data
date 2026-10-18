@@ -23,7 +23,7 @@ def choose(dataset):
         if raw is None:raise ValueError("Missing "+key+" for player "+str(row["player_id"]))
         return int(raw)
     # At-bats are the ONLY performance criterion. Player ID breaks exact AB ties deterministically.
-    ranked_hitters=sorted(hitters,key=lambda r:(-number(r,"atBats"),r["player_id"]))
+    ranked_hitters=sorted((r for r in hitters if number(r,"atBats") > 0),key=lambda r:(-number(r,"atBats"),r["player_id"]))
     pitchers=groups["pitching"]["records"]
     for row in pitchers:
         appearances=number(row,"gamesPlayed")
