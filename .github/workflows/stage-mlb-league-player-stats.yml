@@ -30,11 +30,11 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage selected season for all 30 teams, no publication
         env:
-          YEAR: ${{ inputs.season || '2019' }}
+          YEAR: ${{ inputs.season || '2018' }}
         run: python stage_mlb_league_player_stats.py --year "$YEAR"
       - name: Select leaders only, without a complete-roster totals requirement
         env:
-          YEAR: ${{ inputs.season || '2019' }}
+          YEAR: ${{ inputs.season || '2018' }}
         run: python select_mlb_player_leaders.py --year "$YEAR"
       - name: Save leader selection for review
         uses: actions/upload-artifact@v4
