@@ -22,6 +22,7 @@ def choose(dataset):
         raw=row["stats"].get(key)
         if raw is None:raise ValueError("Missing "+key+" for player "+str(row["player_id"]))
         return int(raw)
+    # At-bats are the ONLY performance criterion. Player ID breaks exact AB ties deterministically.
     ranked_hitters=sorted(hitters,key=lambda r:(-number(r,"atBats"),r["player_id"]))
     pitchers=groups["pitching"]["records"]
     for row in pitchers:
@@ -34,6 +35,8 @@ def choose(dataset):
     relievers=[r for r in relievers if r["player_id"] not in starter_ids][:8]
     output.update({"top_hitters":ranked_hitters[:20],"starting_pitchers":starters,"relief_pitchers":relievers,
                    "selection_policy":"top_20_team_at_bats_top_8_starts_top_8_relief_appearances",
+                   "hitter_selection_basis":"team_specific_season_at_bats_only",
+                   "hitter_tie_breaker":"player_id_only_when_at_bats_equal",
                    "full_roster_reconciled":False,"published":False})
     return output
 
