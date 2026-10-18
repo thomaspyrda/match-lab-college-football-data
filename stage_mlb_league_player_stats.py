@@ -32,10 +32,10 @@ def main():
     p=argparse.ArgumentParser()
     p.add_argument("--year",type=int,default=2025)
     p.add_argument("--crosswalk",default="mlb/data/mlb-team-identity-audit.json")
-    p.add_argument("--out",default="mlb/data/mlb-player-league-2025.json")
+    p.add_argument("--out",default=None)
     a=p.parse_args()
     result=collect(a.year,json.loads(Path(a.crosswalk).read_text()))
-    path=Path(a.out);path.parent.mkdir(parents=True,exist_ok=True)
+    path=Path(a.out or f"mlb/data/mlb-player-league-{a.year}.json");path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps({"status":result["status"],"season":a.year,
        "teams":len(result["team_coverage"]),"records":result["records"],
