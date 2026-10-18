@@ -2,7 +2,17 @@
 """Promote the 10% margin chronological four-unit ratings to current CFB rankings."""
 import json
 from pathlib import Path
-from promote_v15_live import score_from_sd,tier,top_percent,canon
+ALIASES={"Mississippi":"Ole Miss","Connecticut":"UConn","Texas-San Antonio":"UTSA","San José State":"San Jose State"}
+def canon(x):return ALIASES.get(x,x)
+def tier(s):return "Elite" if s>=95 else "Great" if s>=85 else "Very Strong" if s>=76 else "Strong" if s>=65 else "Above Average" if s>=50 else "Below Average"
+def top_percent(rank,n):return round(100*rank/n,1)
+def score_from_sd(sd):
+ anchors=[(-3.0,1),(-2.5,3),(-2.0,6),(-1.5,15),(-1.0,25),(-0.5,35),(0.0,50),(0.5,65),(1.0,75),(1.5,85),(2.0,94),(2.5,97),(3.0,99),(3.5,100)]
+ if sd<=anchors[0][0]:return 1.0
+ if sd>=anchors[-1][0]:return 100.0
+ for (x0,y0),(x1,y1) in zip(anchors,anchors[1:]):
+  if x0<=sd<=x1:return round(y0+(y1-y0)*(sd-x0)/(x1-x0),1)
+ raise ValueError(sd)
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/"data"
 source=json.loads((DATA/"experiments/four_unit_chronological_10pct_margin_2026.json").read_text())
