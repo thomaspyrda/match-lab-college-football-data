@@ -1,0 +1,36 @@
+name: Diagnose MLB postseason player query formats
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/diagnose-mlb-phase-stats.yml']
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test only MLB 2026 Rays batting and Cleveland pitching query formats
+        run: |
+          python - <<'PY'
+          import json,urllib.request,urllib.parse,urllib.error
+          cases=[
+            ('Rays ALCS hitting',139,'hitting','season','L'),
+            ('Rays all playoffs hitting',139,'hitting','season','F,D,L,W'),
+            ('Rays postseason type',139,'hitting','postseason',''),
+            ('Rays postseason gameLog',139,'hitting','gameLog','F,D,L,W'),
+            ('Guardians ALCS pitching',114,'pitching','season','L'),
+            ('Guardians all playoffs pitching',114,'pitching','season','F,D,L,W'),
+          ]
+          for title,team,group,stat_type,game_type in cases:
+            params={'stats':stat_type,'group':group,'season':2026,'teamId':team,'playerPool':'ALL','limit':1000}
+            if game_type:params['gameType']=game_type
+            url='https://statsapi.mlb.com/api/v1/stats?'+urllib.parse.urlencode(params)
+            try:
+              with urllib.request.urlopen(url,timeout=15) as response:data=json.load(response)
+              splits=[row for block in data.get('stats',[]) for row in block.get('splits',[])]
+              sample=[{'name':r.get('player',{}).get('fullName'),'AB':r.get('stat',{}).get('atBats'),'GS':r.get('stat',{}).get('gamesStarted'),'GP':r.get('stat',{}).get('gamesPlayed')} for r in splits[:3]]
+              print(title, 'OK',len(splits),'sample',sample)
+            except urllib.error.HTTPError as e:
+              print(title,'HTTP',e.code,e.read(200).decode('utf-8','ignore'))
+            except Exception as e:print(title,'ERROR',type(e).__name__,str(e)[:200])
+          PY
