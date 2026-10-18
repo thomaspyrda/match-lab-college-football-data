@@ -1,0 +1,61 @@
+name: Publish MLB historical player statistics 2015-2026
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-mlb-historical-players.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: publish-mlb-historical-players
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download previously consolidated historical data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/mlb-reviewed
+          gh run download 39092851946 -R "$GITHUB_REPOSITORY" -n mlb-2015-2026-historical-player-review-no-publication -D /tmp/mlb-reviewed
+          test -s /tmp/mlb-reviewed/mlb-historical-player-leaders-review.json
+      - name: Map official MLB identifiers to site slugs
+        run: python audit_mlb_team_crosswalk.py --out mlb/data/mlb-team-identity-audit.json
+      - name: Generate only MLB historical player pages and assets
+        run: |
+          python prepare_mlb_player_publication_package.py --input /tmp/mlb-reviewed/mlb-historical-player-leaders-review.json --crosswalk mlb/data/mlb-team-identity-audit.json --out /tmp/mlb-publish
+          cp -a /tmp/mlb-publish/mlb/teams/. mlb/teams/
+          mkdir -p data/mlb/historical-players
+          cp -a /tmp/mlb-publish/data/mlb/historical-players/. data/mlb/historical-players/
+          node --check sports-research/mlb-historical-player-leaders.js
+      - name: Verify exact release scope
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files=list(Path('data/mlb/historical-players').glob('*.json'))
+          assert len(files)==30, len(files)
+          for p in files:
+              obj=json.loads(p.read_text())
+              assert len(obj['years'])==12, p
+              assert obj['slug']==p.stem, p
+              page=Path('mlb/teams')/p.stem/'index.html'
+              assert 'data-mlb-player-stats="2015-2026"' in page.read_text(), page
+          print('Verified 30 franchise pages and 360 team-seasons')
+          PY
+      - name: Commit MLB player records and page integration to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mlb/teams data/mlb/historical-players sports-research/mlb-historical-player-leaders.js
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish MLB 2015-2026 team-season player statistics"
+          git pull --rebase origin main
+          git push origin main
