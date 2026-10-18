@@ -8,6 +8,7 @@ on:
       - tests/test_stage_mlb_league_player_stats.py
       - reconcile_mlb_player_team_hitting.py
       - tests/test_reconcile_mlb_player_team_hitting.py
+      - diagnose_mlb_player_roster_gaps.py
       - .github/workflows/stage-mlb-league-player-stats.yml
 permissions:
   contents: read
@@ -37,6 +38,16 @@ jobs:
         with:
           name: mlb-2025-hitting-reconciliation-no-publication
           path: mlb/data/mlb-player-team-hitting-audit-2025.json
+          retention-days: 14
+      - name: Diagnose unmatched hitting totals against full season rosters
+        if: always()
+        run: python diagnose_mlb_player_roster_gaps.py
+      - name: Save roster-gap diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2025-batting-roster-gap-audit
+          path: mlb/data/mlb-hitting-roster-diagnostic-2025.json
           retention-days: 14
       - name: Require all 30 team batting totals to match
         if: steps.hitting_audit.outcome == 'failure'
