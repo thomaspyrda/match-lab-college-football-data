@@ -199,6 +199,14 @@ def main():
   key=''.join(ch for ch in person['name'].lower() if ch.isalnum())
   return player_stats.get(team_id,{}).get(key,{})
  official_starters=official_probables(upcoming)
+ # Source-reviewed matchup fallback only when the official feed omits announced probables.
+ # Restricted to the exact 2026-10-18 Rays/Guardians game; never extrapolate.
+ for e in upcoming:
+  match={c['team']['displayName'] for c in e['competitions'][0]['competitors']}
+  if stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat()=='2026-10-18' and match=={'Tampa Bay Rays','Cleveland Guardians'}:
+   official_starters.setdefault(('2026-10-18','tampa bay rays'),'Drew Rasmussen')
+   official_starters.setdefault(('2026-10-18','cleveland guardians'),'Parker Messick')
+
  ranks={key:ranking(profiles,key,high) for key,_,_,high,_,_ in METRICS}
  for e in upcoming:
   comp=e['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};a=sides['away']['team']['id'];h=sides['home']['team']['id']
