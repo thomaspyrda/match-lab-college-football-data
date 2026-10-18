@@ -48,3 +48,5 @@ jobs:
           name: mlb-2025-league-player-stats-no-publication
           path: mlb/data/mlb-player-league-2025.json
           retention-days: 14
+
+# Diagnostic output includes field-level mismatches; no publication is performed.
