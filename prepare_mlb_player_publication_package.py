@@ -50,11 +50,14 @@ def prepare(archive,crosswalk,out):
         page.parent.mkdir(parents=True,exist_ok=True)
         page.write_text(html.replace("</body>",SCRIPT+"</body>",1))
     if len(entries)!=30:raise ValueError("Missing team")
-    data={"status":"MLB_HISTORICAL_PLAYER_LEADERS","seasons":[2015,2026],"published":False,
-          "source":"MLB Stats API team-specific regular-season splits","teams":entries}
-    target=dest/"data"/"mlb"/"historical-player-leaders.json"
-    target.parent.mkdir(parents=True,exist_ok=True)
-    target.write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
+    # Team-scoped payloads avoid transferring every franchise's entire archive on each page.
+    for slug,years in entries.items():
+        target=dest/"data"/"mlb"/"historical-players"/(slug+".json")
+        target.parent.mkdir(parents=True,exist_ok=True)
+        data={"status":"MLB_HISTORICAL_PLAYER_LEADERS","slug":slug,
+              "seasons":[2015,2026],"published":False,
+              "source":"MLB Stats API team-specific regular-season splits","years":years}
+        target.write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
     js=ROOT/"sports-research"/"mlb-historical-player-leaders.js"
     if not js.exists():raise ValueError("Missing player renderer JS")
     rendered=dest/"sports-research"/js.name
