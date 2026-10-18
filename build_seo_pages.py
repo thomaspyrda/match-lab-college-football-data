@@ -430,16 +430,13 @@ def write_live_data_pages(now):
 
     methodology=data.get("model") or {}
     disclosure=(
-        "<section class='ranking-methodology' aria-label='Ranking methodology'><h2>How these rankings are calculated</h2>"
-        "<p><b>Four units:</b> Passing Offense, Rushing Offense, Passing Defense and Rushing Defense, weighted equally. "
-        "Passing uses 45% PPA, 45% success rate and 10% explosiveness; rushing uses 40% PPA, 40% success rate and 20% explosiveness. "
-        "<b>Opponent adjustment:</b> Each completed game's units are adjusted by 0.50 of the opponent's corresponding pregame unit strength, then frozen. No recursive retroactive changes. "
-        "<b>Current form:</b> Last three played games count 1.25×, 1.50× and 2.00× (oldest to newest), earlier games 1×. "
-        "<b>Scoring margin:</b> 10% of performance, capped at ±28 points per game and adjusted for pregame opponent strength. "
-        "<b>Quality wins:</b> Victories over pregame AP-ranked opponents earn +0.05 to +0.25 standardized points based on AP rank. "
-        "<b>Losses:</b> Each loss subtracts 0.10 standardized points. Bonuses and penalties affect <em>only Overall Team Strength</em>, not offense/defense units. "
-        "<b>SOS:</b> Based on completed opponents, with #1 indicating toughest schedule. Ratings are scaled to 1–100. "
-        "<b>Coverage:</b> Game-level statistical components currently use FBS-vs-FBS matchups.</p></section>"
+        "<section class='ranking-methodology' aria-label='Ranking factors'><h2>What goes into our rankings</h2>"
+        "<p>Our College Football Strength Rankings consider <b>passing and rushing performance on offense and defense</b>, "
+        "including efficiency, consistency, and explosive plays. We evaluate the <b>strength of opponents faced</b> "
+        "at the time of each matchup, as well as <b>strength of schedule</b> and <b>recent team form</b>. "
+        "Overall Team Strength also considers <b>scoring margins</b>, <b>quality wins against AP-ranked opponents</b>, "
+        "and <b>losses</b>. Team results inform Overall Team Strength, while offensive and defensive unit ratings "
+        "focus on statistical performance. Rankings reflect completed FBS matchups and are updated as the season progresses.</p></section>"
     ) if str(methodology.get("version","")).startswith("four_unit_") else ""
     # Full Team Strength ranking. Overall Strength is built from the opponent-adjusted
     # Offensive Strength and Defensive Strength components in current_rankings.json.
