@@ -7,6 +7,7 @@ on:
       - '.github/workflows/audit-mlb-historical-hitters.yml'
       - 'tests/test_audit_mlb_historical_leader_coverage.py'
       - 'audit_mlb_historical_leader_coverage.py'
+      - 'select_mlb_player_leaders.py'
   workflow_dispatch:
 permissions:
   contents: read
