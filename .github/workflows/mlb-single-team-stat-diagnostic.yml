@@ -1,0 +1,25 @@
+name: MLB Single Team Stat Type Diagnostic
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - diagnose_mlb_team_stat_type.py
+      - .github/workflows/mlb-single-team-stat-diagnostic.yml
+permissions:
+  contents: read
+jobs:
+  single-team:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare only Arizona 2025 season-stat query variants
+        run: python diagnose_mlb_team_stat_type.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mlb-single-team-stat-diagnostic
+          path: mlb/data/mlb-single-team-stat-type-diagnostic.json
+          retention-days: 7
