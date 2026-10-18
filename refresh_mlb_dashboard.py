@@ -202,8 +202,8 @@ def main():
  # Source-reviewed matchup fallback only when the official feed omits announced probables.
  # Restricted to the exact 2026-10-18 Rays/Guardians game; never extrapolate.
  for e in upcoming:
-  match={c['team']['displayName'] for c in e['competitions'][0]['competitors']}
-  if stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat()=='2026-10-18' and match=={'Tampa Bay Rays','Cleveland Guardians'}:
+  match={str(c['team']['id']) for c in e['competitions'][0]['competitors']}
+  if stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat()=='2026-10-18' and match=={'30','5'}:
    official_starters.setdefault(('2026-10-18','tampa bay rays'),'Drew Rasmussen')
    official_starters.setdefault(('2026-10-18','cleveland guardians'),'Parker Messick')
 
