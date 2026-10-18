@@ -66,28 +66,64 @@ for week in range(1,8):
   mu=avg(populated) if populated else 0.0
   sd=statistics.pstdev(populated) if len(populated)>1 else 1.0
   fixed_week_benchmarks[week][unit]={t:((v-mu)/(sd or 1)) for t,v in prior_vals.items() if v is not None}
-scores={}
+# AP pregame rankings from historical weekly polling. Quality win z bonus is capped.
+polls=api("/rankings",year=2026,seasonType="regular")
+ap_by_week={}
+for item in polls:
+ wk=int(item.get("week") or 0)
+ poll=next((p for p in item.get("polls",[]) if str(p.get("poll","")).lower() in ("ap top 25","ap")),None)
+ if poll:
+  ap_by_week[wk]={name(t.get("school") or t.get("team") or ""):int(t.get("rank") or 999) for t in poll.get("ranks",[])}
+def ap_pregame(wk,team):
+ # Pregame poll: prefer same-week published AP ranking; avoid later polls.
+ ranks=ap_by_week.get(wk) or ap_by_week.get(wk-1) or {}
+ return ranks.get(team)
+# A win over AP #1–5 adds .25 z, #6–10 .20, #11–15 .15, #16–20 .10, #21–25 .05.
+win_bonus=defaultdict(float)
+ranked_wins=defaultdict(list)
+for g in games.values():
+ res=g.get("result") or {}
+ hp,ap=val(res.get("home_points")),val(res.get("away_points"))
+ if hp is None or ap is None or hp==ap:continue
+ winner=name(g["home"] if hp>ap else g["away"]);loser=name(g["away"] if hp>ap else g["home"])
+ if winner not in fbs:continue
+ rank=ap_pregame(int(g["week"]),loser)
+ if rank is None or rank>25:continue
+ bonus=.25 if rank<=5 else .20 if rank<=10 else .15 if rank<=15 else .10 if rank<=20 else .05
+ win_bonus[winner]+=bonus
+ ranked_wins[winner].append((loser,rank,bonus))
+# Preserve per-game evidence for alternative recency weighting.
+adjusted_obs=defaultdict(list)
 for team in fbs:
  for unit in ("PO","RO","PD","RD"):
-  obs=unadjusted.get((team,unit),[])
-  if not obs:continue
-  adjusted=[]
-  for week,opp,raw in obs:
+  for week,opp,raw in unadjusted.get((team,unit),[]):
    opponent_z=fixed_week_benchmarks[week][peer_unit[unit]].get(opp,0.0)
-   adjusted.append(raw+0.50*opponent_z)
-  scores[(team,unit)]=avg(adjusted)
-def rating(t,u):
- x=scores.get((t,u))
- if x is None:return None
- return x
-overall=[]
-for t in fbs:
- v=[rating(t,u) for u in ("PO","RO","PD","RD")]
- if any(x is None for x in v):continue
- overall.append((t,avg(v),*v))
-overall.sort(key=lambda x:x[1],reverse=True)
-print("MODEL: Nonrecursive. Every week opponent adjusted with fixed pregame raw four-unit rankings; 0.50 multiplier; no recursion. Pass weights 45/45/10; rush 40/40/20. Equal four-unit Team Strength.")
-print("COVERAGE",len(games),"completed games,",len(rows),"unit observations;",nskipped,"games skipped for missing advanced data;",len(overall),"teams with all units.")
-print("RANK|TEAM|COMPOSITE_Z|PO_Z|RO_Z|PD_Z|RD_Z")
-for i,(t,score,po,ro,pd,rd) in enumerate(overall[:25],1):
- print(f"{i}|{t}|{score:+.3f}|{po:+.3f}|{ro:+.3f}|{pd:+.3f}|{rd:+.3f}")
+   adjusted_obs[(team,unit)].append((week,raw+0.50*opponent_z))
+def unit_for(t,u,mult):
+ obs=adjusted_obs.get((t,u),[])
+ if not obs:return None
+ latest=max(w for w,v in obs)
+ numerator=sum(v*(mult if w==latest else 1) for w,v in obs)
+ denom=sum(mult if w==latest else 1 for w,v in obs)
+ return numerator/denom
+def meanunits(t,mult):
+ vals=[unit_for(t,u,mult) for u in ("PO","RO","PD","RD")]
+ return avg(vals) if all(x is not None for x in vals) else None
+def model_702010(t):
+ season=meanunits(t,1.0)
+ # Latest week: use four-unit performance from the team's latest completed game week.
+ latest=max((wk for u in ("PO","RO","PD","RD") for wk,v in adjusted_obs.get((t,u),[])),default=0)
+ recent=avg([v for u in ("PO","RO","PD","RD") for wk,v in adjusted_obs.get((t,u),[]) if wk==latest])
+ if season is None or recent is None:return None
+ # A 10% quality-win component: normalized cumulative ranked-win bonus, capped at 0.5 z.
+ return .70*season+.20*recent+.10*min(win_bonus[t]/.50,1.0)
+def model_weight(t,mult):
+ return meanunits(t,mult)
+print("COVERAGE",len(games),"games",len(rows),"four-unit observations",nskipped,"missing advanced games",len(fbs),"FBS teams")
+print("BONUS COUNTS",sum(bool(x) for x in ranked_wins.values()),"teams",sum(len(x) for x in ranked_wins.values()),"AP ranked wins; example",ranked_wins.get("BYU"))
+for label,fn in (("70/20/10",model_702010),("Latest 1.5x",lambda t:model_weight(t,1.5)),("Latest 2x",lambda t:model_weight(t,2))):
+ ranking=sorted(((t,fn(t)) for t in fbs if fn(t) is not None),key=lambda x:x[1],reverse=True)
+ print("MODEL",label,"TEAMS",len(ranking))
+ print("RANK|TEAM|SCORE|RANKED_WINS")
+ for i,(t,v) in enumerate(ranking[:25],1):
+  print(f"{i}|{t}|{v:+.3f}|{','.join(opp+'#'+str(rank) for opp,rank,b in ranked_wins[t]) or '-'}")
