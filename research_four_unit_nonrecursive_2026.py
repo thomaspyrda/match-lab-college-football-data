@@ -165,6 +165,56 @@ print("CHECKS BYU LSU Mississippi State Oregon Georgia Ohio State")
 for t in ("BYU","LSU","Mississippi State","Oregon","Georgia","Ohio State"):
  row=next((j for j,(x,_) in enumerate(new_rank,1) if x==t),None)
  print(f"CHECK|{t}|new={row}|old={prior_pos.get(t)}|oldscore={model_winloss(t)}|newscore={three_game_total(t)}")
+# Opponent-adjusted capped scoring margin. Each game's benchmark is frozen
+# using ONLY scoring margins of opponents prior to the game week.
+margin_by_team=defaultdict(list)
+for g in games.values():
+ res=g.get("result") or {};hp,ap=val(res.get("home_points")),val(res.get("away_points"))
+ if hp is None or ap is None:continue
+ h,a=name(g["home"]),name(g["away"]);wk=int(g["week"])
+ if h in fbs and a in fbs:
+  margin_by_team[h].append((wk,a,max(-28,min(28,hp-ap))))
+  margin_by_team[a].append((wk,h,max(-28,min(28,ap-hp))))
+# Game margin / typical 14-point range scaled into approximate z score.
+# Adj = own capped margin z + .5 * opposing pregame margin strength z.
+adjusted_margin=defaultdict(list)
+for wk in range(1,8):
+ strength={t:avg([m for w,o,m in margin_by_team[t] if w<wk]) for t in fbs}
+ known=[v for v in strength.values() if v is not None]
+ mu=avg(known) if known else 0.0
+ sd=statistics.pstdev(known) if len(known)>1 else 14.0
+ for team,observations in margin_by_team.items():
+  for week,opp,margin in observations:
+   if week!=wk:continue
+   opponent_pregame=(strength[opp]-mu)/(sd or 14) if strength.get(opp) is not None else 0.0
+   adjusted_margin[team].append((week,margin/14.0+0.5*opponent_pregame))
+def weighted_form(obs):
+ obs=sorted(obs,key=lambda x:x[0])
+ if not obs:return None
+ ws=[1.0]*len(obs)
+ for back,w in ((1,2.0),(2,1.5),(3,1.25)):
+  if len(ws)>=back:ws[-back]=w
+ return sum(v*w for (_,v),w in zip(obs,ws))/sum(ws)
+# Normalize margin form against all FBS for comparable scaling.
+margins={t:weighted_form(adjusted_margin[t]) for t in fbs}
+values=[v for v in margins.values() if v is not None]
+mu=avg(values);sd=statistics.pstdev(values) or 1
+margin_z={t:(v-mu)/sd for t,v in margins.items() if v is not None}
+def margin_model(t,mix):
+ four=three_game_base(t)
+ if four is None or t not in margin_z:return None
+ return (1-mix)*four+mix*margin_z[t]+win_bonus[t]-.1*losses[t]
+base_positions={t:i for i,(t,score) in enumerate(new_rank,1)}
+print("MARGIN_TEST margin capped +-28, each week's frozen pregame opponent strength, three-game form, 10/20 pct blend")
+for mix in (0.1,0.2):
+ result=sorted(((t,margin_model(t,mix)) for t in fbs if margin_model(t,mix) is not None),key=lambda x:x[1],reverse=True)
+ positions={t:i for i,(t,score) in enumerate(result,1)}
+ print("MARGIN_MODEL",int(mix*100),"TEAMS",len(result))
+ print("RANK|TEAM|SCORE|BASE_RANK|RANK_CHANGE|MARGIN_Z")
+ for i,(t,v) in enumerate(result[:30],1):
+  print(f"{i}|{t}|{v:+.3f}|{base_positions[t]}|{base_positions[t]-i:+d}|{margin_z[t]:+.3f}")
+ for t in ("Miami","BYU","Ole Miss","LSU","Kentucky","Mississippi State","Wake Forest","Florida State"):
+  if t in positions:print(f"MARGIN_CHECK|{int(mix*100)}|{t}|{base_positions[t]}|{positions[t]}|{margin_z[t]:+.3f}")
 print("COVERAGE",len(games),"games",len(rows),"four-unit observations",nskipped,"missing advanced games",len(fbs),"FBS teams")
 print("BONUS COUNTS",sum(bool(x) for x in ranked_wins.values()),"teams",sum(len(x) for x in ranked_wins.values()),"AP ranked wins; example",ranked_wins.get("BYU"))
 for label,fn in (("70/20/10",model_702010),("Latest 1.5x",lambda t:model_weight(t,1.5)),("Latest 2x",lambda t:model_weight(t,2))):
