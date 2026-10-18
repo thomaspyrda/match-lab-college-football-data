@@ -242,5 +242,5 @@ for t in sorted(fbs):
  "games_evaluated":len(adjusted_obs.get((t,"PO"),[]))})
 outpath=ROOT/"data/experiments/four_unit_chronological_10pct_margin_2026.json"
 outpath.parent.mkdir(exist_ok=True,parents=True)
-outpath.write_text(json.dumps(output,indent=2)+"\\n")
+outpath.write_text(json.dumps(output,indent=2)+chr(10))
 print("PRODUCTION RESEARCH DATA:",outpath,"teams",len(output["teams"]),"week",through_week)
