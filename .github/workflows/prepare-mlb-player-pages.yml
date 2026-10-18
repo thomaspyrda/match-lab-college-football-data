@@ -29,7 +29,7 @@ jobs:
         run: |
           python prepare_mlb_player_publication_package.py --input /tmp/mlb-archive/mlb-historical-player-leaders-review.json --crosswalk mlb/data/mlb-team-identity-audit.json --out /tmp/mlb-publish-preview
           test "$(find /tmp/mlb-publish-preview/mlb/teams -name index.html | wc -l)" -eq 30
-          test -s /tmp/mlb-publish-preview/data/mlb/historical-player-leaders.json
+          test "$(find /tmp/mlb-publish-preview/data/mlb/historical-players -name \*.json | wc -l)" -eq 30
       - name: Archive review package; do not deploy
         uses: actions/upload-artifact@v4
         with:
