@@ -64,3 +64,8 @@ Suggested first pass: `--years 2019,2020,2025,2026 --team-ids 115,117,119,133,13
 
 ## Execution blocker and explicit next action
 The GitHub connector available in this review does not provide a workflow-dispatch action, and no completed fresh-source comparison artifact has been retrieved. To run the existing sample audit in GitHub, open **Actions → Audit MLB Historical Hitter Coverage (Review Only) → Run workflow**, select branch `audit/mlb-player-historical-2015-2026`, and run it. Then inspect/download the `mlb-hitter-coverage-sample-audit-no-publication` artifact. Do not mark source completeness passed until its JSON reports 24 checks, 24 passed, 0 failed and 0 execution errors. No publication is authorized.
+
+## Independent published-source spot checks (October 2026)
+- **2025 Atlanta Braves:** archived leading hitter AB records Matt Olson 624, Michael Harris II 611, Ozzie Albies 603, Marcell Ozuna 487, Austin Riley 416, Drake Baldwin 405, Nick Allen 371, Ronald Acuña Jr. 338, Jurickson Profar 318, Sean Murphy 291. Baseball-Reference 2025 Atlanta batting table independently supports the leading selected AB values and identities: https://www.baseball-reference.com/teams/ATL/2025.shtml .
+- **2020 Colorado Rockies:** archived leading player AB Trevor Story 235, Charlie Blackmon 221, Raimel Tapia 184, Nolan Arenado 182, Ryan McMahon 172, Garrett Hampson 167. Independently consistent with https://www.baseball-reference.com/teams/COL/2020.shtml and https://thebaseballnexus.com/season/COL/2020 .
+These are **specific spot checks**, not a completed all-season audit. No GitHub Actions fresh API comparison artifact has been verified yet. Publication remains blocked.
