@@ -346,8 +346,8 @@ def current_rankings_data():
 COLUMN_HELP={
     "rank":"Current position in this ranking table.",
     "team":"College football team.",
-    "ap":"Current AP Poll rank shown for reference only. It does not affect Match Lab ratings.",
-    "strength":"Overall Team Strength combines nationally ranked offensive and defensive performance after opponent-strength adjustments. AP rank is not used.",
+    "ap":"Current AP Poll rank for context; pregame AP rankings determine quality-win bonuses to overall Team Strength only.",
+    "strength":"Overall Team Strength combines four opponent-adjusted units (90%), capped opponent-adjusted scoring margin (10%), AP Top 25 win bonuses, and loss penalties.",
     "offense":"Offensive Strength is built from opponent-adjusted performance metrics, normalized against the FBS field and combined by national metric rank.",
     "defense":"Defensive Strength is built from opponent-adjusted performance metrics, normalized against the FBS field and combined by national metric rank.",
     "sos":"National strength-of-schedule rank based on opponents already faced. The lowest number represents the toughest schedule to date (#1 = toughest).",
@@ -355,7 +355,7 @@ COLUMN_HELP={
     "strength_rank":"Current overall Team Strength rank.",
     "score":"Current unit strength score derived from opponent-adjusted performance metrics normalized against the FBS field.",
     "vs_expectation":"Season-to-date performance versus pregame expectation after accounting for opponent quality. Higher means more consistent overperformance.",
-    "opp_quality":"Average entering strength of opposing units already faced; used to adjust performance for quality of competition.",
+    "opp_quality":"Average entering strength of the opposing unit faced in completed games.",
     "multiplier":"Average opponent-strength adjustment across completed games. Stronger competition increases credit; weaker competition reduces it.",
     "overall_rank":"Current overall Team Strength rank.",
     "overall":"Current overall Team Strength score.",
@@ -428,6 +428,19 @@ def write_live_data_pages(now):
     snapshot_type=data.get("snapshot_type")
     context=(f"{season} season · current through completed games in Week {esc(through)}" if snapshot_type=="current_to_date" else f"{season} season · Week {esc(week)} pregame snapshot · through Week {esc(through)}")
 
+    methodology=data.get("model") or {}
+    disclosure=(
+        "<section class='ranking-methodology' aria-label='Ranking methodology'><h2>How these rankings are calculated</h2>"
+        "<p><b>Four units:</b> Passing Offense, Rushing Offense, Passing Defense and Rushing Defense, weighted equally. "
+        "Passing uses 45% PPA, 45% success rate and 10% explosiveness; rushing uses 40% PPA, 40% success rate and 20% explosiveness. "
+        "<b>Opponent adjustment:</b> Each completed game's units are adjusted by 0.50 of the opponent's corresponding pregame unit strength, then frozen. No recursive retroactive changes. "
+        "<b>Current form:</b> Last three played games count 1.25×, 1.50× and 2.00× (oldest to newest), earlier games 1×. "
+        "<b>Scoring margin:</b> 10% of performance, capped at ±28 points per game and adjusted for pregame opponent strength. "
+        "<b>Quality wins:</b> Victories over pregame AP-ranked opponents earn +0.05 to +0.25 standardized points based on AP rank. "
+        "<b>Losses:</b> Each loss subtracts 0.10 standardized points. Bonuses and penalties affect <em>only Overall Team Strength</em>, not offense/defense units. "
+        "<b>SOS:</b> Based on completed opponents, with #1 indicating toughest schedule. Ratings are scaled to 1–100. "
+        "<b>Coverage:</b> Game-level statistical components currently use FBS-vs-FBS matchups.</p></section>"
+    ) if str(methodology.get("version","")).startswith("four_unit_") else ""
     # Full Team Strength ranking. Overall Strength is built from the opponent-adjusted
     # Offensive Strength and Defensive Strength components in current_rankings.json.
     strength_rows=[]
@@ -454,6 +467,7 @@ def write_live_data_pages(now):
 <p class="page-intro">{context}. Current opponent-adjusted Team Strength rankings based on games already completed. Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_hero()}
 {ranking_tabs("team")}
+{disclosure}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
     (d/"index.html").write_text(page_shell(f"{season} College Football Team Strength Rankings | CFB Match Lab",f"Current {season} college football Team Strength rankings for the full FBS field from CFB Match Lab, updated weekly using opponent quality and game performance.",f"{BASE}/college-football-team-strength-rankings/",body),encoding="utf-8")
 
@@ -496,16 +510,13 @@ def write_live_data_pages(now):
                 "rank":rank, "team":r.get("team"), "score":score,
                 "ap":f"#{r.get('ap_rank')}" if r.get("ap_rank") else "—",
                 "opp_quality":r.get("average_defense_faced_frozen" if is_offense else "average_offense_faced_frozen") if frozen else r.get(opponent_quality_field),
-                "overall_rank":r.get("overall_strength_rank"),
-                "overall":r.get("overall_strength_score"),
                 "sos_rank":r.get("schedule_strength_rank"),
                 "record":r.get("record") or "—",
             }
-            if frozen:
-                for key,_label in unit_fields:
-                    if r.get(key) is None:
-                        raise ValueError(f"Missing frozen unit metric {key}: {r.get('team')}")
-                    row[key]=r[key]
+            for key,_label in unit_fields:
+                if r.get(key) is None:
+                    raise ValueError(f"Missing unit metric {key}: {r.get('team')}")
+                row[key]=r[key]
 
             rows.append(row)
         rows=sorted(rows,key=lambda r:(r["rank"] or 999,r["team"]))
@@ -514,14 +525,14 @@ def write_live_data_pages(now):
             shutil.rmtree(d)
         d.mkdir(exist_ok=True)
         columns=[("rank","Rank"),("team","Team"),("ap","AP"),("score",label)]
-        if frozen:
-            columns.extend(unit_fields)
-        columns.extend([("opp_quality",opponent_label),("sos_rank","SOS Rank"),("overall_rank","Team Rank"),("overall","Team Strength"),("record","Record")])
+        columns.extend(unit_fields)
+        columns.extend([("sos_rank","SOS Rank"),("record","Record"),("opp_quality",opponent_label)])
         table=ranking_table(rows,columns)
         body=f"""<p class="eyebrow">CFB MATCH LAB · OPPONENT-ADJUSTED DATA</p><h1>{season} College Football {label} Rankings</h1>
 <p class="page-intro">{context}. {"Approved frozen conference-adjusted ratings through Week 6." if frozen else "Current opponent-adjusted ratings based on completed games."} Tap or click any <b>?</b> in the table headers for metric definitions.</p>
 {ranking_hero()}
 {ranking_tabs("offense" if is_offense else "defense")}
+{disclosure}
 {table}<p class="meta">Last generated: {esc(stamp)}</p>"""
         (d/"index.html").write_text(page_shell(f"{season} College Football {label} Rankings | CFB Match Lab",f"Current {season} college football {label.lower()} rankings from CFB Match Lab.",f"{BASE}/{slug_name}/",body),encoding="utf-8")
 
