@@ -32,6 +32,9 @@ def main():
     target=Path(args.out);target.parent.mkdir(parents=True,exist_ok=True)
     target.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps({k:v for k,v in result.items() if k!="teams"}))
+    for tid,team in result["teams"].items():
+        if team["mismatches"]:
+            print(json.dumps({"team_id":tid,"mismatches":team["mismatches"]}))
     if result["teams_checked"]!=30 or result["teams_matching"]!=30:
         raise SystemExit("MLB player/team batting mismatch: no publication")
 if __name__=="__main__":main()
