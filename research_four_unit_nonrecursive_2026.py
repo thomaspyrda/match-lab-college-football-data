@@ -138,6 +138,33 @@ print("MODEL CHRONOLOGICAL FROZEN pregame opponent-adjusted units, 2x latest gam
 print("RANK|TEAM|OVERALL_Z|BASE_Z|WIN_BONUS|LOSSES|LOSS_PENALTY")
 for i,(t,v) in enumerate(ranking[:25],1):
  print(f"{i}|{t}|{v:+.3f}|{meanunits(t,2.0):+.3f}|{win_bonus[t]:+.3f}|{losses[t]}|{-0.10*losses[t]:+.3f}")
+# Compare latest-game 2x baseline to last-three form (1.25x,1.50x,2x).
+def three_game_unit(t,u):
+ obs=adjusted_obs.get((t,u),[])
+ if not obs:return None
+ # Chronological completed games, not calendar weeks, so bye weeks do not count.
+ chronological=sorted(obs,key=lambda x:x[0])
+ weights=[1.0]*len(chronological)
+ for back,w in ((1,2.0),(2,1.50),(3,1.25)):
+  if len(weights)>=back:weights[-back]=w
+ return sum(v*w for (_,v),w in zip(chronological,weights))/sum(weights)
+def three_game_base(t):
+ vals=[three_game_unit(t,u) for u in ("PO","RO","PD","RD")]
+ return avg(vals) if all(v is not None for v in vals) else None
+def three_game_total(t):
+ base=three_game_base(t)
+ return None if base is None else base+win_bonus[t]-.10*losses[t]
+base_rank=sorted(((t,model_winloss(t)) for t in fbs if model_winloss(t) is not None),key=lambda x:x[1],reverse=True)
+prior_pos={t:i for i,(t,_) in enumerate(base_rank,1)}
+new_rank=sorted(((t,three_game_total(t)) for t in fbs if three_game_total(t) is not None),key=lambda x:x[1],reverse=True)
+print("MODEL COMPARE: last game 2x versus last three played 1.25x/1.50x/2x, same frozen chronological opponent adjustment and quality wins/losses")
+print("NEW_RANK|TEAM|NEW_TOTAL|PREVIOUS_RANK|DELTA|THREE_GAME_BASE|AP_BONUS|LOSS_COUNT")
+for i,(t,v) in enumerate(new_rank[:35],1):
+ print(f"{i}|{t}|{v:+.3f}|{prior_pos[t]}|{prior_pos[t]-i:+d}|{three_game_base(t):+.3f}|{win_bonus[t]:+.3f}|{losses[t]}")
+print("CHECKS BYU LSU Mississippi State Oregon Georgia Ohio State")
+for t in ("BYU","LSU","Mississippi State","Oregon","Georgia","Ohio State"):
+ row=next((j for j,(x,_) in enumerate(new_rank,1) if x==t),None)
+ print(f"CHECK|{t}|new={row}|old={prior_pos.get(t)}|oldscore={model_winloss(t)}|newscore={three_game_total(t)}")
 print("COVERAGE",len(games),"games",len(rows),"four-unit observations",nskipped,"missing advanced games",len(fbs),"FBS teams")
 print("BONUS COUNTS",sum(bool(x) for x in ranked_wins.values()),"teams",sum(len(x) for x in ranked_wins.values()),"AP ranked wins; example",ranked_wins.get("BYU"))
 for label,fn in (("70/20/10",model_702010),("Latest 1.5x",lambda t:model_weight(t,1.5)),("Latest 2x",lambda t:model_weight(t,2))):
