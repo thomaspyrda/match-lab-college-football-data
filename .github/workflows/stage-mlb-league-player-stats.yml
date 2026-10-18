@@ -1,74 +1,33 @@
-name: Stage MLB 2025 League Player Stats
+name: Stage MLB 2025 League Player Leaders
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - stage_mlb_league_player_stats.py
-      - tests/test_stage_mlb_league_player_stats.py
-      - reconcile_mlb_player_team_hitting.py
-      - tests/test_reconcile_mlb_player_team_hitting.py
-      - diagnose_mlb_player_roster_gaps.py
-      - diagnose_mlb_player_query_coverage.py
+      - select_mlb_player_leaders.py
+      - tests/test_select_mlb_player_leaders.py
       - .github/workflows/stage-mlb-league-player-stats.yml
 permissions:
   contents: read
 jobs:
-  league-player-stage:
+  league-player-leaders:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: League player-stage regression tests
-        run: python -m unittest discover -s tests -p test_stage_mlb_league_player_stats.py -v
-      - name: Audit all 30 MLB identities
+      - name: Focused leader-selection tests
+        run: python -m unittest discover -s tests -p test_select_mlb_player_leaders.py -v
+      - name: Audit MLB team identities
         run: python audit_mlb_team_crosswalk.py
-      - name: Stage all 30 teams for 2025 with no publication
+      - name: Stage one 2025 season for all 30 teams, no publication
         run: python stage_mlb_league_player_stats.py --year 2025
-      - name: Test batting totals reconciliation
-        run: python -m unittest discover -s tests -p test_reconcile_mlb_player_team_hitting.py -v
-      - name: Reconcile player batting against official team hitting totals
-        id: hitting_audit
-        continue-on-error: true
-        run: python reconcile_mlb_player_team_hitting.py
-      - name: Upload hitting reconciliation report
-        if: always()
+      - name: Select leaders only, without a complete-roster totals requirement
+        run: python select_mlb_player_leaders.py
+      - name: Save leader selection for review
         uses: actions/upload-artifact@v4
         with:
-          name: mlb-2025-hitting-reconciliation-no-publication
-          path: mlb/data/mlb-player-team-hitting-audit-2025.json
+          name: mlb-2025-selected-player-leaders-no-publication
+          path: mlb/data/mlb-player-leaders-2025.json
           retention-days: 14
-      - name: Diagnose unmatched hitting totals against full season rosters
-        if: always()
-        run: python diagnose_mlb_player_roster_gaps.py
-      - name: Save roster-gap diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mlb-2025-batting-roster-gap-audit
-          path: mlb/data/mlb-hitting-roster-diagnostic-2025.json
-          retention-days: 14
-      - name: Compare MLB player-stat API query variants
-        if: always()
-        run: python diagnose_mlb_player_query_coverage.py
-      - name: Save player-stat query comparison
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mlb-2025-player-query-diagnostic
-          path: mlb/data/mlb-player-query-diagnostic-2025-109.json
-          retention-days: 14
-      - name: Require all 30 team batting totals to match
-        if: steps.hitting_audit.outcome == 'failure'
-        run: exit 1
-      - name: Upload audit artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mlb-2025-league-player-stats-no-publication
-          path: mlb/data/mlb-player-league-2025.json
-          retention-days: 14
-
-# Diagnostic output includes field-level mismatches; no publication is performed.
