@@ -119,11 +119,22 @@ def main():
   allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
   return e['id'],game_lineups(e['id'],allowed)
  lineups=dict(ThreadPoolExecutor(6).map(lineup_for,upcoming))
+ # Use the latest confirmed lineup only as a labeled reference when today's lineup is unavailable.
+ latest_lineups={}
+ recent_events=list(reversed(past))
+ def recent_lineup(e):
+  allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
+  return e['id'],game_lineups(e['id'],allowed)
+ for event_id, found in ThreadPoolExecutor(6).map(recent_lineup,recent_events[:18]):
+  for team_id, players in found.items():
+   if team_id not in latest_lineups:
+    prior=next((ev for ev in recent_events if ev['id']==event_id),None)
+    latest_lineups[team_id]={'players':players,'date':prior['date'] if prior else None}
  ranks={key:ranking(profiles,key,high) for key,_,_,high,_,_ in METRICS}
  for e in upcoming:
   comp=e['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};a=sides['away']['team']['id'];h=sides['home']['team']['id']
   def team(i):
-   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':player_stats.get(i,{}).get(''.join(ch for ch in p['name'].lower() if ch.isalnum()),{})} for p in lineups.get(e['id'],{}).get(i,[])],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Not announced','probable':next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(''.join(ch for ch in next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'').lower() if ch.isalnum()),{})}
+   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':player_stats.get(i,{}).get(''.join(ch for ch in p['name'].lower() if ch.isalnum()),{})} for p in (lineups.get(e['id'],{}).get(i,[]) or latest_lineups.get(i,{}).get('players',[]))],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Recent confirmed lineup (not today)' if i in latest_lineups else 'Not announced','lineup_reference_date':latest_lineups.get(i,{}).get('date') if not lineups.get(e['id'],{}).get(i,[]) else None,'probable':next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(''.join(ch for ch in next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'').lower() if ch.isalnum()),{})}
   odds=comp.get('odds',[]);line=odds[0] if odds else {};tip=stamp(e['date'])
   out.append({'id':e['id'],'date':e['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),'status':e['status']['type']['description'],'away':team(a),'home':team(h),'metrics':[{'key':k,'label':label,'unit':unit,'high':high,'suffix':suffix,'note':note,'away':ranks[k].get(a),'home':ranks[k].get(h)} for k,label,unit,high,suffix,note in METRICS],'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':line.get('provider',{}).get('name'),'observed_at':now.isoformat() if line else None},'source':'https://www.espn.com/mlb/game/_/gameId/'+e['id'],'profile_cutoff':now.isoformat()})
  data={'schema_version':1,'season':str(year),'season_type':{1:'Preseason',2:'Regular season',3:'Postseason'}[phase],'updated_at':now.isoformat(),'completed_games':len(past),'games':out,'coverage':{'refresh':'Hourly snapshot, not a live scoreboard'},'methodology':'Current ESPN season totals in the selected season type. Rankings include only teams with a completed sample; postseason and regular season are never combined. Upcoming games only; these snapshots are not historical pregame profiles. Recent form uses observed final results in the last eight calendar days, up to five games. Run-line and total records use available ESPN published historical quotes; missing lines are excluded and closing status is not independently verified.'}
