@@ -45,7 +45,7 @@ def prepare(archive,crosswalk,out):
         if not src.exists():raise ValueError("Missing team page "+slug)
         html=src.read_text()
         if html.count('id="team-season-data"')!=1:raise ValueError("Unexpected team data "+slug)
-        existing=re.findall(r'<script\\b[^>]*\\bdata-mlb-player-stats=["\\\']2015-2026["\\\'][^>]*></script>',html)
+        existing=re.findall(r'<script[^>]*data-mlb-player-stats[^>]*></script>',html)
         if len(existing)>1:raise ValueError("Multiple player scripts "+slug)
         if existing:
             html=html.replace(existing[0],SCRIPT,1)
