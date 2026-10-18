@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Current MLB matchup snapshots. Explicit phase, observed totals, no completed-game backtests."""
 from dashboard_snapshot import compact
-import json, time, urllib.request
+import json, time, urllib.request, unicodedata
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timedelta,timezone
 from pathlib import Path
@@ -100,46 +100,75 @@ def official_probables(events):
   print('Official probable-pitcher lookup unavailable:',type(error).__name__)
   return {}
 
+def player_key(name):
+ text=unicodedata.normalize('NFKD',name or '')
+ return ''.join(ch for ch in text.lower() if ch.isalnum())
+
 def current_phase_player_stats(espn_teams,year,phase):
- """Source-backed player statistics for the requested competition; never borrow another phase."""
- # MLB Stats API supports separate postseason statistic types.
- stat_type='postseason' if phase==3 else 'season' if phase==2 else None
- if not stat_type:return {tid:{} for tid in espn_teams}
- url='https://statsapi.mlb.com/api/v1/'
- def fetch_json(path):
-  with urllib.request.urlopen(url+path,timeout=30) as resp:return json.load(resp)
- result={tid:{} for tid in espn_teams}
- try:
-  official=fetch_json('teams?sportId=1&season='+str(year)).get('teams',[])
-  lookup={t['name'].casefold():str(t['id']) for t in official}
-  def query(item):
-   tid,team=item
-   team_id=lookup.get(team['name'].casefold())
-   if not team_id:return tid,{}
-   values={}
-   for group in ('hitting','pitching'):
-    path=('stats?stats='+stat_type+'&group='+group+'&season='+str(year)+
-          '&teamId='+team_id+'&playerPool=ALL&limit=1000')
-    payload=fetch_json(path)
-    for block in payload.get('stats',[]):
+ """Add phase-specific player counting stats; recompute rates, without mixing regular season."""
+ game_types=('R',) if phase==2 else ('F','D','L','W') if phase==3 else ('S',)
+ prefix='https://statsapi.mlb.com/api/v1/'
+ def fetch_json(route):
+  with urllib.request.urlopen(prefix+route,timeout=30) as response:
+   return json.load(response)
+ official=fetch_json('teams?sportId=1&season='+str(year)).get('teams',[])
+ lookup={team['name'].casefold():str(team['id']) for team in official}
+ def query(entry):
+  tid,team=entry
+  mlb_id=lookup.get(team['name'].casefold())
+  if not mlb_id:return tid,{}
+  players={}
+  for group in ('hitting','pitching'):
+   for game_type in game_types:
+    route=('stats?stats=season&group='+group+'&season='+str(year)+
+           '&teamId='+mlb_id+'&playerPool=ALL&limit=1000&gameType='+game_type)
+    data=fetch_json(route)
+    for block in data.get('stats',[]):
      for split in block.get('splits',[]):
-      if str((split.get('team') or {}).get('id'))!=team_id:continue
+      if str((split.get('team') or {}).get('id'))!=mlb_id:continue
       player=split.get('player') or {};stat=split.get('stat') or {}
-      name=player.get('fullName')
-      if not name or not stat:continue
-      key=''.join(ch for ch in name.lower() if ch.isalnum())
-      if not key:continue
-      row=values.setdefault(key,{'name':name,'mlb_id':player.get('id')})
-      fields=({'ab':'atBats','r':'runs','hr':'homeRuns','rbi':'rbi',
-               'avg':'avg','obp':'obp','ops':'ops'} if group=='hitting' else
-              {'gp':'gamesPlayed','gs':'gamesStarted','ip':'inningsPitched',
-               'era':'era','whip':'whip','so':'strikeOuts'})
-      row.update({k:stat.get(v) for k,v in fields.items()})
-   return tid,values
-  result=dict(ThreadPoolExecutor(6).map(query,espn_teams.items()))
- except Exception as err:
-  print('MLB '+stat_type+' player stat query unavailable:',type(err).__name__,str(err))
- return result
+      key=player_key(player.get('fullName',''))
+      if not key or not stat:continue
+      row=players.setdefault(key,{'name':player.get('fullName'),'_h':{},'_p':{}})
+      section=row['_h' if group=='hitting' else '_p']
+      fields=(('atBats','hits','runs','homeRuns','rbi','baseOnBalls','hitByPitch',
+              'sacFlies','totalBases','doubles','triples') if group=='hitting' else
+              ('gamesPlayed','gamesStarted','earnedRuns','hits','baseOnBalls','strikeOuts'))
+      for field in fields:
+       raw=stat.get(field)
+       if raw is not None:
+        section[field]=section.get(field,0)+int(raw)
+      if group=='pitching' and stat.get('inningsPitched') is not None:
+       whole,_,partial=str(stat['inningsPitched']).partition('.')
+       if partial not in ('','0','1','2'):
+        raise ValueError('Invalid pitching thirds '+str(stat['inningsPitched']))
+       section['_outs']=section.get('_outs',0)+int(whole)*3+int(partial or 0)
+  result={}
+  for key,row in players.items():
+   h,p=row['_h'],row['_p']
+   out={'name':row['name']}
+   if h:
+    ab=h.get('atBats',0);hits=h.get('hits',0)
+    walks=h.get('baseOnBalls',0);hbp=h.get('hitByPitch',0);sf=h.get('sacFlies',0)
+    tb=h.get('totalBases')
+    if tb is None:
+     tb=hits+h.get('doubles',0)+2*h.get('triples',0)+3*h.get('homeRuns',0)
+    denom=ab+walks+hbp+sf
+    obp=(hits+walks+hbp)/denom if denom else None
+    out.update({'ab':ab,'r':h.get('runs'),'hr':h.get('homeRuns'),
+                'rbi':h.get('rbi'),'avg':hits/ab if ab else None,
+                'obp':obp,'ops':obp+tb/ab if obp is not None and ab else None})
+   if p:
+    outs=p.get('_outs',0);innings=outs/3
+    out.update({'gp':p.get('gamesPlayed'),'gs':p.get('gamesStarted'),
+                'ip':str(outs//3)+'.'+str(outs%3),
+                'era':9*p.get('earnedRuns',0)/innings if innings else None,
+                'whip':(p.get('hits',0)+p.get('baseOnBalls',0))/innings if innings else None,
+                'so':p.get('strikeOuts')})
+   result[key]=out
+  return tid,result
+ # Raise errors rather than silently storing an apparently valid empty snapshot.
+ return dict(ThreadPoolExecutor(5).map(query,espn_teams.items()))
 
 
 def main():
@@ -196,7 +225,7 @@ def main():
     prior=next((ev for ev in recent_events if ev['id']==event_id),None)
     latest_lineups[team_id]={'players':players,'date':prior['date'] if prior else None}
  def stat_for(team_id,person):
-  key=''.join(ch for ch in person['name'].lower() if ch.isalnum())
+  key=player_key(person['name'])
   return player_stats.get(team_id,{}).get(key,{})
  official_starters=official_probables(upcoming)
  # Source-reviewed matchup fallback only when the official feed omits announced probables.
@@ -211,7 +240,7 @@ def main():
  for e in upcoming:
   comp=e['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};a=sides['away']['team']['id'];h=sides['home']['team']['id']
   def team(i):
-   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':stat_for(i,p)} for p in (lineups.get(e['id'],{}).get(i,[]) or latest_lineups.get(i,{}).get('players',[]))],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Recent confirmed lineup (not today)' if i in latest_lineups else 'Not announced','lineup_reference_date':latest_lineups.get(i,{}).get('date') if not lineups.get(e['id'],{}).get(i,[]) else None,'probable':official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(''.join(ch for ch in (official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'')).lower() if ch.isalnum()),{})}
+   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':stat_for(i,p)} for p in (lineups.get(e['id'],{}).get(i,[]) or latest_lineups.get(i,{}).get('players',[]))],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Recent confirmed lineup (not today)' if i in latest_lineups else 'Not announced','lineup_reference_date':latest_lineups.get(i,{}).get('date') if not lineups.get(e['id'],{}).get(i,[]) else None,'probable':official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(player_key(official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'')),{})}
   odds=comp.get('odds',[]);line=odds[0] if odds else {};tip=stamp(e['date'])
   out.append({'id':e['id'],'date':e['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),'status':e['status']['type']['description'],'away':team(a),'home':team(h),'metrics':[{'key':k,'label':label,'unit':unit,'high':high,'suffix':suffix,'note':note,'away':ranks[k].get(a),'home':ranks[k].get(h)} for k,label,unit,high,suffix,note in METRICS],'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':line.get('provider',{}).get('name'),'observed_at':now.isoformat() if line else None},'source':'https://www.espn.com/mlb/game/_/gameId/'+e['id'],'profile_cutoff':now.isoformat()})
  data={'schema_version':1,'season':str(year),'season_type':{1:'Preseason',2:'Regular season',3:'Postseason'}[phase],'updated_at':now.isoformat(),'completed_games':len(past),'games':out,'coverage':{'refresh':'Hourly snapshot, not a live scoreboard'},'methodology':'Current ESPN season totals in the selected season type. Rankings include only teams with a completed sample; postseason and regular season are never combined. Upcoming games only; these snapshots are not historical pregame profiles. Recent form uses observed final results in the last eight calendar days, up to five games. Run-line and total records use available ESPN published historical quotes; missing lines are excluded and closing status is not independently verified.'}
