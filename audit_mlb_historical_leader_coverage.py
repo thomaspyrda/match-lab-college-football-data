@@ -40,7 +40,7 @@ def verify_team(archive, year, tid, fetcher=fetch):
     if not actual:
         raise ValueError(f"No reference batters for {year}/{tid}")
     ranked = sorted((r for r in actual.values() if integer(r, "atBats") > 0), key=lambda r: (-integer(r, "atBats"), r["player_id"]))[:20]
-    selected = staged["hitters"]
+    selected = [row for row in staged["hitters"] if integer(row, "atBats") > 0]
     expected_ids = [r["player_id"] for r in ranked]
     staged_ids = [r["player_id"] for r in selected]
     matched_ids = staged_ids == expected_ids
@@ -55,7 +55,7 @@ def verify_team(archive, year, tid, fetcher=fetch):
             target = ref["stats"].get(field)
             if source is None or target is None or int(source) != int(target):
                 stat_mismatches.append({"player_id": row["player_id"], "field": field, "stage": source, "reference": target})
-    return {"season": year, "team_id": str(tid), "stage_count": len(selected),
+    return {"season": year, "team_id": str(tid), "stage_count": len(selected), "excluded_zero_ab": len(staged["hitters"]) - len(selected),
             "reference_count": len(actual), "leader_order_matches": matched_ids,
             "expected_player_ids": expected_ids if not matched_ids else [],
             "staged_player_ids": staged_ids if not matched_ids else [],
