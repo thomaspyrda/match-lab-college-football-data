@@ -12,7 +12,7 @@ let dataset=null, last='', loading=false;
 function paint(){
  const section=document.querySelector('#players'),selector=document.querySelector('#wiseSeasonSelect');
  if(!section||!selector||!dataset)return;
- const year=String(selector.value),record=dataset.teams?.[slug]?.[year];
+ const year=String(selector.value),record=dataset.years?.[year];
  const key=slug+':'+year;
  if(section.dataset.historicalPlayers===key)return;
  const body=section.querySelector('.wise-empty');
@@ -24,6 +24,6 @@ function paint(){
 }
 const observer=new MutationObserver(()=>{if(!loading)paint()});
 observer.observe(document.documentElement,{childList:true,subtree:true});
-fetch('/data/mlb/historical-player-leaders.json').then(r=>{if(!r.ok)throw Error('Player data missing');return r.json()}).then(d=>{if(d.status!=='MLB_HISTORICAL_PLAYER_LEADERS')throw Error('Unexpected data status');dataset=d;paint()}).catch(e=>console.warn('MLB historical player data unavailable:',e.message));
+fetch('/data/mlb/historical-players/'+encodeURIComponent(slug)+'.json').then(r=>{if(!r.ok)throw Error('Player data missing');return r.json()}).then(d=>{if(d.status!=='MLB_HISTORICAL_PLAYER_LEADERS'||d.slug!==slug)throw Error('Unexpected team data');dataset=d;paint()}).catch(e=>console.warn('MLB historical player data unavailable:',e.message));
 document.addEventListener('change',e=>{if(e.target?.id==='wiseSeasonSelect')requestAnimationFrame(paint)});
 })();
