@@ -32,7 +32,7 @@ def choose(dataset):
     starters=sorted(pitchers,key=lambda r:(-number(r,"gamesStarted"),-number(r,"gamesPlayed"),r["player_id"]))[:5]
     relievers=sorted(pitchers,key=lambda r:(-(number(r,"gamesPlayed")-number(r,"gamesStarted")),r["player_id"]))
     starter_ids={r["player_id"] for r in starters}
-    relievers=[r for r in relievers if r["player_id"] not in starter_ids][:8]
+    relievers=[r for r in relievers if r["player_id"] not in starter_ids][:5]
     output.update({"top_hitters":ranked_hitters[:20],"starting_pitchers":starters,"relief_pitchers":relievers,
                    "selection_policy":"top_20_team_at_bats_top_5_starts_top_5_relief_appearances",
                    "hitter_selection_basis":"team_specific_season_at_bats_only",
