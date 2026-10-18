@@ -119,6 +119,22 @@ def model_702010(t):
  return .70*season+.20*recent+.10*min(win_bonus[t]/.50,1.0)
 def model_weight(t,mult):
  return meanunits(t,mult)
+# Overall-only adjustments; individual four-unit values remain untouched.
+losses=defaultdict(int)
+for g in games.values():
+ res=g.get("result") or {}
+ hp,ap=val(res.get("home_points")),val(res.get("away_points"))
+ if hp is None or ap is None or hp==ap:continue
+ loser=name(g["away"] if hp>ap else g["home"])
+ if loser in fbs:losses[loser]+=1
+def model_winloss(t):
+ base=meanunits(t,2.0)
+ return None if base is None else base+win_bonus[t]-.10*losses[t]
+ranking=sorted(((t,model_winloss(t)) for t in fbs if model_winloss(t) is not None),key=lambda x:x[1],reverse=True)
+print("MODEL 2x + AP ranked wins + flat 0.10 loss penalty; no bonuses applied to unit ratings")
+print("RANK|TEAM|OVERALL_Z|BASE_Z|WIN_BONUS|LOSSES|LOSS_PENALTY")
+for i,(t,v) in enumerate(ranking[:25],1):
+ print(f"{i}|{t}|{v:+.3f}|{meanunits(t,2.0):+.3f}|{win_bonus[t]:+.3f}|{losses[t]}|{-0.10*losses[t]:+.3f}")
 print("COVERAGE",len(games),"games",len(rows),"four-unit observations",nskipped,"missing advanced games",len(fbs),"FBS teams")
 print("BONUS COUNTS",sum(bool(x) for x in ranked_wins.values()),"teams",sum(len(x) for x in ranked_wins.values()),"AP ranked wins; example",ranked_wins.get("BYU"))
 for label,fn in (("70/20/10",model_702010),("Latest 1.5x",lambda t:model_weight(t,1.5)),("Latest 2x",lambda t:model_weight(t,2))):
