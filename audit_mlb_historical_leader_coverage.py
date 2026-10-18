@@ -81,11 +81,16 @@ def main():
     reports = []
     for year in years:
         for tid in team_ids:
-            reports.append(verify_team(archive, year, tid))
+            try:
+                reports.append(verify_team(archive, year, tid))
+            except Exception as exc:
+                reports.append({"season": year, "team_id": str(tid), "passed": False,
+                                "error_type": type(exc).__name__, "error": str(exc)})
     output = {"status": "MLB_LEADERS_SOURCE_COVERAGE_QA_ONLY",
               "years": years, "teams_per_year": len(team_ids), "checks": len(reports),
               "passed": sum(int(row["passed"]) for row in reports),
               "failed": sum(int(not row["passed"]) for row in reports),
+              "execution_errors": sum(int("error_type" in row) for row in reports),
               "source": "MLB Stats API alternative team-filtered hitting query; not third-party verification",
               "published": False, "results": reports}
     target = Path(args.out)
