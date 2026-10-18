@@ -39,7 +39,7 @@ def verify_team(archive, year, tid, fetcher=fetch):
     actual = get_splits(fetcher(url), tid)
     if not actual:
         raise ValueError(f"No reference batters for {year}/{tid}")
-    ranked = sorted(actual.values(), key=lambda r: (-integer(r, "atBats"), r["player_id"]))[:20]
+    ranked = sorted((r for r in actual.values() if integer(r, "atBats") > 0), key=lambda r: (-integer(r, "atBats"), r["player_id"]))[:20]
     selected = staged["hitters"]
     expected_ids = [r["player_id"] for r in ranked]
     staged_ids = [r["player_id"] for r in selected]
