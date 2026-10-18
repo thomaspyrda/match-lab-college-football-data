@@ -9,6 +9,7 @@ on:
       - 'audit_mlb_historical_leader_coverage.py'
       - 'select_mlb_player_leaders.py'
       - 'audit_mlb_historical_pitcher_coverage.py'
+      - 'tests/test_audit_mlb_historical_pitcher_coverage.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +22,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fast mocked verification tests
         run: python -m unittest discover -s tests -p test_audit_mlb_historical_leader_coverage.py -v
+      - name: Focused pitcher verification regression tests
+        run: python -m unittest discover -s tests -p test_audit_mlb_historical_pitcher_coverage.py -v
       - name: Retrieve consolidated archived review
         env:
           GH_TOKEN: ${{ github.token }}
