@@ -1,0 +1,38 @@
+name: Prepare MLB Historical Player Pages (No Publication)
+on:
+  workflow_dispatch:
+  push:
+    branches: [audit/mlb-player-historical-2015-2026]
+    paths:
+      - 'prepare_mlb_player_publication_package.py'
+      - 'sports-research/mlb-historical-player-leaders.js'
+      - '.github/workflows/prepare-mlb-player-pages.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve existing consolidated MLB archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/mlb-archive
+          gh run download 39092851946 -R "$GITHUB_REPOSITORY" -n mlb-2015-2026-historical-player-review-no-publication -D /tmp/mlb-archive
+          test -s /tmp/mlb-archive/mlb-historical-player-leaders-review.json
+      - name: Read-only official MLB/team identity mapping
+        run: python audit_mlb_team_crosswalk.py --out mlb/data/mlb-team-identity-audit.json
+      - name: Build isolated publication preview for 30 team pages
+        run: |
+          python prepare_mlb_player_publication_package.py --input /tmp/mlb-archive/mlb-historical-player-leaders-review.json --crosswalk mlb/data/mlb-team-identity-audit.json --out /tmp/mlb-publish-preview
+          test "$(find /tmp/mlb-publish-preview/mlb/teams -name index.html | wc -l)" -eq 30
+          test "$(find /tmp/mlb-publish-preview/data/mlb/historical-players -name \*.json | wc -l)" -eq 30
+      - name: Archive review package; do not deploy
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-player-pages-2015-2026-review-only
+          path: /tmp/mlb-publish-preview/
+          retention-days: 30
