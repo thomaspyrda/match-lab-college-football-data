@@ -48,6 +48,35 @@ def roster(i):
    out.append({'id':'mlb:espn:player:'+a['id'],'name':a.get('displayName',a.get('fullName')),'jersey':a.get('jersey','—'),'position':a.get('position',{}).get('abbreviation',group.get('position','—')),'bats':a.get('bats',{}).get('displayValue','—'),'throws':a.get('throws',{}).get('displayValue','—'),'status':a.get('status',{}).get('name','Not reported'),'source':'https://www.espn.com/mlb/player/_/id/'+a['id']})
  return i,out
 
+def game_lineups(event_id, allowed_ids):
+ """Use only nine explicitly marked starters, never the complete roster."""
+ data=get('summary?event='+str(event_id),True)
+ result={}
+ for side in (data.get('boxscore') or {}).get('players',[]):
+  tid=str((side.get('team') or {}).get('id',''))
+  if tid not in allowed_ids:continue
+  candidates=[]
+  for group in side.get('statistics',[]):
+   for entry in group.get('athletes',[]):
+    athlete=entry.get('athlete') or {}
+    role=(athlete.get('position') or {}).get('abbreviation','')
+    if entry.get('starter') is not True or role in ('P','SP','RP','CL'):continue
+    if not athlete.get('id'):continue
+    candidates.append({'name':athlete.get('displayName',athlete.get('fullName','')),
+      'position':role,'source':'https://www.espn.com/mlb/player/_/id/'+str(athlete['id'])})
+  unique=list({c['source']:c for c in candidates}.values())
+  if len(unique)==9:result[tid]=unique
+ return result
+
+def season_player_stats(slug,year):
+ path=ROOT/'data'/'mlb'/'historical-players'/(slug+'.json')
+ if not path.exists():return {}
+ try:
+  rows=json.loads(path.read_text()).get('years',{}).get(str(year),{})
+  return {''.join(c for c in p['name'].lower() if c.isalnum()):p
+          for group in ('hitters','starters','relievers') for p in rows.get(group,[]) if p.get('name')}
+ except (OSError,ValueError,KeyError,TypeError):return {}
+
 def main():
  now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();year=today.year
  teams={str(t['espn_id']):t for t in json.loads((ROOT/'data/sports/team-registry.json').read_text())['teams'] if t['sport']=='mlb'}
@@ -84,12 +113,17 @@ def main():
    if spread is not None and (homefav or awayfav):
     home_spread=-abs(float(spread)) if homefav else abs(float(spread));margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread)
     r=p['last5_market']['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
- ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};rosters=dict(ThreadPoolExecutor(8).map(roster,ids));out=[]
+ ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
+ player_stats={tid:season_player_stats(teams[tid]['slug'],year) for tid in ids}
+ def lineup_for(e):
+  allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
+  return e['id'],game_lineups(e['id'],allowed)
+ lineups=dict(ThreadPoolExecutor(6).map(lineup_for,upcoming))
  ranks={key:ranking(profiles,key,high) for key,_,_,high,_,_ in METRICS}
  for e in upcoming:
   comp=e['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};a=sides['away']['team']['id'];h=sides['home']['team']['id']
   def team(i):
-   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'roster':rosters.get(i,[]),'roster_source':'https://www.espn.com/mlb/team/roster/_/id/'+i,'probable':next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None)}
+   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':player_stats.get(i,{}).get(''.join(ch for ch in p['name'].lower() if ch.isalnum()),{})} for p in lineups.get(e['id'],{}).get(i,[])],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Not announced','probable':next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(''.join(ch for ch in next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'').lower() if ch.isalnum()),{})}
   odds=comp.get('odds',[]);line=odds[0] if odds else {};tip=stamp(e['date'])
   out.append({'id':e['id'],'date':e['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),'status':e['status']['type']['description'],'away':team(a),'home':team(h),'metrics':[{'key':k,'label':label,'unit':unit,'high':high,'suffix':suffix,'note':note,'away':ranks[k].get(a),'home':ranks[k].get(h)} for k,label,unit,high,suffix,note in METRICS],'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':line.get('provider',{}).get('name'),'observed_at':now.isoformat() if line else None},'source':'https://www.espn.com/mlb/game/_/gameId/'+e['id'],'profile_cutoff':now.isoformat()})
  data={'schema_version':1,'season':str(year),'season_type':{1:'Preseason',2:'Regular season',3:'Postseason'}[phase],'updated_at':now.isoformat(),'completed_games':len(past),'games':out,'coverage':{'refresh':'Hourly snapshot, not a live scoreboard'},'methodology':'Current ESPN season totals in the selected season type. Rankings include only teams with a completed sample; postseason and regular season are never combined. Upcoming games only; these snapshots are not historical pregame profiles. Recent form uses observed final results in the last eight calendar days, up to five games. Run-line and total records use available ESPN published historical quotes; missing lines are excluded and closing status is not independently verified.'}
