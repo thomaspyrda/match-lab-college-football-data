@@ -8,6 +8,7 @@ on:
       - 'tests/test_audit_mlb_historical_leader_coverage.py'
       - 'audit_mlb_historical_leader_coverage.py'
       - 'select_mlb_player_leaders.py'
+      - 'audit_mlb_historical_pitcher_coverage.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,10 +31,15 @@ jobs:
       - name: Validate selected hitters, read-only
         run: |
           python audit_mlb_historical_leader_coverage.py --input /tmp/mlb-review/mlb-historical-player-leaders-review.json --years 2019,2020,2025,2026 --team-ids 115,117,119,133,139,147 --out /tmp/mlb-review/mlb-hitter-coverage-sample.json
+      - name: Validate selected pitchers, read-only
+        run: |
+          python audit_mlb_historical_pitcher_coverage.py --input /tmp/mlb-review/mlb-historical-player-leaders-review.json --years 2019,2020,2025,2026 --team-ids 115,117,119,133,139,147 --out /tmp/mlb-review/mlb-pitcher-coverage-sample.json
       - name: Upload audit result
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mlb-hitter-coverage-sample-audit-no-publication
-          path: /tmp/mlb-review/mlb-hitter-coverage-sample.json
+          path: |
+            /tmp/mlb-review/mlb-hitter-coverage-sample.json
+            /tmp/mlb-review/mlb-pitcher-coverage-sample.json
           retention-days: 30
