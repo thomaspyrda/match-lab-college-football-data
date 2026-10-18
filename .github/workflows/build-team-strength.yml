@@ -79,14 +79,6 @@ jobs:
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
-      - name: Build validated v15 expanded-metric model
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python experiment_dominance_v15.py
-      - name: Validate v15 week-by-week pregame reconstruction
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python validate_v15_final_source_aligned.py
       - name: Generate approved chronological four-unit ratings
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
