@@ -32,7 +32,7 @@ def prepare(archive,crosswalk,out):
             def pack(row,fields):
                 return {"id":row["player_id"],"name":row["name"],
                         **{key:row["stats"].get(field) for key,field in fields.items()}}
-            hitters=[pack(r,{"ab":"atBats","h":"hits","hr":"homeRuns","rbi":"rbi","avg":"avg","obp":"obp","ops":"ops"}) for r in h]
+            hitters=[pack(r,{"ab":"atBats","h":"hits","r":"runs","hr":"homeRuns","rbi":"rbi","avg":"avg","obp":"obp","ops":"ops"}) for r in h]
             pitching={"gp":"gamesPlayed","gs":"gamesStarted","ip":"inningsPitched","era":"era","whip":"whip","so":"strikeOuts","w":"wins","l":"losses","sv":"saves"}
             starters=[pack(r,pitching) for r in group["starters"]]
             relievers=[pack(r,pitching) for r in group["relievers"]]
