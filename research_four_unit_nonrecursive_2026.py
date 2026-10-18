@@ -17,7 +17,8 @@ def avg(a):return statistics.fmean(a) if a else None
 hist=json.loads((ROOT/"data/historical/2026.json").read_text())["games"]
 past=json.loads((ROOT/"data/frozen_conference_rankings_2026_week6.json").read_text())["rows"]
 fbs={name(x["team"]) for x in past}; prior={name(x["team"]):x for x in past}
-games={str(g["game_id"]):g for g in hist if g.get("result") and 1<=int(g.get("week") or 0)<=7}
+through_week=int(json.loads((ROOT/"data/current_rankings.json").read_text()).get("through_week") or 7)
+games={str(g["game_id"]):g for g in hist if g.get("result") and 1<=int(g.get("week") or 0)<=through_week}
 adv=api("/stats/game/advanced",year=2026,seasonType="regular",excludeGarbageTime="true")
 bygid=defaultdict(dict)
 for x in adv:
@@ -59,7 +60,7 @@ for team,opp,week,unit,values,sign in rows:
 peer_unit={"PO":"PD","RO":"RD","PD":"PO","RD":"RO"}
 adjusted_obs=defaultdict(list)
 coverage_by_week={}
-for week in range(1,8):
+for week in range(1,through_week+1):
  fixed={}
  for unit in ("PO","RO","PD","RD"):
   values={t:avg([score for wk,score in adjusted_obs.get((t,unit),[])]) for t in fbs}
@@ -178,7 +179,7 @@ for g in games.values():
 # Game margin / typical 14-point range scaled into approximate z score.
 # Adj = own capped margin z + .5 * opposing pregame margin strength z.
 adjusted_margin=defaultdict(list)
-for wk in range(1,8):
+for wk in range(1,through_week+1):
  strength={t:avg([m for w,o,m in margin_by_team[t] if w<wk]) for t in fbs}
  known=[v for v in strength.values() if v is not None]
  mu=avg(known) if known else 0.0
@@ -223,3 +224,23 @@ for label,fn in (("70/20/10",model_702010),("Latest 1.5x",lambda t:model_weight(
  print("RANK|TEAM|SCORE|RANKED_WINS")
  for i,(t,v) in enumerate(ranking[:25],1):
   print(f"{i}|{t}|{v:+.3f}|{','.join(opp+'#'+str(rank) for opp,rank,b in ranked_wins[t]) or '-'}")
+
+# Publishable research dataset; producer still runs independently from live promoter.
+# Four unit rankings are pure opponent adjusted performance; wins/losses only overall.
+unit_scores={t:{u:three_game_unit(t,u) for u in ("PO","RO","PD","RD")} for t in fbs}
+offense={t:avg([unit_scores[t]["PO"],unit_scores[t]["RO"]]) for t in fbs}
+defense={t:avg([unit_scores[t]["PD"],unit_scores[t]["RD"]]) for t in fbs}
+overall_10={t:margin_model(t,.10) for t in fbs}
+rankings={}
+for label,data in (("overall",overall_10),("offense",offense),("defense",defense),("PO",{t:unit_scores[t]["PO"] for t in fbs}),("RO",{t:unit_scores[t]["RO"] for t in fbs}),("PD",{t:unit_scores[t]["PD"] for t in fbs}),("RD",{t:unit_scores[t]["RD"] for t in fbs})):
+ rankings[label]={t:i for i,(t,v) in enumerate(sorted(data.items(),key=lambda x:(-x[1],x[0])),1)}
+output={"model":"four_unit_chronological_10pct_margin_v1","season":2026,"through_week":through_week,"teams":[]}
+for t in sorted(fbs):
+ output["teams"].append({"team":t,"overall_z":overall_10[t],"overall_rank":rankings["overall"][t],"offense_z":offense[t],"offense_rank":rankings["offense"][t],"defense_z":defense[t],"defense_rank":rankings["defense"][t],
+ "unit_z":unit_scores[t],"unit_ranks":{u:rankings[u][t] for u in ("PO","RO","PD","RD")},
+ "margin_z":margin_z[t],"ap_bonus":win_bonus[t],"losses":losses[t],
+ "games_evaluated":len(adjusted_obs.get((t,"PO"),[]))})
+outpath=ROOT/"data/experiments/four_unit_chronological_10pct_margin_2026.json"
+outpath.parent.mkdir(exist_ok=True,parents=True)
+outpath.write_text(json.dumps(output,indent=2)+"\\n")
+print("PRODUCTION RESEARCH DATA:",outpath,"teams",len(output["teams"]),"week",through_week)
