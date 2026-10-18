@@ -6,6 +6,8 @@ on:
     paths:
       - stage_mlb_league_player_stats.py
       - tests/test_stage_mlb_league_player_stats.py
+      - reconcile_mlb_player_team_hitting.py
+      - tests/test_reconcile_mlb_player_team_hitting.py
       - .github/workflows/stage-mlb-league-player-stats.yml
 permissions:
   contents: read
@@ -23,6 +25,22 @@ jobs:
         run: python audit_mlb_team_crosswalk.py
       - name: Stage all 30 teams for 2025 with no publication
         run: python stage_mlb_league_player_stats.py --year 2025
+      - name: Test batting totals reconciliation
+        run: python -m unittest discover -s tests -p test_reconcile_mlb_player_team_hitting.py -v
+      - name: Reconcile player batting against official team hitting totals
+        id: hitting_audit
+        continue-on-error: true
+        run: python reconcile_mlb_player_team_hitting.py
+      - name: Upload hitting reconciliation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2025-hitting-reconciliation-no-publication
+          path: mlb/data/mlb-player-team-hitting-audit-2025.json
+          retention-days: 14
+      - name: Require all 30 team batting totals to match
+        if: steps.hitting_audit.outcome == 'failure'
+        run: exit 1
       - name: Upload audit artifact
         if: always()
         uses: actions/upload-artifact@v4
