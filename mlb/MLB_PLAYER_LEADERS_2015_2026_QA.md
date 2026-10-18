@@ -25,6 +25,27 @@ Additional observations:
 - 12 selected hitters have zero team-season at-bats; this can occur at the bottom of a short eligible list and requires review of source coverage/eligibility, not automatic deletion.
 - 263 selected relief-pitcher rows have at least one game started; this is not by itself a defect. The selection algorithm ranks by relief appearances, and excludes five selected starters per team.
 
+
+## Follow-up: 2020 shortfall cross-checked with published batting totals
+**Independent 2020 team-total reconciliation (all five exceptions passed):**
+
+| Team ID | Team | Selected hitters | Staged AB | Published AB | Staged H | Published H | Staged HR | Published HR |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 115 | Colorado Rockies | 17 | 2057 | 2057 | 528 | 528 | 63 | 63 |
+| 117 | Houston Astros | 17 | 1992 | 1992 | 478 | 478 | 69 | 69 |
+| 119 | Los Angeles Dodgers | 19 | 2042 | 2042 | 523 | 523 | 118 | 118 |
+| 133 | Oakland Athletics | 19 | 1908 | 1908 | 430 | 430 | 71 | 71 |
+| 139 | Tampa Bay Rays | 19 | 1975 | 1975 | 470 | 470 | 80 | 80 |
+
+Published source references:
+- [Baseball-Reference MLB 2020 standard batting, complete team totals](https://www.baseball-reference.com/leagues/majors/2020-standard-batting.shtml)
+- [MLB.com 2020 team batting](https://www.mlb.com/stats/team/2020)
+- [Baseball-Reference Oakland 2020](https://www.baseball-reference.com/teams/OAK/2020.shtml)
+
+The aggregate AB, H, and HR sums of all staged hitters match published regular-season **team totals** for each exception. This is strong independent evidence that the <20 count for these teams is legitimate under the source's hitter eligibility convention. This **does not** independently prove each player identity or per-player figure, and does not validate the remaining team-seasons or pitchers.
+
+Important distinction: the 2020 shortfall can now be considered reconciled on these three cumulative batting statistics; the global independent leader coverage gate remains open.
+
 ## Important limitation
 The checks establish only internal consistency **of the retrieved records**. They do **not** establish that every actual top-20-by-at-bats hitter was present in the underlying source data. The review JSON itself says independent source-coverage audit is required. Also `full_roster_reconciled=False` in selection code.
 
