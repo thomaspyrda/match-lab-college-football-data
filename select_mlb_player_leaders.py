@@ -42,15 +42,17 @@ def choose(dataset):
 
 def main():
     p=argparse.ArgumentParser()
-    p.add_argument("--input",default="mlb/data/mlb-player-league-2025.json")
-    p.add_argument("--out",default="mlb/data/mlb-player-leaders-2025.json")
+    p.add_argument("--year",type=int,default=2025)
+    p.add_argument("--input",default=None)
+    p.add_argument("--out",default=None)
     a=p.parse_args()
-    source=json.loads(Path(a.input).read_text())
+    source=json.loads(Path(a.input or f"mlb/data/mlb-player-league-{a.year}.json").read_text())
+    if source["season"]!=a.year:raise ValueError("Season mismatch")
     datasets=source["team_datasets"]
     if len(datasets)!=30:raise ValueError("Require all 30 MLB teams")
     result={"status":"PLAYER_LEADERS_STAGING_ONLY","season":source["season"],
             "teams":{d["team_id"]:choose(d) for d in datasets},"published":False}
-    path=Path(a.out);path.parent.mkdir(parents=True,exist_ok=True)
+    path=Path(a.out or f"mlb/data/mlb-player-leaders-{a.year}.json");path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps({"status":result["status"],"teams":len(result["teams"]),
         "hitters":sum(len(v["top_hitters"]) for v in result["teams"].values()),
