@@ -54,18 +54,28 @@ for team,opp,week,unit,values,sign in rows:
  side=unit[0].lower()
  result=sum(w*sign*(v-norm[side,j][0])/norm[side,j][1] for j,(w,v) in enumerate(zip(weights[side],values)))
  unadjusted[(team,unit)].append((week,opp,result))
-# For each game week, derive opponent benchmarks using only earlier weeks.
-# Ratings are raw (not recursively adjusted); 0.50 * opponent-unit Z for every week.
+# Chronological nonrecursive evidence: an opponent's pregame strength comes
+# ONLY from adjusted games completed in prior weeks. Freeze each game on entry.
 peer_unit={"PO":"PD","RO":"RD","PD":"PO","RD":"RO"}
-fixed_week_benchmarks={}
+adjusted_obs=defaultdict(list)
+coverage_by_week={}
 for week in range(1,8):
- fixed_week_benchmarks[week]={}
+ fixed={}
  for unit in ("PO","RO","PD","RD"):
-  prior_vals={t:avg([raw for wk,opp,raw in unadjusted.get((t,unit),[]) if wk<week]) for t in fbs}
-  populated=[v for v in prior_vals.values() if v is not None]
-  mu=avg(populated) if populated else 0.0
-  sd=statistics.pstdev(populated) if len(populated)>1 else 1.0
-  fixed_week_benchmarks[week][unit]={t:((v-mu)/(sd or 1)) for t,v in prior_vals.items() if v is not None}
+  values={t:avg([score for wk,score in adjusted_obs.get((t,unit),[])]) for t in fbs}
+  present=[x for x in values.values() if x is not None]
+  center=avg(present) if present else 0.0
+  sd=statistics.pstdev(present) if len(present)>1 else 1.0
+  fixed[unit]={t:(v-center)/(sd or 1.0) for t,v in values.items() if v is not None}
+ coverage_by_week[week]={unit:len(vals) for unit,vals in fixed.items()}
+ additions=defaultdict(list)
+ for (team,unit),observations in unadjusted.items():
+  for wk,opp,raw in observations:
+   if wk!=week:continue
+   opponent_z=fixed[peer_unit[unit]].get(opp,0.0)
+   additions[(team,unit)].append((week,raw+0.50*opponent_z))
+ for key,vals in additions.items():adjusted_obs[key].extend(vals)
+print("PREGAME COVERAGE",coverage_by_week)
 # AP pregame rankings from historical weekly polling. Quality win z bonus is capped.
 polls=api("/rankings",year=2026,seasonType="regular")
 ap_by_week={}
@@ -92,13 +102,6 @@ for g in games.values():
  bonus=.25 if rank<=5 else .20 if rank<=10 else .15 if rank<=15 else .10 if rank<=20 else .05
  win_bonus[winner]+=bonus
  ranked_wins[winner].append((loser,rank,bonus))
-# Preserve per-game evidence for alternative recency weighting.
-adjusted_obs=defaultdict(list)
-for team in fbs:
- for unit in ("PO","RO","PD","RD"):
-  for week,opp,raw in unadjusted.get((team,unit),[]):
-   opponent_z=fixed_week_benchmarks[week][peer_unit[unit]].get(opp,0.0)
-   adjusted_obs[(team,unit)].append((week,raw+0.50*opponent_z))
 def unit_for(t,u,mult):
  obs=adjusted_obs.get((t,u),[])
  if not obs:return None
@@ -131,7 +134,7 @@ def model_winloss(t):
  base=meanunits(t,2.0)
  return None if base is None else base+win_bonus[t]-.10*losses[t]
 ranking=sorted(((t,model_winloss(t)) for t in fbs if model_winloss(t) is not None),key=lambda x:x[1],reverse=True)
-print("MODEL 2x + AP ranked wins + flat 0.10 loss penalty; no bonuses applied to unit ratings")
+print("MODEL CHRONOLOGICAL FROZEN pregame opponent-adjusted units, 2x latest game + AP ranked wins + 0.10 loss penalty")
 print("RANK|TEAM|OVERALL_Z|BASE_Z|WIN_BONUS|LOSSES|LOSS_PENALTY")
 for i,(t,v) in enumerate(ranking[:25],1):
  print(f"{i}|{t}|{v:+.3f}|{meanunits(t,2.0):+.3f}|{win_bonus[t]:+.3f}|{losses[t]}|{-0.10*losses[t]:+.3f}")
