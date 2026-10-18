@@ -1,0 +1,53 @@
+name: Review MLB Historical Player Leaders 2015-2026
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/review-mlb-historical-player-leaders.yml
+permissions:
+  contents: read
+  actions: read
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download successfully staged year artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          while read -r year run; do
+            mkdir -p "mlb/data/staged-artifacts/$year/mlb/data"
+            scratch="$(mktemp -d)"
+            gh run download "$run" -R "$GITHUB_REPOSITORY" -n mlb-selected-player-leaders-no-publication -D "$scratch"
+            mapfile -t found < <(find "$scratch" -type f -name "mlb-player-leaders-$year.json")
+            if [ "${#found[@]}" -ne 1 ]; then echo "Expected one artifact JSON for $year, got ${#found[@]}"; exit 1; fi
+            cp "${found[0]}" "mlb/data/staged-artifacts/$year/mlb/data/mlb-player-leaders-$year.json"
+            rm -rf "$scratch"
+          done <<'YEARS'
+          2015 39091995067
+          2016 39091424082
+          2017 39091313846
+          2018 39091118804
+          2019 39090941792
+          2020 39090775349
+          2021 39090676914
+          2022 39090530075
+          2023 39089695874
+          2024 39089536921
+          2025 39089156292
+          2026 39092628115
+          YEARS
+      - name: Combine and validate all 360 team seasons
+        run: python combine_mlb_player_leaders.py
+      - name: Preserve full source and consolidated review archives
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2015-2026-historical-player-review-no-publication
+          path: |
+            mlb/data/staged-artifacts/
+            mlb/data/mlb-historical-player-leaders-review.json
+          retention-days: 90
