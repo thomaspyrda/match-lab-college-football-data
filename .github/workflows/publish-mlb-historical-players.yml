@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/publish-mlb-historical-players.yml'
+      - 'prepare_mlb_player_publication_package.py'
   workflow_dispatch:
 permissions:
   contents: write
