@@ -9,6 +9,7 @@ on:
       - reconcile_mlb_player_team_hitting.py
       - tests/test_reconcile_mlb_player_team_hitting.py
       - diagnose_mlb_player_roster_gaps.py
+      - diagnose_mlb_player_query_coverage.py
       - .github/workflows/stage-mlb-league-player-stats.yml
 permissions:
   contents: read
@@ -48,6 +49,16 @@ jobs:
         with:
           name: mlb-2025-batting-roster-gap-audit
           path: mlb/data/mlb-hitting-roster-diagnostic-2025.json
+          retention-days: 14
+      - name: Compare MLB player-stat API query variants
+        if: always()
+        run: python diagnose_mlb_player_query_coverage.py
+      - name: Save player-stat query comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-2025-player-query-diagnostic
+          path: mlb/data/mlb-player-query-diagnostic-2025-109.json
           retention-days: 14
       - name: Require all 30 team batting totals to match
         if: steps.hitting_audit.outcome == 'failure'
