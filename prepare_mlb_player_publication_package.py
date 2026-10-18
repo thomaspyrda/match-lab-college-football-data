@@ -45,10 +45,16 @@ def prepare(archive,crosswalk,out):
         if not src.exists():raise ValueError("Missing team page "+slug)
         html=src.read_text()
         if html.count('id="team-season-data"')!=1:raise ValueError("Unexpected team data "+slug)
-        if 'data-mlb-player-stats=' in html: raise ValueError("Player script already present "+slug)
+        existing=re.findall(r'<script\\b[^>]*\\bdata-mlb-player-stats=["\\\']2015-2026["\\\'][^>]*></script>',html)
+        if len(existing)>1:raise ValueError("Multiple player scripts "+slug)
+        if existing:
+            html=html.replace(existing[0],SCRIPT,1)
+        else:
+            if html.count("</body>")!=1:raise ValueError("Missing or multiple body closing tags "+slug)
+            html=html.replace("</body>",SCRIPT+"</body>",1)
         page=dest/"mlb"/"teams"/slug/"index.html"
         page.parent.mkdir(parents=True,exist_ok=True)
-        page.write_text(html.replace("</body>",SCRIPT+"</body>",1))
+        page.write_text(html)
     if len(entries)!=30:raise ValueError("Missing team")
     # Team-scoped payloads avoid transferring every franchise's entire archive on each page.
     for slug,years in entries.items():
