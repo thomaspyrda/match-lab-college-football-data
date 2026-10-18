@@ -56,3 +56,8 @@ The checks establish only internal consistency **of the retrieved records**. The
 4. Preserve no-publication guards, run page/season switching preview checks, and obtain explicit authorization before any public change.
 
 **Publication state: blocked pending independent source-coverage evidence.**
+
+## Targeted validation implementation
+A new read-only script at `audit_mlb_historical_leader_coverage.py` independently re-queries the **same MLB Stats API** with the alternate no-playerPool endpoint and checks staged leader identity/order and per-player AB/H/HR. Its use must not be misrepresented as independent third-party verification. It is intentionally scoped by explicit `--years` and `--team-ids` options to avoid excessive source queries.
+
+Suggested first pass: `--years 2019,2020,2025,2026 --team-ids 115,117,119,133,139,147` (24 team-seasons). The archive input must be the downloaded consolidated artifact JSON. This command is **not yet executed**; no pass counts have been claimed. Continue only after inspecting discrepancies, and keep all deployment/publishing controls disabled.
