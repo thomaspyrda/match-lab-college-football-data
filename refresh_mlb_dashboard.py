@@ -100,6 +100,41 @@ def official_probables(events):
   print('Official probable-pitcher lookup unavailable:',type(error).__name__)
   return {}
 
+def current_phase_player_stats(espn_teams,year,phase):
+ """Fetch team-specific season or postseason MLB hitter/pitcher stats, never blend phases."""
+ result={tid:{} for tid in espn_teams}
+ game_types='R' if phase==2 else 'D,L,W,F' if phase==3 else 'S'
+ try:
+  with urllib.request.urlopen('https://statsapi.mlb.com/api/v1/teams?sportId=1&season='+str(year),timeout=25) as r:
+   official=json.load(r).get('teams',[])
+  lookup={t['name'].casefold():str(t['id']) for t in official}
+  def query(item):
+   tid,team=item
+   mlb_id=lookup.get(team['name'].casefold())
+   if not mlb_id:return tid,{}
+   rows={}
+   for group in ('hitting','pitching'):
+    url=('https://statsapi.mlb.com/api/v1/stats?stats=season&group='+group+
+         '&season='+str(year)+'&teamId='+mlb_id+'&playerPool=ALL&limit=1000&gameType='+game_types)
+    with urllib.request.urlopen(url,timeout=35) as resp:payload=json.load(resp)
+    for block in payload.get('stats',[]):
+     for split in block.get('splits',[]):
+      if str((split.get('team') or {}).get('id'))!=mlb_id:continue
+      player=split.get('player') or {}
+      stat=split.get('stat') or {}
+      key=''.join(ch for ch in player.get('fullName','').lower() if ch.isalnum())
+      if not key:continue
+      mapped=rows.setdefault(key,{'name':player.get('fullName')})
+      if group=='hitting':
+       mapped.update({k:stat.get(v) for k,v in {'ab':'atBats','r':'runs','hr':'homeRuns','rbi':'rbi','avg':'avg','obp':'obp','ops':'ops'}.items()})
+      else:
+       mapped.update({k:stat.get(v) for k,v in {'gp':'gamesPlayed','gs':'gamesStarted','ip':'inningsPitched','era':'era','whip':'whip','so':'strikeOuts'}.items()})
+   return tid,rows
+  result=dict(ThreadPoolExecutor(6).map(query,espn_teams.items()))
+ except Exception as exc:
+  print('MLB phase-specific player stats unavailable:',type(exc).__name__,str(exc))
+ return result
+
 def main():
  now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();year=today.year
  teams={str(t['espn_id']):t for t in json.loads((ROOT/'data/sports/team-registry.json').read_text())['teams'] if t['sport']=='mlb'}
@@ -137,7 +172,7 @@ def main():
     home_spread=-abs(float(spread)) if homefav else abs(float(spread));margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread)
     r=p['last5_market']['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
  ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
- player_stats={tid:season_player_stats(teams[tid]['slug'],year) for tid in ids}
+ player_stats=current_phase_player_stats({tid:teams[tid] for tid in ids},year,phase)
  def lineup_for(e):
   allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
   return e['id'],game_lineups(e['id'],allowed)
