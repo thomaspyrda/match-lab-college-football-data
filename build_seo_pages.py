@@ -335,8 +335,10 @@ def _current_rankings_with_frozen_overlay():
         return base
 def current_rankings_data():
     p=DATA/"current_rankings.json"
-    if (DATA/"frozen_conference_rankings_2026_week6.json").exists():
-        return _current_rankings_with_frozen_overlay()
+    if (DATA/"frozen_conference_rankings_2026_week6.json").exists() and p.exists():
+        snapshot=json.loads(p.read_text(encoding="utf-8"))
+        if int(snapshot.get("through_week") or 0) <= 6:
+            return _current_rankings_with_frozen_overlay()
     if not p.exists():
         return {"teams":[],"week":None,"through_week":None,"season":None,"generated_at":None}
     return json.loads(p.read_text(encoding="utf-8"))
