@@ -54,24 +54,27 @@ for team,opp,week,unit,values,sign in rows:
  side=unit[0].lower()
  result=sum(w*sign*(v-norm[side,j][0])/norm[side,j][1] for j,(w,v) in enumerate(zip(weights[side],values)))
  unadjusted[(team,unit)].append((week,opp,result))
-# Use last week's already-opponent-adjusted four-unit ratings as FIXED opponent benchmarks.
-# They are NOT recomputed, so this is non-recursive.
-unit_key={"PO":"passing_offense","RO":"rushing_offense","PD":"passing_defense","RD":"rushing_defense"}
+# For each game week, derive opponent benchmarks using only earlier weeks.
+# Ratings are raw (not recursively adjusted); 0.50 * opponent-unit Z for every week.
 peer_unit={"PO":"PD","RO":"RD","PD":"PO","RD":"RO"}
-peer_ratings={u:[val(p[unit_key[u]]) for p in past] for u in unit_key}
-peer_sd={u:(avg(v),statistics.pstdev(v) or 1) for u,v in peer_ratings.items()}
+fixed_week_benchmarks={}
+for week in range(1,8):
+ fixed_week_benchmarks[week]={}
+ for unit in ("PO","RO","PD","RD"):
+  prior_vals={t:avg([raw for wk,opp,raw in unadjusted.get((t,unit),[]) if wk<week]) for t in fbs}
+  populated=[v for v in prior_vals.values() if v is not None]
+  mu=avg(populated) if populated else 0.0
+  sd=statistics.pstdev(populated) if len(populated)>1 else 1.0
+  fixed_week_benchmarks[week][unit]={t:((v-mu)/(sd or 1)) for t,v in prior_vals.items() if v is not None}
 scores={}
 for team in fbs:
- for unit in unit_key:
+ for unit in ("PO","RO","PD","RD"):
   obs=unadjusted.get((team,unit),[])
   if not obs:continue
   adjusted=[]
   for week,opp,raw in obs:
-   if week==7 and opp in prior:
-    peer=peer_unit[unit]; x=val(prior[opp][unit_key[peer]])
-    z=((x-peer_sd[peer][0])/peer_sd[peer][1]) if x is not None else 0
-    raw+=.35*z
-   adjusted.append(raw)
+   opponent_z=fixed_week_benchmarks[week][peer_unit[unit]].get(opp,0.0)
+   adjusted.append(raw+0.50*opponent_z)
   scores[(team,unit)]=avg(adjusted)
 def rating(t,u):
  x=scores.get((t,u))
@@ -83,7 +86,7 @@ for t in fbs:
  if any(x is None for x in v):continue
  overall.append((t,avg(v),*v))
 overall.sort(key=lambda x:x[1],reverse=True)
-print("MODEL: Nonrecursive. Weeks 1-6 raw game-level four-unit z metrics; Week 7 one-time opponent adjustment using frozen through-Week-6 opponent PO/RO/PD/RD ratings. Pass weights 45/45/10; rush 40/40/20. Equal four-unit Team Strength.")
+print("MODEL: Nonrecursive. Every week opponent adjusted with fixed pregame raw four-unit rankings; 0.50 multiplier; no recursion. Pass weights 45/45/10; rush 40/40/20. Equal four-unit Team Strength.")
 print("COVERAGE",len(games),"completed games,",len(rows),"unit observations;",nskipped,"games skipped for missing advanced data;",len(overall),"teams with all units.")
 print("RANK|TEAM|COMPOSITE_Z|PO_Z|RO_Z|PD_Z|RD_Z")
 for i,(t,score,po,ro,pd,rd) in enumerate(overall[:25],1):
