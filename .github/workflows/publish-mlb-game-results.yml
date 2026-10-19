@@ -1,0 +1,54 @@
+name: Publish MLB historical game results
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '35 11 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'build_mlb_game_results.py'
+      - '.github/workflows/publish-mlb-game-results.yml'
+permissions:
+  contents: write
+concurrency:
+  group: publish-mlb-game-results
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Backfill 2015-2026 official regular-season finals
+        run: python build_mlb_game_results.py --years 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026
+      - name: Validate season records against published official snapshots
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          snapshots=json.loads(Path('data/mlb/season-snapshots.json').read_text())['seasons']
+          for year in range(2015,2027):
+              doc=json.loads(Path(f'data/mlb/game-results/{year}.json').read_text())
+              for slug,data in doc['teams'].items():
+                  reference=snapshots[str(year)][slug]
+                  for field in ('wins','losses'):
+                      if data['record'][field] != reference[field]:
+                          raise SystemExit(f'{year} {slug}: {field} mismatch: {data["record"][field]} != {reference[field]}')
+                  if len(data['games']) != reference['games_played']:
+                      raise SystemExit(f'{year} {slug}: schedule count mismatch')
+          print('MLB histories reconciled against official snapshots for all 30 teams.')
+          PY
+      - name: Commit validated MLB game-history data only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/mlb/game-results/
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish validated MLB 2015-2026 historical game results"
+          git pull --rebase -X theirs origin main
+          git push origin main
