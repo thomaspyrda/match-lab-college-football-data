@@ -88,9 +88,18 @@ def build(year, document):
         assert counts["wins"]+counts["losses"]==len(games)
         assert counts["overs"]+counts["unders"]==len(games)
         assert counts["runline_wins"]+counts["runline_losses"]==len(games)
-        extra=status_games[slug]
+        # A postponed/suspended entry may also appear again as a completed game.
+        # Prefer the completed record and retain only one status row per game ID.
+        used={str(g["game_id"]) for g in games}
+        extra=[]
+        for row in status_games[slug]:
+            key=str(row.get("game_id"))
+            if key in used:
+                continue
+            used.add(key)
+            extra.append(row)
         # Status-only events never contribute to betting records or W-L.
-        payload["teams"][slug] = {"games":sorted(games+extra,key=lambda g:(g["date"],g["game_id"] or 0)),"record":counts}
+        payload["teams"][slug] = {"games":sorted(games+extra,key=lambda g:(g["date"],str(g["game_id"]))),"record":counts}
     assert sum(x["record"]["wins"]+x["record"]["losses"] for x in payload["teams"].values())==2*len(seen)
     return payload
 
