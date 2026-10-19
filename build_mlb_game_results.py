@@ -17,6 +17,41 @@ def fetch(year):
     with urllib.request.urlopen(req, timeout=90) as response:
         return json.load(response)
 
+def recover_missing_final_scores(document):
+    """Use MLB's individual official game feed where the season schedule lacks final scores."""
+    attempted = recovered = 0
+    seen_ids = set()
+    for day in document.get("dates", []):
+        for game in day.get("games", []):
+            if game.get("gameType") != "R" or game.get("status", {}).get("abstractGameState") != "Final":
+                continue
+            home = game.get("teams", {}).get("home", {})
+            away = game.get("teams", {}).get("away", {})
+            if isinstance(home.get("score"), int) and isinstance(away.get("score"), int):
+                continue
+            gid = game.get("gamePk")
+            if not isinstance(gid, int) or gid in seen_ids:
+                continue
+            seen_ids.add(gid)
+            attempted += 1
+            try:
+                request = urllib.request.Request(
+                    f"https://statsapi.mlb.com/api/v1.1/game/{gid}/feed/live",
+                    headers={"User-Agent": "BetWiseResearch/1.0"})
+                with urllib.request.urlopen(request, timeout=12) as response:
+                    feed = json.load(response)
+                if feed.get("gameData", {}).get("status", {}).get("abstractGameState") != "Final":
+                    continue
+                linescore = feed.get("liveData", {}).get("linescore", {}).get("teams", {})
+                hs = linescore.get("home", {}).get("runs")
+                ac = linescore.get("away", {}).get("runs")
+                if isinstance(hs, int) and isinstance(ac, int):
+                    home["score"], away["score"] = hs, ac
+                    recovered += 1
+            except (OSError, ValueError, KeyError):
+                continue
+    return attempted, recovered
+
 def build(year, document):
     teams = defaultdict(list)
     seen = set()
@@ -111,7 +146,10 @@ def main():
     for year in args.years:
         if not 2015 <= year <= 2026:
             raise ValueError("Unsupported year")
-        data=build(year,fetch(year))
+        document=fetch(year)
+        attempted,recovered=recover_missing_final_scores(document)
+        print(year,"individual-game feeds checked",attempted,"scores recovered",recovered,flush=True)
+        data=build(year,document)
         (OUT/f"{year}.json").write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
         print(year,sum(len(t["games"]) for t in data["teams"].values())//2,"games",len(data["quarantined"]),"quarantined")
 
