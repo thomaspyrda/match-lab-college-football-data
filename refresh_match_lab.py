@@ -221,7 +221,7 @@ def adv(year,week,team):
     break
  return (r|{"through_week":board.get("through_week")}) if r else None
 all_upcoming=[]; now=datetime.now(timezone.utc); end=now+timedelta(days=7)
-for year in sorted(strength):
+for year in sorted(set(strength)|set(preseason_consensus)):
  games=api("/games",year=year,seasonType="regular")
  power_boards[year]=build_compounded_boards(year,games)
  lines=api("/lines",year=year,seasonType="regular")
