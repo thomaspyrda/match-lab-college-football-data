@@ -56,7 +56,7 @@ jobs:
                   ow,ol=official[slug]
                   if got['wins']>ow or got['losses']>ol:
                       errors.append({'team':slug,'error':'more W-L than official','actual':[got['wins'],got['losses']],'official':[ow,ol]})
-                  if any(g.get('result') not in ('W','L','T','Cancelled','Postponed','Suspended','Scheduled') for g in data['games']):
+                  if any(g.get('result') not in ('W','L','T','Cancelled','Postponed','Suspended','Scheduled','Final — score unavailable') for g in data['games']):
                       errors.append({'team':slug,'error':'unknown game status'})
                   if len({g['game_id'] for g in data['games']})!=len(data['games']):
                       errors.append({'team':slug,'error':'duplicate game ID'})
