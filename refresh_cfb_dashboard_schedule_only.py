@@ -52,10 +52,25 @@ def main():
     # Request individual weeks; season-wide endpoints may omit future fixtures.
     year = now.astimezone(ET).year
     fixtures = {}
+    completed_by_team = {}
     for week in range(1, 18):
         rows = request("/games", year=year, seasonType="regular", week=week)
         for g in rows:
             kickoff = parse_date(g.get("startDate"))
+            if kickoff and kickoff < now and g.get("homePoints") is not None and g.get("awayPoints") is not None:
+                home, away = g.get("homeTeam"), g.get("awayTeam")
+                if home and away:
+                    for school, opponent, location, scored, allowed in (
+                        (home, away, "H", g["homePoints"], g["awayPoints"]),
+                        (away, home, "A", g["awayPoints"], g["homePoints"]),
+                    ):
+                        entry = {
+                            "week": g.get("week"), "opponent": opponent, "location": location,
+                            "start_date": g["startDate"],
+                            "result": "W" if scored > allowed else ("L" if scored < allowed else "T"),
+                            "points": scored, "allowed": allowed, "opponent_abbr": None,
+                        }
+                        completed_by_team.setdefault(canon(school), []).append(entry)
             if not kickoff or not now <= kickoff < end:
                 continue
             away, home = g.get("awayTeam"), g.get("homeTeam")
@@ -80,17 +95,36 @@ def main():
             "classification": "FBS" if canon(name) in fbs else "FCS/Other",
         }
 
+    # Refresh each team's completed-game history as well as the upcoming schedule.
+    # Otherwise cached form data grows stale and "Rest before kickoff" becomes inflated.
+    for key, history in completed_by_team.items():
+        history.sort(key=lambda x: x["start_date"])
+        completed_by_team[key] = history[-5:]
+
+    def fresh_team(old, name):
+        result = dict(old)
+        form = dict(result.get("form") or {})
+        history = completed_by_team.get(canon(name), [])
+        form["last_five"] = history
+        if history:
+            form["coming_off_loss"] = history[-1]["result"] == "L"
+        result["form"] = form
+        return result
+
     games = []
     for game_id, g in fixtures.items():
         cached = by_id.get(game_id)
         if cached:
             row = dict(cached)
             row["kickoff"] = g.get("startDate")
+            row["away"] = fresh_team(row["away"], g["awayTeam"])
+            row["home"] = fresh_team(row["home"], g["homeTeam"])
         else:
             row = {
                 "game_id": game_id, "season": g.get("season"), "week": g.get("week"),
                 "kickoff": g.get("startDate"), "venue": g.get("venue"), "venue_id": g.get("venueId"),
-                "away": team(g["awayTeam"], "away", g), "home": team(g["homeTeam"], "home", g),
+                "away": fresh_team(team(g["awayTeam"], "away", g), g["awayTeam"]),
+                "home": fresh_team(team(g["homeTeam"], "home", g), g["homeTeam"]),
                 "market": {"spread": None, "total": None, "home_moneyline": None, "away_moneyline": None},
                 "context": {"conference_game": g.get("conferenceGame"), "neutral_site": g.get("neutralSite")},
                 "weather": {"summary": "Forecast unavailable"}, "matchup_metrics": [],
