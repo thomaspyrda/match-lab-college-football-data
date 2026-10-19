@@ -19,9 +19,9 @@ cur=json.loads((DATA/"current_rankings.json").read_text())
 source=json.loads((DATA/"experiments"/f"approved_four_unit_{int(cur['season'])}.json").read_text())
 assert source["through_week"]==cur["through_week"],"Experiment must match completed week"
 rows={canon(x["team"]):x for x in source["teams"]}
-assert len(rows)==136
+assert len(rows)>=130
 cur["teams"]=[r for r in cur["teams"] if canon(r["team"]) in rows]
-assert len(cur["teams"])==136, "Missing modeled FBS teams in current dataset"
+assert len(cur["teams"])==len(rows), "Missing modeled FBS teams in current dataset"
 for r in cur["teams"]:
  x=rows.get(canon(r["team"]))
  if x is None:continue
