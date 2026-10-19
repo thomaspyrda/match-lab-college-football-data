@@ -65,3 +65,7 @@ body.wise-nba-template .wise-accolade-sources a{color:#dcefe0;text-decoration:un
 
 /* MLB Draft Class: preserve approved NBA team-page card and table styling. */
 .wise-draft-count{font-size:13px;color:#aeb7b1;margin:0 0 12px}.wise-draft-table{width:100%;border-collapse:collapse}.wise-draft-table th,.wise-draft-table td{padding:12px 15px;text-align:left;border-bottom:1px solid #34383b;color:#f0f0f0;white-space:nowrap}.wise-draft-table th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#9fa9a2}.wise-draft-table td{font-size:13px}.wise-scroll{overflow-x:auto}#wiseMoreDraft{margin-top:12px;border:1px solid #3e4842;background:#1c211e;border-radius:9px;padding:10px 17px;color:#fff;font:800 12px 'Outfit',sans-serif;cursor:pointer}#wiseMoreDraft:hover{border-color:#75c99b}
+
+/* MLB schedule status colors */
+.wise-team-section#schedule td.wise-outcome-positive{color:#53d98b;font-weight:800}
+.wise-team-section#schedule td.wise-outcome-negative{color:#f16e75;font-weight:800}
