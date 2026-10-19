@@ -7,6 +7,7 @@ on:
       - .github/workflows/private-cfb-four-unit-research.yml
       - research_four_unit_nonrecursive_2026.py
       - research_sos_strong_comparison_2026.py
+      - research_sos_asymmetric_comparison_2026.py
 permissions:
   contents: read
 jobs:
@@ -23,3 +24,5 @@ jobs:
         run: python research_four_unit_nonrecursive_2026.py
       - name: Compare strong SOS adjustment (stdout only)
         run: python research_sos_strong_comparison_2026.py
+      - name: Compare asymmetric SOS adjustment (stdout only)
+        run: python research_sos_asymmetric_comparison_2026.py
