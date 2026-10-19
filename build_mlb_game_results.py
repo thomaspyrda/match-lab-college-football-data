@@ -27,7 +27,6 @@ def build(year, document):
             gid = game.get("gamePk")
             if gid in seen:
                 continue
-            seen.add(gid)
             home, away = game["teams"]["home"], game["teams"]["away"]
             hid, aid = home["team"]["id"], away["team"]["id"]
             if hid not in IDS or aid not in IDS:
@@ -38,6 +37,7 @@ def build(year, document):
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
                 raise ValueError(f"Tied final game requires manual review: {gid}")
+            seen.add(gid)
             for teamid, opponentid, home_side, scored, conceded in ((hid,aid,True,hs,ac),(aid,hid,False,ac,hs)):
                 margin = scored - conceded
                 total = scored + conceded
