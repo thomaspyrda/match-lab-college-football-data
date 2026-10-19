@@ -18,7 +18,7 @@ SEASON=int(json.loads((ROOT/"data/current_rankings.json").read_text())["season"]
 hist=json.loads((ROOT/"data/historical"/f"{SEASON}.json").read_text())["games"]
 current=json.loads((ROOT/"data/current_rankings.json").read_text())
 fbs={name(x["team"]) for x in current["teams"]};prior={name(x["team"]):x for x in current["teams"]}
-through_week=int(json.loads((ROOT/"data/current_rankings.json").read_text()).get("through_week") or 7)
+through_week=int(json.loads((ROOT/"data/current_rankings.json").read_text()).get("through_week",0) or 0)
 games={str(g["game_id"]):g for g in hist if g.get("result") and 1<=int(g.get("week") or 0)<=through_week}
 # Week 1 is entirely preseason; publish a real preseason ranking even with
 # zero completed games, and never fabricate current-season statistics.
@@ -37,7 +37,7 @@ if through_week==0:
   output["teams"].append({"team":t,"overall_z":z,"overall_rank":rank,"offense_z":z,"offense_rank":rank,"defense_z":z,"defense_rank":rank,"unit_z":{u:z for u in ("PO","RO","PD","RD")},"unit_ranks":{u:rank for u in ("PO","RO","PD","RD")},"margin_z":0,"ap_bonus":0,"losses":0,"sos_adjustment_z":0,"fcs_penalty_z":0,"preseason_anchor_weight":1.0,"games_evaluated":0})
  outpath=ROOT/"data/experiments"/f"approved_four_unit_{SEASON}.json"
  outpath.parent.mkdir(exist_ok=True,parents=True)
- outpath.write_text(json.dumps(output,indent=2)+"\\n")
+ outpath.write_text(json.dumps(output,indent=2)+chr(10))
  print("PRESEASON_APPROVED",SEASON,len(output["teams"]))
  sys.exit(0)
 adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
