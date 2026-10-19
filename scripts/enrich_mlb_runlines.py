@@ -30,10 +30,11 @@ def code(v):
     if isinstance(v, dict):
         v=v.get("shortName") or v.get("abbreviation") or v.get("fullName")
     if not v: return None
-    v=str(v).upper().strip()
-    if v in ALIASES:return ALIASES[v]
-    if v in SLUG_TO_CODE.values():return v
-    return SLUG_TO_CODE.get(str(v).lower())
+    raw=str(v).strip()
+    upper=raw.upper()
+    if upper in ALIASES:return ALIASES[upper]
+    if upper in SLUG_TO_CODE.values():return upper
+    return SLUG_TO_CODE.get(raw.lower())
 
 def key(date,home,away,home_score,away_score):
     return (date,code(home),code(away),int(home_score),int(away_score))
@@ -81,6 +82,8 @@ def enrich(official,archive,season):
     for slug,entry in official["teams"].items():
         team=code(slug)
         for game in entry.get("games",[]):
+            for old_field in ("team_runline_side","team_runline_result","runline_source","runline_book","runline_method"):
+                game.pop(old_field,None)
             if game.get("result") not in ("W","L"):continue
             home=team if game.get("location")=="Home" else code(game.get("opponent"))
             away=team if game.get("location")=="Away" else code(game.get("opponent"))
@@ -93,7 +96,7 @@ def enrich(official,archive,season):
     stats=collections.Counter()
     for identity,rows in indexed.items():
         # One identity is one real game represented on two separate team pages.
-        if len(rows)!=2 or set(x[2] for x in rows)!={"Home","Away"}:
+        if len(rows)!=2 or set(x[2] for x in rows)!={"Home","Away"} or len({x[1] for x in rows})!=2:
             stats["ambiguous_official_games"]+=1
             continue
         odds=choices.get(identity,[])
@@ -121,6 +124,8 @@ def enrich(official,archive,season):
         entry["record"]["verified_runline_losses"]=sum(g["team_runline_result"]=="L" for g in games)
         entry["record"]["verified_runline_games"]=len(games)
     stats["official_game_identifiers"]=len(indexed)
+    stats["source_identities"]=len(choices)
+    stats["matched_pct"]=round(100*stats["enriched_games"]/len(indexed),2) if indexed else 0
     return dict(stats)
 
 def main():
