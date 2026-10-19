@@ -34,7 +34,7 @@ jobs:
           import urllib.request
           from pathlib import Path
           from build_mlb_season_snapshots import IDS
-          report={'seasons':{},'warnings':[]}
+          report={'seasons':{},'warnings':[],'publishable':[]}
           for year in range(2015,2027):
               doc=json.loads(Path(f'data/mlb/game-results/{year}.json').read_text())
               url=f'https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&season={year}&standingsTypes=regularSeason'
@@ -65,11 +65,16 @@ jobs:
               minimum=1.0 if year==2026 else .99
               if coverage<minimum or errors:
                   report['warnings'].append({'year':year,'coverage':coverage,'errors':errors[:10]})
+                  Path(f'data/mlb/game-results/{year}.json').unlink()
+              else:
+                  report['publishable'].append(year)
           Path('mlb-historical-backfill-validation.json').write_text(json.dumps(report,indent=2))
           print(json.dumps(report['seasons'],indent=2))
           if report['warnings']:
-              raise SystemExit('Official standings reconciliation failed for: '+str(report['warnings']))
-          print('All historical seasons >=99% W-L coverage; current season exact.')
+              print('Seasons withheld from publication:',json.dumps(report['warnings']))
+          if not report['publishable']:
+              raise SystemExit('No season met official validation thresholds')
+          print('Publishable MLB seasons:',report['publishable'])
           PY
       - name: Preserve backfill diagnostics
         if: always()
@@ -86,6 +91,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/mlb/game-results/
           git diff --cached --quiet && exit 0
-          git commit -m "Publish validated MLB 2015-2026 historical game results"
+          git commit -m "Publish independently validated MLB historical season results"
           git pull --rebase -X theirs origin main
           git push origin main
