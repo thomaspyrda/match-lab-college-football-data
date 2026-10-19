@@ -81,7 +81,7 @@ def official_probables(events):
  """Read MLB official probable pitchers for upcoming games, keyed by day and team name."""
  if not events:return {}
  try:
-  dates=[stamp(e['date']).date().isoformat() for e in events]
+  dates=[stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat() for e in events]
   url=('https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate='+
         min(dates)+'&endDate='+max(dates)+'&gameTypes=R,F,D,L,W&hydrate=probablePitcher')
   with urllib.request.urlopen(url,timeout=25) as response:payload=json.load(response)
@@ -236,19 +236,12 @@ def main():
   key=player_key(person['name'])
   return player_stats.get(team_id,{}).get(key,{})
  official_starters=official_probables(upcoming)
- # Source-reviewed matchup fallback only when the official feed omits announced probables.
- # Restricted to the exact 2026-10-18 Rays/Guardians game; never extrapolate.
- for e in upcoming:
-  match={str(c['team']['id']) for c in e['competitions'][0]['competitors']}
-  if stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat()=='2026-10-18' and match=={'30','5'}:
-   official_starters.setdefault(('2026-10-18','tampa bay rays'),'Drew Rasmussen')
-   official_starters.setdefault(('2026-10-18','cleveland guardians'),'Parker Messick')
 
  ranks={key:ranking(profiles,key,high) for key,_,_,high,_,_ in METRICS}
  for e in upcoming:
   comp=e['competitions'][0];sides={c['homeAway']:c for c in comp['competitors']};a=sides['away']['team']['id'];h=sides['home']['team']['id']
   def team(i):
-   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':stat_for(i,p)} for p in (lineups.get(e['id'],{}).get(i,[]) or latest_lineups.get(i,{}).get('players',[]))],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Recent confirmed lineup (not today)' if i in latest_lineups else 'Not announced','lineup_reference_date':latest_lineups.get(i,{}).get('date') if not lineups.get(e['id'],{}).get(i,[]) else None,'probable':official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(player_key(official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'')),{}),'relievers':sorted([p for p in player_stats.get(i,{}).values() if p.get('gp') is not None and (p.get('gp') or 0)>(p.get('gs') or 0) and player_key(p.get('name'))!=player_key(official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or '')],key=lambda p:(-((p.get('gp') or 0)-(p.get('gs') or 0)),-(p.get('so') or 0),p.get('name','')))[:5]}
+   t=teams[i];c=sides['away' if i==a else 'home'];return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+c['team'].get('color','666666'),'profile':profiles[i],'lineup':[{**p,'stats':stat_for(i,p)} for p in (lineups.get(e['id'],{}).get(i,[]) or latest_lineups.get(i,{}).get('players',[]))],'lineup_status':'Announced' if len(lineups.get(e['id'],{}).get(i,[]))==9 else 'Recent confirmed lineup (not today)' if i in latest_lineups else 'Not announced','lineup_reference_date':latest_lineups.get(i,{}).get('date') if not lineups.get(e['id'],{}).get(i,[]) else None,'probable':official_starters.get((stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),None),'probable_stats':player_stats.get(i,{}).get(player_key(official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or next((x['athlete']['displayName'] for x in c.get('probables',[]) if x.get('athlete')),'')),{}),'relievers':sorted([p for p in player_stats.get(i,{}).values() if p.get('gp') is not None and (p.get('gp') or 0)>(p.get('gs') or 0) and player_key(p.get('name'))!=player_key(official_starters.get((stamp(e['date']).date().isoformat(),t['name'].casefold())) or '')],key=lambda p:(-((p.get('gp') or 0)-(p.get('gs') or 0)),-(p.get('so') or 0),p.get('name','')))[:5]}
   odds=comp.get('odds',[]);line=odds[0] if odds else {};tip=stamp(e['date'])
   out.append({'id':e['id'],'date':e['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),'status':e['status']['type']['description'],'away':team(a),'home':team(h),'metrics':[{'key':k,'label':label,'unit':unit,'high':high,'suffix':suffix,'note':note,'away':ranks[k].get(a),'home':ranks[k].get(h)} for k,label,unit,high,suffix,note in METRICS],'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':line.get('provider',{}).get('name'),'observed_at':now.isoformat() if line else None},'source':'https://www.espn.com/mlb/game/_/gameId/'+e['id'],'profile_cutoff':now.isoformat()})
  data={'schema_version':1,'season':str(year),'season_type':{1:'Preseason',2:'Regular season',3:'Postseason'}[phase],'updated_at':now.isoformat(),'completed_games':len(past),'games':out,'coverage':{'refresh':'Hourly snapshot, not a live scoreboard'},'methodology':'Current ESPN season totals in the selected season type. Rankings include only teams with a completed sample; postseason and regular season are never combined. Upcoming games only; these snapshots are not historical pregame profiles. Recent form uses observed final results in the last eight calendar days, up to five games. Run-line and total records use available ESPN published historical quotes; missing lines are excluded and closing status is not independently verified.'}
