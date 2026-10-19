@@ -431,12 +431,11 @@ def write_live_data_pages(now):
     methodology=data.get("model") or {}
     disclosure=(
         "<section class='ranking-methodology' aria-label='Ranking factors'><h2>What goes into our rankings</h2>"
-        "<p>Our College Football Strength Rankings consider <b>passing and rushing performance on offense and defense</b>, "
-        "including efficiency, consistency, and explosive plays. We evaluate the <b>strength of opponents faced</b> "
-        "at the time of each matchup, as well as <b>strength of schedule</b> and <b>recent team form</b>. "
-        "Overall Team Strength also considers <b>scoring margins</b>, <b>quality wins against AP-ranked opponents</b>, "
-        "and <b>losses</b>. Team results inform Overall Team Strength, while offensive and defensive unit ratings "
-        "focus on statistical performance. Rankings reflect completed FBS matchups and are updated as the season progresses.</p></section>"
+        "<p>Our College Football Strength Rankings evaluate <b>offensive and defensive efficiency</b>, "
+        "<b>opponent quality</b>, <b>strength of schedule</b>, <b>recent performance</b>, "
+        "<b>scoring margins</b>, <b>quality wins</b>, and <b>losses</b>. "
+        "A <b>50.0 strength rating represents the FBS baseline</b>, with higher scores indicating stronger teams. "
+        "Rankings are updated throughout the season based on completed games.</p></section>"
     ) if str(methodology.get("version","")).startswith("four_unit_") else ""
     # Full Team Strength ranking. Overall Strength is built from the opponent-adjusted
     # Offensive Strength and Defensive Strength components in current_rankings.json.
