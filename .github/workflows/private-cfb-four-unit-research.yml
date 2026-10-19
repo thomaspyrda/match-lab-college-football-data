@@ -11,6 +11,7 @@ on:
       - research_sos_loss_penalties_2026.py
       - research_margin_uncapped_15_2026.py
       - research_fcs_penalty_audit_2026.py
+      - research_fcs_full_ranking_comparison_2026.py
 permissions:
   contents: read
 jobs:
@@ -35,3 +36,5 @@ jobs:
         run: python research_margin_uncapped_15_2026.py
       - name: Audit FCS penalty games (stdout only)
         run: python research_fcs_penalty_audit_2026.py
+      - name: Compare full FCS-penalized rankings (stdout only)
+        run: python research_fcs_full_ranking_comparison_2026.py
