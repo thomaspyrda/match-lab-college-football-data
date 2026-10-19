@@ -22,10 +22,21 @@ def build(year, document):
     seen = set()
     visited = set()
     quarantined = []
+    status_games = defaultdict(list)
     # Preserve original status details so gaps can be investigated by game ID.
     for day in document.get("dates", []):
         for game in day.get("games", []):
-            if game.get("gameType") != "R" or game.get("status", {}).get("abstractGameState") != "Final":
+            if game.get("gameType") != "R":
+                continue
+            state = game.get("status", {}).get("abstractGameState")
+            detailed = game.get("status", {}).get("detailedState") or state or "Unknown"
+            if state != "Final":
+                home, away = game.get("teams",{}).get("home",{}),game.get("teams",{}).get("away",{})
+                hid,aid=home.get("team",{}).get("id"),away.get("team",{}).get("id")
+                if hid in IDS and aid in IDS:
+                    label = "Cancelled" if "cancel" in detailed.lower() else "Postponed" if "postpon" in detailed.lower() else "Suspended" if "suspend" in detailed.lower() else "Scheduled"
+                    for tid,oid,site in ((hid,aid,"Home"),(aid,hid,"Away")):
+                        status_games[IDS[tid]].append({"game_id":game.get("gamePk"),"date":game.get("officialDate") or str(game.get("gameDate",""))[:10],"opponent":IDS[oid],"location":site,"result":label,"score":"—","status":label})
                 continue
             gid = game.get("gamePk")
             if gid in visited:
@@ -41,7 +52,8 @@ def build(year, document):
                 continue
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
-                quarantined.append({"game_id":gid,"year":year,"reason":"tied_final_requires_review","score":hs,"date":game.get("officialDate"),"home_id":hid,"away_id":aid,"detailed_state":game.get("status",{}).get("detailedState")})
+                for tid,oid,site in ((hid,aid,"Home"),(aid,hid,"Away")):
+                    status_games[IDS[tid]].append({"game_id":gid,"date":date,"opponent":IDS[oid],"location":site,"result":"T","score":f"{hs}-{ac}","status":"Tie"})
                 continue
             seen.add(gid)
             for teamid, opponentid, home_side, scored, conceded in ((hid,aid,True,hs,ac),(aid,hid,False,ac,hs)):
@@ -74,8 +86,10 @@ def build(year, document):
         assert counts["wins"]+counts["losses"]==len(games)
         assert counts["overs"]+counts["unders"]==len(games)
         assert counts["runline_wins"]+counts["runline_losses"]==len(games)
-        payload["teams"][slug] = {"games":games,"record":counts}
-    assert sum(len(x["games"]) for x in payload["teams"].values())==2*len(seen)
+        extra=status_games[slug]
+        # Status-only events never contribute to betting records or W-L.
+        payload["teams"][slug] = {"games":sorted(games+extra,key=lambda g:(g["date"],g["game_id"] or 0)),"record":counts}
+    assert sum(x["record"]["wins"]+x["record"]["losses"] for x in payload["teams"].values())==2*len(seen)
     return payload
 
 def main():
