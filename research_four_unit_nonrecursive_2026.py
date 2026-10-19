@@ -14,12 +14,13 @@ def val(x):
   try:return float(x) if x is not None else None
   except:return None
 def avg(a):return statistics.fmean(a) if a else None
-hist=json.loads((ROOT/"data/historical/2026.json").read_text())["games"]
+SEASON=int(json.loads((ROOT/"data/current_rankings.json").read_text())["season"])
+hist=json.loads((ROOT/"data/historical"/f"{SEASON}.json").read_text())["games"]
 past=json.loads((ROOT/"data/frozen_conference_rankings_2026_week6.json").read_text())["rows"]
 fbs={name(x["team"]) for x in past}; prior={name(x["team"]):x for x in past}
 through_week=int(json.loads((ROOT/"data/current_rankings.json").read_text()).get("through_week") or 7)
 games={str(g["game_id"]):g for g in hist if g.get("result") and 1<=int(g.get("week") or 0)<=through_week}
-adv=api("/stats/game/advanced",year=2026,seasonType="regular",excludeGarbageTime="true")
+adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
 bygid=defaultdict(dict)
 for x in adv:
   if x.get("team"):bygid[str(x.get("gameId"))][name(x["team"])]=x
@@ -234,7 +235,7 @@ overall_10={t:margin_model(t,.10) for t in fbs}
 rankings={}
 for label,data in (("overall",overall_10),("offense",offense),("defense",defense),("PO",{t:unit_scores[t]["PO"] for t in fbs}),("RO",{t:unit_scores[t]["RO"] for t in fbs}),("PD",{t:unit_scores[t]["PD"] for t in fbs}),("RD",{t:unit_scores[t]["RD"] for t in fbs})):
  rankings[label]={t:i for i,(t,v) in enumerate(sorted(data.items(),key=lambda x:(-x[1],x[0])),1)}
-output={"model":"four_unit_chronological_10pct_margin_v1","season":2026,"through_week":through_week,"teams":[]}
+output={"model":"four_unit_chronological_10pct_margin_v1","season":SEASON,"through_week":through_week,"teams":[]}
 for t in sorted(fbs):
  output["teams"].append({"team":t,"overall_z":overall_10[t],"overall_rank":rankings["overall"][t],"offense_z":offense[t],"offense_rank":rankings["offense"][t],"defense_z":defense[t],"defense_rank":rankings["defense"][t],
  "unit_z":unit_scores[t],"unit_ranks":{u:rankings[u][t] for u in ("PO","RO","PD","RD")},
