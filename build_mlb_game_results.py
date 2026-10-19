@@ -22,6 +22,7 @@ def build(year, document):
     seen = set()
     visited = set()
     quarantined = []
+    # Preserve original status details so gaps can be investigated by game ID.
     for day in document.get("dates", []):
         for game in day.get("games", []):
             if game.get("gameType") != "R" or game.get("status", {}).get("abstractGameState") != "Final":
@@ -36,11 +37,11 @@ def build(year, document):
                 continue
             hs, ac = home.get("score"), away.get("score")
             if not isinstance(hs, int) or not isinstance(ac, int):
-                quarantined.append({"game_id":gid,"reason":"final_without_score"})
+                quarantined.append({"game_id":gid,"year":year,"reason":"final_without_score","date":game.get("officialDate"),"home_id":hid,"away_id":aid,"detailed_state":game.get("status",{}).get("detailedState")})
                 continue
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
-                quarantined.append({"game_id":gid,"reason":"tied_final_requires_review","score":hs})
+                quarantined.append({"game_id":gid,"year":year,"reason":"tied_final_requires_review","score":hs,"date":game.get("officialDate"),"home_id":hid,"away_id":aid,"detailed_state":game.get("status",{}).get("detailedState")})
                 continue
             seen.add(gid)
             for teamid, opponentid, home_side, scored, conceded in ((hid,aid,True,hs,ac),(aid,hid,False,ac,hs)):
