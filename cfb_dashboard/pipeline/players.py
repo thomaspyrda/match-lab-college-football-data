@@ -34,7 +34,16 @@ def select_players(rows):
     # ID is authoritative; name is the fallback for incomplete provider rows.
     def identity(row): return str(row.get('id') or row.get('name'))
     seen = {identity(row) for row in chosen if row}
-    extra = next((row for row in skills if identity(row) not in seen), None)
+    # Extra RB/WR/TE: highest verified season rushing + receiving yardage.
+    # Do not substitute usage percentages for missing production statistics.
+    def total_yards(row):
+        totals = (row.get('production') or {}).get('totals') or {}
+        rushing, receiving = totals.get('rushing_yards'), totals.get('receiving_yards')
+        if rushing is None and receiving is None:
+            return None
+        return float(rushing or 0) + float(receiving or 0)
+    eligible = [row for row in skills if identity(row) not in seen and total_yards(row) is not None]
+    extra = max(eligible, key=lambda row:(total_yards(row), identity(row)), default=None)
     return [qb, *chosen, extra]
 
 PRODUCTION_FIELDS = {
