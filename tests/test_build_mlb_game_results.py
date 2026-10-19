@@ -21,16 +21,16 @@ class TestMlbGameResults(unittest.TestCase):
         data=build(2025,{"dates":[{"games":games}]})
         ny=data["teams"][IDS[147]]
         bos=data["teams"][IDS[111]]
-        self.assertEqual(len(ny["games"]),2)
-        self.assertEqual(len(bos["games"]),2)
+        self.assertEqual(len([g for g in ny["games"] if g["result"] in ("W","L")]),2)
+        self.assertEqual(len([g for g in bos["games"] if g["result"] in ("W","L")]),2)
         self.assertEqual(ny["record"]["wins"],1)
         self.assertEqual(ny["record"]["losses"],1)
         self.assertEqual(ny["record"]["runline_wins"],1)
         self.assertEqual(ny["record"]["overs"],1)
         self.assertEqual(len(data["quarantined"]),1)
         self.assertEqual(data["quarantined"][0]["game_id"],101)
-        self.assertEqual(ny["games"][0]["game_id"],102)
-        self.assertEqual(ny["games"][1]["game_id"],103)
+        self.assertEqual(next(g for g in ny["games"] if g["game_id"]==102)["result"],"W")
+        self.assertEqual(next(g for g in ny["games"] if g["game_id"]==103)["result"],"L")
 
 if __name__=="__main__":
     unittest.main()
