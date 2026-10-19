@@ -47,7 +47,7 @@ const resultRow=sport==='mlb'?mlbPlayoffResults?.teams?.[match[2]]?.[String(sele
 const resultText=String(select.value)==='2026'?'Season in progress':resultRow?.text||'Historical season result pending verification';
 const resultBar=sport==='mlb'?'<div class="wise-season-result"><span>SEASON / PLAYOFF RESULT</span><strong>'+esc(resultText)+'</strong></div>':'';
 const metrics=conf.map((k,i)=>'<article class="wise-metric"><span>'+esc(k)+'</span><strong>—</strong><small>Data pending</small></article>').join('');
-const metricTile=label=>'<article class="wise-metric"><span>'+esc(label)+'</span><strong>—</strong><small>Data pending</small></article>';
+const metricTile=label=>{const value=sport==='mlb'?(label==='Runs / Game'?mlbRow?.runs_per_game:label==='Runs Allowed / Game'?mlbRow?.runs_allowed_per_game:null):null;return '<article class="wise-metric"><span>'+esc(label)+'</span><strong>'+esc(value??'—')+'</strong><small>'+(value===null||value===undefined?'Data pending':'Official MLB season summary')+'</small></article>'};
 const mlbMetrics='<div class="wise-stat-split"><div><h3>HITTING</h3><div class="wise-metrics">'+conf.slice(0,6).map(metricTile).join('')+'</div></div><div><h3>PITCHING</h3><div class="wise-metrics">'+conf.slice(6).map(metricTile).join('')+'</div></div></div>';
 const coaching=mlbCoaching?.teams?.[match[2]]?.[String(select.value)];
 const previousCoaching=select.value==='2026'?mlbCoaching?.teams?.[match[2]]?.['2025']:null;
