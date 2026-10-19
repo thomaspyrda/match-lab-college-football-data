@@ -1,0 +1,51 @@
+name: MLB historical run-line audit
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: "Historical season to audit (archive covers 2021 to Aug 2025)"
+        required: true
+        type: choice
+        options: ["2024", "2023", "2022", "2021", "2025"]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download publicly released SBR archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json,os,urllib.request
+          endpoint="https://api.github.com/repos/ArnavSaraogi/mlb-odds-scraper/releases/tags/dataset"
+          h={"Accept":"application/vnd.github+json","User-Agent":"BetWise-MLB-Validation"}
+          req=urllib.request.Request(endpoint,headers=h)
+          with urllib.request.urlopen(req,timeout=30) as r: meta=json.load(r)
+          assets=meta.get("assets",[])
+          candidates=[a for a in assets if a.get("name","").lower().endswith(".json")]
+          if not candidates:
+              raise SystemExit("No downloadable JSON asset in public historical odds release: "+str([a["name"] for a in assets]))
+          asset=max(candidates,key=lambda a:a.get("size",0))
+          print("Archive asset:",asset["name"],"Size:",asset["size"])
+          req=urllib.request.Request(asset["browser_download_url"],headers={"User-Agent":"BetWise-MLB-Validation"})
+          with urllib.request.urlopen(req,timeout=150) as r,open("historical-odds.json","wb") as out:
+              while True:
+                  b=r.read(1024*1024)
+                  if not b:break
+                  out.write(b)
+          with open("historical-odds.json","rb") as f: json.load(f)
+          print("Download verified as JSON")
+          PY
+      - name: Audit against official MLB final results — no publishing
+        run: |
+          python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season "${{ inputs.season }}" | tee audit-report.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mlb-runline-audit-${{ inputs.season }}
+          path: audit-report.txt
+          if-no-files-found: ignore
