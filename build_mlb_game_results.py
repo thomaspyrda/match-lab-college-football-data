@@ -49,6 +49,8 @@ def build(year, document):
             hs, ac = home.get("score"), away.get("score")
             if not isinstance(hs, int) or not isinstance(ac, int):
                 quarantined.append({"game_id":gid,"year":year,"reason":"final_without_score","date":game.get("officialDate"),"home_id":hid,"away_id":aid,"detailed_state":game.get("status",{}).get("detailedState")})
+                for tid,oid,site in ((hid,aid,"Home"),(aid,hid,"Away")):
+                    status_games[IDS[tid]].append({"game_id":gid,"date":game.get("officialDate") or str(game.get("gameDate",""))[:10],"opponent":IDS[oid],"location":site,"result":"Final — score unavailable","score":"—","status":"Final — score unavailable"})
                 continue
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
