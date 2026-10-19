@@ -27,6 +27,7 @@ on:
       - promote_v15_live.py
       - promote_four_unit_live.py
       - research_four_unit_nonrecursive_2026.py
+      - build_approved_strength_model.py
       - calibrate_sd_to_sd_v14.py
       - validate_v14_final.py
       - validate_v14_final_fixed.py
@@ -79,11 +80,11 @@ jobs:
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
-      - name: Generate approved chronological four-unit ratings
+      - name: Generate approved season-aware chronological ratings
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python research_four_unit_nonrecursive_2026.py
-      - name: Promote approved 10 percent scoring margin model
+        run: python build_approved_strength_model.py
+      - name: Promote approved 15 percent uncapped margin and SOS model
         run: python promote_four_unit_live.py
       - name: Build ranking and SEO pages
         run: python build_seo_pages.py
