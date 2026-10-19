@@ -27,33 +27,39 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_build_mlb_game_results.py' -v
       - name: Backfill 2015-2026 official regular-season finals
         run: python build_mlb_game_results.py --years 2015 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026
-      - name: Validate season records against published official snapshots
+      - name: Validate game histories against MLB official standings
         run: |
           python - <<'PY'
           import json
+          import urllib.request
           from pathlib import Path
-          snapshots=json.loads(Path('data/mlb/season-snapshots.json').read_text())['seasons']
+          from build_mlb_season_snapshots import IDS
           mismatches=[]
           for year in range(2015,2027):
               doc=json.loads(Path(f'data/mlb/game-results/{year}.json').read_text())
+              url=f'https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&season={year}&standingsTypes=regularSeason'
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'BetWiseResearch/1.0'}),timeout=90) as resp:
+                  standings=json.load(resp)
+              official={}
+              for division in standings.get('records',[]):
+                  for row in division.get('teamRecords',[]):
+                      tid=row.get('team',{}).get('id')
+                      if tid in IDS: official[IDS[tid]]=(int(row['wins']),int(row['losses']))
+              if len(official)!=30:
+                  raise SystemExit(f'{year}: MLB standings returned {len(official)} of 30 teams')
               for slug,data in doc['teams'].items():
-                  reference=snapshots[str(year)][slug]
-                  for field in ('wins','losses'):
-                      actual=data['record'][field]
-                      expected=reference[field]
-                      if actual != expected:
-                          mismatches.append({'season':year,'team':slug,'field':field,'actual':actual,'expected':expected})
-                  actual=len(data['games'])
-                  expected=reference['games_played']
-                  if actual != expected:
-                      mismatches.append({'season':year,'team':slug,'field':'games_played','actual':actual,'expected':expected})
+                  wins,losses=official[slug]
+                  got=data['record']
+                  if (got['wins'],got['losses'])!=(wins,losses):
+                      mismatches.append({'season':year,'team':slug,'actual':[got['wins'],got['losses']],'official':[wins,losses]})
+                  if len(data['games'])!=got['wins']+got['losses']:
+                      mismatches.append({'season':year,'team':slug,'error':'game count differs from W-L'})
           report={'mismatches':mismatches,'mismatch_count':len(mismatches)}
           Path('mlb-historical-backfill-validation.json').write_text(json.dumps(report,indent=2))
           if mismatches:
-              print('Historical backfill discrepancies (first 30):')
-              print(json.dumps(mismatches[:30],indent=2))
-              raise SystemExit(f'{len(mismatches)} season/team discrepancies; no publication')
-          print('MLB histories reconciled against season snapshots for all 30 teams.')
+              print(json.dumps(mismatches[:40],indent=2))
+              raise SystemExit(f'{len(mismatches)} discrepancies against official MLB standings; no publication')
+          print('All 12 seasons reconciled with MLB official standings for 30 teams.')
           PY
       - name: Preserve backfill diagnostics
         if: always()
