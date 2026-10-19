@@ -7,7 +7,7 @@ def test_role_slots_injury_replacements_and_no_duplicates():
           {'id':'q1','position':'QB','pass':.9,'recent_passing_role':(3,30)},
           {'id':'q2','position':'QB','pass':.2,'recent_passing_role':(4,20)},
           {'id':'r','position':'RB','overall':.5},{'id':'w','position':'WR','overall':.4},
-          {'id':'t','position':'TE','overall':.1},{'id':'w2','position':'WR','overall':.3}]
+          {'id':'t','position':'TE','overall':.1},{'id':'w2','position':'WR','overall':.3, 'production':{'totals':{'rushing_yards':20,'receiving_yards':250}}}]
     selected=select_players(rows)
     assert [row['id'] for row in selected]==['q2','r','w','t','w2']
 
@@ -58,3 +58,18 @@ def test_conflicting_player_stat_is_rejected():
     stats=[{'team':'A','playerId':'1','category':'rushing','statType':'YDS','stat':n} for n in (100,200)]
     with pytest.raises(ValueError,match='Conflicting season player stat'):
         enrich_production({},stats,[])
+
+
+def test_extra_skill_player_uses_combined_season_yards():
+    def player(pid, position, overall, rushing, receiving):
+        return {'id':pid, 'position':position, 'overall':overall,
+                'production':{'totals':{'rushing_yards':rushing, 'receiving_yards':receiving}}}
+    rows = [
+        player('qb','QB',.9,0,0),
+        player('rb','RB',.8,500,100),
+        player('wr','WR',.8,0,650),
+        player('te','TE',.7,0,300),
+        player('rb2','RB',.3,260,130),
+        player('wr2','WR',.6,0,370),
+    ]
+    assert [x['id'] for x in select_players(rows)] == ['qb','rb','wr','te','rb2']
