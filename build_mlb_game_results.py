@@ -38,7 +38,8 @@ def build(year, document):
                 continue
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
-                raise ValueError(f"Tied final game requires manual review: {gid}")
+                quarantined.append({"game_id":gid,"reason":"tied_final_requires_review","score":hs})
+                continue
             seen.add(gid)
             for teamid, opponentid, home_side, scored, conceded in ((hid,aid,True,hs,ac),(aid,hid,False,ac,hs)):
                 margin = scored - conceded
