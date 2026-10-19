@@ -10,6 +10,7 @@ on:
       - research_sos_asymmetric_comparison_2026.py
       - research_sos_loss_penalties_2026.py
       - research_margin_uncapped_15_2026.py
+      - research_fcs_penalty_audit_2026.py
 permissions:
   contents: read
 jobs:
@@ -32,3 +33,5 @@ jobs:
         run: python research_sos_loss_penalties_2026.py
       - name: Compare uncapped 15 percent scoring margin (stdout only)
         run: python research_margin_uncapped_15_2026.py
+      - name: Audit FCS penalty games (stdout only)
+        run: python research_fcs_penalty_audit_2026.py
