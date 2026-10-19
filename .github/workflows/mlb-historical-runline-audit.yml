@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/mlb-historical-runline-audit.yml'
       - 'scripts/enrich_mlb_runlines.py'
+      - 'tests/test_mlb_runline_enrichment.py'
   workflow_dispatch:
     inputs:
       season:
@@ -21,6 +22,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify importer syntax
         run: python -m py_compile scripts/enrich_mlb_runlines.py
+      - name: Test game matching and cover logic
+        run: python -m unittest discover -s tests -p 'test_mlb_runline_enrichment.py' -v
       - name: Download publicly released SBR archive
         env:
           GH_TOKEN: ${{ github.token }}
