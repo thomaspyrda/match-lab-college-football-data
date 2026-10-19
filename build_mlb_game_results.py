@@ -20,6 +20,7 @@ def fetch(year):
 def build(year, document):
     teams = defaultdict(list)
     seen = set()
+    quarantined = []
     for day in document.get("dates", []):
         for game in day.get("games", []):
             if game.get("gameType") != "R" or game.get("status", {}).get("abstractGameState") != "Final":
@@ -33,7 +34,8 @@ def build(year, document):
                 continue
             hs, ac = home.get("score"), away.get("score")
             if not isinstance(hs, int) or not isinstance(ac, int):
-                raise ValueError(f"Missing final score: {gid}")
+                quarantined.append({"game_id":gid,"reason":"final_without_score"})
+                continue
             date = game.get("officialDate") or game["gameDate"][:10]
             if hs == ac:
                 raise ValueError(f"Tied final game requires manual review: {gid}")
@@ -56,7 +58,7 @@ def build(year, document):
                "market_method":"standardized_not_sportsbook",
                "runline_assumption":"Each team +1.5 runs; not reciprocal game-specific sportsbook odds",
                "total_assumption":8.5,
-               "teams":{}}
+               "quarantined":quarantined,"teams":{}}
     for slug in IDS.values():
         games = sorted(teams[slug], key=lambda g:(g["date"],g["game_id"]))
         counts = {"wins":sum(g["result"]=="W" for g in games),
@@ -82,7 +84,7 @@ def main():
             raise ValueError("Unsupported year")
         data=build(year,fetch(year))
         (OUT/f"{year}.json").write_text(json.dumps(data,separators=(",",":"),ensure_ascii=False)+"\n")
-        print(year,sum(len(t["games"]) for t in data["teams"].values())//2,"games")
+        print(year,sum(len(t["games"]) for t in data["teams"].values())//2,"games",len(data["quarantined"]),"quarantined")
 
 if __name__=="__main__":
     main()
