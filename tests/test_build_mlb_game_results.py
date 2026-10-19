@@ -32,5 +32,18 @@ class TestMlbGameResults(unittest.TestCase):
         self.assertEqual(next(g for g in ny["games"] if g["game_id"]==102)["result"],"W")
         self.assertEqual(next(g for g in ny["games"] if g["game_id"]==103)["result"],"L")
 
+
+    def test_tied_final_and_duplicate_postponement(self):
+        tied=self.game(201,"Final",1,1)
+        postponed=self.game(202,"Preview")
+        postponed["status"]["detailedState"]="Postponed"
+        completed=self.game(202,"Final",4,2)
+        data=build(2025,{"dates":[{"games":[tied,postponed,completed]}]})
+        ny=data["teams"][IDS[147]]
+        self.assertEqual([g["result"] for g in ny["games"]],["T","W"])
+        self.assertEqual(ny["record"]["wins"],1)
+        self.assertEqual(ny["record"]["runline_wins"],1)
+        self.assertEqual(len({g["game_id"] for g in ny["games"]}),2)
+
 if __name__=="__main__":
     unittest.main()
