@@ -33,17 +33,37 @@ jobs:
           import json
           from pathlib import Path
           snapshots=json.loads(Path('data/mlb/season-snapshots.json').read_text())['seasons']
+          mismatches=[]
           for year in range(2015,2027):
               doc=json.loads(Path(f'data/mlb/game-results/{year}.json').read_text())
               for slug,data in doc['teams'].items():
                   reference=snapshots[str(year)][slug]
                   for field in ('wins','losses'):
-                      if data['record'][field] != reference[field]:
-                          raise SystemExit(f'{year} {slug}: {field} mismatch: {data["record"][field]} != {reference[field]}')
-                  if len(data['games']) != reference['games_played']:
-                      raise SystemExit(f'{year} {slug}: schedule count mismatch')
-          print('MLB histories reconciled against official snapshots for all 30 teams.')
+                      actual=data['record'][field]
+                      expected=reference[field]
+                      if actual != expected:
+                          mismatches.append({'season':year,'team':slug,'field':field,'actual':actual,'expected':expected})
+                  actual=len(data['games'])
+                  expected=reference['games_played']
+                  if actual != expected:
+                      mismatches.append({'season':year,'team':slug,'field':'games_played','actual':actual,'expected':expected})
+          report={'mismatches':mismatches,'mismatch_count':len(mismatches)}
+          Path('mlb-historical-backfill-validation.json').write_text(json.dumps(report,indent=2))
+          if mismatches:
+              print('Historical backfill discrepancies (first 30):')
+              print(json.dumps(mismatches[:30],indent=2))
+              raise SystemExit(f'{len(mismatches)} season/team discrepancies; no publication')
+          print('MLB histories reconciled against season snapshots for all 30 teams.')
           PY
+      - name: Preserve backfill diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlb-historical-backfill-diagnostics
+          path: |
+            mlb-historical-backfill-validation.json
+            data/mlb/game-results/
+          retention-days: 7
       - name: Commit validated MLB game-history data only
         run: |
           git config user.name "github-actions[bot]"
