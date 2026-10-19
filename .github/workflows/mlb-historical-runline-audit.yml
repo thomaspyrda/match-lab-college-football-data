@@ -13,7 +13,7 @@ on:
         type: choice
         options: ["2024", "2023", "2022", "2021", "2025"]
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -52,6 +52,23 @@ jobs:
       - name: Audit against official MLB final results — no publishing
         run: |
           python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season "${{ inputs.season || '2024' }}" | tee audit-report.txt
+      - name: Preserve audit outcome in repository
+        if: always()
+        run: |
+          mkdir -p data/mlb/audits
+          {
+            echo "Audit run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo "Season: ${{ inputs.season || '2024' }}"
+            echo "Commit: $GITHUB_SHA"
+            echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            if [ -f audit-report.txt ]; then cat audit-report.txt; else echo 'AUDIT INCOMPLETE — no run-line coverage verified'; fi
+          } > "data/mlb/audits/${{ inputs.season || '2024' }}-runline-audit.txt"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "data/mlb/audits/${{ inputs.season || '2024' }}-runline-audit.txt"
+          git commit -m "Record MLB historical run-line audit results for ${{ inputs.season || '2024' }}" || exit 0
+          git push
       - uses: actions/upload-artifact@v4
         if: always()
         with:
