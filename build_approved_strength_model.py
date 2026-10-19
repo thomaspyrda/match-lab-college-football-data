@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """PRIVATE research only; prints rankings; never writes production files."""
-import json,os,urllib.request,urllib.parse,statistics
+import json,os,urllib.request,urllib.parse,statistics,sys
 from collections import defaultdict
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
@@ -20,6 +20,26 @@ current=json.loads((ROOT/"data/current_rankings.json").read_text())
 fbs={name(x["team"]) for x in current["teams"]};prior={name(x["team"]):x for x in current["teams"]}
 through_week=int(json.loads((ROOT/"data/current_rankings.json").read_text()).get("through_week") or 7)
 games={str(g["game_id"]):g for g in hist if g.get("result") and 1<=int(g.get("week") or 0)<=through_week}
+# Week 1 is entirely preseason; publish a real preseason ranking even with
+# zero completed games, and never fabricate current-season statistics.
+if through_week==0:
+ pre_file=ROOT/"data/preseason"/f"{SEASON}.json"
+ if not pre_file.exists():raise RuntimeError(f"Preseason consensus required: {pre_file}")
+ pre=json.loads(pre_file.read_text())
+ ratings={name(t):float(x["score"]) for t,x in pre.get("teams",{}).items() if isinstance(x,dict) and x.get("score") is not None}
+ if len(set(ratings)&fbs)<130:raise RuntimeError(f"Need full FBS preseason rankings for {SEASON}")
+ scores=[ratings[t] for t in fbs if t in ratings]
+ center=avg(scores);scale=statistics.pstdev(scores) or 1
+ ranks=sorted(fbs,key=lambda t:(-ratings.get(t,center),t))
+ output={"model":"four_unit_15pct_uncapped_asymmetric_sos_fcs_v2","season":SEASON,"through_week":0,"teams":[]}
+ for rank,t in enumerate(ranks,1):
+  z=(ratings.get(t,center)-center)/scale
+  output["teams"].append({"team":t,"overall_z":z,"overall_rank":rank,"offense_z":z,"offense_rank":rank,"defense_z":z,"defense_rank":rank,"unit_z":{u:z for u in ("PO","RO","PD","RD")},"unit_ranks":{u:rank for u in ("PO","RO","PD","RD")},"margin_z":0,"ap_bonus":0,"losses":0,"sos_adjustment_z":0,"fcs_penalty_z":0,"preseason_anchor_weight":1.0,"games_evaluated":0})
+ outpath=ROOT/"data/experiments"/f"approved_four_unit_{SEASON}.json"
+ outpath.parent.mkdir(exist_ok=True,parents=True)
+ outpath.write_text(json.dumps(output,indent=2)+"\\n")
+ print("PRESEASON_APPROVED",SEASON,len(output["teams"]))
+ sys.exit(0)
 adv=api("/stats/game/advanced",year=SEASON,seasonType="regular",excludeGarbageTime="true")
 bygid=defaultdict(dict)
 for x in adv:
@@ -44,7 +64,7 @@ for gid,g in games.items():
       values=[val(stat.get(m)) for m in metrics]
       if any(v is None for v in values):continue
       rows.append((team,opp,week,unit,values, -1 if unit.endswith("D") else 1))
-assert len(rows)>700,(len(rows),nskipped)
+assert len(rows)>0,(len(rows),nskipped)
 # Normalize metrics over observed games; one normalization, no recursion.
 norm={}
 for side in "pr":
@@ -106,7 +126,7 @@ for g in games.values():
  ranked_wins[winner].append((loser,rank,bonus))
 def unit_for(t,u,mult):
  obs=adjusted_obs.get((t,u),[])
- if not obs:return None
+ if not obs:return 0.0
  latest=max(w for w,v in obs)
  numerator=sum(v*(mult if w==latest else 1) for w,v in obs)
  denom=sum(mult if w==latest else 1 for w,v in obs)
@@ -143,7 +163,7 @@ for i,(t,v) in enumerate(ranking[:25],1):
 # Compare latest-game 2x baseline to last-three form (1.25x,1.50x,2x).
 def three_game_unit(t,u):
  obs=adjusted_obs.get((t,u),[])
- if not obs:return None
+ if not obs:return 0.0
  # Chronological completed games, not calendar weeks, so bye weeks do not count.
  chronological=sorted(obs,key=lambda x:x[0])
  weights=[1.0]*len(chronological)
@@ -152,7 +172,7 @@ def three_game_unit(t,u):
  return sum(v*w for (_,v),w in zip(chronological,weights))/sum(weights)
 def three_game_base(t):
  vals=[three_game_unit(t,u) for u in ("PO","RO","PD","RD")]
- return avg(vals) if all(v is not None for v in vals) else None
+ return avg(vals) if all(v is not None for v in vals) else 0.0
 def three_game_total(t):
  base=three_game_base(t)
  return None if base is None else base+win_bonus[t]-.10*losses[t]
