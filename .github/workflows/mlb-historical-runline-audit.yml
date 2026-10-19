@@ -1,5 +1,8 @@
 name: MLB historical run-line audit
 on:
+  push:
+    paths:
+      - '.github/workflows/mlb-historical-runline-audit.yml'
   workflow_dispatch:
     inputs:
       season:
@@ -42,10 +45,10 @@ jobs:
           PY
       - name: Audit against official MLB final results — no publishing
         run: |
-          python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season "${{ inputs.season }}" | tee audit-report.txt
+          python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season "${{ inputs.season || '2024' }}" | tee audit-report.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: mlb-runline-audit-${{ inputs.season }}
+          name: mlb-runline-audit-${{ inputs.season || '2024' }}
           path: audit-report.txt
           if-no-files-found: ignore
