@@ -220,8 +220,8 @@ def weighted_form(obs):
 # Normalize margin form against all FBS for comparable scaling.
 margins={t:weighted_form(adjusted_margin[t]) for t in fbs}
 values=[v for v in margins.values() if v is not None]
-mu=avg(values);sd=statistics.pstdev(values) or 1
-margin_z={t:(v-mu)/sd for t,v in margins.items() if v is not None}
+mu=avg(values) if values else 0;sd=statistics.pstdev(values) if len(values)>1 else 1
+margin_z={t:((v-mu)/(sd or 1) if v is not None else 0.0) for t,v in margins.items()}
 def margin_model(t,mix):
  four=three_game_base(t)
  if four is None or t not in margin_z:return None
@@ -253,8 +253,8 @@ offense={t:avg([unit_scores[t]["PO"],unit_scores[t]["RO"]]) for t in fbs}
 defense={t:avg([unit_scores[t]["PD"],unit_scores[t]["RD"]]) for t in fbs}
 sos_values={t:val(prior[t].get("schedule_strength")) for t in fbs}
 known_sos=[v for v in sos_values.values() if v is not None]
-assert len(known_sos)>=100,"Insufficient SOS data"
-sos_center=avg(known_sos);sos_scale=statistics.pstdev(known_sos) or 1
+assert len(known_sos)>=30 or through_week<3,"Insufficient SOS data"
+sos_center=avg(known_sos) if known_sos else 0;sos_scale=statistics.pstdev(known_sos) if len(known_sos)>1 else 1
 sos_z={t:(v-sos_center)/sos_scale if v is not None else 0 for t,v in sos_values.items()}
 sos_adj={t:.10*max(z,0)+.20*min(z,0)-.15*max(-z-1,0) for t,z in sos_z.items()}
 fcs_penalties=defaultdict(float)
