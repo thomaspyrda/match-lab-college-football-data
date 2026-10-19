@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Promote the 10% margin chronological four-unit ratings to current CFB rankings."""
+"""Promote approved 15% margin, asymmetric SOS and FCS adjusted ratings."""
 import json
 from pathlib import Path
 ALIASES={"Mississippi":"Ole Miss","Connecticut":"UConn","Texas-San Antonio":"UTSA","San José State":"San Jose State"}
@@ -15,8 +15,8 @@ def score_from_sd(sd):
  raise ValueError(sd)
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/"data"
-source=json.loads((DATA/"experiments/four_unit_chronological_10pct_margin_2026.json").read_text())
 cur=json.loads((DATA/"current_rankings.json").read_text())
+source=json.loads((DATA/"experiments"/f"approved_four_unit_{int(cur['season'])}.json").read_text())
 assert source["through_week"]==cur["through_week"],"Experiment must match completed week"
 rows={canon(x["team"]):x for x in source["teams"]}
 assert len(rows)==136
@@ -46,22 +46,26 @@ for r in cur["teams"]:
   r[key+"_rank"]=x["unit_ranks"][unit]
  r["games_modeled"]=x["games_evaluated"]
  r["quality_win_bonus_z"]=round(x["ap_bonus"],3)
- r["loss_penalty_z"]=round(-.1*x["losses"],3)
+ r["loss_penalty_z"]=round(-.20*x["losses"],3)
+ r["sos_adjustment_z"]=round(x["sos_adjustment_z"],3)
+ r["fcs_penalty_z"]=round(x["fcs_penalty_z"],3)
+ r["preseason_anchor_weight"]=x["preseason_anchor_weight"]
  r["adjusted_scoring_margin_z"]=round(x["margin_z"],3)
  r["unit_strength_model"]=source["model"]
 cur["teams"].sort(key=lambda r:(r.get("overall_strength_rank") or 999,r["team"]))
 cur["fbs_field_size"]=len(rows)
 cur["model"]={
  "version":source["model"],"status":"production_current",
- "overall":"90% opponent-adjusted four-unit strength + 10% opponent-adjusted scoring margin + cumulative AP-ranked victory bonuses minus 0.10 Z per loss.",
- "unit_weights":"Equal PO, RO, PD and RD; Passing: PPA 45%, success 45%, explosiveness 10%; Rushing: PPA 40%, success 40%, explosiveness 20%.",
- "opponent_adjustment":"0.50 times corresponding opponent unit performance entering each week, frozen after game; chronological, nonrecursive.",
- "recent_form":"Last three completed games weighted 1.25x, 1.50x, 2.00x from oldest to newest; others 1x.",
- "margin":"Score differential capped at plus/minus 28 per game, opponent adjusted and normalized, accounts for 10% of performance.",
- "quality_wins":"Pregame AP #1–5: +0.25 Z; #6–10: +0.20; #11–15: +0.15; #16–20: +0.10; #21–25: +0.05, cumulative; only overall.",
- "losses":"Every loss: -0.10 Z; only overall.",
- "display_rating":"Standardized strength mapped to a 1–100 scale; ranking order is determined by unrounded standardized strength.",
- "limitations":"FBS-vs-FBS game observations used for four-unit and scoring-margin components; neutral prior when opponent lacks earlier data."
+ "overall":"85% opponent-adjusted four-unit strength + 15% uncapped opponent-adjusted scoring margin, cumulative AP-ranked win bonuses, asymmetric season SOS, -0.20 Z per loss, FCS underperformance penalties, and a decaying current-season preseason anchor through Week 6.",
+ "unit_weights":"Equal PO RO PD RD; passing PPA/success/explosiveness 45/45/10, rushing 40/40/20.",
+ "opponent_adjustment":"Chronological nonrecursive opponent unit strength frozen at pregame time.",
+ "recent_form":"Last three completed games 1.25x, 1.50x, 2.00x.",
+ "margin":"Uncapped opponent-adjusted scoring margin, 15% statistical performance.",
+ "losses":"Each loss -0.20 Z, overall only.",
+ "sos":"Asymmetric schedule strength, overall only.",
+ "fcs":"Additional penalties for FCS wins by ten or fewer or FCS losses, overall only.",
+ "preseason_anchor":"Week 1: 100%; Week 2: 75%; Week 3: 55%; Week 4: 40%; Week 5: 20%; Week 6: 5%; Week 7 onward: 0%. Current-season preseason consensus required.",
+ "display_rating":"Standardized model mapped to 1-100 rating."
 }
 (DATA/"current_rankings.json").write_text(json.dumps(cur,indent=2)+"\n")
 up_path=DATA/"upcoming.json"
