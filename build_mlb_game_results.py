@@ -20,14 +20,16 @@ def fetch(year):
 def build(year, document):
     teams = defaultdict(list)
     seen = set()
+    visited = set()
     quarantined = []
     for day in document.get("dates", []):
         for game in day.get("games", []):
             if game.get("gameType") != "R" or game.get("status", {}).get("abstractGameState") != "Final":
                 continue
             gid = game.get("gamePk")
-            if gid in seen:
+            if gid in visited:
                 continue
+            visited.add(gid)
             home, away = game["teams"]["home"], game["teams"]["away"]
             hid, aid = home["team"]["id"], away["team"]["id"]
             if hid not in IDS or aid not in IDS:
