@@ -35,40 +35,27 @@ function ratingValue(row,key){
  if(key==="defense_sd")return row.ratings.defense_sd;
  return row.metrics[key];
 }
-function metricSelect(selected){
- return Object.keys(data.metric_labels).filter(k=>k!=="overall_rating").map(k=>'<option value="'+h(k)+'"'+(k===selected?" selected":"")+'>'+h(pretty(k))+'</option>').join("");
-}
 function buildUI(){
  const seasons=Object.entries(data.seasons).sort((a,b)=>Number(b[0])-Number(a[0]));
  selectedYear=seasons[0][0];
- app.innerHTML='<section class="nba-rankings-hero"><p class="rank-kicker">BETWISE · NBA TEAM ANALYTICS</p><h1>'+h(names[mode])+'</h1><p>Rank all 30 NBA teams by season performance. Efficiency ratings use raw offensive and defensive output, with no opponent-strength adjustment.</p><div class="rank-nav"><a href="/nba/rankings/"'+(mode==="overall"?' aria-current="page"':"")+'>Overall Team Rankings</a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' aria-current="page"':"")+'>Offensive Rankings</a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' aria-current="page"':"")+'>Defensive Rankings</a><a href="/nba/teams/">NBA Team Pages</a></div></section><section class="nba-rank-controls" aria-label="Ranking controls"><label>Season<select id="rank-season">'+seasons.map(([y,s])=>'<option value="'+h(y)+'">'+h(s.label)+'</option>').join("")+'</select></label><label>Conference<select id="rank-conference"><option value="">All conferences</option><option>Eastern</option><option>Western</option></select></label><label class="rank-search">Search team<input id="rank-search" type="search" placeholder="Team name"></label><button type="button" id="rank-reset">Reset filters</button></section><section class="nba-metric-filter-panel"><div class="metric-filter-heading"><div><p class="rank-kicker">ADVANCED FILTERS</p><h2>Filter teams by metrics</h2></div><button type="button" id="rank-add-filter">+ Add metric filter</button></div><p>Set one or more minimum and maximum values. All added filters apply together.</p><div id="rank-filter-list"></div></section><section class="nba-rank-table-section"><div class="nba-rank-table-heading"><div><p class="rank-kicker">'+h(names[mode].toUpperCase())+'</p><h2 id="rank-season-heading"></h2></div><span id="rank-result-count"></span></div><div class="nba-rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></section><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show the team’s difference from that season’s league average. A positive defensive rating means better-than-average defense. Standard deviation is shown separately. This is season performance context, not a prediction or betting recommendation.</p>';
- const yearSelect=app.querySelector("#rank-season");
- const conf=app.querySelector("#rank-conference");
- const search=app.querySelector("#rank-search");
+ app.innerHTML='<section class="nba-rankings-hero"><p class="rank-kicker">BETWISE · NBA TEAM ANALYTICS</p><h1>'+h(names[mode])+'</h1><p>Rank all 30 NBA teams by season performance. Efficiency ratings use raw offensive and defensive output, with no opponent-strength adjustment.</p><div class="rank-nav"><a href="/nba/rankings/"'+(mode==="overall"?' aria-current="page"':"")+'>Overall Team Rankings</a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' aria-current="page"':"")+'>Offensive Rankings</a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' aria-current="page"':"")+'>Defensive Rankings</a><a href="/nba/teams/">NBA Team Pages</a></div></section><section class="nba-rank-table-section"><div class="nba-rank-table-heading"><div><p class="rank-kicker">'+h(names[mode].toUpperCase())+'</p><h2 id="rank-season-heading"></h2></div><span id="rank-result-count"></span></div><div class="nba-rank-table-scroll" id="rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></section><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show the team’s difference from that season’s league average. A positive defensive rating means better-than-average defense. Standard deviation is shown separately. This is season performance context, not a prediction or betting recommendation.</p>';
  let activeColumn="rank",activeAscending=true;
- const filters=app.querySelector("#rank-filter-list");
- function addFilter(){
-  const row=document.createElement("div");row.className="nba-metric-filter";
-  const select=document.createElement("select");select.setAttribute("aria-label","Metric");
-  select.innerHTML=metricSelect("ppg");
-  const min=document.createElement("input");min.type="number";min.step="any";min.placeholder="Minimum";min.setAttribute("aria-label","Minimum value");
-  const max=document.createElement("input");max.type="number";max.step="any";max.placeholder="Maximum";max.setAttribute("aria-label","Maximum value");
-  const remove=document.createElement("button");remove.type="button";remove.className="filter-remove";remove.textContent="Remove";remove.addEventListener("click",()=>{row.remove();render()});
-  [select,min,max].forEach(el=>el.addEventListener("input",render));
-  row.append(select,min,max,remove);filters.appendChild(row);render();
- }
- function metricOptions(){
-  return Object.keys(data.metric_labels).map(k=>({key:k,label:pretty(k)}));
+ function syncTopScrollbar(){
+  const wrapper=app.querySelector("#rank-table-scroll"),table=app.querySelector(".nba-rank-table"),bar=app.querySelector(".nba-rank-table-top-scroll"),spacer=bar?.firstElementChild;
+  if(!wrapper||!table||!bar||!spacer)return;
+  bar.style.width=wrapper.clientWidth+"px";
+  spacer.style.width=table.scrollWidth+"px";
+  bar.scrollLeft=wrapper.scrollLeft;
+  bar.addEventListener("scroll",()=>{wrapper.scrollLeft=bar.scrollLeft});
+  if(!wrapper.dataset.scrollSync){
+   wrapper.dataset.scrollSync="true";
+   wrapper.addEventListener("scroll",()=>{const current=app.querySelector(".nba-rank-table-top-scroll");if(current)current.scrollLeft=wrapper.scrollLeft});
+   window.addEventListener("resize",()=>{const current=app.querySelector(".nba-rank-table-top-scroll"),currentTable=app.querySelector(".nba-rank-table");if(current&&currentTable){current.style.width=wrapper.clientWidth+"px";current.firstElementChild.style.width=currentTable.scrollWidth+"px"}});
+  }
  }
  function render(){
-  const season=data.seasons[yearSelect.value];if(!season)return;
-  const minMax=[...filters.querySelectorAll(".nba-metric-filter")].map(row=>({key:row.querySelector("select").value,min:num(row.querySelectorAll("input")[0].value),max:num(row.querySelectorAll("input")[1].value)}));
-  let rows=season.teams.filter(row=>{
-   if(conf.value&&row.conference!==conf.value)return false;
-   if(search.value&&!row.team.toLowerCase().includes(search.value.trim().toLowerCase()))return false;
-   for(const f of minMax){if(f.min===null&&f.max===null)continue;const v=num(ratingValue(row,f.key));if(v===null)return false;if(f.min!==null&&v<f.min)return false;if(f.max!==null&&v>f.max)return false}
-   return true;
-  });
+  const season=data.seasons[selectedYear];if(!season)return;
+  let rows=season.teams.slice();
   rows=rows.map(row=>({...row,page_rank:Number(row.ranks[modelRankKey])}));
   function valueFor(row,key){
    if(key==="team")return row.team;
@@ -84,7 +71,7 @@ function buildUI(){
   const keys=visible[mode]||visible.overall;
   keys.forEach(k=>cols.push({key:k,label:pretty(k)}));
   cols.forEach(c=>c.help=metricHelp[c.key]||("Selected-season "+pretty(c.key)+" value for this team."));
-  app.querySelector("#rank-table-head").innerHTML='<tr>'+cols.map(c=>'<th scope="col" aria-sort="'+(activeColumn===c.key?(activeAscending?"ascending":"descending"):"none")+'"><div class="nba-th-content"><button type="button" class="nba-sort-button" data-sort-key="'+h(c.key)+'" aria-label="Sort by '+h(c.label)+'">'+h(c.label)+' <span class="nba-sort-arrow" aria-hidden="true">'+(activeColumn===c.key?(activeAscending?"↑":"↓"):"↕")+'</span></button><span class="help-wrap"><button class="help-btn" type="button" aria-label="About '+h(c.label)+'" aria-expanded="false">?</button><span class="help-pop" role="tooltip">'+h(c.help)+'</span></span></div></th>').join("")+'</tr>';
+  app.querySelector("#rank-table-head").innerHTML='<tr>'+cols.map(c=>'<th scope="col" aria-sort="'+(activeColumn===c.key?(activeAscending?"ascending":"descending"):"none")+'"><div class="nba-th-content"><button type="button" class="nba-sort-button" data-sort-key="'+h(c.key)+'" aria-label="Sort by '+h(c.label)+'">'+h(c.label)+' <span class="nba-sort-arrow" aria-hidden="true">'+(activeColumn===c.key?(activeAscending?"↑":"↓"):"↕")+'</span></button><span class="help-wrap"><button class="help-btn" type="button" aria-label="About '+h(c.label)+'" aria-expanded="false">?</button><span class="help-pop" role="tooltip">'+h(c.help)+'</span></span></div></th>').join("")+'</tr><tr class="nba-scrollbar-row"><th class="nba-scrollbar-cell" colspan="'+cols.length+'"><div class="nba-rank-table-top-scroll" aria-label="Scroll ranking table horizontally"><div></div></div></th></tr>';
   app.querySelectorAll("#rank-table-head [data-sort-key]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.sortKey;if(activeColumn===key)activeAscending=!activeAscending;else{activeColumn=key;activeAscending=key==="team"||key==="record"||key==="rank"?true:!(data.lower_is_better||[]).includes(key)}render()}));
   app.querySelector("#rank-table-body").innerHTML=rows.map(row=>"<tr>"+cols.map(col=>{
    if(col.key==="rank")return "<td>"+row.page_rank+"</td>";
@@ -93,12 +80,10 @@ function buildUI(){
 
    const value=ratingValue(row,col.key);
    return "<td>"+h(fmt(value,col.key))+"</td>";
-  }).join("")+"</tr>").join("")||'<tr><td colspan="'+cols.length+'">No teams match these filters.</td></tr>';
+  }).join("")+"</tr>").join("")||'<tr><td colspan="'+cols.length+'">No teams available for this season.</td></tr>';
+  syncTopScrollbar();
  }
- yearSelect.addEventListener("change",render);conf.addEventListener("change",render);search.addEventListener("input",render);
- app.querySelector("#rank-add-filter").addEventListener("click",addFilter);
- app.querySelector("#rank-reset").addEventListener("click",()=>{conf.value="";search.value="";activeColumn="rank";activeAscending=true;filters.innerHTML="";render()});
- addFilter();
+ render();
 }
 document.addEventListener("click",function(event){
  const button=event.target.closest(".help-btn");
