@@ -123,6 +123,9 @@ def enrich(official,archive,season):
         entry["record"]["verified_runline_wins"]=sum(g["team_runline_result"]=="W" for g in games)
         entry["record"]["verified_runline_losses"]=sum(g["team_runline_result"]=="L" for g in games)
         entry["record"]["verified_runline_games"]=len(games)
+    stats["enriched_games"]+=0
+    stats["missing_or_disputed_odds"]+=0
+    stats["ambiguous_official_games"]+=0
     stats["official_game_identifiers"]=len(indexed)
     stats["source_identities"]=len(choices)
     stats["matched_pct"]=round(100*stats["enriched_games"]/len(indexed),2) if indexed else 0
