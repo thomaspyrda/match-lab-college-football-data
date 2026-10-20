@@ -62,7 +62,7 @@ jobs:
             echo "Commit: $GITHUB_SHA"
             echo "Generated: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             echo
-            if [ -f audit-report.txt ]; then cat audit-report.txt; else echo 'AUDIT INCOMPLETE — no run-line coverage verified'; fi
+            if [ -f audit-report.txt ]; then cat audit-report.txt; else echo 'AUDIT INCOMPLETE — no run-line coverage verified. Inspect workflow job logs for failed step.'; fi
           } > "data/mlb/audits/${{ inputs.season || '2024' }}-runline-audit.txt"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
