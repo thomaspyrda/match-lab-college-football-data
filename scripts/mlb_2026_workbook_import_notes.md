@@ -1,0 +1,1 @@
+2026 MLB odds spreadsheet fields: Date, Away, Away Score, Home, Home Score, Away Starter, Home Starter, O/U, Away ML, Home ML, Home RL Spread. Match official results using date, team names, and both scores. Preserve existing game IDs and scores.
