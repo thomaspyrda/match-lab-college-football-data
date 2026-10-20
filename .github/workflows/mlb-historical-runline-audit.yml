@@ -49,9 +49,27 @@ jobs:
           with open("historical-odds.json","rb") as f: json.load(f)
           print("Download verified as JSON")
           PY
-      - name: Audit against official MLB final results — no publishing
+      - name: Audit against official MLB final results
         run: |
           python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season "${{ inputs.season || '2024' }}" | tee audit-report.txt
+      - name: Publish 2024 verified run-line data
+        if: ${{ (inputs.season == '2024' || github.event_name == 'push') }}
+        run: |
+          python scripts/enrich_mlb_runlines.py --odds historical-odds.json --season 2024 --write | tee publish-report.txt
+          python - <<'PY'
+          import json
+          p="data/mlb/game-results/2024.json"
+          d=json.load(open(p))
+          games=[g for t in d["teams"].values() for g in t["games"] if g.get("team_runline_side") in (-1.5,1.5)]
+          assert len(games)==4764, f"Expected 4764 verified team records, got {len(games)}"
+          assert all(g.get("team_runline_result") in ("W","L") for g in games)
+          print("Verified 2024 team-game records:",len(games))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/game-results/2024.json
+          git commit -m "Publish verified 2024 MLB historical run-line results" || exit 0
+          git push
       - name: Preserve audit outcome in repository
         if: always()
         run: |
