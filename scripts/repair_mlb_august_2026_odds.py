@@ -42,8 +42,8 @@ def get_event(item):
     try:odds=fetch(url).get("items") or []
     except Exception as e:return None,"odds_http_error"
     favored={side(x) for x in odds}-{None}
-    if len(favored)!=1:return None,"missing_or_disputed_odds"
-    return {"date":date,"home":loc["home"],"away":loc["away"],"favored":next(iter(favored)),"url":url},None
+    totals={float(x["overUnder"]) for x in odds if isinstance(x.get("overUnder"),(int,float)) and x["overUnder"]>0}
+    return {"date":date,"home":loc["home"],"away":loc["away"],"favored":next(iter(favored)) if len(favored)==1 else None,"total":next(iter(totals)) if len(totals)==1 else None,"url":url},None
 def main():
     path=ROOT/"data/mlb/game-results/2026.json"
     data=json.loads(path.read_text())
@@ -71,11 +71,24 @@ def main():
         keys=lookup.get((obj["date"],h,a,hs,ascore),[])
         if len(keys)!=1:stats["official_match_missing_or_duplicate"]+=1;continue
         rows=keys[0]
+        if obj["total"] is not None:
+            for team,g in rows:
+                if g.get("market_ou_total") is None:
+                    total=obj["total"]
+                    g["market_ou_total"]=total
+                    scored=g["runs_for"]+g["runs_against"]
+                    g["market_ou_result"]="O" if scored>total else "U" if scored<total else "P"
+                    g["market_ou_source"]="espn_historical_aug_2026"
+            stats["totals_recovered"]+=1
         if all(g.get("team_runline_side") in (-1.5,1.5) for t,g in rows):
-            stats["already_populated"]+=1;continue
-        # Don't overwrite existing known sides; unresolved conflicts stay blank.
+            stats["already_populated"]+=1
+            continue
         if any(g.get("team_runline_side") in (-1.5,1.5) for t,g in rows):
-            stats["partial_pair"]+=1;continue
+            stats["partial_pair"]+=1
+            continue
+        if obj["favored"] is None:
+            stats["missing_or_disputed_favorite"]+=1
+            continue
         favorite=h if obj["favored"]=="home" else a
         for team,g in rows:
             line=-1.5 if team==favorite else 1.5
@@ -86,5 +99,5 @@ def main():
         stats["added"]+=1
     path.write_text(json.dumps(data,separators=(",",":"))+"\n")
     print(json.dumps(stats,indent=2),flush=True)
-    assert stats["added"]>30,"Insufficient recovery: do not publish"
+    assert stats["totals_recovered"]>30,"Insufficient August O/U coverage"
 if __name__=="__main__":main()
