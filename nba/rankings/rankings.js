@@ -79,7 +79,7 @@ function buildUI(){
    if(key==="team")return row.team;
    if(key==="selected_rank")return Number(row.selected_rank);
    if(key==="model_rank")return Number(row.ranks[modelRankKey]);
-   if(key==="record"){const m=String(row.record||"").match(/(\\d+)\\s*[-–]\\s*(\\d+)/);return m?Number(m[1])/(Number(m[1])+Number(m[2])||1):null}
+   if(key==="record"){const m=String(row.record||"").match(/(\d+)\s*[-–]\s*(\d+)/);return m?Number(m[1])/(Number(m[1])+Number(m[2])||1):null}
    return num(ratingValue(row,key));
   }
   rows.sort((a,b)=>{const av=valueFor(a,activeColumn),bv=valueFor(b,activeColumn);if(typeof av==="string"&&typeof bv==="string"){const c=av.localeCompare(bv);return activeAscending?c:-c}if(av===null&&bv!==null)return 1;if(bv===null&&av!==null)return -1;if(av!==bv)return activeAscending?av-bv:bv-av;return a.team.localeCompare(b.team)});
@@ -93,7 +93,7 @@ function buildUI(){
   keys.forEach(k=>cols.push({key:k,label:pretty(k)}));
   app.querySelector("#rank-table-head").innerHTML="<tr>"+cols.map(c=>"<th scope=\"col\" aria-sort=\""+(activeColumn===c.key?(activeAscending?"ascending":"descending"):"none")+"\"><button type=\"button\" class=\"nba-sort-button\" data-sort-key=\""+h(c.key)+"\" aria-label=\"Sort by "+h(c.label)+"\">"+h(c.label)+" <span class=\"nba-sort-arrow\" aria-hidden=\"true\">"+(activeColumn===c.key?(activeAscending?"↑":"↓"):"↕")+"</span></button></th>").join("")+"</tr>";
   app.querySelectorAll("#rank-table-head [data-sort-key]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.sortKey;if(activeColumn===key)activeAscending=!activeAscending;else{activeColumn=key;activeAscending=key==="team"||key==="record"||key==="model_rank"||key==="selected_rank"?true:!(data.lower_is_better||[]).includes(key)}if(data.metric_labels[key])sort.value=key;render()}));
-  app.querySelector("#rank-table-body").innerHTML=ranked.map(row=>"<tr>"+cols.map(col=>{
+  app.querySelector("#rank-table-body").innerHTML=rows.map(row=>"<tr>"+cols.map(col=>{
    if(col.key==="selected_rank")return "<td>"+row.selected_rank+"</td>";
    if(col.key==="team")return '<td><a class="nba-rank-team" href="/nba/teams/'+h(row.slug)+'/"><img loading="lazy" src="'+h(row.logo)+'" alt=""><span>'+h(row.team)+'</span></a></td>';
    if(col.key==="record")return "<td>"+h(row.record||"—")+"</td>";
