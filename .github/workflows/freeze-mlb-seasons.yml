@@ -1,0 +1,30 @@
+name: Freeze completed MLB seasons
+on:
+  push:
+    paths: ['.github/workflows/freeze-mlb-seasons.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record fixed historical checksums
+        run: |
+          python - <<'PY'
+          import json,hashlib,pathlib
+          years=list(range(2015,2027))
+          files={str(y):hashlib.sha256(pathlib.Path(f'data/mlb/game-results/{y}.json').read_bytes()).hexdigest() for y in years}
+          pathlib.Path('data/mlb/frozen-season-sha256.json').write_text(json.dumps({'policy':'Historical MLB season archives are immutable unless corrections are explicitly authorized','seasons':files},indent=2)+'\n')
+          print('Frozen',len(files),'complete MLB season archives')
+          PY
+          python scripts/check_frozen_mlb_seasons.py
+      - name: Commit immutable baseline
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/frozen-season-sha256.json
+          git commit -m "Freeze audited MLB 2015 through 2026 season files"
+          git pull --rebase -X theirs origin main
+          git push origin main
