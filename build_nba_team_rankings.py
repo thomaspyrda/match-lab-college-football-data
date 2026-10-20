@@ -140,7 +140,15 @@ def main():
         archive[slug] = read_json(archive_path).get("seasons", [])
         details[slug] = read_json(detail_path).get("seasons", {})
 
-    years = [str(year) for year in range(2016, 2027)]
+    year_sets = [
+        {str(season.get("key")) for season in archive[slug]}
+        & {str(year) for year in details[slug]}
+        for slug in TEAM_INFO
+    ]
+    years = sorted(set.intersection(*year_sets), key=int)
+    required_history = {str(year) for year in range(2016, 2027)}
+    if not required_history.issubset(set(years)):
+        raise ValueError("Expected archived seasons 2015–16 through 2025–26 for all 30 teams")
     output = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -275,7 +283,7 @@ def main():
 
         output["seasons"][year] = {
             "label": season_label or year,
-            "status": "complete",
+            "status": "in_progress" if int(year) == datetime.now(timezone.utc).year + 1 else "complete",
             "team_count": len(rows),
             "league_average": {
                 "offensive_rating": round(league_ortg, 3),
@@ -286,8 +294,6 @@ def main():
             "teams": sorted(rows, key=lambda row: row["ranks"]["overall"]),
         }
 
-    if len(output["seasons"]) != 11:
-        raise ValueError("Expected 2015–16 through 2025–26 (11 completed NBA seasons)")
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(output, separators=(",", ":"), ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {len(output['seasons'])} seasons / {sum(s['team_count'] for s in output['seasons'].values())} team-seasons to {OUTPUT}")
