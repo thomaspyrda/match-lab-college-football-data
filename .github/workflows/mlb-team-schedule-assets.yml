@@ -1,0 +1,40 @@
+name: Publish current MLB schedule assets to every team page
+on:
+  push:
+    paths: ['.github/workflows/mlb-team-schedule-assets.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh MLB team HTML asset references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          pages=list(Path("mlb/teams").glob("*/index.html"))
+          changed=0
+          for p in pages:
+              old=p.read_text()
+              new=re.sub(r'(/sports-research/mlb-cbb-team-layout-draft-v15\.js)(?:\?v=[^"\']*)?',r'\g<1>?v=20261020-2026-odds',old)
+              new=re.sub(r'(/sports-research/mlb-cbb-team-layout-draft-v14\.css)(?:\?v=[^"\']*)?',r'\g<1>?v=20261020-2026-odds',new)
+              if new!=old:
+                  p.write_text(new)
+                  changed+=1
+          print("MLB team pages refreshed:",changed,"total:",len(pages))
+          assert len(pages)>=30
+          assert all("20261020-2026-odds" in p.read_text() for p in pages)
+          PY
+      - name: Commit refreshed page assets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/teams/*/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh MLB team page assets for 2026 odds and mobile styling"
+            git push
+          fi
