@@ -1,0 +1,53 @@
+name: Republish restored MLB markets to live site
+on:
+  push:
+    paths: ['.github/workflows/mlb-republish-restored-markets.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update all MLB team renderer cache keys
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          pages=list(Path('mlb/teams').glob('*/index.html'))
+          assert len(pages)==30
+          for p in pages:
+              s=p.read_text()
+              s=s.replace('mlb-cbb-team-layout-v16.js?v=20261020-new','mlb-cbb-team-layout-v16.js?v=20261020-markets-restored')
+              assert 'mlb-cbb-team-layout-v16.js?v=20261020-markets-restored' in s,p
+              p.write_text(s)
+          print('Updated',len(pages),'MLB team pages')
+          PY
+      - name: Commit refreshed page references
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/teams
+          git diff --cached --quiet || git commit -m "Serve restored MLB market data on all thirty team pages"
+          git pull --rebase -X theirs origin main
+          git push origin main
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
