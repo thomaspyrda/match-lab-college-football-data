@@ -1,0 +1,59 @@
+name: MLB team-page live publication check
+on:
+  push:
+    paths:
+      - '.github/workflows/mlb-live-publish-check.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate committed historical MLB data and hosted pages
+        run: |
+          python - <<'PY' | tee /tmp/mlb-publication-report.txt
+          import datetime,json,pathlib,urllib.request,urllib.error
+          from collections import Counter
+          print("MLB live publication check:",datetime.datetime.now(datetime.timezone.utc).isoformat())
+          for year in (2018,2021,2022,2023,2024,2025):
+              p=pathlib.Path(f"data/mlb/game-results/{year}.json")
+              d=json.loads(p.read_text())
+              rows=[g for t in d["teams"].values() for g in t.get("games",[]) if g.get("team_runline_side") in (-1.5,1.5)]
+              ids=Counter(str(g["game_id"]) for g in rows)
+              assert all(n==2 for n in ids.values()),f"{year}: unpaired game records"
+              assert all(g.get("team_runline_result") in ("W","L") for g in rows),f"{year}: ungraded run line"
+              print(f"Repository {year}: {len(ids)} verified games, {len(rows)} team entries")
+              url=f"https://matchlab.parlaycalculator.bet/data/mlb/game-results/{year}.json"
+              try:
+                  req=urllib.request.Request(url,headers={"User-Agent":"BetWise-publication-check/1.0","Accept":"application/json"})
+                  with urllib.request.urlopen(req,timeout=20) as resp:
+                      content=resp.read(22000000)
+                      served=json.loads(content)
+                  served_rows=[g for t in served.get("teams",{}).values() for g in t.get("games",[]) if g.get("team_runline_side") in (-1.5,1.5)]
+                  print(f"LIVE {year}: {len(served_rows)//2} verified games, HTTP 200, JSON parsed")
+                  if len(served_rows)<len(rows):
+                      print(f"DEPLOYMENT GAP {year}: published repository contains more verified rows")
+              except Exception as e:
+                  print(f"LIVE CHECK FAILED {year}: {type(e).__name__} {str(e)[:250]}")
+          url="https://matchlab.parlaycalculator.bet/mlb/teams/new-york-yankees"
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"BetWise-publication-check/1.0"}),timeout=20) as r:
+                  print("MLB team route:",r.status,"final URL:",r.url)
+          except Exception as e:
+              print("MLB TEAM ROUTE UNREACHABLE:",str(e)[:250])
+          PY
+      - name: Save publication audit report
+        if: always()
+        run: |
+          mkdir -p data/mlb/audits
+          cp /tmp/mlb-publication-report.txt data/mlb/audits/live-publication-status.txt 2>/dev/null || echo 'Publication check failed before report creation' > data/mlb/audits/live-publication-status.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/audits/live-publication-status.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Record MLB team pages live publication status"
+            git push
+          fi
