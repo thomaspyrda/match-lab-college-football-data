@@ -1,0 +1,35 @@
+name: Refresh MLB schedule without moneylines
+on:
+  push:
+    paths: ['.github/workflows/mlb-remove-moneyline-cache.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Force current JS on all thirty MLB team pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          pages=list(Path("mlb/teams").glob("*/index.html"))
+          for p in pages:
+              html=p.read_text()
+              html=re.sub(r'(/sports-research/mlb-cbb-team-layout-draft-v15\.js)(?:\?v=[^"\']*)?',r'\g<1>?v=20261020-no-moneyline-2',html)
+              p.write_text(html)
+          print('Refreshed team pages:',len(pages))
+          assert len(pages)==30
+          source=Path('sports-research/mlb-cbb-team-layout-draft-v15.js').read_text()
+          assert 'RL / ML' not in source and 'wise-2026-ml">ML ' not in source
+          PY
+      - name: Publish refreshed HTML
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/teams/*/index.html
+          git commit -m "Bust MLB schedule JavaScript cache to remove moneyline labels"
+          git push
