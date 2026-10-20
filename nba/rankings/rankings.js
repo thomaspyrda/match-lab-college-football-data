@@ -65,7 +65,7 @@ function buildUI(){
   let rows=season.teams.filter(row=>{
    if(conf.value&&row.conference!==conf.value)return false;
    if(search.value&&!row.team.toLowerCase().includes(search.value.trim().toLowerCase()))return false;
-   for(const f of minMax){const v=num(ratingValue(row,f.key));if(v===null)return false;if(f.min!==null&&v<f.min)return false;if(f.max!==null&&v>f.max)return false}
+   for(const f of minMax){if(f.min===null&&f.max===null)continue;const v=num(ratingValue(row,f.key));if(v===null)return false;if(f.min!==null&&v<f.min)return false;if(f.max!==null&&v>f.max)return false}
    return true;
   });
   const lower=(data.lower_is_better||[]).includes(sortKey);
