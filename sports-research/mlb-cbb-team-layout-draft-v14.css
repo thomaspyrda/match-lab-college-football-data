@@ -69,3 +69,28 @@ body.wise-nba-template .wise-accolade-sources a{color:#dcefe0;text-decoration:un
 /* MLB schedule status colors */
 .wise-team-section#schedule td.wise-outcome-positive{color:#53d98b;font-weight:800}
 .wise-team-section#schedule td.wise-outcome-negative{color:#f16e75;font-weight:800}
+
+/* Mobile MLB schedule: six columns visible without wrapping or horizontal scrolling. */
+.wise-mlb-opponent-short{display:none}
+#schedule .wise-mlb-schedule-scroll table{table-layout:fixed;min-width:0;width:100%}
+#schedule .wise-mlb-schedule-scroll th,#schedule .wise-mlb-schedule-scroll td{white-space:nowrap;overflow:hidden;text-overflow:clip}
+#schedule .wise-mlb-schedule-scroll th:nth-child(1){width:16%}
+#schedule .wise-mlb-schedule-scroll th:nth-child(2){width:29%}
+#schedule .wise-mlb-schedule-scroll th:nth-child(3){width:13%}
+#schedule .wise-mlb-schedule-scroll th:nth-child(4){width:10%}
+#schedule .wise-mlb-schedule-scroll th:nth-child(5){width:17%}
+#schedule .wise-mlb-schedule-scroll th:nth-child(6){width:15%}
+@media(max-width:600px){
+ #schedule .wise-mlb-schedule-scroll{overflow-x:hidden;width:100%}
+ #schedule .wise-mlb-schedule-scroll table{font-size:clamp(10px,2.8vw,12px)}
+ #schedule .wise-mlb-schedule-scroll th,#schedule .wise-mlb-schedule-scroll td{padding:10px 3px;line-height:1.35;letter-spacing:-.025em}
+ #schedule .wise-mlb-schedule-scroll th{font-size:clamp(9px,2.3vw,10px)}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(1){width:19%}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(2){width:20%}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(3){width:15%}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(4){width:11%}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(5){width:19%}
+ #schedule .wise-mlb-schedule-scroll th:nth-child(6){width:16%}
+ #schedule .wise-mlb-opponent-full{display:none}
+ #schedule .wise-mlb-opponent-short{display:inline}
+}
