@@ -54,7 +54,7 @@ for row in records:
    if a is not None and h is not None and a!=h:
     spread=-1.5 if h<a else 1.5
     counts["moneyline_fallback"]+=1 if ish else 0
- if spread in (-1.5,1.5):
+  if spread in (-1.5,1.5):
    side=spread if ish else -spread
    g["team_runline_side"]=side
    g["team_runline_result"]="W" if g["runs_for"]+side>g["runs_against"] else "L"
