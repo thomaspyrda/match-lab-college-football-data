@@ -1,5 +1,22 @@
 Traceback (most recent call last):
-  File "/home/runner/work/match-lab-college-football-data/match-lab-college-football-data/scripts/import_2026_mlb_odds.py", line 19, in <module>
-    if home and away:keys[(home[1]["date"],away[0],home[0],away[1]["runs_for"],home[1]["runs_for"])].append(rows)
-                                                           ~~~~~~~^^^^^^^^^^^^
-KeyError: 'runs_for'
+  File "/home/runner/work/match-lab-college-football-data/match-lab-college-football-data/scripts/import_2026_mlb_odds.py", line 21, in <module>
+    with urllib.request.urlopen(req,timeout=120) as response:content=response.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 406: Not Acceptable
