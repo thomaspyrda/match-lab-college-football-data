@@ -1,0 +1,32 @@
+name: Refresh CFB directory current records
+on:
+  push:
+    paths: ['.github/workflows/cfb-team-directory-records.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update all 2026 CFB team directory W-L records
+        run: |
+          python scripts/refresh_cfb_directory_records.py | tee /tmp/cfb-record-audit.txt
+      - name: Publish updated team tiles
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add teams.html
+          if ! git diff --cached --quiet; then git commit -m "Refresh current CFB directory team records";git push;fi
+      - name: Save refresh diagnostics
+        if: always()
+        run: |
+          mkdir -p data/cfb/audits
+          cp /tmp/cfb-record-audit.txt data/cfb/audits/directory-record-refresh.txt 2>/dev/null || echo 'CFB directory record refresh failed before output' > data/cfb/audits/directory-record-refresh.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cfb/audits/directory-record-refresh.txt
+          if ! git diff --cached --quiet; then git commit -m "Record CFB team directory refresh results";git push;fi
