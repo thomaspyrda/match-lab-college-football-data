@@ -11,9 +11,9 @@ const pctKeys=new Set(["fg_pct","opp_fg_pct","three_pct","opp_three_pct","offens
 const signedKeys=new Set(["turnover_margin","overall_rating","offense_rating","defense_rating","net_rating"]);
 const ratingKeys=new Set(["overall_rating","offense_rating","defense_rating","ortg","drtg","net_rating"]);
 const visible={
-overall:["overall_rating","overall_sd","offense_rating","defense_rating","net_rating","pace","ppg","ppg_allowed"],
-offense:["offense_rating","offense_sd","ppg_home","ppg_away","fg_pct","three_pct","assists_per_game","turnovers_per_game","offensive_rebound_rate","pace"],
-defense:["defense_rating","defense_sd","ppg_allowed","opp_fg_pct","opp_three_pct","rebounds_allowed_per_game","opp_efg_pct","opponent_turnovers_per_game","steals_per_game","blocks_per_game","turnover_margin"]
+overall:["overall_rating","overall_sd","ortg","drtg","net_rating","pace","ppg","ppg_allowed"],
+offense:["offense_sd","ortg","ppg_home","ppg_away","fg_pct","three_pct","assists_per_game","turnovers_per_game","offensive_rebound_rate","pace"],
+defense:["defense_sd","drtg","ppg_allowed","opp_fg_pct","opp_three_pct","rebounds_allowed_per_game","opp_efg_pct","opponent_turnovers_per_game","steals_per_game","blocks_per_game","turnover_margin"]
 };
 const directions={};
 let data=null,selectedYear=null;
@@ -89,7 +89,7 @@ function buildUI(){
   const cols=[{key:"selected_rank",label:"Rank"},{key:"team",label:"Team"},{key:"record",label:"Record"},{key:"model_rank",label:mode==="overall"?"Overall #":mode==="offense"?"OFF #":"DEF #"}];
   const keys=visible[mode]||visible.overall;
   const displayed=new Set(keys);
-  if(!displayed.has(sortKey))cols.push({key:sortKey,label:pretty(sortKey)});
+  if(!displayed.has(sortKey)&&sortKey!=="offense_rating"&&sortKey!=="defense_rating")cols.push({key:sortKey,label:pretty(sortKey)});
   keys.forEach(k=>cols.push({key:k,label:pretty(k)}));
   app.querySelector("#rank-table-head").innerHTML="<tr>"+cols.map(c=>"<th scope=\"col\" aria-sort=\""+(activeColumn===c.key?(activeAscending?"ascending":"descending"):"none")+"\"><button type=\"button\" class=\"nba-sort-button\" data-sort-key=\""+h(c.key)+"\" aria-label=\"Sort by "+h(c.label)+"\">"+h(c.label)+" <span class=\"nba-sort-arrow\" aria-hidden=\"true\">"+(activeColumn===c.key?(activeAscending?"↑":"↓"):"↕")+"</span></button></th>").join("")+"</tr>";
   app.querySelectorAll("#rank-table-head [data-sort-key]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.sortKey;if(activeColumn===key)activeAscending=!activeAscending;else{activeColumn=key;activeAscending=key==="team"||key==="record"||key==="model_rank"||key==="selected_rank"?true:!(data.lower_is_better||[]).includes(key)}if(data.metric_labels[key])sort.value=key;render()}));
