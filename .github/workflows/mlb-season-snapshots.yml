@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - build_mlb_season_snapshots.py
+      - backfill_mlb_team_metrics.py
       - .github/workflows/mlb-season-snapshots.yml
 permissions:
   contents: write
@@ -25,6 +26,8 @@ jobs:
         run: git show HEAD:data/mlb/season-snapshots.json > /tmp/mlb-season-snapshots-before.json
       - name: Collect MLB game results and validate seasons
         run: python build_mlb_season_snapshots.py --years "$(date -u +%Y)"
+      - name: Add missing official team metrics
+        run: python backfill_mlb_team_metrics.py
       - name: Validate output and preserve historical seasons
         run: |
           python - <<'PY'
@@ -36,10 +39,20 @@ jobs:
           current_year=datetime.now(timezone.utc).year
           assert all(len(teams)==30 for teams in after["seasons"].values())
           assert all(row["ats_record"] is None and row["ou_record"] is None for teams in after["seasons"].values() for row in teams.values())
+          metric_keys=("batting_average","on_base_percentage","slugging_percentage","home_runs","strikeout_rate","era","whip","opponent_average","bullpen_era","strikeouts_per_9")
+          additive_keys={"team_stats","team_stats_source","team_stats_updated_at"}
           for year,rows in before["seasons"].items():
               if int(year)<current_year:
-                  assert after["seasons"].get(year)==rows, f"Historical season {year} changed during routine refresh"
-          print(len(after["seasons"]), "seasons validated; prior seasons preserved")
+                  for slug,row in rows.items():
+                      refreshed=after["seasons"][year][slug]
+                      assert {k:v for k,v in refreshed.items() if k not in additive_keys}=={k:v for k,v in row.items() if k not in additive_keys}, f"Archived game/record data changed: {year} {slug}"
+                      for key,value in row.get("team_stats",{}).items():
+                          if value is not None:
+                              assert refreshed.get("team_stats",{}).get(key)==value, f"Existing metric changed: {year} {slug} {key}"
+          for year,teams in after["seasons"].items():
+              if int(year)<current_year:
+                  assert all(all(row.get("team_stats",{}).get(key) is not None for key in metric_keys) for row in teams.values()), f"Missing team metrics in completed season {year}"
+          print(len(after["seasons"]), "seasons validated; historical schedule/results preserved and team metrics populated")
           PY
       - name: Commit refreshed dataset
         run: |
