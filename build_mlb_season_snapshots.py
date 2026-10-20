@@ -38,6 +38,7 @@ def build(years):
         doc,url=fetch(year)
         rows={slug:blank(team,year) for team,slug in IDS.items()}
         seen=set()
+        unfinished_regular_season=False
         for day in doc.get("dates",[]):
             for game in day.get("games",[]):
                 gid=game.get("gamePk")
@@ -45,6 +46,7 @@ def build(years):
                 seen.add(gid)
                 if game.get("gameType")!="R": continue
                 status=game.get("status",{}).get("abstractGameState")
+                if status not in ("Final","Cancelled"): unfinished_regular_season=True
                 if status!="Final": continue
                 teams=game.get("teams",{})
                 h,a=teams.get("home",{}),teams.get("away",{})
@@ -60,7 +62,7 @@ def build(years):
         for row in rows.values():
             gp=row["games_played"]
             if gp:
-                row["status"]="partial" if year==datetime.now(timezone.utc).year else "complete"
+                row["status"]="partial" if year==datetime.now(timezone.utc).year and unfinished_regular_season else "complete"
                 row["runs_per_game"]=round(row["runs_scored"]/gp,1)
                 row["runs_allowed_per_game"]=round(row["runs_allowed"]/gp,1)
                 row["source"]=url
@@ -72,12 +74,36 @@ def build(years):
         print(year,len(seen),"scheduled records",sum(r["games_played"] for r in rows.values())//2,"completed games")
     return result
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument("--years",nargs="+",type=int,default=list(range(2015,2027)));args=parser.parse_args()
-    result=build(args.years)
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--years",nargs="+",type=int,default=None,help="Seasons to add or refresh; defaults to the current calendar year only.")
+    parser.add_argument("--replace-existing",action="store_true",help="Explicitly rebuild existing season rows; use only for a verified correction.")
+    args=parser.parse_args()
     path=ROOT/"data/mlb/season-snapshots.json";path.parent.mkdir(parents=True,exist_ok=True)
-    if path.exists():
-        old=json.loads(path.read_text())
-        result["seasons"]={**old.get("seasons",{}),**result["seasons"]}
+    old=json.loads(path.read_text()) if path.exists() else {"seasons":{}}
+    old_seasons=old.get("seasons",{})
+    current_year=datetime.now(timezone.utc).year
+    requested=args.years or [current_year]
+    years=[]
+    for year in requested:
+        prior=old_seasons.get(str(year))
+        frozen=prior and (year<current_year or all(row.get("status")=="complete" for row in prior.values()))
+        if prior and frozen and not args.replace_existing:
+            print("Preserving frozen season",year)
+            continue
+        years.append(year)
+    if not years:
+        print("No seasons require refresh; archived snapshots left unchanged.")
+        return
+    result=build(years)
+    merged=dict(old_seasons)
+    for year,rows in result["seasons"].items():
+        prior=old_seasons.get(year)
+        frozen=prior and (int(year)<current_year or all(row.get("status")=="complete" for row in prior.values()))
+        if prior and frozen and not args.replace_existing:
+            print("Preserving frozen season",year)
+            continue
+        merged[year]=rows
+    result["seasons"]=merged
     path.write_text(json.dumps(result,separators=(",",":"),ensure_ascii=False)+"\n")
-    print("Saved",path,len(result["seasons"]),"seasons")
+    print("Saved",path,len(result["seasons"]),"seasons; refreshed",", ".join(map(str,years)))
 if __name__=="__main__":main()
