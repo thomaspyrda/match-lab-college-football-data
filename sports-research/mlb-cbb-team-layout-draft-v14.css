@@ -94,3 +94,11 @@ body.wise-nba-template .wise-accolade-sources a{color:#dcefe0;text-decoration:un
  #schedule .wise-mlb-opponent-full{display:none}
  #schedule .wise-mlb-opponent-short{display:inline}
 }
+
+/* Opponent labels: never render both full and abbreviated labels together. */
+#schedule .wise-mlb-opponent-full{display:inline}
+#schedule .wise-mlb-opponent-short{display:none}
+@media(max-width:600px){
+ #schedule .wise-mlb-schedule-scroll .wise-mlb-opponent-full{display:none!important}
+ #schedule .wise-mlb-schedule-scroll .wise-mlb-opponent-short{display:inline!important}
+}
