@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/runner/work/match-lab-college-football-data/match-lab-college-football-data/scripts/enrich_mlb_2026_espn.py", line 89, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/runner/work/match-lab-college-football-data/match-lab-college-football-data/scripts/enrich_mlb_2026_espn.py", line 44, in main
+    official[(home[1]["date"],home[0],away[0],home[1]["runs_for"],away[1]["runs_for"])]=rows
+                                              ~~~~~~~^^^^^^^^^^^^
+KeyError: 'runs_for'
