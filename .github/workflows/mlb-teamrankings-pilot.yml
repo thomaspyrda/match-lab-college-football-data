@@ -1,0 +1,30 @@
+name: TeamRankings MLB historical source pilot
+on:
+  push:
+    paths:
+      - '.github/workflows/mlb-teamrankings-pilot.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test historical MLB matchup extraction
+        run: |
+          python -m py_compile scripts/collect_teamrankings_mlb.py
+          python scripts/collect_teamrankings_mlb.py --urls data/mlb/teamrankings-pilot-urls.txt --output data/mlb/teamrankings-pilot.json --limit 3 --delay 4
+      - name: Save pilot results
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ -f data/mlb/teamrankings-pilot.json ]; then
+            git add data/mlb/teamrankings-pilot.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Record TeamRankings MLB source pilot results"
+              git push
+            fi
+          fi
