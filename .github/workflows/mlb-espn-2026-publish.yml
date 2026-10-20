@@ -1,0 +1,44 @@
+name: Publish 2026 MLB ESPN run-line favorites
+on:
+  push:
+    paths:
+      - '.github/workflows/mlb-espn-2026-publish.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enrich 2026 from ESPN and flag estimated conflicts
+        run: |
+          python -m py_compile scripts/enrich_mlb_2026_espn.py
+          python scripts/enrich_mlb_2026_espn.py | tee data/mlb/audits/espn-2026-publication.txt
+          python - <<'PY'
+          import json,collections
+          d=json.load(open("data/mlb/game-results/2026.json"))
+          ids=collections.defaultdict(list)
+          for t,entry in d["teams"].items():
+              for g in entry["games"]:
+                  if g.get("team_runline_side") in (-1.5,1.5):ids[str(g["game_id"])].append((t,g))
+          assert all(len(v)==2 for v in ids.values())
+          for rows in ids.values():
+              a,b=rows
+              assert a[1]["team_runline_side"]==-b[1]["team_runline_side"]
+              for t,g in rows:
+                  assert g["team_runline_result"]==("W" if g["runs_for"]+g["team_runline_side"]>g["runs_against"] else "L")
+          assert len(ids)>410,"ESPN must add coverage before publishing"
+          print("TOTAL_VERIFIED_OR_ESTIMATED_GAMES",len(ids))
+          PY
+      - name: Commit published run lines
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/game-results/2026.json data/mlb/audits/espn-2026-publication.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish ESPN historical 2026 MLB favorites and separately mark estimates"
+            git push
+          fi
