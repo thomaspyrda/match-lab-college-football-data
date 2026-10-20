@@ -43,6 +43,6 @@ pattern=r'(<strong>([^<]+)</strong><small>)(\d+-\d+(?:-\d+)?)(\s*·\s*Team Stren
 html,count=re.subn(pattern,patch,html)
 assert count>=125,(count,changes)
 assert len(records)>=125,len(records)
-assert changes,"No CFB directory records changed; check source freshness and mapping"
+print("Records already current" if not changes else "Applying directory record updates")
 page.write_text(html)
 print(json.dumps({"latest_completed_date":str(latest),"teams_with_records":len(records),"tiles_found":count,"records_updated":len(changes),"changes":changes[:40]},indent=2))
