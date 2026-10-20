@@ -1,0 +1,38 @@
+name: Deploy MLB renderer v16 without moneylines
+on:
+  push:
+    paths: ['.github/workflows/mlb-v16-pages.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Switch thirty MLB pages to new asset path
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          pages=list(Path('mlb/teams').glob('*/index.html'))
+          assert len(pages)==30
+          js=Path('sports-research/mlb-cbb-team-layout-v16.js').read_text()
+          assert 'RL / ML' not in js and 'wise-2026-ml">ML' not in js
+          for p in pages:
+              html=p.read_text()
+              html=re.sub(r'/sports-research/mlb-cbb-team-layout-draft-v15\.js(?:\?v=[^"\']*)?', '/sports-research/mlb-cbb-team-layout-v16.js?v=20261020-new', html)
+              assert '/sports-research/mlb-cbb-team-layout-v16.js' in html
+              p.write_text(html)
+          print('Published new JS path on',len(pages),'team pages')
+          PY
+      - name: Commit thirty updated team pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mlb/teams/*/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Switch 30 MLB team pages to moneyline-free renderer v16"
+            git push
+          fi
