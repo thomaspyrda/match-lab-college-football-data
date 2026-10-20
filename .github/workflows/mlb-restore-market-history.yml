@@ -1,0 +1,40 @@
+name: Restore MLB market history after scores rebuild
+on:
+  push:
+    paths: ['.github/workflows/mlb-restore-market-history.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore previous verified odds without replacing official scores
+        run: |
+          mkdir -p /tmp/mlb-previous
+          for year in 2018 2021 2022 2023 2024 2025 2026; do
+            git show 5b4ee19136002a0bbbdbf9f1e67697fc7bd3bcb7:data/mlb/game-results/$year.json > /tmp/mlb-previous/$year.json
+            python scripts/preserve_mlb_market_metadata.py /tmp/mlb-previous/$year.json data/mlb/game-results/$year.json
+          done
+          python - <<'PY' | tee data/mlb/audits/restored-market-records.txt
+          import json
+          for year in (2018,2021,2022,2023,2024,2025,2026):
+              doc=json.load(open(f'data/mlb/game-results/{year}.json'))
+              rows=[g for t in doc['teams'].values() for g in t['games']]
+              rl=sum(g.get('team_runline_side') in (-1.5,1.5) for g in rows)//2
+              ou=sum(g.get('market_ou_total') is not None for g in rows)//2
+              print(year,'runline_games',rl,'market_total_games',ou)
+              if year==2026: assert rl>=2350 and ou>=2400,(rl,ou)
+          PY
+      - name: Publish market restoration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/game-results data/mlb/audits/restored-market-records.txt
+          git commit -m "Restore lost MLB run lines and market totals without changing final scores"
+          git pull --rebase -X theirs origin main
+          git push origin main
