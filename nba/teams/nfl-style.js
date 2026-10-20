@@ -7,6 +7,7 @@ function seasonGames(detail, fallback) {
     return {...game, ...Object.fromEntries(['spread','total','ats_result','ou_result'].filter(k => game[k] == null && betting?.[k] != null).map(k => [k, betting[k]]))};
   });
 }
+function nbaShortDate(value) {const m=String(value??'').match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:T.*)?$/);return m?Number(m[2])+'/'+String(m[3]).padStart(2,'0')+'/'+m[1].slice(2):String(value??'—');}
 function scheduleTable(games) {
   const headers = ['Game','Date','Site','Opponent','Result','Score','Spread','ATS','Total','O/U'];
   const cell = value => '<td>' + E(value ?? '—') + '</td>';
@@ -15,7 +16,7 @@ function scheduleTable(games) {
     const opponent = g.opponent_slug ? '<a href="/nba/teams/' + E(g.opponent_slug) + '/?season=' + E(select.value) + '">' + E(g.opponent_name) + '</a>' : E(g.opponent_name);
     const result = E(g.result || '—') + (g.overtime ? ' · ' + (g.overtime > 1 ? g.overtime : '') + 'OT' : '');
     const spread = g.spread == null ? null : g.spread > 0 ? '+' + g.spread : g.spread;
-    return '<tr>' + cell(g.game_number) + cell(g.date) + cell(site) + '<td>' + opponent + '</td><td class="nba-result-' + (g.result === 'W' ? 'w' : g.result === 'L' ? 'l' : 'p') + '">' + result + '</td>' + cell(g.score_for != null && g.score_against != null ? g.score_for + '–' + g.score_against : null) + cell(spread) + '<td class="nba-market-' + (g.ats_result==='W'?'win':g.ats_result==='L'?'loss':'push') + '">' + E(g.ats_result??'—') + '</td>' + cell(g.total) + '<td class="nba-market-' + (g.ou_result==='Over'?'win':g.ou_result==='Under'?'loss':'push') + '">' + E(g.ou_result==='Over'?'O':g.ou_result==='Under'?'U':g.ou_result==='Push'?'P':g.ou_result??'—') + '</td></tr>';
+    return '<tr>' + cell(g.game_number) + cell(nbaShortDate(g.date)) + cell(site) + '<td>' + opponent + '</td><td class="nba-result-' + (g.result === 'W' ? 'w' : g.result === 'L' ? 'l' : 'p') + '">' + result + '</td>' + cell(g.score_for != null && g.score_against != null ? g.score_for + '–' + g.score_against : null) + cell(spread) + '<td class="nba-market-' + (g.ats_result==='W'?'win':g.ats_result==='L'?'loss':'push') + '">' + E(g.ats_result??'—') + '</td>' + cell(g.total) + '<td class="nba-market-' + (['Over','O'].includes(g.ou_result)?'win':['Under','U'].includes(g.ou_result)?'loss':'push') + '">' + E(g.ou_result==='Over'?'O':g.ou_result==='Under'?'U':g.ou_result==='Push'?'P':g.ou_result??'—') + '</td></tr>';
   }).join('');
   return '<div class="nba-data-wrap"><table class="nba-table nba-schedule-table"><thead><tr>' + headers.map(h => '<th scope="col">' + E(h) + '</th>').join('') + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
 }
