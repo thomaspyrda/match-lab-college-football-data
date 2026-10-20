@@ -84,7 +84,7 @@ function buildUI(){
   }
   rows.sort((a,b)=>{const av=valueFor(a,activeColumn),bv=valueFor(b,activeColumn);if(typeof av==="string"&&typeof bv==="string"){const c=av.localeCompare(bv);return activeAscending?c:-c}if(av===null&&bv!==null)return 1;if(bv===null&&av!==null)return -1;if(av!==bv)return activeAscending?av-bv:bv-av;return a.team.localeCompare(b.team)});
   app.querySelector("#rank-season-heading").textContent=season.label+" · "+pretty(sortKey);
-  app.querySelector("#rank-result-count").textContent=ranked.length+" teams";
+  app.querySelector("#rank-result-count").textContent=rows.length+" teams";
   app.querySelector("#rank-source").href=season.source_url;
   const cols=[{key:"selected_rank",label:"Rank"},{key:"team",label:"Team"},{key:"record",label:"Record"},{key:"model_rank",label:mode==="overall"?"Overall #":mode==="offense"?"OFF #":"DEF #"}];
   const keys=visible[mode]||visible.overall;
