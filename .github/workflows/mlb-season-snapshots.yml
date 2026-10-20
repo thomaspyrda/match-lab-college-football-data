@@ -21,17 +21,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Capture historical snapshot before refresh
+        run: git show HEAD:data/mlb/season-snapshots.json > /tmp/mlb-season-snapshots-before.json
       - name: Collect MLB game results and validate seasons
-        run: python build_mlb_season_snapshots.py
-      - name: Validate output
+        run: python build_mlb_season_snapshots.py --years "$(date -u +%Y)"
+      - name: Validate output and preserve historical seasons
         run: |
           python - <<'PY'
           import json
+          from datetime import datetime, timezone
           from pathlib import Path
-          d=json.loads(Path("data/mlb/season-snapshots.json").read_text())
-          assert all(len(teams)==30 for teams in d["seasons"].values())
-          assert all(row["ats_record"] is None and row["ou_record"] is None for teams in d["seasons"].values() for row in teams.values())
-          print(len(d["seasons"]), "seasons validated")
+          before=json.loads(Path("/tmp/mlb-season-snapshots-before.json").read_text())
+          after=json.loads(Path("data/mlb/season-snapshots.json").read_text())
+          current_year=datetime.now(timezone.utc).year
+          assert all(len(teams)==30 for teams in after["seasons"].values())
+          assert all(row["ats_record"] is None and row["ou_record"] is None for teams in after["seasons"].values() for row in teams.values())
+          for year,rows in before["seasons"].items():
+              if int(year)<current_year:
+                  assert after["seasons"].get(year)==rows, f"Historical season {year} changed during routine refresh"
+          print(len(after["seasons"]), "seasons validated; prior seasons preserved")
           PY
       - name: Commit refreshed dataset
         run: |
