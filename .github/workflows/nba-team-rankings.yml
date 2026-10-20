@@ -30,7 +30,7 @@ jobs:
           import json, math
           from pathlib import Path
           doc=json.loads(Path("nba/rankings/data/nba-team-rankings.json").read_text())
-          assert len(doc["seasons"]) == 11
+          assert all(str(y) in doc["seasons"] for y in range(2016, 2027))
           for year,season in doc["seasons"].items():
               teams=season["teams"]
               assert season["team_count"] == 30 and len(teams) == 30
