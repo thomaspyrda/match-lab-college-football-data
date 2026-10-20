@@ -31,7 +31,7 @@
 .nba-sort-button:focus-visible{outline:2px solid #5cbc8b;outline-offset:3px;border-radius:2px}
 .nba-rank-table td,.nba-rank-table th{vertical-align:middle}
 .nba-rank-table .nba-scrollbar-row th.nba-scrollbar-cell{position:sticky;left:0;z-index:9!important;width:auto!important;min-width:0!important;max-width:none!important;height:15px;padding:0!important;background:#111211!important;border-bottom:1px solid #303230}
-.nba-rank-table-scrubber{position:relative;display:block;height:14px;width:100%;overflow:hidden;touch-action:none;cursor:grab;background:#242725}
+.nba-rank-table-scrubber{position:sticky;left:0;display:block;height:14px;width:100%;overflow:hidden;touch-action:none;cursor:grab;background:#242725}
 .nba-rank-table-scrubber:before{position:absolute;inset:3px 0;background:#202321;border-radius:5px;content:""}
 .nba-rank-table-thumb{position:absolute;top:3px;left:0;display:block;height:8px;min-width:44px;border:1px solid #393d3a;border-radius:6px;background:#444945;cursor:grab;will-change:transform}
 .nba-rank-table-scrubber:hover .nba-rank-table-thumb{background:#565c57}
