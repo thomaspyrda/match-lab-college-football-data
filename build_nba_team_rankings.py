@@ -281,9 +281,12 @@ def main():
         for row in rows:
             row["metrics"].pop("points_allowed_per_game", None)
 
+        today = datetime.now(timezone.utc)
+        current_season_start = today.year if today.month >= 9 else today.year - 1
+        in_progress = today.month not in (7, 8) and int(year) - 1 == current_season_start
         output["seasons"][year] = {
             "label": season_label or year,
-            "status": "in_progress" if int(year) == datetime.now(timezone.utc).year + 1 else "complete",
+            "status": "in_progress" if in_progress else "complete",
             "team_count": len(rows),
             "league_average": {
                 "offensive_rating": round(league_ortg, 3),
