@@ -1,0 +1,55 @@
+name: Build NBA team rankings
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 12 * * *"
+  push:
+    branches: [main]
+    paths:
+      - build_nba_team_rankings.py
+      - .github/workflows/nba-team-rankings.yml
+      - nba/teams/data/*.json
+permissions:
+  contents: write
+concurrency:
+  group: nba-team-rankings
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build NBA rankings from archived season data
+        run: python build_nba_team_rankings.py
+      - name: Validate seasons, ranks, and raw efficiency model
+        run: |
+          python - <<'PY'
+          import json, math
+          from pathlib import Path
+          doc=json.loads(Path("nba/rankings/data/nba-team-rankings.json").read_text())
+          assert len(doc["seasons"]) == 11
+          for year,season in doc["seasons"].items():
+              teams=season["teams"]
+              assert season["team_count"] == 30 and len(teams) == 30
+              assert len({row["slug"] for row in teams}) == 30
+              for row in teams:
+                  m=row["metrics"]
+                  assert abs(m["overall_rating"] - (m["net_rating"] - season["league_average"]["net_rating"])) < 0.01
+                  assert abs(m["net_rating"] - (m["ortg"] - m["drtg"])) < 0.5
+                  assert all(math.isfinite(float(m[k])) for k in ("ppg","ppg_home","ppg_away","ppg_allowed","fg_pct","opp_fg_pct","three_pct","opp_three_pct","assists_per_game","turnovers_per_game","turnover_margin","pace","rebounds_per_game","rebounds_allowed_per_game","offensive_rebound_rate","ortg","drtg","net_rating"))
+              for category in ("overall","offense","defense"):
+                  assert all(1 <= row["ranks"][category] <= 30 for row in teams)
+          print("Validated 330 archived NBA team-seasons and raw-efficiency rankings.")
+          PY
+      - name: Commit rankings dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nba/rankings/data/nba-team-rankings.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data(nba): refresh season team rankings"
+          git pull --rebase -X theirs origin main
+          git push origin main
