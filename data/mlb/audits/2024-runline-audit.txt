@@ -1,6 +1,13 @@
-Audit run: https://github.com/thomaspyrda/match-lab-college-football-data/actions/runs/39320740854
+Audit run: https://github.com/thomaspyrda/match-lab-college-football-data/actions/runs/39356819310
 Season: 2024
-Commit: 09f856ca025461aee18ea3204b6db791c9ab63c3
-Generated: 2026-10-19T20:37:01Z
+Commit: 3994a71fdb1c80b391c542a90030f070c699d9f6
+Generated: 2026-10-20T02:03:44Z
 
-AUDIT INCOMPLETE — no run-line coverage verified
+{
+  "enriched_games": 2382,
+  "missing_or_disputed_odds": 47,
+  "ambiguous_official_games": 0,
+  "official_game_identifiers": 2429,
+  "source_identities": 2385,
+  "matched_pct": 98.07
+}
