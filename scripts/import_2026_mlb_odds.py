@@ -16,7 +16,7 @@ for ident,rows in byid.items():
  if len(rows)!=2:continue
  home=next(((t,g) for t,g in rows if g["location"]=="Home"),None)
  away=next(((t,g) for t,g in rows if g["location"]=="Away"),None)
- if home and away:keys[(home[1]["date"],away[0],home[0],away[1]["runs_for"],home[1]["runs_for"])].append(rows)
+ if home and away and isinstance(home[1].get("runs_for"),int) and isinstance(away[1].get("runs_for"),int):keys[(home[1]["date"],away[0],home[0],away[1]["runs_for"],home[1]["runs_for"])].append(rows)
 req=urllib.request.Request(SOURCE,headers={"User-Agent":"Mozilla/5.0"})
 with urllib.request.urlopen(req,timeout=120) as response:content=response.read()
 import io
