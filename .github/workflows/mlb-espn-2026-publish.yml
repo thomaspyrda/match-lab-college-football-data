@@ -15,7 +15,9 @@ jobs:
       - name: Enrich 2026 from ESPN and flag estimated conflicts
         run: |
           python -m py_compile scripts/enrich_mlb_2026_espn.py
-          python scripts/enrich_mlb_2026_espn.py | tee data/mlb/audits/espn-2026-publication.txt
+          mkdir -p data/mlb/audits
+          set -o pipefail
+          python scripts/enrich_mlb_2026_espn.py 2>&1 | tee data/mlb/audits/espn-2026-publication.txt
           python - <<'PY'
           import json,collections
           d=json.load(open("data/mlb/game-results/2026.json"))
@@ -40,5 +42,20 @@ jobs:
           git add data/mlb/game-results/2026.json data/mlb/audits/espn-2026-publication.txt
           if ! git diff --cached --quiet; then
             git commit -m "Publish ESPN historical 2026 MLB favorites and separately mark estimates"
+            git push
+          fi
+
+      - name: Preserve ESPN diagnostic report, including on failure
+        if: always()
+        run: |
+          mkdir -p data/mlb/audits
+          if [ ! -f data/mlb/audits/espn-2026-publication.txt ]; then
+            echo 'Importer did not start or failed before report creation' > data/mlb/audits/espn-2026-publication.txt
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/audits/espn-2026-publication.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Record 2026 ESPN MLB import diagnostics"
             git push
           fi
