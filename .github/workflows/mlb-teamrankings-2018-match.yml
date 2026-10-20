@@ -1,0 +1,42 @@
+name: Match and publish verified 2018 MLB historical day
+on:
+  push:
+    paths:
+      - '.github/workflows/mlb-teamrankings-2018-match.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match verified TeamRankings favorites to official MLB game IDs
+        run: |
+          python -m py_compile scripts/match_teamrankings_mlb.py
+          python scripts/match_teamrankings_mlb.py --season 2018 | tee data/mlb/teamrankings-2018-match-report.txt
+          python scripts/match_teamrankings_mlb.py --season 2018 --write
+          python - <<'PY'
+          import json
+          d=json.load(open('data/mlb/game-results/2018.json'))
+          rows=[(team,g) for team,v in d['teams'].items() for g in v['games'] if g.get('runline_source')=='teamrankings']
+          assert len(rows)>=20, 'Insufficient unambiguous game pairs'
+          ids={}
+          for team,g in rows:ids.setdefault(g['game_id'],[]).append((team,g))
+          assert all(len(v)==2 for v in ids.values()),'Missing mirrored game'
+          for group in ids.values():
+            a,b=group
+            assert a[1]['team_runline_side']==-b[1]['team_runline_side']
+            assert a[1]['team_runline_result']!=b[1]['team_runline_result']
+          print(f"VALIDATED {len(ids)} unique 2018 matchups")
+          PY
+      - name: Commit verified records and report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/game-results/2018.json data/mlb/teamrankings-2018-match-report.txt
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish matched TeamRankings 2018 MLB run lines"
+            git push
+          fi
