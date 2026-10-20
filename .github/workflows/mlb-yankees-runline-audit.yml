@@ -1,0 +1,35 @@
+name: Audit 2026 Yankees run-line record
+on:
+  push:
+    paths: ['.github/workflows/mlb-yankees-runline-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconcile Yankees published lines and missing dates
+        run: |
+          mkdir -p data/mlb/audits
+          python - <<'PY' | tee data/mlb/audits/2026-yankees-runline-audit.txt
+          import json,collections
+          d=json.load(open('data/mlb/game-results/2026.json'))
+          g=d['teams']['new-york-yankees']['games']
+          valid=[x for x in g if x.get('team_runline_side') in (-1.5,1.5)]
+          print('official_games',len(g),'verified_sides',len(valid))
+          print('run_line_W',sum(x.get('team_runline_result')=='W' for x in valid))
+          print('run_line_L',sum(x.get('team_runline_result')=='L' for x in valid))
+          print('sources',dict(collections.Counter(x.get('runline_source','unreported') for x in valid)))
+          for x in g:
+              if x.get('team_runline_side') not in (-1.5,1.5):
+                  print('MISSING',x.get('date'),x.get('game_id'),x.get('opponent'),x.get('score'),'ML',x.get('market_moneyline'),'starter',x.get('market_starter'))
+          PY
+      - name: Commit audit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/audits/2026-yankees-runline-audit.txt
+          if ! git diff --cached --quiet; then git commit -m "Audit Yankees 2026 run-line record and missing games"; git push; fi
