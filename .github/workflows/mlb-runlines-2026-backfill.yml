@@ -1,0 +1,41 @@
+name: Backfill official 2026 MLB run lines from TeamRankings
+on:
+  push:
+    paths:
+      - '.github/workflows/mlb-runlines-2026-backfill.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  collect-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve historical favorite sides
+        run: |
+          python -m py_compile scripts/backfill_mlb_teamrankings_2026.py scripts/match_teamrankings_mlb.py
+          python scripts/backfill_mlb_teamrankings_2026.py --workers 4 --delay 2 --output data/mlb/2026-teamrankings-favorites.json | tee data/mlb/2026-runline-collection-report.txt
+      - name: Match official IDs and publish data
+        run: |
+          python scripts/match_teamrankings_mlb.py --season 2026 --source data/mlb/2026-teamrankings-favorites.json --write | tee data/mlb/2026-runline-match-report.txt
+          python - <<'PY'
+          import json
+          d=json.load(open('data/mlb/game-results/2026.json'))
+          rows=[g for t in d['teams'].values() for g in t['games'] if g.get('team_runline_side') in (-1.5,1.5)]
+          ids={}
+          for g in rows:ids.setdefault(g['game_id'],[]).append(g)
+          assert all(len(v)==2 for v in ids.values())
+          for g in rows:
+              a,b=map(int,g['score'].split('-'))
+              assert g['team_runline_result']==('W' if a+g['team_runline_side']>b else 'L')
+          print('Published matched 2026 MLB games:',len(ids))
+          assert len(ids)>=100, '2026 odds sourcing returned insufficient games'
+          PY
+      - name: Commit 2026 run-line results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/game-results/2026.json data/mlb/2026-teamrankings-favorites.json data/mlb/2026-runline-collection-report.txt data/mlb/2026-runline-match-report.txt
+          git commit -m "Publish TeamRankings verified 2026 MLB historical run lines" || exit 0
+          git push
