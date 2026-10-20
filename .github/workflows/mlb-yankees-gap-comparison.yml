@@ -1,0 +1,48 @@
+name: Yankees 2026 pregame-record gap comparison
+on:
+  push:
+    paths: ['.github/workflows/mlb-yankees-gap-comparison.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Evaluate record-based favorite estimates without publishing
+        run: |
+          python - <<'PY' | tee /tmp/gaps.txt
+          import json,collections
+          d=json.load(open('data/mlb/game-results/2026.json'))
+          records={}
+          for t,v in d['teams'].items():
+              w=l=0
+              for g in sorted(v['games'],key=lambda g:(g['date'],g['game_id'])):
+                  records[(t,g['game_id'])]=(w,l)
+                  if g.get('result')=='W':w+=1
+                  elif g.get('result')=='L':l+=1
+          yankees=d['teams']['new-york-yankees']['games']
+          w=sum(g.get('team_runline_result')=='W' for g in yankees)
+          l=sum(g.get('team_runline_result')=='L' for g in yankees)
+          for g in yankees:
+              if g.get('team_runline_side') in (-1.5,1.5) or g.get('result') not in ('W','L'):continue
+              a,b=records[('new-york-yankees',g['game_id'])]
+              c,d=records[(g['opponent'],g['game_id'])]
+              ap=a/(a+b) if a+b else .5
+              cp=c/(c+d) if c+d else .5
+              side=-1.5 if ap>cp else 1.5 if ap<cp else None
+              result='W' if side is not None and g['runs_for']+side>g['runs_against'] else 'L' if side is not None else '?'
+              print(g['date'],g['opponent'],g['score'],'pregame NYY',f'{a}-{b}','opponent',f'{c}-{d}','estimated side',side,'result',result)
+              if result=='W':w+=1
+              elif result=='L':l+=1
+          print('ESTIMATED TOTAL',w,l,'TARGET',82,79)
+          PY
+      - name: Preserve comparison
+        run: |
+          cp /tmp/gaps.txt data/mlb/audits/2026-yankees-estimated-gap-comparison.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/mlb/audits/2026-yankees-estimated-gap-comparison.txt
+          if ! git diff --cached --quiet; then git commit -m "Compare Yankees 2026 missing run lines against pregame record estimates";git push;fi
