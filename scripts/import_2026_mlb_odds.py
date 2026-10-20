@@ -17,14 +17,16 @@ for ident,rows in byid.items():
  home=next(((t,g) for t,g in rows if g["location"]=="Home"),None)
  away=next(((t,g) for t,g in rows if g["location"]=="Away"),None)
  if home and away and isinstance(home[1].get("runs_for"),int) and isinstance(away[1].get("runs_for"),int):keys[(home[1]["date"],away[0],home[0],away[1]["runs_for"],home[1]["runs_for"])].append(rows)
-req=urllib.request.Request(SOURCE,headers={"User-Agent":"Mozilla/5.0"})
-with urllib.request.urlopen(req,timeout=120) as response:content=response.read()
-import io
-ws=load_workbook(io.BytesIO(content),read_only=True,data_only=True)["Betting Odds"]
-items=iter(ws.values);header=next(items);h={k:i for i,k in enumerate(header)}
+import csv
+sources=[pathlib.Path(f"data/mlb/sources/2026-odds-upload-part{i}.csv") for i in (1,2,3)]
+records=[]
+for source in sources:
+ with source.open(newline="") as inp:
+  records.extend(csv.DictReader(inp,fieldnames=["index","Date","Start Time (EDT)","Away","Away Score","Home","Home Score","Status","Away Starter","Home Starter","O/U","Over","Under","Away ML","Home ML","Home RL Spread","RL Away","RL Home"]))
+assert len(records)==2428,len(records)
 counts=collections.Counter()
-for row in items:
- get=lambda k:row[h[k]]
+for row in records:
+ get=lambda k:row[k]
  if get("Status")!="Final":continue
  away=TEAMS.get(get("Away"));home=TEAMS.get(get("Home"))
  if away is None or home is None:counts["team_unmapped"]+=1;continue
