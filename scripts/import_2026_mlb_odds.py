@@ -49,11 +49,16 @@ for row in records:
   g["market_over_odds"]=number(get("Over"))
   g["market_under_odds"]=number(get("Under"))
   g["market_source"]="shanemcd_2026_consensus"
-  if spread in (-1.5,1.5):
+  if spread not in (-1.5,1.5):
+   a=number(get("Away ML"));h=number(get("Home ML"))
+   if a is not None and h is not None and a!=h:
+    spread=-1.5 if h<a else 1.5
+    counts["moneyline_fallback"]+=1 if ish else 0
+ if spread in (-1.5,1.5):
    side=spread if ish else -spread
    g["team_runline_side"]=side
    g["team_runline_result"]="W" if g["runs_for"]+side>g["runs_against"] else "L"
-   g["runline_source"]="shanemcd_2026_consensus"
+   g["runline_source"]="shanemcd_2026_consensus" if get("Home RL Spread") not in ("",None) else "shanemcd_2026_moneyline_fallback"
   if total is not None:
    combined=g["runs_for"]+g["runs_against"]
    g["market_ou_result"]="O" if combined>total else "U" if combined<total else "P"
