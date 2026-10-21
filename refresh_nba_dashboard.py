@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from nba_current_rankings import game_minutes
 
 ROOT=Path(__file__).resolve().parent
 API='https://site.api.espn.com/apis/site/v2/sports/basketball/nba/'
@@ -78,9 +79,11 @@ def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None
 
 def profile(team_id,history,cutoff):
     games=sorted([g for g in history if team_id in g['teams'] and stamp(g['observed_complete_at'])<=cutoff],key=lambda g:g['date'])
-    totals=defaultdict(float);other=defaultdict(float);player_totals={};possessions=0;poss_games=0;wins=losses=0;results=[]
+    totals=defaultdict(float);other=defaultdict(float);player_totals={};possessions=0;poss_games=0;elapsed=0;duration_games=0;wins=losses=0;results=[]
     for game in games:
         own=game['teams'][team_id];oid=next(i for i in game['teams'] if i!=team_id);opp=game['teams'][oid]
+        duration=game_minutes(game)
+        if duration is not None:elapsed+=duration;duration_games+=1
         for k,v in own.items():
             if v is not None:totals[k]+=v
         for k,v in opp.items():
@@ -106,6 +109,12 @@ def profile(team_id,history,cutoff):
       'opp_orb_pct':ratio(other.get('oreb'),other.get('oreb',0)+totals.get('dreb',0),100) if n else None,
       'tov_pct':ratio(totals.get('tov'),possessions,100) if valid_poss else None,'forced_tov_pct':ratio(other.get('tov'),possessions,100) if valid_poss else None,
       'ft_rate':ratio(totals.get('fta'),totals.get('fga'),100),'opp_ft_rate':ratio(other.get('fta'),other.get('fga'),100)}
+    values.update({'ppg':ratio(totals.get('points'),n),'ppg_allowed':ratio(other.get('points'),n),
+      'off_efficiency':ratio(totals.get('points'),possessions) if valid_poss else None,
+      'def_efficiency':ratio(other.get('points'),possessions) if valid_poss else None,
+      'pace':ratio(possessions,elapsed,48) if valid_poss and duration_games==n else None,
+      'steals_per_game':ratio(totals.get('stl'),n) if n and all(g['teams'][team_id].get('stl') is not None for g in games) else None,
+      'blocks_per_game':ratio(totals.get('blk'),n) if n and all(g['teams'][team_id].get('blk') is not None for g in games) else None})
     players=[]
     for p in player_totals.values():
         t=p.pop('totals');count=p['games'];p['per_game']={k:round(t[k]/count,1) for k in ['minutes','points','rebounds','assists','turnovers']};p['plus_minus']=round(t['plus_minus']/p['pm_games'],1) if p['pm_games'] else None
@@ -134,15 +143,17 @@ def profile(team_id,history,cutoff):
 
 def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
-    return {i:{'value':round(v,1),'rank':1+sum((x>v if high else x<v) for _,x in values),'population':len(values),'percentile':round(100*sum((x<v if high else x>v) for _,x in values)/max(len(values)-1,1))} for i,v in values}
+    return {i:{'value':round(v,3 if key in ('off_efficiency','def_efficiency') else 1),'rank':1+sum((x>v if high else x<v) for _,x in values),'population':len(values),'percentile':round(100*sum((x<v if high else x>v) for _,x in values)/max(len(values)-1,1))} for i,v in values}
 
-METRICS=[('ortg','Offensive rating','OFFENSE',True,''),('drtg','Defensive rating','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
+METRICS=[('ppg','PPG','OFFENSE',True,''),('ppg_allowed','PPG Allowed','DEFENSE',False,''),('off_efficiency','OFF Efficiency','OFFENSE',True,''),('def_efficiency','DEF Efficiency','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
 
 def roster(team_id):
     d=get('teams/'+team_id+'/roster');assert d.get('athletes'),'Empty roster '+team_id
     return {'team_id':team_id,'observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/team/roster/_/id/'+team_id,
       'players':[{'id':'nba:espn:player:'+p['id'],'name':p.get('displayName',p.get('fullName')),'position':p.get('position',{}).get('abbreviation','—'),'jersey':p.get('jersey','—'),'headshot':p.get('headshot',{}).get('href')} for p in d['athletes']]}
+
+METRICS.extend([('pace','Pace','TEAM',True,''),('steals_per_game','Steals/Game','DEFENSE',True,''),('blocks_per_game','Blocks/Game','DEFENSE',True,'')])
 
 def season_history(games,season,phase):return [g for g in games if g['season']==season and g['phase']==phase]
 

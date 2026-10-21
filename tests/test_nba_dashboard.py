@@ -15,6 +15,30 @@ class NBADataTests(unittest.TestCase):
         p=nba.profile('1',[self.game()],datetime(2026,10,4,1,tzinfo=timezone.utc));self.assertEqual(p['games'],0);self.assertIsNone(p['metrics']['ortg'])
     def test_estimated_possessions_and_ratings(self):
         p=nba.profile('1',[self.game()],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(p['record'],'1–0');self.assertAlmostEqual(p['metrics']['ortg'],10000/88.6);self.assertAlmostEqual(p['metrics']['efg'],56.25)
+    def test_matchup_production_efficiency_and_overtime_pace(self):
+        g=self.game();g['periods']=5
+        p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc))
+        m=p['metrics']
+        self.assertEqual((m['ppg'],m['ppg_allowed']),(100,90))
+        self.assertAlmostEqual(m['off_efficiency'],m['ortg']/100)
+        self.assertAlmostEqual(m['def_efficiency'],m['drtg']/100)
+        self.assertAlmostEqual(m['pace'],88.6*48/53)
+        self.assertEqual((m['steals_per_game'],m['blocks_per_game']),(5,4))
+        self.assertEqual(nba.rank({'1':p},'off_efficiency',True)['1']['value'],1.129)
+        keys=[m[0] for m in nba.METRICS]
+        self.assertEqual(keys[:4],['ppg','ppg_allowed','off_efficiency','def_efficiency'])
+        self.assertEqual(keys[-3:],['pace','steals_per_game','blocks_per_game'])
+        self.assertNotIn('ortg',keys);self.assertNotIn('drtg',keys)
+
+    def test_matchup_missing_stats_and_duration_stay_missing(self):
+        g=self.game();g['teams']['1']['stl']=None
+        p=nba.profile('1',[g],datetime(2026,10,5,tzinfo=timezone.utc))
+        self.assertIsNone(p['metrics']['steals_per_game'])
+        self.assertIsNone(p['metrics']['pace'])
+        empty=nba.profile('3',[g],datetime(2026,10,5,tzinfo=timezone.utc))
+        for key in ['ppg','ppg_allowed','off_efficiency','def_efficiency','pace','steals_per_game','blocks_per_game']:
+            self.assertIsNone(empty['metrics'][key])
+
     def test_unplayed_team_not_ranked(self):
         a=nba.profile('1',[self.game()],datetime(2026,10,5,tzinfo=timezone.utc));b=nba.profile('3',[self.game()],datetime(2026,10,5,tzinfo=timezone.utc));self.assertEqual(set(nba.rank({'1':a,'3':b},'ortg',True)),{'1'})
     def test_rank_direction_and_ties(self):
