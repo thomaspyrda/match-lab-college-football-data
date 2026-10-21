@@ -28,6 +28,8 @@ on:
       - college-football-season-leaders/**
       - site-navigation-v3.js
       - site-navigation-v4.js
+      - site-navigation-v5.js
+      - scripts/normalize_site_navigation.py
       - site-navigation.js
       - site-navigation.css
       - sitemap-sports.xml
@@ -52,6 +54,10 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Publish consistent navigation on all pages
+        run: |
+          python3 scripts/normalize_site_navigation.py
+          python3 scripts/normalize_site_navigation.py --check
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
