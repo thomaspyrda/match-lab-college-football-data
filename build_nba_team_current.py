@@ -42,6 +42,10 @@ def build(cache, registry):
     result={}
     for row in rows:
         slug=row['slug'];m=row['metrics'];m['points_allowed_per_game']=m.get('ppg_allowed')
+        boxes=[(g['teams'][tid],g['teams'][next(other for other in g['teams'] if other!=tid)]) for g in selected.values() for tid in g['teams'] if teams[tid]==slug]
+        m['opp_ft_pct']=ratio(sum(b['ftm'] for a,b in boxes),sum(b['fta'] for a,b in boxes))
+        m['opp_three_attempt_rate']=ratio(sum(b['tpa'] for a,b in boxes),sum(b['fga'] for a,b in boxes))
+        m['opp_orb_pct']=ratio(sum(b['oreb'] for a,b in boxes),sum(b['oreb']+a['dreb'] for a,b in boxes))
         games=[g for g in selected.values() if any(teams[tid]==slug for tid in g['teams'])]
         record={'overall':row['record']}
         for venue in ('home','away'):
@@ -55,7 +59,9 @@ def build(cache, registry):
             leaders[cat]=[p['id'] for p in sorted(eligible,key=lambda p:(-p['totals'][key],-p['per_game'][key],p['name']))[:1]]
         for p in roster:
             p['league_totals']=dict(league[p['id']]);p['league_ranks']={cat:1+sum(v.get(cat,0)>league[p['id']].get(cat,0) for v in league.values()) for cat in cats}
-        result[slug]={'key':str(YEAR),'label':'2026–27','coverage':'season_to_date','metrics':m,'record':record,'players':roster,'leaders':leaders,'games_played':row['games_played'],'playoff_result':'Season in progress','ranks':{k:make_ranks(rows,k,k not in LOWER_IS_BETTER)[slug] for k in m}}
+        result[slug]={'key':str(YEAR),'label':'2026–27','coverage':'season_to_date','metrics':m,'record':record,'players':roster,'leaders':leaders,'games_played':row['games_played'],'playoff_result':'Season in progress','ranks':{}}
+    for slug, team in result.items():
+        team['ranks']={k:make_ranks(rows,k,k not in (LOWER_IS_BETTER | {'points_allowed_per_game','opp_ft_pct','opp_three_attempt_rate','opp_orb_pct'}))[slug] for k in team['metrics']}
     return {'season':YEAR,**coverage,'teams':result}
 
 if __name__=='__main__':
