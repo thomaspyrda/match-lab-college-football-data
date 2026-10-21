@@ -235,8 +235,8 @@ def render_page(data, base, available_seasons=None, default_season=None):
     base = base.replace('rel="canonical" href="https://matchlab.parlaycalculator.bet/nba/rankings/"', 'rel="canonical" href="https://matchlab.parlaycalculator.bet/nba/season-leaders/"')
     base = re.sub(r'<script[^>]+/nba/rankings/rankings\.js[^>]*></script>', '', base)
     base = base.replace('rel="canonical" href="https://matchlab.parlaycalculator.bet/nba/season-leaders/"', f'rel="canonical" href="https://matchlab.parlaycalculator.bet{page_path}"')
-    base = base.replace('</head>', '<script src="/nba/season-leaders/seasons.js?v=1" defer></script>')
-    base = base.replace('</head>', '<link rel="stylesheet" href="/sports-research/season-leaders.css?v=1"><link rel="stylesheet" href="/nba/season-leaders/leaders.css?v=2"></head>')
+    base = base.replace('</head>', '<script src="/nba/season-leaders/seasons.js?v=1" defer></script></head>')
+    base = base.replace('</head>', '<link rel="stylesheet" href="/sports-research/season-leaders.css?v=1"><link rel="stylesheet" href="/nba/season-leaders/leaders.css?v=3"></head>')
     return re.sub(r'<main\b.*?</main>', lambda m: '<main class="nba-rankings-main">' + body + '</main>', base, flags=re.S)
 
 
