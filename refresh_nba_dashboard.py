@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from nba_current_rankings import game_minutes
+from nba_player_context import refresh_availability, load_player_values
 
 ROOT=Path(__file__).resolve().parent
 API='https://site.api.espn.com/apis/site/v2/sports/basketball/nba/'
@@ -209,8 +210,15 @@ def main():
           'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),
           'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':provider,'observed_at':refreshed.isoformat() if line else None},
           'source':'https://www.espn.com/nba/game/_/gameId/'+event['id'],'profile_cutoff':cutoff.isoformat()})
-    data={'schema_version':1,'season':f'{season-1}–{str(season)[2:]}','season_type':{1:'Preseason',2:'Regular season',3:'Playoffs'}[latest_phase],'updated_at':refreshed.isoformat(),
-      'completed_games':len(history),'games':output,'coverage':{'bpm':'Unavailable from this feed','vorp':'Unavailable from this feed','injuries':'Not yet connected; verify current availability','refresh':'Daily statistics with afternoon pregame snapshots; not a live scoreboard'},
+    refresh_availability(output,refreshed,lambda url:get(url[len(API):]))
+    expected_ids={p['id'] for g in history if stamp(g['observed_complete_at'])<=refreshed for rows in g.get('players',{}).values() for p in rows}
+    values,value_coverage=load_player_values(ROOT/'nba/dashboard/data/player-value.json',season,latest_phase,refreshed,expected_ids)
+    for g in output:
+        if value_coverage.get('as_of') and stamp(value_coverage['as_of'])<=stamp(g['profile_cutoff']):
+            for side in ('away','home'):
+                for p in g[side]['roster']:p.update(values.get(p['id'],{}))
+    data={'schema_version':1,'season':f'{season-1}–{str(season)[2:]}','season_type':{1:'Preseason',2:'Regular season',3:'Playoffs'}[latest_phase],'updated_at':refreshed.isoformat(),'player_value':value_coverage,
+      'completed_games':len(history),'games':output,'coverage':{'bpm':value_coverage['state'],'vorp':value_coverage['state'],'injuries':'ESPN game-day injury reports; unlisted players are not automatically confirmed active','refresh':'Daily statistics with afternoon pregame snapshots; not a live scoreboard'},
       'methodology':'Ratings use estimated possessions: average of both teams’ FGA − OREB + TO + 0.44 × FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.'}
     dest=ROOT/'nba/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,indent=2)+'\n');cache_path.write_text(json.dumps({'schema_version':1,'games':list(old.values())},indent=2)+'\n')
     assert len(teams)==30 and output,'No NBA teams or slate loaded'

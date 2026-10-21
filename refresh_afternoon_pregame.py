@@ -7,6 +7,7 @@ import time
 import urllib.request
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from nba_player_context import refresh_availability
 
 ROOT = Path(__file__).resolve().parent
 SPORTS = {
@@ -74,6 +75,9 @@ def refresh(sport, route, destination):
         print(sport + ": no matching upcoming events; preserving existing snapshot")
         return
     data["pregame_updated_at"] = observed
+    if sport == 'nba':
+        refresh_availability(games,now,request)
+        data.setdefault('coverage',{})['injuries']='ESPN game-day injury reports; unlisted players are not automatically confirmed active'
     path.write_text(json.dumps(data, indent=2) + "\n")
     print(sport + ": refreshed observed pregame fields for " + str(updated) + " games")
 

@@ -7,6 +7,9 @@ on:
     branches: [main]
     paths:
       - refresh_nba_dashboard.py
+      - nba_player_context.py
+      - tests/test_nba_player_context.py
+      - nba/dashboard/data/player-value.json
       - build_nba_season_leaders.py
       - tests/test_nba_season_leaders.py
       - tests/test_nba_dashboard.py
@@ -34,6 +37,7 @@ jobs:
       - name: Test season boundaries and pregame isolation
         run: |
           python -m unittest discover -s tests -p test_nba_dashboard.py
+          python -m unittest discover -s tests -p test_nba_player_context.py
           python -m unittest discover -s tests -p test_nba_season_leaders.py
           python -m unittest discover -s tests -p test_daily_backfill_core.py
           python -m unittest discover -s tests -p test_stage_nba_team_backfill.py

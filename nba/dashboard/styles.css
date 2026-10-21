@@ -189,3 +189,24 @@ html,body{max-width:100%;overflow-x:hidden}
 
 /* Matchup rail arrows: same treatment as CFB dashboard */
 .game-rail-navigation{display:grid;grid-template-columns:38px minmax(0,1fr) 38px;gap:10px;align-items:center}.game-rail-navigation .game-rail{min-width:0}.game-scroll-arrow{display:grid;place-items:center;width:38px;height:48px;border:1px solid #454b45;border-radius:9px;background:#1b1e1b;color:#f4f6f4;font:800 25px/1 "DM Sans";cursor:pointer}.game-scroll-arrow:hover{border-color:#00ff41;color:#00ff41}.game-scroll-arrow:focus-visible{outline:2px solid #00ff41;outline-offset:3px}@media(max-width:760px){.game-rail-navigation{grid-template-columns:30px minmax(0,1fr) 30px;gap:6px}.game-scroll-arrow{width:30px;height:42px;font-size:22px}}
+
+/* Game-day player availability, alongside each team's season context. */
+.nba-availability-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.nba-availability-card{min-width:0;padding:20px;border:1px solid #303b33;border-radius:14px;background:#151b17}
+.nba-availability-team{display:flex;align-items:center;gap:12px;margin-bottom:16px;color:var(--team-color,#fff)}
+.nba-availability-team h4{margin:0;font-size:19px;color:inherit}
+.nba-availability-table-wrap{overflow-x:auto}
+.nba-availability-table{width:100%;border-collapse:collapse;text-align:left;font-size:13px;min-width:350px}
+.nba-availability-table th,.nba-availability-table td{padding:12px 7px;border-bottom:1px solid #2d3730;vertical-align:top}
+.nba-availability-table thead th{color:#a6b0a8;font-size:10px;text-transform:uppercase;letter-spacing:.07em}
+.nba-availability-table tbody th{font-weight:650;width:38%}
+.nba-availability-table small{display:block;color:#a6b0a8;font-size:11px;font-weight:400;margin-top:3px}
+.nba-availability-status{display:inline-block;padding:3px 7px;border-radius:6px;background:#303931;color:#ddd;font-size:11px;font-weight:750;white-space:nowrap}
+.nba-availability-status.out{background:#432329;color:#ffb9bc}
+.nba-availability-status.uncertain{background:#40361e;color:#ffe09c}
+.nba-availability-status.available{background:#173c24;color:#a0edb5}
+.nba-availability-empty,.nba-availability-meta{color:#b0bab2;font-size:13px;line-height:1.6}
+.nba-availability-meta{margin:15px 0 5px;font-size:11px}
+.nba-availability-source{font-size:12px;color:#b8e7c3}
+.nba-availability-note{margin-top:14px;font-size:12px}
+@media(max-width:760px){.nba-availability-grid{grid-template-columns:1fr}.nba-availability-card{padding:16px}}
