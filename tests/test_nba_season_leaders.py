@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timezone
-from build_nba_season_leaders import build_leaders
+from build_nba_season_leaders import build_leaders, build_historical_leaders, render_page
 
 NOW = datetime(2026,10,21,18,tzinfo=timezone.utc)
 TEAMS = {'1':dict(name='One',abbreviation='ONE'),'2':dict(name='Two',abbreviation='TWO')}
@@ -51,6 +51,34 @@ class LeadersTests(unittest.TestCase):
     def test_duplicate_appearances_are_rejected(self):
         g=game();g['players']['1']*=2
         with self.assertRaises(ValueError):build_leaders({'games':[g]},TEAMS,2027,NOW)
+
+    def test_historical_stints_combine_and_missing_double_categories_are_omitted(self):
+        totals=dict(minutes=30,points=20,rebounds=10,assists=5,steals=2,blocks=1,
+                    turnovers=2,fg_made=7,fg_attempts=14,three_made=2,three_attempts=6,
+                    ft_made=4,ft_attempts=5)
+        player=dict(id='fixture01',name='Traded Player',games=1,totals=totals,
+                    league_totals=dict(points=40,rebounds=20,assists=10,steals=4,blocks=2))
+        archives={tid:dict(seasons={'2020':dict(season_type='Regular Season',
+            games_played=2,players=[player])}) for tid in TEAMS}
+        d=build_historical_leaders(archives,TEAMS,2020,NOW)
+        t=tables(d)
+        self.assertEqual(len(t),26)
+        self.assertNotIn('double_doubles',t);self.assertNotIn('triple_doubles',t)
+        self.assertEqual(t['points']['rows'][0]['value'],40)
+        self.assertEqual(t['points_per_game']['rows'][0]['value'],20)
+        self.assertEqual(t['points']['rows'][0]['games'],2)
+        self.assertEqual(len(t['points']['rows'][0]['teams']),2)
+        self.assertEqual(d['max_team_games'],2)
+        self.assertIn('Minimum 2 ',t['points_per_game']['qualification'])
+        html=render_page(d,'<head></head><main></main>',[2020,2027],2027)
+        self.assertIn('value="/nba/season-leaders/2020/" selected',html)
+        self.assertIn('value="/nba/season-leaders/">2026–27',html)
+        self.assertNotIn('Double-Doubles',html);self.assertNotIn('Triple-Doubles',html)
+        self.assertIn('Historical regular-season totals',html)
+
+    def test_historical_incomplete_or_mismatched_inputs_are_rejected(self):
+        with self.assertRaises(ValueError):
+            build_historical_leaders({},TEAMS,2020,NOW)
 
 
 if __name__=='__main__':unittest.main()
