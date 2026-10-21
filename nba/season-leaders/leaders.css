@@ -13,3 +13,6 @@
 .leader-group-nav a{color:#e8ece9}
 .leader-group-nav a:focus-visible,.leaderboard-section a:focus-visible{outline:2px solid #00ed43;outline-offset:3px}
 @media(max-width:760px){.leaderboard-section{padding:14px}.leader-qualification{min-height:0}.leaderboard-grid{gap:16px}.leaderboard-section .data-table{min-width:410px}}
+
+.leader-qualification:empty{display:none}
+.leaderboard-section .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
