@@ -11,7 +11,7 @@
 .rank-hero{overflow:hidden;aspect-ratio:3.15/1;border:1px solid #167440;border-radius:18px;background:#141916}
 .rank-hero img{display:block;width:100%;height:100%;object-fit:cover}
 .rank-tabs-label{margin:23px 0 13px}
-.rank-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 24px}
+.rank-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 24px}
 .rank-tabs a{display:flex;min-height:46px;align-items:center;justify-content:center;padding:10px 14px;border:1px solid #303331;border-radius:12px;background:#111211;color:#f1f2f1;text-align:center;text-decoration:none;font-size:14px;font-weight:800;transition:background .15s,border-color .15s,color .15s}
 .rank-tabs a:hover,.rank-tabs a.active{border-color:#00e33f;background:#0e1b11;color:#00ed43}
 .data-table-wrap{overflow:hidden;border:1px solid #292c2a;border-radius:12px;background:#111211}
@@ -57,7 +57,7 @@
 .nba-rankings-page .site-header{position:relative}
 .nba-rankings-page .research-footer{max-width:1180px;margin:0 auto;padding:20px 0 30px;border-top:1px solid #292c2a;color:#999b99;text-align:center;font-size:12px}
 .nba-rankings-page .research-footer a{color:#c6c9c7}
-@media(max-width:760px){.nba-rankings-main{width:calc(100% - 28px);padding-top:24px}.nba-rankings-main h1{font-size:clamp(36px,9vw,52px)}.rank-hero{aspect-ratio:2.1/1}.rank-tabs{grid-template-columns:1fr;gap:8px}.rank-tabs a{min-height:42px}.nba-rankings-page .research-footer{margin:0 14px}}
+@media(max-width:760px){.nba-rankings-main{width:calc(100% - 28px);padding-top:24px}.nba-rankings-main h1{font-size:clamp(36px,9vw,52px)}.rank-hero{aspect-ratio:2.1/1}.rank-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rank-tabs a{min-height:42px}.nba-rankings-page .research-footer{margin:0 14px}}
 @media(prefers-reduced-motion:reduce){.rank-tabs a{transition:none}}
 @media(max-width:760px){.nba-rank-season-control{justify-content:flex-start}.nba-rank-season-control label{width:100%;justify-content:space-between}.nba-rank-season-control select{min-width:0;flex:1;max-width:220px}}
 

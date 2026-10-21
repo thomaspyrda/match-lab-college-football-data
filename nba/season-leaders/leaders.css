@@ -1,0 +1,15 @@
+.leader-group h2{margin:32px 0 16px;font-size:28px;letter-spacing:-.02em}
+.leaderboard-section{padding:18px;border:1px solid #2c322e;border-radius:14px;background:#111512}
+.leaderboard-section h3{margin:0 0 8px;color:#f4f4f4;font-size:20px}
+.leaderboard-section .data-table th{background:#0c100d}
+.leaderboard-section .data-table td{color:#e8ece9}
+.leaderboard-section .data-table td a{color:#f4f4f4;text-decoration:none;font-weight:650}
+.leaderboard-section .data-table td a:hover{text-decoration:underline;color:#00ed43}
+.leaderboard-section .data-table th:nth-child(3),.leaderboard-section .data-table td:nth-child(3){width:72px}
+.leaderboard-section .data-table th:nth-child(5),.leaderboard-section .data-table td:nth-child(5){text-align:right}
+.leaderboard-section .data-table tbody tr:hover{background:#19221b}
+.leader-qualification{min-height:42px;color:#aeb8b0!important}
+.leader-note{font-size:13px}
+.leader-group-nav a{color:#e8ece9}
+.leader-group-nav a:focus-visible,.leaderboard-section a:focus-visible{outline:2px solid #00ed43;outline-offset:3px}
+@media(max-width:760px){.leaderboard-section{padding:14px}.leader-qualification{min-height:0}.leaderboard-grid{gap:16px}.leaderboard-section .data-table{min-width:410px}}
