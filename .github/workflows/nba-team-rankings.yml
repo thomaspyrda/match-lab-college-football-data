@@ -7,12 +7,15 @@ on:
     branches: [main]
     paths:
       - build_nba_team_rankings.py
+      - nba_current_rankings.py
+      - tests/test_nba_current_rankings.py
       - .github/workflows/nba-team-rankings.yml
       - nba/teams/data/*.json
+      - nba/dashboard/data/completed-games.json
 permissions:
   contents: write
 concurrency:
-  group: nba-team-rankings
+  group: nba-dashboard-refresh
   cancel-in-progress: false
 jobs:
   build:
@@ -22,8 +25,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build NBA rankings from archived season data
-        run: python build_nba_team_rankings.py
+      - name: Build historical and current-season NBA rankings
+        run: |
+          python -m unittest discover -s tests -p test_nba_current_rankings.py
+          python build_nba_team_rankings.py
       - name: Validate seasons, ranks, and raw efficiency model
         run: |
           python - <<'PY'
@@ -31,12 +36,18 @@ jobs:
           from pathlib import Path
           doc=json.loads(Path("nba/rankings/data/nba-team-rankings.json").read_text())
           assert all(str(y) in doc["seasons"] for y in range(2016, 2027))
+          assert doc["default_season"] in doc["seasons"]
+          assert int(doc["default_season"]) >= 2027
           for year,season in doc["seasons"].items():
               teams=season["teams"]
               assert season["team_count"] == 30 and len(teams) == 30
               assert len({row["slug"] for row in teams}) == 30
               for row in teams:
                   m=row["metrics"]
+                  if row["games_played"] == 0:
+                      assert all(row["ranks"][k] is None for k in ("overall","offense","defense"))
+                      assert m["ppg"] is None and m["ortg"] is None
+                      continue
                   assert abs(m["overall_rating"] - (m["net_rating"] - season["league_average"]["net_rating"])) < 0.01
                   assert abs(m["net_rating"] - (m["ortg"] - m["drtg"])) < 0.5
                   required=("ppg","ppg_allowed","fg_pct","opp_fg_pct","three_pct","opp_three_pct","assists_per_game","turnovers_per_game","turnover_margin","pace","rebounds_per_game","rebounds_allowed_per_game","offensive_rebound_rate","ortg","drtg","net_rating")
@@ -44,7 +55,7 @@ jobs:
                       required += ("ppg_home","ppg_away")
                   assert all(m[k] is not None and math.isfinite(float(m[k])) for k in required)
               for category in ("overall","offense","defense"):
-                  assert all(1 <= row["ranks"][category] <= 30 for row in teams)
+                  assert all(row["ranks"][category] is None if row["games_played"] == 0 else 1 <= row["ranks"][category] <= 30 for row in teams)
           print("Validated archived NBA team-seasons and raw-efficiency rankings.")
           PY
       - name: Commit rankings dataset

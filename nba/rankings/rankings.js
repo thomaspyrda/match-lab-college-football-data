@@ -38,11 +38,11 @@ function ratingValue(row,key){
 function buildUI(){
  const seasons=Object.entries(data.seasons).sort((a,b)=>Number(b[0])-Number(a[0]));
 
- app.innerHTML='<p class="eyebrow">BETWISE NBA · LIVE DATA</p><h1 id="rank-page-title"></h1><p class="page-intro">Rank all 30 NBA teams by completed regular-season performance. Ratings use raw offensive and defensive output without opponent-strength adjustments.</p><div class="nba-rank-season-control"><label for="nba-rank-season">Choose season<select id="nba-rank-season" aria-label="Select NBA season"></select></label></div><div class="rank-hero"><img src="https://matchlab.parlaycalculator.bet/nba/dashboard/hero-new.png?v=nba-giannis7-20261016" alt="NBA players featured on the BetWise NBA Dashboard"></div><p class="rank-tabs-label">Explore NBA Rankings</p><nav class="rank-tabs" aria-label="NBA rankings"><a href="/nba/rankings/"'+(mode==="overall"?' class="active" aria-current="page"':"")+'><span>Overall Team Rankings</span></a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' class="active" aria-current="page"':"")+'><span>Offensive Rankings</span></a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' class="active" aria-current="page"':"")+'><span>Defensive Rankings</span></a></nav><div class="data-table-wrap"><div class="nba-rank-table-scroll" id="rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></div><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show each team’s difference from that season’s league average. Positive defensive rating means better-than-average defense. Standard deviation is shown separately. This describes season performance, not a prediction or betting recommendation.</p>';
+ app.innerHTML='<p class="eyebrow">BETWISE NBA · LIVE DATA</p><h1 id="rank-page-title"></h1><p class="page-intro">Rank all 30 NBA teams by completed regular-season performance. Ratings use raw offensive and defensive output without opponent-strength adjustments.</p><div class="nba-rank-season-control"><label for="nba-rank-season">Choose season<select id="nba-rank-season" aria-label="Select NBA season"></select></label></div><p id="rank-season-status" class="nba-rank-status" hidden></p><div class="rank-hero"><img src="https://matchlab.parlaycalculator.bet/nba/dashboard/hero-new.png?v=nba-giannis7-20261016" alt="NBA players featured on the BetWise NBA Dashboard"></div><p class="rank-tabs-label">Explore NBA Rankings</p><nav class="rank-tabs" aria-label="NBA rankings"><a href="/nba/rankings/"'+(mode==="overall"?' class="active" aria-current="page"':"")+'><span>Overall Team Rankings</span></a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' class="active" aria-current="page"':"")+'><span>Offensive Rankings</span></a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' class="active" aria-current="page"':"")+'><span>Defensive Rankings</span></a></nav><div class="data-table-wrap"><div class="nba-rank-table-scroll" id="rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></div><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show each team’s difference from that season’s league average. Positive defensive rating means better-than-average defense. Standard deviation is shown separately. <span id="rank-source-note"></span> This describes season performance, not a prediction or betting recommendation.</p>';
  let activeColumn="rank",activeAscending=true;
  const seasonSelect=app.querySelector("#nba-rank-season");
  const requestedSeason=new URLSearchParams(location.search).get("season");
- selectedYear=seasons.some(([year])=>year===requestedSeason)?requestedSeason:seasons[0][0];
+ selectedYear=seasons.some(([year])=>year===requestedSeason)?requestedSeason:(data.seasons[data.default_season]?data.default_season:seasons[0][0]);
  seasonSelect.innerHTML=seasons.map(([year,season])=>'<option value="'+h(year)+'">'+h(season.label)+'</option>').join("");
  seasonSelect.value=selectedYear;
  seasonSelect.addEventListener("change",()=>{
@@ -104,16 +104,21 @@ function buildUI(){
  function render(){
   const season=data.seasons[selectedYear];if(!season)return;
   let rows=season.teams.slice();
-  rows=rows.map(row=>({...row,page_rank:Number(row.ranks[modelRankKey])}));
+  rows=rows.map(row=>({...row,page_rank:num(row.ranks[modelRankKey])}));
   function valueFor(row,key){
    if(key==="team")return row.team;
-   if(key==="rank")return Number(row.page_rank);
+   if(key==="rank")return num(row.page_rank);
    if(key==="record"){const m=String(row.record||"").match(/(\d+)\s*[-–]\s*(\d+)/);return m?Number(m[1])/(Number(m[1])+Number(m[2])||1):null}
    return num(ratingValue(row,key));
   }
   rows.sort((a,b)=>{const av=valueFor(a,activeColumn),bv=valueFor(b,activeColumn);if(typeof av==="string"&&typeof bv==="string"){const c=av.localeCompare(bv);return activeAscending?c:-c}if(av===null&&bv!==null)return 1;if(bv===null&&av!==null)return -1;if(av!==bv)return activeAscending?av-bv:bv-av;return a.team.localeCompare(b.team)});
   app.querySelector("#rank-page-title").textContent=season.label+" NBA "+names[mode];
   app.querySelector("#rank-source").href=season.source_url;
+  app.querySelector("#rank-source").textContent=season.source_name||"Basketball-Reference NBA team season tables";
+  app.querySelector("#rank-source-note").textContent=season.source_note||"";
+  const status=app.querySelector("#rank-season-status");
+  status.hidden=season.status!=="in_progress";
+  status.textContent=season.status==="in_progress"?"Season to date · "+(season.completed_games||0)+" completed games · "+(season.ranked_teams||0)+" of 30 teams have played. Teams awaiting their first game are unranked."+(season.data_updated_at?" Updated "+new Date(season.data_updated_at).toLocaleString("en-US",{dateStyle:"medium",timeStyle:"short",timeZone:"America/New_York"})+" ET.":""):"";
   const cols=[{key:"rank",label:"Rank"},{key:"team",label:"Team"},{key:"record",label:"Record"}];
   const keys=visible[mode]||visible.overall;
   keys.forEach(k=>cols.push({key:k,label:pretty(k)}));
@@ -121,7 +126,7 @@ function buildUI(){
   app.querySelector("#rank-table-head").innerHTML='<tr>'+cols.map(c=>'<th scope="col" aria-sort="'+(activeColumn===c.key?(activeAscending?"ascending":"descending"):"none")+'"><div class="nba-th-content"><button type="button" class="nba-sort-button" data-sort-key="'+h(c.key)+'" aria-label="Sort by '+h(c.label)+'">'+h(c.label)+' <span class="nba-sort-arrow" aria-hidden="true">'+(activeColumn===c.key?(activeAscending?"↑":"↓"):"↕")+'</span></button><span class="help-wrap"><button class="help-btn" type="button" aria-label="About '+h(c.label)+'" aria-expanded="false">?</button><span class="help-pop" role="tooltip">'+h(c.help)+'</span></span></div></th>').join("")+'</tr><tr class="nba-scrollbar-row"><th class="nba-scrollbar-cell" colspan="'+cols.length+'"><div class="nba-rank-table-scrubber" role="scrollbar" aria-label="Scroll ranking table horizontally" aria-controls="rank-table-scroll" aria-orientation="horizontal" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" tabindex="0"><span class="nba-rank-table-thumb" aria-hidden="true"></span></div></th></tr>';
   app.querySelectorAll("#rank-table-head [data-sort-key]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.sortKey;if(activeColumn===key)activeAscending=!activeAscending;else{activeColumn=key;activeAscending=key==="team"||key==="record"||key==="rank"?true:!(data.lower_is_better||[]).includes(key)}render()}));
   app.querySelector("#rank-table-body").innerHTML=rows.map(row=>"<tr>"+cols.map(col=>{
-   if(col.key==="rank")return "<td>"+row.page_rank+"</td>";
+   if(col.key==="rank")return "<td>"+(row.page_rank==null?"—":row.page_rank)+"</td>";
    if(col.key==="team")return '<td><a class="nba-rank-team" href="/nba/teams/'+h(row.slug)+'/"><img loading="lazy" src="'+h(row.logo)+'" alt=""><span>'+h(row.team)+'</span></a></td>';
    if(col.key==="record")return "<td>"+h(row.record||"—")+"</td>";
 
@@ -157,5 +162,5 @@ document.addEventListener("keydown",event=>{
   w.querySelector(".help-btn")?.setAttribute("aria-expanded","false");
  });
 });
-fetch("/nba/rankings/data/nba-team-rankings.json?v=1",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("NBA ranking archive is not available");return r.json()}).then(d=>{data=d;buildUI()}).catch(()=>{app.innerHTML='<div class="nba-rankings-error"><h1>'+h(names[mode])+'</h1><p>Ranking data is temporarily unavailable. Please refresh shortly.</p></div>'});
+fetch("/nba/rankings/data/nba-team-rankings.json?v=2",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("NBA ranking archive is not available");return r.json()}).then(d=>{data=d;buildUI()}).catch(()=>{app.innerHTML='<div class="nba-rankings-error"><h1>'+h(names[mode])+'</h1><p>Ranking data is temporarily unavailable. Please refresh shortly.</p></div>'});
 })();

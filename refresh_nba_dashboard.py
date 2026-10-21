@@ -71,7 +71,7 @@ def completed(event):
         market={'home_spread':home_spread,'total':num(quote.get('overUnder')),'provider':quote.get('provider',{}).get('name'),'line_type':'published; closing not verified','observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/game/_/gameId/'+event['id']}
     return {'id':event['id'],'date':event['date'],'season':event['season']['year'],'phase':event['season']['type'],
       'observed_complete_at':datetime.now(UTC).isoformat(),'teams':boxes,'players':players,'home':next(c['team']['id'] for c in comp['competitors'] if c['homeAway']=='home'),
-      'neutral':comp.get('neutralSite',False),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,'player_stats_version':2,
+      'neutral':comp.get('neutralSite',False),'periods':event.get('status',{}).get('period') or comp.get('status',{}).get('period'),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,'player_stats_version':2,
       'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None

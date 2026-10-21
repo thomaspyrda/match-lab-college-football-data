@@ -60,3 +60,5 @@
 @media(max-width:760px){.nba-rankings-main{width:calc(100% - 28px);padding-top:24px}.nba-rankings-main h1{font-size:clamp(36px,9vw,52px)}.rank-hero{aspect-ratio:2.1/1}.rank-tabs{grid-template-columns:1fr;gap:8px}.rank-tabs a{min-height:42px}.nba-rankings-page .research-footer{margin:0 14px}}
 @media(prefers-reduced-motion:reduce){.rank-tabs a{transition:none}}
 @media(max-width:760px){.nba-rank-season-control{justify-content:flex-start}.nba-rank-season-control label{width:100%;justify-content:space-between}.nba-rank-season-control select{min-width:0;flex:1;max-width:220px}}
+
+.nba-rank-status{margin:0 0 18px;color:#b8c9bf;font-size:13px;line-height:1.6}

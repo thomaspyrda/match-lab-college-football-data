@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build frozen NBA team rankings from the archived regular-season team tables."""
+"""Build historical NBA rankings and the daily season-to-date rankings."""
 import json
 import math
 import statistics
 from datetime import datetime, timezone
 from pathlib import Path
+from nba_current_rankings import build_current_rows
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "nba/teams/data"
@@ -113,11 +114,11 @@ def rate(value, games):
 
 def make_ranks(rows, key, higher_is_better=True):
     ordered = sorted(
-        rows,
+        [row for row in rows if row["metrics"].get(key) is not None],
         key=lambda row: row["metrics"].get(key) if row["metrics"].get(key) is not None else (-math.inf if higher_is_better else math.inf),
         reverse=higher_is_better,
     )
-    ranks = {}
+    ranks = {row["slug"]: None for row in rows}
     previous = object()
     for position, row in enumerate(ordered, 1):
         value = row["metrics"].get(key)
@@ -127,6 +128,30 @@ def make_ranks(rows, key, higher_is_better=True):
         ranks[row["slug"]] = rank
         previous = comparison
     return ranks
+
+
+def rate_teams(rows):
+    league_ortg = avg([r["metrics"].get("ortg") for r in rows])
+    league_drtg = avg([r["metrics"].get("drtg") for r in rows])
+    league_net = avg([r["metrics"].get("net_rating") for r in rows])
+    for row in rows:
+        m = row["metrics"]
+        m["offense_rating"] = round(m["ortg"] - league_ortg, 4) if m.get("ortg") is not None else None
+        m["defense_rating"] = round(league_drtg - m["drtg"], 4) if m.get("drtg") is not None else None
+        m["overall_rating"] = round(m["net_rating"] - league_net, 4) if m.get("net_rating") is not None else None
+        row["ratings"] = {"overall": m["overall_rating"], "offense": m["offense_rating"],
+                          "defense": m["defense_rating"]}
+    for category in ("overall", "offense", "defense"):
+        values = [r["ratings"][category] for r in rows if r["ratings"][category] is not None]
+        sd = statistics.pstdev(values) if values else 0
+        ranks = make_ranks(rows, category + "_rating")
+        for row in rows:
+            value = row["ratings"][category]
+            row["ratings"][category + "_sd"] = (round(value / sd, 3) if sd else 0) if value is not None else None
+            row["ranks"][category] = ranks[row["slug"]]
+    return {"offensive_rating": round(league_ortg, 3) if league_ortg is not None else None,
+            "defensive_rating": round(league_drtg, 3) if league_drtg is not None else None,
+            "net_rating": round(league_net, 3) if league_net is not None else None}
 
 
 def main():
@@ -246,38 +271,7 @@ def main():
                 "ranks": {},
             })
 
-        league_ortg = avg([r["metrics"].get("ortg") for r in rows])
-        league_drtg = avg([r["metrics"].get("drtg") for r in rows])
-        league_net = avg([r["metrics"].get("net_rating") for r in rows])
-        for row in rows:
-            m = row["metrics"]
-            m["offense_rating"] = round(m["ortg"] - league_ortg, 4) if m.get("ortg") is not None else None
-            m["defense_rating"] = round(league_drtg - m["drtg"], 4) if m.get("drtg") is not None else None
-            m["overall_rating"] = round(m["net_rating"] - league_net, 4) if m.get("net_rating") is not None else None
-            row["ratings"] = {
-                "overall": m["overall_rating"],
-                "offense": m["offense_rating"],
-                "defense": m["defense_rating"],
-                "overall_sd": None, "offense_sd": None, "defense_sd": None,
-            }
-
-        overall_sd = statistics.pstdev([r["metrics"]["overall_rating"] for r in rows])
-        offense_sd = statistics.pstdev([r["metrics"]["offense_rating"] for r in rows])
-        defense_sd = statistics.pstdev([r["metrics"]["defense_rating"] for r in rows])
-        for row in rows:
-            r = row["ratings"]
-            r["overall_sd"] = round(r["overall"] / overall_sd, 3) if overall_sd else 0
-            r["offense_sd"] = round(r["offense"] / offense_sd, 3) if offense_sd else 0
-            r["defense_sd"] = round(r["defense"] / defense_sd, 3) if defense_sd else 0
-
-        rank_defs = {
-            "overall": ("overall_rating", True), "offense": ("offense_rating", True),
-            "defense": ("defense_rating", True),
-        }
-        for rank_name, (metric, higher) in rank_defs.items():
-            ranks = make_ranks(rows, metric, higher)
-            for row in rows:
-                row["ranks"][rank_name] = ranks[row["slug"]]
+        league_average = rate_teams(rows)
         for row in rows:
             row["metrics"].pop("points_allowed_per_game", None)
 
@@ -288,14 +282,33 @@ def main():
             "label": season_label or year,
             "status": "in_progress" if in_progress else "complete",
             "team_count": len(rows),
-            "league_average": {
-                "offensive_rating": round(league_ortg, 3),
-                "defensive_rating": round(league_drtg, 3),
-                "net_rating": round(league_net, 3),
-            },
+            "league_average": league_average,
             "source_url": f"https://www.basketball-reference.com/leagues/NBA_{year}.html",
             "teams": sorted(rows, key=lambda row: row["ranks"]["overall"]),
         }
+
+    active_year = today.year + (today.month >= 9)
+    previous = read_json(OUTPUT) if OUTPUT.exists() else {}
+    # Retain finished live seasons if the rolling dashboard cache has moved on.
+    for year, season in previous.get("seasons", {}).items():
+        if 2027 <= int(year) < active_year and year not in output["seasons"]:
+            output["seasons"][year] = {**season, "status": "complete"}
+    cache = read_json(ROOT / "nba/dashboard/data/completed-games.json")
+    registry = read_json(ROOT / "data/sports/team-registry.json")
+    rows, coverage = build_current_rows(cache, registry, TEAM_INFO, active_year, METRIC_LABELS)
+    league_average = rate_teams(rows)
+    output["seasons"][str(active_year)] = {
+        "label": f"{active_year - 1}–{str(active_year)[-2:]}",
+        "status": "in_progress", "team_count": len(rows),
+        "league_average": league_average, **coverage,
+        "source_url": "https://www.espn.com/nba/scoreboard",
+        "source_name": "ESPN completed regular-season box scores",
+        "source_note": "Current-season efficiency uses estimated possessions: the average of both teams’ FGA − offensive rebounds + turnovers + 0.44 × FTA. Pace accounts for overtime. League averages and standard deviations include teams with completed games. Missing values are shown as —; at-rim shooting is unavailable from this feed.",
+        "teams": sorted(rows, key=lambda row: (row["ranks"]["overall"] is None,
+                                               row["ranks"]["overall"] or 0, row["team"])),
+    }
+    output["default_season"] = str(active_year)
+    output["source"] = "Historical Basketball-Reference tables; current-season ESPN completed box scores"
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(output, separators=(",", ":"), ensure_ascii=False) + "\n", encoding="utf-8")
