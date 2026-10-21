@@ -11,7 +11,7 @@ const pctKeys=new Set(["fg_pct","opp_fg_pct","three_pct","opp_three_pct","orb_pc
 const signedKeys=new Set(["turnover_margin","overall_rating","offense_rating","defense_rating","net_rating"]);
 const ratingKeys=new Set(["overall_rating","offense_rating","defense_rating","ortg","drtg","net_rating"]);
 const visible={
-overall:["overall_sd","ortg","drtg","offensive_efficiency","defensive_efficiency","net_rating","ppg","ppg_allowed","pace"],
+overall:["overall_sd","ortg","drtg","net_rating","offensive_efficiency","defensive_efficiency","ppg","ppg_allowed","pace"],
 offense:["offense_sd","offense_rating","ortg","offensive_efficiency","ppg","ppg_home","ppg_away","fg_pct","three_pct","efg_pct","ts_pct","ft_pct","three_attempt_rate","ft_rate","ft_made_rate","assists_per_game","turnovers_per_game","tov_pct","turnover_margin","rebounds_per_game","orb_pct","pace"],
 defense:["defense_sd","defense_rating","drtg","defensive_efficiency","ppg_allowed","ppg_allowed_home","ppg_allowed_away","opp_fg_pct","opp_three_pct","opp_efg_pct","opp_rim_fg_pct","opp_ft_made_rate","opp_tov_pct","rebounds_allowed_per_game","opponent_assists_per_game","opponent_turnovers_per_game","opponent_steals_per_game","opponent_blocks_per_game","steals_per_game","blocks_per_game","drb_pct","defensive_rebound_rate","turnover_margin","pace"]
 };
