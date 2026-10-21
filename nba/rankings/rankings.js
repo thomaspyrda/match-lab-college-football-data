@@ -37,9 +37,25 @@ function ratingValue(row,key){
 }
 function buildUI(){
  const seasons=Object.entries(data.seasons).sort((a,b)=>Number(b[0])-Number(a[0]));
- selectedYear=seasons[0][0];
- app.innerHTML='<p class="eyebrow">BETWISE NBA · LIVE DATA</p><h1 id="rank-page-title"></h1><p class="page-intro">Rank all 30 NBA teams by completed regular-season performance. Ratings use raw offensive and defensive output without opponent-strength adjustments.</p><div class="rank-hero"><img src="https://matchlab.parlaycalculator.bet/nba/dashboard/hero-new.png?v=nba-giannis7-20261016" alt="NBA players featured on the BetWise NBA Dashboard"></div><p class="rank-tabs-label">Explore NBA Rankings</p><nav class="rank-tabs" aria-label="NBA rankings"><a href="/nba/rankings/"'+(mode==="overall"?' class="active" aria-current="page"':"")+'><span>Overall Team Rankings</span></a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' class="active" aria-current="page"':"")+'><span>Offensive Rankings</span></a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' class="active" aria-current="page"':"")+'><span>Defensive Rankings</span></a></nav><div class="data-table-wrap"><div class="nba-rank-table-scroll" id="rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></div><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show each team’s difference from that season’s league average. Positive defensive rating means better-than-average defense. Standard deviation is shown separately. This describes season performance, not a prediction or betting recommendation.</p>';
+
+ app.innerHTML='<p class="eyebrow">BETWISE NBA · LIVE DATA</p><h1 id="rank-page-title"></h1><p class="page-intro">Rank all 30 NBA teams by completed regular-season performance. Ratings use raw offensive and defensive output without opponent-strength adjustments.</p><div class="nba-rank-season-control"><label for="nba-rank-season">Choose season<select id="nba-rank-season" aria-label="Select NBA season"></select></label></div><div class="rank-hero"><img src="https://matchlab.parlaycalculator.bet/nba/dashboard/hero-new.png?v=nba-giannis7-20261016" alt="NBA players featured on the BetWise NBA Dashboard"></div><p class="rank-tabs-label">Explore NBA Rankings</p><nav class="rank-tabs" aria-label="NBA rankings"><a href="/nba/rankings/"'+(mode==="overall"?' class="active" aria-current="page"':"")+'><span>Overall Team Rankings</span></a><a href="/nba/offensive-rankings/"'+(mode==="offense"?' class="active" aria-current="page"':"")+'><span>Offensive Rankings</span></a><a href="/nba/defensive-rankings/"'+(mode==="defense"?' class="active" aria-current="page"':"")+'><span>Defensive Rankings</span></a></nav><div class="data-table-wrap"><div class="nba-rank-table-scroll" id="rank-table-scroll"><table class="nba-rank-table"><thead id="rank-table-head"></thead><tbody id="rank-table-body"></tbody></table></div></div><p class="nba-rank-source">Source: <a id="rank-source" target="_blank" rel="noopener noreferrer">Basketball-Reference NBA team season tables</a>. Offensive rating is points per 100 estimated possessions; defensive rating is points allowed per 100 estimated possessions. Ratings show each team’s difference from that season’s league average. Positive defensive rating means better-than-average defense. Standard deviation is shown separately. This describes season performance, not a prediction or betting recommendation.</p>';
  let activeColumn="rank",activeAscending=true;
+ const seasonSelect=app.querySelector("#nba-rank-season");
+ const requestedSeason=new URLSearchParams(location.search).get("season");
+ selectedYear=seasons.some(([year])=>year===requestedSeason)?requestedSeason:seasons[0][0];
+ seasonSelect.innerHTML=seasons.map(([year,season])=>'<option value="'+h(year)+'">'+h(season.label)+'</option>').join("");
+ seasonSelect.value=selectedYear;
+ seasonSelect.addEventListener("change",()=>{
+  const next=seasonSelect.value;
+  if(!data.seasons[next])return;
+  selectedYear=next;
+  activeColumn="rank";
+  activeAscending=true;
+  const url=new URL(location.href);
+  url.searchParams.set("season",selectedYear);
+  history.replaceState(null,"",url);
+  render();
+ });
  function syncTopScrollbar(){
   const wrapper=app.querySelector("#rank-table-scroll"),table=app.querySelector(".nba-rank-table"),bar=app.querySelector(".nba-rank-table-scrubber"),thumb=bar?.querySelector(".nba-rank-table-thumb");
   if(!wrapper||!table||!bar||!thumb)return;
