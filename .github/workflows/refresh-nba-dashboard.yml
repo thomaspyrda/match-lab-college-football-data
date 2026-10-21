@@ -18,6 +18,8 @@ on:
       - publish_nba_team_backfill.py
       - build_nba_team_rankings.py
       - nba_current_rankings.py
+      - build_nba_team_current.py
+      - tests/test_nba_team_current.py
       - tests/test_stage_nba_team_backfill.py
       - tests/test_publish_nba_team_backfill.py
       - .github/workflows/refresh-nba-dashboard.yml
@@ -51,13 +53,15 @@ jobs:
       - name: Update current-season rankings from the refreshed box scores
         run: |
           python -m unittest discover -s tests -p test_nba_current_rankings.py
+          python -m unittest discover -s tests -p test_nba_team_current.py
+          python build_nba_team_current.py
           python build_nba_team_rankings.py
           python build_nba_season_leaders.py
       - name: Publish NBA snapshot and verified 2026-27 team games
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
+          git add nba/teams/data/current-season.json nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
           git pull --rebase -X theirs origin main
