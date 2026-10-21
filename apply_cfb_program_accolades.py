@@ -12,7 +12,7 @@ def update_page(content,team_id,data):
  content=content.replace(anchor,section+'\n'+anchor,1)
  if 'href="#programAccolades"' not in content:content=content.replace('<a href="#schedule">Schedule</a>','<a href="#schedule">Schedule</a><a href="#programAccolades">Accolades</a>',1)
  content=re.sub(r'/cfb/team-page\.css\?v=[^"\s]+','/cfb/team-page.css?v=draft-links-20261010',content)
- content=re.sub(r'site-navigation\.js\?v=[^"\s]+','site-navigation-v3.js',content)
+ content=re.sub(r'site-navigation\.js\?v=[^"\s]+','site-navigation-v5.js?v=20261021-1',content)
  assert content.count('id="programAccolades"')==1
  assert content.index('id="programAccolades"')>content.index('id="schedule"')
  schedule=re.search(r'(<section id="schedule".*?</section>)\s*',content,flags=re.S)
