@@ -1,0 +1,93 @@
+.mlb-rankings-page{min-height:100vh;color:#f4f4f5;background:radial-gradient(ellipse at 54% 4%,#10251a 0,#0d1510 45%,#0c0d0c 100%)}
+.mlb-rankings-main{width:min(1180px,calc(100% - 44px));margin:0 auto;padding:32px 0 70px}
+.mlb-rankings-page .eyebrow,.rank-tabs-label{margin:0 0 11px;color:#999b99;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.mlb-rankings-main h1{margin:0 0 12px;font-size:clamp(40px,6vw,66px);line-height:1.02;letter-spacing:-.045em}
+.page-intro{max-width:900px;margin:0 0 18px;color:#c6c9c7;font-size:15px;line-height:1.55}
+.mlb-rank-season-control{display:flex;justify-content:flex-end;margin:0 0 18px}
+.mlb-rank-season-control label{display:flex;align-items:center;gap:10px;color:#c6c9c7;font-size:13px;font-weight:750}
+.mlb-rank-season-control select{min-width:150px;min-height:40px;padding:8px 34px 8px 12px;border:1px solid #3b443e;border-radius:9px;background:#111a14;color:#f4f4f5;font:inherit;cursor:pointer}
+.mlb-rank-season-control select:focus-visible{outline:2px solid #5cbc8b;outline-offset:2px}
+
+.rank-hero{overflow:hidden;aspect-ratio:3.15/1;border:1px solid #167440;border-radius:18px;background:#141916}
+.rank-hero img{display:block;width:100%;height:100%;object-fit:cover}
+.rank-tabs-label{margin:23px 0 13px}
+.rank-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 24px}
+.rank-tabs a{display:flex;min-height:46px;align-items:center;justify-content:center;padding:10px 14px;border:1px solid #303331;border-radius:12px;background:#111211;color:#f1f2f1;text-align:center;text-decoration:none;font-size:14px;font-weight:800;transition:background .15s,border-color .15s,color .15s}
+.rank-tabs a:hover,.rank-tabs a.active{border-color:#00e33f;background:#0e1b11;color:#00ed43}
+.data-table-wrap{overflow:hidden;border:1px solid #292c2a;border-radius:12px;background:#111211}
+.mlb-rank-table-scroll{max-width:100%;overflow:auto;scrollbar-width:none;overscroll-behavior-x:contain}
+.mlb-rank-table-scroll::-webkit-scrollbar{width:0;height:0}
+.mlb-rank-table{width:max-content;min-width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.mlb-rank-table th,.mlb-rank-table td{padding:12px 13px;border-bottom:1px solid #303230}
+.mlb-rank-table th{background:#111211;color:#aeb2af;text-align:left;font-size:11px;letter-spacing:.055em;text-transform:uppercase;white-space:nowrap}
+.mlb-rank-table td{background:#111211;color:#f1f2f1;white-space:nowrap}
+.mlb-rank-table tr:last-child td{border-bottom:0}
+.mlb-rank-table tbody tr:hover td{background:#171a18}
+.mlb-rank-table th:first-child,.mlb-rank-table td:first-child{position:sticky;left:0;z-index:4;width:62px;min-width:62px;max-width:62px}
+.mlb-rank-table th:nth-child(2),.mlb-rank-table td:nth-child(2){position:sticky;left:62px;z-index:3;width:205px;min-width:205px}
+.mlb-rank-table th:first-child,.mlb-rank-table th:nth-child(2){z-index:7;background:#111211}
+.mlb-rank-table td:first-child,.mlb-rank-table td:nth-child(2){background:#111211}
+.mlb-rank-table tbody tr:hover td:first-child,.mlb-rank-table tbody tr:hover td:nth-child(2){background:#171a18}
+.mlb-th-content{display:flex;align-items:center;gap:6px}
+.mlb-sort-button{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer}
+.mlb-sort-button:hover{color:#f4f4f5}
+.mlb-sort-arrow{color:#aeb2af;font-size:14px;line-height:1;letter-spacing:0}
+.mlb-sort-button:hover .mlb-sort-arrow{color:#e2e5e3}
+.mlb-sort-button:focus-visible{outline:2px solid #5cbc8b;outline-offset:3px;border-radius:2px}
+.mlb-rank-table td,.mlb-rank-table th{vertical-align:middle}
+.mlb-rank-table .mlb-scrollbar-row th.mlb-scrollbar-cell{position:sticky;left:0;z-index:9!important;width:auto!important;min-width:0!important;max-width:none!important;height:15px;padding:0!important;background:#111211!important;border-bottom:1px solid #303230}
+.mlb-rank-table-scrubber{position:sticky;left:0;display:block;height:14px;width:100%;overflow:hidden;touch-action:none;cursor:grab;background:#242725}
+.mlb-rank-table-scrubber:before{position:absolute;inset:3px 0;background:#202321;border-radius:5px;content:""}
+.mlb-rank-table-thumb{position:absolute;top:3px;left:0;display:block;height:8px;min-width:44px;border:1px solid #393d3a;border-radius:6px;background:#444945;cursor:grab;will-change:transform}
+.mlb-rank-table-scrubber:hover .mlb-rank-table-thumb{background:#565c57}
+.mlb-rank-table-scrubber.dragging,.mlb-rank-table-scrubber.dragging .mlb-rank-table-thumb{cursor:grabbing}
+.mlb-rank-table-scrubber:focus-visible{outline:2px solid #5cbc8b;outline-offset:2px}
+.help-wrap{position:relative;display:inline-flex;align-items:center}
+.help-btn{appearance:none;-webkit-appearance:none;width:16px;height:16px;min-width:16px;padding:0;border:1px solid #777e79;border-radius:50%;background:#171a18;color:#c2c8c4;font:800 10px/14px sans-serif;cursor:pointer}
+.help-btn:hover,.help-btn:focus-visible{border-color:#5cbc8b;color:#fff;outline:none}
+.help-pop{display:none;position:absolute;z-index:100;top:22px;left:0;width:250px;max-width:70vw;padding:10px 11px;border:1px solid #46524b;border-radius:10px;background:#101412;color:#e4e9e6;box-shadow:0 10px 28px #0008;font:500 12px/1.45 sans-serif;letter-spacing:0;text-align:left;text-transform:none;white-space:normal}
+.help-wrap.open .help-pop{display:block}
+.mlb-rank-team{display:flex;align-items:center;gap:9px;color:#f2f3f2;text-decoration:none;font-weight:700}
+.mlb-rank-team:hover{color:#69d398}
+.mlb-rank-team img{width:26px;height:26px;object-fit:contain}
+.mlb-rank-source{margin:16px 0 0;color:#aab3ae;font-size:12px;line-height:1.7}
+.mlb-rank-source a{color:#70c99a}
+.mlb-rankings-error{padding:60px 20px;text-align:center;color:#e2e7e3}
+.mlb-rankings-error p{color:#aab3ae}
+.mlb-rankings-page .site-header{position:relative}
+.mlb-rankings-page .research-footer{max-width:1180px;margin:0 auto;padding:20px 0 30px;border-top:1px solid #292c2a;color:#999b99;text-align:center;font-size:12px}
+.mlb-rankings-page .research-footer a{color:#c6c9c7}
+@media(max-width:760px){.mlb-rankings-main{width:calc(100% - 28px);padding-top:24px}.mlb-rankings-main h1{font-size:clamp(36px,9vw,52px)}.rank-hero{aspect-ratio:2.1/1}.rank-tabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rank-tabs a{min-height:42px}.mlb-rankings-page .research-footer{margin:0 14px}}
+@media(prefers-reduced-motion:reduce){.rank-tabs a{transition:none}}
+@media(max-width:760px){.mlb-rank-season-control{justify-content:flex-start}.mlb-rank-season-control label{width:100%;justify-content:space-between}.mlb-rank-season-control select{min-width:0;flex:1;max-width:220px}}
+
+.mlb-rank-status{margin:0 0 18px;color:#b8c9bf;font-size:13px;line-height:1.6}
+/* Separate sticky logos from names so mobile can reveal more statistics. */
+.mlb-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.mlb-rank-table th,.mlb-rank-table td{box-sizing:border-box}
+.mlb-rank-table th:nth-child(2),.mlb-rank-table td:nth-child(2){width:44px;min-width:44px;max-width:44px;padding-left:9px;padding-right:9px}
+.mlb-rank-table th:nth-child(3),.mlb-rank-table td:nth-child(3){position:sticky;left:106px;z-index:3;width:205px;min-width:205px;background:#111211}
+.mlb-rank-table th:nth-child(3){z-index:7}
+.mlb-rank-table tbody tr:hover td:nth-child(3){background:#171a18}
+.mlb-rank-logo a{display:flex;align-items:center;justify-content:center;width:26px;height:30px}
+.mlb-rank-logo img{display:block;width:26px;height:26px;object-fit:contain}
+@media(max-width:760px){
+ .mlb-rank-table{font-size:12px}
+ .mlb-rank-table th,.mlb-rank-table td{padding:10px 8px}
+ .mlb-rank-table th{font-size:10px;letter-spacing:0}
+ .mlb-rank-table th:first-child,.mlb-rank-table td:first-child{width:38px;min-width:38px;max-width:38px;padding-left:5px;padding-right:5px}
+ .mlb-rank-table th:nth-child(2),.mlb-rank-table td:nth-child(2){left:38px;width:38px;min-width:38px;max-width:38px;padding-left:6px;padding-right:6px;box-shadow:3px 0 4px #0003}
+ .mlb-rank-table th:nth-child(3),.mlb-rank-table td:nth-child(3){position:static;width:132px;min-width:132px;max-width:132px;white-space:normal}
+ .mlb-rank-team{line-height:1.3;overflow-wrap:normal}
+ .mlb-rank-table .mlb-th-content{gap:4px}
+ .mlb-sort-button{gap:3px}
+ .mlb-sort-arrow{font-size:11px}
+ .mlb-rank-table th:first-child .mlb-sort-arrow{display:none}
+ .mlb-rank-table th:not(:nth-child(-n+3)){min-width:82px;max-width:110px;white-space:normal}
+ .mlb-rank-table th:not(:nth-child(-n+3)) .mlb-sort-button{white-space:normal;text-align:left;line-height:1.25}
+ .mlb-rank-logo img{width:25px;height:25px}
+ .help-btn{width:14px;height:14px;min-width:14px;font-size:9px;line-height:12px}
+}
+
+
+.mlb-rank-filters{display:flex;gap:20px;flex-wrap:wrap;margin:0 0 16px}.mlb-rank-filters label{display:flex;align-items:center;gap:8px;color:#c6c9c7;font-size:13px}.mlb-rank-filters select,.mlb-rank-filters input{background:#111a14;color:#fff;border:1px solid #3b443e;border-radius:8px;padding:10px;font:inherit;max-width:100%}
