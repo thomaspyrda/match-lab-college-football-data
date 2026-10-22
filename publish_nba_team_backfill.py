@@ -38,11 +38,11 @@ def apply_manifest(manifest, directory=DATA, write=False):
                 for key in ("date","score_for","score_against","location","opponent_slug"):
                     if g.get(key)!=row.get(key):
                         raise ValueError("Conflicting game "+slug+" "+game_id+" "+key)
-                for key in ("spread","total","ats_result","ou_result"):
+                for key in ("spread","total","ats_result","ou_result","odds_source","odds_observed_at","odds_line_type","opponent_name"):
                     if g.get(key) is None and row.get(key) is not None:g[key]=row[key]
                 counts["existing"]+=1
                 continue
-            g={key:row.get(key) for key in ("game_id","date","location","opponent_slug","result","score_for","score_against","spread","total","ats_result","ou_result","odds_source","odds_observed_at")}
+            g={key:row.get(key) for key in ("game_id","date","location","opponent_slug","result","score_for","score_against","spread","total","ats_result","ou_result","odds_source","odds_observed_at","odds_line_type","opponent_name")}
             old[game_id]=g;counts["added"]+=1
         games=sorted(old.values(),key=lambda x:(x["date"],str(x["game_id"])))
         wins=sum(g["result"]=="W" for g in games);losses=sum(g["result"]=="L" for g in games)

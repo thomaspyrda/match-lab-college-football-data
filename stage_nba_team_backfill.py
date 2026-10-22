@@ -7,6 +7,7 @@ NBA historical season files; it produces an auditable per-team import manifest.
 import argparse, json
 from collections import Counter
 from pathlib import Path
+from nba_closing_markets import verified_closing_market
 from daily_backfill_core import GameObservation, market_result, accept_pregame_market
 
 ROOT=Path(__file__).resolve().parent
@@ -27,11 +28,14 @@ def build_manifest(registry, cache, season=2027):
         obs=GameObservation("nba",str(g["id"]),g["observed_complete_at"],g["date"][:10],home,away,"final",home_score,away_score);obs.validate()
         line=g.get("pregame_market") # Strictly saved pregame data; postgame pickcenter is not trusted as historical pregame.
         valid=bool(line and line.get("observed_at") and accept_pregame_market(g["date"],line["observed_at"],line))
+        archived=verified_closing_market(g)
+        if archived:
+            line=archived;valid=True;stats['verified_closing_markets']+=1
         settlement=market_result("nba",home_score,away_score,home_spread=line.get("home_spread") if valid else None,total=line.get("total") if valid else None)
         for tid,other,venue,own_score,opp_score in ((home,away,"Home",home_score,away_score),(away,home,"Away",away_score,home_score)):
             home_ats=settlement["home_ats_or_runline"]
             ats=home_ats if tid==home else ({"W":"L","L":"W","P":"P"}.get(home_ats) if home_ats else None)
-            grouped[lookup[tid]["slug"]].append({"game_id":g["id"],"date":g["date"][:10],"location":venue,"opponent_slug":lookup[other]["slug"],"result":"W" if own_score>opp_score else "L","score_for":own_score,"score_against":opp_score,"spread":((line["home_spread"] if tid==home else -line["home_spread"]) if valid and line.get("home_spread") is not None else None),"total":line.get("total") if valid else None,"ats_result":ats,"ou_result":settlement["ou"],"players":g.get("players",{}).get(tid,[]),"odds_source":line.get("source") if valid else None,"odds_observed_at":line.get("observed_at") if valid else None})
+            grouped[lookup[tid]["slug"]].append({"game_id":g["id"],"date":g["date"][:10],"location":venue,"opponent_slug":lookup[other]["slug"],"opponent_name":lookup[other].get("name",lookup[other]["slug"]),"result":"W" if own_score>opp_score else "L","score_for":own_score,"score_against":opp_score,"spread":((line["home_spread"] if tid==home else -line["home_spread"]) if valid and line.get("home_spread") is not None else None),"total":line.get("total") if valid else None,"ats_result":ats,"ou_result":settlement["ou"],"players":g.get("players",{}).get(tid,[]),"odds_source":line.get("source") if valid else None,"odds_line_type":line.get("line_type","observed pregame") if valid else None,"odds_observed_at":line.get("observed_at") if valid else None})
         stats["games"]+=1
         if valid:stats["sourced_pregame_markets"]+=1
         else:stats["without_valid_pregame_market"]+=1

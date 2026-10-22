@@ -17,6 +17,8 @@ on:
       - stage_nba_team_backfill.py
       - publish_nba_team_backfill.py
       - build_nba_team_rankings.py
+      - nba_closing_markets.py
+      - tests/test_nba_closing_markets.py
       - nba_current_rankings.py
       - build_nba_team_current.py
       - tests/test_nba_team_current.py
@@ -38,6 +40,7 @@ jobs:
           python-version: '3.12'
       - name: Test season boundaries and pregame isolation
         run: |
+          python -m unittest discover -s tests -p test_nba_closing_markets.py
           python -m unittest discover -s tests -p test_nba_dashboard.py
           python -m unittest discover -s tests -p test_nba_player_context.py
           python -m unittest discover -s tests -p test_nba_season_leaders.py

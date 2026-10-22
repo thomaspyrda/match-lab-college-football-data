@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from nba_current_rankings import game_minutes
+from nba_closing_markets import closing_market
 from nba_player_context import refresh_availability, load_player_values
 
 ROOT=Path(__file__).resolve().parent
@@ -71,9 +72,11 @@ def completed(event):
         spread=num(quote.get('spread'));home_fav=quote.get('homeTeamOdds',{}).get('favorite');away_fav=quote.get('awayTeamOdds',{}).get('favorite')
         home_spread=(-abs(spread) if home_fav else abs(spread) if away_fav else 0 if spread==0 else None) if spread is not None else None
         market={'home_spread':home_spread,'total':num(quote.get('overUnder')),'provider':quote.get('provider',{}).get('name'),'line_type':'published; closing not verified','observed_at':datetime.now(UTC).isoformat(),'source':'https://www.espn.com/nba/game/_/gameId/'+event['id']}
+    archived_close=closing_market(summary,event['id'],datetime.now(UTC).isoformat())
+    if archived_close:market=archived_close
     return {'id':event['id'],'date':event['date'],'season':event['season']['year'],'phase':event['season']['type'],
       'observed_complete_at':datetime.now(UTC).isoformat(),'teams':boxes,'players':players,'home':next(c['team']['id'] for c in comp['competitors'] if c['homeAway']=='home'),
-      'neutral':comp.get('neutralSite',False),'periods':event.get('status',{}).get('period') or comp.get('status',{}).get('period'),'game_id':'nba:espn:game:'+event['id'],'market':market,'market_checked':True,'player_stats_version':2,
+      'neutral':comp.get('neutralSite',False),'periods':event.get('status',{}).get('period') or comp.get('status',{}).get('period'),'game_id':'nba:espn:game:'+event['id'],'market':market,'closing_market':archived_close,'market_checked':True,'player_stats_version':2,
       'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None
@@ -179,9 +182,10 @@ def main():
     dates=[start+timedelta(days=i) for i in range((today+timedelta(days=7)-start).days+1)]
     boards=list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?dates='+d.strftime('%Y%m%d')),dates))
     events={e['id']:e for b in boards for e in b.get('events',[]) if e.get('season',{}).get('year')==season and all(c['team']['id'] in teams for c in e['competitions'][0]['competitors'])}
-    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
+    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('closing_market') and e['season']['type']==2) or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
     for g in ThreadPoolExecutor(8).map(completed,new):
         if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
+        if g['id'] in old and old[g['id']].get('closing_market') and not g.get('closing_market'):g['closing_market']=old[g['id']]['closing_market']
         old[g['id']]=g
     rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,teams)}
     for g in old.values():
