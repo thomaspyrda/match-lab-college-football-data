@@ -2,7 +2,8 @@ name: Build MLB Draft Classes
 on:
   workflow_dispatch:
   schedule:
-    - cron: "37 10 * * *"
+    - cron: '17 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:

@@ -2,7 +2,8 @@ name: Refresh CFB Dashboard schedule only
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 19 * * *'
+    - cron: '42 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
