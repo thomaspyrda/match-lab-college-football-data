@@ -10,6 +10,8 @@ on:
       - build_mlb_season_snapshots.py
       - backfill_mlb_team_metrics.py
       - build_mlb_team_rankings.py
+      - build_mlb_season_leaders.py
+      - tests/test_mlb_season_leaders.py
       - tests/test_mlb_team_rankings.py
       - .github/workflows/mlb-season-snapshots.yml
 permissions:
@@ -61,13 +63,16 @@ jobs:
         run: |
           python -m unittest discover -s tests -p test_mlb_team_rankings.py
           python build_mlb_team_rankings.py
+      - name: Refresh MLB regular-season player leaders
+        run: |
+          python -m unittest discover -s tests -p test_mlb_season_leaders.py
+          python build_mlb_season_leaders.py
       - name: Commit refreshed dataset
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/mlb/season-snapshots.json mlb/rankings/data/mlb-team-rankings.json
+          git add data/mlb/season-snapshots.json mlb/rankings/data/mlb-team-rankings.json mlb/season-leaders/data
           git diff --cached --quiet && exit 0
           git commit -m "data(mlb): update verified season snapshots"
           git pull --rebase -X theirs origin main
           git push origin main
-
