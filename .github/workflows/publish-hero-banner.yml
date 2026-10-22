@@ -1,0 +1,37 @@
+name: Publish top hero banner placement
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-hero-banner.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update shared banner script references
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          old = "https://matchlab.parlaycalculator.bet/site-navigation-v9.js?v=20261022-allheroes"
+          new = "https://matchlab.parlaycalculator.bet/site-navigation-v10.js?v=20261022-tophero"
+          changed = 0
+          for path in Path(".").rglob("*"):
+              if ".git" in path.parts or path.suffix not in {".html", ".py", ".js"}:
+                  continue
+              source = path.read_text()
+              if old in source:
+                  path.write_text(source.replace(old, new))
+                  changed += 1
+          print("Updated shared banner references in", changed, "files")
+          PY
+      - name: Publish corrected references
+        run: |
+          git config user.name betwise-data-bot
+          git config user.email actions@users.noreply.github.com
+          git add '*.html' '*.py' '*.js'
+          git diff --cached --quiet || git commit -m "Use fresh top-hero-only Underdog banner on sports pages"
+          git pull --rebase origin main
+          git push origin HEAD:main
