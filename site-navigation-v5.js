@@ -49,33 +49,39 @@
 })();
 
 
-/* Underdog promotional banner directly below each sport hero image. */
+/* Compact Underdog offer strip directly below each sport hero image. */
 (() => {
-  const styleId="underdog-hero-banner-style";
-  if (!document.getElementById(styleId)) {
-    const style=document.createElement("style");
-    style.id=styleId;
-    style.textContent=`
-      .underdog-hero-banner{--ud-cyan:#25b9ef;--ud-yellow:#f5e21b;position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;max-width:1180px;margin:14px auto 28px;padding:clamp(18px,3vw,28px) clamp(18px,3.5vw,34px);overflow:hidden;border:1px solid rgba(37,185,239,.72);border-radius:18px;background:radial-gradient(ellipse at 92% 8%,rgba(245,226,27,.16),transparent 28%),linear-gradient(112deg,#13394a,#111d2b 70%,#142d3e);color:#f8fbff;box-shadow:0 12px 34px rgba(0,0,0,.28);font-family:inherit}
-      .underdog-hero-banner:before{content:"";position:absolute;z-index:-1;inset:0;background:repeating-linear-gradient(165deg,transparent 0 26px,rgba(37,185,239,.055) 27px 32px)}
-      .underdog-hero-banner__copy{min-width:0}
-      .underdog-hero-banner__label{display:inline-block;margin:0 0 8px;padding:5px 9px;border-radius:999px;background:rgba(37,185,239,.14);color:#73d9ff;font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
-      .underdog-hero-banner h2{margin:0 0 7px;color:var(--ud-yellow);font-size:clamp(21px,3vw,32px);font-weight:900;line-height:1.08;letter-spacing:-.025em}
-      .underdog-hero-banner__message{margin:0;color:#f4f7fb;font-size:clamp(14px,1.6vw,17px);line-height:1.45}
-      .underdog-hero-banner__button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 21px;border:0;border-radius:10px;background:var(--ud-yellow);color:#101622!important;font-size:14px;font-weight:900;text-align:center;text-decoration:none!important;white-space:nowrap;box-shadow:0 5px 18px rgba(0,0,0,.2);transition:transform .15s ease,filter .15s ease}
-      .underdog-hero-banner__button:hover,.underdog-hero-banner__button:focus-visible{filter:brightness(1.06);transform:translateY(-1px)}
-      .underdog-hero-banner__terms{grid-column:1/-1;margin:0;color:#d1dbe4;font-size:11px;line-height:1.45}
-      @media(max-width:620px){.underdog-hero-banner{grid-template-columns:1fr;gap:12px;margin:10px auto 22px;padding:18px 16px;border-radius:14px}.underdog-hero-banner h2{font-size:23px}.underdog-hero-banner__button{width:100%;min-height:46px}.underdog-hero-banner__terms{font-size:10px}}
-    `;
-    document.head.appendChild(style);
-  }
-  const selector=".nfl-hero-image,.rank-hero,.cfb-hero-art,.hero-media";
-  document.querySelectorAll(selector).forEach(hero=>{
-    if(!hero.querySelector("img")||hero.nextElementSibling?.classList.contains("underdog-hero-banner"))return;
-    const banner=document.createElement("aside");
-    banner.className="underdog-hero-banner";
-    banner.setAttribute("aria-label","Sponsored Underdog offer");
-    banner.innerHTML='<div class="underdog-hero-banner__copy"><p class="underdog-hero-banner__label">Sponsored offer · Underdog</p><h2>Rip a bonus pack worth up to $150 on us!</h2><p class="underdog-hero-banner__message">Sign up for Underdog with our link, new user 50% deposit match included. You\'re welcome.</p></div><a class="underdog-hero-banner__button" href="https://play.underdogsports.com/vgwg/hayhqoz9" target="_blank" rel="sponsored nofollow noopener noreferrer">Claim your offer <span aria-hidden="true">&nbsp;↗</span></a><p class="underdog-hero-banner__terms">New users only. Deposit and first entry required. Pack maximum value is not guaranteed. Not available in Nevada or Canada. Offer terms apply.</p>';
-    hero.insertAdjacentElement("afterend",banner);
+  if (document.getElementById("underdog-hero-banner-style")) return;
+  const style = document.createElement("style");
+  style.id = "underdog-hero-banner-style";
+  style.textContent = `
+    .underdog-hero-banner{--ud-blue:#1aa6df;display:grid;grid-template-columns:88px minmax(0,1fr) auto auto;align-items:center;gap:14px;box-sizing:border-box;width:min(1180px,calc(100% - 32px));min-height:80px;margin:10px auto 0;padding:7px 14px;overflow:hidden;border:1px solid rgba(255,255,255,.24);border-radius:14px;background:repeating-radial-gradient(ellipse at 50% 0,transparent 0 16px,rgba(255,255,255,.075) 17px 19px,transparent 20px 34px),linear-gradient(105deg,#34b8eb,#169bd7);color:#071522;font-family:inherit;text-decoration:none;box-shadow:0 5px 18px rgba(0,0,0,.18)}
+    .underdog-hero-banner:hover{filter:brightness(1.04)}
+    .underdog-hero-banner:focus-visible{outline:3px solid #f6e923;outline-offset:3px}
+    .underdog-hero-banner__image{display:block;width:88px;height:64px;object-fit:cover;object-position:center;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+    .underdog-hero-banner__copy{display:grid;min-width:0;gap:2px}
+    .underdog-hero-banner__copy strong{font-size:11px;font-weight:900;line-height:1.1;letter-spacing:.09em;text-transform:uppercase}
+    .underdog-hero-banner__copy span{font-size:clamp(18px,2.4vw,27px);font-weight:950;line-height:1.05;letter-spacing:-.025em;text-transform:uppercase;white-space:nowrap}
+    .underdog-hero-banner__match{padding:8px 11px;border:1px solid rgba(5,41,61,.34);border-radius:999px;background:rgba(255,255,255,.18);font-size:11px;font-weight:900;letter-spacing:.04em;text-align:center;white-space:nowrap}
+    .underdog-hero-banner__button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border-radius:8px;background:#f6e923;color:#111!important;font-size:12px;font-weight:950;letter-spacing:.06em;text-decoration:none!important;white-space:nowrap}
+    .underdog-hero-terms{box-sizing:border-box;width:min(1180px,calc(100% - 32px));margin:5px auto 22px;color:#aeb9b3;font-size:11px;line-height:1.45}
+    @media(max-width:700px){.underdog-hero-banner{grid-template-columns:58px minmax(0,1fr) auto;gap:9px;width:calc(100% - 24px);min-height:68px;padding:5px 8px;border-radius:12px}.underdog-hero-banner__image{width:58px;height:56px;border-radius:7px}.underdog-hero-banner__copy strong{font-size:9px;letter-spacing:.05em}.underdog-hero-banner__copy span{font-size:clamp(14px,4.5vw,19px);white-space:normal}.underdog-hero-banner__match{display:none}.underdog-hero-banner__button{min-height:34px;padding:0 9px;font-size:10px}.underdog-hero-terms{width:calc(100% - 24px);margin:5px auto 18px;font-size:10px}}
+    @media(max-width:360px){.underdog-hero-banner{grid-template-columns:48px minmax(0,1fr) auto;gap:7px}.underdog-hero-banner__image{width:48px;height:52px}.underdog-hero-banner__copy span{font-size:14px}.underdog-hero-banner__button{padding:0 7px;font-size:9px}}
+  `;
+  const selector = ".nfl-hero-image,.rank-hero,.cfb-hero-art,.hero-media";
+  document.querySelectorAll(selector).forEach(hero => {
+    if (!hero.querySelector("img") || hero.nextElementSibling?.classList.contains("underdog-hero-banner")) return;
+    const banner = document.createElement("a");
+    banner.className = "underdog-hero-banner";
+    banner.href = "https://play.underdogsports.com/vgwg/hayhqoz9";
+    banner.target = "_blank";
+    banner.rel = "sponsored nofollow noopener noreferrer";
+    banner.setAttribute("aria-label", "Sign up for Underdog: bonus pack worth up to $150 and a new-user 50% deposit match");
+    banner.innerHTML = '<img class="underdog-hero-banner__image" src="https://matchlab.parlaycalculator.bet/assets/underdog-pack-strip.webp" alt="Underdog Sports Starter Pack"><span class="underdog-hero-banner__copy"><strong>Rip a bonus pack</strong><span>Up to $150 on us</span></span><span class="underdog-hero-banner__match">50% DEPOSIT MATCH</span><span class="underdog-hero-banner__button">SIGN UP <span aria-hidden="true">↗</span></span>';
+    const terms = document.createElement("p");
+    terms.className = "underdog-hero-terms";
+    terms.innerHTML = "Sign up for Underdog with our link for a new-user 50% deposit match. Rip a bonus pack worth up to $150 on us! You&apos;re welcome. New users only; deposit and first entry required. Pack value varies and $150 is not guaranteed. Packs are not available in Nevada or Canada. Offer terms apply.";
+    hero.insertAdjacentElement("afterend", banner);
+    banner.insertAdjacentElement("afterend", terms);
   });
 })();
