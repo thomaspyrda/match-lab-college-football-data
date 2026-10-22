@@ -2,7 +2,8 @@ name: Refresh MLB season snapshots
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 12 * * *"
+    - cron: '5 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:

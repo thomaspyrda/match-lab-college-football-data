@@ -2,7 +2,8 @@ name: Refresh MLB Dashboard
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 10,14,18,22 * * *'
+    - cron: '9 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:

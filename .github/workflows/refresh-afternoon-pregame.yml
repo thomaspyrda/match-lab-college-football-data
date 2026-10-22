@@ -2,7 +2,8 @@ name: Afternoon pregame data refresh
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '40 4 * * *'
+      timezone: America/New_York
 permissions:
   contents: write
 concurrency:

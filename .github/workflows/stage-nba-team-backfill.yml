@@ -2,7 +2,8 @@ name: Stage NBA Daily Team Backfill
 on:
   workflow_dispatch:
   schedule:
-    - cron: '35 11 * * *'
+    - cron: '25 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:

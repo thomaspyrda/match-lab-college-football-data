@@ -2,7 +2,8 @@ name: Refresh NBA Dashboard
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 10 * * *'
+    - cron: '7 4 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
