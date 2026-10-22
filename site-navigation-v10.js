@@ -1,3 +1,4 @@
+/* Top-hero-only banner release; publish with refreshed source page references. */
 /* Shared sport navigation. Native details support touch and keyboard toggling. */
 (() => {
   const sportPath = location.pathname.split("/")[1].toUpperCase();
