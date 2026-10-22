@@ -7,7 +7,7 @@ import json
 import re
 from pathlib import Path
 
-NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v10.js?v=20261022-tophero"
+NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v10.js?v=20261022-approved-artwork"
 CSS_URL = "https://matchlab.parlaycalculator.bet/site-navigation.css?v=20261021-1"
 SPORTS = json.loads(r'''{"NFL":[["NFL Dashboard","https://nfl.parlaycalculator.bet/"],["NFL Teams","https://nfl.parlaycalculator.bet/teams.html"],["Rankings","https://nfl.parlaycalculator.bet/nfl-team-strength-rankings/"]],"CFB":[["CFB Dashboard","https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"],["CFB Teams","https://matchlab.parlaycalculator.bet/teams.html"],["CFB Match Lab","https://matchlab.parlaycalculator.bet/"],["Rankings","https://matchlab.parlaycalculator.bet/college-football-team-strength-rankings/"]],"MLB":[["MLB Dashboard","https://matchlab.parlaycalculator.bet/mlb/dashboard/"],["MLB Teams","https://matchlab.parlaycalculator.bet/mlb/teams/"]],"NBA":[["NBA Dashboard","https://matchlab.parlaycalculator.bet/nba/dashboard/"],["NBA Teams","https://matchlab.parlaycalculator.bet/nba/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/nba/rankings/"]],"CBB":[["CBB Dashboard","https://matchlab.parlaycalculator.bet/cbb/dashboard/"],["CBB Teams","https://matchlab.parlaycalculator.bet/cbb/teams/"]]}''')
 NBA_RANKINGS = "https://matchlab.parlaycalculator.bet/nba/rankings/"
