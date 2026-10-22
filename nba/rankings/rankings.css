@@ -62,3 +62,29 @@
 @media(max-width:760px){.nba-rank-season-control{justify-content:flex-start}.nba-rank-season-control label{width:100%;justify-content:space-between}.nba-rank-season-control select{min-width:0;flex:1;max-width:220px}}
 
 .nba-rank-status{margin:0 0 18px;color:#b8c9bf;font-size:13px;line-height:1.6}
+/* Separate sticky logos from names so mobile can reveal more statistics. */
+.nba-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.nba-rank-table th,.nba-rank-table td{box-sizing:border-box}
+.nba-rank-table th:nth-child(2),.nba-rank-table td:nth-child(2){width:44px;min-width:44px;max-width:44px;padding-left:9px;padding-right:9px}
+.nba-rank-table th:nth-child(3),.nba-rank-table td:nth-child(3){position:sticky;left:106px;z-index:3;width:205px;min-width:205px;background:#111211}
+.nba-rank-table th:nth-child(3){z-index:7}
+.nba-rank-table tbody tr:hover td:nth-child(3){background:#171a18}
+.nba-rank-logo a{display:flex;align-items:center;justify-content:center;width:26px;height:30px}
+.nba-rank-logo img{display:block;width:26px;height:26px;object-fit:contain}
+@media(max-width:760px){
+ .nba-rank-table{font-size:12px}
+ .nba-rank-table th,.nba-rank-table td{padding:10px 8px}
+ .nba-rank-table th{font-size:10px;letter-spacing:0}
+ .nba-rank-table th:first-child,.nba-rank-table td:first-child{width:38px;min-width:38px;max-width:38px;padding-left:5px;padding-right:5px}
+ .nba-rank-table th:nth-child(2),.nba-rank-table td:nth-child(2){left:38px;width:38px;min-width:38px;max-width:38px;padding-left:6px;padding-right:6px;box-shadow:3px 0 4px #0003}
+ .nba-rank-table th:nth-child(3),.nba-rank-table td:nth-child(3){position:static;width:132px;min-width:132px;max-width:132px;white-space:normal}
+ .nba-rank-team{line-height:1.3;overflow-wrap:normal}
+ .nba-rank-table .nba-th-content{gap:4px}
+ .nba-sort-button{gap:3px}
+ .nba-sort-arrow{font-size:11px}
+ .nba-rank-table th:first-child .nba-sort-arrow{display:none}
+ .nba-rank-table th:not(:nth-child(-n+3)){min-width:82px;max-width:110px;white-space:normal}
+ .nba-rank-table th:not(:nth-child(-n+3)) .nba-sort-button{white-space:normal;text-align:left;line-height:1.25}
+ .nba-rank-logo img{width:25px;height:25px}
+ .help-btn{width:14px;height:14px;min-width:14px;font-size:9px;line-height:12px}
+}
