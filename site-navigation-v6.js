@@ -58,9 +58,9 @@
     style.textContent = ".underdog-hero-banner{display:block;position:relative;container-type:inline-size;box-sizing:border-box;width:min(1194px,calc(100% - 32px));aspect-ratio:1194/98;margin:10px auto 0;padding:0;overflow:hidden;border:0;border-radius:999px;background-image:url(https://matchlab.parlaycalculator.bet/assets/underdog-original-blue-banner.jpg);background-size:108.0402% 183.6735%;background-position:50% 71.9512%;background-repeat:no-repeat;color:#fff;font-family:inherit;text-decoration:none}.underdog-hero-banner:hover{filter:brightness(1.04)}.underdog-hero-banner:focus-visible{outline:3px solid #f6e923;outline-offset:3px}.underdog-hero-banner__copy{position:absolute;inset:2% 18.5%;display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;background-image:url(https://matchlab.parlaycalculator.bet/assets/underdog-original-blue-banner.jpg);background-size:171.5% 1000%;background-position:50% 40%;text-align:center;font-size:clamp(6px,2.2cqw,27px);font-weight:900;line-height:1;letter-spacing:-.025em;white-space:nowrap}.underdog-hero-terms{box-sizing:border-box;width:min(1194px,calc(100% - 32px));margin:6px auto 22px;color:#aeb9b3;font-family:inherit;font-size:12px;line-height:1.45}\n.underdog-hero-terms summary{display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border:1px solid rgba(255,255,255,.27);border-radius:999px;color:#e8ece9;font-size:11px;font-weight:700;cursor:pointer;list-style:none}\n.underdog-hero-terms summary::-webkit-details-marker{display:none}\n.underdog-hero-terms summary:after{content:\"+\";margin-left:7px;font-size:15px;line-height:1}\n.underdog-hero-terms[open] summary:after{content:\"\u2212\"}\n.underdog-hero-terms__copy{max-width:900px;margin:7px 0 0;color:#aeb9b3;font-size:11px;line-height:1.5}\n@media(max-width:700px){.underdog-hero-banner{width:calc(100% - 24px);margin-top:8px}.underdog-hero-terms{width:calc(100% - 24px);margin:5px auto 18px}.underdog-hero-terms__copy{font-size:10px}}";
     document.head.appendChild(style);
   }
-  const selector = ".nfl-hero-image,.rank-hero,.cfb-hero-art,.hero-media";
-  document.querySelectorAll(selector).forEach(hero => {
-    if (!hero.querySelector("img") || hero.nextElementSibling?.classList.contains("underdog-hero-banner")) return;
+  const selector = ".nfl-hero-image,.rank-hero,.cfb-hero-art,.hero-media,.betwise-collage";
+  const addBanner = hero => {
+    if ((!hero.querySelector("img") && !hero.matches(".betwise-collage")) || hero.nextElementSibling?.classList.contains("underdog-hero-banner")) return;
     const banner = document.createElement("a");
     banner.className = "underdog-hero-banner";
     banner.href = "https://play.underdogsports.com/vgwg/hayhqoz9";
@@ -73,5 +73,13 @@
     terms.innerHTML = "<summary>Terms</summary><p class=\"underdog-hero-terms__copy\">This is an offer for Underdog. Sign up through our link. New users are eligible for a 50% deposit match. After a qualifying first entry, the referral offer includes $50 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. A deposit and first entry are required for rewards. Packs are unavailable in Nevada and Canada. Eligibility and full offer terms apply. You are welcome.</p>";
     hero.insertAdjacentElement("afterend", banner);
     banner.insertAdjacentElement("afterend", terms);
-  });
+  };
+  document.querySelectorAll(selector).forEach(addBanner);
+  new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (node.nodeType !== 1) return;
+      if (node.matches(selector)) addBanner(node);
+      node.querySelectorAll(selector).forEach(addBanner);
+    }));
+  }).observe(document.body, {childList:true,subtree:true});
 })();
