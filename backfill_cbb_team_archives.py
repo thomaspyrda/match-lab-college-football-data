@@ -115,10 +115,23 @@ def one(team,year,league_data):
 
 def main():
     import argparse
-    p=argparse.ArgumentParser();p.add_argument('--years',nargs='+',type=int,default=list(range(2016,2028)));p.add_argument('--workers',type=int,default=12);args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--years',nargs='+',type=int,default=list(range(2016,2028)));p.add_argument('--workers',type=int,default=12);p.add_argument('--teams',nargs='*',help='Optional team slugs for targeted retries');args=p.parse_args()
     teams=[t for t in json.loads((ROOT/'data/sports/team-registry.json').read_text())['teams'] if t['sport']=='cbb']
+    if args.teams:
+        selected=set(args.teams)
+        unknown=selected-{t['slug'] for t in teams}
+        if unknown:raise SystemExit('Unknown CBB team slugs: '+', '.join(sorted(unknown)))
+        teams=[t for t in teams if t['slug'] in selected]
     OUT.mkdir(parents=True,exist_ok=True)
-    league_data={};tasks=[(y,2,'byathlete') for y in args.years]
+    active=datetime.now(timezone.utc).year+(datetime.now(timezone.utc).month>=7)
+    pending_years=set()
+    for team in teams:
+        path=OUT/(team['slug']+'.json')
+        existing=json.loads(path.read_text()) if path.exists() else {'seasons':{}}
+        for y in args.years:
+            if y>=active or str(y) not in existing.get('seasons',{}):pending_years.add(y)
+    print('Outstanding seasons:',sorted(pending_years),flush=True)
+    league_data={};tasks=[(y,2,'byathlete') for y in sorted(pending_years)]
     with futures.ThreadPoolExecutor(max_workers=6) as pool:
         pending={pool.submit(league,*key):key for key in tasks}
         for f in futures.as_completed(pending):
