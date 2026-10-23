@@ -1,5 +1,8 @@
 import unittest
 from unittest.mock import patch
+from tempfile import TemporaryDirectory
+from pathlib import Path
+import json
 import backfill_cbb_team_archives as b
 
 def payload(year=2016):
@@ -24,6 +27,21 @@ class CBBArchiveTests(unittest.TestCase):
             with self.assertRaises(ValueError):b.schedule('150',2016,2)
         with patch.object(b,'get',return_value=payload(2017)):
             with self.assertRaises(ValueError):b.schedule('150',2016,2)
+
+    def test_backfill_resumes_missing_and_preserves_historical_seasons(self):
+        with TemporaryDirectory() as tmp, patch.object(b,'OUT',Path(tmp)):
+            team={'slug':'example','espn_id':'150'}
+            saved={'team_id':'150','seasons':{'2016':{'sentinel':'validated'}}}
+            (Path(tmp)/'example.json').write_text(json.dumps(saved))
+            remaining=b.missing_team_seasons([team],[2016,2017,2027],2027)
+            self.assertEqual(remaining,[('example',2017),('example',2027)])
+            self.assertEqual(json.loads((Path(tmp)/'example.json').read_text()),saved)
+
+    def test_backfill_refuses_changed_team_identity(self):
+        with TemporaryDirectory() as tmp, patch.object(b,'OUT',Path(tmp)):
+            (Path(tmp)/'example.json').write_text(json.dumps({'team_id':'999','seasons':{}}))
+            with self.assertRaises(ValueError):
+                b.missing_team_seasons([{'slug':'example','espn_id':'150'}],[2016],2027)
 
     def test_unavailable_is_not_a_zero_score(self):
         with patch.object(b,'get',return_value={'unavailable':True}):
