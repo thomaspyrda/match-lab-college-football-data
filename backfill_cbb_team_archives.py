@@ -113,6 +113,19 @@ def one(team,year,league_data):
         collected_at=datetime.now(timezone.utc).isoformat(),phases=phases,players=players,coaches=coaches,
         sources=[dict(name='ESPN team schedule',url=SITE+f'teams/{tid}/schedule?season={year}'),dict(name='ESPN team season statistics',url=f'https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/seasons/{year}/types/2/teams/{tid}/statistics'),dict(name='ESPN full-season player statistics',url=WEB+f'byathlete?season={year}&seasontype=2'),dict(name='ESPN coaching archive',url=coach_url)])
 
+def missing_team_seasons(teams,years,active):
+    """Return only seasons requiring collection; saved history is immutable."""
+    missing=[]
+    for team in teams:
+        path=OUT/(team['slug']+'.json')
+        existing=json.loads(path.read_text()) if path.exists() else {'seasons':{}}
+        if path.exists() and str(existing.get('team_id'))!=str(team['espn_id']):
+            raise ValueError('Stored CBB team identity mismatch: '+team['slug'])
+        for year in years:
+            if year>=active or str(year) not in existing.get('seasons',{}):
+                missing.append((team['slug'],year))
+    return missing
+
 def main():
     import argparse
     p=argparse.ArgumentParser();p.add_argument('--years',nargs='+',type=int,default=list(range(2016,2028)));p.add_argument('--workers',type=int,default=12);p.add_argument('--teams',nargs='*',help='Optional team slugs for targeted retries');args=p.parse_args()
@@ -124,13 +137,9 @@ def main():
         teams=[t for t in teams if t['slug'] in selected]
     OUT.mkdir(parents=True,exist_ok=True)
     active=datetime.now(timezone.utc).year+(datetime.now(timezone.utc).month>=7)
-    pending_years=set()
-    for team in teams:
-        path=OUT/(team['slug']+'.json')
-        existing=json.loads(path.read_text()) if path.exists() else {'seasons':{}}
-        for y in args.years:
-            if y>=active or str(y) not in existing.get('seasons',{}):pending_years.add(y)
-    print('Outstanding seasons:',sorted(pending_years),flush=True)
+    outstanding=missing_team_seasons(teams,args.years,active)
+    pending_years={year for _,year in outstanding}
+    print('Outstanding team-seasons:',len(outstanding),'years:',sorted(pending_years),flush=True)
     league_data={};tasks=[(y,2,'byathlete') for y in sorted(pending_years)]
     with futures.ThreadPoolExecutor(max_workers=6) as pool:
         pending={pool.submit(league,*key):key for key in tasks}
@@ -154,7 +163,8 @@ def main():
     with futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
         for slug,count in pool.map(collect,teams):
             completed+=1;print('Team',completed,len(teams),slug,count,flush=True)
-    report=dict(team_count=len(teams),years=args.years,errors=errors)
+    remaining=missing_team_seasons(teams,args.years,active)
+    report=dict(team_count=len(teams),years=args.years,attempted_team_seasons=len(outstanding),remaining_team_seasons=len(remaining),remaining=[dict(team=slug,year=y) for slug,y in remaining],errors=errors)
     (ROOT/'data/cbb/backfill-report.json').write_text(json.dumps(report,indent=2)+'\n')
     if errors:raise SystemExit(f'{len(errors)} team-season collection errors; existing data preserved')
 if __name__=='__main__':main()
