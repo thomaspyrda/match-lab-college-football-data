@@ -1,1 +1,18 @@
 .cbb-archive-controls{display:flex;gap:18px;flex-wrap:wrap;margin:25px 0}.cbb-archive-controls label{display:flex;flex-direction:column;gap:8px}.cbb-archive-controls select{background:#142018;color:#fff;padding:12px;border:1px solid #34483b;border-radius:8px}.cbb-archive-section{background:rgba(17,24,20,.85);border:1px solid #2b3b30;border-radius:16px;margin:22px 0;padding:24px}.cbb-archive-section h2{font-size:24px;margin-top:0}.cbb-archive-section p{color:#aeb9b3;font-size:13px;line-height:1.6}.cbb-archive-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}.cbb-archive-metrics article{background:#0f1511;border:1px solid #29382e;border-radius:10px;padding:17px}.cbb-archive-metrics strong,.cbb-archive-metrics span{display:block}.cbb-archive-metrics strong{font-size:24px;color:#fff}.cbb-archive-metrics span{font-size:12px;color:#adbbb1;margin-top:7px}.cbb-table-scroll{overflow:auto}.cbb-table-scroll table{border-collapse:collapse;width:100%;white-space:nowrap;font-size:13px}.cbb-table-scroll th,.cbb-table-scroll td{padding:12px;text-align:left;border-bottom:1px solid #2b392f}.cbb-table-scroll th{color:#b5bfb8}.cbb-table-scroll a{color:#fff}.cbb-win{color:#53d98b}.cbb-loss{color:#ef8c92}#cbb-more-games{padding:12px 18px;margin-top:16px;background:#15271b;color:#2aff44;border:1px solid #386943;border-radius:9px;cursor:pointer}@media(max-width:650px){.cbb-archive-section{padding:16px}.cbb-archive-section h2{font-size:21px}.cbb-table-scroll th,.cbb-table-scroll td{padding:9px}}
+
+/* CFB-matched CBB team profile presentation */
+.cbb-hero{display:flex;align-items:center;gap:42px;background:radial-gradient(circle at 95% 10%,#245077 0,transparent 39%),linear-gradient(115deg,#090b0e,#152b3d);border:1px solid #185888;border-radius:24px;padding:48px 38px;margin:18px 0;color:white;min-height:220px}
+.cbb-hero-logo{width:170px;height:170px;flex:none;display:grid;place-items:center;border-radius:25px;background:#080a0e}
+.cbb-hero-logo img{max-width:145px;max-height:145px;object-fit:contain}
+.cbb-hero-content{flex:1;min-width:0}.cbb-hero h1{font-size:clamp(35px,5vw,68px);line-height:1.1;margin:6px 0 12px;color:#fff}.cbb-hero-content>p:not(.research-kicker){color:#d0d3d9;font-size:16px}
+.cbb-hero .research-kicker{color:#31f76b;font-weight:800;letter-spacing:.08em}
+.cbb-hero .cbb-archive-controls{margin:18px 0 0}.cbb-hero .cbb-archive-controls label{font-weight:700;font-size:13px}.cbb-hero .cbb-archive-controls select{background:#111;color:#fff;border:1px solid #595959}
+.cbb-team-subnav{display:flex!important;gap:2px;background:#171717;border:1px solid #353535;border-radius:13px;padding:14px 12px;margin:18px 0 28px;overflow-x:auto}
+.cbb-team-subnav a{white-space:nowrap;font-weight:700;font-size:12px;padding:8px 12px;color:#d9d9d9;text-decoration:none}
+.cbb-archive-section{background:transparent;border:0;border-radius:0;padding:8px 0 16px;margin:12px 0 24px}
+.cbb-archive-section h2{font-size:27px;margin:6px 0 16px;color:#fff}
+.cbb-archive-metrics{grid-template-columns:repeat(auto-fit,minmax(155px,1fr))}
+.cbb-archive-metrics article{background:#1b1b1b;border:1px solid #333;border-radius:13px}
+.cbb-archive-metrics span{letter-spacing:.035em;text-transform:uppercase}
+.cbb-table-scroll{background:#191919;border:1px solid #333;border-radius:14px}
+@media(max-width:700px){.cbb-hero{gap:15px;padding:24px 18px;align-items:flex-start}.cbb-hero-logo{height:92px;width:92px;border-radius:15px}.cbb-hero-logo img{max-height:82px;max-width:82px}.cbb-hero .cbb-archive-controls{gap:12px}.cbb-archive-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
