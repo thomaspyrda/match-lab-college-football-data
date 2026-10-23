@@ -1,0 +1,63 @@
+name: Launch CBB historical backfill
+on:
+  workflow_dispatch:
+    inputs:
+      historical_backfill:
+        description: Collect missing 2015-16 through 2025-26 CBB seasons
+        type: boolean
+        default: true
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: cbb-historical-backfill-launcher
+  cancel-in-progress: false
+jobs:
+  collect:
+    if: inputs.historical_backfill
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Check out isolated CBB backfill branch
+        uses: actions/checkout@v4
+        with:
+          ref: cbb-historical-team-backfill
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate CBB collector
+        run: python -m unittest discover -s tests -p test_cbb_archives.py -v
+      - name: Collect missing historical seasons
+        run: python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
+      - name: Validate archive coverage
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          registry=json.loads(Path('data/sports/team-registry.json').read_text())
+          teams=[t for t in registry['teams'] if t['sport']=='cbb']
+          missing=[]
+          for t in teams:
+              p=Path('data/cbb/teams')/(t['slug']+'.json')
+              if not p.exists():
+                  missing.extend((t['slug'],y) for y in range(2016,2027))
+                  continue
+              d=json.loads(p.read_text())
+              assert str(d['team_id'])==str(t['espn_id'])
+              missing.extend((t['slug'],y) for y in range(2016,2027) if str(y) not in d['seasons'])
+          print('CBB teams:',len(teams),'missing historical team-seasons:',len(missing))
+          if missing:
+              print('Missing examples:',missing[:30])
+              raise SystemExit('Historical archive incomplete; no publication')
+          PY
+      - name: Attach validated archives to team pages
+        run: python publish_cbb_team_archives.py
+      - name: Commit verified backfill to development branch
+        run: |
+          git config user.name "BetWise Data Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/cbb/teams data/cbb/backfill-report.json cbb/teams
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "data(cbb): add validated historical team archives"
+          git push origin HEAD:cbb-historical-team-backfill
