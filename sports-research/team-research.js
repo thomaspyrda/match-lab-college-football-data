@@ -76,6 +76,35 @@
         if(!Array.isArray(remote.seasons))return;
         const byKey=new Map(remote.seasons.map(row=>[String(row.key),row]));
         data={...data,franchise_accolades:remote.franchise_accolades||data.franchise_accolades,seasons:data.seasons.map(row=>byKey.get(String(row.key))||row)};
+        // The archived file ends in 2025-26. Current 2026-27 is loaded separately.
+        const current=data.seasons.find(s=>String(s.key)==='2027');
+        if(current && select.value==='2027'){
+          const espnId=(JSON.parse(seed.textContent).team_id||'').split(':').at(-1);
+          fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/'+encodeURIComponent(espnId)+'/schedule?season=2027&seasontype=2',{cache:'no-store'})
+          .then(r=>{if(!r.ok)throw Error('NBA schedule unavailable');return r.json()})
+          .then(schedule=>{
+            if(schedule.requestedSeason?.year!==2027)return;
+            const games=(schedule.events||[]).map(event=>{
+              const contest=event.competitions?.[0];
+              const own=contest?.competitors?.find(t=>String(t.id)===espnId);
+              const opp=contest?.competitors?.find(t=>String(t.id)!==espnId);
+              if(!own||!opp)return null;
+              const completed=!!(contest.status||event.status)?.type?.completed;
+              const score=t=>typeof t.score==='object'?Number(t.score.value??t.score.displayValue):Number(t.score);
+              const a=completed?score(own):null,b=completed?score(opp):null;
+              return {date:event.date,opponent_name:opp.team?.displayName||'Opponent',location:contest.neutralSite?'Neutral':own.homeAway==='home'?'Home':'Away',result:completed&&Number.isFinite(a)&&Number.isFinite(b)?a>b?'W':a<b?'L':'T':null,score_for:Number.isFinite(a)?a:null,score_against:Number.isFinite(b)?b:null};
+            }).filter(Boolean);
+            if(!games.length)return;
+            current.games=games;
+            const final=games.filter(g=>g.result==='W'||g.result==='L');
+            current.record={wins:final.filter(g=>g.result==='W').length,losses:final.filter(g=>g.result==='L').length};
+            current.coverage='current_schedule';
+            current.updated_at=new Date().toISOString();
+            current.sources=[{name:'ESPN current-season schedule',url:'https://www.espn.com/nba/team/schedule/_/id/'+espnId}];
+            document.dispatchEvent(new CustomEvent('betwise-nba-archive-loaded',{detail:data}));
+            render();
+          }).catch(()=>{});
+        }
         document.dispatchEvent(new CustomEvent('betwise-nba-archive-loaded',{detail:data}));
         render();
       }).catch(()=>{});
