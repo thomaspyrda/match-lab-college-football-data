@@ -1,0 +1,105 @@
+name: Refresh CBB team archives
+on:
+  workflow_dispatch:
+    inputs:
+      historical_backfill:
+        description: 'Collect missing 2015-16 through 2025-26 historical seasons'
+        type: boolean
+        required: false
+        default: false
+  schedule:
+    - cron: '19 4 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths:
+      - data/cbb/bootstrap/*.json.gz
+permissions:
+  contents: write
+concurrency:
+  group: cbb-team-archives
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate collector regression tests
+        run: python -m unittest discover -s tests -p test_cbb_archives.py -v
+      - name: Import verified historical archive when provided
+        if: github.event_name == 'push'
+        run: |
+          python - <<'PY'
+          import gzip,json
+          from pathlib import Path
+          registry=json.loads(Path('data/sports/team-registry.json').read_text())
+          expected={t['slug']:str(t['espn_id']) for t in registry['teams'] if t['sport']=='cbb'}
+          source=sorted(Path('data/cbb/bootstrap').glob('*.json.gz'))[-1]
+          bundle=json.loads(gzip.decompress(source.read_bytes()))
+          assert set(bundle['teams'])==set(expected), 'Incomplete team coverage'
+          for slug,data in bundle['teams'].items():
+              assert str(data['team_id'])==expected[slug]
+              assert set(data['seasons'])=={str(y) for y in range(2016,2028)}
+              for year,season in data['seasons'].items():
+                  assert season['team_id']==expected[slug] and season['key']==year
+                  for phase in season['phases'].values():
+                      games=phase['games']
+                      assert len(games)==len({g['id'] for g in games})
+                      finals=[g for g in games if g['status']=='final']
+                      assert phase['completed_games']==len(finals)
+                      assert phase['record']['wins']==sum(g['result']=='W' for g in finals)
+                      assert phase['record']['losses']==sum(g['result']=='L' for g in finals)
+              path=Path('data/cbb/teams')/(slug+'.json')
+              if path.exists():
+                  previous=json.loads(path.read_text())
+                  for year,season in previous['seasons'].items():
+                      if int(year)<2027:
+                          data['seasons'][year]=season
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n')
+          Path('data/cbb/backfill-report.json').write_text(json.dumps(bundle['report'],indent=2)+'\n')
+          print('Imported',len(expected),'CBB archives; existing historical seasons preserved')
+          PY
+      - name: Collect missing historical seasons
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
+      - name: Refresh active season
+        if: github.event_name != 'push' && !inputs.historical_backfill
+        run: |
+          season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
+          python backfill_cbb_team_archives.py --years "$season" --workers 12
+      - name: Verify historical collection coverage
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          teams=[t for t in json.loads(Path('data/sports/team-registry.json').read_text())['teams'] if t['sport']=='cbb']
+          missing=[]
+          for team in teams:
+              p=Path('data/cbb/teams')/(team['slug']+'.json')
+              if not p.exists():
+                  missing.extend((team['slug'],y) for y in range(2016,2027))
+                  continue
+              d=json.loads(p.read_text())
+              assert str(d['team_id'])==str(team['espn_id']), 'Identity mismatch '+team['slug']
+              missing.extend((team['slug'],y) for y in range(2016,2027) if str(y) not in d['seasons'])
+          print(f'Checked {len(teams)} teams; missing {len(missing)} historical team-seasons')
+          if missing:
+              print('First 30 missing:',missing[:30])
+              raise SystemExit('Historical collection incomplete; refusing publication')
+          PY
+      - name: Publish CBB team archive references
+        run: python publish_cbb_team_archives.py
+      - name: Commit CBB data and team page references
+        run: |
+          git config user.name 'BetWise Data Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add data/cbb/teams data/cbb/backfill-report.json cbb/teams
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): publish verified team archives'
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
