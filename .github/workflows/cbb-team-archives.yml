@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate collector regression tests
+        run: python -m unittest discover -s tests -p test_cbb_archives.py -v
       - name: Import verified historical archive when provided
         if: github.event_name == 'push'
         run: |
@@ -69,6 +71,27 @@ jobs:
         run: |
           season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
           python backfill_cbb_team_archives.py --years "$season" --workers 12
+      - name: Verify historical collection coverage
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          teams=[t for t in json.loads(Path('data/sports/team-registry.json').read_text())['teams'] if t['sport']=='cbb']
+          missing=[]
+          for team in teams:
+              p=Path('data/cbb/teams')/(team['slug']+'.json')
+              if not p.exists():
+                  missing.extend((team['slug'],y) for y in range(2016,2027))
+                  continue
+              d=json.loads(p.read_text())
+              assert str(d['team_id'])==str(team['espn_id']), 'Identity mismatch '+team['slug']
+              missing.extend((team['slug'],y) for y in range(2016,2027) if str(y) not in d['seasons'])
+          print(f'Checked {len(teams)} teams; missing {len(missing)} historical team-seasons')
+          if missing:
+              print('First 30 missing:',missing[:30])
+              raise SystemExit('Historical collection incomplete; refusing publication')
+          PY
       - name: Publish CBB team archive references
         run: python publish_cbb_team_archives.py
       - name: Commit CBB data and team page references
