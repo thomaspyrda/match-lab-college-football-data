@@ -50,7 +50,7 @@ def write(path, title, description, body, indexable=True):
     dest.parent.mkdir(parents=True, exist_ok=True)
     # MLB team pages are maintained by the dedicated archive layout publisher.
     # Never replace a completed page with this scaffold during SEO regeneration.
-    if path.startswith('/mlb/teams/') and dest.exists():
+    if dest.exists() and (path.startswith('/mlb/teams/') or path.startswith('/cbb/teams/') and 'data-cbb-archive=' in dest.read_text()):
         return
     dest.write_text(shell(title, description, path, body, indexable), encoding='utf-8')
 
