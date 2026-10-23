@@ -1,6 +1,12 @@
 name: Refresh CBB team archives
 on:
   workflow_dispatch:
+    inputs:
+      historical_backfill:
+        description: 'Collect missing 2015-16 through 2025-26 historical seasons'
+        type: boolean
+        required: false
+        default: false
   schedule:
     - cron: '19 4 * * *'
       timezone: America/New_York
@@ -55,8 +61,11 @@ jobs:
           Path('data/cbb/backfill-report.json').write_text(json.dumps(bundle['report'],indent=2)+'\n')
           print('Imported',len(expected),'CBB archives; existing historical seasons preserved')
           PY
+      - name: Collect missing historical seasons
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
       - name: Refresh active season
-        if: github.event_name != 'push'
+        if: github.event_name != 'push' && !inputs.historical_backfill
         run: |
           season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
           python backfill_cbb_team_archives.py --years "$season" --workers 12
@@ -69,5 +78,5 @@ jobs:
           git add data/cbb/teams data/cbb/backfill-report.json cbb/teams
           git diff --cached --quiet && exit 0
           git commit -m 'data(cbb): publish verified team archives'
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
