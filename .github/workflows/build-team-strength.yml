@@ -2,7 +2,11 @@ name: Build Team Strength
 on:
   workflow_dispatch:
   schedule:
-    - cron: '3 4 * * 0'
+    - cron: '10 6 * * 0'
+      timezone: America/New_York
+    - cron: '30 9 * * 0'
+      timezone: America/New_York
+    - cron: '10 6 * * 1'
       timezone: America/New_York
   push:
     branches: [main]
@@ -54,7 +58,7 @@ on:
       - match_lab_game_ap_elo.csv
 concurrency:
   group: team-strength-production
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -81,12 +85,18 @@ jobs:
         run: python refresh_match_lab.py
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
+      - name: Validate fresh CFB results before modeling
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python scripts/validate_weekly_cfb_freshness.py --stage input
       - name: Generate approved season-aware chronological ratings
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: python build_approved_strength_model.py
       - name: Promote approved 15 percent uncapped margin and SOS model
         run: python promote_four_unit_live.py
+      - name: Validate approved model publication
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python scripts/validate_weekly_cfb_freshness.py --stage output
       - name: Build ranking and SEO pages
         run: python build_seo_pages.py
       - name: Commit generated outputs
