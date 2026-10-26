@@ -104,10 +104,29 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git diff --cached --quiet || git commit -m "Generate validated Team Strength datasets"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          # Commit only CFB source and generated outputs, never another sport's files.
+          git add -A -- data \
+            ':(exclude)data/mlb/**' ':(exclude)data/nba/**' \
+            ':(exclude)data/cbb/**' ':(exclude)data/nfl/**'
+          git add -A -- college-football-team-strength-rankings \
+            college-football-offensive-strength-rankings \
+            college-football-defensive-strength-rankings \
+            college-football-strength-of-schedule-rankings
+          git add -u -- index.html sitemap.xml
+          git diff --cached --quiet && exit 0
+          git commit -m "Generate validated Team Strength datasets"
+          # Another sport may publish while CFB is building. Rebase and retry
+          # rather than allow a transient non-fast-forward push to lose the update.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "Unable to publish after five safe push attempts" >&2
+          exit 1
 
   deploy:
     needs: enrich
