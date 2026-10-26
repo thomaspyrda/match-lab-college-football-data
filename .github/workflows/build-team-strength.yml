@@ -111,7 +111,9 @@ jobs:
           git add -A -- college-football-team-strength-rankings \
             college-football-offensive-strength-rankings \
             college-football-defensive-strength-rankings \
-            college-football-strength-of-schedule-rankings
+            college-football-strength-of-schedule-rankings \
+            college-football-matchup-tool college-football/matchups
+          git add -A -- sitemap-*.xml
           git add -u -- index.html sitemap.xml
           git diff --cached --quiet && exit 0
           git commit -m "Generate validated Team Strength datasets"
