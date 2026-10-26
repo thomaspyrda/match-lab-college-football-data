@@ -132,6 +132,9 @@ jobs:
 
   deploy:
     needs: enrich
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -140,8 +143,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - name: Build crawlable CFB archive and sitemaps
-        run: python build_seo_pages.py
+      - name: Publish consistent navigation on all pages
+        run: |
+          python3 scripts/normalize_site_navigation.py
+          python3 scripts/normalize_site_navigation.py --check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
