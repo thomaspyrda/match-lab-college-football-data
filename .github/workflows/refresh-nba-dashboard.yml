@@ -68,5 +68,13 @@ jobs:
           git add nba/teams/data/current-season.json nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
-          git pull --rebase -X theirs origin main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "Unable to publish after five safe push attempts" >&2
+          exit 1
