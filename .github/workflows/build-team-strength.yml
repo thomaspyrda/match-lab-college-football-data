@@ -117,6 +117,8 @@ jobs:
           git add -u -- index.html sitemap.xml
           git diff --cached --quiet && exit 0
           git commit -m "Generate validated Team Strength datasets"
+          # Discard non-published working-tree changes before rebasing.
+          git restore --worktree .
           # Another sport may publish while CFB is building. Rebase and retry
           # rather than allow a transient non-fast-forward push to lose the update.
           for attempt in 1 2 3 4 5; do
