@@ -17,7 +17,7 @@ on:
       - data/historical/**
       - .github/workflows/build-cfb-team-pages.yml
   workflow_run:
-    workflows: [Build Match Lab production]
+    workflows: [Build Match Lab production, Build Team Strength]
     branches: [main]
     types: [completed]
 permissions:
