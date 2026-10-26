@@ -76,6 +76,19 @@
     hero.insertAdjacentElement("afterend", banner);
     banner.insertAdjacentElement("afterend", terms);
   };
+  // Repair legacy banners already present on the page instead of leaving old offers active.
+  const repairExisting = () => {
+    document.querySelectorAll(".underdog-hero-banner").forEach(banner => {
+      banner.href = "https://play.underdogsports.com/vgwg/e2bt5xbz";
+      banner.setAttribute("aria-label", "$75 BONUS + A RIPS PACK WORTH UP TO $150");
+      banner.innerHTML = '<span class="underdog-hero-banner__copy">$75 BONUS + A RIPS PACK WORTH UP TO $150</span>';
+      const terms = banner.nextElementSibling;
+      if (terms?.classList.contains("underdog-hero-terms")) {
+        terms.innerHTML = '<summary>Terms</summary><p class="underdog-hero-terms__copy">This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $75 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and reward conditions are determined by Underdog. Verify the offer terms on the linked destination before participating.</p>';
+      }
+    });
+  };
+  repairExisting();
   document.querySelectorAll(selector).forEach(addBanner);
   new MutationObserver(records => {
     records.forEach(record => record.addedNodes.forEach(node => {
