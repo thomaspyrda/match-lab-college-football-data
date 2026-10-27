@@ -27,10 +27,10 @@ for year,season in d["seasons"].items():
         value=entry.get("result")
         if not value:continue
         fresh=value
-        for key in sorted(set(re.findall(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)+|\\b\\d{4}\\b|[a-z]+_[a-z_]+",value)),key=len,reverse):
+        for key in sorted(set(re.findall(r"[a-z][a-z0-9]*(?:-[a-z0-9]+)+|\b\d{4}\b|[a-z]+_[a-z_]+",value)),key=len,reverse):
             if key in names or key in ids or key in confs:
                 fresh=fresh.replace(key,nice(key))
-        fresh=re.sub(r"\\b([a-z][a-z0-9_]+) Tournament",lambda m:confs.get(m.group(1),m.group(1).upper())+" Tournament",fresh)
+        fresh=re.sub(r"\b([a-z][a-z0-9_]+) Tournament",lambda m:confs.get(m.group(1),m.group(1).upper())+" Tournament",fresh)
         if fresh!=value:
             entry["result"]=fresh
             changed+=1
