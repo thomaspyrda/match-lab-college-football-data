@@ -23,6 +23,7 @@ def main():
                 count+=1
     (ROOT/"data/cbb").mkdir(parents=True,exist_ok=True)
     (ROOT/"data/cbb/tournament-results.json").write_text(json.dumps(national,separators=(",",":"))+"\n")
-    # Conference results are collected from verified conference-specific game notes, not this archive flagging pass.\n    conf_path=ROOT/"data/cbb/conference-tournament-results.json"\n    if not conf_path.exists():conf_path.write_text(json.dumps(conference,separators=(",",":"))+"\\n")
+    # Conference results are collected from verified conference-specific game notes, not this archive flagging pass.
+    conf_path=ROOT/"data/cbb/conference-tournament-results.json"\n    if not conf_path.exists():conf_path.write_text(json.dumps(conference,separators=(",",":"))+"\n")
     print(f"Published {count} postseason participation flags; no unsupported tournament claims")
 if __name__=="__main__":main()
