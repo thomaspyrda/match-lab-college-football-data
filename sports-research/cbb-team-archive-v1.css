@@ -16,3 +16,10 @@
 .cbb-archive-metrics span{letter-spacing:.035em;text-transform:uppercase}
 .cbb-table-scroll{background:#191919;border:1px solid #333;border-radius:14px}
 @media(max-width:700px){.cbb-hero{gap:15px;padding:24px 18px;align-items:flex-start}.cbb-hero-logo{height:92px;width:92px;border-radius:15px}.cbb-hero-logo img{max-height:82px;max-width:82px}.cbb-hero .cbb-archive-controls{gap:12px}.cbb-archive-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Match the CFB team-page two-column advanced-stat presentation. */
+#metrics .cbb-archive-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#metrics .cbb-archive-metrics article{border-left:3px solid #1764a6;min-height:112px}
+#metrics .cbb-archive-metrics strong{font-size:23px}
+#metrics .cbb-archive-metrics span{font-size:12px;line-height:1.55;letter-spacing:0;text-transform:none}
+@media(max-width:640px){#metrics .cbb-archive-metrics{grid-template-columns:1fr}}
