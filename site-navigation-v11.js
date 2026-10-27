@@ -99,3 +99,12 @@
   }).observe(document.body, {childList:true,subtree:true});
 })();
 
+
+/* Independent offer settings: future promotions never require a sports data rebuild. */
+(() => {
+  if (document.getElementById("underdog-offer-config-script")) return;
+  const script = document.createElement("script");
+  script.id = "underdog-offer-config-script";
+  script.src = "https://matchlab.parlaycalculator.bet/assets/underdog-offer.js?v=" + Date.now();
+  document.head.appendChild(script);
+})();
