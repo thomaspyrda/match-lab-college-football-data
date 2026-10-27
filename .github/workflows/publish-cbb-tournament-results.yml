@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - build_cbb_tournament_results.py
+      - enrich_cbb_tournament_results.py
+      - build_cbb_conference_tournament_results.py
       - .github/workflows/publish-cbb-tournament-results.yml
 permissions:
   contents: write
@@ -23,6 +25,10 @@ jobs:
           python-version: '3.12'
       - name: Build conservative tournament results
         run: python build_cbb_tournament_results.py
+      - name: Identify NCAA and NIT tournament outcomes
+        run: python enrich_cbb_tournament_results.py
+      - name: Identify conference tournament outcomes
+        run: python build_cbb_conference_tournament_results.py
       - name: Validate archived coverage
         run: |
           python - <<'PY'
