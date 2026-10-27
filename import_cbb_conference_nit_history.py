@@ -50,6 +50,9 @@ def main():
         n=norm(t["TeamName"]); slugs=byname.get(n,set())
         if n in corrections:slugs={corrections[n]}
         if len(slugs)==1:byid[t["TeamID"]]=next(iter(slugs))
+    # Curated aliases use the same school identity in imports and display cleanup.
+    team_map=json.loads((ROOT/"data/cbb/tournament-team-map.json").read_text())["teams"]
+    byid.update({key:value["slug"] for key,value in team_map.items() if value.get("slug")})
     season_conf=defaultdict(list)
     for r in conf_games:
         year=int(r["Season"])
