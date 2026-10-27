@@ -17,7 +17,7 @@ def main():
         seed=re.search(r'<script[^>]*id="team-season-data"[^>]*>.*?</script>',source,re.S).group()
         source=re.sub(r'<script\b[^>]*data-archive-layout="mlb-cbb-v1"[^>]*>\s*</script>','',source)
         source=re.sub(r'<(?:script|link)\b[^>]*data-cbb-archive="v1"[^>]*>(?:\s*</script>)?','',source)
-        source=source.replace('</head>','<link rel="stylesheet" href="/sports-research/cbb-team-archive-v1.css?v=20261027-cbb-season-results-v3" data-cbb-archive="v1"><script defer src="/sports-research/cbb-team-archive-v1.js?v=20261027-cbb-season-results-v3" data-cbb-archive="v1"></script></head>')
+        source=source.replace('</head>','<link rel="stylesheet" href="/sports-research/cbb-team-archive-v1.css?v=20261027-consistent-results-v4" data-cbb-archive="v1"><script defer src="/sports-research/cbb-team-archive-v1.js?v=20261027-consistent-results-v4" data-cbb-archive="v1"></script></head>')
         source=re.sub(r'site-navigation-v\d+\.js\?v=[\w-]+','site-navigation-v12.js?v=20261027-cbb-rankings',source)
         if any(s['phases']['regular']['completed_games'] for s in data['seasons'].values()):
             source=source.replace('content="noindex,follow"','content="index,follow"')
