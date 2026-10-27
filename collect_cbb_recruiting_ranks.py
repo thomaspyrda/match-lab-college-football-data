@@ -3,7 +3,7 @@
 Optional source: cbbstat.com team recruits feed (247Sports-derived), documented
 in the toRvik R package. Failed requests do not overwrite existing verified data.
 """
-import json, re, urllib.request
+import json, os, re, urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 OUTPUT=ROOT/"data/cbb/recruiting-classes.json"
@@ -22,9 +22,13 @@ def main():
             choices.setdefault("-".join(parts[:length]),set()).add(slug)
     existing=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {"source":SOURCE,"seasons":{}}
     total=0
+    token=os.getenv("CBBD_API_KEY","").strip()
     for year in range(2016,2028):
         try:
-            req=urllib.request.Request(SOURCE+"?year="+str(year),headers={"User-Agent":"BetWiseResearch/1.0"})
+            endpoint=("https://api.collegebasketballdata.com/recruiting/teams?year="+str(year-1)) if token else (SOURCE+"?year="+str(year))
+            headers={"User-Agent":"BetWiseResearch/1.0"}
+            if token:headers["Authorization"]="Bearer "+token
+            req=urllib.request.Request(endpoint,headers=headers)
             with urllib.request.urlopen(req,timeout=15) as response:
                 rows=json.load(response)
             if isinstance(rows,dict):rows=rows.get("data") or rows.get("results") or []
@@ -36,14 +40,14 @@ def main():
             if not isinstance(item,dict):continue
             name=item.get("team") or item.get("school")
             matches=choices.get(clean(name),set())
-            rank=item.get("comp_rank") or item.get("rank")
+            rank=item.get("comp_rank") or item.get("rank") or item.get("nationalRank")
             if len(matches)!=1 or not rank:continue
             try:rank=int(rank)
             except(ValueError,TypeError):continue
             if not 1<=rank<=400:continue
             slug=next(iter(matches))
             if slug in dest:continue
-            dest[slug]={"national_rank":rank,"points":item.get("comp_rating") or item.get("rating"),"source":SOURCE+"?year="+str(year),"ranking_system":"247Sports composite" if item.get("comp_rank") else "247Sports"}
+            dest[slug]={"national_rank":rank,"points":item.get("comp_rating") or item.get("rating") or item.get("points"),"source":endpoint,"ranking_system":("CBBD composite" if token else "247Sports composite" if item.get("comp_rank") else "247Sports")}
             total+=1
     OUTPUT.parent.mkdir(parents=True,exist_ok=True)
     OUTPUT.write_text(json.dumps(existing,ensure_ascii=False,separators=(",",":"))+"\n")
