@@ -1,0 +1,50 @@
+name: Build CBB Historical Metric Rankings
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - build_cbb_metric_ranks.py
+      - .github/workflows/build-cbb-metric-ranks.yml
+permissions:
+  contents: write
+concurrency:
+  group: cbb-metric-ranks
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate historical season-by-season national ranks
+        run: python build_cbb_metric_ranks.py
+      - name: Validate rank output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/cbb/metric-ranks.json').read_text())
+          seasons=data['seasons']
+          assert len(seasons)>=10, f'Expected historical season coverage; got {len(seasons)}'
+          assert all('avgPoints' in values for values in seasons.values()), 'Missing PPG ranks'
+          print('Verified',len(seasons),'seasons of CBB national metric ranks')
+          PY
+      - name: Publish only CBB metric ranks
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/metric-ranks.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): publish historical national metric rankings'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
