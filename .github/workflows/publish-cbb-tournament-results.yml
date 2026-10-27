@@ -38,6 +38,11 @@ jobs:
               d=json.loads((Path('data/cbb')/(name+'.json')).read_text())
               assert isinstance(d['seasons'],dict)
               print(name,len(d['seasons']),'seasons')
+          ncaa=json.loads(Path('data/cbb/tournament-results.json').read_text())
+          duke=ncaa['seasons'].get('2026',{}).get('duke-blue-devils',{})
+          assert duke.get('tournament')=='NCAA', '2026 Duke NCAA tournament classification not verified; do not publish placeholders as completed results'
+          conf=json.loads(Path('data/cbb/conference-tournament-results.json').read_text())
+          assert conf['seasons'], 'No sourced conference tournament outcomes available; publication incomplete'
           PY
       - name: Commit CBB tournament results only
         run: |
