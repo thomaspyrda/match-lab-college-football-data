@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - import_cbb_conference_nit_history.py
+      - data/cbb/tournament-team-map.json
       - .github/workflows/import-cbb-conference-nit.yml
 permissions:
   contents: write
@@ -22,7 +23,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Import conference tournament and NIT outcomes
-        run: python import_cbb_conference_nit_history.py
+        run: |
+          python import_cbb_conference_nit_history.py
+          python normalize_cbb_tournament_text.py
       - name: Check imported coverage
         run: |
           python - <<'PY'
