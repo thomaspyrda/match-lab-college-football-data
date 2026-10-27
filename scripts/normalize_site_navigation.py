@@ -71,25 +71,30 @@ def main():
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
     self_test()
-    changed = menus = wired = pages = 0
+    changed = menus = wired = pages = nfl_pages = nfl_menus = 0
     failures = []
     for path in args.root.rglob('*.html'):
         if any(part in {'.git', 'node_modules'} for part in path.relative_to(args.root).parts):
             continue
         pages += 1
         first = path.relative_to(args.root).parts[0].upper()
-        sport = args.sport or (first if first in {'NBA', 'MLB', 'CBB'} else 'CFB')
+        sport = args.sport or (first if first in {'NFL', 'NBA', 'MLB', 'CBB'} else 'NFL' if first.startswith('NFL-') or first.startswith('NFL_') else 'CFB')
         original = path.read_text(encoding='utf-8')
         updated, count, refs = normalize(original, sport)
         menus += count
         wired += bool(count or refs)
+        if sport == 'NFL' or 'nfl.parlaycalculator.bet' in original[:5000]:
+            nfl_pages += 1
+            nfl_menus += count
+            if count and CBB_RANKINGS not in updated:
+                failures.append('NFL missing CBB Rankings: ' + str(path))
         if updated != original:
             changed += 1
             if args.check:
                 failures.append(str(path))
             else:
                 path.write_text(updated, encoding='utf-8')
-    print(f"Audited {pages} HTML pages; {wired} shared-navigation pages, {menus} menus, {changed} changed")
+    print(f"Audited {pages} HTML pages; {wired} shared-navigation pages, {menus} menus, {changed} changed; NFL candidates {nfl_pages}, NFL menus {nfl_menus}")
     if failures:
         raise SystemExit("Navigation normalization required: " + ', '.join(failures[:10]))
 
