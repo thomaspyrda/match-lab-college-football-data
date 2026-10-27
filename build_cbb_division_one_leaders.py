@@ -32,6 +32,7 @@ def main():
             rows.sort(key=lambda x:(-x["value"],x["name"],x["team"]))
             result[year][metric]={"label":CATS[metric],"leaders":rows[:10],"eligible":len(rows)}
     output=ROOT/"data/cbb/division-one-season-leaders.json"
+    output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps({"source":"Saved ESPN team-player season archives; rate statistics require >=10 games","seasons":result},separators=(",",":"),ensure_ascii=False)+"\n")
     folder=ROOT/"cbb/division-one-season-leaders"
     folder.mkdir(parents=True,exist_ok=True)
