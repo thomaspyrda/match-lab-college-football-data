@@ -15,7 +15,8 @@ def main():
     db=json.loads(OUT.read_text()) if OUT.exists() else {"source":"ESPN men's basketball scoreboard, conference tournament notes","seasons":{}}
     for year in range(2016,2027):
         if year==2020:
-            db["seasons"]["2020"]={slug:{"result":"Conference tournaments canceled or interrupted in 2020","status":"canceled"} for slug in ids.values()}
+            previous=db["seasons"].get("2020",{})
+            db["seasons"]["2020"]={slug:{**previous.get(slug,{}),"result":"Conference tournaments canceled or interrupted in 2020","status":"canceled"} for slug in ids.values()}
             continue
         try:
             events=fetch(year).get("events",[])
@@ -47,7 +48,9 @@ def main():
                 label="Conference Tournament · Participated"
             season[slug]={"result":label,"games":len(games),"source":"ESPN scoreboard competition notes"}
         if season:
-            db["seasons"][str(year)]=season
+            previous=db["seasons"].setdefault(str(year),{})
+            for slug,fields in season.items():
+                previous.setdefault(slug,{}).update(fields)
         print(year,len(season),"verified conference tournament participants")
     OUT.parent.mkdir(parents=True,exist_ok=True)
     OUT.write_text(json.dumps(db,separators=(",",":"),ensure_ascii=False)+"\n")
