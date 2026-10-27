@@ -30,8 +30,8 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           html=Path('cbb/teams/duke-blue-devils/index.html').read_text()
-          assert 'cbb-team-archive-v1.js?v=20261027-cbb-season-results-v3' in html
-          assert 'cbb-team-archive-v1.css?v=20261027-cbb-season-results-v3' in html
+          assert 'cbb-team-archive-v1.js?v=20261027-consistent-results-v4' in html
+          assert 'cbb-team-archive-v1.css?v=20261027-consistent-results-v4' in html
           print('Verified CBB page renderer and stylesheet references')
           PY
       - name: Publish CBB team page references only
