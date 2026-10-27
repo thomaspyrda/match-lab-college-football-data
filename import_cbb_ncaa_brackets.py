@@ -40,7 +40,7 @@ def main():
                 ambiguous.append(parts[0]);continue
             slug=next(iter(slugs))
             record=db["seasons"].setdefault(str(year),{}).get(slug,{})
-            if record.get("tournament") in ("NIT","canceled"):continue
+            if record.get("tournament") in ("NIT","canceled","NCAA"):continue
             db["seasons"][str(year)][slug]={"tournament":"NCAA","result":finish(wins),"wins":wins,"seed":seed,"source":"Historical NCAA tournament bracket (possibly-wrong/ncaa-tournament)"}
             found+=1
         totals+=found
