@@ -1,0 +1,39 @@
+name: Enrich Historical NCAA Results
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - enrich_cbb_historical_ncaa_results.py
+      - .github/workflows/enrich-cbb-historical-ncaa.yml
+permissions:
+  contents: write
+concurrency:
+  group: cbb-tournament-results
+  cancel-in-progress: false
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Add NCAA elimination opponents and final scores
+        run: python enrich_cbb_historical_ncaa_results.py
+      - name: Publish tournament results independently
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/tournament-results.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): add NCAA final opponents and scores'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || exit 1
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
