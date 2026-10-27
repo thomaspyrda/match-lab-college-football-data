@@ -1,0 +1,47 @@
+name: Import Historical CBB NCAA Tournament Finishes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - import_cbb_ncaa_brackets.py
+permissions:
+  contents: write
+concurrency:
+  group: cbb-tournament-results
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import NCAA tournament records from structured historical data
+        run: python import_cbb_ncaa_brackets.py
+      - name: Require Duke 2026 postseason outcome
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/cbb/tournament-results.json'))
+          v=d['seasons'].get('2026',{}).get('duke-blue-devils',{})
+          assert v.get('tournament')=='NCAA', f'Duke NCAA missing: {v}'
+          print('Duke 2026:',v)
+          PY
+      - name: Publish CBB national tournament results only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/tournament-results.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): historical NCAA finishes'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
