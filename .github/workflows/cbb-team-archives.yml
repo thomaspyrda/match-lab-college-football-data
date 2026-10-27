@@ -14,9 +14,6 @@ on:
     branches: [main]
     paths:
       - data/cbb/bootstrap/*.json.gz
-      - .github/workflows/cbb-team-archives.yml
-      - build_cbb_metric_ranks.py
-      - collect_cbb_recruiting_ranks.py
 permissions:
   contents: write
 concurrency:
