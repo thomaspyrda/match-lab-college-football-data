@@ -1,0 +1,38 @@
+name: Normalize CBB Historical Tournament Labels
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - normalize_cbb_tournament_text.py
+permissions:
+  contents: write
+concurrency:
+  group: cbb-tournament-results
+  cancel-in-progress: false
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Normalize names without modifying outcomes
+        run: python normalize_cbb_tournament_text.py
+      - name: Publish conference results only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/conference-tournament-results.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): normalize conference tournament result labels'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || exit 1
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
