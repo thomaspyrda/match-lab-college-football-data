@@ -1,13 +1,6 @@
 name: Publish CBB Tournament Results
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - build_cbb_tournament_results.py
-      - enrich_cbb_tournament_results.py
-      - build_cbb_conference_tournament_results.py
-      - .github/workflows/publish-cbb-tournament-results.yml
 permissions:
   contents: write
 concurrency:
@@ -29,6 +22,19 @@ jobs:
         run: python enrich_cbb_tournament_results.py
       - name: Identify conference tournament outcomes
         run: python build_cbb_conference_tournament_results.py
+      - name: Print classification coverage before validation
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ('tournament-results','conference-tournament-results'):
+              p=Path('data/cbb')/(name+'.json')
+              if not p.exists():
+                  print(name, 'missing'); continue
+              d=json.loads(p.read_text())
+              print(name,'seasons',len(d.get('seasons',{})),'classified',sum(1 for y in d.get('seasons',{}).values() for v in y.values() if v.get('tournament') in ('NCAA','NIT') or (v.get('result') and 'pending' not in v.get('result','').lower())))
+          PY
       - name: Validate archived coverage
         run: |
           python - <<'PY'
