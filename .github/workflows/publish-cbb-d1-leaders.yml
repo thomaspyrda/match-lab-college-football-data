@@ -1,0 +1,47 @@
+name: Publish Historical CBB D1 Season Leaders
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - build_cbb_division_one_leaders.py
+permissions:
+  contents: write
+concurrency:
+  group: cbb-historical-leaders
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build leaderboard from existing immutable season archives
+        run: python build_cbb_division_one_leaders.py
+      - name: Validate historical coverage
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/cbb/division-one-season-leaders.json'))
+          assert len(d['seasons'])>=10
+          assert '2026' in d['seasons']
+          print('Historical seasons:',len(d['seasons']))
+          PY
+      - name: Publish only CBB Division I leaderboard
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/division-one-season-leaders.json cbb/division-one-season-leaders/
+          git diff --cached --quiet && exit 0
+          git commit -m 'pages(cbb): historical Division I season leaders'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
