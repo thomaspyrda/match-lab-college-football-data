@@ -1,0 +1,50 @@
+name: Populate Historical CBB Conference and NIT Results
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - import_cbb_conference_nit_history.py
+      - .github/workflows/import-cbb-conference-nit.yml
+permissions:
+  contents: write
+concurrency:
+  group: cbb-tournament-results
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import conference tournament and NIT outcomes
+        run: python import_cbb_conference_nit_history.py
+      - name: Check imported coverage
+        run: |
+          python - <<'PY'
+          import json
+          c=json.load(open('data/cbb/conference-tournament-results.json'))
+          n=json.load(open('data/cbb/tournament-results.json'))
+          cc=sum(len(v) for v in c['seasons'].values())
+          nn=sum(v.get('tournament')=='NIT' for y in n['seasons'].values() for v in y.values())
+          print('Conference tournament records',cc,'NIT records',nn)
+          assert cc > 100 and nn > 30, 'Incomplete import; do not publish'
+          PY
+      - name: Commit only historical CBB results
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/conference-tournament-results.json data/cbb/tournament-results.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): conference tournaments and NIT historical results'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || exit 1
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
