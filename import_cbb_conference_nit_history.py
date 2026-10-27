@@ -5,7 +5,7 @@ import csv,io,json,re,urllib.request
 from collections import defaultdict
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
-BASE="https://huggingface.co/datasets/Jensen-holm/Nigl/resolve/main/data/"
+BASE="https://huggingface.co/Jensen-holm/Nigl/resolve/main/data/"
 def read(name):
     """Prefer local fixtures; provide explicit file-level failures, not an opaque exit code."""
     local=ROOT/"data/cbb/import-source"/name
