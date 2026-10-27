@@ -7,8 +7,28 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 BASE="https://huggingface.co/datasets/Jensen-holm/Nigl/resolve/main/data/"
 def read(name):
-    req=urllib.request.Request(BASE+name,headers={"User-Agent":"BetWise-CBB-history/1.0"})
-    with urllib.request.urlopen(req,timeout=55) as r: return list(csv.DictReader(io.StringIO(r.read().decode("utf-8-sig"))))
+    """Prefer local fixtures; provide explicit file-level failures, not an opaque exit code."""
+    local=ROOT/"data/cbb/import-source"/name
+    if local.is_file():
+        body=local.read_text(encoding="utf-8-sig")
+    else:
+        urls=[BASE+name,BASE+name+"?download=true"]
+        errors=[]
+        for url in urls:
+            try:
+                print("Fetching",name,"from",url,flush=True)
+                req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 BetWiseArchive/1.0","Accept":"text/csv,*/*"})
+                with urllib.request.urlopen(req,timeout=18) as response:
+                    body=response.read().decode("utf-8-sig")
+                break
+            except Exception as exc:
+                errors.append(f"{url}: {type(exc).__name__}: {exc}")
+        else:
+            raise RuntimeError(f"Unable to retrieve {name}; "+ "; ".join(errors))
+    rows=list(csv.DictReader(io.StringIO(body)))
+    if not rows:raise RuntimeError("Source has no records: "+name)
+    print("Loaded",name,len(rows),"rows; columns",list(rows[0]),flush=True)
+    return rows
 def norm(s):return re.sub(r"[^a-z0-9]","",str(s).lower())
 def main():
     teams=read("MTeams.csv"); conf_games=read("MConferenceTourneyGames.csv")
