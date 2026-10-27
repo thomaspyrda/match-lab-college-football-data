@@ -24,7 +24,7 @@ function render(){const season=archive.seasons[year],data=season?.phases.regular
  const seasonResult=season.season_result||season.postseason_result||null;
  const conferenceSeasonResult=conferenceResults?.seasons?.[year]?.[route[1]]?.regular_season_result||'Regular-season conference title not verified';
  const conferenceResult=conferenceResults?.seasons?.[year]?.[route[1]]?.result||'Conference tournament result not verified';
- const nationalResult=tournamentResults?.seasons?.[year]?.[route[1]]?.result||seasonResult?.description||seasonResult?.label||'NCAA/NIT tournament result not verified';
+ const nationalResult=tournamentResults?.seasons?.[year]?.[route[1]]?.result||seasonResult?.description||seasonResult?.label||(Number(year)===2020?'Postseason canceled (COVID-19)':(season.phases?.postseason?.games?.length===0&&Number(year)<2027?'No Tournament Invite':'NCAA/NIT tournament result not verified'));
  const classifyPost=(g,index,all)=>{
     const result=tournamentResults?.seasons?.[year]?.[route[1]];
     const hint=String(g.tournament||g.tournament_name||g.notes||g.round||'');
