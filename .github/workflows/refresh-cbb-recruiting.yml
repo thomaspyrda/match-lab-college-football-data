@@ -1,0 +1,51 @@
+name: Refresh CBB Recruiting Rankings
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '47 5 * * 1'
+      timezone: America/New_York
+permissions:
+  contents: write
+concurrency:
+  group: cbb-recruiting
+  cancel-in-progress: false
+jobs:
+  recruit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect recruiting classes without blocking other CBB refreshes
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: python collect_cbb_recruiting_ranks.py
+      - name: Verify recruiting dataset
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/cbb/recruiting-classes.json').read_text())
+          assert isinstance(data.get('seasons'),dict)
+          count=sum(len(v) for v in data['seasons'].values())
+          print(f'Sourced CBB recruiting team classes: {count}')
+          if count == 0:
+              print('No sourced recruiting ranks returned; preserving empty dataset, never fabricating data.')
+          PY
+      - name: Commit only CBB recruiting data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/recruiting-classes.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): refresh sourced recruiting class rankings'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
