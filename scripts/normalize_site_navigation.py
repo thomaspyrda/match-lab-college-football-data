@@ -7,10 +7,11 @@ import json
 import re
 from pathlib import Path
 
-NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v11.js?v=20261026-sos-unified5"
+NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v11.js?v=20261027-cbb-rankings-global"
 CSS_URL = "https://matchlab.parlaycalculator.bet/site-navigation.css?v=20261021-1"
 SPORTS = json.loads(r'''{"NFL":[["NFL Dashboard","https://nfl.parlaycalculator.bet/"],["NFL Teams","https://nfl.parlaycalculator.bet/teams.html"],["Rankings","https://nfl.parlaycalculator.bet/nfl-team-strength-rankings/"]],"CFB":[["CFB Dashboard","https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"],["CFB Teams","https://matchlab.parlaycalculator.bet/teams.html"],["CFB Match Lab","https://matchlab.parlaycalculator.bet/"],["Rankings","https://matchlab.parlaycalculator.bet/college-football-team-strength-rankings/"]],"MLB":[["MLB Dashboard","https://matchlab.parlaycalculator.bet/mlb/dashboard/"],["MLB Teams","https://matchlab.parlaycalculator.bet/mlb/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/mlb/rankings/"]],"NBA":[["NBA Dashboard","https://matchlab.parlaycalculator.bet/nba/dashboard/"],["NBA Teams","https://matchlab.parlaycalculator.bet/nba/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/nba/rankings/"]],"CBB":[["CBB Dashboard","https://matchlab.parlaycalculator.bet/cbb/dashboard/"],["CBB Teams","https://matchlab.parlaycalculator.bet/cbb/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/cbb/rankings/"],["Season Leaders","https://matchlab.parlaycalculator.bet/cbb/division-one-season-leaders/"]]}''')
 NBA_RANKINGS = "https://matchlab.parlaycalculator.bet/nba/rankings/"
+CBB_RANKINGS = "https://matchlab.parlaycalculator.bet/cbb/rankings/"
 NAV_TAG = re.compile(r'(<nav\b[^>]*>)(.*?)(</nav>)', re.I | re.S)
 JS_REF = re.compile(r"""(src\s*=\s*)(["'])(?:https?://[^"'<>\s]+)?/?site-navigation(?:-v\d+)?\.js(?:\?[^"'<>]*)?\2""", re.I)
 CSS_REF = re.compile(r"""(href\s*=\s*)(["'])(?:https?://[^"'<>\s]+)?/?site-navigation\.css(?:\?[^"'<>]*)?\2""", re.I)
@@ -51,12 +52,13 @@ def normalize(source, sport):
         for tag in NAV_TAG.finditer(updated):
             if is_shared_nav(tag[1]):
                 assert NBA_RANKINGS in tag[2], "NBA Rankings must exist in every shared menu"
+                assert CBB_RANKINGS in tag[2], "CBB Rankings must exist in every shared menu"
     return updated, nav_count, script_count
 
 def self_test():
     sample = """<html><head><script defer src="/site-navigation-v10.js?v=20261022-tophero"></script></head><body><nav class="site-nav">old</nav><details class="mobile-menu"><nav aria-label="Mobile navigation">old</nav></details><main><table><tr><td>Archived stats 112.5</td></tr></table></main></body></html>"""
     result, menus, _ = normalize(sample, 'NFL')
-    assert menus == 2 and result.count(NBA_RANKINGS) == 2
+    assert menus == 2 and result.count(NBA_RANKINGS) == 2 and result.count(CBB_RANKINGS) == 2
     assert '<main><table><tr><td>Archived stats 112.5</td></tr></table></main>' in result
     assert normalize(result, 'NFL')[0] == result
     assert normalize('<html><meta http-equiv="refresh" content="0;url=/teams.html"></html>', 'NFL')[0].startswith('<html><meta')
