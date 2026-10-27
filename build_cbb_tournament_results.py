@@ -6,7 +6,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 teams=ROOT/"data/cbb/teams"
 def main():
-    national={"source":"ESPN archived postseason games; tournament classification requires verification","seasons":{}}
+    output=ROOT/"data/cbb/tournament-results.json"
+    national=json.loads(output.read_text()) if output.exists() else {"source":"ESPN archived postseason games; tournament classification requires verification","seasons":{}}
     conference={"source":"ESPN archived regular-season schedule; conference tournament classification requires verification","seasons":{}}
     count=0
     for path in sorted(teams.glob("*.json")):
@@ -19,7 +20,9 @@ def main():
                 continue
             # ESPN seasontype=3 alone does not establish NCAA vs NIT; do not guess.
             if post:
-                national["seasons"].setdefault(year,{})[slug]={"result":"Postseason games recorded; NCAA/NIT classification pending verification","tournament":"unverified","postseason_games":len(post)}
+                current=national["seasons"].setdefault(year,{}).get(slug)
+                if not current or current.get("tournament")=="unverified":
+                    national["seasons"][year][slug]={"result":"Postseason games recorded; NCAA/NIT classification pending verification","tournament":"unverified","postseason_games":len(post)}
                 count+=1
     (ROOT/"data/cbb").mkdir(parents=True,exist_ok=True)
     (ROOT/"data/cbb/tournament-results.json").write_text(json.dumps(national,separators=(",",":"))+"\n")
