@@ -510,9 +510,9 @@ def write_live_data_pages(now):
                 "record":r.get("record") or "—",
             }
             for key,_label in unit_fields:
-                if r.get(key) is None:
-                    raise ValueError(f"Missing unit metric {key}: {r.get('team')}")
-                row[key]=r[key]
+                # A missing source metric must not block unrelated site publication.
+                # Display unavailable values as a dash; never fabricate a rating.
+                row[key] = r.get(key) if r.get(key) is not None else "—"
 
             rows.append(row)
         rows=sorted(rows,key=lambda r:(r["rank"] or 999,r["team"]))
