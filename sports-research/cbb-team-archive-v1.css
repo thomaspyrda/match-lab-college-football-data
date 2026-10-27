@@ -46,3 +46,5 @@
 #schedule .cbb-table-scroll th{background:#111;color:#aaa;font-size:11px;text-transform:uppercase;letter-spacing:.07em}
 @media(max-width:850px){#snapshot .cbb-snapshot-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cbb-coach-grid{grid-template-columns:1fr}}
 @media(max-width:600px){#snapshot .cbb-snapshot-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#metrics .cbb-advanced-grid{grid-template-columns:1fr}.cbb-season-result{display:block}.cbb-season-result strong{display:block;text-align:left;margin-top:10px}}
+
+#result .cbb-season-result+.cbb-season-result{margin-top:10px}
