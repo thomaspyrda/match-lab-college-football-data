@@ -25,7 +25,7 @@ def main():
     token=os.getenv("CBBD_API_KEY","").strip()
     for year in range(2016,2028):
         try:
-            endpoint=("https://api.collegebasketballdata.com/recruiting/teams?year="+str(year-1)) if token else (SOURCE+"?year="+str(year))
+            endpoint=("https://api.collegebasketballdata.com/recruiting/teams?year="+str(year)) if token else (SOURCE+"?year="+str(year))
             headers={"User-Agent":"BetWiseResearch/1.0"}
             if token:headers["Authorization"]="Bearer "+token
             req=urllib.request.Request(endpoint,headers=headers)
@@ -38,9 +38,9 @@ def main():
         dest=existing["seasons"].setdefault(str(year),{})
         for item in rows:
             if not isinstance(item,dict):continue
-            name=item.get("team") or item.get("school")
+            name=item.get("team") or item.get("school") or item.get("teamName")
             matches=choices.get(clean(name),set())
-            rank=item.get("comp_rank") or item.get("rank") or item.get("nationalRank")
+            rank=item.get("comp_rank") or item.get("rank") or item.get("nationalRank") or item.get("national_rank")
             if len(matches)!=1 or not rank:continue
             try:rank=int(rank)
             except(ValueError,TypeError):continue
