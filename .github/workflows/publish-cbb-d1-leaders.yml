@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - build_cbb_division_one_leaders.py
+      - .github/workflows/publish-cbb-d1-leaders.yml
 permissions:
   contents: write
 concurrency:
@@ -29,6 +30,8 @@ jobs:
           d=json.load(open('data/cbb/division-one-season-leaders.json'))
           assert len(d['seasons'])>=10
           assert '2026' in d['seasons']
+          assert len(d['seasons']['2026'].get('avgPoints',{}).get('leaders',[])) >= 10
+          assert __import__('pathlib').Path('cbb/division-one-season-leaders/index.html').exists()
           print('Historical seasons:',len(d['seasons']))
           PY
       - name: Publish only CBB Division I leaderboard
