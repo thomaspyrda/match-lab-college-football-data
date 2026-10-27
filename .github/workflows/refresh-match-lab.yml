@@ -1,31 +1,14 @@
 name: Build Match Lab production
+# Legacy v15 production pipeline. The approved current CFB four-unit workflow
+# owns automatic ranking publication. Keep this workflow manual-only so a
+# historical v15 rebuild cannot race with or overwrite current sport data.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '23 4 * * 0'
-      timezone: America/New_York
-  push:
-    branches:
-      - main
-    paths:
-      - refresh_match_lab.py
-      - build_seo_pages.py
-      - build_sport_team_pages.py
-      - build_advanced_profiles.py
-      - promote_v15_live.py
-      - experiment_dominance_v15.py
-      - data/weekly/**
-      - data/preseason/**
-      - site-navigation.js
-      - site-navigation.css
-      - styles.css
-      - app.js
-      - .github/workflows/refresh-match-lab.yml
 permissions:
   contents: write
 jobs:
   build:
-    if: github.actor != 'github-actions[bot]'
+    if: false # Disabled legacy v15 publisher; archived for reference.
     runs-on: ubuntu-latest
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
