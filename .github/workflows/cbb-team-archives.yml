@@ -98,6 +98,8 @@ jobs:
       - name: Build historical CBB national metric rankings
         run: python build_cbb_metric_ranks.py
       - name: Collect sourced historical recruiting class rankings
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
         run: python collect_cbb_recruiting_ranks.py
       - name: Publish CBB team archive references
         run: python publish_cbb_team_archives.py
