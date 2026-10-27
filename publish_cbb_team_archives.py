@@ -18,7 +18,7 @@ def main():
         source=re.sub(r'<script\b[^>]*data-archive-layout="mlb-cbb-v1"[^>]*>\s*</script>','',source)
         source=re.sub(r'<(?:script|link)\b[^>]*data-cbb-archive="v1"[^>]*>(?:\s*</script>)?','',source)
         source=source.replace('</head>','<link rel="stylesheet" href="/sports-research/cbb-team-archive-v1.css?v=20261027-postseason-schedule" data-cbb-archive="v1"><script defer src="/sports-research/cbb-team-archive-v1.js?v=20261027-postseason-schedule" data-cbb-archive="v1"></script></head>')
-        source=re.sub(r'site-navigation-v\d+\.js\?v=[\w-]+','site-navigation-v11.js?v=20261023-complete-banner',source)
+        source=re.sub(r'site-navigation-v\d+\.js\?v=[\w-]+','site-navigation-v11.js?v=20261027-cbb-rankings-global',source)
         if any(s['phases']['regular']['completed_games'] for s in data['seasons'].values()):
             source=source.replace('content="noindex,follow"','content="index,follow"')
         assert seed in source,'Existing embedded history changed'
