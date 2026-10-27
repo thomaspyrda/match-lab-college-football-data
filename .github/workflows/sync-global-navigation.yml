@@ -1,0 +1,41 @@
+name: Synchronize Global Sport Navigation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/normalize_site_navigation.py
+      - .github/workflows/sync-global-navigation.yml
+permissions:
+  contents: write
+concurrency:
+  group: global-navigation-publish
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Synchronize every existing HTML navigation
+        run: python scripts/normalize_site_navigation.py
+      - name: Validate every shared menu contains CBB Rankings
+        run: python scripts/normalize_site_navigation.py --check
+      - name: Publish navigation HTML only, never sports datasets
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -u -- '*.html'
+          git diff --cached --quiet && exit 0
+          git commit -m 'nav: synchronize CBB Rankings across all site pages'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || exit 1
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
