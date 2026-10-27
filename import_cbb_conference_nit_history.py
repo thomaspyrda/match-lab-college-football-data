@@ -42,6 +42,9 @@ def main():
             n=norm(k)
             if n:byname[n].add(t["slug"])
     byid={}
+    school_labels={t["slug"]:t.get("short_name") or t.get("name") or t["slug"] for t in registry["teams"] if t["sport"]=="cbb"}
+    def label(teamid):
+        return school_labels.get(byid.get(teamid,""),next((t["TeamName"] for t in teams if t["TeamID"]==teamid),teamid))
     corrections={"duke":"duke-blue-devils","uconn":"uconn-huskies","stjohns":"st-johns-red-storm","northcarolina":"north-carolina-tar-heels"}
     for t in teams:
         n=norm(t["TeamName"]); slugs=byname.get(n,set())
@@ -69,7 +72,7 @@ def main():
             played=[g for g in games if teamid in (g["WTeamID"],g["LTeamID"])]
             if teamid==champion:
                 title=f"{conf} Tournament Champion"
-                game=last;opponent=byid.get(game["LTeamID"],game["LTeamID"])
+                game=last;opponent=label(game["LTeamID"])
                 score=scores.get((year,game["DayNum"],game["WTeamID"],game["LTeamID"]))
                 if score:title+=f" — Defeated {opponent}, {score['WScore']}–{score['LScore']}"
             else:
@@ -78,11 +81,11 @@ def main():
                 game=losses[-1]
                 later=len({int(g["DayNum"]) for g in games if int(g["DayNum"])>int(game["DayNum"])})
                 rd="Final" if later==0 else "Semifinals" if later==1 else "Quarterfinals" if later==2 else f"Earlier Round"
-                opponent=byid.get(game["WTeamID"],game["WTeamID"])
+                opponent=label(game["WTeamID"])
                 title=f"Eliminated in {rd} of {conf} Tournament — Lost to {opponent}"
                 score=scores.get((year,game["DayNum"],game["WTeamID"],game["LTeamID"]))
                 if score:title+=f", {score['LScore']}–{score['WScore']}"
-            cdb["seasons"][year][slug]={**previous,"result":title,"source":"Kaggle MConferenceTourneyGames historical archive"}
+            cdb["seasons"][year][slug]={**previous,"result":title,"source":"March Machine Learning Mania MConferenceTourneyGames historical data"}
             count+=1
     cp.write_text(json.dumps(cdb,separators=(",",":"),ensure_ascii=False)+"\n")
     np=ROOT/"data/cbb/tournament-results.json";ndb=json.loads(np.read_text())
@@ -100,11 +103,11 @@ def main():
         wins=sum(g["WTeamID"]==teamid for g in games)
         losses=sorted((g for g in games if g["LTeamID"]==teamid),key=lambda g:int(g["DayNum"]))
         if losses:
-            last=losses[-1];opponent=byid.get(last["WTeamID"],last["WTeamID"])
+            last=losses[-1];opponent=label(last["WTeamID"])
             finish="NIT Runner-up" if wins>=4 else "NIT Semifinals" if wins==3 else "NIT Quarterfinals" if wins==2 else "NIT Second Round" if wins==1 else "NIT First Round"
             result=f"Eliminated in {finish} — Lost to {opponent}, {last['LScore']}–{last['WScore']}"
         else: result="NIT Champion"
-        ndb["seasons"][year][slug]={**previous,"tournament":"NIT","wins":wins,"result":result,"source":"Kaggle MSecondaryTourneyCompactResults historical archive"}
+        ndb["seasons"][year][slug]={**previous,"tournament":"NIT","wins":wins,"result":result,"source":"March Machine Learning Mania MSecondaryTourneyCompactResults historical data"}
         nit_count+=1
     np.write_text(json.dumps(ndb,separators=(",",":"),ensure_ascii=False)+"\n")
     print("Conference tournament records:",count,"NIT records:",nit_count,"team IDs matched:",len(byid))
