@@ -17,7 +17,7 @@
    document.querySelector('#scheduleBody').innerHTML='<tr><td colspan="10">No verified regular-season results loaded.</td></tr>';return;
   }
   const values=[['Record',record(s.record)],['PPG',s.ppg.toFixed(1)],['PPG Allowed',s.ppg_allowed.toFixed(1)],['Home',record(s.home)],['Away',record(s.away)],['Neutral',record(s.neutral)],['Conference',record(s.conference_record)],['Games',s.games_played]];
-  for(const [key,label] of [['ats','ATS · W-L-P'],['ou','O/U · O-U-P']]){const m=s[key];values.push([label,m.games?`${m.first}-${m.second}-${m.pushes}`:'—']);}
+  for(const [key,label] of [['ats','ATS'],['ou','O/U']]){const m=s[key];values.push([label,m.games?`${m.first}-${m.second}${m.pushes?'-'+m.pushes:''}`:'—']);}
   document.querySelector('#snapshotGrid').innerHTML=values.map(([k,v])=>card(k,v)).join('');
   document.querySelector('#seasonNote').innerHTML=`${escape(year)} regular season · ${s.games_played} completed games · ${escape(s.conference||'Conference unavailable')}. Postseason and bowls are excluded. Scoring ranks compare ${s.rank_field_size} FBS teams with recorded results: PPG #${s.ppg_rank}; PPG allowed #${s.ppg_allowed_rank}. ATS coverage ${s.ats.games}/${s.games_played}; totals coverage ${s.ou.games}/${s.games_played}. Betting lines are source-reported; closing status and observation timestamps are not verified. Missing lines are excluded from market records. <a href="${escape(s.sources[0].url)}">View source data</a>.`;
   document.querySelector('#scheduleBody').innerHTML=(s.schedule||s.games).map(g=>{
@@ -32,6 +32,7 @@
  function change(){render(select.value);const url=new URL(location.href);url.searchParams.set('season',select.value);history.replaceState(null,'',url);}
  select.addEventListener('change',change);
  const requested=new URL(location.href).searchParams.get('season');
- if(requested&&[...select.options].some(o=>o.value===requested)){select.value=requested;render(requested);}
+ if(requested&&[...select.options].some(o=>o.value===requested)){select.value=requested;}
+ render(select.value);
  window.addEventListener('popstate',()=>{const year=new URL(location.href).searchParams.get('season');if(year&&[...select.options].some(o=>o.value===year)){select.value=year;render(year);}});
 })();
