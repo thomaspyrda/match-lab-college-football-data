@@ -34,7 +34,11 @@ jobs:
               assert paths
               for path in paths:
                   s=path.read_text()
-                  assert s.count('data-archive-layout="mlb-cbb-v1"')==2, path
+                  if sport == 'cbb' and '/sports-research/cbb-team-archive-v1.js' in s:
+                      assert s.count('/sports-research/cbb-team-archive-v1.js') == 1, path
+                      assert 'data-archive-layout="mlb-cbb-v1"' not in s, path
+                  else:
+                      assert s.count('data-archive-layout="mlb-cbb-v1"')==2, path
                   assert 'id="team-season-data"' in s, path
               print(sport, len(paths), 'pages validated')
           PY
