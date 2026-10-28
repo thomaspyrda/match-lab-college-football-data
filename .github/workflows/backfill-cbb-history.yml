@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - backfill_cbb_tournament_history.py
+      - backfill_cbb_opponent_metrics.py
+      - backfill_cbb_program_accolades.py
       - .github/workflows/backfill-cbb-history.yml
 permissions:
   contents: write
@@ -26,7 +28,7 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y poppler-utils
           mkdir -p /tmp/cbb-sources
-          for file in MTeams MConferenceTourneyGames MSecondaryTourneyCompactResults MNCAATourneyCompactResults MNCAATourneySeeds MTeamConferences MRegularSeasonCompactResults MNCAATourneySlots; do
+          for file in MTeams MConferenceTourneyGames MSecondaryTourneyCompactResults MNCAATourneyCompactResults MNCAATourneySeeds MTeamConferences MRegularSeasonCompactResults MRegularSeasonDetailedResults MNCAATourneySlots; do
             curl --fail --retry 3 -L "https://media.githubusercontent.com/media/KernelMcGregor/2026MMMLM/main/Data/$file.csv" -o "/tmp/cbb-sources/$file.csv"
           done
           curl --fail --retry 3 -L 'https://s3.amazonaws.com/fs.ncaa.org/Docs/stats/m_basketball_RB/Awards.pdf' -o /tmp/cbb-sources/Awards.pdf
@@ -44,6 +46,7 @@ jobs:
       - name: Finalize tournaments through 2026 and refresh program honors
         run: |
           python backfill_cbb_tournament_history.py --source-dir /tmp/cbb-sources --fetch-2026
+          python backfill_cbb_opponent_metrics.py --source-dir /tmp/cbb-sources
           python backfill_cbb_markets.py --source-dir /tmp/cbb-sources
           python backfill_cbb_program_accolades.py --source-dir /tmp/cbb-sources
           python validate_cbb_history.py

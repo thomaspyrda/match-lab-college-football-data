@@ -71,16 +71,16 @@ def main():
         match=re.match(r'^(19\d{2}|20\d{2})\s{3,}',line)
         if not match:continue
         year=int(match[1])
-        if not 2015<=year<=2026:continue
+        if not 1950<=year<=2026:continue
         # This table starts x=11 with columns spaced 21 chars through 2023;
         # PDF page 19 uses starts 27,48,69,90,111 for the five active series.
-        if i<1500 or i>1690:continue
-        starts=[11,32,53,74,95,116,137] if year<=2023 else [None,27,48,69,90,111,None]
+        if i<1520 or i>1690:continue
+        starts=([11,28,49,70,91,112,133] if year<=1989 else [11,32,53,74,95,116,137]) if year<=2023 else [None,27,48,69,90,111,None]
         nxt=lines[i+1] if i+1<len(lines) else ''
         active=[(j,start) for j,start in enumerate(starts) if start is not None]
         for pos,(j,start) in enumerate(active):
             end=active[pos+1][1] if pos+1<len(active) else len(line)
-            cell=line[start:end].strip();school=nxt[start:end].strip().strip(';')
+            chunks=[(m.start(),m.group().strip()) for m in re.finditer(r'\S(?:.*?\S)?(?=\s{2,}|$)',line)];cells=[v for pos,v in chunks if abs(pos-start)<10 and not v.isdigit()];cell=cells[0] if cells else '';schoolchunks=[(m.start(),m.group().strip()) for m in re.finditer(r'\S(?:.*?\S)?(?=\s{2,}|$)',nxt)];schools=[v for pos,v in schoolchunks if abs(pos-start)<10];school=(schools[0] if schools else '').strip(';')
             if not cell:continue
             if ',' in cell:recipient,school=cell.rsplit(',',1);recipient=recipient.strip();school=school.strip()
             else:recipient=cell
@@ -99,7 +99,7 @@ def main():
     # Consistent ordering and source metadata for every program.
     order=['NCAA championships','NCAA runner-up finishes','NCAA Final Four appearances','Regular-season conference titles (2015–16 onward)','Conference tournament titles (2015–16 onward)','Consensus All-America First Team','Consensus All-America Second Team',*categories,'Vacated NCAA championships','Vacated NCAA runner-up finishes','Vacated Final Four appearances']
     programs={s:{k:sorted(groups[k],key=lambda v:(-v['year'],v.get('recipient',''))) for k in order if k in groups} for s,groups in programs.items()}
-    out={'sources':[BOOK,AWARDS],'coverage':{'NCAA team honors':'1939–2026, vacated results separated','Consensus All-America':'NCAA consensus selections by season, 1905–2026','major_player_awards':'2015–2026','conference_titles':'2015–16 through 2025–26'},'programs':programs,'seasons':seasons}
+    out={'sources':[BOOK,AWARDS],'coverage':{'NCAA team honors':'1939–2026, vacated results separated','Consensus All-America':'NCAA consensus selections by season, 1905–2026','major_player_awards':'1950–2026; each series begins when established','conference_titles':'2015–16 through 2025–26'},'programs':programs,'seasons':seasons}
     (ROOT/'data/cbb/national-awards.json').write_text(json.dumps(out,separators=(',',':'),ensure_ascii=False)+'\n')
     report={'honors':dict(counts),'unmapped':dict(unmapped),'programs_with_honors':sum(bool(x) for x in programs.values())};(ROOT/'data/cbb/accolades-backfill-report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
 if __name__=='__main__':main()
