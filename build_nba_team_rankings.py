@@ -79,6 +79,8 @@ METRIC_LABELS = {
     "opponent_blocks_per_game": "Opponent blocks per game",
     "rim_fg_pct": "At rim field goal percentage",
     "opp_rim_fg_pct": "Opponent at rim field goal percentage",
+    "opp_points_in_paint": "Opponent points in the paint per game",
+    **{"points_allowed_"+p.lower(): "Points allowed per game to "+p for p in ("PG","SG","SF","PF","C")},
 }
 LOWER_IS_BETTER = {
     "ppg_allowed", "ppg_allowed_home", "ppg_allowed_away",
@@ -86,6 +88,7 @@ LOWER_IS_BETTER = {
     "rebounds_allowed_per_game", "drtg", "opponent_assists_per_game",
     "opponent_steals_per_game", "opponent_blocks_per_game",
     "opp_efg_pct", "opp_rim_fg_pct", "tov_pct",
+    "opp_points_in_paint", "points_allowed_pg", "points_allowed_sg", "points_allowed_sf", "points_allowed_pf", "points_allowed_c",
 }
 
 
@@ -291,11 +294,18 @@ def main():
     previous = read_json(OUTPUT) if OUTPUT.exists() else {}
     # Retain finished live seasons if the rolling dashboard cache has moved on.
     for year, season in previous.get("seasons", {}).items():
-        if 2027 <= int(year) < active_year and year not in output["seasons"]:
+        if int(year) < active_year:
             output["seasons"][year] = {**season, "status": "complete"}
     cache = read_json(ROOT / "nba/dashboard/data/completed-games.json")
     registry = read_json(ROOT / "data/sports/team-registry.json")
     rows, coverage = build_current_rows(cache, registry, TEAM_INFO, active_year, METRIC_LABELS)
+    position_path = ROOT / "nba/rankings/data/defense-by-position.json"
+    position_data = read_json(position_path) if position_path.exists() else {}
+    position_current = position_data.get("season") == active_year and position_data.get("as_of", "") >= (coverage.get("through_date") or "9999")
+    for row in rows:
+        if row["games_played"] and position_current:
+            for pos, value in position_data.get("teams", {}).get(row["slug"], {}).items():
+                row["metrics"]["points_allowed_"+pos.lower()] = value
     league_average = rate_teams(rows)
     output["seasons"][str(active_year)] = {
         "label": f"{active_year - 1}–{str(active_year)[-2:]}",
@@ -303,6 +313,8 @@ def main():
         "league_average": league_average, **coverage,
         "source_url": "https://www.espn.com/nba/scoreboard",
         "source_name": "ESPN completed regular-season box scores",
+        "freshness": cache.get("freshness"),
+        "position_source": {k:position_data.get(k) for k in ("source","as_of","methodology")} if position_current else None,
         "source_note": "Current-season efficiency uses estimated possessions: the average of both teams’ FGA − offensive rebounds + turnovers + 0.44 × FTA. Pace accounts for overtime. League averages and standard deviations include teams with completed games. Missing values are shown as —; at-rim shooting is unavailable from this feed.",
         "teams": sorted(rows, key=lambda row: (row["ranks"]["overall"] is None,
                                                row["ranks"]["overall"] or 0, row["team"])),

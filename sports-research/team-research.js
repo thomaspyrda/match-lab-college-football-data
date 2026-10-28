@@ -376,7 +376,7 @@
   }
   if (!document.querySelector('script[data-nba-modern-layout]')) {
     const js = document.createElement('script');
-    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=nba-current-season-20261021';
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=nba-20261028-schedule-defense';
     js.dataset.nbaModernLayout = 'true';
     document.body.append(js);
   }
