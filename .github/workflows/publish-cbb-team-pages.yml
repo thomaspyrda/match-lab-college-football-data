@@ -43,8 +43,16 @@ jobs:
           git commit -m 'pages(cbb): refresh all team-page layouts'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main
+            if ! git rebase origin/main; then
+              git rebase --abort
+              git reset --hard origin/main
+              python publish_cbb_team_archives.py
+              git add cbb/teams
+              git diff --cached --quiet && exit 0
+              git commit -m 'pages(cbb): regenerate asset references on latest main'
+            fi
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 3))
           done
           exit 1
+
