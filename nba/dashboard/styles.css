@@ -210,3 +210,11 @@ html,body{max-width:100%;overflow-x:hidden}
 .nba-availability-source{font-size:12px;color:#b8e7c3}
 .nba-availability-note{margin-top:14px;font-size:12px}
 @media(max-width:760px){.nba-availability-grid{grid-template-columns:1fr}.nba-availability-card{padding:16px}}
+
+/* Show the five actual opponents without wrapping their venue sequence. */
+.context-card--locations .context-sides b{display:block;white-space:nowrap;font-size:clamp(10px,.9vw,12px);letter-spacing:-.025em;line-height:1.35}
+@media(max-width:1050px){
+ .context-card--locations .context-sides{grid-template-columns:minmax(0,1fr);gap:6px}
+ .context-card--locations .context-sides>i{display:none}
+ .context-card--locations .context-sides>span,.context-card--locations .context-sides>span:last-child{min-width:0;text-align:left;border-right:0;border-left:3px solid var(--team-color)}
+}
