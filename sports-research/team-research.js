@@ -370,13 +370,13 @@
   if (!document.querySelector('link[data-nba-modern-layout]')) {
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.css?v=betting-tiles-20261017-final';
+    css.href = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.css?v=grouped-metrics-20261028';
     css.dataset.nbaModernLayout = 'true';
     document.head.append(css);
   }
   if (!document.querySelector('script[data-nba-modern-layout]')) {
     const js = document.createElement('script');
-    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=nba-20261028-schedule-defense';
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=grouped-metrics-20261028';
     js.dataset.nbaModernLayout = 'true';
     document.body.append(js);
   }

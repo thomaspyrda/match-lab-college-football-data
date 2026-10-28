@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """CBB dashboard: completed ESPN box scores, isolated season types, observed snapshots."""
 from __future__ import annotations
+from basketball_dashboard_metrics import ADDITIONAL_METRICS, derived_metrics
 from dashboard_snapshot import compact
 import json, time, urllib.request
 from collections import defaultdict
@@ -40,7 +41,7 @@ def team_box(row,score):
     ft=pair(values.get('freeThrowsMade-freeThrowsAttempted'))
     return {'points':num(score),'fgm':fg[0],'fga':fg[1],'tpm':th[0],'tpa':th[1],'ftm':ft[0],'fta':ft[1],
       'oreb':num(values.get('offensiveRebounds')),'dreb':num(values.get('defensiveRebounds')),'reb':num(values.get('totalRebounds')),
-      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks'))}
+      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'paint_points':num(values.get('pointsInPaint'))}
 
 def players_box(row):
     result=[]
@@ -120,6 +121,7 @@ def profile(team_id,history,cutoff):
       'opp_two_pct':ratio(other.get('fgm',0)-other.get('tpm',0),other.get('fga',0)-other.get('tpa',0),100) if n else None,
       'ft_pct':ratio(totals.get('ftm'),totals.get('fta'),100),'opp_ft_pct':ratio(other.get('ftm'),other.get('fta'),100),
       'ast_rate':ratio(totals.get('ast'),possessions,100) if valid_poss else None,'opp_ast_rate':ratio(other.get('ast'),possessions,100) if valid_poss else None})
+    values.update(derived_metrics(games,team_id))
     market_records={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':min(n,5)}
     for g in games[-5:]:
         market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
@@ -139,6 +141,8 @@ def rank(profiles,key,high):
 
 METRICS=[('ortg','Offensive rating','OFFENSE',True,''),('drtg','Defensive rating','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
+
+METRICS.extend(ADDITIONAL_METRICS)
 
 def roster(team_id):
     try:d=get('teams/'+team_id+'/roster')

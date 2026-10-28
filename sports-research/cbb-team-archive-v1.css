@@ -53,3 +53,16 @@
 
 /* CFB-aligned section system: green caps headings, matching sequence */
 .cbb-archive-section>h2{font-size:15px!important;font-weight:900!important;letter-spacing:.095em!important;line-height:1.3!important;text-transform:uppercase!important;color:#00f646!important;margin:8px 0 18px!important}.cbb-snapshot-season-results{margin:18px 0 0}.cbb-snapshot-season-results>h3{font-size:12px;letter-spacing:.09em;color:#aaa;font-weight:900;margin:0 0 10px}.cbb-snapshot-season-results .cbb-season-result+.cbb-season-result{margin-top:10px}#snapshot .cbb-snapshot-season-results{padding-top:8px}#schedule h3{color:#f1f1f1;font-size:17px;margin:24px 0 12px}#schedule h3:first-child{margin-top:6px}
+
+#metrics .cbb-archive-metrics{gap:7px 10px}
+#metrics .cbb-archive-metrics article{min-height:0;padding:10px 12px;border-radius:8px}
+#metrics .cbb-archive-metrics strong{font-size:18px;line-height:1.2}
+#metrics .cbb-archive-metrics span{margin-top:4px;font-size:12px;line-height:1.25}
+#metrics .cbb-archive-metrics small{font-size:10px;display:block;margin-top:4px}
+/* One compact stat per row keeps related categories vertically adjacent. */
+#metrics .cbb-archive-metrics{grid-template-columns:1fr;gap:5px}
+#metrics .cbb-archive-metrics article{display:grid;grid-template-columns:minmax(0,1fr) 80px 160px;align-items:center;gap:10px;padding:9px 12px}
+#metrics .cbb-archive-metrics article>span{grid-column:1;grid-row:1;margin:0}
+#metrics .cbb-archive-metrics article>strong{grid-column:2;grid-row:1;text-align:right}
+#metrics .cbb-archive-metrics article>small{grid-column:3;grid-row:1;margin:0;text-align:right}
+@media(max-width:640px){#metrics .cbb-archive-metrics article{grid-template-columns:minmax(0,1fr) 55px 100px;gap:7px}}

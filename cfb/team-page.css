@@ -69,3 +69,9 @@
 .program-accolades .accolades-table td:nth-child(5) a{color:#00ff41;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;cursor:pointer;position:relative;z-index:1}
 .program-accolades .accolades-table td:nth-child(5) a:hover{color:#baffce;text-decoration-thickness:2px}
 .program-accolades .accolades-table td:nth-child(5) a:focus-visible{outline:2px solid #00ff41;outline-offset:3px;border-radius:2px}
+
+#metrics .metric-pair{gap:8px;margin-bottom:7px}
+#metrics .metric-box{min-height:0;padding:10px 12px;gap:4px;border-radius:8px}
+#metrics .metric-box span{font-size:12px;line-height:1.25}
+#metrics .metric-box strong{font-size:18px;line-height:1.2}
+#metrics .metric-box small{font-size:10px;margin-top:0}
