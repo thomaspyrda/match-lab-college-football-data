@@ -1,4 +1,5 @@
 """Season-to-date ranking inputs from the completed ESPN regular-season cache."""
+from basketball_dashboard_metrics import derived_metrics
 from collections import defaultdict
 import math
 from datetime import datetime
@@ -114,6 +115,9 @@ def build_current_rows(cache, registry, team_info, year, metric_keys):
                 "drb_pct": ratio(own["dreb"], own["dreb"] + opp["oreb"]),
                 "turnover_margin": (opp["tov"] - own["tov"]) / n,
             })
+            metrics.update(derived_metrics([g for g, _ in games], games[0][1]))
+            metrics["opp_ft_pct"] = ratio(opp["ftm"], opp["fta"])
+            metrics["opp_ft_rate"] = ratio(opp["fta"], opp["fga"])
             metrics["offensive_rebound_rate"] = metrics["orb_pct"]
             metrics["defensive_rebound_rate"] = metrics["drb_pct"]
             paint = [g["teams"][next(i for i in g["teams"] if i != tid)].get("paint_points") for g, tid in games]

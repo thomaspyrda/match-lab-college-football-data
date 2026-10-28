@@ -11,6 +11,8 @@ on:
   push:
     branches: [main]
     paths:
+      - basketball_dashboard_metrics.py
+      - tests/test_basketball_dashboard_metrics.py
       - refresh_nba_dashboard.py
       - build_nba_current_schedule.py
       - refresh_nba_defense.py
@@ -52,6 +54,7 @@ jobs:
           python-version: '3.12'
       - name: Test season boundaries and pregame isolation
         run: |
+          python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
           python -m unittest discover -s tests -p test_nba_page_updates.py
           python -m unittest discover -s tests -p test_nba_closing_markets.py
           python -m unittest discover -s tests -p test_nba_dashboard.py

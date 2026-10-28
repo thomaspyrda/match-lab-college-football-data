@@ -106,3 +106,8 @@ body.wise-nba-template .wise-accolade-sources a{color:#dcefe0;text-decoration:un
 /* 2026 season-only supplemental odds and starting pitchers */
 #schedule .wise-2026-starters,#schedule .wise-2026-ml{display:block;font-size:9px;font-weight:500;line-height:1.25;color:#aab5ab;white-space:normal;overflow-wrap:anywhere;margin-top:3px}
 @media(max-width:600px){#schedule .wise-2026-starters{font-size:8px;line-height:1.15}#schedule .wise-2026-ml{font-size:9px}}
+
+#metrics .wise-metric{min-height:0;padding:10px 12px;border-radius:8px}
+#metrics .wise-metric span{font-size:12px;line-height:1.25}
+#metrics .wise-metric strong{font-size:18px;line-height:1.2}
+#metrics .wise-metric small{font-size:10px}

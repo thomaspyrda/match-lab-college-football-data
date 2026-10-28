@@ -79,6 +79,14 @@ METRIC_LABELS = {
     "opponent_blocks_per_game": "Opponent blocks per game",
     "rim_fg_pct": "At rim field goal percentage",
     "opp_rim_fg_pct": "Opponent at rim field goal percentage",
+    "points_in_paint": "Points in the paint per game",
+    "opp_three_attempt_rate": "Opponent three-point attempt rate",
+    "total_rebound_rate": "Total rebound rate",
+    "opp_total_rebound_rate": "Opponent total rebound share",
+    "opp_rebounds_per_game": "Opponent rebounds per game",
+    "opp_turnovers_per_game": "Opponent turnovers per game",
+    "opp_ft_pct": "Opponent free-throw percentage",
+    "opp_ft_rate": "Opponent free-throw attempt rate",
     "opp_points_in_paint": "Opponent points in the paint per game",
     **{"points_allowed_"+p.lower(): "Points allowed per game to "+p for p in ("PG","SG","SF","PF","C")},
 }
@@ -88,6 +96,7 @@ LOWER_IS_BETTER = {
     "rebounds_allowed_per_game", "drtg", "opponent_assists_per_game",
     "opponent_steals_per_game", "opponent_blocks_per_game",
     "opp_efg_pct", "opp_rim_fg_pct", "tov_pct",
+    "opp_three_attempt_rate", "opp_total_rebound_rate", "opp_rebounds_per_game", "opp_ft_pct", "opp_ft_rate",
     "opp_points_in_paint", "points_allowed_pg", "points_allowed_sg", "points_allowed_sf", "points_allowed_pf", "points_allowed_c",
 }
 

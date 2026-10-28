@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from basketball_dashboard_metrics import ADDITIONAL_METRICS, derived_metrics
 from nba_current_rankings import game_minutes
 from nba_closing_markets import closing_market, verified_closing_market
 from nba_player_context import refresh_availability, load_player_values
@@ -174,6 +175,7 @@ def profile(team_id,history,cutoff):
       'opp_two_pct':ratio(other.get('fgm',0)-other.get('tpm',0),other.get('fga',0)-other.get('tpa',0),100) if n else None,
       'ft_pct':ratio(totals.get('ftm'),totals.get('fta'),100),'opp_ft_pct':ratio(other.get('ftm'),other.get('fta'),100),
       'ast_rate':ratio(totals.get('ast'),possessions,100) if valid_poss else None,'opp_ast_rate':ratio(other.get('ast'),possessions,100) if valid_poss else None})
+    values.update(derived_metrics(games,team_id))
     market_records={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':min(n,5)}
     for g in games[-5:]:
         market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
@@ -193,6 +195,8 @@ def rank(profiles,key,high):
 
 METRICS=[('ppg','PPG','OFFENSE',True,''),('ppg_allowed','PPG Allowed','DEFENSE',False,''),('off_efficiency','OFF Efficiency','OFFENSE',True,''),('def_efficiency','DEF Efficiency','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
+
+METRICS.extend(ADDITIONAL_METRICS)
 
 def roster(team_id):
     d=get('teams/'+team_id+'/roster');assert d.get('athletes'),'Empty roster '+team_id

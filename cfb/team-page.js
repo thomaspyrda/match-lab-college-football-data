@@ -10,6 +10,8 @@
   for(const id of ['coachingGrid','recruitingContent','metricsGrid','seasonLeadersContent','seasonResult']){
    document.querySelector('#'+id).innerHTML=s?.sections?.[id]||'<p class="archive-note">No verified data returned for this season.</p>';
   }
+  const metricCategory=label=>{const l=label.toLowerCase();if(l.startsWith('passing')||l.startsWith('passing yards'))return 1;if(l.startsWith('rushing')||/power|stuff|line yards|second-level|open-field/.test(l))return 2;if(/sack|havoc/.test(l))return 3;if(/turnover/.test(l))return 4;if(/third|3rd|opportunity|opportunities/.test(l))return 5;return 0};
+  const metricGrid=document.querySelector('#metricsGrid');if(metricGrid){[...metricGrid.querySelectorAll('.metric-pair')].sort((a,b)=>metricCategory(a.querySelector('span')?.textContent||'')-metricCategory(b.querySelector('span')?.textContent||'')).forEach(row=>metricGrid.append(row));}
   document.querySelector('#snapshotTitle').textContent=`${year} regular season`;
   if(!s){
    document.querySelector('#snapshotGrid').innerHTML='<p class="archive-note">No FBS regular-season archive is loaded for this season. Earlier FCS seasons are outside this archive.</p>';
