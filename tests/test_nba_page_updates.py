@@ -35,7 +35,11 @@ class NBAUpdatesTests(unittest.TestCase):
         self.assertEqual(away['Away']['ou']['pushes'],1)
         neutral=copy.deepcopy(game);neutral['neutral']=True
         row=location_market_records([neutral],'2',cutoff)
-        self.assertEqual(row['Neutral']['games'],1);self.assertEqual(row['Home']['games'],0)
+        self.assertEqual(set(row),{'Home','Away'})
+        self.assertEqual(row['Home']['games'],1);self.assertEqual(row['Home']['ats']['wins'],1)
+        row=location_market_records([neutral],'8',cutoff)
+        self.assertEqual(row['Away']['games'],1);self.assertEqual(row['Away']['ats']['losses'],1)
+        self.assertEqual(row['Away']['ou']['pushes'],1)
         del game['closing_market']
         row=location_market_records([game],'2',cutoff)
         self.assertEqual(row['Home']['games'],1);self.assertEqual(row['Home']['ats']['lined_games'],0)

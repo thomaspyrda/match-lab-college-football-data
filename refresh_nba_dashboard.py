@@ -40,9 +40,9 @@ def scoreboard_day(day, today):
         return {'events':[]}
 
 def location_market_records(games,team_id,cutoff):
-    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away','Neutral')}
+    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away')}
     for g in games:
-        place='Neutral' if g.get('neutral') else 'Home' if g['home']==team_id else 'Away'
+        place='Home' if g['home']==team_id else 'Away'
         row=result[place];row['games']+=1
         market=verified_closing_market(g)
         if not market or stamp(market['observed_at'])>cutoff:continue
