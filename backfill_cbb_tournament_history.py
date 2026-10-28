@@ -111,7 +111,7 @@ def enrich_espn_2026(conf,national,teams):
     from datetime import date,timedelta
     day=date(2026,3,1)
     while day<date(2026,4,15):
-        end=min(day+timedelta(days=6),date(2026,4,15));url='https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=1000&dates='+day.strftime('%Y%m%d')+'-'+end.strftime('%Y%m%d')
+        end=day;url='https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?groups=50&limit=500&dates='+day.strftime('%Y%m%d')
         with urllib.request.urlopen(url,timeout=45) as r:payload=json.load(r)
         for e in payload.get('events',[]):events[e['id']]=e
         day=end+timedelta(days=1)
@@ -148,3 +148,4 @@ def enrich_espn_2026(conf,national,teams):
             dest['seasons']['2026'][slug]={**prev,'result':text,'tournament':'none','source':'https://www.espn.com/mens-college-basketball/scoreboard/_/date/20260301'}
     print('2026 ESPN events',len(events),'team finishes',len(classified))
 if __name__=='__main__':main()
+
