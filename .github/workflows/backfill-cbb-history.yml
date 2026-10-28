@@ -23,6 +23,8 @@ jobs:
           python-version: '3.12'
       - name: Download historical game and bracket sources
         run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y poppler-utils
           mkdir -p /tmp/cbb-sources
           for file in MTeams MConferenceTourneyGames MSecondaryTourneyCompactResults MNCAATourneyCompactResults MNCAATourneySeeds MTeamConferences MRegularSeasonCompactResults MNCAATourneySlots; do
             curl --fail --retry 3 -L "https://media.githubusercontent.com/media/KernelMcGregor/2026MMMLM/main/Data/$file.csv" -o "/tmp/cbb-sources/$file.csv"
@@ -59,3 +61,4 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
