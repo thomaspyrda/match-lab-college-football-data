@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from nba_current_rankings import game_minutes
-from nba_closing_markets import closing_market
+from nba_closing_markets import closing_market, verified_closing_market
 from nba_player_context import refresh_availability, load_player_values
 
 ROOT=Path(__file__).resolve().parent
@@ -16,12 +16,43 @@ API='https://site.api.espn.com/apis/site/v2/sports/basketball/nba/'
 UTC=timezone.utc
 
 def get(endpoint):
-    for attempt in range(3):
+    error=None
+    for attempt in range(4):
         try:
-            with urllib.request.urlopen(API+endpoint,timeout=25) as r:return json.load(r)
-        except Exception:
-            if attempt==2:raise
-            time.sleep(attempt+1)
+            request=urllib.request.Request(API+endpoint,headers={'User-Agent':'Mozilla/5.0 BetWiseResearch/1.0','Accept':'application/json','Cache-Control':'no-cache'})
+            with urllib.request.urlopen(request,timeout=20) as r:data=json.load(r)
+            if not isinstance(data,dict):raise ValueError('Expected an ESPN JSON object')
+            return data
+        except Exception as exc:
+            error=exc
+            if attempt<3:time.sleep(2**attempt)
+    raise RuntimeError('ESPN request failed: '+endpoint+' ('+str(error)+')') from error
+
+def scoreboard_day(day, today):
+    """Future schedule availability must not stop completed-game ingestion."""
+    try:
+        board=get('scoreboard?dates='+day.strftime('%Y%m%d')+'&limit=100')
+        if 'events' not in board:raise ValueError('ESPN scoreboard has no events field')
+        return board
+    except Exception:
+        if day>=today-timedelta(days=1) and day<=today:raise
+        print('Optional scoreboard unavailable:',day,flush=True)
+        return {'events':[]}
+
+def location_market_records(games,team_id,cutoff):
+    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away','Neutral')}
+    for g in games:
+        place='Neutral' if g.get('neutral') else 'Home' if g['home']==team_id else 'Away'
+        row=result[place];row['games']+=1
+        market=verified_closing_market(g)
+        if not market or stamp(market['observed_at'])>cutoff:continue
+        own=g['teams'][team_id]['points'];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]['points']
+        if market.get('home_spread') is not None:
+            margin=own-opp+(market['home_spread'] if g['home']==team_id else -market['home_spread'])
+            row['ats']['lined_games']+=1;row['ats']['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+        if market.get('total') is not None:
+            margin=own+opp-market['total'];row['ou']['lined_games']+=1;row['ou']['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+    return result
 
 def stamp(value):return datetime.fromisoformat(value.replace('Z','+00:00'))
 def num(value):
@@ -42,7 +73,7 @@ def team_box(row,score):
     ft=pair(values.get('freeThrowsMade-freeThrowsAttempted'))
     return {'points':num(score),'fgm':fg[0],'fga':fg[1],'tpm':th[0],'tpa':th[1],'ftm':ft[0],'fta':ft[1],
       'oreb':num(values.get('offensiveRebounds')),'dreb':num(values.get('defensiveRebounds')),'reb':num(values.get('totalRebounds')),
-      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks'))}
+      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'paint_points':num(values.get('pointsInPaint'))}
 
 def players_box(row):
     result=[]
@@ -77,7 +108,18 @@ def completed(event):
     return {'id':event['id'],'date':event['date'],'season':event['season']['year'],'phase':event['season']['type'],
       'observed_complete_at':datetime.now(UTC).isoformat(),'teams':boxes,'players':players,'home':next(c['team']['id'] for c in comp['competitors'] if c['homeAway']=='home'),
       'neutral':comp.get('neutralSite',False),'periods':event.get('status',{}).get('period') or comp.get('status',{}).get('period'),'game_id':'nba:espn:game:'+event['id'],'market':market,'closing_market':archived_close,'market_checked':True,'player_stats_version':2,
-      'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
+      'defense_stats_version':1,'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
+
+def enrich_paint(game):
+    if game.get('phase')!=2 or game.get('defense_stats_version')==1:return game
+    summary=get('summary?event='+str(game['id']))
+    rows={str(r['team']['id']):r for r in summary.get('boxscore',{}).get('teams',[])}
+    if set(rows)!=set(game['teams']):raise ValueError('Paint source team mismatch '+str(game['id']))
+    for tid,row in rows.items():
+        values={s['name']:s.get('displayValue') for s in row['statistics']}
+        game['teams'][tid]['paint_points']=num(values.get('pointsInPaint'))
+    game['defense_stats_version']=1
+    return game
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None
 
@@ -143,7 +185,7 @@ def profile(team_id,history,cutoff):
         if total is not None:
             margin=own['points']+opp['points']-total;r=market_records['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
     return {'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
-      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'last_game_date':games[-1]['date'] if games else None}
+      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'location_markets':location_market_records(games,team_id,cutoff),'last_game_date':games[-1]['date'] if games else None}
 
 def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
@@ -180,13 +222,16 @@ def main():
     start=max(today-timedelta(days=7),today.replace(month=10,day=1)) if today.month>=10 else today-timedelta(days=7)
     if not old and today.month==10:start=today.replace(day=1)
     dates=[start+timedelta(days=i) for i in range((today+timedelta(days=7)-start).days+1)]
-    boards=list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?dates='+d.strftime('%Y%m%d')),dates))
+    boards=list(ThreadPoolExecutor(4).map(lambda d:scoreboard_day(d,today),dates))
     events={e['id']:e for b in boards for e in b.get('events',[]) if e.get('season',{}).get('year')==season and all(c['team']['id'] in teams for c in e['competitions'][0]['competitors'])}
     new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('closing_market') and e['season']['type']==2) or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
     for g in ThreadPoolExecutor(8).map(completed,new):
         if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
         if g['id'] in old and old[g['id']].get('closing_market') and not g.get('closing_market'):g['closing_market']=old[g['id']]['closing_market']
         old[g['id']]=g
+    for g in ThreadPoolExecutor(4).map(enrich_paint,list(old.values())):old[g['id']]=g
+    required={str(e['id']) for e in events.values() if e['season']['type']==2 and e['status']['type'].get('completed') and stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date()==today-timedelta(days=1)}
+    if required-set(old):raise ValueError('Missing completed games from yesterday: '+str(sorted(required-set(old))))
     rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,teams)}
     for g in old.values():
         g['game_id']='nba:espn:game:'+g['id']
@@ -224,8 +269,10 @@ def main():
     data={'schema_version':1,'season':f'{season-1}–{str(season)[2:]}','season_type':{1:'Preseason',2:'Regular season',3:'Playoffs'}[latest_phase],'updated_at':refreshed.isoformat(),'player_value':value_coverage,
       'completed_games':len(history),'games':output,'coverage':{'bpm':value_coverage['state'],'vorp':value_coverage['state'],'injuries':'ESPN game-day injury reports; unlisted players are not automatically confirmed active','refresh':'Daily statistics with afternoon pregame snapshots; not a live scoreboard'},
       'methodology':'Ratings use estimated possessions: average of both teams’ FGA − OREB + TO + 0.44 × FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.'}
-    dest=ROOT/'nba/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,indent=2)+'\n');cache_path.write_text(json.dumps({'schema_version':1,'games':list(old.values())},indent=2)+'\n')
-    assert len(teams)==30 and output,'No NBA teams or slate loaded'
+    freshness={'checked_at':refreshed.isoformat(),'checked_through':str(today-timedelta(days=1)),'expected_previous_day_games':sorted(required)}
+    data['freshness']=freshness
+    assert len(teams)==30,'Expected all 30 NBA teams'
+    dest=ROOT/'nba/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,indent=2)+'\n');cache_path.write_text(json.dumps({'schema_version':1,'freshness':freshness,'games':list(old.values())},indent=2)+'\n')
     print(f"NBA {data['season_type']}: {len(output)} matchups, {len(history)} completed games, {sum(len(g['players'].get(i,[])) for g in history for i in g['players'])} player game records")
 
 if __name__=='__main__':main()

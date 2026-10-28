@@ -2,12 +2,20 @@ name: Refresh NBA Dashboard
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7 4 * * *'
+    - cron: '45 3 * * *'
+      timezone: America/New_York
+    - cron: '35 4 * * *'
+      timezone: America/New_York
+    - cron: '5,25 5 * * *'
       timezone: America/New_York
   push:
     branches: [main]
     paths:
       - refresh_nba_dashboard.py
+      - build_nba_current_schedule.py
+      - refresh_nba_defense.py
+      - validate_nba_refresh.py
+      - tests/test_nba_page_updates.py
       - nba_player_context.py
       - tests/test_nba_player_context.py
       - nba/dashboard/data/player-value.json
@@ -34,13 +42,17 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Test season boundaries and pregame isolation
         run: |
+          python -m unittest discover -s tests -p test_nba_page_updates.py
           python -m unittest discover -s tests -p test_nba_closing_markets.py
           python -m unittest discover -s tests -p test_nba_dashboard.py
           python -m unittest discover -s tests -p test_nba_player_context.py
@@ -54,6 +66,11 @@ jobs:
         run: |
           python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
           python publish_nba_team_backfill.py --publish
+      - name: Collect the full season schedule
+        run: python build_nba_current_schedule.py
+      - name: Refresh scoring allowed by position
+        continue-on-error: true
+        run: python refresh_nba_defense.py
       - name: Update current-season rankings from the refreshed box scores
         run: |
           python -m unittest discover -s tests -p test_nba_current_rankings.py
@@ -61,16 +78,18 @@ jobs:
           python build_nba_team_current.py
           python build_nba_team_rankings.py
           python build_nba_season_leaders.py
+      - name: Verify previous-day coverage before publishing
+        run: python validate_nba_refresh.py
       - name: Publish NBA snapshot and verified 2026-27 team games
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add nba/teams/data/current-season.json nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
+          git add nba/teams/data/current-schedule.json nba/rankings/data/defense-by-position.json nba/teams/data/current-season.json nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main
+            git rebase origin/main || exit 1
             if git push origin HEAD:main; then
               exit 0
             fi

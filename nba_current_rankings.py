@@ -116,6 +116,8 @@ def build_current_rows(cache, registry, team_info, year, metric_keys):
             })
             metrics["offensive_rebound_rate"] = metrics["orb_pct"]
             metrics["defensive_rebound_rate"] = metrics["drb_pct"]
+            paint = [g["teams"][next(i for i in g["teams"] if i != tid)].get("paint_points") for g, tid in games]
+            metrics["opp_points_in_paint"] = sum(paint) / n if all(isinstance(v, (int, float)) and math.isfinite(v) and v >= 0 for v in paint) else None
             for venue, entries in splits.items():
                 suffix = venue.lower()
                 metrics["ppg_" + suffix] = sum(x[0] for x in entries) / len(entries) if entries else None
