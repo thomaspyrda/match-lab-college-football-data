@@ -81,8 +81,8 @@ def snapshot(s):
  values=[('Record',record_label(s['record'])),('PPG',f"{s['ppg']:.1f}"),
   ('PPG Allowed',f"{s['ppg_allowed']:.1f}"),('Home',record_label(s['home'])),('Away',record_label(s['away'])),('Neutral',record_label(s['neutral'])),
   ('Conference',record_label(s['conference_record'])),('Games',s['games_played'])]
- for key,label in [('ats','ATS · W-L-P'),('ou','O/U · O-U-P')]:
-  m=s[key];values.append((label,f"{m['first']}-{m['second']}-{m['pushes']}" if m['games'] else '—'))
+ for key,label in [('ats','ATS'),('ou','O/U')]:
+  m=s[key];values.append((label,f"{m['first']}-{m['second']}"+(f"-{m['pushes']}" if m['pushes'] else "") if m['games'] else '—'))
  return ''.join(f'<article class="snapshot-card"><b>{esc(v)}</b><span>{esc(k)}</span></article>' for k,v in values)
 
 def schedule(s,registry):
