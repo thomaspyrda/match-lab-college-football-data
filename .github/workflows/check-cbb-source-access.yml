@@ -1,0 +1,30 @@
+name: Check CBB historical source access
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/check-cbb-source-access.yml]
+permissions:
+  contents: read
+jobs:
+  access:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check configured CBBD access and historical fields
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os,json,urllib.request
+          key=os.getenv('CBBD_API_KEY','').strip()
+          if not key:
+              print('CBBD_API_KEY is not configured; no authenticated requests sent.')
+              raise SystemExit(0)
+          for path in ['/lines?season=2016&team=Duke','/stats/team/season?season=2016&team=Duke']:
+              req=urllib.request.Request('https://api.collegebasketballdata.com'+path,headers={'Authorization':'Bearer '+key})
+              try:
+                  with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+                  print(path,'records',len(data),'first record schema',json.dumps(data[0] if data else {},ensure_ascii=True)[:5000])
+              except urllib.error.HTTPError as e:
+                  print(path,'HTTP status',e.code)
+          PY

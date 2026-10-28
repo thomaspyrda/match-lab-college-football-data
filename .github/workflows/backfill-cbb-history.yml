@@ -6,6 +6,7 @@ on:
     paths:
       - backfill_cbb_tournament_history.py
       - backfill_cbb_opponent_metrics.py
+      - backfill_cbb_markets.py
       - backfill_cbb_program_accolades.py
       - .github/workflows/backfill-cbb-history.yml
 permissions:
