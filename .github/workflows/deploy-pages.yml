@@ -3,7 +3,7 @@ name: Deploy Match Lab
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
+    workflows: ["Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
     branches: [cfb-dashboard-foundation, main]
     types: [completed]
   push:
@@ -73,3 +73,4 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
