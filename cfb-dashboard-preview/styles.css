@@ -250,3 +250,6 @@ html,body{max-width:100%;overflow-x:hidden}
  .game-detail .metric-card[data-unit="DEFENSE"] .metric-title{border-left:3px solid #b49844}
  .game-detail .metric-card[data-unit="OFFENSE"] .metric-title{border-left:3px solid #23914a}
 }
+
+/* Rank numbers use each team's most readable palette color. */
+.game-detail .metric-rank b{color:var(--rank-color,var(--team-color,#FFFFFF))!important}
