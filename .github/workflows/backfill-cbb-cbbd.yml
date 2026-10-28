@@ -1,0 +1,47 @@
+name: Backfill CBB historical lines and paint
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [backfill_cbb_cbdd_history.py, .github/workflows/backfill-cbb-cbbd.yml]
+permissions:
+  contents: write
+concurrency:
+  group: cbb-history-backfill
+  cancel-in-progress: false
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import exact matched historical lines and coverage checked paint
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python backfill_cbb_cbdd_history.py
+          python validate_cbb_history.py
+      - name: Publish validated data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/markets data/cbb/opponent-metrics.json data/cbb/cbbd-backfill-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): backfill historical lines and coverage checked paint from CBBD'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cbbd-backfill-coverage
+          path: data/cbb/cbbd-backfill-report.json
