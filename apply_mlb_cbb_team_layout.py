@@ -3,8 +3,8 @@ from pathlib import Path
 import re
 ROOT = Path(__file__).resolve().parent
 TAG = 'data-archive-layout="mlb-cbb-v1"'
-CSS = '<link rel="stylesheet" href="/sports-research/mlb-cbb-team-layout-draft-v14.css?v=grouped-metrics-20261028" '+TAG+'>'
-JS = '<script defer src="/sports-research/mlb-cbb-team-layout-v16.js?v=grouped-metrics-20261028" '+TAG+'></script>'
+CSS = '<link rel="stylesheet" href="/sports-research/mlb-cbb-team-layout-draft-v14.css?v=20261028-cbb-backfill-v5" '+TAG+'>'
+JS = '<script defer src="/sports-research/mlb-cbb-team-layout-v16.js?v=20261028-cbb-backfill-v5" '+TAG+'></script>'
 
 
 def apply_assets(text, sport):
@@ -13,7 +13,7 @@ def apply_assets(text, sport):
     text = re.sub(r'<script\b[^>]*\bdata-archive-layout="mlb-cbb-v1"[^>]*>\s*</script>', '', text)
     if sport == 'cbb' and '/sports-research/cbb-team-archive-v1.js' in text:
         for asset in ('js', 'css'):
-            text = re.sub(r'(/sports-research/cbb-team-archive-v1\.'+asset+r')(?:\?[^"<>]*)?', r'\1?v=grouped-metrics-20261028', text)
+            text = re.sub(r'(/sports-research/cbb-team-archive-v1\.'+asset+r')(?:\?[^"<>]*)?', r'\1?v=20261028-cbb-backfill-v5', text)
         return text
     if '</head>' not in text or '</body>' not in text:
         raise ValueError('Missing page shell')

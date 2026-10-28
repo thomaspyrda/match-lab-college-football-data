@@ -59,10 +59,13 @@
 #metrics .cbb-archive-metrics strong{font-size:18px;line-height:1.2}
 #metrics .cbb-archive-metrics span{margin-top:4px;font-size:12px;line-height:1.25}
 #metrics .cbb-archive-metrics small{font-size:10px;display:block;margin-top:4px}
-/* One compact stat per row keeps related categories vertically adjacent. */
-#metrics .cbb-archive-metrics{grid-template-columns:1fr;gap:5px}
-#metrics .cbb-archive-metrics article{display:grid;grid-template-columns:minmax(0,1fr) 80px 160px;align-items:center;gap:10px;padding:9px 12px}
-#metrics .cbb-archive-metrics article>span{grid-column:1;grid-row:1;margin:0}
-#metrics .cbb-archive-metrics article>strong{grid-column:2;grid-row:1;text-align:right}
-#metrics .cbb-archive-metrics article>small{grid-column:3;grid-row:1;margin:0;text-align:right}
-@media(max-width:640px){#metrics .cbb-archive-metrics article{grid-template-columns:minmax(0,1fr) 55px 100px;gap:7px}}
+/* Align offense and defense by category, matching NBA team pages. */
+#metrics .cbb-paired-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px}
+#metrics .cbb-paired-metrics article{display:flex;flex-direction:column;gap:7px;min-width:0;padding:12px;border:1px solid #363936;border-left:3px solid #1764a6;border-radius:8px;background:#1b1b1b}
+#metrics .cbb-paired-metrics article>div{display:flex;justify-content:space-between;align-items:center;gap:12px}
+#metrics .cbb-paired-metrics span{color:#c8cdca;font-size:12px;font-weight:700}
+#metrics .cbb-paired-metrics strong{font-size:20px;white-space:nowrap}
+#metrics .cbb-paired-metrics small{font-size:10px;color:#9aa29d}
+#metrics .cbb-paired-metrics .cbb-metric-side{font-weight:900;letter-spacing:.09em}
+.cbb-accolade-group{border:1px solid #343a36;border-radius:8px;background:#1b1b1b;margin:8px 0;padding:12px 15px}.cbb-accolade-group summary{cursor:pointer;font-weight:700}.cbb-accolade-group summary b{float:right;color:#83baf0}.cbb-accolade-group li{padding:4px 0}.cbb-accolade-group ul{columns:3}
+@media(max-width:600px){#metrics .cbb-paired-metrics{grid-template-columns:1fr}#metrics .cbb-metric-spacer{display:none}.cbb-accolade-group ul{columns:1}}
