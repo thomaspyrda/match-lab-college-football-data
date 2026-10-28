@@ -109,10 +109,10 @@ html,body{max-width:100%;overflow-x:hidden}
 .season-team{min-width:0;padding:13px 15px;border:1px solid var(--line);border-left:4px solid var(--team-color);border-radius:10px;background:#181b18}
 .season-team-head{display:flex;align-items:center;gap:8px;margin-bottom:11px;font:900 15px "DM Sans"}
 .season-team-logo{width:25px;height:25px;object-fit:contain}
-.season-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.season-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;text-align:center}
 .season-stats span{display:grid;gap:2px;min-width:0}
-.season-stats strong{font:900 19px "DM Sans";white-space:nowrap}
-.season-stats small{color:var(--muted);font:700 10px "DM Sans"}
+.season-stats strong{font:900 clamp(12px,1.45vw,19px) "DM Sans";white-space:nowrap;font-variant-numeric:tabular-nums}
+.season-stats small{color:var(--muted);font:700 10px "DM Sans";white-space:nowrap}\n.season-team-head>small{margin-left:auto;color:var(--muted);font:700 10px "DM Sans"}
 /* Native dialog stays above clipped metric and trend cards on small screens. */
 .definition-dialog{width:min(360px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 48px);margin:auto;padding:18px;border:1px solid #536253;border-radius:14px;background:#171c17;color:#f4f7f4;box-shadow:0 22px 80px #000d}
 .definition-dialog::backdrop{background:#000b}
@@ -124,7 +124,7 @@ html,body{max-width:100%;overflow-x:hidden}
   .season-overview-grid{grid-template-columns:1fr;gap:7px}
   .season-team{padding:10px 12px}
   .season-team-head{margin-bottom:7px}
-  .season-stats strong{font-size:17px}
+  .season-stats strong{font-size:clamp(12px,3.6vw,17px)}\n  .season-stats{gap:4px}\n  .season-stats small{font-size:9px}
   .info:after{display:none!important}
   .context-card--sequence .context-sides{grid-template-columns:minmax(0,1fr);gap:6px}
   .context-card--sequence .context-sides>i{display:none}
