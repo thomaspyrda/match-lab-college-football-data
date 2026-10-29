@@ -19,10 +19,10 @@ const rawVal=(v,fmt)=>{if(v==null)return"—";const n=Number(v);if(!Number.isFin
 const kickoff=g=>{if(!g.kickoff)return "Kickoff TBD";const d=new Date(g.kickoff);return new Intl.DateTimeFormat("en-US",{weekday:"short",hour:"numeric",minute:"2-digit",timeZone:"America/New_York",timeZoneName:"short"}).format(d)};
 const spreadLabel=g=>{if(g.market?.spread===null||g.market?.spread===undefined||g.market?.spread==="")return "—";const s=Number(g.market.spread);if(!Number.isFinite(s))return "—";if(s===0)return "PK";const team=s<0?abbr(g.home):abbr(g.away);return `${team} -${Math.abs(s)}`};
 const HELP={
-"Rush Rate":"Share of offensive plays classified as runs by CollegeFootballData, excluding garbage time. Frequency rank: #1 is the highest share, not best.",
-"Pass Rate":"Share of offensive plays classified as passes by CollegeFootballData, excluding garbage time. Frequency rank: #1 is the highest share, not best.",
-"Rush Rate Against":"Share of opponent plays classified as runs by CollegeFootballData, excluding garbage time. Frequency rank: #1 is the highest share, not best.",
-"Pass Rate Against":"Share of opponent plays classified as passes by CollegeFootballData, excluding garbage time. Frequency rank: #1 is the highest share, not best.",
+"Rush Rate":"Share of offensive plays classified as runs by CollegeFootballData, excluding garbage time. Other play classifications can keep Rush Rate + Pass Rate below 100%. Frequency rank: #1 is the highest share, not best.",
+"Pass Rate":"Share of offensive plays classified as passes by CollegeFootballData, excluding garbage time. Other play classifications can keep Rush Rate + Pass Rate below 100%. Frequency rank: #1 is the highest share, not best.",
+"Rush Rate Against":"Share of opponent plays classified as runs by CollegeFootballData, excluding garbage time. Other play classifications can keep Rush Rate + Pass Rate below 100%. Frequency rank: #1 is the highest share, not best.",
+"Pass Rate Against":"Share of opponent plays classified as passes by CollegeFootballData, excluding garbage time. Other play classifications can keep Rush Rate + Pass Rate below 100%. Frequency rank: #1 is the highest share, not best.",
 "Sack Rate Allowed":"Sacks allowed divided by pass attempts plus sacks allowed. Lower is better.",
 "Sack Rate":"Defensive sacks divided by opponent pass attempts plus sacks. Higher is better.",
 "Havoc Allowed":"CFBD season havoc events allowed per offensive play: tackles for loss, passes defended and forced fumbles. Lower is better.",

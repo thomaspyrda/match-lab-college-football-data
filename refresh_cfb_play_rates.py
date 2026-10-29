@@ -48,7 +48,8 @@ def rates(unit):
     if any(isinstance(v, bool) or not isinstance(v, (int, float)) or
            not math.isfinite(v) or not 0 <= v <= 1 for v in (rush, passing)):
         return None
-    if abs(rush + passing - 1) > 0.001:
+    # CFBD total plays also include other classifications; do not normalize.
+    if not 0 < rush + passing <= 1.001:
         return None
     return rush, passing
 
@@ -92,7 +93,7 @@ def enrich(payload):
         source_rows = request("/stats/season/advanced", **params)
         data = board(source_rows, year)
         if len(data) < 120:
-            raise ValueError(f"Incomplete FBS play-rate source: {len(data)} teams; source sample: {json.dumps(source_rows[:1])}")
+            raise ValueError(f"Incomplete FBS play-rate source: {len(data)} valid teams from {len(source_rows)} rows")
         rank_board(data)
         names = {canon(g[s]["name"]) for g in games
                  if int(g["season"]) == year and int(g["week"]) - 1 == end_week
@@ -134,6 +135,7 @@ def enrich(payload):
         "source": "CollegeFootballData /stats/season/advanced",
         "method": "Provider rushingPlays.rate and passingPlays.rate on offense and defense; garbage time excluded",
         "ranking": "Descending frequency among FBS teams; #1 means highest share, not best",
+        "denominator": "CFBD total plays, including other classifications; rush and pass shares may sum to less than 100%",
         "windows": metadata, "unavailable_teams": sorted(missing),
         "generated_at": datetime.now(timezone.utc).isoformat()}
     return payload
