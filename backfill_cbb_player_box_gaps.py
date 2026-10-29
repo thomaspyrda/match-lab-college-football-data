@@ -77,7 +77,8 @@ def merge(args):
             expected=played(season)
             if not 2016<=int(year)<=2026 or not expected or any((p.get('stats') or {}).get('gamesPlayed',0)>0 for p in season.get('players') or []):continue
             boxes=groups[path.stem,year]
-            if set(boxes)!=set(expected):
+            complete=set(boxes)==set(expected)
+            if not complete and len(boxes)/len(expected)<.90:
                 report['remaining'].append({'team':path.stem,'season':year,'verified_boxes':len(boxes),'expected_games':len(expected)});continue
             players={}
             for box in boxes.values():
@@ -91,13 +92,13 @@ def merge(args):
                 for key,label in [('FG','fieldGoalPct'),('3PT','threePointFieldGoalPct'),('FT','freeThrowPct')]:
                     if t[key+'A']:stats[label]=100*t[key+'M']/t[key+'A']
                 rows.append({'id':p['id'],'name':p['name'],'position':p['position'],'stats':stats})
-            assert sum(p['stats']['points'] for p in rows)==sum(g['points'] for g in expected.values())
+            assert sum(p['stats']['points'] for p in rows)==sum(expected[gid]['points'] for gid in boxes)
             season['players']=sorted(rows,key=lambda p:-(p['stats'].get('avgPoints') or 0))
-            season['player_stats_source']={'scope':'full season, regular season and postseason','method':'Every archived completed game has a verified complete ESPN player box; all individual shooting arithmetic and team scoring totals agree','games':len(boxes),'game_sources':{gid:b['source'] for gid,b in boxes.items()},'retrieved_at':datetime.now(timezone.utc).isoformat()}
+            season['player_stats_source']={'scope':'full season, regular season and postseason' if complete else 'verified partial-season sample','complete':complete,'expected_games':len(expected),'missing_game_ids':sorted(set(expected)-set(boxes)),'method':'Every included game has a verified complete ESPN player box; all individual shooting arithmetic and team scoring totals agree','games':len(boxes),'game_sources':{gid:b['source'] for gid,b in boxes.items()},'retrieved_at':datetime.now(timezone.utc).isoformat()}
             season.setdefault('sources',[]).append({'name':'ESPN complete game-by-game player statistics','url':next(iter(boxes.values()))['source']})
-            changed=True;report['recovered'].append({'team':path.stem,'season':year,'players':len(rows),'games':len(boxes)})
+            changed=True;report['recovered'].append({'team':path.stem,'season':year,'players':len(rows),'games':len(boxes),'expected_games':len(expected),'complete':complete})
         if changed:save(path,a)
-    report['recovered_team_seasons']=len(report['recovered']);report['remaining_missing']=len(report['remaining'])
+    report['complete_team_seasons']=sum(r['complete'] for r in report['recovered']);report['partial_team_seasons']=sum(not r['complete'] for r in report['recovered']);report['recovered_team_seasons']=len(report['recovered']);report['remaining_missing']=len(report['remaining'])
     save(ROOT/'data/cbb/player-box-backfill-report.json',report)
     print('Recovered',len(report['recovered']),'remaining',len(report['remaining']),dict(audit),flush=True)
 if __name__=='__main__':
