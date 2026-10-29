@@ -1,0 +1,37 @@
+name: Import verified CBB official supplements
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [backfill_cbb_verified_supplements.py, .github/workflows/backfill-cbb-verified-supplements.yml]
+permissions:
+  contents: write
+concurrency:
+  group: cbb-verified-supplements
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install official PDF table reader
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Import official final player table and score-checked legacy paint boxes
+        run: |
+          python backfill_cbb_verified_supplements.py
+          python audit_cbb_paint_coverage.py
+          python validate_cbb_history.py
+      - name: Publish verified historical supplements
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/teams/eastern-washington-eagles.json data/cbb/verified-supplements-report.json data/cbb/official-paint-observations.json data/cbb/official-paint-backfill-report.json data/cbb/opponent-metrics.json data/cbb/paint-coverage-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): import verified official final player and paint records'
+          git pull --rebase origin main
+          git push origin main
