@@ -94,6 +94,8 @@ def build(snapshot, registry):
             data_updated_at=max((t.get('team_stats_updated_at') or snapshot.get('generated_at','') for t in teams.values()),default=None),
             source_note='Overall sorts by run differential per game; Batting by OPS; Pitching by ERA (lower is better). OPS is OBP + SLG from the source’s rounded rates. SD compares each team with the unweighted mean of eligible teams in that season; positive is better. Ties share a rank. No opponent, ballpark, recency, fielding or baserunning adjustment. Postseason games are excluded. Supporting columns do not change the default ranking.',
             teams=sorted(rows,key=lambda r:(r['ranks']['overall'] is None,r['ranks']['overall'] or 0,r['team'])))
+    played=[y for y,season in result['seasons'].items() if season['ranked_teams']>0]
+    if played: result['default_season']=max(played,key=int)
     return result
 
 def main():

@@ -7,6 +7,7 @@ on:
   push:
     branches: [main]
     paths:
+      - finalize_mlb_season.py
       - build_mlb_season_snapshots.py
       - backfill_mlb_team_metrics.py
       - build_mlb_team_rankings.py
@@ -59,6 +60,8 @@ jobs:
                   assert all(all(row.get("team_stats",{}).get(key) is not None for key in metric_keys) for row in teams.values()), f"Missing team metrics in completed season {year}"
           print(len(after["seasons"]), "seasons validated; historical schedule/results preserved and team metrics populated")
           PY
+      - name: Finalize completed MLB seasons and playoff results
+        run: python finalize_mlb_season.py
       - name: Build and validate MLB ranking pages data
         run: |
           python -m unittest discover -s tests -p test_mlb_team_rankings.py
@@ -71,7 +74,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/mlb/season-snapshots.json mlb/rankings/data/mlb-team-rankings.json mlb/season-leaders/data
+          git add data/mlb/season-playoff-results.json data/mlb/season-snapshots.json mlb/rankings/data/mlb-team-rankings.json mlb/season-leaders/data
           git diff --cached --quiet && exit 0
           git commit -m "data(mlb): update verified season snapshots"
           git pull --rebase -X theirs origin main

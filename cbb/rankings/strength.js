@@ -10,7 +10,7 @@
    count.textContent=rows.filter(r=>!r.hidden).length+' teams';
    for(const btn of table.querySelectorAll('[data-sort]')){const active=btn.dataset.sort===key;btn.parentElement.setAttribute('aria-sort',active?(direction===1?'ascending':'descending'):'none');btn.querySelector('.sort-arrow').textContent=active?(direction===1?' ↑':' ↓'):' ↕'}
   };
-  for(const button of table.querySelectorAll('[data-sort]'))button.addEventListener('click',()=>{if(key===button.dataset.sort)direction*=-1;else{key=button.dataset.sort;direction=['rating','offense','form','change'].includes(key)?-1:1}apply()});
+  for(const button of table.querySelectorAll('[data-sort]'))button.addEventListener('click',()=>{if(key===button.dataset.sort)direction*=-1;else{key=button.dataset.sort;direction=['rating','sd','offense','form','change'].includes(key)?-1:1}apply()});
   search.addEventListener('input',apply);conference.addEventListener('change',apply);apply();
  }
  const pop=document.createElement('div');pop.className='strength-help';pop.hidden=true;pop.id='strength-help';pop.setAttribute('role','tooltip');document.body.append(pop);let anchor=null;
