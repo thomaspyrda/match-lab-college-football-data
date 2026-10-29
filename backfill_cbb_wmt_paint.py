@@ -3,7 +3,7 @@
 Season IDs are discovered from official men's schedules, not guessed. NCAA school
 IDs, date, opponent and both final scores must match our men's game archive.
 """
-import argparse, gzip, hashlib, json, time, urllib.request
+import argparse, gzip, hashlib, json, re, time, unicodedata, urllib.request
 from collections import Counter
 from datetime import datetime
 from pathlib import Path
@@ -23,8 +23,8 @@ def extract(game, year, schools, archives, audit):
     sides=[]
     for c in competitors:
         slug=schools.get(str(c.get('schoolId')))
-        if not slug: audit['unknown_school']+=1; return []
-        totals=[x.get('statistic',{}) for x in c.get('teamStats',[]) if x.get('period')==0]
+        if not slug:audit['unknown_school']+=1
+        totals=[x.get('statistic') or {} for x in (c.get('teamStats') or []) if x.get('period')==0]
         if len(totals)!=1:return []
         try:
             score=int(c['score']); paint=totals[0]['sPointsInThePaint']
@@ -43,13 +43,20 @@ def extract(game, year, schools, archives, audit):
     except (KeyError,TypeError,ValueError):return []
     out=[]
     for i,(slug,score,paint) in enumerate(sides):
+        if not slug:continue
         opp,oppscore,opppaint=sides[1-i]
         season=archives.get(slug,{}).get('seasons',{}).get(str(year),{})
         matches={}
         for phase in season.get('phases',{}).values():
             for g in phase.get('games',[]):
                 gd=datetime.fromisoformat(g['date'].replace('Z','+00:00')).astimezone(ZoneInfo('America/New_York')).date().isoformat()
-                if g.get('status')=='final' and gd in days and g.get('points')==score and g.get('opponent_points')==oppscore and str(g.get('opponent_id'))==str(archives[opp].get('team',{}).get('espn_id')):
+                if opp:
+                    opponent_matches=str(g.get('opponent_id'))==str(archives[opp].get('team',{}).get('espn_id'))
+                else:
+                    def norm(s):return re.sub('[^a-z0-9]','',unicodedata.normalize('NFKD',s).encode('ascii','ignore').decode().lower())
+                    name=norm(competitors[1-i].get('nameTabular',''))
+                    opponent_matches=len(name)>=5 and norm(g.get('opponent','')).startswith(name)
+                if g.get('status')=='final' and gd in days and g.get('points')==score and g.get('opponent_points')==oppscore and opponent_matches:
                     matches[g['id']]=g
         if len(matches)!=1:audit['archive_mismatch']+=1;continue
         matched=next(iter(matches.values()));day=datetime.fromisoformat(matched['date'].replace('Z','+00:00')).astimezone(ZoneInfo('America/New_York')).date().isoformat()
