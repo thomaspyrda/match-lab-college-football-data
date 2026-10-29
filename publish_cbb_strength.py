@@ -6,7 +6,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent
 E=lambda s:html.escape(str(s),quote=True)
-VERSION='20261029-strength-v3'
+VERSION='20261029-strength-v4'
 CONFERENCES={'Atlantic Coast Conference':'ACC','Southeastern Conference':'SEC','Atlantic 10 Conference':'A-10','American Conference':'AAC','Atlantic Sun Conference':'ASUN','Coastal Athletic Association':'CAA','Conference USA':'CUSA','Metro Conference':'MAAC','Mid-American Conference':'MAC','Mid-Eastern Athletic Conference':'MEAC','Missouri Valley Conference':'MVC','Northeast Conference':'NEC','Ohio Valley Conference':'OVC','Southern Conference':'SoCon','Southwestern Athletic Conference':'SWAC','United Athletic Conference':'UAC','West Coast Conference':'WCC'}
 def conference_name(value):
  return CONFERENCES.get(value,(value or '—').replace(' Conference','').replace(' League',''))
