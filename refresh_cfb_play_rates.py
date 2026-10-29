@@ -89,9 +89,10 @@ def enrich(payload):
             boards[(year, end_week)] = {}
             continue
         params = dict(year=year, classification="fbs", excludeGarbageTime="true", endWeek=end_week)
-        data = board(request("/stats/season/advanced", **params), year)
+        source_rows = request("/stats/season/advanced", **params)
+        data = board(source_rows, year)
         if len(data) < 120:
-            raise ValueError(f"Incomplete FBS play-rate source: {len(data)} teams")
+            raise ValueError(f"Incomplete FBS play-rate source: {len(data)} teams; source sample: {json.dumps(source_rows[:1])}")
         rank_board(data)
         names = {canon(g[s]["name"]) for g in games
                  if int(g["season"]) == year and int(g["week"]) - 1 == end_week
