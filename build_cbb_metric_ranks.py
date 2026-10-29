@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 DATA=ROOT/"data/cbb/teams"
 OUT=ROOT/"data/cbb/metric-ranks.json"
-FIELDS={"avgPoints":"PPG","avgRebounds":"REB/G","avgAssists":"AST/G","avgTurnovers":"TOV/G","avgSteals":"STL/G","avgBlocks":"BLK/G","fieldGoalPct":"FG%","threePointFieldGoalPct":"3P%","freeThrowPct":"FT%","ppgAllowed":"PPG Allowed","offRating":"OFF Rating","defRating":"DEF Rating","pace":"Pace","efg":"eFG%","reboundShare":"Rebound Share%"}
+FIELDS={"avgPoints":"PPG","avgRebounds":"REB/G","avgAssists":"AST/G","avgTurnovers":"TOV/G","avgSteals":"STL/G","avgBlocks":"BLK/G","fieldGoalPct":"FG%","twoPointFieldGoalPct":"2P%","threePointFieldGoalPct":"3P%","freeThrowPct":"FT%","ppgAllowed":"PPG Allowed","offRating":"OFF Rating","defRating":"DEF Rating","pace":"Pace","efg":"eFG%","reboundShare":"Rebound Share%"}
 LOWER={"avgTurnovers","ppgAllowed","defRating"}
 def main():
     seasons={}
@@ -26,6 +26,8 @@ def main():
                 pos=m["fieldGoalsAttempted"]-m["offensiveRebounds"]+m["turnovers"]+.475*m["freeThrowsAttempted"]
             def ratio(a,b,mult=1):
                 return a/b*mult if a is not None and isinstance(b,(int,float)) and b>0 else None
+            if m.get("twoPointFieldGoalPct") is None and all(isinstance(m.get(k),(int,float)) for k in ("fieldGoalsMade","threePointFieldGoalsMade","fieldGoalsAttempted","threePointFieldGoalsAttempted")):
+                m["twoPointFieldGoalPct"]=ratio(m["fieldGoalsMade"]-m["threePointFieldGoalsMade"],m["fieldGoalsAttempted"]-m["threePointFieldGoalsAttempted"],100)
             m["ppgAllowed"]=ratio(opp,gp)
             m["offRating"]=ratio(m.get("points"),pos,100)
             m["defRating"]=ratio(opp,pos,100)
