@@ -14,3 +14,6 @@
 .strength-top-scrollbar:hover .strength-scroll-thumb{background:#7f9989}
 .strength-top-scrollbar.dragging{cursor:grabbing}
 .strength-top-scrollbar:focus-visible{outline:2px solid #67df95;outline-offset:-2px}
+
+/* Clipping must not create a separate body scroll container around sticky headers. */
+html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow-y:visible}
