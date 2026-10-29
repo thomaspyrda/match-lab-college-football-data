@@ -3,7 +3,7 @@ name: Deploy Match Lab
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Recover missing CBB historical ATS and totals", "Backfill CBB linked custom paint archives", "Backfill CBB complete period paint", "Backfill CBB classic HTML paint", "Backfill CBB official WMT paint", "Backfill CBB legacy paint archives", "Backfill CBB official paint archives", "Backfill CBB historical lines and paint", "Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
+    workflows: ["Publish CBB Team Page Layouts", "Recover missing CBB historical ATS and totals", "Backfill CBB linked custom paint archives", "Backfill CBB complete period paint", "Backfill CBB classic HTML paint", "Backfill CBB official WMT paint", "Backfill CBB legacy paint archives", "Backfill CBB official paint archives", "Backfill CBB historical lines and paint", "Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
     branches: [cfb-dashboard-foundation, main]
     types: [completed]
   push:
