@@ -150,7 +150,7 @@ def merge(args):
    if entry['values'].get('Points in the Paint') is not None and n<prior and not prior_sample.get('method','').startswith('Official'):continue
    vals={'Points in the Paint':sum(r['paint_for'] for r in samples)/n,'Points in the Paint Allowed':sum(r['paint_against'] for r in samples)/n}
    sources=sorted({r['source'] for r in samples});entry['values'].update(vals)
-   for key in vals:entry.setdefault('metric_samples',{})[key]={'games':n,'expected_games':len(games),'source':sources[0],'sources':sources,'method':'Official whole-game box totals; exact school, date and final-score match'}
+   for key in vals:entry.setdefault('metric_samples',{})[key]={'games':n,'expected_games':len(games),'source':sources[0],'observations_source':'/data/cbb/official-paint-observations.json','method':'Official whole-game box totals or complete verified period sums; exact school, date and final-score match'}
    byyear[year]+=1
  for year,teams in metrics['seasons'].items():
   for key,desc in [('Points in the Paint',True),('Points in the Paint Allowed',False)]:
