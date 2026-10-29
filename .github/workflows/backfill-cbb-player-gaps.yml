@@ -1,0 +1,42 @@
+name: Recover CBB historical player statistics
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [backfill_cbb_player_gaps.py, cbb_verified_source.py, .github/workflows/backfill-cbb-player-gaps.yml]
+permissions:
+  contents: write
+concurrency:
+  group: cbb-team-archives
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover only blank player seasons with scoring validation
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: |
+          python backfill_cbb_player_gaps.py
+          python validate_cbb_history.py
+      - name: Publish verified player statistics
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/teams data/cbb/player-gap-backfill-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): recover verified historical player statistics'
+          git pull --rebase origin main
+          git push origin main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cbb-player-gap-report
+          path: data/cbb/player-gap-backfill-report.json

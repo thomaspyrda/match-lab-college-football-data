@@ -1,55 +1,38 @@
-"""Collect verified historical CBB recruiting rankings without inventing missing data.
-
-Optional source: cbbstat.com team recruits feed (247Sports-derived), documented
-in the toRvik R package. Failed requests do not overwrite existing verified data.
-"""
-import json, os, re, urllib.request
-from pathlib import Path
-ROOT=Path(__file__).resolve().parent
-OUTPUT=ROOT/"data/cbb/recruiting-classes.json"
-SOURCE="https://api.cbbstat.com/teams/recruits"
-def clean(v):return re.sub(r"[^a-z0-9]+","-",str(v).lower()).strip("-")
+"""Verified incoming recruiting classes; season 2015-16 uses the 2015 class."""
+import json
+from collections import Counter
+from datetime import datetime, timezone
+from cbb_verified_source import ROOT, BASE, crosswalk, fetch, finite, save
+OUTPUT=ROOT/'data/cbb/recruiting-classes.json'
 def main():
-    registry=json.loads((ROOT/"data/sports/team-registry.json").read_text())
-    teams=[t for t in registry["teams"] if t["sport"]=="cbb"]
-    choices={}
-    for t in teams:
-        slug=t["slug"]
-        name=t.get("name") or t.get("display_name") or slug.replace("-"," ")
-        choices.setdefault(clean(name),set()).add(slug)
-        parts=slug.split("-")
-        for length in range(1,min(5,len(parts))):
-            choices.setdefault("-".join(parts[:length]),set()).add(slug)
-    existing=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {"source":SOURCE,"seasons":{}}
-    total=0
-    token=os.getenv("CBBD_API_KEY","").strip()
-    for year in range(2016,2028):
-        try:
-            endpoint=("https://api.collegebasketballdata.com/recruiting/teams?year="+str(year)) if token else (SOURCE+"?year="+str(year))
-            headers={"User-Agent":"BetWiseResearch/1.0"}
-            if token:headers["Authorization"]="Bearer "+token
-            req=urllib.request.Request(endpoint,headers=headers)
-            with urllib.request.urlopen(req,timeout=15) as response:
-                rows=json.load(response)
-            if isinstance(rows,dict):rows=rows.get("data") or rows.get("results") or []
-            if not isinstance(rows,list):raise ValueError("Expected ranking rows")
-        except Exception as exc:
-            print("Recruiting season",year,"source unavailable:",str(exc)[:140]);continue
-        dest=existing["seasons"].setdefault(str(year),{})
-        for item in rows:
-            if not isinstance(item,dict):continue
-            name=item.get("team") or item.get("school") or item.get("teamName")
-            matches=choices.get(clean(name),set())
-            rank=item.get("comp_rank") or item.get("rank") or item.get("nationalRank") or item.get("national_rank")
-            if len(matches)!=1 or not rank:continue
-            try:rank=int(rank)
-            except(ValueError,TypeError):continue
-            if not 1<=rank<=400:continue
-            slug=next(iter(matches))
-            if slug in dest:continue
-            dest[slug]={"national_rank":rank,"points":item.get("comp_rating") or item.get("rating") or item.get("points"),"source":endpoint,"ranking_system":("CBBD composite" if token else "247Sports composite" if item.get("comp_rank") else "247Sports")}
-            total+=1
-    OUTPUT.parent.mkdir(parents=True,exist_ok=True)
-    OUTPUT.write_text(json.dumps(existing,ensure_ascii=False,separators=(",",":"))+"\n")
-    print("Added verified historical recruiting class ranks:",total)
-if __name__=="__main__":main()
+    identity=crosswalk()
+    existing=json.loads(OUTPUT.read_text()) if OUTPUT.exists() else {'seasons':{}}
+    report={'years':{},'unmapped':[]}
+    for class_year in range(2015,2027):
+        rows=fetch('/recruiting/teams',year=class_year)
+        if not isinstance(rows,list):raise ValueError('Unexpected recruiting response')
+        target=existing['seasons'].setdefault(str(class_year+1),{})
+        count=Counter(source_rows=len(rows))
+        for row in rows:
+            if row.get('year')!=class_year:raise ValueError('Wrong recruiting class year')
+            slug=identity.get(str(row.get('teamId')))
+            if not slug:
+                report['unmapped'].append({'year':class_year,'team':row.get('team'),'team_id':row.get('teamId')});continue
+            rank,points=row.get('ranking'),row.get('rating')
+            if not finite(rank) or int(rank)!=rank or not 1<=rank<=500 or not finite(points) or points<0:
+                count['invalid']+=1;continue
+            # Class-year metadata distinguishes incoming recruits from season ending year.
+            entry={'national_rank':int(rank),'points':points,'class_year':class_year,
+                'source':BASE+'/recruiting/teams?year='+str(class_year),
+                'ranking_system':'CollegeBasketballData composite',
+                'source_team_id':row['teamId'],'source_team_name':row['team']}
+            if slug not in target:count['added']+=1
+            elif target[slug]!=entry:count['corrected']+=1
+            target[slug]=entry;count['matched']+=1
+        report['years'][str(class_year)]=dict(count);print(class_year,dict(count),flush=True)
+    existing.update(source=BASE+'/recruiting/teams',season_mapping='season ending year = incoming class year + 1',updated_at=datetime.now(timezone.utc).isoformat())
+    report['total_team_classes']=sum(len(v) for v in existing['seasons'].values())
+    if report['total_team_classes']==0:raise ValueError('No recruiting rankings returned; refusing empty success')
+    save(OUTPUT,existing);save(ROOT/'data/cbb/recruiting-backfill-report.json',report)
+    print('Verified recruiting classes:',report['total_team_classes'])
+if __name__=='__main__':main()

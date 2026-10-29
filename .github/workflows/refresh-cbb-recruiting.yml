@@ -1,6 +1,9 @@
 name: Refresh CBB Recruiting Rankings
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [collect_cbb_recruiting_ranks.py, .github/workflows/refresh-cbb-recruiting.yml]
   schedule:
     - cron: '47 5 * * 1'
       timezone: America/New_York
@@ -39,7 +42,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/cbb/recruiting-classes.json
+          git add data/cbb/recruiting-classes.json data/cbb/recruiting-backfill-report.json
           git diff --cached --quiet && exit 0
           git commit -m 'data(cbb): refresh sourced recruiting class rankings'
           for attempt in 1 2 3 4 5; do
