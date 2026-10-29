@@ -145,8 +145,9 @@ def merge(args):
       entry.get('values',{}).pop(key,None);entry.get('ranks',{}).pop(key,None);entry.get('metric_samples',{}).pop(key,None)
     if entry['values'].get('Points in the Paint') is None:gaps.append({'team':slug,'season':year,'official_games':n,'expected_games':len(games)})
     continue
-   prior=entry.get('metric_samples',{}).get('Points in the Paint',{}).get('games',0)
-   if entry['values'].get('Points in the Paint') is not None and n<prior:continue
+   prior_sample=entry.get('metric_samples',{}).get('Points in the Paint',{})
+   prior=prior_sample.get('games',0)
+   if entry['values'].get('Points in the Paint') is not None and n<prior and not prior_sample.get('method','').startswith('Official'):continue
    vals={'Points in the Paint':sum(r['paint_for'] for r in samples)/n,'Points in the Paint Allowed':sum(r['paint_against'] for r in samples)/n}
    sources=sorted({r['source'] for r in samples});entry['values'].update(vals)
    for key in vals:entry.setdefault('metric_samples',{})[key]={'games':n,'expected_games':len(games),'source':sources[0],'sources':sources,'method':'Official whole-game box totals; exact school, date and final-score match'}
