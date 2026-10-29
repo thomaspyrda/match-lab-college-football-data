@@ -30,7 +30,9 @@ jobs:
       - name: Refresh only seven-day CFB schedule
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python refresh_cfb_dashboard_schedule_only.py
+        run: |
+          python refresh_cfb_dashboard_schedule_only.py
+          python refresh_cfb_play_rates.py
       - name: Commit dashboard data only
         run: |
           git config user.name "github-actions[bot]"

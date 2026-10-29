@@ -47,10 +47,13 @@ jobs:
           python -m cfb_dashboard.pipeline.build_dashboard
           python cfb_dashboard/pipeline/validate_launch.py
       - name: Publish JSON only; never overwrite current UI
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           git clone --depth 1 --branch main "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" /tmp/matchlab-main
           cp cfb_dashboard/data/dashboard.json /tmp/matchlab-main/cfb-dashboard-preview/data/dashboard.json
           cd /tmp/matchlab-main
+          python refresh_cfb_play_rates.py
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add cfb-dashboard-preview/data/dashboard.json
