@@ -1,0 +1,65 @@
+name: Backfill CBB official WMT paint
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - backfill_cbb_wmt_paint.py
+      - data/cbb/wmt-paint-sources.json
+      - .github/workflows/backfill-cbb-wmt-paint.yml
+permissions:
+  contents: write
+concurrency:
+  group: cbb-wmt-paint
+  cancel-in-progress: false
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        year: [2016,2017,2018,2019,2020,2021,2022]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -u backfill_cbb_wmt_paint.py --year ${{ matrix.year }} --output /tmp/official-paint-shard-${{ matrix.year }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wmt-paint-${{ matrix.year }}
+          path: /tmp/official-paint-shard-${{ matrix.year }}.json
+  publish:
+    needs: extract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: wmt-paint-*
+          path: /tmp/wmt-paint-shards
+      - name: Merge verified game records without replacing archive audit
+        run: |
+          cp data/cbb/official-paint-backfill-report.json /tmp/prior-paint-report.json
+          python backfill_cbb_official_paint.py --merge --shards 7 --input-dir /tmp/wmt-paint-shards
+          mv data/cbb/official-paint-backfill-report.json data/cbb/wmt-paint-backfill-report.json
+          cp /tmp/prior-paint-report.json data/cbb/official-paint-backfill-report.json
+          python validate_cbb_history.py
+      - name: Publish verified records
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/official-paint-observations.json data/cbb/wmt-paint-backfill-report.json data/cbb/opponent-metrics.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): backfill verified official WMT paint through 2015-16'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
