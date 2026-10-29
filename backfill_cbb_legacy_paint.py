@@ -20,7 +20,12 @@ def classic(s,school,team):
   date=re.search(r'\b\d{1,2}[/-]\d{1,2}[/-](?:\d{4}|\d{2})\b',text);vis=re.search(r'^\s*VISITORS:\s*(.*?)\s+\(?\d+\s*-\s*\d+',text,re.M);home=re.search(r'^\s*HOME TEAM:\s*(.*?)\s+\(?\d+\s*-\s*\d+',text,re.M)
   paint=re.search(r'Points in the paint-([^,\s]+)\s+(\d+)\s*,\s*([^.,\s]+)\s+(\d+)\s*\.',text,re.I)
   if not all([date,vis,home]) or not paint and not summarypaint:continue
-  scores=re.findall(r'^\s*(.*?)\.{2,}\s+[\d\s]+-\s*(\d+)\s*$',text.split('Score by Periods',1)[-1],re.M)
+  section=re.split('Score by Periods',text,flags=re.I)[-1]
+  scores=re.findall(r'^\s*(.*?)\.{2,}\s+[\d\s]+-\s*(\d+)\s*$',section,re.M)
+  if not scores:
+   for name,numbers in re.findall(r'^\s*([A-Za-z][^\n]*?)\s{2,}([0-9][0-9 \t]+)\s*$',section,re.M):
+    nums=[int(v) for v in numbers.split()]
+    if len(nums)>=3 and sum(nums[:-1])==nums[-1]:scores.append((name,str(nums[-1])))
   score={norm(n):int(v) for n,v in scores};names=[vis[1].strip(),home[1].strip()]
   if any(norm(n) not in score for n in names):continue
   codes=[paint[1],paint[3]] if paint else [];vals=[int(paint[2]),int(paint[4])] if paint else []

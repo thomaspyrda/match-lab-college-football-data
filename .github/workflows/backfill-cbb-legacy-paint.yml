@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install official PDF reader
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - name: Extract verified official whole-game paint records
         run: python -u backfill_cbb_official_paint_legacy_batch.py --shard ${{ matrix.shard }} --shards 12 --workers 5 --output /tmp/official-paint-shard-${{ matrix.shard }}.json
       - uses: actions/upload-artifact@v4
