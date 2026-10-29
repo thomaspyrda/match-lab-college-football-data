@@ -6,7 +6,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent
 E=lambda s:html.escape(str(s),quote=True)
-VERSION='20261029-strength-v1'
+VERSION='20261029-strength-v2'
 def publish():
  data=json.loads((ROOT/'data/cbb/strength-rankings.json').read_text());page=ROOT/'cbb/rankings/index.html';template=page.read_text()
  template=re.sub(r'<!--CBB_STRENGTH_START-->.*?<!--CBB_STRENGTH_END-->','@@BOARD@@',template,flags=re.S)
