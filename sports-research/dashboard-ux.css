@@ -1,0 +1,38 @@
+.nba-availability-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.nba-availability-card{min-width:0;padding:20px;border:1px solid #303b33;border-radius:14px;background:#151b17}
+.nba-availability-team{display:flex;align-items:center;gap:12px;margin-bottom:16px;color:var(--team-color,#fff)}
+.nba-availability-team h4{margin:0;font-size:19px;color:inherit}
+.nba-availability-table-wrap{overflow-x:auto}
+.nba-availability-table{width:100%;border-collapse:collapse;text-align:left;font-size:13px;min-width:350px}
+.nba-availability-table th,.nba-availability-table td{padding:12px 7px;border-bottom:1px solid #2d3730;vertical-align:top}
+.nba-availability-table thead th{color:#a6b0a8;font-size:10px;text-transform:uppercase;letter-spacing:.07em}
+.nba-availability-table tbody th{font-weight:650;width:38%}
+.nba-availability-table small{display:block;color:#a6b0a8;font-size:11px;font-weight:400;margin-top:3px}
+.nba-availability-status{display:inline-block;padding:3px 7px;border-radius:6px;background:#303931;color:#ddd;font-size:11px;font-weight:750;white-space:nowrap}
+.nba-availability-status.out{background:#432329;color:#ffb9bc}
+.nba-availability-status.uncertain{background:#40361e;color:#ffe09c}
+.nba-availability-status.available{background:#173c24;color:#a0edb5}
+.nba-availability-empty,.nba-availability-meta{color:#b0bab2;font-size:13px;line-height:1.6}
+.nba-availability-meta{margin:15px 0 5px;font-size:11px}
+.nba-availability-source{font-size:12px;color:#b8e7c3}
+.nba-availability-note{margin-top:14px;font-size:12px}
+@media(max-width:760px){.nba-availability-grid{grid-template-columns:1fr}.nba-availability-card{padding:16px}}
+
+
+/* All sport travel cards use the compact NFL presentation. */
+.game-detail .context-card--travel .context-sides{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:7px;align-items:center}
+.game-detail .context-card--travel .context-sides>span{min-width:0;padding:8px 10px;background:#111611;border-radius:8px;border-left:3px solid var(--team-color)}
+.game-detail .context-card--travel .context-sides>span:last-child{text-align:right;border-left:0;border-right:3px solid var(--team-color)}
+.game-detail .context-card--travel .context-sides small{display:block;font-size:9px;line-height:1.3;margin-bottom:4px}
+.game-detail .context-card--travel .context-sides b{display:block;white-space:nowrap;font-size:clamp(10px,.9vw,12px);letter-spacing:-.025em;line-height:1.35}
+.game-detail .context-card--travel .context-sides>i{display:block;text-align:center;font-size:8px}
+@media(max-width:760px){
+ .game-detail .context-card--travel .context-sides{grid-template-columns:minmax(0,1fr);gap:6px}
+ .game-detail .context-card--travel .context-sides>i{display:none}
+ .game-detail .context-card--travel .context-sides>span,.game-detail .context-card--travel .context-sides>span:last-child{text-align:left;border-right:0;border-left:3px solid var(--team-color)}
+ .game-detail .context-card--travel .context-sides b{font-size:clamp(10px,2.8vw,12px)}
+ .game-detail .metric-card[data-unit="OFFENSE"] .metric-title{background:#0e2514!important;border-top:3px solid #00ff41!important}
+ .game-detail .metric-card[data-unit="DEFENSE"] .metric-title{background:#292410!important;border-top:3px solid #ffcf40!important}
+ .game-detail .metric-card[data-unit="OFFENSE"] .metric-kicker{display:block!important;color:#00ff41!important;font-size:9px!important;margin-bottom:4px}
+ .game-detail .metric-card[data-unit="DEFENSE"] .metric-kicker{display:block!important;color:#ffcf40!important;font-size:9px!important;margin-bottom:4px}
+}
