@@ -28,6 +28,17 @@ for y,teams in seasons.items():
   for i,(s,v) in enumerate(items):
    if v!=last:rank=i+1
    teams[s]['ranks'][key]={'rank':rank,'size':len(items)};last=v
+# Preserve coverage-checked specialty stats from the authenticated historical import.
+existing=R/'data/cbb/opponent-metrics.json'
+if existing.exists():
+ old=json.loads(existing.read_text())
+ for y,entries in old.get('seasons',{}).items():
+  for slug,entry in entries.items():
+   for key,sample in entry.get('metric_samples',{}).items():
+    dest=seasons[y].setdefault(slug,{'values':{},'ranks':{}})
+    dest.setdefault('metric_samples',{})[key]=sample
+    dest['values'][key]=entry['values'][key]
+    if key in entry.get('ranks',{}):dest['ranks'][key]=entry['ranks'][key]
 out={'source':'https://github.com/KernelMcGregor/2026MMMLM/tree/main/Data','seasons':seasons}
 (R/'data/cbb/opponent-metrics.json').write_text(json.dumps(out,separators=(',',':'))+'\n')
 print('Opponent metrics populated',len(acc),'team seasons')

@@ -84,7 +84,25 @@ def main():
                     out.update(total=line,ou='O' if margin>0 else 'U' if margin<0 else 'P')
                 out.update(bookmaker=row['bookmaker'],observed_at=row['timestamp'],source='https://github.com/JDSB123/ncaam-historical-data',line_type='pregame snapshot')
                 audit[kind+'_team_games']+=1
-    for slug,data in db.items():save(ROOT/f'data/cbb/markets/{slug}.json',data)
+    for slug,data in db.items():
+        path=ROOT/f'data/cbb/markets/{slug}.json'
+        if path.exists():
+            previous=load(path)
+            if previous.get('cbbd_seasons'):
+                data['cbbd_seasons']=previous['cbbd_seasons']
+                for y,record in previous['cbbd_seasons'].items():
+                    current=data['seasons'].get(y)
+                    if not current or sum(record['ats'])>=sum(current['ats']) and sum(record['ou'])>=sum(current['ou']):data['seasons'][y]=record
+                for y,entries in previous.get('games',{}).items():
+                    for gid,line in entries.items():
+                        if line.get('ats_source') or line.get('ou_source'):
+                            out=data['games'].setdefault(y,{}).setdefault(gid,{})
+                            # Retain verified CBBD per-market values when refreshing the snapshot source.
+                            for field,prefix,provider in [('spread','ats','ats_provider'),('total','ou','ou_provider')]:
+                                if line.get(prefix+'_source'):
+                                    for key in [field,prefix,provider,prefix+'_source']:out[key]=line[key]
+                                    out.update(source=line['source'],line_type=line['line_type'])
+        save(path,data)
     report={'season_summaries':summary_counts,'unmapped_summary_names':dict(unmatched),'game_lines':dict(audit),'sources':['https://www.covers.com/sport/basketball/ncaab/statistics/team-betting/2015-2016','https://github.com/JDSB123/ncaam-historical-data'],'method':'Season records retain Covers reported totals. They are not mixed with schedule-level pregame snapshot records. No closing-line claim.'}
     save(ROOT/'data/cbb/market-backfill-report.json',report);print(json.dumps(report,indent=2))
 if __name__=='__main__':main()
