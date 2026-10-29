@@ -65,6 +65,7 @@ jobs:
       - name: Build and validate MLB ranking pages data
         run: |
           python -m unittest discover -s tests -p test_mlb_team_rankings.py
+          python -m unittest discover -s tests -p test_mlb_final_season.py
           python build_mlb_team_rankings.py
       - name: Refresh MLB regular-season player leaders
         run: |
@@ -77,5 +78,10 @@ jobs:
           git add data/mlb/season-playoff-results.json data/mlb/season-snapshots.json mlb/rankings/data/mlb-team-rankings.json mlb/season-leaders/data
           git diff --cached --quiet && exit 0
           git commit -m "data(mlb): update verified season snapshots"
-          git pull --rebase -X theirs origin main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
