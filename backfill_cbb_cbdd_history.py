@@ -98,7 +98,10 @@ def main():
    n=len(samples);expected=len(regular[slug]);coverage=n/expected if expected else 0
    if coverage<.95 or n<10:audit['paint_incomplete_team_seasons']+=1;continue
    values={'Points in the Paint':sum(x[0] for x in samples.values())/n,'Points in the Paint Allowed':sum(x[1] for x in samples.values())/n}
-   entry=opponents['seasons'].setdefault(ys,{}).setdefault(slug,{'values':{},'ranks':{}});entry['values'].update(values);entry.setdefault('metric_samples',{}).update({k:{'games':n,'expected_games':expected,'source':BASE+'/games/teams'} for k in values});display_paint+=1
+   entry=opponents['seasons'].setdefault(ys,{}).setdefault(slug,{'values':{},'ranks':{}});
+   previous=entry.get('metric_samples',{}).get('Points in the Paint',{})
+   if previous.get('method','').startswith('Official') and previous.get('games',0)>=n:continue
+   entry['values'].update(values);entry.setdefault('metric_samples',{}).update({k:{'games':n,'expected_games':expected,'source':BASE+'/games/teams'} for k in values});display_paint+=1
   for key,descending in [('Points in the Paint',True),('Points in the Paint Allowed',False)]:
    items=sorted([(s,e['values'][key]) for s,e in opponents['seasons'].get(ys,{}).items() if e.get('metric_samples',{}).get(key) and key in e['values']],key=lambda x:x[1],reverse=descending);last=None;rank=0
    for i,(s,v) in enumerate(items):

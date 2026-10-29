@@ -1,0 +1,1829 @@
+{
+  "teams": {
+    "gonzaga-bulldogs": {
+      "base_url": "https://gozags.com",
+      "school_label": "Gonzaga",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "grambling-tigers": {
+      "base_url": "https://gsutigers.com",
+      "school_label": "Grambling",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "california-baptist-lancers": {
+      "base_url": "https://cbulancers.com",
+      "school_label": "California Baptist",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "james-madison-dukes": {
+      "base_url": "https://jmusports.com",
+      "school_label": "James Madison",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tennessee-volunteers": {
+      "base_url": "https://utsports.com",
+      "school_label": "Tennessee",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uc-riverside-highlanders": {
+      "base_url": "https://gohighlanders.com",
+      "school_label": "UC Riverside",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "saint-marys-gaels": {
+      "base_url": "https://smcgaels.com",
+      "school_label": "Saint Mary's (CA)",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "quinnipiac-bobcats": {
+      "base_url": "https://gobobcats.com",
+      "school_label": "Quinnipiac",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "michigan-wolverines": {
+      "base_url": "https://mgoblue.com",
+      "school_label": "Michigan",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uc-san-diego-tritons": {
+      "base_url": "https://ucsdtritons.com",
+      "school_label": "UC San Diego",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "stony-brook-seawolves": {
+      "base_url": "https://stonybrookathletics.com",
+      "school_label": "Stony Brook",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "youngstown-state-penguins": {
+      "base_url": "https://ysusports.com",
+      "school_label": "Youngstown St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "rice-owls": {
+      "base_url": "https://riceowls.com",
+      "school_label": "Rice",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "memphis-tigers": {
+      "base_url": "https://gotigersgo.com",
+      "school_label": "Memphis",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "little-rock-trojans": {
+      "base_url": "https://lrtrojans.com",
+      "school_label": "Arkansas-Little Rock",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "duke-blue-devils": {
+      "base_url": "https://goduke.com",
+      "school_label": "Duke",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "harvard-crimson": {
+      "base_url": "https://gocrimson.com",
+      "school_label": "Harvard",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northwestern-wildcats": {
+      "base_url": "https://nusports.com",
+      "school_label": "Northwestern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "gardner-webb-runnin-bulldogs": {
+      "base_url": "https://gwusports.com",
+      "school_label": "Gardner-Webb",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northern-kentucky-norse": {
+      "base_url": "https://nkunorse.com",
+      "school_label": "Northern Kentucky",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "colgate-raiders": {
+      "base_url": "https://colgateathletics.com",
+      "school_label": "Colgate",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "liberty-flames": {
+      "base_url": "https://libertyflames.com",
+      "school_label": "Liberty",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "green-bay-phoenix": {
+      "base_url": "https://greenbayphoenix.com",
+      "school_label": "Green Bay",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "louisiana-ragin-cajuns": {
+      "base_url": "https://ragincajuns.com",
+      "school_label": "Louisiana",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northwestern-state-demons": {
+      "base_url": "https://nsudemons.com",
+      "school_label": "Northwestern State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-carolina-upstate-spartans": {
+      "base_url": "https://upstatespartans.com",
+      "school_label": "USC Upstate",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bowling-green-falcons": {
+      "base_url": "https://bgsufalcons.com",
+      "school_label": "Bowling Green",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-gulf-coast-eagles": {
+      "base_url": "https://fgcuathletics.com",
+      "school_label": "Florida Gulf Coast",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "pittsburgh-panthers": {
+      "base_url": "https://pittsburghpanthers.com",
+      "school_label": "Pittsburgh",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "georgia-tech-yellow-jackets": {
+      "base_url": "https://ramblinwreck.com",
+      "school_label": "Georgia Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-state-bobcats": {
+      "base_url": "https://txst.com",
+      "school_label": "Texas State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uconn-huskies": {
+      "base_url": "https://uconnhuskies.com",
+      "school_label": "UConn",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-dakota-state-jackrabbits": {
+      "base_url": "https://gojacks.com",
+      "school_label": "South Dakota State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kansas-state-wildcats": {
+      "base_url": "https://www.kstatesports.com",
+      "school_label": "Kansas State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "columbia-lions": {
+      "base_url": "https://gocolumbialions.com",
+      "school_label": "Columbia",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-tech-red-raiders": {
+      "base_url": "https://texastech.com",
+      "school_label": "Texas Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "milwaukee-panthers": {
+      "base_url": "https://mkepanthers.com",
+      "school_label": "Milwaukee",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "fordham-rams": {
+      "base_url": "https://fordhamsports.com",
+      "school_label": "Fordham",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "eastern-illinois-panthers": {
+      "base_url": "https://eiupanthers.com",
+      "school_label": "Eastern Illinois",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "jackson-state-tigers": {
+      "base_url": "https://gojsutigers.com",
+      "school_label": "Jackson St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oakland-golden-grizzlies": {
+      "base_url": "https://goldengrizzlies.com",
+      "school_label": "Oakland",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "towson-tigers": {
+      "base_url": "https://towsontigers.com",
+      "school_label": "Towson",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ohio-state-buckeyes": {
+      "base_url": "https://ohiostatebuckeyes.com",
+      "school_label": "Ohio State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ball-state-cardinals": {
+      "base_url": "https://ballstatesports.com",
+      "school_label": "Ball State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "unc-greensboro-spartans": {
+      "base_url": "https://uncgspartans.com",
+      "school_label": "UNC Greensboro",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-atlantic-owls": {
+      "base_url": "https://fausports.com",
+      "school_label": "Florida Atlantic",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "fresno-state-bulldogs": {
+      "base_url": "https://gobulldogs.com",
+      "school_label": "Fresno State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "fairfield-stags": {
+      "base_url": "https://fairfieldstags.com",
+      "school_label": "Fairfield",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "holy-cross-crusaders": {
+      "base_url": "https://goholycross.com",
+      "school_label": "Holy Cross",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wichita-state-shockers": {
+      "base_url": "https://goshockers.com",
+      "school_label": "Wichita State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "st-thomas-tommies": {
+      "base_url": "https://tommiesports.com",
+      "school_label": "St. Thomas (MN)",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "arizona-wildcats": {
+      "base_url": "https://arizonawildcats.com",
+      "school_label": "Arizona",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "campbell-fighting-camels": {
+      "base_url": "https://gocamels.com",
+      "school_label": "Campbell",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "arkansas-razorbacks": {
+      "base_url": "https://arkansasrazorbacks.com",
+      "school_label": "Arkansas",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "manhattan-jaspers": {
+      "base_url": "https://gojaspers.com",
+      "school_label": "Manhattan",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wofford-terriers": {
+      "base_url": "https://woffordterriers.com",
+      "school_label": "Wofford",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "iu-indianapolis-jaguars": {
+      "base_url": "https://iupuijags.com",
+      "school_label": "IUPUI",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "binghamton-bearcats": {
+      "base_url": "https://binghamtonbearcats.com",
+      "school_label": "Binghamton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utah-valley-wolverines": {
+      "base_url": "https://gouvu.com",
+      "school_label": "Utah Valley",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "american-university-eagles": {
+      "base_url": "https://aueagles.com",
+      "school_label": "American",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-longhorns": {
+      "base_url": "https://texassports.com",
+      "school_label": "Texas",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "eastern-michigan-eagles": {
+      "base_url": "https://emueagles.com",
+      "school_label": "Eastern Michigan",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "maryland-eastern-shore-hawks": {
+      "base_url": "https://umeshawksports.com",
+      "school_label": "Maryland-Eastern Shore",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "alabama-state-hornets": {
+      "base_url": "https://bamastatesports.com",
+      "school_label": "Alabama State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "stanford-cardinal": {
+      "base_url": "https://gostanford.com",
+      "school_label": "Stanford",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "boston-college-eagles": {
+      "base_url": "https://bceagles.com",
+      "school_label": "Boston College",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southern-miss-golden-eagles": {
+      "base_url": "https://southernmiss.com",
+      "school_label": "Southern Miss",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tennessee-tech-golden-eagles": {
+      "base_url": "https://www.ttusports.com",
+      "school_label": "Tennessee Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-am-rattlers": {
+      "base_url": "https://famuathletics.com",
+      "school_label": "Florida A&M",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-am-corpus-christi-islanders": {
+      "base_url": "https://goislanders.com",
+      "school_label": "A&M-Corpus Christi",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "longwood-lancers": {
+      "base_url": "https://longwoodlancers.com",
+      "school_label": "Longwood",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "la-salle-explorers": {
+      "base_url": "https://goexplorers.com",
+      "school_label": "LaSalle",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "umbc-retrievers": {
+      "base_url": "https://umbcretrievers.com",
+      "school_label": "UMBC",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "santa-clara-broncos": {
+      "base_url": "https://santaclarabroncos.com",
+      "school_label": "Santa Clara",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "east-tennessee-state-buccaneers": {
+      "base_url": "https://etsubucs.com",
+      "school_label": "East Tennessee State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "army-black-knights": {
+      "base_url": "https://goarmywestpoint.com",
+      "school_label": "Army",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "robert-morris-colonials": {
+      "base_url": "https://rmucolonials.com",
+      "school_label": "Robert Morris",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "purdue-boilermakers": {
+      "base_url": "https://purduesports.com",
+      "school_label": "Purdue",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "butler-bulldogs": {
+      "base_url": "https://butlersports.com",
+      "school_label": "Butler",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "siu-edwardsville-cougars": {
+      "base_url": "https://siuecougars.com",
+      "school_label": "SIUE",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "arkansas-pine-bluff-golden-lions": {
+      "base_url": "https://uapblionsroar.com",
+      "school_label": "Arkansas-Pine Bluff",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "troy-trojans": {
+      "base_url": "https://troytrojans.com",
+      "school_label": "Troy",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "long-beach-state-beach": {
+      "base_url": "https://longbeachstate.com",
+      "school_label": "Long Beach State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cincinnati-bearcats": {
+      "base_url": "https://gobearcats.com",
+      "school_label": "Cincinnati",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "george-washington-revolutionaries": {
+      "base_url": "https://gwsports.com",
+      "school_label": "George Washington",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "georgia-southern-eagles": {
+      "base_url": "https://gseagles.com",
+      "school_label": "Georgia Southern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "austin-peay-governors": {
+      "base_url": "https://letsgopeay.com",
+      "school_label": "Austin Peay",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "purdue-fort-wayne-mastodons": {
+      "base_url": "https://gomastodons.com",
+      "school_label": "Purdue-Fort Wayne",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "marist-red-foxes": {
+      "base_url": "https://goredfoxes.com",
+      "school_label": "Marist",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "charlotte-49ers": {
+      "base_url": "https://charlotte49ers.com",
+      "school_label": "Charlotte",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-carolina-state-bulldogs": {
+      "base_url": "https://www.scsuathletics.com",
+      "school_label": "South Carolina St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utsa-roadrunners": {
+      "base_url": "https://goutsa.com",
+      "school_label": "UT-San Antonio",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kansas-city-roos": {
+      "base_url": "https://kcroos.com",
+      "school_label": "Kansas City",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northern-colorado-bears": {
+      "base_url": "https://uncbears.com",
+      "school_label": "Northern Colorado",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "canisius-golden-griffins": {
+      "base_url": "https://gogriffs.com",
+      "school_label": "Canisius",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southern-utah-thunderbirds": {
+      "base_url": "https://suutbirds.com",
+      "school_label": "Southern Utah",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southern-jaguars": {
+      "base_url": "https://gojagsports.com",
+      "school_label": "Southern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "virginia-tech-hokies": {
+      "base_url": "https://hokiesports.com",
+      "school_label": "Virginia Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "eastern-washington-eagles": {
+      "base_url": "https://goeags.com",
+      "school_label": "Eastern Washington",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "auburn-tigers": {
+      "base_url": "https://auburntigers.com",
+      "school_label": "Auburn",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "siena-saints": {
+      "base_url": "https://sienasaints.com",
+      "school_label": "Siena",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "rider-broncs": {
+      "base_url": "https://gobroncs.com",
+      "school_label": "Rider",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cal-state-bakersfield-roadrunners": {
+      "base_url": "https://gorunners.com",
+      "school_label": "Cal State Bakersfield",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "detroit-mercy-titans": {
+      "base_url": "https://detroittitans.com",
+      "school_label": "Detroit Mercy",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "chicago-state-cougars": {
+      "base_url": "https://www.gocsucougars.com",
+      "school_label": "Chicago State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ole-miss-rebels": {
+      "base_url": "https://olemisssports.com",
+      "school_label": "Mississippi",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "st-bonaventure-bonnies": {
+      "base_url": "https://gobonnies.com",
+      "school_label": "St. Bonaventure",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kent-state-golden-flashes": {
+      "base_url": "https://kentstatesports.com",
+      "school_label": "Kent State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ut-arlington-mavericks": {
+      "base_url": "https://utamavs.com",
+      "school_label": "Texas-Arlington",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "radford-highlanders": {
+      "base_url": "https://radfordathletics.com",
+      "school_label": "Radford",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uc-davis-aggies": {
+      "base_url": "https://ucdavisaggies.com",
+      "school_label": "UC Davis",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southern-indiana-screaming-eagles": {
+      "base_url": "https://gousieagles.com",
+      "school_label": "Southern Ind.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "indiana-hoosiers": {
+      "base_url": "https://iuhoosiers.com",
+      "school_label": "Indiana",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cal-state-fullerton-titans": {
+      "base_url": "https://fullertontitans.com",
+      "school_label": "Cal State Fullerton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "baylor-bears": {
+      "base_url": "https://baylorbears.com",
+      "school_label": "Baylor",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "montana-grizzlies": {
+      "base_url": "https://gogriz.com",
+      "school_label": "Montana",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "boise-state-broncos": {
+      "base_url": "https://broncosports.com",
+      "school_label": "Boise State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-southern-tigers": {
+      "base_url": "https://tsusports.com",
+      "school_label": "Texas Southern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "hampton-pirates": {
+      "base_url": "https://hamptonpirates.com",
+      "school_label": "Hampton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "nevada-wolf-pack": {
+      "base_url": "https://nevadawolfpack.com",
+      "school_label": "Nevada",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "charleston-cougars": {
+      "base_url": "https://cofcsports.com",
+      "school_label": "College of Charleston",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "miami-hurricanes": {
+      "base_url": "https://miamihurricanes.com",
+      "school_label": "Miami",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "grand-canyon-lopes": {
+      "base_url": "https://gculopes.com",
+      "school_label": "Grand Canyon",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uab-blazers": {
+      "base_url": "https://uabsports.com",
+      "school_label": "UAB",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "illinois-fighting-illini": {
+      "base_url": "https://fightingillini.com",
+      "school_label": "Illinois",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "mercyhurst-lakers": {
+      "base_url": "https://hurstathletics.com",
+      "school_label": "Mercyhurst",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "high-point-panthers": {
+      "base_url": "https://highpointpanthers.com",
+      "school_label": "High Point",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "old-dominion-monarchs": {
+      "base_url": "https://odusports.com",
+      "school_label": "Old Dominion",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "denver-pioneers": {
+      "base_url": "https://denverpioneers.com",
+      "school_label": "Denver",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ut-rio-grande-valley-vaqueros": {
+      "base_url": "https://goutrgv.com",
+      "school_label": "UT-Rio Grande Valley",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "portland-state-vikings": {
+      "base_url": "https://goviks.com",
+      "school_label": "Portland State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cal-poly-mustangs": {
+      "base_url": "https://gopoly.com",
+      "school_label": "Cal Poly",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "san-diego-state-aztecs": {
+      "base_url": "https://goaztecs.com",
+      "school_label": "San Diego State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "charleston-southern-buccaneers": {
+      "base_url": "https://www.csusports.com",
+      "school_label": "Charleston Southern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-florida-ospreys": {
+      "base_url": "https://unfospreys.com",
+      "school_label": "North Florida",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northeastern-huskies": {
+      "base_url": "https://nuhuskies.com",
+      "school_label": "Northeastern",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "duquesne-dukes": {
+      "base_url": "https://goduquesne.com",
+      "school_label": "Duquesne",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "west-florida-argonauts": {
+      "base_url": "https://goargos.com",
+      "school_label": "West Florida",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "indiana-state-sycamores": {
+      "base_url": "https://gosycamores.com",
+      "school_label": "Indiana State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "xavier-musketeers": {
+      "base_url": "https://goxavier.com",
+      "school_label": "Xavier",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "west-georgia-wolves": {
+      "base_url": "https://uwgathletics.com",
+      "school_label": "West Georgia",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "richmond-spiders": {
+      "base_url": "https://richmondspiders.com",
+      "school_label": "Richmond",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "louisiana-tech-bulldogs": {
+      "base_url": "https://latechsports.com",
+      "school_label": "Louisiana Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-dakota-fighting-hawks": {
+      "base_url": "https://fightinghawks.com",
+      "school_label": "North Dakota",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "new-mexico-lobos": {
+      "base_url": "https://golobos.com",
+      "school_label": "New Mexico",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "jacksonville-dolphins": {
+      "base_url": "https://judolphins.com",
+      "school_label": "Jacksonville",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-state-seminoles": {
+      "base_url": "https://seminoles.com",
+      "school_label": "Florida St",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "washington-huskies": {
+      "base_url": "https://gohuskies.com",
+      "school_label": "Washington",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "air-force-falcons": {
+      "base_url": "https://goairforcefalcons.com",
+      "school_label": "Air Force",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ut-martin-skyhawks": {
+      "base_url": "https://utmsports.com",
+      "school_label": "UT Martin",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lamar-cardinals": {
+      "base_url": "https://lamarcardinals.com",
+      "school_label": "Lamar",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-texas-mean-green": {
+      "base_url": "https://meangreensports.com",
+      "school_label": "North Texas",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "stetson-hatters": {
+      "base_url": "https://gohatters.com",
+      "school_label": "Stetson",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "mississippi-state-bulldogs": {
+      "base_url": "https://hailstate.com",
+      "school_label": "Mississippi State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ohio-bobcats": {
+      "base_url": "https://ohiobobcats.com",
+      "school_label": "Ohio",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kansas-jayhawks": {
+      "base_url": "https://kuathletics.com",
+      "school_label": "Kansas",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bellarmine-knights": {
+      "base_url": "https://athletics.bellarmine.edu",
+      "school_label": "Bellarmine",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "pepperdine-waves": {
+      "base_url": "https://pepperdinewaves.com",
+      "school_label": "Pepperdine",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "east-texas-am-lions": {
+      "base_url": "https://lionathletics.com",
+      "school_label": "Tex. A&M-Commerce",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "merrimack-warriors": {
+      "base_url": "https://merrimackathletics.com",
+      "school_label": "Merrimack",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "dayton-flyers": {
+      "base_url": "https://daytonflyers.com",
+      "school_label": "Dayton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "new-mexico-state-aggies": {
+      "base_url": "https://nmstatesports.com",
+      "school_label": "New Mexico State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "middle-tennessee-blue-raiders": {
+      "base_url": "https://goblueraiders.com",
+      "school_label": "Middle Tennessee",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "massachusetts-minutemen": {
+      "base_url": "https://umassathletics.com",
+      "school_label": "Massachusetts",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "villanova-wildcats": {
+      "base_url": "https://villanova.com",
+      "school_label": "Villanova",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northern-illinois-huskies": {
+      "base_url": "https://niuhuskies.com",
+      "school_label": "Northern Illinois",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "central-arkansas-bears": {
+      "base_url": "https://ucasports.com",
+      "school_label": "Central Arkansas",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "alcorn-state-braves": {
+      "base_url": "https://alcornsports.com",
+      "school_label": "Alcorn State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "western-carolina-catamounts": {
+      "base_url": "https://catamountsports.com",
+      "school_label": "Western Carolina",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "washington-state-cougars": {
+      "base_url": "https://wsucougars.com",
+      "school_label": "Washington State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "elon-phoenix": {
+      "base_url": "https://elonphoenix.com",
+      "school_label": "Elon",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uc-irvine-anteaters": {
+      "base_url": "https://ucirvinesports.com",
+      "school_label": "UC Irvine",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bradley-braves": {
+      "base_url": "https://bradleybraves.com",
+      "school_label": "Bradley",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-dakota-state-bison": {
+      "base_url": "https://gobison.com",
+      "school_label": "North Dakota State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lsu-tigers": {
+      "base_url": "https://lsusports.net",
+      "school_label": "LSU",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "davidson-wildcats": {
+      "base_url": "https://davidsonwildcats.com",
+      "school_label": "Davidson",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "prairie-view-am-panthers": {
+      "base_url": "https://pvpanthers.com",
+      "school_label": "Prairie View A&M",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "illinois-state-redbirds": {
+      "base_url": "https://goredbirds.com",
+      "school_label": "Illinois State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "san-jose-state-spartans": {
+      "base_url": "https://sjsuspartans.com",
+      "school_label": "San Jose State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "texas-am-aggies": {
+      "base_url": "https://12thman.com",
+      "school_label": "Texas A&M",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "western-kentucky-hilltoppers": {
+      "base_url": "https://wkusports.com",
+      "school_label": "Western Ky.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "weber-state-wildcats": {
+      "base_url": "https://weberstatesports.com",
+      "school_label": "Weber State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "hofstra-pride": {
+      "base_url": "https://gohofstra.com",
+      "school_label": "Hofstra",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "umass-lowell-river-hawks": {
+      "base_url": "https://goriverhawks.com",
+      "school_label": "UMass Lowell",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "unc-wilmington-seahawks": {
+      "base_url": "https://uncwsports.com",
+      "school_label": "UNCW",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-gators": {
+      "base_url": "https://floridagators.com",
+      "school_label": "Florida",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "unc-asheville-bulldogs": {
+      "base_url": "https://uncabulldogs.com",
+      "school_label": "UNC Asheville",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "east-carolina-pirates": {
+      "base_url": "https://ecupirates.com",
+      "school_label": "East Carolina",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "providence-friars": {
+      "base_url": "https://friars.com",
+      "school_label": "Providence",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "dartmouth-big-green": {
+      "base_url": "https://dartmouthsports.com",
+      "school_label": "Dartmouth",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "california-golden-bears": {
+      "base_url": "https://calbears.com",
+      "school_label": "California",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "seattle-u-redhawks": {
+      "base_url": "https://goseattleu.com",
+      "school_label": "Seattle",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "smu-mustangs": {
+      "base_url": "https://smumustangs.com",
+      "school_label": "Southern Methodist",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "boston-university-terriers": {
+      "base_url": "https://goterriers.com",
+      "school_label": "Boston",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "minnesota-golden-gophers": {
+      "base_url": "https://gophersports.com",
+      "school_label": "Minnesota",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "furman-paladins": {
+      "base_url": "https://furmanpaladins.com",
+      "school_label": "Furman",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "stonehill-skyhawks": {
+      "base_url": "https://stonehillskyhawks.com",
+      "school_label": "Stonehill",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tulane-green-wave": {
+      "base_url": "https://tulanegreenwave.com",
+      "school_label": "Tulane",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "colorado-buffaloes": {
+      "base_url": "https://cubuffs.com",
+      "school_label": "Colorado",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "chattanooga-mocs": {
+      "base_url": "https://gomocs.com",
+      "school_label": "Chattanooga",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cal-state-northridge-matadors": {
+      "base_url": "https://gomatadors.com",
+      "school_label": "CSUN",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "idaho-vandals": {
+      "base_url": "https://govandals.com",
+      "school_label": "Idaho",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bucknell-bison": {
+      "base_url": "https://gobison.com",
+      "school_label": "Bucknell",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "central-michigan-chippewas": {
+      "base_url": "https://cmuchippewas.com",
+      "school_label": "Central Michigan",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "iowa-state-cyclones": {
+      "base_url": "https://cyclones.com",
+      "school_label": "Iowa State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "alabama-am-bulldogs": {
+      "base_url": "https://aamusports.com",
+      "school_label": "Alabama A&M",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "byu-cougars": {
+      "base_url": "https://byucougars.com",
+      "school_label": "Brigham Young",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "nc-state-wolfpack": {
+      "base_url": "https://gopack.com",
+      "school_label": "NC State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "vcu-rams": {
+      "base_url": "https://vcuathletics.com",
+      "school_label": "Virginia Commonwealth",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "rutgers-scarlet-knights": {
+      "base_url": "https://scarletknights.com",
+      "school_label": "Rutgers",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "maine-black-bears": {
+      "base_url": "https://goblackbears.com",
+      "school_label": "Maine",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "iona-gaels": {
+      "base_url": "https://ionagaels.com",
+      "school_label": "Iona",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "missouri-state-bears": {
+      "base_url": "https://minerathletics.com",
+      "school_label": "Missouri S&T",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northern-arizona-lumberjacks": {
+      "base_url": "https://nauathletics.com",
+      "school_label": "Northern Arizona",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oklahoma-sooners": {
+      "base_url": "https://soonersports.com",
+      "school_label": "Oklahoma",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "new-hampshire-wildcats": {
+      "base_url": "https://unhwildcats.com",
+      "school_label": "New Hampshire",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "georgia-state-panthers": {
+      "base_url": "https://georgiastatesports.com",
+      "school_label": "Georgia State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "abilene-christian-wildcats": {
+      "base_url": "https://acusports.com",
+      "school_label": "Abilene Christian",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "coppin-state-eagles": {
+      "base_url": "https://coppinstatesports.com",
+      "school_label": "Coppin State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "georgetown-hoyas": {
+      "base_url": "https://guhoyas.com",
+      "school_label": "Georgetown",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "mount-st-marys-mountaineers": {
+      "base_url": "https://mountathletics.com",
+      "school_label": "Mount St. Mary's",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "evansville-purple-aces": {
+      "base_url": "https://gopurpleaces.com",
+      "school_label": "Evansville",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "stephen-f-austin-lumberjacks": {
+      "base_url": "https://sfajacks.com",
+      "school_label": "Stephen F. Austin",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-carolina-tar-heels": {
+      "base_url": "https://goheels.com",
+      "school_label": "North Carolina",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "mississippi-valley-state-delta-devils": {
+      "base_url": "https://mvsusports.com",
+      "school_label": "Mississippi Valley State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "yale-bulldogs": {
+      "base_url": "https://yalebulldogs.com",
+      "school_label": "Yale",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bethune-cookman-wildcats": {
+      "base_url": "https://bcuathletics.com",
+      "school_label": "Bethune-Cookman",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tennessee-state-tigers": {
+      "base_url": "https://tsutigers.com",
+      "school_label": "Tennessee St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "georgia-bulldogs": {
+      "base_url": "https://georgiadogs.com",
+      "school_label": "Georgia",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uic-flames": {
+      "base_url": "https://uicflames.com",
+      "school_label": "Illinois-Chicago",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "loyola-marymount-lions": {
+      "base_url": "https://lmulions.com",
+      "school_label": "Loyola Marymount",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "mercer-bears": {
+      "base_url": "https://mercerbears.com",
+      "school_label": "Mercer",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "drake-bulldogs": {
+      "base_url": "https://godrakebulldogs.com",
+      "school_label": "Drake",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tulsa-golden-hurricane": {
+      "base_url": "https://tulsahurricane.com",
+      "school_label": "Tulsa",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "se-louisiana-lions": {
+      "base_url": "https://lionsports.net",
+      "school_label": "Southeastern Louisiana",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "virginia-cavaliers": {
+      "base_url": "https://virginiasports.com",
+      "school_label": "Virginia",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "niagara-purple-eagles": {
+      "base_url": "https://purpleeagles.com",
+      "school_label": "Niagara",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "western-michigan-broncos": {
+      "base_url": "https://wmubroncos.com",
+      "school_label": "Western Michigan",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "rhode-island-rams": {
+      "base_url": "https://gorhody.com",
+      "school_label": "Rhode Island",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "brown-bears": {
+      "base_url": "https://brownbears.com",
+      "school_label": "Brown",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "montana-state-bobcats": {
+      "base_url": "https://msubobcats.com",
+      "school_label": "Montana State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "nebraska-cornhuskers": {
+      "base_url": "https://huskers.com",
+      "school_label": "Nebraska",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "missouri-tigers": {
+      "base_url": "https://mutigers.com",
+      "school_label": "Missouri",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utep-miners": {
+      "base_url": "https://utepminers.com",
+      "school_label": "Texas-El Paso",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "marshall-thundering-herd": {
+      "base_url": "https://herdzone.com",
+      "school_label": "Marshall",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "murray-state-racers": {
+      "base_url": "https://goracers.com",
+      "school_label": "Murray State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wagner-seahawks": {
+      "base_url": "https://wagnerathletics.com",
+      "school_label": "Wagner",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utah-utes": {
+      "base_url": "https://utahutes.com",
+      "school_label": "Utah",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-florida-bulls": {
+      "base_url": "https://gousfbulls.com",
+      "school_label": "South Florida",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "belmont-bruins": {
+      "base_url": "https://belmontbruins.com",
+      "school_label": "Belmont",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oral-roberts-golden-eagles": {
+      "base_url": "https://oruathletics.com",
+      "school_label": "Oral Roberts",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "princeton-tigers": {
+      "base_url": "https://goprincetontigers.com",
+      "school_label": "Princeton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "eastern-kentucky-colonels": {
+      "base_url": "https://ekusports.com",
+      "school_label": "Eastern Kentucky",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ualbany-great-danes": {
+      "base_url": "https://ualbanysports.com",
+      "school_label": "Albany",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "norfolk-state-spartans": {
+      "base_url": "https://nsuspartans.com",
+      "school_label": "Norfolk State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "west-virginia-mountaineers": {
+      "base_url": "https://wvusports.com",
+      "school_label": "West Virginia",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utah-tech-trailblazers": {
+      "base_url": "https://utahtechtrailblazers.com",
+      "school_label": "Utah Tech",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wisconsin-badgers": {
+      "base_url": "https://uwbadgers.com",
+      "school_label": "Wisconsin",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "seton-hall-pirates": {
+      "base_url": "https://shupirates.com",
+      "school_label": "Seton Hall",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "le-moyne-dolphins": {
+      "base_url": "https://lemoynedolphins.com",
+      "school_label": "Le Moyne",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "temple-owls": {
+      "base_url": "https://owlsports.com",
+      "school_label": "Temple",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ucla-bruins": {
+      "base_url": "https://uclabruins.com",
+      "school_label": "UCLA",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "colorado-state-rams": {
+      "base_url": "https://csurams.com",
+      "school_label": "Colorado St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "ucf-knights": {
+      "base_url": "https://ucfknights.com",
+      "school_label": "Central Florida",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-dakota-coyotes": {
+      "base_url": "https://goyotes.com",
+      "school_label": "South Dakota",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "george-mason-patriots": {
+      "base_url": "https://gomason.com",
+      "school_label": "George Mason",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southern-illinois-salukis": {
+      "base_url": "https://siusalukis.com",
+      "school_label": "Southern Ill.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "louisville-cardinals": {
+      "base_url": "https://gocards.com",
+      "school_label": "Louisville",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "usc-trojans": {
+      "base_url": "https://usctrojans.com",
+      "school_label": "Southern Cal",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "creighton-bluejays": {
+      "base_url": "https://gocreighton.com",
+      "school_label": "Creighton",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lafayette-leopards": {
+      "base_url": "https://goleopards.com",
+      "school_label": "Lafayette",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "akron-zips": {
+      "base_url": "https://gozips.com",
+      "school_label": "Akron",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-alabama-jaguars": {
+      "base_url": "https://usajaguars.com",
+      "school_label": "South Alabama",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "south-carolina-gamecocks": {
+      "base_url": "https://gamecocksonline.com",
+      "school_label": "South Carolina",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "marquette-golden-eagles": {
+      "base_url": "https://gomarquette.com",
+      "school_label": "Marquette",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-carolina-at-aggies": {
+      "base_url": "https://ncataggies.com",
+      "school_label": "N.C. A&T",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "western-illinois-leathernecks": {
+      "base_url": "https://goleathernecks.com",
+      "school_label": "Western Illinois",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "hawaii-rainbow-warriors": {
+      "base_url": "https://hawaiiathletics.com",
+      "school_label": "Hawaii",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wyoming-cowboys": {
+      "base_url": "https://gowyo.com",
+      "school_label": "Wyoming",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "new-haven-chargers": {
+      "base_url": "https://newhavenchargers.com",
+      "school_label": "New Haven",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "sacramento-state-hornets": {
+      "base_url": "https://hornetsports.com",
+      "school_label": "Sacramento State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "florida-international-panthers": {
+      "base_url": "https://fiusports.com",
+      "school_label": "FIU",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "san-francisco-dons": {
+      "base_url": "https://usfdons.com",
+      "school_label": "San Francisco",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "loyola-maryland-greyhounds": {
+      "base_url": "https://loyolagreyhounds.com",
+      "school_label": "Loyola-Maryland",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oklahoma-state-cowboys": {
+      "base_url": "https://okstate.com",
+      "school_label": "Oklahoma State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "vanderbilt-commodores": {
+      "base_url": "https://vucommodores.com",
+      "school_label": "Vanderbilt",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kentucky-wildcats": {
+      "base_url": "https://ukathletics.com",
+      "school_label": "Kentucky",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "samford-bulldogs": {
+      "base_url": "https://samfordsports.com",
+      "school_label": "Samford",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "coastal-carolina-chanticleers": {
+      "base_url": "https://goccusports.com",
+      "school_label": "Coastal Carolina",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "incarnate-word-cardinals": {
+      "base_url": "https://uiwcardinals.com",
+      "school_label": "Incarnate Word",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "syracuse-orange": {
+      "base_url": "https://cuse.com",
+      "school_label": "Syracuse",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "pennsylvania-quakers": {
+      "base_url": "https://pennathletics.com",
+      "school_label": "Pennsylvania",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "jacksonville-state-gamecocks": {
+      "base_url": "https://jsugamecocksports.com",
+      "school_label": "Jacksonville St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "uc-santa-barbara-gauchos": {
+      "base_url": "https://ucsbgauchos.com",
+      "school_label": "UC Santa Barbara",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "southeast-missouri-state-redhawks": {
+      "base_url": "https://semoredhawks.com",
+      "school_label": "Southeast Missouri State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "william-mary-tribe": {
+      "base_url": "https://tribeathletics.com",
+      "school_label": "William & Mary",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "portland-pilots": {
+      "base_url": "https://portlandpilots.com",
+      "school_label": "Portland",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "arizona-state-sun-devils": {
+      "base_url": "https://thesundevils.com",
+      "school_label": "Arizona State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "alabama-crimson-tide": {
+      "base_url": "https://rolltide.com",
+      "school_label": "Alabama",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "loyola-chicago-ramblers": {
+      "base_url": "https://loyolaramblers.com",
+      "school_label": "Loyola-Chicago",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "maryland-terrapins": {
+      "base_url": "https://umterps.com",
+      "school_label": "Maryland",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "arkansas-state-red-wolves": {
+      "base_url": "https://astateredwolves.com",
+      "school_label": "Arkansas St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wake-forest-demon-deacons": {
+      "base_url": "https://godeacs.com",
+      "school_label": "Wake Forest",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lsu-new-orleans-privateers": {
+      "base_url": "https://unoprivateers.com",
+      "school_label": "New Orleans",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "drexel-dragons": {
+      "base_url": "https://drexeldragons.com",
+      "school_label": "Drexel",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "delaware-state-hornets": {
+      "base_url": "https://dsuhornets.com",
+      "school_label": "Delaware State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "saint-peters-peacocks": {
+      "base_url": "https://saintpeterspeacocks.com",
+      "school_label": "Saint Peter's",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "pacific-tigers": {
+      "base_url": "https://pacifictigers.com",
+      "school_label": "Pacific",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "michigan-state-spartans": {
+      "base_url": "https://msuspartans.com",
+      "school_label": "Michigan State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "northern-iowa-panthers": {
+      "base_url": "https://unipanthers.com",
+      "school_label": "Northern Iowa",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "idaho-state-bengals": {
+      "base_url": "https://isubengals.com",
+      "school_label": "Idaho St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "sacred-heart-pioneers": {
+      "base_url": "https://sacredheartpioneers.com",
+      "school_label": "Sacred Heart",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "navy-midshipmen": {
+      "base_url": "https://navysports.com",
+      "school_label": "Navy",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "wright-state-raiders": {
+      "base_url": "https://wsuraiders.com",
+      "school_label": "Wright St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "winthrop-eagles": {
+      "base_url": "https://winthropeagles.com",
+      "school_label": "Winthrop",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "vermont-catamounts": {
+      "base_url": "https://uvmathletics.com",
+      "school_label": "Vermont",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tcu-horned-frogs": {
+      "base_url": "https://gofrogs.com",
+      "school_label": "Texas Christian",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "utah-state-aggies": {
+      "base_url": "https://utahstateaggies.com",
+      "school_label": "Utah St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "houston-christian-huskies": {
+      "base_url": "https://hcuhuskies.com",
+      "school_label": "Houston Christian",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "clemson-tigers": {
+      "base_url": "https://clemsontigers.com",
+      "school_label": "Clemson",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "monmouth-hawks": {
+      "base_url": "https://monmouthhawks.com",
+      "school_label": "Monmouth",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "buffalo-bulls": {
+      "base_url": "https://ubbulls.com",
+      "school_label": "Buffalo",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "howard-bison": {
+      "base_url": "https://hubison.com",
+      "school_label": "Howard",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "morehead-state-eagles": {
+      "base_url": "https://msueagles.com",
+      "school_label": "Morehead State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "toledo-rockets": {
+      "base_url": "https://utrockets.com",
+      "school_label": "Toledo",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "fairleigh-dickinson-knights": {
+      "base_url": "https://fduknights.com",
+      "school_label": "Fairleigh Dickinson",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lehigh-mountain-hawks": {
+      "base_url": "https://lehighsports.com",
+      "school_label": "Lehigh",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oregon-state-beavers": {
+      "base_url": "https://osubeavers.com",
+      "school_label": "Oregon State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "omaha-mavericks": {
+      "base_url": "https://omavs.com",
+      "school_label": "Omaha",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "st-johns-red-storm": {
+      "base_url": "https://redstormsports.com",
+      "school_label": "St. John's",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "delaware-blue-hens": {
+      "base_url": "https://bluehens.com",
+      "school_label": "Delaware",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cleveland-state-vikings": {
+      "base_url": "https://csuvikings.com",
+      "school_label": "Cleveland State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "app-state-mountaineers": {
+      "base_url": "https://appstatesports.com",
+      "school_label": "Appalachian State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "oregon-ducks": {
+      "base_url": "https://goducks.com",
+      "school_label": "Oregon",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "central-connecticut-blue-devils": {
+      "base_url": "https://ccsubluedevils.com",
+      "school_label": "Central Connecticut",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "houston-cougars": {
+      "base_url": "https://uhcougars.com",
+      "school_label": "Houston",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "lipscomb-bisons": {
+      "base_url": "https://lipscombsports.com",
+      "school_label": "Lipscomb",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "cornell-big-red": {
+      "base_url": "https://cornellbigred.com",
+      "school_label": "Cornell",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "bryant-bulldogs": {
+      "base_url": "https://bryantbulldogs.com",
+      "school_label": "Bryant",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "long-island-university-sharks": {
+      "base_url": "https://www.liuathletics.com",
+      "school_label": "Long Island",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "saint-louis-billikens": {
+      "base_url": "https://slubillikens.com",
+      "school_label": "Saint Louis",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "valparaiso-beacons": {
+      "base_url": "https://valpoathletics.com",
+      "school_label": "Valparaiso",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "unlv-rebels": {
+      "base_url": "https://unlvrebels.com",
+      "school_label": "UNLV",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "kennesaw-state-owls": {
+      "base_url": "https://ksuowls.com",
+      "school_label": "Kennesaw State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "north-carolina-central-eagles": {
+      "base_url": "https://nccueaglepride.com",
+      "school_label": "North Carolina Central",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "iowa-hawkeyes": {
+      "base_url": "https://hawkeyesports.com",
+      "school_label": "Iowa",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "penn-state-nittany-lions": {
+      "base_url": "https://gopsusports.com",
+      "school_label": "Penn State",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "morgan-state-bears": {
+      "base_url": "https://morganstatebears.com",
+      "school_label": "Morgan St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "san-diego-toreros": {
+      "base_url": "https://usdtoreros.com",
+      "school_label": "San Diego",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "notre-dame-fighting-irish": {
+      "base_url": "https://fightingirish.com",
+      "school_label": "Notre Dame",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "depaul-blue-demons": {
+      "base_url": "https://depaulbluedemons.com",
+      "school_label": "DePaul",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "tarleton-state-texans": {
+      "base_url": "https://tarletonsports.com",
+      "school_label": "Tarleton St.",
+      "discovery_source": "https://github.com/dwillis/wbb/blob/main/ncaa/rosters/rosters_2025-26.csv"
+    },
+    "njit-highlanders": {
+      "base_url": "https://njithighlanders.com",
+      "school_label": "NJIT",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "queens-university-royals": {
+      "base_url": "https://queensathletics.com",
+      "school_label": "Queens",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "presbyterian-blue-hose": {
+      "base_url": "https://gobluehose.com",
+      "school_label": "Presbyterian",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "lindenwood-lions": {
+      "base_url": "https://lindenwoodlions.com",
+      "school_label": "Lindenwood",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "the-citadel-bulldogs": {
+      "base_url": "https://citadelsports.com",
+      "school_label": "The Citadel",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "vmi-keydets": {
+      "base_url": "https://vmikeydets.com",
+      "school_label": "VMI",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "mcneese-cowboys": {
+      "base_url": "https://mcneesesports.com",
+      "school_label": "McNeese",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "nicholls-colonels": {
+      "base_url": "https://geauxcolonels.com",
+      "school_label": "Nicholls",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "ul-monroe-warhawks": {
+      "base_url": "https://ulmwarhawks.com",
+      "school_label": "UL Monroe",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "north-alabama-lions": {
+      "base_url": "https://roarlions.com",
+      "school_label": "North Alabama",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "saint-josephs-hawks": {
+      "base_url": "https://sjuhawks.com",
+      "school_label": "Saint Joseph's",
+      "discovery_source": "Official athletics site; game identities checked against ESPN archive"
+    },
+    "sam-houston-bearkats": {
+      "base_url": "https://gobearkats.com",
+      "school_label": "sam-houston-bearkats",
+      "discovery_source": "Official athletics site; game identity checked against ESPN archive"
+    },
+    "miami-oh-redhawks": {
+      "base_url": "https://miamiredhawks.com",
+      "school_label": "miami-oh-redhawks",
+      "discovery_source": "Official athletics site; game identity checked against ESPN archive"
+    }
+  }
+}
