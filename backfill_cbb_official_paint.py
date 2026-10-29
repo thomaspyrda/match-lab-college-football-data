@@ -137,6 +137,12 @@ def merge(args):
    samples=[r for gid,r in groups.get((year,slug),{}).items() if gid in games and r['points']==games[gid]['points'] and r['opponent_points']==games[gid]['opponent_points']];n=len(samples)
    entry=metrics['seasons'].setdefault(year,{}).setdefault(slug,{'values':{},'ranks':{}})
    if n<10 or n/len(games)<.95:
+    # A newly discovered conflict must also invalidate an earlier official
+    # aggregate if the remaining verified sample no longer meets coverage.
+    for key in ['Points in the Paint','Points in the Paint Allowed']:
+     sample=entry.get('metric_samples',{}).get(key,{})
+     if sample.get('method','').startswith('Official'):
+      entry.get('values',{}).pop(key,None);entry.get('ranks',{}).pop(key,None);entry.get('metric_samples',{}).pop(key,None)
     if entry['values'].get('Points in the Paint') is None:gaps.append({'team':slug,'season':year,'official_games':n,'expected_games':len(games)})
     continue
    prior=entry.get('metric_samples',{}).get('Points in the Paint',{}).get('games',0)
