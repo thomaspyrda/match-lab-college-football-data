@@ -12,6 +12,10 @@ R=Path(__file__).resolve().parent
 
 def load(p):return json.loads(p.read_text())
 def save(p,d):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(d,separators=(',',':'),ensure_ascii=False)+'\n')
+def completed_stat_game(g):
+ # Unplayed basketball forfeits are recorded as 2-0 (or 1-0), not box scores.
+ return g.get('status')=='final' and isinstance(g.get('points'),(int,float)) and isinstance(g.get('opponent_points'),(int,float)) and g['points']+g['opponent_points']>2
+
 def ref(data,i):return data[i] if isinstance(i,int) and 0<=i<len(data) else None
 
 def parse_nuxt(s):
@@ -76,7 +80,7 @@ def crawl(args):
    if not season:continue
    for phase in season.get('phases',{}).values():
     for g in phase.get('games',[]):
-     if g.get('status')!='final':continue
+     if not completed_stat_game(g):continue
      day=datetime.fromisoformat(g['date'].replace('Z','+00:00')).astimezone(ZoneInfo('America/New_York')).date().isoformat()
      expected.setdefault((day,g['points'],g['opponent_points']),{})[g['id']]=g
    if not expected:continue
@@ -132,7 +136,7 @@ def merge(args):
  for slug in load(R/'data/cbb/official-paint-sources.json')['teams']:
   archive=load(R/f'data/cbb/teams/{slug}.json')
   for year,season in archive['seasons'].items():
-   games={g['id']:g for g in season.get('phases',{}).get('regular',{}).get('games',[]) if g.get('status')=='final'}
+   games={g['id']:g for g in season.get('phases',{}).get('regular',{}).get('games',[]) if completed_stat_game(g)}
    if not games:continue
    samples=[r for gid,r in groups.get((year,slug),{}).items() if gid in games and r['points']==games[gid]['points'] and r['opponent_points']==games[gid]['opponent_points']];n=len(samples)
    entry=metrics['seasons'].setdefault(year,{}).setdefault(slug,{'values':{},'ranks':{}})

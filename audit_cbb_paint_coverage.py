@@ -17,7 +17,7 @@ def main():
         archive=base.load(base.R/f'data/cbb/teams/{slug}.json')
         for year,season in archive['seasons'].items():
             if not 2016<=int(year)<=2026:continue
-            games={g['id']:g for g in season.get('phases',{}).get('regular',{}).get('games',[]) if g.get('status')=='final'}
+            games={g['id']:g for g in season.get('phases',{}).get('regular',{}).get('games',[]) if base.completed_stat_game(g)}
             if len(games)<10:continue
             years[year]['eligible_team_seasons']+=1
             entry=metrics.get(year,{}).get(slug,{});values=entry.get('values',{})
