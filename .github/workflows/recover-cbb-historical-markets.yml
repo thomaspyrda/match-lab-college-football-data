@@ -1,0 +1,81 @@
+name: Recover missing CBB historical ATS and totals
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - recover_cbb_historical_markets.py
+      - data/cbb/sbr-market-recovery-observations.json
+      - .github/workflows/recover-cbb-historical-markets.yml
+permissions:
+  contents: write
+concurrency:
+  group: cbb-missing-market-recovery
+  cancel-in-progress: false
+jobs:
+  sbr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python recover_cbb_historical_markets.py --sbr && python validate_cbb_history.py
+      - name: Publish verified workbook recoveries
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/markets data/cbb/historical-market-recovery-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): recover missing historical markets from original SBR workbooks'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+  extract:
+    needs: sbr
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9,10,11]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -u recover_cbb_historical_markets.py --scan --shard ${{ matrix.shard }} --shards 12 --workers 5 --output /tmp/markets-shard-${{ matrix.shard }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: missing-markets-${{ matrix.shard }}
+          path: /tmp/markets-shard-${{ matrix.shard }}.json
+  publish:
+    needs: extract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: missing-markets-*
+          path: /tmp/missing-markets
+      - run: python recover_cbb_historical_markets.py --input-dir /tmp/missing-markets --shards 12 && python validate_cbb_history.py
+      - name: Publish exact verified ESPN recoveries
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/markets data/cbb/historical-market-recovery-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): publish verified archived ESPN odds for missing games'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
