@@ -1,0 +1,60 @@
+name: Recover missing CBB paint boxes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [backfill_cbb_espn_paint_gaps.py, .github/workflows/backfill-cbb-espn-paint-gaps.yml]
+permissions:
+  contents: write
+concurrency:
+  group: cbb-paint-gap-recovery
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read only missing whole-game boxes
+        run: python -u backfill_cbb_espn_paint_gaps.py --shard ${{ matrix.shard }} --shards 3 --output /tmp/espn-paint-shard-${{ matrix.shard }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: espn-paint-shard-${{ matrix.shard }}
+          path: /tmp/espn-paint-shard-${{ matrix.shard }}.json
+  publish:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: espn-paint-shard-*
+          path: /tmp/espn-paint-shards
+      - name: Merge verified records and validate season coverage
+        run: |
+          python backfill_cbb_espn_paint_gaps.py --merge --shards 3
+          python audit_cbb_paint_coverage.py
+          python validate_cbb_history.py
+      - name: Publish verified paint data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/espn-paint-observations.json data/cbb/espn-paint-gap-report.json data/cbb/opponent-metrics.json data/cbb/paint-coverage-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): recover score-checked missing paint boxes'
+          git pull --rebase origin main
+          git push origin main

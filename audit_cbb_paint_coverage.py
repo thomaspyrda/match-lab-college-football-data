@@ -6,6 +6,10 @@ import backfill_cbb_official_paint as base
 def main():
     metrics=base.load(base.R/'data/cbb/opponent-metrics.json')['seasons']
     records=base.load(base.R/'data/cbb/official-paint-observations.json')['records']
+    espn_path=base.R/'data/cbb/espn-paint-observations.json'
+    espn=base.load(espn_path)['records'] if espn_path.exists() else []
+    combined={(r['team'],r['game_id']):r for r in records if not r.get('conflict')}
+    combined.update({(r['team'],r['game_id']):r for r in espn})
     groups=defaultdict(dict);conflicts=0
     for r in records:
         if r.get('conflict'):conflicts+=1;continue
@@ -32,7 +36,13 @@ def main():
                     for label,key in [('Points in the Paint','paint_for'),('Points in the Paint Allowed','paint_against')]:
                         assert abs(values[label]-sum(r[key] for r in samples)/len(samples))<1e-8,(slug,year,label)
                     verified+=1;years[year]['official_archive_team_seasons']+=1
-                else:years[year]['other_verified_provider_team_seasons']+=1
+                else:
+                    if sample.get('method','').startswith('Verified combined'):
+                        merged=[combined[slug,gid] for gid in games if (slug,gid) in combined and combined[slug,gid]['points']==games[gid]['points'] and combined[slug,gid]['opponent_points']==games[gid]['opponent_points']]
+                        assert len(merged)==sample['games'] and len(games)==sample['expected_games'],(slug,year)
+                        for label,key in [('Points in the Paint','paint_for'),('Points in the Paint Allowed','paint_against')]:
+                            assert abs(values[label]-sum(r[key] for r in merged)/len(merged))<1e-8,(slug,year,label)
+                    years[year]['other_verified_provider_team_seasons']+=1
             else:
                 years[year]['unfilled_team_seasons']+=1
                 gaps.append({'team':slug,'season':year,'verified_official_games':len(samples),'expected_games':len(games),'missing_games_for_95_percent':max(0,__import__('math').ceil(.95*len(games))-len(samples))})
