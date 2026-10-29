@@ -81,6 +81,13 @@ def college_reports(html,sport,now):
  if unmapped:print(sport,'Unmatched college injury teams:',unmapped,flush=True)
  return result
 
+def preserve_reports(previous,current):
+ """Retain the last successful report after a source failure, without redating it."""
+ for tid,report in previous.get('teams',{}).items():
+  if report.get('state')=='reported' and current['teams'].get(tid,{}).get('state')!='reported':current['teams'][tid]=report
+ current['aliases']={**previous.get('aliases',{}),**current['aliases']}
+ return current
+
 def collect(sport,now):
  base='https://site.api.espn.com/apis/site/v2/sports/'+PATHS[sport]+'/'
  expected=now.astimezone(ET).year+(sport in ('nba','cbb') and now.astimezone(ET).month>=7)
@@ -147,7 +154,9 @@ def collect(sport,now):
    for tid,report in sourced.items():
     if output['teams'].get(tid,{}).get('state')!='reported':output['teams'][tid]=report;output['aliases'][norm(report['name'])]=tid
   except Exception as e:output['college_source_error']=str(e)
- target=ROOT/'data/dashboard-availability'/f'{sport}.json' ;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
+ target=ROOT/'data/dashboard-availability'/f'{sport}.json' ;target.parent.mkdir(parents=True,exist_ok=True)
+ if target.exists():preserve_reports(json.loads(target.read_text()),output)
+ target.write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
  print(sport,len(output['teams']),'team reports;',sum(len(r['players']) for r in output['teams'].values()),'players;',len(jobs),'matchup checks',flush=True)
  return output
 if __name__=='__main__':
