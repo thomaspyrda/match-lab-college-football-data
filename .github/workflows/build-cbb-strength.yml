@@ -1,0 +1,53 @@
+name: Build CBB Team Strength
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths:
+      - build_cbb_strength.py
+      - collect_cbb_strength_games.py
+      - publish_cbb_strength.py
+      - tests/test_cbb_strength.py
+      - .github/workflows/build-cbb-strength.yml
+      - data/cbb/preseason/**
+permissions:
+  contents: write
+concurrency:
+  group: cbb-strength-production
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check strength model rules
+        run: python -m unittest discover -s tests -p test_cbb_strength.py -v
+      - name: Collect verified final results
+        run: python collect_cbb_strength_games.py --season 2027
+      - name: Calculate daily strength and archive snapshot
+        run: python build_cbb_strength.py --season 2027
+      - name: Publish strength ranking pages
+        run: python publish_cbb_strength.py
+      - name: Publish CBB strength outputs only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/strength-games data/cbb/strength-history data/cbb/strength-rankings.json data/cbb/strength-observations.json cbb/rankings
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish daily verified CBB Team Strength rankings'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
