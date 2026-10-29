@@ -22,7 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python recover_cbb_historical_markets.py --sbr && python validate_cbb_history.py
+      - run: git fetch origin 976624ebacd97160be5066b72a4fafbcc2170d99 --depth=1
+      - run: python repair_cbb_recovery_providers.py && python recover_cbb_historical_markets.py --sbr && python validate_cbb_history.py
       - name: Publish verified workbook recoveries
         run: |
           git config user.name 'github-actions[bot]'
@@ -68,7 +69,8 @@ jobs:
         with:
           pattern: missing-markets-*
           path: /tmp/missing-markets
-      - run: python recover_cbb_historical_markets.py --input-dir /tmp/missing-markets --shards 12 && python validate_cbb_history.py
+      - run: git fetch origin 976624ebacd97160be5066b72a4fafbcc2170d99 --depth=1
+      - run: python recover_cbb_historical_markets.py --input-dir /tmp/missing-markets --shards 12 && python repair_cbb_recovery_providers.py && python validate_cbb_history.py
       - name: Publish exact verified ESPN recoveries
         run: |
           git config user.name 'github-actions[bot]'

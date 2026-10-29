@@ -53,6 +53,10 @@ def scan(args):
   except Exception as e:return [],{'request_'+type(e).__name__:1}
   picks={};wanted={r['team_id'] for r in sides}
   for item in sorted(items,key=lambda v:({'consensus':0,'teamrankings':1,'numberfire':2}.get(v.get('provider',{}).get('name','').lower(),3),v.get('provider',{}).get('priority',999),v.get('provider',{}).get('name',''))):
+   # ESPN's odds collection also contains computer prediction providers. Their
+   # projected spread/total must never become a sportsbook ATS/O/U result.
+   provider_name=item.get('provider',{}).get('name','').lower()
+   if any(x in provider_name for x in ['accuscore','numberfire','prediction','predictor','live odds','in-play','inplay']):continue
    def team_id(k):
     m=re.search(r'/teams/(\d+)',item.get(k,{}).get('team',{}).get('$ref',''));return m[1] if m else str(item.get(k,{}).get('teamId',''))
    away,home=team_id('awayTeamOdds'),team_id('homeTeamOdds')
@@ -122,7 +126,7 @@ def apply(args):
   if not old or sum(ats)>=sum(old['ats']) and sum(ou)>=sum(old['ou']) and (sum(ats)>sum(old['ats']) or sum(ou)>sum(old['ou'])):markets[s].setdefault('seasons',{})[y]=rec;count['season_summaries_updated']+=1
  for s in {s for s,y in changed}:save(R/f'data/cbb/markets/{s}.json',markets[s])
  if args.sbr and not changed:print('SBR observations already applied',flush=True);return
- _,_,_,remaining=context();path=R/'data/cbb/historical-market-recovery-report.json';history=read(path).get('passes',[]) if path.exists() else []
- record={'method':'Missing markets only; exact two archived teams, Eastern game date, both final scores; no market imputation','source':'SBR original workbook archival mirror' if args.sbr else 'ESPN archived provider odds plus completed event summary','target_games_before':before,'target_games_after':len(remaining),'unique_games_with_added_markets':len(recovered['any']),'unique_games_with_added_ats':len(recovered['ats']),'unique_games_with_added_ou':len(recovered['ou']),'counts':dict(count),'source_audit':dict(source_audit)};history.append(record);save(path,{'passes':history});print(json.dumps(record),flush=True)
+ _,_,_,remaining=context();path=R/'data/cbb/historical-market-recovery-report.json';report=read(path) if path.exists() else {};history=report.get('passes',[])
+ record={'method':'Missing markets only; exact two archived teams, Eastern game date, both final scores; no market imputation','source':'SBR original workbook archival mirror' if args.sbr else 'ESPN archived provider odds plus completed event summary','target_games_before':before,'target_games_after':len(remaining),'unique_games_with_added_markets':len(recovered['any']),'unique_games_with_added_ats':len(recovered['ats']),'unique_games_with_added_ou':len(recovered['ou']),'counts':dict(count),'source_audit':dict(source_audit),'excluded_prediction_providers':not args.sbr};history.append(record);report['passes']=history;save(path,report);print(json.dumps(record),flush=True)
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--scan',action='store_true');p.add_argument('--sbr',action='store_true');p.add_argument('--shard',type=int,default=0);p.add_argument('--shards',type=int,default=12);p.add_argument('--workers',type=int,default=5);p.add_argument('--input-dir');p.add_argument('--output',default='/tmp/markets-shard-0.json');args=p.parse_args();scan(args) if args.scan else apply(args)
