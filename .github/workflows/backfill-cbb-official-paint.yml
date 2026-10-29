@@ -1,12 +1,6 @@
 name: Backfill CBB official paint archives
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - backfill_cbb_official_paint.py
-      - data/cbb/official-paint-sources.json
-      - .github/workflows/backfill-cbb-official-paint.yml
 permissions:
   contents: write
 concurrency:
