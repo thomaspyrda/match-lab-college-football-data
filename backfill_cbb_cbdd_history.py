@@ -5,6 +5,7 @@ import os,json,math,time,calendar,urllib.request,urllib.parse,urllib.error
 from pathlib import Path
 from collections import defaultdict,Counter
 from datetime import datetime,timedelta,timezone
+from backfill_cbb_official_paint import completed_stat_game
 R=Path(__file__).resolve().parent;BASE='https://api.collegebasketballdata.com';KEY=os.getenv('CBBD_API_KEY','').strip()
 def read(p):return json.loads(p.read_text())
 def save(p,d):p.write_text(json.dumps(d,separators=(',',':'),ensure_ascii=False)+'\n')
@@ -39,7 +40,7 @@ def main():
   for slug,a in archives.items():
    for phase,data in a['seasons'].get(ys,{}).get('phases',{}).items():
     for g in data.get('games',[]):
-     if g.get('status')!='final':continue
+     if not completed_stat_game(g):continue
      lookup[str(g['id'])][slug]=g
      if phase=='regular':regular[slug].add(str(g['id']))
   games={};lines={};boxes={}
