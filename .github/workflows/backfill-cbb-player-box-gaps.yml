@@ -1,0 +1,59 @@
+name: Recover CBB complete player boxes
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [backfill_cbb_player_box_gaps.py, .github/workflows/backfill-cbb-player-box-gaps.yml]
+permissions:
+  contents: write
+concurrency:
+  group: cbb-player-box-recovery
+  cancel-in-progress: false
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Read complete player boxes for blank seasons
+        run: python -u backfill_cbb_player_box_gaps.py --shard ${{ matrix.shard }} --shards 4 --output /tmp/player-box-shard-${{ matrix.shard }}.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: player-box-shard-${{ matrix.shard }}
+          path: /tmp/player-box-shard-${{ matrix.shard }}.json
+  publish:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: player-box-shard-*
+          path: /tmp/player-box-shards
+      - name: Reconstruct only complete score-checked player seasons
+        run: |
+          python backfill_cbb_player_box_gaps.py --merge --shards 4
+          python validate_cbb_history.py
+      - name: Publish verified historical player data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/teams data/cbb/player-box-backfill-report.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): recover blank player seasons from complete verified boxes'
+          git pull --rebase origin main
+          git push origin main
