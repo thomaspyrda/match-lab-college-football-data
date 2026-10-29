@@ -41,7 +41,7 @@ def duke_paint(body):
         if 'Official Basketball Box Score' not in text or re.search(r'Official Basketball Box Score\s*--',text):continue
         vis=re.search(r'^\s*VISITORS:\s*(.*?)\s*$',text,re.M);home=re.search(r'^\s*HOME TEAM:\s*(.*?)\s*$',text,re.M)
         paint=re.search(r'Points in the paint-([^,\s]+)\s+(\d+),\s*([^.,\s]+)\s+(\d+)\.',text,re.I)
-        date=re.search(r'\b\d{1,2}/\d{1,2}/\d{2,4}\b',text)
+        date=re.search(r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b',text)
         if not all((vis,home,paint,date)):continue
         names=[re.sub(r'\s+\(?\d+-\d+.*$','',v[1]).strip() for v in (vis,home)]
         own=next((i for i,n in enumerate(names) if n.lower()=='duke'),None)
@@ -57,9 +57,29 @@ def duke_paint(body):
         if len(totals)!=2:continue
         if any(2*int(row[0])+int(row[2])+int(row[4])!=score for row,score in zip(totals,final)):continue
         if a>2*(int(totals[own][0])-int(totals[own][2])) or b>2*(int(totals[1-own][0])-int(totals[1-own][2])):continue
-        stamp=next((datetime.strptime(date[0],f).date().isoformat() for f in ['%m/%d/%y'] if len(date[0].split('/')[-1])==2),None)
+        stamp=datetime.strptime(date[0].replace('-','/'),'%m/%d/%y').date().isoformat()
         if stamp:return {'date':stamp,'points':final[own],'opponent_points':final[1-own],'paint_for':a,'paint_against':b,'format':'Official whole-game StatCrew box; both scoring equations and paint bounds verified'}
     return None
+
+def duke_paint_pdf(text):
+    if 'Official Basketball Box Score -- Game Totals -- Final Statistics' not in text:return None
+    names=re.findall(r'^\s*(.*?)\s+(\d+)\s+•\s+\d+-\d+',text,re.M)
+    date=re.search(r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2}\b',text)
+    totals=re.findall(r'^\s*Totals\s+(\d+)-(\d+)\s+(\d+)-(\d+)\s+(\d+)-(\d+)',text,re.M)
+    if len(names)!=2 or len(totals)!=2 or not date:return None
+    own=next((i for i,(n,v) in enumerate(names) if n.strip().lower()=='duke'),None)
+    if own is None:return None
+    scores=[int(v) for n,v in names]
+    if any(2*int(row[0])+int(row[2])+int(row[4])!=score for row,score in zip(totals,scores)):return None
+    tail=text.split('Score by periods')[-1]
+    if 'Paint' not in tail:return None
+    values={code:int(paint) for code,paint,*other in re.findall(r'\b([A-Z]{2,4})\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*(?=\n|$)',tail)}
+    if 'DU' not in values or len(values)!=2:return None
+    a=values['DU'];b=next(value for code,value in values.items() if code!='DU')
+    if a%2 or b%2 or not 0<a<=2*(int(totals[own][0])-int(totals[own][2])) or not 0<b<=2*(int(totals[1-own][0])-int(totals[1-own][2])):return None
+    return {'date':datetime.strptime(date[0].replace('-','/'),'%m/%d/%y').date().isoformat(),
+        'points':scores[own],'opponent_points':scores[1-own],'paint_for':a,'paint_against':b,
+        'format':'Official final whole-game PDF; both team scoring equations and paint bounds verified'}
 
 def main():
     report={}
@@ -77,11 +97,20 @@ def main():
     def one(item):
         year,g=item;day=datetime.fromisoformat(g['date'].replace('Z','+00:00')).astimezone(ZoneInfo('America/New_York')).date()
         url=f'https://static.goduke.com/custompages/stats/{int(year)-1}-{str(year)[-2:]}/basketball-m/du{day:%m%d}.htm'
-        try:
-            with urllib.request.urlopen(url,timeout=20) as response:box=duke_paint(response.read().decode('utf-8','replace'))
-            if box and box['date']==day.isoformat() and box['points']==g['points'] and box['opponent_points']==g['opponent_points']:
-                return {**box,'year':year,'game_id':str(g['id']),'team':'duke-blue-devils','source':url}
-        except Exception:return None
+        for source in [url,url[:-4]+'.pdf']:
+            try:
+                with urllib.request.urlopen(source,timeout=20) as response:body=response.read()
+                if source.endswith('.pdf'):
+                    if not body.startswith(b'%PDF'):continue
+                    with tempfile.TemporaryDirectory() as tmp:
+                        p=Path(tmp)/'box.pdf';p.write_bytes(body)
+                        text=subprocess.check_output(['pdftotext','-f','1','-l','1','-layout',str(p),'-'],text=True)
+                    box=duke_paint_pdf(text)
+                else:box=duke_paint(body.decode('utf-8','replace'))
+                if box and box['date']==day.isoformat() and box['points']==g['points'] and box['opponent_points']==g['opponent_points']:
+                    return {**box,'year':year,'game_id':str(g['id']),'team':'duke-blue-devils','source':source}
+            except Exception:continue
+        return None
     gap_years={r['season'] for r in json.loads((ROOT/'data/cbb/paint-coverage-report.json').read_text())['remaining_gaps'] if r['team']=='duke-blue-devils'}
     todo=[(year,g) for year,s in d['seasons'].items() if year in gap_years for g in s['phases']['regular']['games'] if g.get('status')=='final' and ('duke-blue-devils',str(g['id'])) not in known]
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:records=[r for r in pool.map(one,todo) if r]
@@ -95,7 +124,7 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             save(Path(tmp)/'official-paint-shard-0.json',{'records':records,'audit':{'verified_static_statcrew':len(records)},'teams':[]})
             merge(SimpleNamespace(input_dir=tmp,shards=1))
-    counts=Counter()
+    counts=Counter(blank_player_tables=0,explicit_partial_player_tables=0)
     for p in (ROOT/'data/cbb/teams').glob('*.json'):
         arc=json.loads(p.read_text())
         for year,season in arc['seasons'].items():
