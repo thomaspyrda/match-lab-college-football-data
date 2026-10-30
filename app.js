@@ -581,15 +581,21 @@ $("dateFilters").addEventListener("click", (e) => {
   activeDate = b.dataset.date;
   renderSlate();
 });
-$("games").addEventListener("click", (e) => {
-  const b = e.target.closest(".game");
-  if (!b) return;
-  selected = upcoming.games.find((g) => g.game_id === b.dataset.id);
-  renderSlate();
-  $("selectedGame").innerHTML =
-    `Selected: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
-  $("marketSection").hidden = true;
-  match("unified");
+$("games").addEventListener("click",e=>{
+ const button=e.target.closest(".game");if(!button)return;
+ selected=upcoming.games.find(g=>String(g.game_id)===String(button.dataset.id));
+ if(!selected)return;
+ renderSlate();
+ $("seeMatchesButton").disabled=false;
+ $("selectedMatchupStatus").textContent=`Selected: ${selected.away} at ${selected.home}. Click SEE MATCHES to compare historical games.`;
+ $("resultsSection").hidden=true;
+});
+$("seeMatchesButton").addEventListener("click",async()=>{
+ if(!selected)return;
+ const button=$("seeMatchesButton");button.disabled=true;button.textContent="FINDING MATCHES…";
+ $("resultsSection").hidden=false;
+ $("resultsSection").scrollIntoView({behavior:"smooth",block:"start"});
+ try{await match("unified");}catch(error){console.error(error);$("summary").innerHTML="";$("matches").innerHTML='<div class="empty-state">Unable to load historical matches right now. Please retry.</div>';}finally{button.disabled=false;button.textContent="SEE MATCHES";}
 });
 
 document
