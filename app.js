@@ -1,7 +1,7 @@
 const $ = (x) => document.getElementById(x);
 let upcoming,
   selected,
-  market,
+  market = "unified",
   historical = [],
   activeDate = "all",
   historySeason = new Date().getFullYear();
@@ -38,7 +38,7 @@ function line(g) {
   return `<span>${g.spread == null ? "Spread unavailable" : g.home + " " + (g.spread > 0 ? "+" : "") + g.spread}</span><span>${g.home_moneyline == null ? "ML unavailable" : g.home + " " + odds(g.home_moneyline)}</span><span>${g.over_under == null ? "Total unavailable" : "O/U " + g.over_under}</span>`;
 }
 function teamRow(name, id, p) {
-  return `<div class="team">${logo(name, id)}<span class="team-copy"><b>${name}</b>${strengthMeta(p)}</span></div>`;
+  return `<div class="team">${logo(name, id)}<span class="team-copy"><b>${name}</b></span></div>`;
 }
 function gameCard(g) {
   return `<button class="game${selected?.game_id === g.game_id ? " selected" : ""}" data-id="${g.game_id}"><div class="date">${new Date(g.start_date).toLocaleString([], { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</div><div class="teams">${teamRow(g.away, g.away_id, g.away_profile)}<span class="at">at</span>${teamRow(g.home, g.home_id, g.home_profile)}</div><div class="lines">${line(g)}</div></button>`;
@@ -117,13 +117,14 @@ function selectHistoricalGame(gameId) {
   if (!selected) return;
   $("selectedGame").innerHTML =
     `Selected past CFB game: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
-  $("marketSection").hidden = false;
-  $("resultsSection").hidden = true;
-  $("marketSection").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("marketSection").hidden = true;
+  match("unified");
 }
 async function init() {
   try {
     upcoming = await get("data/upcoming.json");
+    const now=Date.now(),end=now+7*86400000;
+    upcoming.games=upcoming.games.filter(g=>{const kickoff=Date.parse(g.start_date);return Number.isFinite(kickoff)&&kickoff>=now&&kickoff<end;});
     $("status").textContent = upcoming.games.length
       ? `${upcoming.games.length} games available in the next seven days`
       : "No games are currently scheduled in the next seven days.";
@@ -181,9 +182,7 @@ function features(g, m) {
     base["home_" + k] = hp.advanced?.[k] ?? null;
     base["away_" + k] = ap.advanced?.[k] ?? null;
   });
-  if (m === "spread") return { ...base, line: g.spread };
-  if (m === "total") return { ...base, total: g.over_under };
-  return base;
+  return { ...base, line: g.spread, total: g.over_under };
 }
 const specs = {
   line: [14, 18],
@@ -211,49 +210,7 @@ ADVANCED.forEach((k) => {
 function similarity(a, b, m) {
   const A = features(a, m),
     B = features(b, m),
-    core =
-      m === "spread"
-        ? [
-            "line",
-            "strengthGap",
-            "homeStrength",
-            "awayStrength",
-            "homeWinRate",
-            "awayWinRate",
-            "conference",
-            "neutral",
-            "homeLoss",
-            "awayLoss",
-            "homeFbs",
-            "awayFbs",
-          ]
-        : m === "total"
-          ? [
-              "total",
-              "homePts",
-              "awayPts",
-              "homeAllow",
-              "awayAllow",
-              "strengthGap",
-              "homeStrength",
-              "awayStrength",
-              "conference",
-              "homeFbs",
-              "awayFbs",
-            ]
-          : [
-              "strengthGap",
-              "homeStrength",
-              "awayStrength",
-              "homeWinRate",
-              "awayWinRate",
-              "conference",
-              "neutral",
-              "homeLoss",
-              "awayLoss",
-              "homeFbs",
-              "awayFbs",
-            ],
+    core = ["line","total","strengthGap","homeStrength","awayStrength","homeWinRate","awayWinRate","homePts","awayPts","homeAllow","awayAllow","conference","neutral","homeLoss","awayLoss","homeFbs","awayFbs"],
     keys = core.concat(ADVANCED.flatMap((k) => ["home_" + k, "away_" + k]));
   let earned = 0,
     used = 0,
@@ -285,9 +242,9 @@ function why(g) {
       selected.away_profile.strength_score,
       g.away_profile.strength_score,
     );
-  if (market === "spread" && sd != null && sd <= 3)
+  if (sd != null && sd <= 3)
     r.push(`Point spreads are within ${sd} points`);
-  if (market === "total" && td != null && td <= 6)
+  if (td != null && td <= 6)
     r.push(`Market totals are within ${td} points`);
   if (
     selected.home_profile.classification === g.home_profile.classification &&
@@ -326,9 +283,9 @@ function differences(g) {
       selected.away_profile.strength_score,
       g.away_profile.strength_score,
     );
-  if (market === "spread" && sd != null && sd > 3)
+  if (sd != null && sd > 3)
     r.push(`Point spreads differ by ${sd} points`);
-  if (market === "total" && td != null && td > 6)
+  if (td != null && td > 6)
     r.push(`Market totals differ by ${td} points`);
   if (hd != null && hd > 10)
     r.push(`Home-team strength differs by ${hd} percentile points`);
@@ -382,21 +339,16 @@ function structurallyCompatible(a, b, m) {
   const profileDistance = advancedProfileDistance(a, b);
   if (profileDistance != null && profileDistance > 24) return false;
 
-  if (m === "spread") {
-    const d = dist(a.spread, b.spread);
-    if (d != null && d > 7.5) return false;
-  }
-  if (m === "total") {
-    const d = dist(a.over_under, b.over_under);
-    if (d != null && d > 10) return false;
-  }
+  const sd=dist(a.spread,b.spread),td=dist(a.over_under,b.over_under);
+  if(sd!=null&&sd>7.5)return false;
+  if(td!=null&&td>10)return false;
   return true;
 }
 async function match(m) {
   market = m;
   $("resultsSection").hidden = false;
   $("resultTitle").textContent =
-    `${selected.away} at ${selected.home} · ${m === "total" ? "O/U Total" : m[0].toUpperCase() + m.slice(1)}`;
+    `${selected.away} at ${selected.home} · Historical comparisons`;
 
   if (!researchableGame(selected)) {
     $("summary").innerHTML = "";
@@ -413,8 +365,10 @@ async function match(m) {
         g.result &&
         researchableGame(g) &&
         g.game_id !== selected.game_id &&
-        (m !== "spread" || g.spread != null) &&
-        (m !== "total" || g.over_under != null) &&
+        g.over_under != null && Number.isFinite(Number(g.over_under)) &&
+        ["over","under","push"].includes(String(g.result?.total).toLowerCase()) &&
+        Number.isFinite(Number(g.result?.home_points)) && Number.isFinite(Number(g.result?.away_points)) &&
+        (Number(g.result.away_points)+Number(g.result.home_points)>Number(g.over_under) ? g.result.total==="over" : Number(g.result.away_points)+Number(g.result.home_points)<Number(g.over_under) ? g.result.total==="under" : g.result.total==="push") &&
         structurallyCompatible(selected, g, m),
     )
     .map((g) => ({ g, s: similarity(selected, g, m) }))
@@ -548,18 +502,9 @@ function marketFactors(g) {
     ],
   ];
 }
-function marketSnapshot(researched, historicalGame) {
-  const label =
-      market === "total"
-        ? "O/U Total"
-        : market[0].toUpperCase() + market.slice(1),
-    card = (game, title) =>
-      `<section><small>${title}</small>${marketFactors(game)
-        .map(
-          ([name, value]) => `<div><span>${name}</span><b>${value}</b></div>`,
-        )
-        .join("")}</section>`;
-  return `<div class="market-focus"><h4>${label} Factors</h4><p>These inputs receive extra emphasis for the selected market.</p><div>${card(researched, "Researched Game")}${card(historicalGame, "Historical Match")}</div></div>`;
+function marketSnapshot(researched,historicalGame){
+ const card=(g,title)=>`<section><small>${title}</small><div><span>Spread</span><b>${g.spread==null?"—":g.home+" "+signed(g.spread)}</b></div><div><span>Total</span><b>${g.over_under==null?"—":g.over_under}</b></div><div><span>Team Strength</span><b>${g.away} ${g.away_profile?.strength_score??"—"} · ${g.home} ${g.home_profile?.strength_score??"—"}</b></div></section>`;
+ return `<div class="market-focus"><h4>Pregame matchup context</h4><p>One consistent similarity model across spread, total and team performance.</p><div>${card(researched,"Researched Game")}${card(historicalGame,"Historical Match")}</div></div>`;
 }
 function matchLabel(s) {
   return s >= 80
@@ -592,15 +537,17 @@ function renderMatches(xs) {
   let hc = 0,
     ac = 0,
     o = 0,
-    u = 0;
+    u = 0,
+    pushes = 0;
   for (const { g } of xs) {
     if (g.result.ats === "home_cover") hc++;
     if (g.result.ats === "away_cover") ac++;
     if (g.result.total === "over") o++;
     if (g.result.total === "under") u++;
+    if (g.result.total === "push") pushes++;
   }
   $("summary").innerHTML =
-    `<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}</b><span>Over–Under</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;
+    `<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}</b><span>Over–Under${pushes ? " (+" + pushes + " push)" : ""}</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;
   $("matches").innerHTML = xs
     .map(
       ({ g, s }, i) =>
@@ -621,9 +568,8 @@ $("games").addEventListener("click", (e) => {
   renderSlate();
   $("selectedGame").innerHTML =
     `Selected: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
-  $("marketSection").hidden = false;
-  $("resultsSection").hidden = true;
-  $("marketSection").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("marketSection").hidden = true;
+  match("unified");
 });
 document.querySelector(".markets").addEventListener("click", (e) => {
   const b = e.target.closest("button");
