@@ -24,7 +24,14 @@ function metricCard(m){
  const line=(t,v)=>`<div class="metric-team" style="--team-color:${esc(readableTeamColor(t))};--rank-color:${esc(globalThis.betwiseRankColor?.(t,'mlb')||readableTeamColor(t))}"><span class="metric-team-name">${logo(t,'metric-logo')}<b>${esc(t.abbr)}</b></span><span class="metric-number">${fmt(v?.value,m.suffix)}</span><span class="metric-rank"><b>${v&&v.population>1?'#'+v.rank:'—'}</b><small>${v?`of ${v.population}`:'No sample'}</small></span><span class="metric-track"><i style="width:${v?.percentile??0}%"></i></span></div>`;
  return `<article class="metric-card" data-unit="${BetWiseDashboardUX.unit(m.unit)}"><div class="metric-title"><span><small class="metric-kicker">${m.unit} METRIC</small><span class="metric-name">${esc(m.label)}${help((m.note||HELP[m.key]||m.label)+' Rankings include only teams with a completed sample in this season type. Missing samples are unranked.',m.label)}</span></span><span class="rank-heading"><i>SEASON STAT</i><b>MLB RANK</b></span></div>${line(selectedGame.away,m.away)}${line(selectedGame.home,m.home)}</article>`;
 }
-function season(t){const p=t.profile;return `<article class="season-team" style="--team-color:${esc(readableTeamColor(t))}"><div class="season-team-head">${logo(t,'season-team-logo')}<b>${esc(t.abbr)}</b></div><div class="season-stats"><span><strong>${p.record}</strong><small>Record · ${p.games} games</small></span><span><strong>${fmt(p.ppg)}</strong><small>Runs / G</small></span><span><strong>${fmt(p.allowed)}</strong><small>Runs Allowed / G</small></span></div></article>`}
+function seasonMarketRecord(team,type){
+ const p=team.profile||{};let r=p.season_market?.[type];
+ if(!r&&p.location_markets){const rows=Object.values(p.location_markets).map(x=>x[type]).filter(Boolean);r=Object.fromEntries(['wins','losses','overs','unders','pushes','lined_games'].map(k=>[k,rows.reduce((n,x)=>n+(Number(x[k])||0),0)]));}
+ if(!r&&p.games<=5)r=p.last5_market?.[type];
+ if(!r?.lined_games)return '—';
+ return `${type==='ats'?r.wins:r.overs}–${type==='ats'?r.losses:r.unders}${r.pushes?'–'+r.pushes:''}`;
+}
+function season(t){const p=t.profile;return `<article class="season-team" style="--team-color:${esc(readableTeamColor(t))}"><div class="season-team-head">${logo(t,'season-team-logo')}<b>${esc(t.abbr)}</b></div><div class="season-stats"><span><strong>${p.record}</strong><small>Record · ${p.games} games</small></span><span><strong>${fmt(p.ppg)}</strong><small>Runs / G</small></span><span><strong>${fmt(p.allowed)}</strong><small>Runs Allowed / G</small></span><span title="Season covers–noncovers–pushes"><strong>${seasonMarketRecord(t,'ats')}</strong><small>Season Run Line (ATS)</small></span><span title="Season overs–unders–pushes"><strong>${seasonMarketRecord(t,'ou')}</strong><small>Season O/U</small></span></div></article>`}
 function lineupTable(t){
  const rows=t.lineup||[],p=t.probable_stats||{};
  const whole=v=>v==null||v===''?'—':Number.isFinite(Number(v))?Math.round(Number(v)).toLocaleString('en-US'):'—';

@@ -46,7 +46,8 @@ const HELP={
 "Red Zone TD Rate":"Percentage of red-zone trips that end in touchdowns. Higher is better.",
 "Red Zone TD Defense":"Percentage of opponent red-zone trips that end in touchdowns. Lower is better."
 };
-function season(t,i){const f=t.form||{};return `<article class="season-team" style="--team-color:${color(t,i)}"><div class="season-team-head">${teamLogo(t,"season-team-logo")}<b>${esc(abbr(t))}</b></div><div class="season-stats"><span><strong>${esc(t.record||"—")}</strong><small>Record</small></span><span><strong>${f.avg_points??"—"}</strong><small>PPG</small></span><span><strong>${f.avg_allowed??"—"}</strong><small>PPG Allowed</small></span></div></article>`}
+function seasonMarketRecord(team,type){const row=(selectedGame.market_trends||[]).find(r=>r.label===(type==='ats'?'ATS this season':'O/U this season')||(type==='ou'&&r.label==='Over/under this season'));return row?.[team===selectedGame.away?'away':'home']||'—'}
+function season(t,i){const f=t.form||{};return `<article class="season-team" style="--team-color:${color(t,i)}"><div class="season-team-head">${teamLogo(t,"season-team-logo")}<b>${esc(abbr(t))}</b></div><div class="season-stats"><span><strong>${esc(t.record||"—")}</strong><small>Record</small></span><span><strong>${f.avg_points??"—"}</strong><small>PPG</small></span><span><strong>${f.avg_allowed??"—"}</strong><small>PPG Allowed</small></span><span><strong>${esc(seasonMarketRecord(t,"ats"))}</strong><small>Season ATS</small></span><span><strong>${esc(seasonMarketRecord(t,"ou"))}</strong><small>Season O/U</small></span></div></article>`}
 function metricCard(m,type){
  const isOff=type==="offense";
  const kicker=isOff?"OFFENSE":"DEFENSE";

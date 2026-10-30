@@ -179,6 +179,46 @@ def current_phase_player_stats(espn_teams,year,phase):
  return dict(ThreadPoolExecutor(5).map(query,espn_teams.items()))
 
 
+def season_market_records(year,phase,now,team_ids):
+ """All completed games in this season type; missing quotes never count as losses."""
+ empty=lambda:{'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}}
+ totals={tid:empty() for tid in team_ids}
+ if not team_ids:return totals
+ # Monthly requests avoid truncating a full MLB season at the provider's event limit.
+ dates=[]
+ for month in range(1,now.month+1):
+  start=datetime(year,month,1,tzinfo=UTC)
+  end=(datetime(year+1,1,1,tzinfo=UTC) if month==12 else datetime(year,month+1,1,tzinfo=UTC))-timedelta(days=1)
+  dates.append(start.strftime('%Y%m%d')+'-'+min(end,now).strftime('%Y%m%d'))
+ boards=list(ThreadPoolExecutor(8).map(lambda dates:get('scoreboard?limit=1000&dates='+dates),dates))
+ events={e['id']:e for board in boards for e in board.get('events',[]) if e.get('season',{}).get('year')==year and e.get('season',{}).get('type')==phase and e['status']['type'].get('completed') and stamp(e['date'])<=now and any(c['team']['id'] in team_ids for c in e['competitions'][0]['competitors'])}
+ cache_path=ROOT/f'mlb/dashboard/data/season-market-cache-{year}-{phase}.json'
+ cache=json.loads(cache_path.read_text()) if cache_path.exists() else {}
+ def quote_for(e):
+  cached=cache.get(e['id'])
+  if cached is not None:return e['id'],cached
+  d=get('summary?event='+e['id'],True);quotes=d.get('pickcenter',[])
+  if not quotes:return e['id'],None
+  q=quotes[0]
+  return e['id'],{k:q[k] for k in ('overUnder','spread','homeTeamOdds','awayTeamOdds') if k in q}
+ quotes=dict(ThreadPoolExecutor(8).map(quote_for,events.values()))
+ cache.update({i:q for i,q in quotes.items() if q})
+ cache_path.parent.mkdir(parents=True,exist_ok=True);cache_path.write_text(json.dumps(cache,separators=(',',':'))+'\n')
+ for game_id,e in events.items():
+  q=quotes.get(game_id) or {};comp=e['competitions'][0]
+  for own in comp['competitors']:
+   tid=own['team']['id']
+   if tid not in totals:continue
+   opp=next(c for c in comp['competitors'] if c is not own);a=float(own['score']);b=float(opp['score']);r=totals[tid]
+   if q.get('overUnder') is not None:
+    margin=a+b-float(q['overUnder']);row=r['ou'];row['lined_games']+=1;row['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+   homefav=q.get('homeTeamOdds',{}).get('favorite');awayfav=q.get('awayTeamOdds',{}).get('favorite')
+   if q.get('spread') is not None and (homefav or awayfav):
+    home_spread=-abs(float(q['spread'])) if homefav else abs(float(q['spread']))
+    margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread);row=r['ats'];row['lined_games']+=1;row['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+ return totals
+
+
 def main():
  now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();year=today.year
  teams={str(t['espn_id']):t for t in json.loads((ROOT/'data/sports/team-registry.json').read_text())['teams'] if t['sport']=='mlb'}
@@ -216,6 +256,8 @@ def main():
     home_spread=-abs(float(spread)) if homefav else abs(float(spread));margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread)
     r=p['last5_market']['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
  ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
+ season_markets=season_market_records(year,phase,now,ids)
+ for tid,records in season_markets.items():profiles[tid]['season_market']=records
  player_stats=current_phase_player_stats({tid:teams[tid] for tid in ids},year,phase)
  def lineup_for(e):
   allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}

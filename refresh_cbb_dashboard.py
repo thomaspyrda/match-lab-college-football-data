@@ -132,8 +132,18 @@ def profile(team_id,history,cutoff):
         total=market.get('total')
         if total is not None:
             margin=own['points']+opp['points']-total;r=market_records['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+    season_market={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':n}
+    for g in games:
+        market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
+        if not market or stamp(market['observed_at'])>cutoff:continue
+        spread=market.get('home_spread')
+        if spread is not None:
+            margin=own['points']-opp['points']+(spread if g['home']==team_id else -spread);r=season_market['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+        total=market.get('total')
+        if total is not None:
+            margin=own['points']+opp['points']-total;r=season_market['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
     return {'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
-      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'last_game_date':games[-1]['date'] if games else None}
+      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'season_market':season_market,'last_game_date':games[-1]['date'] if games else None}
 
 def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
