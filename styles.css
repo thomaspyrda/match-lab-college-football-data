@@ -1045,3 +1045,10 @@ footer {
 .see-matches-button:hover:not(:disabled),.see-matches-button:focus-visible:not(:disabled){background:#5aff7d;transform:translateY(-1px)}
 .see-matches-button:disabled{opacity:.48;cursor:not-allowed}
 #selectedMatchupStatus{margin:10px auto 0;color:#aaa;font-size:13px}
+
+/* Prominent CTA, outside the schedule panel */
+#seeMatchesAction.see-matches-wrap{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:26px auto 58px;padding:0 20px;text-align:center}
+#seeMatchesAction[hidden]{display:none!important}
+#seeMatchesAction .see-matches-button{width:min(100%,580px);min-height:64px;border-radius:999px;background:#00ff41;color:#061609;font:900 clamp(17px,2vw,21px)/1.1 "DM Sans",sans-serif;letter-spacing:.09em;box-shadow:0 6px 24px rgba(0,255,65,.16)}
+#seeMatchesAction .see-matches-button:disabled{opacity:.7;background:#00ff41;color:#061609}
+#seeMatchesAction #selectedMatchupStatus{margin-top:12px;font-size:13px}
