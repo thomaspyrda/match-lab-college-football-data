@@ -182,7 +182,7 @@ def current_phase_player_stats(espn_teams,year,phase):
 def season_market_records(year,phase,now,team_ids):
  """All completed games in this season type; missing quotes never count as losses."""
  empty=lambda:{'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}}
- totals={tid:empty() for tid in team_ids}
+ totals={tid:dict(empty(),locations={place:dict(empty(),games=0,wins=0,losses=0,points=0,ppg=None) for place in ('Home','Away','Neutral')}) for tid in team_ids}
  if not team_ids:return totals
  # Monthly requests avoid truncating a full MLB season at the provider's event limit.
  dates=[]
@@ -210,12 +210,13 @@ def season_market_records(year,phase,now,team_ids):
    tid=own['team']['id']
    if tid not in totals:continue
    opp=next(c for c in comp['competitors'] if c is not own);a=float(own['score']);b=float(opp['score']);r=totals[tid]
+   place='Neutral' if comp.get('neutralSite') else own['homeAway'].title();loc=r['locations'][place];loc['games']+=1;loc['wins']+=int(a>b);loc['losses']+=int(a<b);loc['points']+=a;loc['ppg']=round(loc['points']/loc['games'],1)
    if q.get('overUnder') is not None:
-    margin=a+b-float(q['overUnder']);row=r['ou'];row['lined_games']+=1;row['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+    margin=a+b-float(q['overUnder']);row=r['ou'];row['lined_games']+=1;row['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1;loc['ou']['lined_games']+=1;loc['ou']['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
    homefav=q.get('homeTeamOdds',{}).get('favorite');awayfav=q.get('awayTeamOdds',{}).get('favorite')
    if q.get('spread') is not None and (homefav or awayfav):
     home_spread=-abs(float(q['spread'])) if homefav else abs(float(q['spread']))
-    margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread);row=r['ats'];row['lined_games']+=1;row['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+    margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread);row=r['ats'];row['lined_games']+=1;row['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1;loc['ats']['lined_games']+=1;loc['ats']['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
  return totals
 
 
@@ -257,7 +258,7 @@ def main():
     r=p['last5_market']['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
  ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
  season_markets=season_market_records(year,phase,now,ids)
- for tid,records in season_markets.items():profiles[tid]['season_market']=records
+ for tid,records in season_markets.items():profiles[tid]['location_markets']=records.pop('locations');profiles[tid]['season_market']=records
  player_stats=current_phase_player_stats({tid:teams[tid] for tid in ids},year,phase)
  def lineup_for(e):
   allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
@@ -287,5 +288,6 @@ def main():
   odds=comp.get('odds',[]);line=odds[0] if odds else {};tip=stamp(e['date'])
   out.append({'id':e['id'],'date':e['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),'status':e['status']['type']['description'],'away':team(a),'home':team(h),'metrics':[{'key':k,'label':label,'unit':unit,'high':high,'suffix':suffix,'note':note,'away':ranks[k].get(a),'home':ranks[k].get(h)} for k,label,unit,high,suffix,note in METRICS],'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':line.get('provider',{}).get('name'),'observed_at':now.isoformat() if line else None},'source':'https://www.espn.com/mlb/game/_/gameId/'+e['id'],'profile_cutoff':now.isoformat()})
  data={'schema_version':1,'season':str(year),'season_type':{1:'Preseason',2:'Regular season',3:'Postseason'}[phase],'updated_at':now.isoformat(),'completed_games':len(past),'games':out,'coverage':{'refresh':'Hourly snapshot, not a live scoreboard'},'methodology':'Current ESPN season totals in the selected season type. Rankings include only teams with a completed sample; postseason and regular season are never combined. Upcoming games only; these snapshots are not historical pregame profiles. Recent form uses observed final results in the last eight calendar days, up to five games. Run-line and total records use available ESPN published historical quotes; missing lines are excluded and closing status is not independently verified.'}
+ (ROOT/'mlb/dashboard/data/location-records.json').write_text(json.dumps({'updated_at':now.isoformat(),'teams':{tid:p.get('location_markets',{}) for tid,p in profiles.items()}},separators=(',',':'))+'\n')
  dest=ROOT/'mlb/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,separators=(',',':'))+'\n');print(f"MLB {data['season_type']}: {len(out)} upcoming matchups, {len(past)} recent final games, {sum(p['games']>0 for p in profiles.values())} ranked teams")
 if __name__=='__main__':main()

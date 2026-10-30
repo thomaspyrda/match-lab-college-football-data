@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cfb-dashboard-preview/data/dashboard.json
+          git add cfb-dashboard-preview/data/dashboard.json cfb-dashboard-preview/data/location-records.json
           git diff --cached --quiet && exit 0
           git commit -m "Refresh CFB Dashboard seven-day schedule only"
           git pull --rebase -X theirs origin main

@@ -57,7 +57,7 @@ def main():
         rows = request("/games", year=year, seasonType="regular", week=week)
         for g in rows:
             kickoff = parse_date(g.get("startDate"))
-            if kickoff and kickoff < now and g.get("homePoints") is not None and g.get("awayPoints") is not None:
+            if g.get("completed") and kickoff and kickoff < now and g.get("homePoints") is not None and g.get("awayPoints") is not None:
                 home, away = g.get("homeTeam"), g.get("awayTeam")
                 if home and away:
                     for school, opponent, location, scored, allowed in (
@@ -65,7 +65,7 @@ def main():
                         (away, home, "A", g["awayPoints"], g["homePoints"]),
                     ):
                         entry = {
-                            "week": g.get("week"), "opponent": opponent, "location": location,
+                            "week": g.get("week"), "opponent": opponent, "location": "N" if g.get("neutralSite") else location,
                             "start_date": g["startDate"],
                             "result": "W" if scored > allowed else ("L" if scored < allowed else "T"),
                             "points": scored, "allowed": allowed, "opponent_abbr": None,
@@ -97,8 +97,14 @@ def main():
 
     # Refresh each team's completed-game history as well as the upcoming schedule.
     # Otherwise cached form data grows stale and "Rest before kickoff" becomes inflated.
+    location_splits = {}
     for key, history in completed_by_team.items():
         history.sort(key=lambda x: x["start_date"])
+        location_splits[key] = {}
+        for code, place in (("H", "Home"), ("A", "Away"), ("N", "Neutral")):
+            rows = [g for g in history if g["location"] == code]
+            wins=sum(g["result"] == "W" for g in rows);losses=sum(g["result"] == "L" for g in rows);ties=sum(g["result"] == "T" for g in rows)
+            location_splits[key][place] = {"games":len(rows),"record":f"{wins}–{losses}"+(f"–{ties}" if ties else ""),"ppg":round(sum(g["points"] for g in rows)/len(rows),1) if rows else None}
         completed_by_team[key] = history[-5:]
 
     def fresh_team(old, name):
@@ -108,6 +114,7 @@ def main():
         form["last_five"] = history
         if history:
             form["coming_off_loss"] = history[-1]["result"] == "L"
+        result["location_splits"] = location_splits.get(canon(name), {})
         result["form"] = form
         return result
 
@@ -140,6 +147,7 @@ def main():
     existing["slate"]["schedule_source"] = "CFBD /games weekly; FBS membership"
     existing["slate"]["window_utc"] = {"start": now.isoformat(), "end": end.isoformat()}
     existing["slate"]["schedule_count"] = len(games)
+    (OUT.parent/'location-records.json').write_text(json.dumps({'updated_at':now.isoformat(),'teams':{str(t.get('espn_id')):t.get('location_splits',{}) for g in games for t in (g['away'],g['home'])}},separators=(',',':'))+'\n')
     OUT.write_text(json.dumps(existing, separators=(",", ":"), ensure_ascii=False), encoding="utf-8")
     counts = {}
     for g in games:

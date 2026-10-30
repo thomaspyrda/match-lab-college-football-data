@@ -132,18 +132,21 @@ def profile(team_id,history,cutoff):
         total=market.get('total')
         if total is not None:
             margin=own['points']+opp['points']-total;r=market_records['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+    location_markets={place:{'games':0,'wins':0,'losses':0,'points':0,'ppg':None,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away','Neutral')}
     season_market={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':n}
     for g in games:
         market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
+        place='Neutral' if g.get('neutral') else ('Home' if g['home']==team_id else 'Away');loc=location_markets[place]
+        loc['games']+=1;loc['wins']+=int(own['points']>opp['points']);loc['losses']+=int(own['points']<opp['points']);loc['points']+=own['points'];loc['ppg']=round(loc['points']/loc['games'],1)
         if not market or stamp(market['observed_at'])>cutoff:continue
         spread=market.get('home_spread')
         if spread is not None:
-            margin=own['points']-opp['points']+(spread if g['home']==team_id else -spread);r=season_market['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
+            margin=own['points']-opp['points']+(spread if g['home']==team_id else -spread);r=season_market['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1;loc['ats']['lined_games']+=1;loc['ats']['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
         total=market.get('total')
         if total is not None:
-            margin=own['points']+opp['points']-total;r=season_market['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
+            margin=own['points']+opp['points']-total;r=season_market['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1;loc['ou']['lined_games']+=1;loc['ou']['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
     return {'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
-      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'season_market':season_market,'last_game_date':games[-1]['date'] if games else None}
+      'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'season_market':season_market,'location_markets':location_markets,'last_game_date':games[-1]['date'] if games else None}
 
 def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
@@ -213,6 +216,8 @@ def main():
     data={'schema_version':1,'season':f'{season-1}–{str(season)[2:]}','season_type':{1:'Preseason',2:'Regular season',3:'Playoffs'}[latest_phase],'updated_at':refreshed.isoformat(),
       'completed_games':len(history),'games':output,'coverage':{'bpm':'Unavailable from this feed','vorp':'Unavailable from this feed','injuries':'Not yet connected; verify current availability','refresh':'Hourly snapshot, not a live scoreboard'},
       'methodology':'Ratings use estimated possessions: average of both teams’ FGA − OREB + TO + 0.44 × FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.'}
+    location_payload={'updated_at':refreshed.isoformat(),'teams':{str(t['id']):t['profile'].get('location_markets',{}) for g in output for t in (g['away'],g['home'])}}
+    (ROOT/'cbb/dashboard/data/location-records.json').write_text(json.dumps(location_payload,separators=(',',':'))+'\n')
     dest=ROOT/'cbb/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(compact(data),separators=(',',':'))+'\n');cache_path.write_text(json.dumps({'schema_version':1,'games':list(old.values())},indent=2)+'\n')
     assert len(teams)>=350,'CBB registry incomplete'
     print(f"CBB {data['season_type']}: {len(output)} matchups, {len(history)} completed games, {sum(len(g['players'].get(i,[])) for g in history for i in g['players'])} player game records")

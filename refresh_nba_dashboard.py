@@ -41,10 +41,13 @@ def scoreboard_day(day, today):
         return {'events':[]}
 
 def location_market_records(games,team_id,cutoff):
-    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away')}
+    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away','Neutral')}
     for g in games:
-        place='Home' if g['home']==team_id else 'Away'
+        place='Neutral' if g.get('neutral') else ('Home' if g['home']==team_id else 'Away')
         row=result[place];row['games']+=1
+        own_points=g['teams'][team_id]['points'];opp_points=g['teams'][next(i for i in g['teams'] if i!=team_id)]['points']
+        row['wins']=row.get('wins',0)+int(own_points>opp_points);row['losses']=row.get('losses',0)+int(own_points<opp_points)
+        row['points']=row.get('points',0)+own_points;row['ppg']=round(row['points']/row['games'],1)
         market=verified_closing_market(g)
         if not market or stamp(market['observed_at'])>cutoff:continue
         own=g['teams'][team_id]['points'];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]['points']
@@ -276,6 +279,8 @@ def main():
     freshness={'checked_at':refreshed.isoformat(),'checked_through':str(today-timedelta(days=1)),'expected_previous_day_games':sorted(required)}
     data['freshness']=freshness
     assert len(teams)==30,'Expected all 30 NBA teams'
+    location_payload={'updated_at':refreshed.isoformat(),'teams':{str(t['id']):t['profile'].get('location_markets',{}) for g in output for t in (g['away'],g['home'])}}
+    (ROOT/'nba/dashboard/data/location-records.json').write_text(json.dumps(location_payload,separators=(',',':'))+'\n')
     dest=ROOT/'nba/dashboard/data/dashboard.json';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(data,indent=2)+'\n');cache_path.write_text(json.dumps({'schema_version':1,'freshness':freshness,'games':list(old.values())},indent=2)+'\n')
     print(f"NBA {data['season_type']}: {len(output)} matchups, {len(history)} completed games, {sum(len(g['players'].get(i,[])) for g in history for i in g['players'])} player game records")
 
