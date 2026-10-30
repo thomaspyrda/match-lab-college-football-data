@@ -117,7 +117,7 @@ function selectHistoricalGame(gameId) {
   if (!selected) return;
   $("selectedGame").innerHTML =
     `Selected past CFB game: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleString()}`;
-  $("marketSection").hidden = true;
+  $("resultsSection").hidden = false;
   match("unified");
 }
 async function init() {
@@ -141,6 +141,7 @@ async function init() {
           home_moneyline:m.home_moneyline??prior?.home_moneyline??null,away_moneyline:m.away_moneyline??prior?.away_moneyline??null};
       })};
     } else {upcoming=saved;}
+    if (!Array.isArray(upcoming.games)) upcoming.games=[];
 
     const now=Date.now(),end=now+7*86400000;
     upcoming.games=upcoming.games.filter(g=>{const kickoff=Date.parse(g.start_date);return Number.isFinite(kickoff)&&kickoff>=now&&kickoff<end;});
@@ -590,10 +591,7 @@ $("games").addEventListener("click", (e) => {
   $("marketSection").hidden = true;
   match("unified");
 });
-document.querySelector(".markets").addEventListener("click", (e) => {
-  const b = e.target.closest("button");
-  if (b) match(b.dataset.market);
-});
+
 document
   .querySelector(".rail-arrow.prev")
   .addEventListener("click", () =>
