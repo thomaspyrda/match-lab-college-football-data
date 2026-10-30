@@ -1038,3 +1038,10 @@ footer {
 #games .game .lines{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
 #games .game .lines span{padding:7px 10px;border:1px solid #393939;border-radius:8px;background:#252525;color:#eee;font-size:12px;font-weight:800}
 @media(max-width:650px){#games .game{min-width:280px;max-width:310px}}
+
+/* Explicit matchup search action */
+.see-matches-wrap{text-align:center;margin:22px auto 34px;padding:0 16px}
+.see-matches-button{display:inline-flex;justify-content:center;align-items:center;min-width:220px;min-height:50px;padding:13px 27px;background:#00ff41;border:1px solid #00ff41;border-radius:10px;color:#041407;font-weight:900;letter-spacing:.07em;cursor:pointer;transition:background .15s,transform .15s}
+.see-matches-button:hover:not(:disabled),.see-matches-button:focus-visible:not(:disabled){background:#5aff7d;transform:translateY(-1px)}
+.see-matches-button:disabled{opacity:.48;cursor:not-allowed}
+#selectedMatchupStatus{margin:10px auto 0;color:#aaa;font-size:13px}
