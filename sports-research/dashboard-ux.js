@@ -37,7 +37,7 @@
  }
  function travel(t){return (t.form?.last_five||t.profile?.results||[]).slice(-5).map(r=>(['Away','A'].includes(r.location)?'@':['Neutral','N'].includes(r.location)?'vs ':'')+opponentCode(r)).join(' · ')||'—'}
  async function refresh(){
-  try{const r=await fetch('https://matchlab.parlaycalculator.bet/data/dashboard-availability/'+sport+'.json',{cache:'no-store'});if(!r.ok)throw Error();availability=await r.json();document.dispatchEvent(new CustomEvent('betwise-availability-updated'))}catch{}
+  try{const r=await fetch(config.availabilityUrl||('https://matchlab.parlaycalculator.bet/data/dashboard-availability/'+sport+'.json'),{cache:'no-store'});if(!r.ok)throw Error();availability=await r.json();document.dispatchEvent(new CustomEvent('betwise-availability-updated'))}catch{}
  }
  window.BetWiseDashboardUX={panel,travel,opponentCode,unit:v=>({BATTING:'OFFENSE',PITCHING:'DEFENSE',OFFENSIVE:'OFFENSE',DEFENSIVE:'DEFENSE'}[String(v).toUpperCase()]||String(v||'TEAM').toUpperCase())};
  refresh();setInterval(refresh,300000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
