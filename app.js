@@ -122,7 +122,26 @@ function selectHistoricalGame(gameId) {
 }
 async function init() {
   try {
-    upcoming = await get("data/upcoming.json");
+    const saved=await get("data/upcoming.json");
+    // The dashboard is the canonical seven-day slate. Preserve Match Lab pregame
+    // profiles only when the same game exists in its separately-built dataset.
+    let dashboardSlate=null;
+    try { dashboardSlate=await get("cfb-dashboard-preview/data/dashboard.json"); }
+    catch(e) { console.warn("Shared CFB slate unavailable; using dated Match Lab fallback",e); }
+    if (dashboardSlate && Array.isArray(dashboardSlate.games)) {
+      const byId=new Map(saved.games.map(g=>[String(g.game_id),g]));
+      upcoming={...saved,games:dashboardSlate.games.map(g=>{
+        const prior=byId.get(String(g.game_id));
+        const id=t=>t?.espn_id??t?.id??t?.team_id??null;
+        const p={classification:"Unknown",recent_form:{games:0},advanced:{games_played:0,metrics_available:0}};
+        const m=g.market||{};
+        return {...(prior||{}),game_id:String(g.game_id),start_date:g.kickoff,away:g.away?.name??prior?.away??"Away",home:g.home?.name??prior?.home??"Home",away_id:id(g.away)??prior?.away_id,home_id:id(g.home)??prior?.home_id,
+          away_profile:prior?.away_profile??p,home_profile:prior?.home_profile??p,
+          spread:m.home_spread??m.spread_home??prior?.spread??null,over_under:m.total??prior?.over_under??null,
+          home_moneyline:m.home_moneyline??prior?.home_moneyline??null,away_moneyline:m.away_moneyline??prior?.away_moneyline??null};
+      })};
+    } else {upcoming=saved;}
+
     const now=Date.now(),end=now+7*86400000;
     upcoming.games=upcoming.games.filter(g=>{const kickoff=Date.parse(g.start_date);return Number.isFinite(kickoff)&&kickoff>=now&&kickoff<end;});
     $("status").textContent = upcoming.games.length
