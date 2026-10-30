@@ -66,6 +66,7 @@ function renderSlate() {
 function setLabMode(mode) {
   const historyMode = mode === "history";
   $("upcomingSection").hidden = historyMode;
+  $("seeMatchesAction").hidden = historyMode;
   $("historySection").hidden = !historyMode;
   $("upcomingMode").classList.toggle("active", !historyMode);
   $("historyMode").classList.toggle("active", historyMode);
