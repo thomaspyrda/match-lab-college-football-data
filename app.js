@@ -572,7 +572,7 @@ function renderMatches(xs) {
   $("matches").innerHTML = xs
     .map(
       ({ g, s }, i) =>
-        `<details class="match" ${i === 0 ? "open" : ""}><summary><div class="matchtop"><span>#${i + 1} · ${g.season} Week ${g.week}</span><b><strong>${s}</strong><em>${matchLabel(s)}</em></b></div><div class="match-summary-teams"><span class="summary-team">${logo(g.away, g.away_id)}<span class="summary-team-copy"><strong>${g.away}</strong>${strengthMeta(g.away_profile)}</span></span><span class="summary-at">at</span><span class="summary-team">${logo(g.home, g.home_id)}<span class="summary-team-copy"><strong>${g.home}</strong>${strengthMeta(g.home_profile)}</span></span></div><div class="matchlines">${line(g)}</div></summary>${comparison(g, s)}</details>`,
+        `<details class="match"><summary><div class="matchtop"><span>#${i + 1} · ${g.season} Week ${g.week}</span><b><strong>${s}</strong><em>${matchLabel(s)}</em></b></div><div class="match-summary-teams"><span class="summary-team">${logo(g.away, g.away_id)}<span class="summary-team-copy"><strong>${g.away}</strong>${strengthMeta(g.away_profile)}</span></span><span class="summary-at">at</span><span class="summary-team">${logo(g.home, g.home_id)}<span class="summary-team-copy"><strong>${g.home}</strong>${strengthMeta(g.home_profile)}</span></span></div><div class="matchlines">${line(g)}</div></summary>${comparison(g, s)}</details>`,
     )
     .join("");
 }
