@@ -21,7 +21,7 @@
    const state=fresh?report.state:'pending',rows=state==='reported'?report.players||[]:[];
    const name=t.strength?.name||report.name||t.name||t.abbr,sourceName=report.source_name||'ESPN';
    const content=state==='reported'?(rows.length?'<div class="nba-availability-table-wrap"><table class="nba-availability-table"><thead><tr><th scope="col">Player</th><th scope="col">Reported status</th><th scope="col">Reason</th></tr></thead><tbody>'+rows.map(p=>{
-    const status=String(p.status||'Not specified'),tone=/out|doubtful|injured reserve|injured list/i.test(status)?'out':/questionable|day.to.day|gtd/i.test(status)?'uncertain':/probable|available/i.test(status)?'available':'unknown';
+    const status=String(p.status||'Not specified'),tone=/out|doubtful|injured reserve|injured list|\bIL\b/i.test(status)?'out':/questionable|day.to.day|gtd/i.test(status)?'uncertain':/probable|available/i.test(status)?'available':'unknown';
     return '<tr><th scope="row">'+h(p.name)+(p.position?'<small>'+h(p.position)+'</small>':'')+'</th><td><span class="nba-availability-status '+tone+'">'+h(status)+'</span></td><td>'+h(p.reason)+'</td></tr>';
    }).join('')+'</tbody></table></div>':'<p class="nba-availability-empty">No players listed in this '+h(sourceName)+' report.</p>'):'<p class="nba-availability-empty">'+(state==='unavailable'?'A current report is not supplied for this team.':'Awaiting a current availability report.')+'</p>';
    const checked=report.checked_at?new Date(report.checked_at).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/New_York'})+' ET':null;

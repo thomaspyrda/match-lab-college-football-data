@@ -23,3 +23,7 @@ class Availability(unittest.TestCase):
   preserve_reports(old,new)
   self.assertEqual(new['teams']['1']['checked_at'],'2026-10-28T12:00Z')
   self.assertEqual(new['aliases']['school'],'1')
+
+ def test_healthy_player_news_is_not_an_injury_report_entry(self):
+  row=self.row('2026-10-29T18:31Z');row['status']='Active';row['shortComment']='Recorded several tackles in the previous game.'
+  rows,_=players([row],self.now);self.assertEqual(rows,[])

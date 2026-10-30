@@ -25,7 +25,8 @@ def players(rows,now):
   reason=[str(detail[k]) for k in ('side','type','detail') if detail.get(k) and str(detail[k]).lower() not in ('other','not specified')]
   status=row.get('status') or (row.get('type') or {}).get('description') or 'Not specified'
   if isinstance(status,dict):status=status.get('description') or status.get('name') or 'Not specified'
-  item={'name':name,'position':(athlete.get('position') or {}).get('abbreviation'),'status':status,'reason':' · '.join(reason) or row.get('shortComment') or 'Reason not provided','reported_at':reported}
+  if str(status).strip().lower() in ('active','healthy','available','none'):continue
+  item={'name':name,'position':(athlete.get('position') or {}).get('abbreviation'),'status':status,'reason':' · '.join(reason) or 'Reason not provided','reported_at':reported}
   result[str(athlete.get('id') or name)]=item
  return sorted(result.values(),key=lambda p:({'out':0,'doubtful':1,'questionable':2,'day-to-day':3,'probable':4}.get(p['status'].lower(),5),p['name'])),stale
 
