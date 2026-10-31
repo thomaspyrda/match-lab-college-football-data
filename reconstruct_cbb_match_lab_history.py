@@ -87,7 +87,8 @@ def main():
                 prior=sorted([g for g in records.get((season,subject),{}).values()
                               if g["date"].date()<game["date"].date()],key=lambda g:g["date"])
                 if len(prior)<5:return None
-                return {"games":len(prior),"ppg":avg([p["points"] for p in prior]),
+                rest_days=(game["date"].date()-prior[-1]["date"].date()).days-1
+                return {"games":len(prior),"rest_days":rest_days,"ppg":avg([p["points"] for p in prior]),
                         "allowed_ppg":avg([p["opp_points"] for p in prior]),
                         "win_pct":round(sum(p["points"]>p["opp_points"] for p in prior)/len(prior),4),
                         "last5_win_pct":round(sum(p["points"]>p["opp_points"] for p in prior[-5:])/5,4),
