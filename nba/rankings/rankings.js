@@ -129,7 +129,7 @@ function buildUI(){
   app.querySelectorAll("#rank-table-head [data-sort-key]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.sortKey;if(activeColumn===key)activeAscending=!activeAscending;else{activeColumn=key;activeAscending=key==="defensive_efficiency"?true:key==="offensive_efficiency"?false:key==="team"||key==="record"||key==="rank"?true:!(data.lower_is_better||[]).includes(key)}render()}));
   app.querySelector("#rank-table-body").innerHTML=rows.map(row=>"<tr>"+cols.map(col=>{
    if(col.key==="rank")return "<td>"+(row.page_rank==null?"—":row.page_rank)+"</td>";
-   if(col.key==="logo")return '<td class="nba-rank-logo"><a href="/nba/teams/'+h(row.slug)+'/" aria-label="'+h(row.team)+'"><img loading="lazy" src="'+h(row.logo)+'" alt=""></a></td>';
+   if(col.key==="logo")return '<td class="nba-rank-logo"><a href="/nba/teams/'+h(row.slug)+'/" aria-label="'+h(row.team)+'"><img loading="lazy" src="'+h(/Utah Jazz/i.test(row.team)?'https://a.espncdn.com/i/teamlogos/nba/500/utah.png':/New Orleans Pelicans/i.test(row.team)?'https://a.espncdn.com/i/teamlogos/nba/500/no.png':row.logo)+'" alt=""></a></td>';
    if(col.key==="team")return '<td class="nba-rank-name"><a class="nba-rank-team" href="/nba/teams/'+h(row.slug)+'/"><span>'+h(row.team)+'</span></a></td>';
    if(col.key==="record")return "<td>"+h(row.record||"—")+"</td>";
 
