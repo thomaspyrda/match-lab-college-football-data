@@ -47,7 +47,9 @@ function renderResults(){
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
  byId("status").textContent=pool.length?pool.length+" verified historical comparisons · Scores account for statistical coverage.":"No verified historical games share sufficient available pregame comparison fields.";
- const summary=[["—","Home covers"],["—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
+ const covers={home:0,away:0,push:0,available:0};
+ pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
+ const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
  byId("summary").innerHTML=summary.map(([v,l])=>'<div class="cbb-stat"><strong>'+v+'</strong><small>'+l+'</small></div>').join("");
  const logo=t=>{const url=t?.logo||t?.logo_url;return /^https:\/\//.test(url||"")?'<img class="cbb-match-logo" alt="" loading="lazy" src="'+clean(url)+'">':'<span class="cbb-match-logo placeholder">●</span>'};
  const side=(t,profile)=>'<div class="cbb-team">'+logo(t)+'<div><strong>'+clean(t.name)+'</strong><small>Pregame: '+clean(profile?.games??"—")+' games · '+clean(profile?.ppg??"—")+' PPG · '+clean(profile?.allowed_ppg??"—")+' allowed</small></div></div>';
