@@ -61,6 +61,20 @@ def main():
     preseason={}
     rank_path=ROOT/"cbb/match-lab/data/preseason-ranks.json"
     if rank_path.exists():preseason=load(rank_path).get("seasons",{})
+    torvik={}
+    for path in sorted((ROOT/"cbb/match-lab/data").glob("torvik-daily-*.json")):
+        try:
+            payload=load(path)
+            season_key=str(payload["season"])
+            torvik[season_key]={str(tid):sorted(rows,key=lambda x:x["date"]) for tid,rows in payload.get("teams",{}).items()}
+        except (ValueError,OSError,KeyError):continue
+    def dated_ratings(season,espn_id,tip):
+        rows=torvik.get(str(season),{}).get(str(espn_id),[])
+        earlier=[row for row in rows if row["date"][:10]<tip.date().isoformat()]
+        if not earlier:return {}
+        row=earlier[-1]
+        return {k:row[k] for k in ("off_eff","def_eff","pace","strength_rank","preseason_rank")
+                if k in row and isinstance(row[k],(int,float))}
     history=[]
     for (season,slug),teamgames in records.items():
         team=registry_by_slug.get(slug)
