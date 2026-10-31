@@ -54,6 +54,44 @@ def main():
   if slug in known:aliases[norm(name)].add(slug)
  for name,slug in {**HISTORICAL_SLUGS,**ADDITIONAL_HISTORICAL_SLUGS}.items():
   if slug in known:aliases[norm(name)].add(slug)
+ # Historical TeamRankings abbreviations: explicitly expanded, never fuzzy-matched.
+ historical_names={
+ "GA Tech":"Georgia Tech","Central Mich":"Central Michigan","LA Lafayette":"Louisiana","LA Tech":"Louisiana Tech",
+ "Miss State":"Mississippi State","St Josephs":"Saint Joseph's","Coastal Car":"Coastal Carolina",
+ "St Bonavent":"St. Bonaventure","VA Tech":"Virginia Tech","Wm & Mary":"William & Mary",
+ "Middle Tenn":"Middle Tennessee","Northeastrn":"Northeastern","N Florida":"North Florida",
+ "Loyola-Chi":"Loyola Chicago","St Marys":"Saint Mary's","Wash State":"Washington State",
+ "N Mex State":"New Mexico State","TX Christian":"TCU","WI-Grn Bay":"Green Bay",
+ "Lg Beach St":"Long Beach State","James Mad":"James Madison","TX El Paso":"UTEP",
+ "New Jersey Tech":"NJIT","Geo Mason":"George Mason","NW State":"Northwestern State",
+ "N Hampshire":"New Hampshire","Sam Hous St":"Sam Houston","E Washingtn":"Eastern Washington",
+ "Boston Col":"Boston College","Bowling Grn":"Bowling Green","E Carolina":"East Carolina",
+ "W Kentucky":"Western Kentucky","LA Monroe":"Louisiana Monroe","NC-Wilmington":"UNC Wilmington",
+ "TX A&M-CC":"Texas A&M-Corpus Christi","WI-Milwkee":"Milwaukee","LIU-Brooklyn":"LIU Brooklyn",
+ "U Penn":"Pennsylvania","S Florida":"South Florida","Mt St Marys":"Mount St. Mary's",
+ "Rob Morris":"Robert Morris","Central FL":"UCF","AR Lit Rock":"Little Rock",
+ "TX-Arlington":"UT Arlington","South Carolina Upstate":"USC Upstate","St Fran (NY)":"St. Francis Brooklyn",
+ "TX Southern":"Texas Southern","Fla Gulf Cst":"Florida Gulf Coast","TN Martin":"UT Martin",
+ "NC-Grnsboro":"UNC Greensboro","S Alabama":"South Alabama","IPFW":"Fort Wayne",
+ "Fla Atlantic":"Florida Atlantic","VA Military":"VMI","CS Fullerton":"Cal State Fullerton",
+ "Col Charlestn":"College of Charleston","CS Bakersfd":"Cal State Bakersfield",
+ "TN State":"Tennessee State","Sacred Hrt":"Sacred Heart","NC-Asheville":"UNC Asheville",
+ "St Peters":"Saint Peter's","Gard-Webb":"Gardner-Webb","TX-San Ant":"UTSA",
+ "St Fran (PA)":"Saint Francis Pennsylvania","Sac State":"Sacramento State",
+ "S Mississippi":"Southern Miss","Florida Intl":"FIU","Northern Kentucky":"Northern Kentucky",
+ "Maryland ES":"Maryland Eastern Shore","Utah Val St":"Utah Valley","Houston Bap":"Houston Christian",
+ "Massachusetts Lowell":"UMass Lowell","Alab A&M":"Alabama A&M","SIU Edward":"SIU Edwardsville",
+ "F Dickinson":"Fairleigh Dickinson","Beth-Cook":"Bethune-Cookman",
+ "Jksnville St":"Jacksonville State","Car State":"South Carolina State",
+ "TX-Pan Am":"UT Rio Grande Valley","Central Conn":"Central Connecticut",
+ "San Jose St":"San Jose State","Ark Pine Bl":"Arkansas-Pine Bluff",
+ "Maryland BC":"UMBC","Central Ark":"Central Arkansas","Miss Val St":"Mississippi Valley State",
+ "N Arizona":"Northern Arizona","Alab State":"Alabama State","Nicholls St":"Nicholls",
+ "Youngs St":"Youngstown State","St Francis NY":"St. Francis Brooklyn"
+ }
+ for historical,canonical in historical_names.items():
+  possibilities=aliases.get(norm(canonical),set())
+  if len(possibilities)==1:aliases[norm(historical)].update(possibilities)
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
