@@ -17,14 +17,15 @@ def main():
  if not 2016<=a.season<=2027:raise ValueError("Season outside supported range")
  import duckdb
  con=duckdb.connect()
- con.execute("INSTALL httpfs; LOAD httpfs")
+ con.execute("INSTALL httpfs")
+ con.execute("LOAD httpfs")
  con.execute(f"ATTACH '{a.catalog}' AS archive (READ_ONLY)")
  # Join exact ESPN team ids through the catalog, avoiding fuzzy school matching.
  rows=con.execute("""
  SELECT CAST(t.team_id AS VARCHAR), CAST(d.date AS VARCHAR), d.barthag,
         d.adj_oe, d.adj_de, d.wins, d.losses, t.torvik_team
  FROM archive.torvik_ratings_daily d
- JOIN archive.team_seasons t ON t.season=d.season AND t.torvik_team=d.team
+ JOIN archive.team_seasons t ON t.season=d.season AND t.torvik_team=d.team AND t.is_d1 = TRUE
  WHERE d.season=?
  ORDER BY t.team_id,d.date
  """,[a.season]).fetchall()
