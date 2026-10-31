@@ -2,7 +2,7 @@ name: Audit 2018-19 CBS CBB preseason rankings
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -16,6 +16,29 @@ jobs:
         run: pip install beautifulsoup4
       - name: Extract and audit full CBS Sports 2018-19 preseason ranking list
         run: python audit_cbb_2016_teamrankings.py --season 2019 --format cbs --url 'https://www.cbssports.com/college-basketball/news/college-basketball-rankings-1-353-from-kansas-to-no-353-and-an-interesting-fact-on-every-team/'
+      - name: Require complete 353-team identity mapping
+        run: |
+          python - <<'PY'
+          import json
+          p="cbb/match-lab/imports/preseason-review/2019-cbs-preseason-audit.json"
+          a=json.load(open(p))
+          assert a["season"]==2019
+          assert len(a["mapped"])==353 and not a["unresolved"] and not a["ambiguous"], "Incomplete identity mapping: rankings NOT imported"
+          assert {int(x["rank"]) for x in a["mapped"]}==set(range(1,354))
+          assert len({x["slug"] for x in a["mapped"]})==353, "Duplicate team identity"
+          print("All 353 CBS preseason ranks validated")
+          PY
+      - name: Import 2018-19 numerical preseason rankings
+        run: python integrate_cbb_2019_cbs.py --audit cbb/match-lab/imports/preseason-review/2019-cbs-preseason-audit.json
+      - name: Commit 2018-19 rankings only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/preseason-ranks.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Import complete 2018-19 CBS preseason ranking data"
+            git push
+          fi
       - name: Upload source and team identity audit
         if: always()
         uses: actions/upload-artifact@v4
