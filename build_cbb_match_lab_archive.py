@@ -3,19 +3,21 @@
 Input: curated JSON {"games":[...]} with historical time-stamped snapshots.
 This importer does NOT manufacture unavailable pregame metrics or results.
 """
-import argparse,json,datetime
+import argparse,json,datetime,math
 from pathlib import Path
 
 def date(value):
     try:
-        return datetime.datetime.fromisoformat(str(value).replace("Z","+00:00"))
+        value=datetime.datetime.fromisoformat(str(value).replace("Z","+00:00"))
+        return value if value.tzinfo else None
     except (ValueError,TypeError):
         return None
 
 def numeric(value):
     try:
         if value is None or value=="":return None
-        return float(value)
+        result=float(value)
+        return result if math.isfinite(result) else None
     except (ValueError,TypeError):return None
 
 def validated(g):
@@ -26,10 +28,15 @@ def validated(g):
     verified_time=date(g.get("result_verified_at"))
     away=numeric(r.get("away_points"));home=numeric(r.get("home_points"));total=numeric(m.get("total"))
     if not (tip and snapshot and verified_time and snapshot<tip<verified_time):return False
-    if not g.get("pregame_verified") or r.get("verified") is not True:return False
+    if g.get("pregame_verified") is not True or r.get("verified") is not True:return False
+    if not isinstance(g.get("away"),dict) or not isinstance(g.get("home"),dict):return False
+    if not (g["away"].get("name") and g["home"].get("name")):return False
+    if numeric(m.get("spread")) is None:return False
+    if g.get("historical_snapshot_source") is None:return False
     if not all([g.get("game_id"),g.get("away"),g.get("home"),g.get("pregame_source"),g.get("result_source"),g.get("market_source")]):return False
     if away is None or home is None or total is None:return False
     if away<0 or home<0 or total<=0:return False
+    if g.get("season") is None:return False
     correct="over" if away+home>total else "under" if away+home<total else "push"
     return str(r.get("total","")).lower()==correct
 
@@ -40,6 +47,7 @@ def main():
     a=p.parse_args()
     games=json.loads(Path(a.input).read_text()).get("games",[])
     unique={}
+    if not isinstance(games,list):raise ValueError("games must be a list")
     for g in games:
         if validated(g):unique[str(g["game_id"])]=g
     dst=Path(a.output);dst.parent.mkdir(parents=True,exist_ok=True)
