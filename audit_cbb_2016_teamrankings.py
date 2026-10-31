@@ -25,12 +25,16 @@ def get_rows(html):
  return sorted(rows,key=lambda r:r["rank"])
 def main():
  ap=argparse.ArgumentParser()
+ ap.add_argument("--season",type=int,choices=[2016,2017],default=2016)
+ ap.add_argument("--url",default=None,help="Original preseason article URL; required for 2017")
  ap.add_argument("--html",type=Path)
  ap.add_argument("--output",type=Path,default=Path("cbb/match-lab/imports/preseason-review/2016-teamrankings-audit.json"))
  args=ap.parse_args()
+ source_url=args.url or (URL if args.season==2016 else None)
+ if not source_url and not args.html:ap.error("--url or --html required for 2016-17")
  if args.html:html=args.html.read_text()
  else:
-  req=urllib.request.Request(URL,headers={"User-Agent":"Mozilla/5.0 (historical rankings audit)"})
+  req=urllib.request.Request(source_url,headers={"User-Agent":"Mozilla/5.0 (historical rankings audit)"})
   html=urllib.request.urlopen(req,timeout=25).read().decode("utf-8","replace")
  rows=get_rows(html)
  teams=json.loads((ROOT/"data/sports/team-registry.json").read_text())["teams"]
@@ -101,12 +105,14 @@ def main():
    else:mapped.append({**row,"slug":slug});used.add(slug)
   elif len(options)>1:ambiguous.append({**row,"options":sorted(options)})
   else:missing.append(row)
- report={"season":2016,"source":URL,"source_published":"2015-11-12",
+ report={"season":args.season,"source":source_url or "provided HTML archive","source_published":"2015-11-12" if args.season==2016 else None,
   "rankings_extracted":351,"mapped":mapped,"unresolved":missing,"ambiguous":ambiguous,
   "ready_for_import":not missing and not ambiguous}
+ if args.season==2017 and str(args.output).endswith("2016-teamrankings-audit.json"):
+  args.output=args.output.with_name("2017-teamrankings-audit.json")
  args.output.parent.mkdir(parents=True,exist_ok=True)
  args.output.write_text(json.dumps(report,indent=2)+"\n")
- print("2015-16:",len(rows),"rankings;",len(mapped),"mapped;",len(missing),"unresolved;",len(ambiguous),"ambiguous")
+ print(f"{args.season-1}-{str(args.season)[-2:]}:",len(rows),"rankings;",len(mapped),"mapped;",len(missing),"unresolved;",len(ambiguous),"ambiguous")
  print("Unresolved:",[x["team"] for x in missing])
  print("Ambiguous:",[x["team"] for x in ambiguous])
  print("Publication unchanged; this workflow only creates a mapping audit.")
