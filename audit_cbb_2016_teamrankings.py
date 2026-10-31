@@ -96,6 +96,32 @@ def main():
  for historical,canonical in historical_names.items():
   possibilities=aliases.get(norm(canonical),set())
   if len(possibilities)==1:aliases[norm(historical)].update(possibilities)
+ # Further explicit 2016-17 abbreviations, shared with 2015-16.
+ additional={
+ "NC-Wilmington":"UNC Wilmington","CS Bakersfld":"Cal State Bakersfield",
+ "LA Monroe":"Louisiana Monroe","Cal St Nrdge":"Cal State Northridge",
+ "Loyola Mymt":"Loyola Marymount","U Penn":"Pennsylvania",
+ "E Washingtn":"Eastern Washington","San Francsco":"San Francisco",
+ "San Jose St":"San Jose State","Northern Kentucky":"Northern Kentucky",
+ "Charl South":"Charleston Southern","New Orleans":"New Orleans",
+ "S Car State":"South Carolina State","IL-Chicago":"UIC",
+ "LIU-Brooklyn":"LIU Brooklyn","St Fran (NY)":"St. Francis Brooklyn",
+ "Hartford":"Hartford","St Fran (PA)":"Saint Francis Pennsylvania",
+ "Savannah St":"Savannah State","S Utah":"Southern Utah","Citadel":"The Citadel"
+ }
+ for historical,canonical in additional.items():
+  options=aliases.get(norm(canonical),set())
+  if len(options)==1:aliases[norm(historical)].update(options)
+ # Keep dissolved or rebranded programs as distinct historical identities.
+ historic={
+ "LIU-Brooklyn":"historical:liu-brooklyn",
+ "St Fran (NY)":"historical:st-francis-brooklyn",
+ "Hartford":"historical:hartford",
+ "St Fran (PA)":"historical:st-francis-pennsylvania",
+ "Savannah St":"historical:savannah-state",
+ }
+ for name,ident in historic.items():
+  if not aliases.get(norm(name)):aliases[norm(name)].add(ident)
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
