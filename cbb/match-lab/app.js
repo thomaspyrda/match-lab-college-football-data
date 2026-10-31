@@ -94,16 +94,16 @@ function renderResults(){
  const fmt=v=>num(v)===null?"—":Number(v).toFixed(1);
  const signed=v=>num(v)===null?"—":(num(v)>0?"+":"")+num(v);
  const marketLine=(g)=>g.market?.spread??g.market?.home_spread??null;
- const teamSide=t=>'<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong><small>Strength Rank #'+clean(stat(t,"strength_rank")??"—")+' · KenPom Rank #'+clean(stat(t,"kenpom_rank")??"—")+'</small></div></div>';
+ const teamSide=t=>'<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong><small>Strength Rank #'+clean(stat(t,"strength_rank")??"—")+' · KenPom Rank #'+clean(stat(t,"kenpom_rank")??"—")+' · Preseason Rank #'+clean(preRank(t)??"—")+'</small></div></div>';
  const metricDefs=[
- ["Preseason Rank","preseason_rank",true],["PPG","ppg",false],["Opp PPG","allowed_ppg",true],
+ ["PPG","ppg",false],["Opp PPG","allowed_ppg",true],
  ["Off Eff","off_eff",false],["Def Eff","def_eff",true],["3P%","three_pct",false],["Opp 3P%","opp_three_pct",true],
  ["eFG%","efg_pct",false],["Opp eFG%","opp_efg_pct",true],["TO Margin","turnover_margin",false],["Pace","pace",false],
  ["Off Reb/G","oreb_pg",false],["Def Reb/G","dreb_pg",false],["AST/G","assists_pg",false],["Opp AST/G","opp_assists_pg",true],
  ["FT%","ft_pct",false],
  
  ["Scoring Margin","margin",false]];
- const aliases={off_eff:["off_eff","offensive_efficiency","offensive_rating","ortg"],def_eff:["def_eff","defensive_efficiency","defensive_rating","drtg"],
+ const aliases={off_eff:["off_eff","adj_off_eff","offensive_efficiency","offensive_rating","off_rating","ortg"],def_eff:["def_eff","adj_def_eff","defensive_efficiency","defensive_rating","def_rating","drtg"],
  three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
  efg_pct:["efg_pct","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opponent_efg_pct"],
  turnover_margin:["turnover_margin","turnoverMargin"],pace:["pace","avgEstimatedPossessions"],
@@ -118,7 +118,7 @@ function renderResults(){
  const percentile=(v,k,invert)=>{const arr=samples[k]||[];if(v===null||arr.length<30)return null;let lo=0,hi=arr.length;while(lo<hi){let mid=(lo+hi)>>1;if(arr[mid]<v)lo=mid+1;else hi=mid}const pct=100*lo/arr.length;return Math.round(invert?100-pct:pct)};
  buildSamples();
  const bars=(g)=>{const away=team(g.away),home=team(g.home);
- return '<div class="cbb-metric-title">PREGAME METRIC PERCENTILES</div><p class="cbb-note">Percentiles compare verified historical pregame values across the archive, when available (higher = stronger). Unavailable fields are shown as —; season-end figures are excluded.</p><div class="cbb-bars">'+metricDefs.map(([label,k,invert])=>{const av=stat(away,k),hv=stat(home,k),ap=percentile(av,k,invert),hp=percentile(hv,k,invert);const val=v=>v===null?"—":String(v);const fill=v=>k==="preseason_rank"?0:v===null?0:Math.max(1,Math.min(100,v));
+ return '<div class="cbb-metric-title">PREGAME METRIC PERCENTILES</div><p class="cbb-note">Percentiles compare verified historical pregame values across the archive, when available (higher = stronger). Unavailable fields are shown as —; season-end figures are excluded.</p><div class="cbb-bars">'+metricDefs.map(([label,k,invert])=>{const av=stat(away,k),hv=stat(home,k),ap=percentile(av,k,invert),hp=percentile(hv,k,invert);const val=v=>v===null?"—":String(v);const fill=v=>v===null?0:Math.max(1,Math.min(100,v));
  return '<div class="cbb-barrow"><span title="'+clean(label)+'">'+clean(label)+'</span><div class="cbb-barval"><i style="width:'+fill(ap)+'%"></i></div><b>'+val(ap)+'</b><b>'+val(hp)+'</b><div class="cbb-barval pink"><i style="width:'+fill(hp)+'%"></i></div></div>'}).join("")+'</div>'};
  const form=t=>{const p=t.profile||{},n=num(p.games),w=num(p.wins),l=num(p.losses),lw=num(p.last5_wins),ll=num(p.last5_losses);const overall=w!==null&&l!==null?w+'–'+l:n!==null&&num(p.win_pct)!==null?Math.round(n*num(p.win_pct))+'–'+Math.round(n*(1-num(p.win_pct))):'—';const last5=lw!==null&&ll!==null?lw+'–'+ll:n>=5&&num(p.last5_win_pct)!==null?Math.round(5*num(p.last5_win_pct))+'–'+Math.round(5*(1-num(p.last5_win_pct))):'—';const rest=num(p.rest_days);return '<div class="cbb-form-tile"><b title="'+clean(t.name)+'">'+clean(t.name)+'</b><div class="cbb-form-rows"><span><small>Overall</small><strong>'+overall+'</strong></span><span><small>Last 5</small><strong>'+last5+'</strong></span><span><small>Rest Days</small><strong>'+(rest===null?'—':rest)+'</strong></span></div></div>'};
  const contextRows=g=>{const a=team(g.away),h=team(g.home);return [["Spread (home)",signed(marketLine(g))],["Game total",g.market?.total??"—"],["Away PPG",fmt(a.profile?.ppg)],["Home PPG",fmt(h.profile?.ppg)],["Away allowed",fmt(a.profile?.allowed_ppg)],["Home allowed",fmt(h.profile?.allowed_ppg)]]};
