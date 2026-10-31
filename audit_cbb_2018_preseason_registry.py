@@ -78,6 +78,13 @@ ADDITIONAL_HISTORICAL_SLUGS = {
   "umkc": "kansas-city-roos",
   "iupui": "iu-indianapolis-jaguars"
 }
+HISTORICAL_ONLY={
+ 'liu brooklyn':'historical:liu-brooklyn',
+ 'savannah st.':'historical:savannah-state',
+ 'hartford':'historical:hartford',
+ 'st. francis ny':'historical:st-francis-brooklyn',
+ 'st. francis pa':'historical:st-francis-pennsylvania'
+}
 def main():
  p=argparse.ArgumentParser()
  p.add_argument("--csv",type=Path,required=True)
@@ -89,7 +96,7 @@ def main():
   if t.get("sport")!="cbb":continue
   for key in [t.get("name"),t.get("short_name"),t.get("abbreviation"),*(t.get("aliases") or [])]:
    if norm(key):aliases[norm(key)].add(t["slug"])
- mapped=[];unresolved=[];ambiguous=[];used=set();ranks=set()
+ mapped=[];unresolved=[];ambiguous=[];historical_only=[];used=set();ranks=set()
  with args.csv.open(newline="") as handle:
   for row in csv.DictReader(handle):
    season=int(row["season"]);rank=int(row["rank"])
@@ -120,18 +127,21 @@ def main():
     options={ADDITIONAL_HISTORICAL_SLUGS[original.lower()]}
    options={slug for slug in options if slug in {t["slug"] for t in registry if t.get("sport")=="cbb"}}
    if len(options)!=1:
-    (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
+    if not options and original.lower() in HISTORICAL_ONLY:
+     historical_only.append({'rank':rank,'team':original,'historical_id':HISTORICAL_ONLY[original.lower()]})
+    else:
+     (unresolved if not options else ambiguous).append({'rank':rank,'team':original,'candidates':sorted(options)})
     continue
    slug=next(iter(options))
    if slug in used:ambiguous.append({"rank":rank,"team":original,"reason":"duplicate registry school","slug":slug});continue
    used.add(slug);mapped.append({"rank":rank,"team":original,"slug":slug})
  if ranks!=set(range(1,352)):raise ValueError("Historical ranks are not sequential 1–351")
  report={"season":2018,"source":"Torvik original preseason archived page candidate","mapped_count":len(mapped),
-         "unresolved":unresolved,"ambiguous":ambiguous,"mapped":mapped,
+         "unresolved":unresolved,"ambiguous":ambiguous,"historical_only":historical_only,"mapped":mapped,
          "publication_allowed":False,"provenance_verified":False}
  args.output.parent.mkdir(parents=True,exist_ok=True)
  args.output.write_text(json.dumps(report,indent=2)+"\n")
- print("Mapped:",len(mapped),"unresolved:",len(unresolved),"ambiguous:",len(ambiguous))
+ print("Mapped:",len(mapped),"historical-only:",len(historical_only),"unresolved:",len(unresolved),"ambiguous:",len(ambiguous))
  print("Unresolved schools:",[x["team"] for x in unresolved])
  print("Ambiguous:",ambiguous)
 if __name__=="__main__":main()
