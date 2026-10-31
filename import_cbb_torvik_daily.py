@@ -54,7 +54,7 @@ def main():
   if len(ranked)<300:continue
   for n,(tid,r) in enumerate(ranked,1):r["strength_rank"]=n
   # Only snapshot dates before the season opener can count as preseason.
-  if day < f"{a.season-1}-11-01" and all(r.get("wins")==0 and r.get("losses")==0 for _,r in entries):
+  if day <= f"{a.season-1}-11-01" and all(r.get("wins")==0 and r.get("losses")==0 for _,r in entries):
    for n,(tid,r) in enumerate(ranked,1):
     existing=preseason.get(tid)
     if existing is None or day<existing["as_of"]:
