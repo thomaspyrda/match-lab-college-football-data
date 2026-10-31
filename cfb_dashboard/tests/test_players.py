@@ -9,7 +9,7 @@ def test_role_slots_injury_replacements_and_no_duplicates():
           {'id':'r','position':'RB','overall':.5},{'id':'w','position':'WR','overall':.4},
           {'id':'t','position':'TE','overall':.1},{'id':'w2','position':'WR','overall':.3, 'production':{'totals':{'rushing_yards':20,'receiving_yards':250}}}]
     selected=select_players(rows)
-    assert [row['id'] for row in selected]==['q2','r','w','t','w2']
+    assert [row['id'] if row else None for row in selected]==['q2',None,'w2',None,None]
 
 def test_qualified_rank_ties_and_small_sample():
     teams={'A':[{'id':'a','position':'QB'},{'id':'b','position':'QB'},{'id':'c','position':'QB'},{'id':'d','position':'QB'}]}
@@ -73,3 +73,14 @@ def test_extra_skill_player_uses_combined_season_yards():
         player('wr2','WR',.6,0,370),
     ]
     assert [x['id'] for x in select_players(rows)] == ['qb','rb','wr','te','rb2']
+
+
+def test_georgia_season_yardage_leaders_beat_usage_leaders():
+    def p(pid,pos,rush=None,rec=None,overall=0.1):
+        return {'id':pid,'position':pos,'overall':overall,'production':{'totals':{'rushing_yards':rush,'receiving_yards':rec}}}
+    rows=[p('bowens','RB',124,132,.95),p('phillips','RB',348,0,.20),
+          p('taylor','WR',31,283,.90),p('dandridge','WR',6,310,.12),
+          p('reddell','TE',38,115,.80),p('luckie','TE',0,184,.15),
+          p('frazier','RB',230,10,.35),p('qb','QB')]
+    out=select_players(rows)
+    assert [x['id'] if x else None for x in out]==['qb','phillips','dandridge','luckie','taylor']
