@@ -656,5 +656,7 @@ async function applyDeepLink() {
   $("historyGames").innerHTML = historicalGameCard(game);
   $("historyStatus").textContent = "Historical college football game loaded from its permanent matchup page.";
   selectHistoricalGame(gameId);
+  // Keep old deep links functional without restoring the standalone search UI.
+  $("historySection").hidden = true;
 }
 init().then(applyDeepLink);
