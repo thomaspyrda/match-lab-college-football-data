@@ -21,7 +21,7 @@ jobs:
         run: |
           mkdir -p /tmp/cbb-2019-ranks
           found=0
-          for run in $(gh run list --workflow audit-cbb-2019-cbs.yml --limit 20 --json databaseId,conclusion --jq '.[] | select(.conclusion=="success") | .databaseId'); do
+          for run in $(gh run list --workflow audit-cbb-2019-cbs-preseason.yml --limit 20 --json databaseId,conclusion --jq '.[] | select(.conclusion=="success") | .databaseId'); do
             rm -f /tmp/cbb-2019-ranks/2019-cbs-preseason-audit.json
             if gh run download "$run" --name cbb-2019-cbs-preseason-review --dir /tmp/cbb-2019-ranks 2>/dev/null && test -s /tmp/cbb-2019-ranks/2019-cbs-preseason-audit.json; then
               if AUDIT_FILE=/tmp/cbb-2019-ranks/2019-cbs-preseason-audit.json python - <<'PY'
