@@ -43,11 +43,23 @@ def main():
    if season!=2018 or not 1<=rank<=351 or rank in ranks:raise ValueError("Invalid or repeated historical rank")
    ranks.add(rank)
    original=row["team"];name=OVERRIDES.get(original.lower(),original)
-   options=aliases.get(norm(name),set())
+   options=aliases.get(norm(original),set()) or aliases.get(norm(name),set())
    if not options and re.search(r"\bSt\.?$",name,re.I):
     options=aliases.get(norm(re.sub(r"\bSt\.?$","State",name,flags=re.I)),set())
    if not options and re.search(r"\bCal St\.?",name,re.I):
     options=aliases.get(norm(re.sub(r"\bCal St\.?","Cal State",name,flags=re.I)),set())
+   # Historical spellings can disagree with ESPN's present-day short label.
+   # Resolve only when exactly one registry school matches an approved variant.
+   if not options:
+    variants=[name.replace("Saint ","St ").replace("St. ","St "),
+              name.replace("State","St"),name.replace("St.","St"),
+              name.replace("University of ",""),name.replace("Cal St.","Cal State"),
+              name.replace("North Carolina","NC"),name.replace("Southern","S"),
+              name.replace("Western","W"),name.replace("Eastern","E"),
+              name.replace("Northern","N")]
+    candidates=set()
+    for variant in variants:candidates.update(aliases.get(norm(variant),set()))
+    options=candidates
    if len(options)!=1:
     (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
     continue
