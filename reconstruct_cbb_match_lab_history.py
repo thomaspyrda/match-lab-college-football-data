@@ -91,6 +91,10 @@ def main():
                         "allowed_ppg":avg([p["opp_points"] for p in prior]),
                         "win_pct":round(sum(p["points"]>p["opp_points"] for p in prior)/len(prior),4),
                         "last5_win_pct":round(sum(p["points"]>p["opp_points"] for p in prior[-5:])/5,4),
+                        "wins":sum(p["points"]>p["opp_points"] for p in prior),
+                        "losses":sum(p["points"]<p["opp_points"] for p in prior),
+                        "last5_wins":sum(p["points"]>p["opp_points"] for p in prior[-5:]),
+                        "last5_losses":sum(p["points"]<p["opp_points"] for p in prior[-5:]),
                         "margin":avg([p["points"]-p["opp_points"] for p in prior])}
             hp=pregame(slug);ap=pregame(other)
             if hp is None or ap is None:continue
