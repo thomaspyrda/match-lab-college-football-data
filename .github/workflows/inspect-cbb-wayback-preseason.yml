@@ -20,4 +20,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: torvik-wayback-capture-review
-          path: cbb/match-lab/imports/preseason-review/capture-review.json
+          path: |
+            cbb/match-lab/imports/preseason-review/capture-review.json
+            cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv
