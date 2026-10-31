@@ -37,6 +37,13 @@ jobs:
           else
             echo "::warning::No verified ranking CSV retrieved; skipped team mapping rather than failing due to transient archive availability."
           fi
+      - name: Stage fully mapped ranking candidates without publication
+        run: |
+          if test -s cbb/match-lab/imports/preseason-review/2018-team-audit.json; then
+            python stage_cbb_2018_preseason.py --csv cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv --audit cbb/match-lab/imports/preseason-review/2018-team-audit.json
+          else
+            echo "::warning::No audited team mappings; staging skipped."
+          fi
       - name: Preserve nonpublishing audit
         if: always()
         uses: actions/upload-artifact@v4
@@ -46,3 +53,4 @@ jobs:
             cbb/match-lab/imports/preseason-review/capture-review.json
             cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv
             cbb/match-lab/imports/preseason-review/2018-team-audit.json
+            cbb/match-lab/imports/preseason-review/2018-staged-preseason.json
