@@ -1,0 +1,25 @@
+name: Audit 2019-20 CBB preseason rankings
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install HTML parser
+        run: pip install beautifulsoup4
+      - name: Audit complete 353-team 2019-20 preseason rankings
+        run: python audit_cbb_2016_teamrankings.py --season 2020 --url 'https://www.teamrankings.com/blog/ncaa-basketball/2019-college-basketball-preseason-rankings-ratings'
+      - name: Upload preseason ranking mapping review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-2020-preseason-teamrankings-review
+          path: cbb/match-lab/imports/preseason-review/2020-teamrankings-audit.json
+          if-no-files-found: warn
