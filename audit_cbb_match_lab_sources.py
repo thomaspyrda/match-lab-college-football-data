@@ -18,4 +18,6 @@ for path in sorted(root.glob("*.json")):
             summary["with_timestamp"]+=int(bool(rec.get("observed_at")))
 print(json.dumps(summary,indent=2))
 print("NOTE: per-team records may duplicate games. Market lines and O/U labels do not certify pregame team metrics.")
-Path("cbb/match-lab/data/market-coverage-audit.json").write_text(json.dumps(summary,indent=2)+"\n")
+out=Path("cbb/match-lab/data/market-coverage-audit.json")
+out.parent.mkdir(parents=True,exist_ok=True)
+out.write_text(json.dumps(summary,indent=2)+"\n")
