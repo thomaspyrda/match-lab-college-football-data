@@ -1,0 +1,25 @@
+name: Audit 2017-18 CBB historical matchup coverage
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Diagnose original 2017-18 team seasons and historical betting markets
+        run: python audit_cbb_2018_history_coverage.py
+      - name: Verify 2017-18 numerical preseason rankings remain intact
+        run: |
+          python - <<'PY'
+          import json
+          ranks=json.load(open('cbb/match-lab/data/preseason-ranks.json'))
+          assert len(ranks['seasons']['2018'])==343
+          assert len(ranks['historical_only']['2018'])==8
+          print('2017-18 preseason numeric ranks intact: 343 current teams + 8 historical-only')
+          PY
