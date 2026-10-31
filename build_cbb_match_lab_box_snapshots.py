@@ -108,5 +108,8 @@ def main():
    if profile:snapshots.setdefault(game["game_id"],{})[tid]=profile
  target=ROOT/f"cbb/match-lab/data/box-pregame-{year}.json"
  target.write_text(json.dumps({"season":year,"source":"CBBD /games/teams","games":snapshots},separators=(",",":"))+"\n")
+ from collections import Counter
+ coverage=Counter(k for teams in snapshots.values() for profile in teams.values() for k in profile)
  print(f"season {year}: {len(snapshots)} game IDs with authentic earlier-game averages")
+ print("Metric observations:",dict(sorted(coverage.items())))
 if __name__=="__main__":main()
