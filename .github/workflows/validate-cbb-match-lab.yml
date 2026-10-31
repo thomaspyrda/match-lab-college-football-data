@@ -1,0 +1,36 @@
+name: Validate CBB Match Lab
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cbb/match-lab/**'
+      - 'build_cbb_match_lab_archive.py'
+      - 'tests/test_cbb_match_lab_archive.py'
+      - '.github/workflows/validate-cbb-match-lab.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pytest
+      - name: Verify historical game acceptance and rejection
+        run: python -m pytest -q tests/test_cbb_match_lab_archive.py
+      - name: Check published history file contains only verified records
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from build_cbb_match_lab_archive import validated
+          p=Path("cbb/match-lab/data/verified-historical.json")
+          d=json.loads(p.read_text())
+          assert d.get("verified_only") is True
+          assert isinstance(d.get("games"),list)
+          assert all(validated(g) for g in d["games"]), "Invalid game in published archive"
+          print("Verified historical records:",len(d["games"]))
+          PY
