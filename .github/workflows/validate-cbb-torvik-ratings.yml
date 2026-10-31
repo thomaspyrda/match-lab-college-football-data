@@ -1,0 +1,22 @@
+name: Validate dated Torvik CBB ratings
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: Season ending year
+        required: true
+        default: '2025'
+permissions:
+  contents: read
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install duckdb pytz
+      - name: Test dated Torvik historical team ID mapping without publishing
+        run: python import_cbb_torvik_daily.py --season ${{ inputs.season }} --dry-run
