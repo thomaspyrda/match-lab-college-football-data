@@ -1,0 +1,53 @@
+name: Integrate accepted 2017-18 CBB preseason numerical ranks
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover audited preseason dataset from successful inspection
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cbb-preseason
+          found=0
+          for run in $(gh run list --workflow inspect-cbb-wayback-preseason.yml --limit 25 --json databaseId,conclusion --jq '.[] | select(.conclusion == "success") | .databaseId'); do
+            rm -f /tmp/cbb-preseason/2018-staged-preseason.json
+            if gh run download "$run" --name torvik-wayback-capture-review --dir /tmp/cbb-preseason 2>/dev/null && test -s /tmp/cbb-preseason/2018-staged-preseason.json; then
+              echo "Using audited staging artifact from run $run"
+              found=1
+              break
+            fi
+          done
+          test "$found" = 1 || { echo "::error::No audited 2018 staging artifact available"; exit 1; }
+      - name: Validate and import numeric preseason rankings without overwriting existing seasons
+        run: |
+          python integrate_cbb_2018_preseason.py --staged /tmp/cbb-preseason/2018-staged-preseason.json
+          python - <<'PY'
+          import json
+          path='cbb/match-lab/data/preseason-ranks.json'
+          data=json.load(open(path))
+          assert len(data['seasons']['2018'])==343
+          assert len(data['historical_only']['2018'])==8
+          assert len({v['rank'] for v in data['seasons']['2018'].values()})==343
+          print('Validated 2018 numerical preseason ranks; historical-only schools retained')
+          PY
+      - name: Commit only the preseason rank input
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/preseason-ranks.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate accepted 2017-18 CBB numerical preseason ranks"
+            git push
+          fi
