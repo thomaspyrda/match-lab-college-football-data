@@ -99,7 +99,7 @@
     <link rel="stylesheet" href="styles.css?v=20261031-history-cards" />
     <link rel="stylesheet" href="comparison.css?v=9" />
   <link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=20261021-1"><script src="https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261027-single-cbb-ranking" defer></script>
-<style id="betwise-slate-cta-css">.betwise-slate-cta{margin:30px 0 22px;padding:36px 25px;text-align:center;border:1px solid rgba(0,255,65,.45);border-radius:18px;background:linear-gradient(130deg,#09190d,#040904);color:#f5fff7}.betwise-slate-cta .slate-kicker{font-size:12px;font-weight:900;letter-spacing:.15em;color:#00ff41}.betwise-slate-cta h2{font-size:clamp(25px,4vw,42px);line-height:1.15;margin:10px 0}.betwise-slate-cta p:not(.slate-kicker){max-width:690px;color:#c4d1c8;margin:10px auto 23px}.betwise-slate-cta a{display:inline-block;background:#00ff41;color:#041407;padding:13px 25px;border-radius:9px;text-decoration:none;font-weight:900}</style></head>
+<style id="betwise-slate-cta-css">.betwise-slate-cta{margin:30px 0 22px;padding:36px 25px;text-align:center;border:1px solid rgba(0,255,65,.45);border-radius:18px;background:linear-gradient(130deg,#09190d,#040904);color:#f5fff7}.betwise-slate-cta .slate-kicker{font-size:12px;font-weight:900;letter-spacing:.15em;color:#00ff41}.betwise-slate-cta h2{font-size:clamp(25px,4vw,42px);line-height:1.15;margin:10px 0}.betwise-slate-cta p:not(.slate-kicker){max-width:690px;color:#c4d1c8;margin:10px auto 23px}.betwise-slate-cta a{display:inline-block;background:#00ff41;color:#041407;padding:13px 25px;border-radius:9px;text-decoration:none;font-weight:900}</style><style>.lab-mode[hidden],#historySection[hidden]{display:none!important}</style></head>
   <body>
     <header class="site-header">
       <div class="header-inner">
@@ -149,7 +149,7 @@
         </div>
       </section>
       <section class="lab">
-        <div class="lab-mode" role="tablist" aria-label="CFB Match Lab game mode">
+        <div class="lab-mode" role="tablist" aria-label="CFB Match Lab game mode" hidden aria-hidden="true">
           <button id="upcomingMode" class="active" type="button" role="tab" aria-selected="true">Upcoming college football</button>
           <button id="historyMode" type="button" role="tab" aria-selected="false">Past college football games</button>
         </div>
@@ -178,7 +178,7 @@
         </div>
         
         </div>
-        <div id="historySection" hidden>
+        <div id="historySection" hidden aria-label="Historical game archive (direct links only)">
           <div class="step">
             <span>1</span>
             <div>
@@ -334,7 +334,7 @@
       </section>
     </main>
     <footer>CFB Match Lab · College football research, not advice</footer>
-    <script src="app.js?v=20261031-cfb-push-round-v19" defer></script>
+    <script src="app.js?v=20261031-focused-match-lab-v20" defer></script>
   </body>
 </html>
 
