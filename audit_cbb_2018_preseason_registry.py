@@ -29,6 +29,47 @@ OVERRIDES={"michigan st.":"Michigan State","wichita st.":"Wichita State",
 "northwestern st.":"Northwestern State","sam houston st.":"Sam Houston",
 "youngstown st.":"Youngstown State","appalachian st.":"App State",
 "long beach st.":"Long Beach State","sacramento st.":"Sacramento State"}
+HISTORICAL_SLUGS={
+  "miami fl": "miami-hurricanes",
+  "mississippi": "ole-miss-rebels",
+  "college of charleston": "charleston-cougars",
+  "connecticut": "uconn-huskies",
+  "florida gulf coast": "florida-gulf-coast-eagles",
+  "albany": "ualbany-great-danes",
+  "middle tennessee": "middle-tennessee-blue-raiders",
+  "louisiana lafayette": "louisiana-ragin-cajuns",
+  "massachusetts": "massachusetts-minutemen",
+  "pittsburgh": "pittsburgh-panthers",
+  "uc santa barbara": "uc-santa-barbara-gauchos",
+  "jacksonville st.": "jacksonville-state-gamecocks",
+  "illinois chicago": "uic-flames",
+  "cal st. bakersfield": "cal-state-bakersfield-roadrunners",
+  "florida atlantic": "florida-atlantic-owls",
+  "detroit": "detroit-mercy-titans",
+  "western kentucky": "western-kentucky-hilltoppers",
+  "fort wayne": "purdue-fort-wayne-mastodons",
+  "george washington": "george-washington-revolutionaries",
+  "boston university": "boston-university-terriers",
+  "fairleigh dickinson": "fairleigh-dickinson-knights",
+  "seattle": "seattle-u-redhawks",
+  "charleston southern": "charleston-southern-buccaneers",
+  "nicholls st.": "nicholls-colonels",
+  "mcneese st.": "mcneese-cowboys",
+  "texas a&m corpus chris": "texas-am-corpus-christi-islanders",
+  "central michigan": "central-michigan-chippewas",
+  "new orleans": "new-orleans-privateers",
+  "cal st. fullerton": "cal-state-fullerton-titans",
+  "tennessee martin": "ut-martin-skyhawks",
+  "maryland eastern shore": "maryland-eastern-shore-hawks",
+  "siu edwardsville": "siu-edwardsville-cougars",
+  "southeast missouri st.": "southeast-missouri-state-redhawks",
+  "grambling st.": "grambling-tigers",
+  "central connecticut": "central-connecticut-blue-devils",
+  "south carolina st.": "south-carolina-state-bulldogs",
+  "cal st. northridge": "cal-state-northridge-matadors",
+  "nebraska omaha": "omaha-mavericks",
+  "uc upstate": "usc-upstate-spartans"
+}
 def main():
  p=argparse.ArgumentParser()
  p.add_argument("--csv",type=Path,required=True)
@@ -64,6 +105,9 @@ def main():
     candidates=set()
     for variant in variants:candidates.update(aliases.get(norm(variant),set()))
     options=candidates
+   if not options and original.lower() in HISTORICAL_SLUGS:
+    options={HISTORICAL_SLUGS[original.lower()]}
+   options={slug for slug in options if slug in {t["slug"] for t in registry if t.get("sport")=="cbb"}}
    if len(options)!=1:
     (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
     continue
