@@ -1,0 +1,23 @@
+name: Discover archived CBB preseason projection snapshots
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Locate preserved preseason pages, no ranking publication
+        run: python discover_cbb_preseason_wayback.py
+      - name: Upload capture inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-preseason-capture-inventory
+          path: cbb/match-lab/imports/preseason-review/wayback-captures.json
+          retention-days: 7
