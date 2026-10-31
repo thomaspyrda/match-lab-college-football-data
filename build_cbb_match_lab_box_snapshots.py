@@ -21,13 +21,21 @@ def nested(d,*keys):
   d=d.get(k)
  return d
 def measure(row,section,name,field="total"):
- return v(nested(row,section,name,field))
+ section_data=row.get(section) or {}
+ item=section_data.get(name) or {}
+ if isinstance(item,(int,float)):return v(item)
+ if isinstance(item,dict):
+  for fieldname in (field,"total","value","count"):
+   if fieldname in item:
+    found=v(item[fieldname])
+    if found is not None:return found
+ return None
 def derive(r):
  own=r.get("teamStats") or {};opp=r.get("opponentStats") or {}
  # Require numerical make/attempt pairs: never use missing as zero.
  def made_attempt(stats,kind):
   s=stats.get(kind) or {}
-  m=v(s.get("made"));a=v(s.get("attempted"))
+  m=v(s.get("made") or s.get("makes"));a=v(s.get("attempted") or s.get("attempts"))
   return (m,a) if m is not None and a is not None and a>0 and 0<=m<=a else (None,None)
  fg, fga=made_attempt(own,"fieldGoals");th,tha=made_attempt(own,"threePointFieldGoals")
  ofg,ofga=made_attempt(opp,"fieldGoals");oth,otha=made_attempt(opp,"threePointFieldGoals")
