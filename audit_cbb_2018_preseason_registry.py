@@ -1,0 +1,62 @@
+"""Audit original Torvik 2017-18 preseason ranking capture against ESPN team registry.
+This is a candidate audit only. It never publishes or substitutes in-season rankings.
+"""
+import argparse,csv,json,re
+from collections import defaultdict
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parent
+def norm(value):return re.sub(r"[^a-z0-9]","",str(value or "").lower())
+# Explicit historical school abbreviations; avoid fuzzy assignments.
+OVERRIDES={"michigan st.":"Michigan State","wichita st.":"Wichita State",
+"ohio st.":"Ohio State","penn st.":"Penn State","florida st.":"Florida State",
+"iowa st.":"Iowa State","kansas st.":"Kansas State","oklahoma st.":"Oklahoma State",
+"arizona st.":"Arizona State","colorado st.":"Colorado State",
+"mississippi st.":"Mississippi State","boise st.":"Boise State",
+"utah st.":"Utah State","oregon st.":"Oregon State",
+"san diego st.":"San Diego State","fresno st.":"Fresno State",
+"new mexico st.":"New Mexico State","ball st.":"Ball State",
+"kent st.":"Kent State","cleveland st.":"Cleveland State",
+"wright st.":"Wright State","weber st.":"Weber State",
+"murray st.":"Murray State","morehead st.":"Morehead State",
+"tennessee st.":"Tennessee State","jacksonville st.":"Jacksonville State",
+"missouri st.":"Missouri State","indiana st.":"Indiana State",
+"illinois st.":"Illinois State","portland st.":"Portland State",
+"northwestern st.":"Northwestern State","sam houston st.":"Sam Houston",
+"youngstown st.":"Youngstown State","appalachian st.":"App State",
+"long beach st.":"Long Beach State","sacramento st.":"Sacramento State"}
+def main():
+ p=argparse.ArgumentParser()
+ p.add_argument("--csv",type=Path,required=True)
+ p.add_argument("--output",type=Path,default=Path("cbb/match-lab/imports/preseason-review/2018-team-audit.json"))
+ args=p.parse_args()
+ registry=json.loads((ROOT/"data/sports/team-registry.json").read_text())["teams"]
+ aliases=defaultdict(set)
+ for t in registry:
+  if t.get("sport")!="cbb":continue
+  for key in [t.get("name"),t.get("short_name"),t.get("abbreviation"),*(t.get("aliases") or [])]:
+   if norm(key):aliases[norm(key)].add(t["slug"])
+ mapped=[];unresolved=[];ambiguous=[];used=set();ranks=set()
+ with args.csv.open(newline="") as handle:
+  for row in csv.DictReader(handle):
+   season=int(row["season"]);rank=int(row["rank"])
+   if season!=2018 or not 1<=rank<=351 or rank in ranks:raise ValueError("Invalid or repeated historical rank")
+   ranks.add(rank)
+   original=row["team"];name=OVERRIDES.get(original.lower(),original)
+   options=aliases.get(norm(name),set())
+   if len(options)!=1:
+    (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
+    continue
+   slug=next(iter(options))
+   if slug in used:ambiguous.append({"rank":rank,"team":original,"reason":"duplicate registry school","slug":slug});continue
+   used.add(slug);mapped.append({"rank":rank,"team":original,"slug":slug})
+ if ranks!=set(range(1,352)):raise ValueError("Historical ranks are not sequential 1–351")
+ report={"season":2018,"source":"Torvik original preseason archived page candidate","mapped_count":len(mapped),
+         "unresolved":unresolved,"ambiguous":ambiguous,"mapped":mapped,
+         "publication_allowed":False,"provenance_verified":False}
+ args.output.parent.mkdir(parents=True,exist_ok=True)
+ args.output.write_text(json.dumps(report,indent=2)+"\n")
+ print("Mapped:",len(mapped),"unresolved:",len(unresolved),"ambiguous:",len(ambiguous))
+ print("Unresolved schools:",[x["team"] for x in unresolved])
+ print("Ambiguous:",ambiguous)
+if __name__=="__main__":main()
