@@ -1,7 +1,7 @@
 "use strict";
 const byId=id=>document.getElementById(id);
 const clean=s=>String(s??"—").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let games=[],selected=null,history=[],activeDay='all';
+let games=[],selected=null,history=[],activeDay='all',logoByName={};
 async function load(url){const r=await fetch(url,{cache:"no-store"});if(!r.ok)throw Error(url+" unavailable");return r.json()}
 const val=(x,...keys)=>keys.reduce((v,k)=>v?.[k],x);
 const num=v=>v==null||v===""?null:Number.isFinite(+v)?+v:null;
@@ -51,7 +51,7 @@ function renderResults(){
  pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
  const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
  byId("summary").innerHTML=summary.map(([v,l])=>'<div class="cbb-stat"><strong>'+v+'</strong><small>'+l+'</small></div>').join("");
- const logo=t=>{const url=t?.logo||t?.logo_url;return /^https:\/\//.test(url||"")?'<img class="cbb-match-logo" alt="" loading="lazy" src="'+clean(url)+'">':'<span class="cbb-match-logo placeholder">●</span>'};
+ const logo=t=>{const url=t?.logo||t?.logo_url||logoByName[t?.name];return /^https:\/\//.test(url||"")?'<img class="cbb-match-logo" alt="" loading="lazy" src="'+clean(url)+'">':'<span class="cbb-match-logo placeholder">●</span>'};
  const side=(t,profile)=>'<div class="cbb-team">'+logo(t)+'<div><strong>'+clean(t.name)+'</strong><small>Pregame: '+clean(profile?.games??"—")+' games · '+clean(profile?.ppg??"—")+' PPG · '+clean(profile?.allowed_ppg??"—")+' allowed</small></div></div>';
  byId("matches").innerHTML=pool.map(({g,match},i)=>{
    const home=team(g.home),away=team(g.away),market=g.market||{},r=g.result||{};
@@ -64,4 +64,4 @@ function renderResults(){
  byId("results").scrollIntoView({behavior:"smooth",block:"start"});
 }
 (async()=>{try{const d=await load("/cbb/dashboard/data/dashboard.json");const raw=Array.isArray(d.games)?d.games:[];const now=Date.now();games=raw.map(g=>({...g,away:typeof g.away==="string"?d.teams?.[g.away]||{name:g.away}:g.away,home:typeof g.home==="string"?d.teams?.[g.home]||{name:g.home}:g.home})).filter(g=>Number.isFinite(date(g))&&date(g)>=now&&date(g)<now+7*86400000);renderGames()}catch(e){byId("games").innerHTML='<p class="muted">CBB schedule source unavailable. Historical results cannot be searched until the dashboard feed loads.</p>';console.error(e)}})();
-byId("see").onclick=async()=>{if(!selected)return;byId("see").disabled=true;byId("see").textContent="FINDING MATCHES…";try{const d=await load("data/verified-historical.json");history=Array.isArray(d.games)?d.games:[];renderResults()}catch(e){byId("results").hidden=false;byId("status").textContent="Verified historical archive not yet available. No unverified comparisons will be shown.";byId("summary").innerHTML="";byId("matches").innerHTML="";console.error(e)}finally{byId("see").textContent="SEE MATCHES";byId("see").disabled=false}};
+byId("see").onclick=async()=>{if(!selected)return;byId("see").disabled=true;byId("see").textContent="FINDING MATCHES…";try{const d=await load("data/verified-historical.json");history=Array.isArray(d.games)?d.games:[];try{const registry=await load("/data/sports/team-registry.json");logoByName=Object.fromEntries((registry.teams||[]).filter(t=>t.sport==="cbb"&&t.logo).map(t=>[t.name,t.logo]))}catch(e){console.warn("Logo registry unavailable",e)}renderResults()}catch(e){byId("results").hidden=false;byId("status").textContent="Verified historical archive not yet available. No unverified comparisons will be shown.";byId("summary").innerHTML="";byId("matches").innerHTML="";console.error(e)}finally{byId("see").textContent="SEE MATCHES";byId("see").disabled=false}};
