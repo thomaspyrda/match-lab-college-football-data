@@ -11,7 +11,18 @@ function date(g){return Date.parse(g.date||g.kickoff||g.start_date||"")}
 function name(g,side){return team(g[side]).name||"Unknown"}
 function schedule(g){return g.metrics||[]}
 function metric(g,k,side){const m=schedule(g).find(x=>x.key===k);return num(m?.[side]?.value??m?.[side]??team(g[side])?.profile?.[k]??team(g[side])?.[k])}
-function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(num(a.profile?.preseason_rank??a.preseason_rank),num(h.profile?.preseason_rank??h.preseason_rank)),preseasonAvg:avg(num(a.profile?.preseason_rank??a.preseason_rank),num(h.profile?.preseason_rank??h.preseason_rank)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
+function preRank(t){
+ const p=t.profile||{};
+ // Accept published preseason rankings; at opening tip the seeded team-strength
+ // rank is a valid starting estimate, not an in-season performance statistic.
+ const played=num(p.games??t.games);
+ const first=num(p.preseason_rank??t.preseason_rank??t.preseasonRank);
+ if(first!==null&&first>=1)return first;
+ if(played!==null&&played>0)return null;
+ const starting=num(t.strength_rank??t.team_strength_rank??t.rankings?.strength_rank??p.strength_rank??p.team_strength_rank);
+ return starting!==null&&starting>=1?starting:null;
+}
+function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(preRank(a),preRank(h)),preseasonAvg:avg(preRank(a),preRank(h)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
 const weights={strength:[25,25],off:[12.5,20],def:[12.5,20],pace:[15,8],spread:[7.5,5],total:[7.5,8],homePPG:[7.5,12],awayPPG:[7.5,12],homeAllowed:[7.5,12],awayAllowed:[7.5,12],homeForm:[7.5,.4],awayForm:[7.5,.4],conference:[5,1]};
  // Similarity scores rely on dated pregame performance or an accepted preseason baseline; never on market totals alone.
 function similarity(a,b){
@@ -45,8 +56,13 @@ document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({l
 document.querySelector(".rail-arrow.next").onclick=()=>byId("games").scrollBy({left:640,behavior:"smooth"});
 function renderResults(){
  byId("results").hidden=false;
- const candidates=history.filter(verified).filter(g=>date(g)<date(selected)).filter(g=>num(team(g.away).profile?.preseason_rank??team(g.away).preseason_rank)!==null&&num(team(g.home).profile?.preseason_rank??team(g.home).preseason_rank)!==null);
+ const candidates=history.filter(verified).filter(g=>date(g)<date(selected)).filter(g=>preRank(team(g.away))!==null&&preRank(team(g.home))!==null);
  const researched=context(selected);
+ if(researched.played===0&&(!Number.isFinite(researched.preseasonDiff)||!Number.isFinite(researched.preseasonAvg))){
+  byId("status").textContent="This opening-day matchup needs verified 2026–27 preseason or starting-strength rankings for both teams. The historical archive is available, but unranked games cannot be compared responsibly.";
+  byId("summary").innerHTML="";byId("matches").innerHTML="";
+  return;
+ }
  let pool=candidates.map(g=>({g,match:similarity(researched,context(g))}))
    .filter(x=>x.match!==null)
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
