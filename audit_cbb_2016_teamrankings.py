@@ -122,6 +122,23 @@ def main():
  }
  for name,ident in historic.items():
   if not aliases.get(norm(name)):aliases[norm(name)].add(ident)
+ # Explicit 2016-17 historical identities and longstanding abbreviations.
+ # Current-registry aliases stay separate from historical-only identifiers.
+ final_aliases={
+  "NC-Wilmngton":"unc-wilmington-seahawks",
+  "U Penn":"penn-quakers",
+  "E Washingtn":"eastern-washington-eagles",
+  "San Francsco":"san-francisco-dons",
+  "Northern Kentucky":"northern-kentucky-norse",
+  "LA Monroe":"louisiana-monroe-warhawks",
+  "San Jose St":"san-jose-state-spartans",
+  "New Orleans":"new-orleans-privateers"
+ }
+ for name,slug in final_aliases.items():
+  if slug in known:
+   aliases[norm(name)].add(slug)
+  elif not aliases.get(norm(name)):
+   aliases[norm(name)].add("historical:"+re.sub(r"[^a-z0-9]+","-",name.lower()).strip("-"))
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
