@@ -15,7 +15,7 @@ def get_rows(html):
   current=[]
   for tr in table.select("tr"):
    cells=[c.get_text(" ",strip=True) for c in tr.find_all(["td","th"],recursive=False)]
-   if len(cells)<3 or not re.fullmatch(r"\\d{1,3}",cells[0]):continue
+   if len(cells)<3 or not re.fullmatch(r"\d{1,3}",cells[0]):continue
    try:rank=int(cells[0]);rating=float(cells[2])
    except ValueError:continue
    if 1<=rank<=351:current.append({"rank":rank,"team":cells[1],"rating":rating})
