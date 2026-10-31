@@ -1,0 +1,25 @@
+name: Audit CBB Match Lab Historical Coverage
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - audit_cbb_match_lab_sources.py
+      - .github/workflows/audit-cbb-match-lab.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit archived CBB betting markets
+        run: python audit_cbb_match_lab_sources.py
+      - name: Upload coverage summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-match-lab-market-coverage
+          path: cbb/match-lab/data/market-coverage-audit.json
