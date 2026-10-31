@@ -56,14 +56,15 @@ function renderResults(){
  const fmt=v=>num(v)===null?"—":Number(v).toFixed(1);
  const signed=v=>num(v)===null?"—":(num(v)>0?"+":"")+num(v);
  const marketLine=(g)=>g.market?.spread??g.market?.home_spread??null;
- const teamSide=t=>'<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong><small>'+clean(t.profile?.games??"—")+' prior games · '+fmt(t.profile?.ppg)+' PPG · '+fmt(t.profile?.allowed_ppg)+' allowed</small></div></div>';
+ const teamSide=t=>'<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong><small>Strength Rank #'+clean(stat(t,"strength_rank")??"—")+' · KenPom Rank #'+clean(stat(t,"kenpom_rank")??"—")+'</small></div></div>';
  const metricDefs=[
+ ["Preseason Rank","preseason_rank",true],["PPG","ppg",false],["Opp PPG","allowed_ppg",true],
  ["Off Eff","off_eff",false],["Def Eff","def_eff",true],["3P%","three_pct",false],["Opp 3P%","opp_three_pct",true],
  ["eFG%","efg_pct",false],["Opp eFG%","opp_efg_pct",true],["TO Margin","turnover_margin",false],["Pace","pace",false],
  ["Off Reb/G","oreb_pg",false],["Def Reb/G","dreb_pg",false],["AST/G","assists_pg",false],["Opp AST/G","opp_assists_pg",true],
  ["Rest Days","rest_days",false],["FT%","ft_pct",false],
- ["Preseason Rank","preseason_rank",true],["Strength Rank","strength_rank",true],["KenPom Rank","kenpom_rank",true],
- ["PPG","ppg",false],["Opp PPG","allowed_ppg",true],["Win%","win_pct",false],["Last 5 Win%","last5_win_pct",false],["Scoring Margin","margin",false]];
+ 
+ ["Win%","win_pct",false],["Last 5 Win%","last5_win_pct",false],["Scoring Margin","margin",false]];
  const aliases={off_eff:["off_eff","offensive_efficiency","offensive_rating","ortg"],def_eff:["def_eff","defensive_efficiency","defensive_rating","drtg"],
  three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
  efg_pct:["efg_pct","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opponent_efg_pct"],
