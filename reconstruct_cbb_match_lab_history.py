@@ -30,12 +30,16 @@ def main():
     records=defaultdict(dict)
     odds=defaultdict(dict)
     audits=defaultdict(int)
+    collected_at={}
+    registry_by_slug={x["slug"]:x for x in schools}
     for school in schools:
         slug=school["slug"]
         pf=ROOT/f"data/cbb/teams/{slug}.json"
         mf=ROOT/f"data/cbb/markets/{slug}.json"
         if not pf.exists() or not mf.exists():continue
         data=load(pf); markets=load(mf)
+        for sy, archive in data.get("seasons",{}).items():
+            collected_at[(str(sy),slug)]=stamp(archive.get("collected_at"))
         for season,archive in data.get("seasons",{}).items():
             for phase in archive.get("phases",{}).values():
                 for game in phase.get("games",[]):
@@ -51,7 +55,7 @@ def main():
                 if isinstance(market,dict):odds[(str(season),str(gid))][slug]=market
     history=[]
     for (season,slug),teamgames in records.items():
-        team=next((x for x in schools if x["slug"]==slug),None)
+        team=registry_by_slug.get(slug)
         if team is None:continue
         for gid,game in teamgames.items():
             if game["location"] not in ("Home","Away"):continue
@@ -70,6 +74,7 @@ def main():
             # Reject unanchored or post-tip bookmaker observations.
             observed=stamp(home_line.get("observed_at"));observed_away=stamp(away_line.get("observed_at"))
             if not observed or not observed_away or observed>game["date"] or observed_away>game["date"]:continue
+            if home_line.get("line_type")!="provider historical line" or away_line.get("line_type")!="provider historical line":continue
             result="over" if game["points"]+opponent["points"]>total else "under" if game["points"]+opponent["points"]<total else "push"
             code={"over":"O","under":"U","push":"P"}[result]
             if home_line.get("ou")!=code or away_line.get("ou")!=code:continue
@@ -84,12 +89,14 @@ def main():
                         "margin":avg([p["points"]-p["opp_points"] for p in prior])}
             hp=pregame(slug);ap=pregame(other)
             if hp is None or ap is None:continue
-            away_team=next(x for x in schools if x["slug"]==other)
+            away_team=registry_by_slug[other]
             before_date=(game["date"]-timedelta(seconds=1)).isoformat()
             # Require an independently stored postgame archive collection time.
             # Never use the game's own date as a fabricated verification time.
-            archive_path=ROOT/f"data/cbb/teams/{slug}.json"
-            collected=stamp(load(archive_path)["seasons"][season].get("collected_at"))
+            collected=collected_at.get((season,slug))
+            opposing_collection=collected_at.get((season,other))
+            if opposing_collection is None or opposing_collection<=game["date"]:continue
+            collected=max(collected,opposing_collection) if collected else None
             if collected is None or collected<=game["date"]:continue
             final_date=collected
             # Mark records as reconstructed prior-game profiles, not archived model ratings.
