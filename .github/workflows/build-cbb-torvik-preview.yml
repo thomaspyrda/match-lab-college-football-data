@@ -1,0 +1,43 @@
+name: Build CBB Torvik ratings preview (no publication)
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season ending year'
+        required: true
+        default: '2025'
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install duckdb pytz
+      - name: Download verified dated ratings to temporary workspace
+        run: python import_cbb_torvik_daily.py --season ${{ inputs.season }}
+      - name: Join ratings to historical matchups without publication
+        run: python reconstruct_cbb_match_lab_history.py
+      - name: Report exact historical coverage
+        run: |
+          python - <<'PY'
+          import json,collections
+          rows=json.load(open('cbb/match-lab/data/verified-historical.json'))['games']
+          keys=['preseason_rank','strength_rank','off_eff','def_eff','pace']
+          print('Verified historical games:',len(rows))
+          print('Both teams have rating:',{k:sum(k in g['home']['profile'] and k in g['away']['profile'] for g in rows) for k in keys})
+          for g in rows:
+              if all(k in g['home']['profile'] and k in g['away']['profile'] for k in ('off_eff','def_eff')):
+                  print('First verified efficiency game:',g['game_id'],g['date']);break
+          PY
+      - name: Upload nonpublic inspection artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-torvik-preview-${{ inputs.season }}
+          path: |
+            cbb/match-lab/data/torvik-daily-${{ inputs.season }}.json
+          retention-days: 7
