@@ -17,12 +17,19 @@ jobs:
         run: |
           python - <<'PY'
           import duckdb
-          db=duckdb.connect()
-          db.execute("INSTALL httpfs")
-          db.execute("LOAD httpfs")
+          import urllib.request, os
           url="https://basketball-data.billmill.org/ncaam/ncaam.duckdb"
+          local="/tmp/ncaam-readonly.duckdb"
+          req=urllib.request.Request(url,headers={"User-Agent":"BetWise-CBB-Historical-Research/1.0"})
+          with urllib.request.urlopen(req,timeout=120) as src, open(local,"wb") as dst:
+              while True:
+                  block=src.read(1024*1024)
+                  if not block:break
+                  dst.write(block)
+          print("Downloaded catalog bytes:",os.path.getsize(local))
+          db=duckdb.connect()
           try:
-              db.execute("ATTACH ? AS archive (READ_ONLY)",[url])
+              db.execute("ATTACH ? AS archive (READ_ONLY)",[local])
               tables=db.execute("SELECT table_schema,table_name FROM archive.information_schema.tables ORDER BY table_name").fetchall()
               print("Archive tables:",tables)
               for schema,name in tables:
