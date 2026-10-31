@@ -45,25 +45,15 @@ document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({l
 document.querySelector(".rail-arrow.next").onclick=()=>byId("games").scrollBy({left:640,behavior:"smooth"});
 function renderResults(){
  byId("results").hidden=false;
- const candidates=history.filter(verified).filter(g=>date(g)<date(selected));
+ const candidates=history.filter(verified).filter(g=>date(g)<date(selected)).filter(g=>num(team(g.away).profile?.preseason_rank??team(g.away).preseason_rank)!==null&&num(team(g.home).profile?.preseason_rank??team(g.home).preseason_rank)!==null);
  const researched=context(selected);
  let pool=candidates.map(g=>({g,match:similarity(researched,context(g))}))
    .filter(x=>x.match!==null)
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
    .slice(0,10);
- // Before either researched team has played, offer explicitly labeled market-only
- // reference games rather than pretending a matching total proves team similarity.
- const marketOnly=!pool.length&&(researched.played===0)&&Number.isFinite(researched.total);
- if(marketOnly)pool=candidates.map(g=>{
-   const c=context(g);
-   if(!Number.isFinite(c.total))return null;
-   const totalDelta=Math.abs(researched.total-c.total);
-   const spreadDelta=Number.isFinite(researched.spread)&&Number.isFinite(c.spread)?Math.abs(researched.spread-c.spread):null;
-   return {g,match:{score:null,coverage:0,coveragePct:0,marketOnly:true,totalDelta,spreadDelta}};
- }).filter(Boolean).sort((a,b)=>(a.match.spreadDelta===null?0:a.match.spreadDelta)-(b.match.spreadDelta===null?0:b.match.spreadDelta)||a.match.totalDelta-b.match.totalDelta).slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
- byId("status").textContent=pool.length?pool.length+(marketOnly?" historical market-only reference games · No team-performance similarity score is assigned.":" historical comparisons · Scores account for statistical coverage."):"No defensible comparisons yet: first-game matching requires verified preseason ranks for both teams; later games require pre-tipoff team performance.";
+ byId("status").textContent=pool.length?pool.length+" historical comparisons with both teams ranked preseason · Scores account for statistical coverage.":"No eligible ranked historical comparisons yet. Both historical teams must have preseason ranks, and opening-day researched teams also need preseason ranks.";
  const covers={home:0,away:0,push:0,available:0};
  pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
  const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
