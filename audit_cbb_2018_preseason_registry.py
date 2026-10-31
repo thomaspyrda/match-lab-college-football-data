@@ -70,6 +70,14 @@ HISTORICAL_SLUGS={
   "nebraska omaha": "omaha-mavericks",
   "uc upstate": "usc-upstate-spartans"
 }
+ADDITIONAL_HISTORICAL_SLUGS = {
+  "southeastern louisiana": "se-louisiana-lions",
+  "louisiana monroe": "louisiana-monroe-warhawks",
+  "houston baptist": "houston-christian-huskies",
+  "usc upstate": "south-carolina-upstate-spartans",
+  "umkc": "kansas-city-roos",
+  "iupui": "iu-indianapolis-jaguars"
+}
 def main():
  p=argparse.ArgumentParser()
  p.add_argument("--csv",type=Path,required=True)
@@ -107,6 +115,9 @@ def main():
     options=candidates
    if not options and original.lower() in HISTORICAL_SLUGS:
     options={HISTORICAL_SLUGS[original.lower()]}
+   options={slug for slug in options if slug in {t["slug"] for t in registry if t.get("sport")=="cbb"}}
+   if not options and original.lower() in ADDITIONAL_HISTORICAL_SLUGS:
+    options={ADDITIONAL_HISTORICAL_SLUGS[original.lower()]}
    options={slug for slug in options if slug in {t["slug"] for t in registry if t.get("sport")=="cbb"}}
    if len(options)!=1:
     (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
