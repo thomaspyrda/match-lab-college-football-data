@@ -149,6 +149,12 @@ def main():
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
+  # Exact historical source abbreviations, including spelling variations.
+  # Match to known program identity rather than an invented current school.
+  if not options and key.startswith("ncwilm"):
+   options={"historical:unc-wilmington-seahawks"}
+  if not options and key.startswith("sanfranc"):
+   options={"historical:san-francisco-dons"}
   if len(options)==1:
    slug=next(iter(options))
    if slug in used:ambiguous.append({**row,"reason":"duplicate canonical team","options":[slug]})
