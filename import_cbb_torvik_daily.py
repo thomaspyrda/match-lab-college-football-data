@@ -21,14 +21,13 @@ def main():
  con.execute("INSTALL httpfs")
  con.execute("LOAD httpfs")
  # Download the small catalog to avoid remote DuckDB WAL requests.
- with tempfile.TemporaryDirectory() as folder:
-  local=os.path.join(folder,"catalog.duckdb")
-  with urllib.request.urlopen(a.catalog,timeout=90) as src,open(local,"wb") as dst:
-   while True:
-    chunk=src.read(1024*1024)
-    if not chunk:break
-    dst.write(chunk)
-  con.execute("ATTACH ? AS archive (READ_ONLY)",[local])
+ local=tempfile.NamedTemporaryFile(suffix=".duckdb",delete=False).name
+ with urllib.request.urlopen(a.catalog,timeout=90) as src,open(local,"wb") as dst:
+  while True:
+   chunk=src.read(1024*1024)
+   if not chunk:break
+   dst.write(chunk)
+ con.execute("ATTACH ? AS archive (READ_ONLY)",[local])
  # Join exact ESPN team ids through the catalog, avoiding fuzzy school matching.
  rows=con.execute("""
  SELECT CAST(t.team_id AS VARCHAR), CAST(d.date AS VARCHAR), d.barthag,
