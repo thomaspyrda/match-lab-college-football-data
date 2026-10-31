@@ -27,8 +27,8 @@ def get_cbs_rows(html):
  soup=BeautifulSoup(html,"html.parser")
  rows=[]
  for heading in soup.find_all(["h2","h3","h4"]):
-  text=heading.get_text(" ",strip=True).replace("\\xa0"," ")
-  match=re.match(r"^(\\d{1,3})\\.\\s*(.+?)\\s*$",text)
+  text=heading.get_text(" ",strip=True).replace("\xa0"," ")
+  match=re.match(r"^(\d{1,3})\.\s*(.+?)\s*$",text)
   if not match:continue
   rank=int(match.group(1))
   if 1<=rank<=353:
