@@ -1,0 +1,32 @@
+name: Audit 2016-17 CBB preseason rankings
+on:
+  workflow_dispatch:
+    inputs:
+      source_url:
+        description: "Full 2016-17 TeamRankings preseason article URL"
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install HTML parser
+        run: pip install beautifulsoup4
+      - name: Audit 2016-17 preseason rankings using shared historical school aliases
+        env:
+          SOURCE_URL: ${{ inputs.source_url }}
+        run: python audit_cbb_2016_teamrankings.py --season 2017 --url "$SOURCE_URL"
+      - name: Upload 2016-17 mapping review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-2017-preseason-teamrankings-review
+          path: cbb/match-lab/imports/preseason-review/2017-teamrankings-audit.json
+          if-no-files-found: warn
