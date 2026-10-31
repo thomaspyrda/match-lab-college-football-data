@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -13,10 +14,29 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install beautifulsoup4
+      - name: Recover previously extracted ranking CSV when available
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cbb/match-lab/imports/preseason-review
+          for run in $(gh run list --workflow inspect-cbb-wayback-preseason.yml --limit 15 --json databaseId,conclusion --jq '.[] | select(.conclusion == "success") | .databaseId'); do
+            if gh run download "$run" --name torvik-wayback-capture-review --dir /tmp/previous-cbb-capture 2>/dev/null; then
+              if test -s /tmp/previous-cbb-capture/2018-candidate-rankings.csv; then
+                cp /tmp/previous-cbb-capture/2018-candidate-rankings.csv cbb/match-lab/imports/preseason-review/
+                echo "Recovered 2018 ranking CSV from prior successful GitHub artifact (run $run)"
+                break
+              fi
+            fi
+          done
       - name: Check recovered captures for complete preseason rankings
         run: python inspect_cbb_wayback_preseason.py
       - name: Match recovered preseason teams against the ESPN registry
-        run: python audit_cbb_2018_preseason_registry.py --csv cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv
+        run: |
+          if test -s cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv; then
+            python audit_cbb_2018_preseason_registry.py --csv cbb/match-lab/imports/preseason-review/2018-candidate-rankings.csv
+          else
+            echo "::warning::No verified ranking CSV retrieved; skipped team mapping rather than failing due to transient archive availability."
+          fi
       - name: Preserve nonpublishing audit
         if: always()
         uses: actions/upload-artifact@v4
