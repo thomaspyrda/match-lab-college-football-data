@@ -31,10 +31,9 @@ function preRank(t){
  const p=t.profile||{};
  // Accept published preseason rankings; at opening tip the seeded team-strength
  // rank is a valid starting estimate, not an in-season performance statistic.
- const played=num(p.games??t.games);
  const first=num(p.preseason_rank??t.preseason_rank??t.preseasonRank);
  if(first!==null&&first>=1)return first;
- if(played!==null&&played>0)return null;
+ // A team's 2026-27 preseason position stays frozen even after games begin.
  const starting=num(frozenRank(t));
  return starting!==null&&starting>=1?starting:null;
 }
