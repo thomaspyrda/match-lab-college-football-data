@@ -53,6 +53,11 @@ def main():
                       "opponent":idmap[opp]["slug"],"location":game.get("location"),"id":gid}
             for gid,market in markets.get("games",{}).get(str(season),{}).items():
                 if isinstance(market,dict):odds[(str(season),str(gid))][slug]=market
+    box_snapshots={}
+    for path in sorted((ROOT/"cbb/match-lab/data").glob("box-pregame-*.json")):
+        try:
+            for gid,by_team in load(path).get("games",{}).items():box_snapshots[gid]=by_team
+        except (ValueError,OSError):continue
     history=[]
     for (season,slug),teamgames in records.items():
         team=registry_by_slug.get(slug)
@@ -89,6 +94,11 @@ def main():
                         "margin":avg([p["points"]-p["opp_points"] for p in prior])}
             hp=pregame(slug);ap=pregame(other)
             if hp is None or ap is None:continue
+            extra=box_snapshots.get(gid,{})
+            home_extra=extra.get(str(team["espn_id"]),{})
+            away_extra=extra.get(str(registry_by_slug[other]["espn_id"]),{})
+            hp.update({k:v for k,v in home_extra.items() if isinstance(v,(int,float))})
+            ap.update({k:v for k,v in away_extra.items() if isinstance(v,(int,float))})
             away_team=registry_by_slug[other]
             before_date=(game["date"]-timedelta(seconds=1)).isoformat()
             # Require an independently stored postgame archive collection time.
