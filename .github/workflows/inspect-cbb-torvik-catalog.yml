@@ -30,11 +30,11 @@ jobs:
           db=duckdb.connect()
           try:
               db.execute("ATTACH ? AS archive (READ_ONLY)",[local])
-              tables=db.execute("SELECT table_schema,table_name FROM archive.information_schema.tables ORDER BY table_name").fetchall()
+              tables=db.execute("SELECT schema_name, table_name FROM duckdb_tables() WHERE database_name = ? ORDER BY table_name",["archive"]).fetchall()
               print("Archive tables:",tables)
               for schema,name in tables:
                   if any(term in name.lower() for term in ("torvik","team","rating")):
-                      print(schema,name,db.execute("SELECT column_name,data_type FROM archive.information_schema.columns WHERE table_name=? ORDER BY ordinal_position",[name]).fetchall())
+                      print(schema,name,db.execute("SELECT column_name,data_type FROM duckdb_columns() WHERE database_name=? AND schema_name=? AND table_name=? ORDER BY column_index",["archive",schema,name]).fetchall())
           except Exception as exc:
               print("Cannot validate remote DuckDB archive:",type(exc).__name__,str(exc)[:500])
               raise
