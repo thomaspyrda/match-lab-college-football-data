@@ -85,6 +85,13 @@ HISTORICAL_ONLY={
  'st. francis ny':'historical:st-francis-brooklyn',
  'st. francis pa':'historical:st-francis-pennsylvania'
 }
+# Preserve known schools that are missing or mislabeled in the current team registry.
+# These retain historical identities; do not map them to an unrelated team.
+MISSING_REGISTRY_HISTORICAL={
+ "louisiana monroe":"historical:louisiana-monroe",
+ "san jose st.":"historical:san-jose-state",
+ "new orleans":"historical:new-orleans"
+}
 def main():
  p=argparse.ArgumentParser()
  p.add_argument("--csv",type=Path,required=True)
@@ -126,6 +133,9 @@ def main():
    if not options and original.lower() in ADDITIONAL_HISTORICAL_SLUGS:
     options={ADDITIONAL_HISTORICAL_SLUGS[original.lower()]}
    options={slug for slug in options if slug in {t["slug"] for t in registry if t.get("sport")=="cbb"}}
+   if not options and original.lower() in MISSING_REGISTRY_HISTORICAL:
+    historical_only.append({"rank":rank,"team":original,"historical_id":MISSING_REGISTRY_HISTORICAL[original.lower()]})
+    continue
    if len(options)!=1:
     if not options and original.lower() in HISTORICAL_ONLY:
      historical_only.append({'rank':rank,'team':original,'historical_id':HISTORICAL_ONLY[original.lower()]})
