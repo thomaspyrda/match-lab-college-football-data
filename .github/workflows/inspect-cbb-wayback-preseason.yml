@@ -51,6 +51,11 @@ jobs:
           else
             echo "::warning::No staged dataset to review."
           fi
+      - name: Prepare internal numerical preseason rank input without publishing
+        run: |
+          if test -s cbb/match-lab/imports/preseason-review/2018-staged-preseason.json; then
+            python integrate_cbb_2018_preseason.py --staged cbb/match-lab/imports/preseason-review/2018-staged-preseason.json --destination cbb/match-lab/imports/preseason-review/2018-preseason-ranks-preview.json
+          fi
       - name: Preserve nonpublishing audit
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,3 +67,4 @@ jobs:
             cbb/match-lab/imports/preseason-review/2018-team-audit.json
             cbb/match-lab/imports/preseason-review/2018-staged-preseason.json
             cbb/match-lab/imports/preseason-review/2018-provenance-review.json
+            cbb/match-lab/imports/preseason-review/2018-preseason-ranks-preview.json
