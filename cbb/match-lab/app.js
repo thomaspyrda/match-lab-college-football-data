@@ -126,10 +126,65 @@ function renderResults(){
  const contextRows=g=>{const a=team(g.away),h=team(g.home);return [["Spread (home)",signed(marketLine(g))],["Game total",g.market?.total??"—"],["Away PPG",fmt(a.profile?.ppg)],["Home PPG",fmt(h.profile?.ppg)],["Away allowed",fmt(a.profile?.allowed_ppg)],["Home allowed",fmt(h.profile?.allowed_ppg)]]};
  const contextTable=(title,g)=>'<div class="cbb-context-table"><h4>'+title+'</h4>'+contextRows(g).map(([label,value])=>'<div><span>'+label+'</span><strong>'+clean(value)+'</strong></div>').join("")+'</div>';
  const sidePanel=(title,g,type)=>{const a=team(g.away),h=team(g.home);return '<section class="cbb-research-panel '+type+'"><div class="cbb-research-head"><b>'+title+'</b><small>'+clean(new Date(date(g)).toLocaleDateString("en-US",{month:"numeric",day:"numeric",year:"numeric"}))+'</small></div><div class="cbb-research-teams">'+teamSide(a)+'<span>@</span>'+teamSide(h)+'</div><div class="cbb-match-pills"><span>'+spreadLabel(g)+'</span><span>O/U '+clean(g.market?.total??"—")+'</span></div>'+bars(g)+'<div class="cbb-metric-title">SEASON-TO-DATE FORM (BEFORE TIPOFF)</div><div class="cbb-form-row">'+form(a)+form(h)+'</div></section>'};
- const explain=(selected,hist)=>{const x=context(selected),y=context(hist),facts=[],differences=[];
- const compare=(k,label,tolerance,format)=>{if(!Number.isFinite(x[k])||!Number.isFinite(y[k]))return;const diff=Math.abs(x[k]-y[k]);const statement=label+" differ by "+diff.toFixed(1);(diff<=tolerance?facts:differences).push(statement)};
- compare("total","Totals",5);compare("spread","Home spreads",4);compare("homePPG","Home scoring averages",6);compare("awayPPG","Away scoring averages",6);compare("homeAllowed","Home points allowed",6);compare("awayAllowed","Away points allowed",6);
- return {facts,differences}};
+ const explain=(researched,hist)=>{
+  const x=context(researched),y=context(hist),matches=[],differences=[];
+  // Only verified pregame observations are eligible; each item names both games' values.
+  const add=(key,label,a,b,tolerance,unit="",digits=1)=>{
+   if(!Number.isFinite(a)||!Number.isFinite(b))return;
+   const delta=Math.abs(a-b),fmt=v=>Number(v).toFixed(digits)+(unit||"");
+   const phrase=label+": researched "+fmt(a)+" vs historical "+fmt(b)+" (difference "+fmt(delta)+").";
+   (delta<=tolerance?matches:differences).push({key,delta:delta/Math.max(tolerance,0.01),text:phrase});
+  };
+  const metricSpecs=[
+   ["preseasonDiff","Preseason rank gap between opponents",22," ranks",0],
+   ["preseasonAvg","Average preseason opponent ranking",32,"",0],
+   ["strength","Away-minus-home Team Strength",11," pts"],
+   ["off","Away-minus-home offensive efficiency",9,""],
+   ["def","Away-minus-home defensive efficiency",9,""],
+   ["pace","Combined matchup pace",5," poss."],
+   ["spread","Home point spread",3.5," pts"],
+   ["total","Posted game total",4.5," pts"],
+   ["homePPG","Home scoring average",5," PPG"],
+   ["awayPPG","Away scoring average",5," PPG"],
+   ["homeAllowed","Home points allowed",5," PPG"],
+   ["awayAllowed","Away points allowed",5," PPG"],
+   ["homeForm","Home recent win rate",0.2,"",2],
+   ["awayForm","Away recent win rate",0.2,"",2]
+  ];
+  metricSpecs.forEach(([k,label,tol,unit,precision])=>add(k,label,x[k],y[k],tol,unit,precision??1));
+  const sideSpecs=[
+   ["away","Away"],["home","Home"]
+  ];
+  const read=(t,k)=>stat(t,k);
+  sideSpecs.forEach(([side,title])=>{
+   const a=team(researched[side]),b=team(hist[side]);
+   const specs=[
+    ["strength_rank","Strength ranking",24,"",0],
+    ["kenpom_rank","KenPom ranking",24,"",0],
+    ["off_eff","Offensive efficiency",8,""],
+    ["def_eff","Defensive efficiency",8,""],
+    ["three_pct","Three-point percentage",4," percentage points"],
+    ["opp_three_pct","Opp. three-point percentage",4," percentage points"],
+    ["efg_pct","Effective FG percentage",4," percentage points"],
+    ["opp_efg_pct","Opp. effective FG percentage",4," percentage points"],
+    ["turnover_margin","Turnover margin",3,""],
+    ["oreb_pg","Offensive rebounds per game",3,""],
+    ["dreb_pg","Defensive rebounds per game",4,""],
+    ["assists_pg","Assists per game",3,""],
+    ["rest_days","Days of rest",2," days",0]
+   ];
+   specs.forEach(([k,label,tol,unit,precision])=>add(side+"-"+k,title+" "+label,read(a,k),read(b,k),tol,unit,precision??1));
+   add(side+"-preseason",title+" preseason rank",preRank(a),preRank(b),28,"",0);
+  });
+  if(x.conference!==null&&y.conference!==null){
+   const detail="Researched game "+(x.conference?"is":"is not")+" in-conference; historical game "+(y.conference?"is":"is not")+" in-conference.";
+   (x.conference===y.conference?matches:differences).push({key:"conference",delta:x.conference===y.conference?0:10,text:detail});
+  }
+  // Rank facts by closeness and differences by divergence. One observation per unique key.
+  const unique=arr=>[...new Map(arr.map(item=>[item.key,item])).values()];
+  return {facts:unique(matches).sort((a,b)=>a.delta-b.delta).slice(0,5).map(v=>v.text),
+          differences:unique(differences).sort((a,b)=>b.delta-a.delta).slice(0,5).map(v=>v.text)};
+ };
  byId("matches").innerHTML=pool.map(({g,match},i)=>{
  const home=team(g.home),away=team(g.away),r=g.result||{},market=g.market||{},label=match.marketOnly?"MARKET ONLY":match.score>=80?"STRONG MATCH":match.score>=65?"CLOSE MATCH":"LIMITED MATCH";
  const reason=explain(selected,g);const point=(label,items)=>'<section class="cbb-reason-box"><h4>'+label+'</h4>'+(items.length?items.map(t=>'<p>'+clean(t)+'</p>').join(""):'<p>No sufficiently comparable verified metric available.</p>')+'</section>';
