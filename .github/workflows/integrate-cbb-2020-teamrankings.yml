@@ -1,0 +1,51 @@
+name: Import validated 2019-20 CBB preseason ranks
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recover latest successful fully mapped 2019-20 ranking artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cbb-2020-ranks
+          found=0
+          for run in $(gh run list --workflow audit-cbb-2020-teamrankings.yml --limit 20 --json databaseId,conclusion --jq '.[] | select(.conclusion=="success") | .databaseId'); do
+            rm -f /tmp/cbb-2020-ranks/2020-teamrankings-audit.json
+            if gh run download "$run" --name cbb-2020-preseason-teamrankings-review --dir /tmp/cbb-2020-ranks 2>/dev/null && test -s /tmp/cbb-2020-ranks/2020-teamrankings-audit.json; then
+              if AUDIT_FILE=/tmp/cbb-2020-ranks/2020-teamrankings-audit.json python - <<'PY'
+          import json,os
+          a=json.load(open(os.environ["AUDIT_FILE"]))
+          assert a["season"]==2020 and len(a["mapped"])==353 and not a["unresolved"] and not a["ambiguous"]
+          assert {x["rank"] for x in a["mapped"]}==set(range(1,354))
+          PY
+              then
+                echo "Validated 353 rankings from run $run"
+                found=1
+                break
+              fi
+            fi
+          done
+          test "$found" = 1 || { echo "::error::No complete 2019-20 audit artifact available"; exit 1; }
+      - name: Import 2019-20 numerical rankings without overwriting other seasons
+        run: python integrate_cbb_2020_teamrankings.py --audit /tmp/cbb-2020-ranks/2020-teamrankings-audit.json
+      - name: Commit numerical ranking input
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/preseason-ranks.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Import verified 2019-20 CBB preseason rankings"
+            git push
+          fi
