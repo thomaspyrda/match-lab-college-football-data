@@ -559,10 +559,8 @@ enrich_players(player_usage,qb_ppa,passing_attempts,passing_team_games,recent_pa
 season_player_stats=api("/stats/player/season",year=now.year,seasonType="regular",endWeek=last_completed)
 if not season_player_stats and last_completed:
  raise ValueError("Season player production source returned no rows")
-enrich_production(player_usage,season_player_stats,current_records,canon_team)
 # The usage endpoint is not a complete player roster. Add qualifying season
 # production leaders missing from usage so position leaders are not suppressed.
-from cfb_dashboard.pipeline.players import PRODUCTION_FIELDS
 production_index={}
 for stat in season_player_stats:
  team=canon_team(stat.get("team"))
