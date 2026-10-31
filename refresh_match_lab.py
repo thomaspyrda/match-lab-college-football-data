@@ -561,13 +561,25 @@ if not season_player_stats and last_completed:
  raise ValueError("Season player production source returned no rows")
 # The usage endpoint is not a complete player roster. Add qualifying season
 # production leaders missing from usage so position leaders are not suppressed.
+# Season statistics do not always include positions. Use the official roster.
+try:
+ roster_rows=api("/roster",year=now.year,classification="fbs")
+except Exception as exc:
+ print("CFB roster lookup unavailable:",type(exc).__name__)
+ roster_rows=[]
+roster_positions={}
+for roster_row in roster_rows:
+ team=canon_team(roster_row.get("team"))
+ pid=str(roster_row.get("id") or "")
+ pos=str(roster_row.get("position") or "").upper()
+ if team and pid and pos:roster_positions[(team,pid)]=pos
 production_index={}
 for stat in season_player_stats:
  team=canon_team(stat.get("team"))
  pid=str(stat.get("playerId") or "")
  if not team or not pid:continue
  key=(team,pid)
- row=production_index.setdefault(key,{"id":pid,"name":stat.get("player"),"position":stat.get("position"),"overall":None})
+ row=production_index.setdefault(key,{"id":pid,"name":stat.get("player"),"position":roster_positions.get(key) or stat.get("position"),"overall":None})
  if not row.get("name"):row["name"]=stat.get("player")
  if not row.get("position"):row["position"]=stat.get("position")
 for (team,pid),row in production_index.items():
