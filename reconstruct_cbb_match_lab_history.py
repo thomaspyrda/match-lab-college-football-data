@@ -58,6 +58,9 @@ def main():
         try:
             for gid,by_team in load(path).get("games",{}).items():box_snapshots[gid]=by_team
         except (ValueError,OSError):continue
+    preseason={}
+    rank_path=ROOT/"cbb/match-lab/data/preseason-ranks.json"
+    if rank_path.exists():preseason=load(rank_path).get("seasons",{})
     history=[]
     for (season,slug),teamgames in records.items():
         team=registry_by_slug.get(slug)
@@ -103,7 +106,11 @@ def main():
             home_extra=extra.get(str(team["espn_id"]),{})
             away_extra=extra.get(str(registry_by_slug[other]["espn_id"]),{})
             hp.update({k:v for k,v in home_extra.items() if isinstance(v,(int,float))})
+            home_rank=preseason.get(str(season),{}).get(slug)
+            if home_rank:hp["preseason_rank"]=home_rank["rank"]
             ap.update({k:v for k,v in away_extra.items() if isinstance(v,(int,float))})
+            away_rank=preseason.get(str(season),{}).get(other)
+            if away_rank:ap["preseason_rank"]=away_rank["rank"]
             away_team=registry_by_slug[other]
             before_date=(game["date"]-timedelta(seconds=1)).isoformat()
             # Require an independently stored postgame archive collection time.
