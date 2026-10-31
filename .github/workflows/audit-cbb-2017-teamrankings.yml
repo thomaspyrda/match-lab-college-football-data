@@ -23,7 +23,14 @@ jobs:
       - name: Audit 2016-17 preseason rankings using shared historical school aliases
         env:
           SOURCE_URL: ${{ inputs.source_url }}
-        run: python audit_cbb_2016_teamrankings.py --season 2017 --url "$SOURCE_URL"
+        run: |
+          python audit_cbb_2016_teamrankings.py --season 2017 --url "$SOURCE_URL"
+          python - <<'PY'
+          import json
+          a=json.load(open("cbb/match-lab/imports/preseason-review/2017-teamrankings-audit.json"))
+          print("Mapped:",len(a["mapped"]),"Unresolved:",len(a["unresolved"]),"Ambiguous:",len(a["ambiguous"]))
+          assert len(a["mapped"])==351 and not a["unresolved"] and not a["ambiguous"], "Full 351-team mapping incomplete; examine unresolved names"
+          PY
       - name: Upload 2016-17 mapping review
         if: always()
         uses: actions/upload-artifact@v4
