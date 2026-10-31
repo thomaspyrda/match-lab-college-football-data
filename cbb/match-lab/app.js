@@ -95,7 +95,8 @@ function renderResults(){
  const signed=v=>num(v)===null?"—":(num(v)>0?"+":"")+num(v);
  const marketLine=(g)=>g.market?.spread??g.market?.home_spread??null;
  const spreadLabel=(g)=>{const line=num(marketLine(g));if(line===null)return "Spread —";const label=line<=0?team(g.home).name:team(g.away).name;return clean(label)+" "+signed(line<=0?line:-line)};
- const teamSide=t=>{const values=[["Strength Rank",stat(t,"strength_rank")],["KenPom Rank",stat(t,"kenpom_rank")],["Preseason Rank",preRank(t)]].filter(([,v])=>v!==null).map(([label,v])=>label+" #"+v);return '<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong>'+(values.length?'<small>'+clean(values.join(" · "))+'</small>':"")+'</div></div>'};
+ const moneylineLabel=g=>{const m=g.market||{};const v=num(m.home_moneyline??m.home_ml??m.moneyline_home??m.homeMoneyline);const w=num(m.away_moneyline??m.away_ml??m.moneyline_away??m.awayMoneyline);if(v===null&&w===null)return 'Moneyline —';const useHome=w===null||(v!==null&&Math.abs(v)>=Math.abs(w));return clean(team(useHome?g.home:g.away).name)+' '+signed(useHome?v:w)};
+ const teamSide=t=>{const values=[["Strength Rank",stat(t,"strength_rank")],["KenPom Rank",stat(t,"kenpom_rank")],["Preseason Rank",preRank(t)]].filter(([,v])=>v!==null).map(([label,v])=>label+" #"+v);const strength=num(t.team_strength??t.strength_score??t.profile?.team_strength??t.profile?.strength_score);return '<div class="cbb-team">'+logo(t)+'<div class="cbb-team-text"><strong>'+clean(t.name)+'</strong>'+(values.length?'<small>'+clean(values.join(" · "))+'</small>':"")+(strength!==null?'<small>Team Strength '+clean(strength.toFixed(1).replace(/\\.0$/,""))+'/100</small>':"")+'</div></div>'};
  const metricDefs=[
  ["PPG","ppg",false],["Opp PPG","allowed_ppg",true],
  ["Off Eff","off_eff",false],["Def Eff","def_eff",true],["3P%","three_pct",false],["Opp 3P%","opp_three_pct",true],
@@ -135,7 +136,7 @@ function renderResults(){
  const outcome=num(r.home_points)-num(r.away_points)+num(market.spread);const ats=Number.isFinite(outcome)?outcome>0?"HOME COVER":outcome<0?"AWAY COVER":"PUSH":"NOT AVAILABLE";
  return '<article class="cbb-match-card"><div class="cbb-match-top"><span>#'+(i+1)+' · '+clean(new Date(date(g)).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}))+'</span><span class="cbb-match-score"><b>'+match.score+'</b> '+label+'</span></div>'+
  '<div class="cbb-match-teams">'+teamSide(away)+'<span class="cbb-at">at</span>'+teamSide(home)+'</div>'+
- '<div class="cbb-match-pills"><span>'+spreadLabel(g)+'</span><span>O/U '+clean(market.total??"—")+'</span></div>'+
+ '<div class="cbb-match-pills"><span>'+spreadLabel(g)+'</span><span>'+moneylineLabel(g)+'</span><span>O/U '+clean(market.total??"—")+'</span></div>'+
  '<details class="cbb-match-detail"><summary>Compare researched vs historical ↓</summary><div class="cbb-expanded"><div class="cbb-expanded-score"><small>MATCH SCORE</small><div><b>'+match.score+'</b><strong>'+label+'</strong></div><p>Pregame comparison only — not a predicted result.</p></div>'+
  
  '<div class="cbb-research-grid">'+sidePanel("RESEARCHED GAME",selected,"researched")+'<div class="cbb-versus">VS</div>'+sidePanel("HISTORICAL MATCH",g,"historical")+'</div>'+
