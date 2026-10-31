@@ -45,14 +45,25 @@ document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({l
 document.querySelector(".rail-arrow.next").onclick=()=>byId("games").scrollBy({left:640,behavior:"smooth"});
 function renderResults(){
  byId("results").hidden=false;
- const pool=history.filter(verified).filter(g=>date(g)<date(selected))
-   .map(g=>({g,match:similarity(context(selected),context(g))}))
+ const candidates=history.filter(verified).filter(g=>date(g)<date(selected));
+ const researched=context(selected);
+ let pool=candidates.map(g=>({g,match:similarity(researched,context(g))}))
    .filter(x=>x.match!==null)
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
    .slice(0,10);
+ // Before either researched team has played, offer explicitly labeled market-only
+ // reference games rather than pretending a matching total proves team similarity.
+ const marketOnly=!pool.length&&(researched.played===0)&&Number.isFinite(researched.total);
+ if(marketOnly)pool=candidates.map(g=>{
+   const c=context(g);
+   if(!Number.isFinite(c.total))return null;
+   const totalDelta=Math.abs(researched.total-c.total);
+   const spreadDelta=Number.isFinite(researched.spread)&&Number.isFinite(c.spread)?Math.abs(researched.spread-c.spread):null;
+   return {g,match:{score:null,coverage:0,coveragePct:0,marketOnly:true,totalDelta,spreadDelta}};
+ }).filter(Boolean).sort((a,b)=>(a.match.spreadDelta===null?0:a.match.spreadDelta)-(b.match.spreadDelta===null?0:b.match.spreadDelta)||a.match.totalDelta-b.match.totalDelta).slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
- byId("status").textContent=pool.length?pool.length+" historical comparisons · Scores account for statistical coverage.":"No defensible comparisons yet: first-game matching requires verified preseason ranks for both teams; later games require pre-tipoff team performance.";
+ byId("status").textContent=pool.length?pool.length+(marketOnly?" historical market-only reference games · No team-performance similarity score is assigned.":" historical comparisons · Scores account for statistical coverage."):"No defensible comparisons yet: first-game matching requires verified preseason ranks for both teams; later games require pre-tipoff team performance.";
  const covers={home:0,away:0,push:0,available:0};
  pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
  const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
@@ -97,16 +108,16 @@ function renderResults(){
  compare("total","Totals",5);compare("spread","Home spreads",4);compare("homePPG","Home scoring averages",6);compare("awayPPG","Away scoring averages",6);compare("homeAllowed","Home points allowed",6);compare("awayAllowed","Away points allowed",6);
  return {facts,differences}};
  byId("matches").innerHTML=pool.map(({g,match},i)=>{
- const home=team(g.home),away=team(g.away),r=g.result||{},market=g.market||{},label=match.score>=80?"STRONG MATCH":match.score>=65?"CLOSE MATCH":"LIMITED MATCH";
+ const home=team(g.home),away=team(g.away),r=g.result||{},market=g.market||{},label=match.marketOnly?"MARKET ONLY":match.score>=80?"STRONG MATCH":match.score>=65?"CLOSE MATCH":"LIMITED MATCH";
  const reason=explain(selected,g);const point=(label,items)=>'<section class="cbb-reason-box"><h4>'+label+'</h4>'+(items.length?items.map(t=>'<p>'+clean(t)+'</p>').join(""):'<p>No sufficiently comparable verified metric available.</p>')+'</section>';
  const outcome=num(r.home_points)-num(r.away_points)+num(market.spread);const ats=Number.isFinite(outcome)?outcome>0?"HOME COVER":outcome<0?"AWAY COVER":"PUSH":"NOT AVAILABLE";
  return '<article class="cbb-match-card"><div class="cbb-match-top"><span>#'+(i+1)+' · '+clean(new Date(date(g)).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}))+'</span><span class="cbb-match-score"><b>'+match.score+'</b> '+label+'</span></div>'+
  '<div class="cbb-match-teams">'+teamSide(away)+'<span class="cbb-at">at</span>'+teamSide(home)+'</div>'+
  '<div class="cbb-match-pills"><span>Home '+signed(market.spread)+'</span><span>O/U '+clean(market.total??"—")+'</span></div>'+
- '<details class="cbb-match-detail"><summary>Compare researched vs historical ↓</summary><div class="cbb-expanded"><div class="cbb-expanded-score"><small>MATCH SCORE</small><div><b>'+match.score+'</b><strong>'+label+'</strong></div><p>Pregame similarity only — not a predicted result.</p></div>'+
+ '<details class="cbb-match-detail"><summary>Compare researched vs historical ↓</summary><div class="cbb-expanded"><div class="cbb-expanded-score"><small>MATCH SCORE</small><div><b>'+match.score+'</b><strong>'+label+'</strong></div><p>Pregame comparison only — not a predicted result.</p></div>'+
  
  '<div class="cbb-research-grid">'+sidePanel("RESEARCHED GAME",selected,"researched")+'<div class="cbb-versus">VS</div>'+sidePanel("HISTORICAL MATCH",g,"historical")+'</div>'+
- '<div class="cbb-reasons-grid">'+reasonBoxPlaceholder(reason)+'</div>'+
+ '<div class="cbb-reasons-grid">'+(match.marketOnly?reasonBox('MARKET-ONLY REFERENCE',['No preseason or in-season performance comparison is available.','Historical game total differs by '+match.totalDelta.toFixed(1)+' points.','This is not a statistically validated team matchup.']):reasonBoxPlaceholder(reason))+'</div>'+
  '<div class="cbb-outcome"><h3>WHAT HAPPENED</h3><strong>'+clean(r.away_points)+'–'+clean(r.home_points)+'</strong><p>'+clean(away.name)+' '+clean(r.away_points)+', '+clean(home.name)+' '+clean(r.home_points)+'</p><span>ATS: '+ats+' · TOTAL: '+clean(String(r.total).toUpperCase())+'</span></div>'+
  '<p class="cbb-detail-foot">Statistical coverage: '+match.coveragePct+'% of configured model factors. Low coverage limits match confidence. Similarity is not a probability.</p></div></details></article>';
  }).join("");
