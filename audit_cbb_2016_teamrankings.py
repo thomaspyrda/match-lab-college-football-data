@@ -147,6 +147,7 @@ def main():
  }.items():
   # Historical identity fallback is retained if the present-day registry omits a school.
   aliases[norm(historical)].add(identifier if identifier in known else "historical:"+identifier)
+ aliases[norm("California Baptist")].add("california-baptist-lancers" if "california-baptist-lancers" in known else "historical:california-baptist-lancers")
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
