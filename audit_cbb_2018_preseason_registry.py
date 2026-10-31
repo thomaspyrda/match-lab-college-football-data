@@ -44,6 +44,10 @@ def main():
    ranks.add(rank)
    original=row["team"];name=OVERRIDES.get(original.lower(),original)
    options=aliases.get(norm(name),set())
+   if not options and re.search(r"\bSt\.?$",name,re.I):
+    options=aliases.get(norm(re.sub(r"\bSt\.?$","State",name,flags=re.I)),set())
+   if not options and re.search(r"\bCal St\.?",name,re.I):
+    options=aliases.get(norm(re.sub(r"\bCal St\.?","Cal State",name,flags=re.I)),set())
    if len(options)!=1:
     (unresolved if not options else ambiguous).append({"rank":rank,"team":original,"candidates":sorted(options)})
     continue
