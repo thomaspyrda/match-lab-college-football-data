@@ -51,17 +51,41 @@ def main():
  year=args.season
  first=datetime(year-1,10,1,tzinfo=timezone.utc);last=datetime(year,5,31,23,59,59,tzinfo=timezone.utc)
  byteam=defaultdict(list)
+ # Exact crosswalk: CBBD game sourceId is ESPN game ID. Resolve each ESPN
+ # team's ID from its archived schedule; never fuzzy-match school names.
+ registry=json.loads((ROOT/"data/sports/team-registry.json").read_text())["teams"]
+ espn_home={}
+ for school in registry:
+  if school.get("sport")!="cbb":continue
+  path=ROOT/f"data/cbb/teams/{school['slug']}.json"
+  if not path.exists():continue
+  archive=json.loads(path.read_text()).get("seasons",{}).get(str(year),{})
+  for phase in archive.get("phases",{}).values():
+   for game in phase.get("games",[]):
+    if game.get("location") in ("Home","Away"):
+     espn_home[(str(game.get("id")),game["location"])]=str(school["espn_id"])
  cur=first
  while cur<=last:
   stop=min(last,cur+timedelta(days=30))
   games=window("/games",year,cur,stop)
   dates={str(g.get("id") or g.get("gameId")):g.get("startDate") or g.get("startTime") for g in games}
+  crosswalk={}
+  for g in games:
+   cbid=str(g.get("id") or g.get("gameId") or "")
+   source=str(g.get("sourceId") or "")
+   if not cbid or not source:continue
+   for location,key in (("Home","homeTeamId"),("Away","awayTeamId")):
+    eid=espn_home.get((source,location))
+    if eid and g.get(key) is not None:
+     crosswalk[(cbid,str(g[key]))]=(source,eid)
   for row in window("/games/teams",year,cur,stop):
    gid=str(row.get("gameId") or "");tid=str(row.get("teamId") or "")
    started=row.get("startDate") or dates.get(gid)
-   if not gid or not tid or not started:continue
+   mapped=crosswalk.get((gid,tid))
+   if not gid or not tid or not started or not mapped:continue
+   espn_game,espn_team=mapped
    values=derive(row)
-   byteam[tid].append({"game_id":gid,"date":started,"stats":values})
+   byteam[espn_team].append({"game_id":espn_game,"date":started,"stats":values})
   cur=stop+timedelta(microseconds=1)
  snapshots={}
  for tid,rows in byteam.items():
