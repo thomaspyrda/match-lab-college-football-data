@@ -16,6 +16,8 @@ jobs:
         run: python audit_cbb_2018_history_coverage.py
       - name: Identify first failed historical eligibility condition
         run: python audit_cbb_2018_eligibility.py
+      - name: Audit original bookmaker line sources and timestamp provenance
+        run: python audit_cbb_2018_market_provenance.py
       - name: Verify 2017-18 numerical preseason rankings remain intact
         run: |
           python - <<'PY'
