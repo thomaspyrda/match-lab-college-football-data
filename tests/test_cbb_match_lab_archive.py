@@ -7,7 +7,7 @@ def game():
       "pregame_verified":True,"historical_snapshot_source":"timestamped pregame archive",
       "pregame_source":"historical snapshot","result_source":"official final",
       "market_source":"archived bookmaker line",
-      "away":{"name":"A"},"home":{"name":"B"},
+      "away":{"name":"A","team_strength":66,"offensive_rating":108},"home":{"name":"B","team_strength":61,"offensive_rating":105},
       "market":{"spread":-3.5,"total":145.5},
       "result":{"verified":True,"away_points":75,"home_points":72,"total":"over"}}
 
@@ -22,3 +22,7 @@ def test_reject_missing_market():
     g=game();g["market"].pop("spread");assert not validated(g)
 def test_reject_unverified_pregame():
     g=game();g["pregame_verified"]=False;assert not validated(g)
+
+def test_reject_pregame_snapshot_without_metrics():
+    g=game();g["away"]={"name":"A"};g["home"]={"name":"B"}
+    assert not validated(g)
