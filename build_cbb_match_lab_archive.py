@@ -51,7 +51,8 @@ def validated(g):
     for primary,alternate in pairs:
         if (stat(away_team,primary) is not None or stat(away_team,alternate) is not None) and (stat(home_team,primary) is not None or stat(home_team,alternate) is not None):
             available+=1
-    if available<2:return False
+    reconstructed=all(stat(t,"ppg") is not None and stat(t,"allowed_ppg") is not None and stat(t,"games") is not None for t in (away_team,home_team))
+    if available<2 and not reconstructed:return False
     correct="over" if away+home>total else "under" if away+home<total else "push"
     return str(r.get("total","")).lower()==correct
 
