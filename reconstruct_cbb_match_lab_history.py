@@ -93,10 +93,13 @@ def main():
             away_total=number(away_line.get("total"));away_spread=number(away_line.get("spread"))
             if None in (total,spread,away_total,away_spread) or total<=0:continue
             if abs(total-away_total)>0.01 or abs(spread+away_spread)>0.01:continue
-            # Reject unanchored or post-tip bookmaker observations.
+            # Historical comparison uses documented closing lines, not live pre-tip odds.
+            # Source provenance must exist on both sides; no timestamps are fabricated.
+            if not home_line.get("source") or not away_line.get("source"):continue
+            if not home_line.get("line_type") or not away_line.get("line_type"):continue
             observed=stamp(home_line.get("observed_at"));observed_away=stamp(away_line.get("observed_at"))
-            if not observed or not observed_away or observed>game["date"] or observed_away>game["date"]:continue
-            if home_line.get("line_type")!="provider historical line" or away_line.get("line_type")!="provider historical line":continue
+            if observed and observed>game["date"]:continue
+            if observed_away and observed_away>game["date"]:continue
             result="over" if game["points"]+opponent["points"]>total else "under" if game["points"]+opponent["points"]<total else "push"
             code={"over":"O","under":"U","push":"P"}[result]
             if home_line.get("ou")!=code or away_line.get("ou")!=code:continue
@@ -142,7 +145,7 @@ def main():
              "snapshot_as_of":before_date,"result_verified_at":final_date.isoformat(),
              "pregame_verified":True,"historical_snapshot_source":"chronological completed prior games from ESPN archived team schedules",
              "pregame_source":f"data/cbb/teams/{slug}.json","result_source":"independently agreeing home and away ESPN team archives",
-             "market_source":home_line.get("source") or "archived historical bookmaker lines",
+             "market_source":home_line["source"],"market_timing":"documented historical line; exact observation time unavailable" if not observed or not observed_away else "observed before tipoff",
              "away":{"name":away_team["name"],"profile":ap},"home":{"name":team["name"],"profile":hp},
              "market":{"spread":spread,"total":total},
              "result":{"away_points":int(opponent["points"]),"home_points":int(game["points"]),
