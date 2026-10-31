@@ -153,7 +153,7 @@ def main():
   # Match to known program identity rather than an invented current school.
   if not options and key.startswith("ncwilm"):
    options={"historical:unc-wilmington-seahawks"}
-  if not options and key.startswith("sanfranc"):
+  if not options and key in {norm("San Fransco"),norm("San Francsco"),norm("San Francisco")}:
    options={"historical:san-francisco-dons"}
   if len(options)==1:
    slug=next(iter(options))
