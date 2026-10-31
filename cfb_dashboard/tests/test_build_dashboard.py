@@ -128,8 +128,8 @@ def test_market_trends_builds_four_nfl_style_rows():
 def test_player_cards_preserve_five_role_slots():
     team={"name":"Example","abbr":"EX"}
     usage={"Example":[
-      {"name":"P1","position":"RB","overall":0.45},
-      {"name":"P2","position":"WR","overall":0.35},
+      {"name":"P1","position":"RB","overall":0.45,"production":{"totals":{"rushing_yards":150,"receiving_yards":20}}},
+      {"name":"P2","position":"WR","overall":0.35,"production":{"totals":{"rushing_yards":0,"receiving_yards":220}}},
     ]}
     cards=player_cards(team,usage)
     assert len(cards) == 5
@@ -154,8 +154,8 @@ def test_player_cards_use_position_specific_opportunity_metrics():
     team={"name":"Example","abbr":"EX"}
     usage={"Example":[
       {"name":"QB1","position":"QB","overall":0.70,"pass":0.90,"rush":0.10,"third_down_completion_rate":0.625},
-      {"name":"WR1","position":"WR","overall":0.55,"pass":0.60,"rush":0.02,"third_down":0.50,"air_yards_share":0.38},
-      {"name":"RB1","position":"RB","overall":0.50,"pass":0.20,"rush":0.65,"third_down":0.35,"air_yards_share":0.08},
+      {"name":"WR1","position":"WR","overall":0.55,"pass":0.60,"rush":0.02,"third_down":0.50,"air_yards_share":0.38,"production":{"totals":{"rushing_yards":0,"receiving_yards":280}}},
+      {"name":"RB1","position":"RB","overall":0.50,"pass":0.20,"rush":0.65,"third_down":0.35,"air_yards_share":0.08,"production":{"totals":{"rushing_yards":360,"receiving_yards":30}}},
     ]}
     cards=player_cards(team,usage)
     qb={x["label"]:x["value"] for x in cards[0]["usage"]}
