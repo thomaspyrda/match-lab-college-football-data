@@ -54,9 +54,11 @@ def main():
  cur=first
  while cur<=last:
   stop=min(last,cur+timedelta(days=30))
+  games=window("/games",year,cur,stop)
+  dates={str(g.get("id") or g.get("gameId")):g.get("startDate") or g.get("startTime") for g in games}
   for row in window("/games/teams",year,cur,stop):
    gid=str(row.get("gameId") or "");tid=str(row.get("teamId") or "")
-   started=row.get("startDate")
+   started=row.get("startDate") or dates.get(gid)
    if not gid or not tid or not started:continue
    values=derive(row)
    byteam[tid].append({"game_id":gid,"date":started,"stats":values})
