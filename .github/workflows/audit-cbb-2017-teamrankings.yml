@@ -5,6 +5,7 @@ on:
       source_url:
         description: "Full 2016-17 TeamRankings preseason article URL"
         required: true
+        default: "https://www.teamrankings.com/blog/ncaa-basketball/2016-college-basketball-preseason-rankings-ratings"
         type: string
 permissions:
   contents: read
