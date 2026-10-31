@@ -37,6 +37,21 @@ def validated(g):
     if away is None or home is None or total is None:return False
     if away<0 or home<0 or total<=0:return False
     if g.get("season") is None:return False
+    # A verified pregame snapshot must actually contain usable matchup data.
+    # Source labels or timestamps alone cannot establish historical similarity.
+    def stat(team, key):
+        value=team.get(key)
+        if value is None and isinstance(team.get("profile"),dict):
+            value=team["profile"].get(key)
+        return numeric(value)
+    away_team=g["away"];home_team=g["home"]
+    pairs=(("team_strength","strength_score"),("offensive_rating","offensive_rating"),
+           ("defensive_rating","defensive_rating"),("pace","pace"))
+    available=0
+    for primary,alternate in pairs:
+        if (stat(away_team,primary) is not None or stat(away_team,alternate) is not None) and (stat(home_team,primary) is not None or stat(home_team,alternate) is not None):
+            available+=1
+    if available<2:return False
     correct="over" if away+home>total else "under" if away+home<total else "push"
     return str(r.get("total","")).lower()==correct
 
