@@ -86,12 +86,12 @@ def main():
             if hp is None or ap is None:continue
             away_team=next(x for x in schools if x["slug"]==other)
             before_date=game["date"].date().isoformat()+"T00:00:00+00:00"
-            final_date=game["date"].date().isoformat()+"T23:59:59+00:00"
+            # The season archive collection timestamp provides a real observation of the final result.\n            # Never invent a result-verification timestamp.\n            final_date=next((v for v in [stamp(load(ROOT/f"data/cbb/teams/{slug}.json")["seasons"][season].get("collected_at"))] if v and v>game["date"]),None)\n            if final_date is None:continue
             # Mark records as reconstructed prior-game profiles, not archived model ratings.
             item={"game_id":gid,"season":int(season),"date":game["date"].isoformat(),
-             "snapshot_as_of":before_date,"result_verified_at":final_date,
+             "snapshot_as_of":before_date,"result_verified_at":final_date.isoformat(),
              "pregame_verified":True,"historical_snapshot_source":"chronological completed prior games from ESPN archived team schedules",
-             "pregame_source":"data/cbb/teams/{slug}.json","result_source":"independently agreeing home and away ESPN team archives",
+             "pregame_source":f"data/cbb/teams/{slug}.json","result_source":"independently agreeing home and away ESPN team archives",
              "market_source":home_line.get("source") or "archived historical bookmaker lines",
              "away":{"name":away_team["name"],"profile":ap},"home":{"name":team["name"],"profile":hp},
              "market":{"spread":spread,"total":total},
