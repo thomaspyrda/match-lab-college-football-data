@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install duckdb
+      - run: pip install duckdb pytz
       - name: Inspect actual remote DuckDB schema without publishing rankings
         run: |
           python - <<'PY'
@@ -36,7 +36,7 @@ jobs:
               print("Archive views:",views)
               definitions=db.execute("SELECT view_name,sql FROM duckdb_views() WHERE database_name = ?",["archive"]).fetchall()
               for name,definition in definitions:
-                  print("VIEW DEFINITION:",name,str(definition)[:1200])
+                  if name in ("torvik_ratings_daily","torvik_team_results"):\n                      print("VIEW DEFINITION:",name,str(definition)[:500])
               for schema,name in tables+views:
                   if True:
                       print(schema,name,db.execute("SELECT column_name,data_type FROM duckdb_columns() WHERE database_name=? AND schema_name=? AND table_name=? ORDER BY column_index",["archive",schema,name]).fetchall())
