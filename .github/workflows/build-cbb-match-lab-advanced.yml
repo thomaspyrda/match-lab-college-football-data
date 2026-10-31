@@ -6,12 +6,16 @@ on:
         description: 'Season ending year (2016–2026)'
         required: true
         default: '2025'
+      all_seasons:
+        description: 'Backfill all ending years 2016–2026 sequentially'
+        type: boolean
+        default: false
 permissions:
   contents: write
 jobs:
   reconstruct:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,7 +26,15 @@ jobs:
       - name: Build prior-game advanced statistical snapshots
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
-        run: python build_cbb_match_lab_box_snapshots.py --season ${{ inputs.season }}
+        run: |
+          if [ "${{ inputs.all_seasons }}" = "true" ]; then
+            for year in $(seq 2016 2026); do
+              echo "Building pregame CBB box statistics for $year"
+              python build_cbb_match_lab_box_snapshots.py --season "$year"
+            done
+          else
+            python build_cbb_match_lab_box_snapshots.py --season "${{ inputs.season }}"
+          fi
       - name: Rebuild verified historical comparison archive
         run: python reconstruct_cbb_match_lab_history.py
       - name: Validate every historical comparison
@@ -34,13 +46,16 @@ jobs:
           games=json.load(open(p))['games']
           assert games and all(validated(g) for g in games)
           print('Verified historical games:',len(games))
-          print('Games with advanced box-derived profiles:',sum(bool(g['home']['profile'].get('oreb_pg')) for g in games))
+          from collections import Counter
+          advanced=('three_pct','efg_pct','oreb_pg','dreb_pg','assists_pg','turnover_margin','ft_pct')
+          counts=Counter(k for g in games for k in advanced if k in g['home']['profile'] and k in g['away']['profile'])
+          print('Validated advanced metric coverage by game:',dict(counts))
           PY
       - name: Publish validated snapshots and archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cbb/match-lab/data/box-pregame-${{ inputs.season }}.json cbb/match-lab/data/verified-historical.json
+          git add cbb/match-lab/data/box-pregame-*.json cbb/match-lab/data/verified-historical.json
           if ! git diff --cached --quiet; then
             git commit -m "Add verified CBB pregame advanced metrics for season ${{ inputs.season }}"
             git push
