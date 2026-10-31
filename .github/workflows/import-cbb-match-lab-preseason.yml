@@ -1,0 +1,52 @@
+name: Import CBB Match Lab preseason rankings
+on:
+  workflow_dispatch:
+    inputs:
+      csv_path:
+        description: 'Repository CSV: season,team,rank,as_of,source_url'
+        required: true
+        default: 'cbb/match-lab/imports/torvik-preseason.csv'
+permissions:
+  contents: write
+jobs:
+  validate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify a supplied Torvik preseason export is present
+        env:
+          CSV_PATH: ${{ inputs.csv_path }}
+        run: |
+          test -f "$CSV_PATH" || { echo "No preseason export at $CSV_PATH. Obtain authorized dated preseason source data first."; exit 1; }
+      - name: Validate preseason rankings and school identities
+        env:
+          CSV_PATH: ${{ inputs.csv_path }}
+        run: python import_cbb_match_lab_preseason.py --csv "$CSV_PATH"
+      - name: Rebuild chronological historical profiles
+        run: python reconstruct_cbb_match_lab_history.py
+      - name: Verify verified-only historical records before publishing
+        run: |
+          python - <<'PY'
+          import json
+          from build_cbb_match_lab_archive import validated
+          p='cbb/match-lab/data/verified-historical.json'
+          rows=json.load(open(p))['games']
+          assert rows and all(validated(g) for g in rows)
+          ranks=sum('preseason_rank' in side['profile'] for g in rows for side in (g['away'],g['home']))
+          assert ranks>0, "No historical preseason ranks were joined"
+          print("Verified games:",len(rows),"Ranked team snapshots:",ranks)
+          PY
+      - name: Publish verified imported ranks and rebuilt match archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/preseason-ranks.json cbb/match-lab/data/verified-historical.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated historical CBB preseason rankings"
+            git push
+          fi
