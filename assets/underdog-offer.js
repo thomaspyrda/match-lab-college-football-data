@@ -5,7 +5,8 @@
 (() => {
   "use strict";
   const offer = Object.freeze({
-    headline: "$75 BONUS + A RIPS PACK WORTH UP TO $150",
+    headline: "GET A $50 BONUS + A RIPS PACK WORTH UP TO $150!",
+    displayHeadline: "GET A $50 BONUS\n+ A RIPS PACK WORTH UP TO $150!",
     url: "https://play.underdogsports.com/vgwg/e2bt5xbz",
     backgroundImage: "https://matchlab.parlaycalculator.bet/assets/underdog-rips-banner-complete.png",
     terms: "This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $75 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and reward conditions are determined by Underdog. Verify the current offer terms on the linked destination before participating."
@@ -16,7 +17,7 @@
       if (banner.getAttribute("aria-label") !== offer.headline) banner.setAttribute("aria-label", offer.headline);
       banner.style.backgroundImage = 'url("' + offer.backgroundImage + '")';
       const text = banner.querySelector(".underdog-hero-banner__copy");
-      if (text && text.textContent !== offer.headline) text.textContent = offer.headline;
+      if (text) { if (text.textContent !== offer.displayHeadline) text.textContent = offer.displayHeadline; text.style.whiteSpace = "pre-line"; }
       const terms = banner.nextElementSibling;
       if (terms?.classList.contains("underdog-hero-terms")) {
         let paragraph = terms.querySelector(".underdog-hero-terms__copy");
