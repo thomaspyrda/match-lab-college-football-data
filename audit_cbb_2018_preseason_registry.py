@@ -6,7 +6,11 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parent
-def norm(value):return re.sub(r"[^a-z0-9]","",str(value or "").lower())
+def norm(value):
+ words=re.findall(r"[a-z0-9]+",str(value or "").lower())
+ # Equivalent spelling only; do not infer unrelated schools.
+ return "".join("state" if word in ("st","state") else word for word in words)
+
 # Explicit historical school abbreviations; avoid fuzzy assignments.
 OVERRIDES={"michigan st.":"Michigan State","wichita st.":"Wichita State",
 "ohio st.":"Ohio State","penn st.":"Penn State","florida st.":"Florida State",
