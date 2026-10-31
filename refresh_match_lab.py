@@ -560,6 +560,26 @@ season_player_stats=api("/stats/player/season",year=now.year,seasonType="regular
 if not season_player_stats and last_completed:
  raise ValueError("Season player production source returned no rows")
 enrich_production(player_usage,season_player_stats,current_records,canon_team)
+# The usage endpoint is not a complete player roster. Add qualifying season
+# production leaders missing from usage so position leaders are not suppressed.
+from cfb_dashboard.pipeline.players import PRODUCTION_FIELDS
+production_index={}
+for stat in season_player_stats:
+ team=canon_team(stat.get("team"))
+ pid=str(stat.get("playerId") or "")
+ if not team or not pid:continue
+ key=(team,pid)
+ row=production_index.setdefault(key,{"id":pid,"name":stat.get("player"),"position":stat.get("position"),"overall":None})
+ if not row.get("name"):row["name"]=stat.get("player")
+ if not row.get("position"):row["position"]=stat.get("position")
+for (team,pid),row in production_index.items():
+ if not row.get("position") or str(row["position"]).upper() not in {"RB","WR","TE"}:continue
+ pool=player_usage.setdefault(team,[])
+ if any(str(x.get("id"))==pid for x in pool):continue
+ pool.append(row)
+# Join the complete roster with the same verified CFBD season totals.
+enrich_production(player_usage,season_player_stats,current_records,canon_team)
+
 (DATA/"cfb_dashboard_player_usage.json").write_text(json.dumps({"season":now.year,"generated_at":now.isoformat(),"teams":player_usage},indent=2),encoding="utf-8")
 
 (DATA/"upcoming.json").write_text(json.dumps({"generated_at":now.isoformat(),"window_end":end.isoformat(),"games":sorted(all_upcoming,key=lambda x:x["start_date"] or "")},indent=2),encoding="utf-8")
