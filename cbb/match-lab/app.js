@@ -60,17 +60,20 @@ function renderResults(){
  const metricDefs=[
  ["Off Eff","off_eff",false],["Def Eff","def_eff",true],["3P%","three_pct",false],["Opp 3P%","opp_three_pct",true],
  ["eFG%","efg_pct",false],["Opp eFG%","opp_efg_pct",true],["TO Margin","turnover_margin",false],["Pace","pace",false],
- ["Paint Pts","paint_pts",false],["Opp Paint Pts","opp_paint_pts",true],["AST/G","assists_pg",false],["Opp AST/G","opp_assists_pg",true],
+ ["Off Reb/G","oreb_pg",false],["Def Reb/G","dreb_pg",false],["AST/G","assists_pg",false],["Opp AST/G","opp_assists_pg",true],
  ["Rest Days","rest_days",false],["FT%","ft_pct",false],
+ ["Preseason Rank","preseason_rank",true],["Strength Rank","strength_rank",true],["KenPom Rank","kenpom_rank",true],
  ["PPG","ppg",false],["Opp PPG","allowed_ppg",true],["Win%","win_pct",false],["Last 5 Win%","last5_win_pct",false],["Scoring Margin","margin",false]];
  const aliases={off_eff:["off_eff","offensive_efficiency","offensive_rating","ortg"],def_eff:["def_eff","defensive_efficiency","defensive_rating","drtg"],
  three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
  efg_pct:["efg_pct","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opponent_efg_pct"],
  turnover_margin:["turnover_margin","turnoverMargin"],pace:["pace","avgEstimatedPossessions"],
- paint_pts:["paint_pts","points_in_paint","pointsInPaint"],opp_paint_pts:["opp_paint_pts","points_in_paint_allowed"],
+ oreb_pg:["oreb_pg","offensive_rebounds_pg","avgOffensiveRebounds"],dreb_pg:["dreb_pg","defensive_rebounds_pg","avgDefensiveRebounds"],
+ preseason_rank:["preseason_rank","preseasonRank"],strength_rank:["strength_rank","team_strength_rank","strengthRank"],kenpom_rank:["kenpom_rank","kenpomRank"],
  assists_pg:["assists_pg","avgAssists"],opp_assists_pg:["opp_assists_pg","assists_allowed_pg"],
  rest_days:["rest_days","days_rest"],ft_pct:["ft_pct","freeThrowPct"]};
  const stat=(t,key)=>{const profile=t?.profile||{};for(const k of aliases[key]||[key]){const v=num(profile[k]??t?.[k]);if(v!==null)return v}return null};
+ // Rankings must be authentic dated pregame observations, never current/final ranks projected backwards.
  const samples={};
  const buildSamples=()=>{for(const [label,k] of metricDefs){samples[k]=history.flatMap(g=>[stat(team(g.away),k),stat(team(g.home),k)]).filter(v=>v!==null).sort((a,b)=>a-b)}};
  const percentile=(v,k,invert)=>{const arr=samples[k]||[];if(v===null||arr.length<30)return null;let lo=0,hi=arr.length;while(lo<hi){let mid=(lo+hi)>>1;if(arr[mid]<v)lo=mid+1;else hi=mid}const pct=100*lo/arr.length;return Math.round(invert?100-pct:pct)};
