@@ -23,10 +23,24 @@ def get_rows(html,expected=351):
  if len(rows)!=expected or {r["rank"] for r in rows}!=set(range(1,expected+1)):
   raise ValueError(f"Full {expected}-team ranking table missing, incomplete, or duplicated")
  return sorted(rows,key=lambda r:r["rank"])
+def get_cbs_rows(html):
+ soup=BeautifulSoup(html,"html.parser")
+ rows=[]
+ for heading in soup.find_all(["h2","h3","h4"]):
+  text=heading.get_text(" ",strip=True).replace("\\xa0"," ")
+  match=re.match(r"^(\\d{1,3})\\.\\s*(.+?)\\s*$",text)
+  if not match:continue
+  rank=int(match.group(1))
+  if 1<=rank<=353:
+   rows.append({"rank":rank,"team":match.group(2),"rating":None})
+ if len(rows)!=353 or {r["rank"] for r in rows}!=set(range(1,354)):
+  raise ValueError(f"CBS page must have 353 uniquely ranked teams; found {len(rows)} entries")
+ return sorted(rows,key=lambda row:row["rank"])
 def main():
  ap=argparse.ArgumentParser()
- ap.add_argument("--season",type=int,choices=[2016,2017,2020],default=2016)
+ ap.add_argument("--season",type=int,choices=[2016,2017,2019,2020],default=2016)
  ap.add_argument("--url",default=None,help="Original preseason article URL; required for 2017")
+ ap.add_argument("--format",choices=["table","cbs"],default="table")
  ap.add_argument("--html",type=Path)
  ap.add_argument("--output",type=Path,default=Path("cbb/match-lab/imports/preseason-review/2016-teamrankings-audit.json"))
  args=ap.parse_args()
@@ -36,8 +50,8 @@ def main():
  else:
   req=urllib.request.Request(source_url,headers={"User-Agent":"Mozilla/5.0 (historical rankings audit)"})
   html=urllib.request.urlopen(req,timeout=25).read().decode("utf-8","replace")
- expected=353 if args.season==2020 else 351
- rows=get_rows(html,expected)
+ expected=353 if args.season in (2019,2020) else 351
+ rows=get_cbs_rows(html) if args.format=="cbs" else get_rows(html,expected)
  teams=json.loads((ROOT/"data/sports/team-registry.json").read_text())["teams"]
  registry=[t for t in teams if t.get("sport")=="cbb"]
  aliases=defaultdict(set)
@@ -166,6 +180,8 @@ def main():
  report={"season":args.season,"source":source_url or "provided HTML archive","source_published":"2015-11-12" if args.season==2016 else None,
   "rankings_extracted":expected,"mapped":mapped,"unresolved":missing,"ambiguous":ambiguous,
   "ready_for_import":not missing and not ambiguous}
+ if args.season==2019 and str(args.output).endswith("2016-teamrankings-audit.json"):
+  args.output=args.output.with_name("2019-cbs-preseason-audit.json")
  if args.season==2020 and str(args.output).endswith("2016-teamrankings-audit.json"):
   args.output=args.output.with_name("2020-teamrankings-audit.json")
  if args.season==2017 and str(args.output).endswith("2016-teamrankings-audit.json"):
