@@ -55,6 +55,26 @@ jobs:
               if all(k in g['home']['profile'] and k in g['away']['profile'] for k in ('off_eff','def_eff')):
                   print('First verified efficiency game:',g['game_id'],g['date']);break
           PY
+      - name: Audit preseason provenance and dated ratings integrity
+        run: |
+          python - <<'PY'
+          import json,glob,collections,datetime
+          audit={}
+          for file in sorted(glob.glob('cbb/match-lab/data/torvik-daily-*.json')):
+              d=json.load(open(file));year=d['season'];teams=d['teams']
+              n=0;bad=0;bad_pre=0
+              for tid,rows in teams.items():
+                  dates=[x['date'] for x in rows]
+                  if dates!=sorted(dates):bad+=1
+                  n+=len(rows)
+                  pre=d.get('preseason',{}).get(tid)
+                  if pre:
+                      matching=[r for r in rows if r['date']==pre['as_of']]
+                      if not matching or matching[0].get('wins')!=0 or matching[0].get('losses')!=0 or pre['as_of']>str(year-1)+'-11-01':
+                          bad_pre+=1
+              print('SEASON',year,'teams',len(teams),'dated ratings',n,'preseason ranks',len(d.get('preseason',{})),'date-order failures',bad,'preseason-provenance failures',bad_pre)
+              if bad or bad_pre:raise SystemExit('Ratings date or preseason provenance audit failed')
+          PY
       - name: Upload nonpublic inspection artifact
         uses: actions/upload-artifact@v4
         with:
