@@ -1,0 +1,25 @@
+name: Audit 2015-16 TeamRankings CBB preseason ranks
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install HTML parser
+        run: pip install beautifulsoup4
+      - name: Audit 351 original preseason rankings and historical team identities
+        run: python audit_cbb_2016_teamrankings.py
+      - name: Upload source identity review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbb-2016-preseason-teamrankings-review
+          path: cbb/match-lab/imports/preseason-review/2016-teamrankings-audit.json
+          if-no-files-found: warn
