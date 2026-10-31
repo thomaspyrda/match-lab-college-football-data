@@ -9,7 +9,7 @@ on:
       - tests/test_cbb_match_lab_archive.py
       - .github/workflows/build-cbb-match-lab-history.yml
 permissions:
-  contents: read
+  contents: write
 jobs:
   historical-candidates:
     runs-on: ubuntu-latest
@@ -36,6 +36,16 @@ jobs:
           print('Reconstructed candidates:',len(games),'Eligible:',len(valid))
           assert len(valid)==len(games), 'Reject unverified historical candidates'
           PY
+      - name: Publish nonempty verified historical archive
+        run: |
+          python -c 'import json; p="cbb/match-lab/data/verified-historical.json"; n=len(json.load(open(p))["games"]); print("Verified:",n); assert n>0, "No eligible games; refusing empty publication"'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/verified-historical.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish validated CBB Match Lab history"
+            git push
+          fi
       - name: Upload reviewable historical dataset
         uses: actions/upload-artifact@v4
         with:
