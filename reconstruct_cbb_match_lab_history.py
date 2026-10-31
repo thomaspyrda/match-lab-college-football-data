@@ -8,7 +8,7 @@ Do not label these unadjusted scoring averages as adjusted efficiencies or ranki
 import json, math
 from pathlib import Path
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 ROOT=Path(__file__).resolve().parent
 def load(p):return json.loads(p.read_text())
@@ -85,7 +85,7 @@ def main():
             hp=pregame(slug);ap=pregame(other)
             if hp is None or ap is None:continue
             away_team=next(x for x in schools if x["slug"]==other)
-            before_date=game["date"].date().isoformat()+"T00:00:00+00:00"
+            before_date=(game["date"]-timedelta(seconds=1)).isoformat()
             # The season archive collection timestamp provides a real observation of the final result.\n            # Never invent a result-verification timestamp.\n            final_date=next((v for v in [stamp(load(ROOT/f"data/cbb/teams/{slug}.json")["seasons"][season].get("collected_at"))] if v and v>game["date"]),None)\n            if final_date is None:continue
             # Mark records as reconstructed prior-game profiles, not archived model ratings.
             item={"game_id":gid,"season":int(season),"date":game["date"].isoformat(),
