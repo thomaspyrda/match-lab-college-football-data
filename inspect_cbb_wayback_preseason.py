@@ -1,5 +1,5 @@
 """Inspect available archived 2017/2018 Torvik preseason pages; no publication."""
-import json,urllib.request
+import json,urllib.request,csv
 from pathlib import Path
 from audit_cbb_torvik_original_preseason import parse
 root=Path("cbb/match-lab/imports/preseason-review")
@@ -25,6 +25,13 @@ for year,items in inventory.items():
    with urllib.request.urlopen(urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"}),timeout=30) as f:html=f.read().decode("utf-8","replace")
    ranked=parse(html)
    unique={r:t for r,t in ranked}
+   if year=="2018" and len(unique)>=300:
+    with (root/"2018-candidate-rankings.csv").open("w",newline="") as output:
+     writer=csv.writer(output)
+     writer.writerow(["season","team","rank","source_url","capture_timestamp"])
+     for rank,team in sorted(unique.items()):
+      writer.writerow([year,team,rank,url,item.get("timestamp","")])
+    print("2018 candidate rankings saved for source review")
    result={"capture":url,"ranked_count":len(unique),"top_3":list(sorted(unique.items()))[:3],"complete":len(unique)>=300}
   except Exception as e:result={"capture":url,"error":str(e)}
   report[year].append(result)
