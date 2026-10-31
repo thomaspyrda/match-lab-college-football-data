@@ -15,7 +15,15 @@ jobs:
       - name: Install HTML parser
         run: pip install beautifulsoup4
       - name: Audit complete 353-team 2019-20 preseason rankings
-        run: python audit_cbb_2016_teamrankings.py --season 2020 --url 'https://www.teamrankings.com/blog/ncaa-basketball/2019-college-basketball-preseason-rankings-ratings'
+        run: |
+          python audit_cbb_2016_teamrankings.py --season 2020 --url 'https://www.teamrankings.com/blog/ncaa-basketball/2019-college-basketball-preseason-rankings-ratings'
+          python - <<'PY'
+          import json
+          p='cbb/match-lab/imports/preseason-review/2020-teamrankings-audit.json'
+          a=json.load(open(p))
+          assert a['rankings_extracted']==353 and len(a['mapped'])==353 and not a['unresolved'] and not a['ambiguous'], '2019-20 preseason team mapping incomplete'
+          print('Validated all 353 2019-20 preseason teams')
+          PY
       - name: Upload preseason ranking mapping review
         if: always()
         uses: actions/upload-artifact@v4
