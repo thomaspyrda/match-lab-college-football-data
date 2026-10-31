@@ -274,9 +274,9 @@ function why(g) {
       g.away_profile.strength_score,
     );
   if (sd != null && sd <= 3)
-    r.push(`Point spreads are within ${sd} points`);
+    r.push(`Point spreads are within ${sd.toFixed(1)} points`);
   if (td != null && td <= 6)
-    r.push(`Market totals are within ${td} points`);
+    r.push(`Market totals are within ${td.toFixed(1)} points`);
   if (
     selected.home_profile.classification === g.home_profile.classification &&
     selected.away_profile.classification === g.away_profile.classification
@@ -297,9 +297,9 @@ function why(g) {
         : "Both are non-conference games",
     );
   if (hd != null && hd <= 10)
-    r.push(`Home teams are within ${hd} strength points`);
+    r.push(`Home teams are within ${hd.toFixed(1)} strength points`);
   if (ad != null && ad <= 10)
-    r.push(`Road teams are within ${ad} strength points`);
+    r.push(`Road teams are within ${ad.toFixed(1)} strength points`);
   return r.slice(0, 6);
 }
 function differences(g) {
@@ -315,13 +315,13 @@ function differences(g) {
       g.away_profile.strength_score,
     );
   if (sd != null && sd > 3)
-    r.push(`Point spreads differ by ${sd} points`);
+    r.push(`Point spreads differ by ${sd.toFixed(1)} points`);
   if (td != null && td > 6)
-    r.push(`Market totals differ by ${td} points`);
+    r.push(`Market totals differ by ${td.toFixed(1)} points`);
   if (hd != null && hd > 10)
-    r.push(`Home-team strength differs by ${hd} percentile points`);
+    r.push(`Home-team strength differs by ${hd.toFixed(1)} percentile points`);
   if (ad != null && ad > 10)
-    r.push(`Road-team strength differs by ${ad} percentile points`);
+    r.push(`Road-team strength differs by ${ad.toFixed(1)} percentile points`);
   if (selected.conference_game !== g.conference_game)
     r.push("Conference setting is different");
   const sf = selected.home_profile.recent_form?.games || 0,
@@ -578,7 +578,7 @@ function renderMatches(xs) {
     if (g.result.total === "push") pushes++;
   }
   $("summary").innerHTML =
-    `<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}</b><span>Over–Under${pushes ? " (+" + pushes + " push)" : ""}</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;
+    `<div><b>${hc}</b><span>Home covers</span></div><div><b>${ac}</b><span>Away covers</span></div><div><b>${o}-${u}${pushes ? "-" + pushes : ""}</b><span>Over–Under</span></div><div><b>${xs.length}</b><span>Matches</span></div>`;
   $("matches").innerHTML = xs
     .map(
       ({ g, s }, i) =>
