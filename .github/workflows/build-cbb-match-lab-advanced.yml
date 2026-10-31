@@ -62,6 +62,8 @@ jobs:
           with_preseason=[g for g in games if g['season']==2018]
           filled=sum('preseason_rank' in side['profile'] for g in with_preseason for side in (g['home'],g['away']))
           print('2017-18 historical comparisons:',len(with_preseason),'preseason team-profiles populated:',filled)
+          if '${{ inputs.season }}' == '2018' and '${{ inputs.all_seasons }}' != 'true':
+            assert len(with_preseason)>0, '2017-18 rebuild produced no eligible historical games'
           assert not with_preseason or filled>0, '2017-18 historical comparisons exist but no preseason rankings joined'
           PY
       - name: Publish validated snapshots and archive
