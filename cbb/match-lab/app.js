@@ -17,15 +17,29 @@ async function loadFrozenPreseason(){
  if(data.season!=="2026-27"||data.frozen!==true||!Array.isArray(data.teams)||data.teams.length<360)throw Error("Incomplete 2026-27 opening rankings");
  const ranks=data.teams.map(t=>t.rank);
  if(new Set(ranks).size!==data.teams.length)throw Error("Duplicate frozen preseason rank");
- frozenPreseason=new Map(data.teams.map(t=>[rankKey(t.name),t.rank]));
+ frozenPreseason=new Map();
+ for(const entry of data.teams){
+  // The dashboard uses full school + mascot names, while the frozen file often abbreviates schools.
+  // Index both the official archive slug and short school name rather than guessing rank values.
+  for(const value of [entry.name,entry.slug]){
+   const key=rankKey(value);
+   if(key)frozenPreseason.set(key,entry.rank);
+  }
+ }
 }
 function frozenRank(t){
- for(const n of [t.school,t.name,t.display_name,t.displayName,t.short_name]){
-  const key=rankKey(n);
-  if(frozenPreseason.has(key))return frozenPreseason.get(key);
-  for(const [school,rank] of frozenPreseason)if(key.startsWith(school+" "))return rank;
+ const keys=[t.school,t.name,t.display_name,t.displayName,t.short_name,t.slug,t.team_slug]
+  .map(rankKey).filter(Boolean);
+ for(const key of keys)if(frozenPreseason.has(key))return frozenPreseason.get(key);
+ // A full team label may include a mascot not present in the school-only ranking name.
+ // Require a word boundary and choose the longest known school key to avoid partial collisions.
+ let best=null,bestLength=0;
+ for(const key of keys){
+  for(const [school,rank] of frozenPreseason){
+   if(key.startsWith(school+" ")&&school.length>bestLength){best=rank;bestLength=school.length}
+  }
  }
- return null;
+ return best;
 }
 function preRank(t){
  const p=t.profile||{};
