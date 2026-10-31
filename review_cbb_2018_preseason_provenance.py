@@ -20,9 +20,10 @@ def main():
   "archive_capture_year":archive_year,
   "archive_capture_is_after_2017_preseason":archive_year>2017,
   "original_preseason_provenance_verified":False,
+  "working_preseason_baseline_accepted":bool(d.get("working_preseason_baseline_accepted")),
   "reuse_permission_verified":False,
   "ready_for_publication":False,
-  "notes":"Original Torvik preseason page URL is verified, but a 2020 archive capture alone cannot prove unchanged 2017 preseason values. Manual source confirmation and redistribution approval required."}
+  "notes":"User accepts historical preseason values as working baseline; this does not independently verify original values or authorize redistribution."}
  a.output.parent.mkdir(parents=True,exist_ok=True)
  a.output.write_text(json.dumps(report,indent=2)+"\n")
  print("PROVENANCE REVIEW:",json.dumps(report))
