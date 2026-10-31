@@ -59,6 +59,12 @@ jobs:
           advanced=('three_pct','efg_pct','oreb_pg','dreb_pg','assists_pg','turnover_margin','ft_pct')
           counts=Counter(k for g in games for k in advanced if k in g['home']['profile'] and k in g['away']['profile'])
           print('Validated advanced metric coverage by game:',dict(counts))
+          with_2020=[g for g in games if g['season']==2020]
+          filled_2020=sum('preseason_rank' in side['profile'] for g in with_2020 for side in (g['home'],g['away']))
+          both_2020=sum(all('preseason_rank' in side['profile'] for side in (g['home'],g['away'])) for g in with_2020)
+          print('2019-20 historical comparisons:',len(with_2020),'preseason team-profiles populated:',filled_2020,'both-team ranked games:',both_2020)
+          if '${{ inputs.season }}' == '2020' and '${{ inputs.all_seasons }}' != 'true':
+            assert with_2020 and both_2020>0, '2019-20 rebuild produced no both-team ranked comparisons'
           with_2016=[g for g in games if g['season']==2016]
           filled_2016=sum('preseason_rank' in side['profile'] for g in with_2016 for side in (g['home'],g['away']))
           both_2016=sum(all('preseason_rank' in side['profile'] for side in (g['home'],g['away'])) for g in with_2016)
