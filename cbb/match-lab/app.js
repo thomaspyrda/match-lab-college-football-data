@@ -1,7 +1,7 @@
 "use strict";
 const byId=id=>document.getElementById(id);
 const clean=s=>String(s??"—").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-let games=[],selected=null,history=[],activeDay='all',logoByName={};
+let games=[],selected=null,history=[],activeDay='all',logoByName={},frozenPreseason=new Map();
 async function load(url){const r=await fetch(url,{cache:"no-store"});if(!r.ok)throw Error(url+" unavailable");return r.json()}
 const val=(x,...keys)=>keys.reduce((v,k)=>v?.[k],x);
 const num=v=>v==null||v===""?null:Number.isFinite(+v)?+v:null;
@@ -11,6 +11,22 @@ function date(g){return Date.parse(g.date||g.kickoff||g.start_date||"")}
 function name(g,side){return team(g[side]).name||"Unknown"}
 function schedule(g){return g.metrics||[]}
 function metric(g,k,side){const m=schedule(g).find(x=>x.key===k);return num(m?.[side]?.value??m?.[side]??team(g[side])?.profile?.[k]??team(g[side])?.[k])}
+const rankKey=s=>String(s||"").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g," ").trim();
+async function loadFrozenPreseason(){
+ const data=await load("data/preseason-2027.json");
+ if(data.season!=="2026-27"||data.frozen!==true||!Array.isArray(data.teams)||data.teams.length<360)throw Error("Incomplete 2026-27 opening rankings");
+ const ranks=data.teams.map(t=>t.rank);
+ if(new Set(ranks).size!==data.teams.length)throw Error("Duplicate frozen preseason rank");
+ frozenPreseason=new Map(data.teams.map(t=>[rankKey(t.name),t.rank]));
+}
+function frozenRank(t){
+ for(const n of [t.school,t.name,t.display_name,t.displayName,t.short_name]){
+  const key=rankKey(n);
+  if(frozenPreseason.has(key))return frozenPreseason.get(key);
+  for(const [school,rank] of frozenPreseason)if(key.startsWith(school+" "))return rank;
+ }
+ return null;
+}
 function preRank(t){
  const p=t.profile||{};
  // Accept published preseason rankings; at opening tip the seeded team-strength
@@ -19,7 +35,7 @@ function preRank(t){
  const first=num(p.preseason_rank??t.preseason_rank??t.preseasonRank);
  if(first!==null&&first>=1)return first;
  if(played!==null&&played>0)return null;
- const starting=num(t.strength_rank??t.team_strength_rank??t.rankings?.strength_rank??p.strength_rank??p.team_strength_rank);
+ const starting=num(frozenRank(t));
  return starting!==null&&starting>=1?starting:null;
 }
 function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(preRank(a),preRank(h)),preseasonAvg:avg(preRank(a),preRank(h)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
@@ -132,5 +148,5 @@ function renderResults(){
 
  byId("results").scrollIntoView({behavior:"smooth",block:"start"});
 }
-(async()=>{try{const d=await load("/cbb/dashboard/data/dashboard.json");const raw=Array.isArray(d.games)?d.games:[];const now=Date.now();games=raw.map(g=>({...g,away:typeof g.away==="string"?d.teams?.[g.away]||{name:g.away}:g.away,home:typeof g.home==="string"?d.teams?.[g.home]||{name:g.home}:g.home})).filter(g=>Number.isFinite(date(g))&&date(g)>=now&&date(g)<now+7*86400000);renderGames()}catch(e){byId("games").innerHTML='<p class="muted">CBB schedule source unavailable. Historical results cannot be searched until the dashboard feed loads.</p>';console.error(e)}})();
+(async()=>{try{const d=await load("/cbb/dashboard/data/dashboard.json");const raw=Array.isArray(d.games)?d.games:[];const now=Date.now();try{await loadFrozenPreseason()}catch(error){console.warn("Frozen preseason rankings unavailable",error)}games=raw.map(g=>({...g,away:typeof g.away==="string"?d.teams?.[g.away]||{name:g.away}:g.away,home:typeof g.home==="string"?d.teams?.[g.home]||{name:g.home}:g.home})).filter(g=>Number.isFinite(date(g))&&date(g)>=now&&date(g)<now+7*86400000);renderGames()}catch(e){byId("games").innerHTML='<p class="muted">CBB schedule source unavailable. Historical results cannot be searched until the dashboard feed loads.</p>';console.error(e)}})();
 byId("see").onclick=async()=>{if(!selected)return;byId("see").disabled=true;byId("see").textContent="FINDING MATCHES…";try{const d=await load("data/verified-historical.json");history=Array.isArray(d.games)?d.games:[];try{const registry=await load("/data/sports/team-registry.json");logoByName=Object.fromEntries((registry.teams||[]).filter(t=>t.sport==="cbb"&&t.logo).map(t=>[t.name,t.logo]))}catch(e){console.warn("Logo registry unavailable",e)}renderResults()}catch(e){byId("results").hidden=false;byId("status").textContent="Verified historical archive not yet available. No unverified comparisons will be shown.";byId("summary").innerHTML="";byId("matches").innerHTML="";console.error(e)}finally{byId("see").textContent="SEE MATCHES";byId("see").disabled=false}};
