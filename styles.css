@@ -1052,3 +1052,6 @@ footer {
 #seeMatchesAction .see-matches-button{width:min(100%,580px);min-height:64px;border-radius:999px;background:#00ff41;color:#061609;font:900 clamp(17px,2vw,21px)/1.1 "DM Sans",sans-serif;letter-spacing:.09em;box-shadow:0 6px 24px rgba(0,255,65,.16)}
 #seeMatchesAction .see-matches-button:disabled{opacity:.7;background:#00ff41;color:#061609}
 #seeMatchesAction #selectedMatchupStatus{margin-top:12px;font-size:13px}
+
+/* Archived CFB matchup result cards */
+.history-team-logos{display:flex;align-items:center;gap:10px;margin:8px 0}.history-team-logos strong{flex:1}.history-team-logos .logo-wrap,.history-team-logos .logo-fallback{width:32px;height:32px;flex-shrink:0}.history-team-logos .team-logo{width:32px;height:32px;object-fit:contain}.history-view{display:block;color:#00ff41;font-size:12px;margin-top:9px;font-weight:800}.history-game{cursor:pointer}.history-game:hover,.history-game:focus-visible{border-color:#00ff41}.historical-selected-detail{border:1px solid #383838;border-radius:14px;background:#1f1f1f;padding:20px;margin:16px 0}.historical-final{font-size:22px}.historical-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.historical-metrics-team{border:1px solid #383838;border-radius:10px;padding:14px}@media(max-width:600px){.historical-metrics{grid-template-columns:1fr}}
