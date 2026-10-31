@@ -78,16 +78,19 @@ function renderResults(){
   byId("summary").innerHTML="";byId("matches").innerHTML="";
   return;
  }
+ // A displayed historical match must have a verifiable ATS decision and total result.
+ // Exclude ATS pushes rather than misclassifying them as home/away covers.
+ const atsDecision=g=>{const hp=num(g.result?.home_points),ap=num(g.result?.away_points),spread=num(g.market?.spread??g.market?.home_spread);if(hp===null||ap===null||spread===null)return null;const margin=hp-ap+spread;return Math.abs(margin)<0.00001?"push":margin>0?"home":"away"};
  let pool=candidates.map(g=>({g,match:similarity(researched,context(g))}))
-   .filter(x=>x.match!==null)
+   .filter(x=>x.match!==null&&["home","away"].includes(atsDecision(x.g))&&["over","under","push"].includes(String(x.g.result?.total).toLowerCase()))
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
    .slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
  byId("status").textContent=pool.length?pool.length+" historical comparisons with both teams ranked preseason · Scores account for statistical coverage.":"No eligible ranked historical comparisons yet. Both historical teams must have preseason ranks, and opening-day researched teams also need preseason ranks.";
- const covers={home:0,away:0,push:0,available:0};
- pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
- const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?"–"+counts.push:""),"Over–Under"],[String(pool.length),"Matches"]];
+ const covers={home:0,away:0};
+ pool.forEach(({g})=>{covers[atsDecision(g)]++});
+ const summary=[[String(covers.home),"Home covers"],[String(covers.away),"Away covers"],[counts.over+"–"+counts.under+(counts.push?"–"+counts.push:""),"Over–Under"],[String(pool.length),"Matches"]];
  byId("summary").innerHTML=summary.map(([v,l])=>'<div class="cbb-stat"><strong>'+v+'</strong><small>'+l+'</small></div>').join("");
 
  const logo=t=>{const url=t?.logo||t?.logo_url||logoByName[t?.name];return /^https:\/\//.test(url||"")?'<img class="cbb-match-logo" alt="" loading="lazy" src="'+clean(url)+'">':'<span class="cbb-match-logo placeholder" aria-hidden="true"></span>'};
