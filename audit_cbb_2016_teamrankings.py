@@ -139,6 +139,13 @@ def main():
    aliases[norm(name)].add(slug)
   elif not aliases.get(norm(name)):
    aliases[norm(name)].add("historical:"+re.sub(r"[^a-z0-9]+","-",name.lower()).strip("-"))
+ # Final source-specific spellings confirmed in the 2016-17 audit.
+ for historical,identifier in {
+  "NC-Wilmngton":"unc-wilmington-seahawks",
+  "San Francsco":"san-francisco-dons",
+ }.items():
+  # Historical identity fallback is retained if the present-day registry omits a school.
+  aliases[norm(historical)].add(identifier if identifier in known else "historical:"+identifier)
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
