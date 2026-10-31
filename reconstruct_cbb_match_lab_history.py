@@ -73,7 +73,7 @@ def main():
         earlier=[row for row in rows if row["date"][:10]<tip.date().isoformat()]
         if not earlier:return {}
         row=earlier[-1]
-        return {k:row[k] for k in ("preseason_rank",)
+        return {k:row[k] for k in ("preseason_rank","off_eff","def_eff","pace")
                 if k in row and isinstance(row[k],(int,float))}
     history=[]
     for (season,slug),teamgames in records.items():
