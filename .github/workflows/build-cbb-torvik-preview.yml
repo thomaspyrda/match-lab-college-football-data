@@ -6,12 +6,16 @@ on:
         description: 'Season ending year'
         required: true
         default: '2025'
+      all_seasons:
+        description: 'Validate seasons 2016–2026 without publishing'
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
   preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,7 +23,15 @@ jobs:
           python-version: '3.12'
       - run: pip install duckdb pytz
       - name: Download verified dated ratings to temporary workspace
-        run: python import_cbb_torvik_daily.py --season ${{ inputs.season }}
+        run: |
+          if [ "${{ inputs.all_seasons }}" = "true" ]; then
+            for season in $(seq 2016 2026); do
+              echo "Importing dated Torvik ratings for season $season"
+              python import_cbb_torvik_daily.py --season "$season"
+            done
+          else
+            python import_cbb_torvik_daily.py --season "${{ inputs.season }}"
+          fi
       - name: Join ratings to historical matchups without publication
         run: python reconstruct_cbb_match_lab_history.py
       - name: Report exact historical coverage
@@ -30,6 +42,15 @@ jobs:
           keys=['preseason_rank','strength_rank','off_eff','def_eff','pace']
           print('Verified historical games:',len(rows))
           print('Both teams have rating:',{k:sum(k in g['home']['profile'] and k in g['away']['profile'] for g in rows) for k in keys})
+          by_season=collections.defaultdict(lambda:collections.Counter())
+          for g in rows:
+              season=str(g['season'])
+              by_season[season]['historical_games']+=1
+              for k in keys:
+                  if k in g['home']['profile'] and k in g['away']['profile']:
+                      by_season[season][k]+=1
+          for season,counts in sorted(by_season.items()):
+              print('Season',season,'coverage',dict(counts))
           for g in rows:
               if all(k in g['home']['profile'] and k in g['away']['profile'] for k in ('off_eff','def_eff')):
                   print('First verified efficiency game:',g['game_id'],g['date']);break
@@ -37,7 +58,7 @@ jobs:
       - name: Upload nonpublic inspection artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cbb-torvik-preview-${{ inputs.season }}
+          name: cbb-torvik-preview-${{ github.run_number }}
           path: |
-            cbb/match-lab/data/torvik-daily-${{ inputs.season }}.json
+            cbb/match-lab/data/torvik-daily-*.json
           retention-days: 7
