@@ -86,7 +86,12 @@ def main():
             if hp is None or ap is None:continue
             away_team=next(x for x in schools if x["slug"]==other)
             before_date=(game["date"]-timedelta(seconds=1)).isoformat()
-            # The season archive collection timestamp provides a real observation of the final result.\n            # Never invent a result-verification timestamp.\n            final_date=next((v for v in [stamp(load(ROOT/f"data/cbb/teams/{slug}.json")["seasons"][season].get("collected_at"))] if v and v>game["date"]),None)\n            if final_date is None:continue
+            # Require an independently stored postgame archive collection time.
+            # Never use the game's own date as a fabricated verification time.
+            archive_path=ROOT/f"data/cbb/teams/{slug}.json"
+            collected=stamp(load(archive_path)["seasons"][season].get("collected_at"))
+            if collected is None or collected<=game["date"]:continue
+            final_date=collected
             # Mark records as reconstructed prior-game profiles, not archived model ratings.
             item={"game_id":gid,"season":int(season),"date":game["date"].isoformat(),
              "snapshot_as_of":before_date,"result_verified_at":final_date.isoformat(),
