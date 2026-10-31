@@ -1,0 +1,47 @@
+name: Build CBB Match Lab advanced pregame snapshots
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: 'Season ending year (2016–2026)'
+        required: true
+        default: '2025'
+permissions:
+  contents: write
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build prior-game advanced statistical snapshots
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: python build_cbb_match_lab_box_snapshots.py --season ${{ inputs.season }}
+      - name: Rebuild verified historical comparison archive
+        run: python reconstruct_cbb_match_lab_history.py
+      - name: Validate every historical comparison
+        run: |
+          python - <<'PY'
+          import json
+          from build_cbb_match_lab_archive import validated
+          p='cbb/match-lab/data/verified-historical.json'
+          games=json.load(open(p))['games']
+          assert games and all(validated(g) for g in games)
+          print('Verified historical games:',len(games))
+          print('Games with advanced box-derived profiles:',sum(bool(g['home']['profile'].get('oreb_pg')) for g in games))
+          PY
+      - name: Publish validated snapshots and archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/box-pregame-${{ inputs.season }}.json cbb/match-lab/data/verified-historical.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add verified CBB pregame advanced metrics for season ${{ inputs.season }}"
+            git push
+          fi
