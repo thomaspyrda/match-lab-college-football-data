@@ -106,9 +106,11 @@ def main():
             home_extra=extra.get(str(team["espn_id"]),{})
             away_extra=extra.get(str(registry_by_slug[other]["espn_id"]),{})
             hp.update({k:v for k,v in home_extra.items() if isinstance(v,(int,float))})
+            hp.update(dated_ratings(season,team["espn_id"],game["date"]))
             home_rank=preseason.get(str(season),{}).get(slug)
             if home_rank:hp["preseason_rank"]=home_rank["rank"]
             ap.update({k:v for k,v in away_extra.items() if isinstance(v,(int,float))})
+            ap.update(dated_ratings(season,registry_by_slug[other]["espn_id"],game["date"]))
             away_rank=preseason.get(str(season),{}).get(other)
             if away_rank:ap["preseason_rank"]=away_rank["rank"]
             away_team=registry_by_slug[other]
