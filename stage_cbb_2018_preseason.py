@@ -34,13 +34,13 @@ def main():
  captures={(ranked[i].get("capture_timestamp"),ranked[i]["source_url"]) for i in ranked}
  if len(captures)!=1:raise ValueError("Candidates came from multiple source captures")
  timestamp,url=captures.pop()
- result={"season":2018,"source_name":"Bart Torvik original preseason projection candidate",
+ result={"season":2018,"source_name":"Bart Torvik archived 2017-18 preseason projections",
          "source_url":url,"capture_timestamp":timestamp,"source_capture_after_season":True,
-         "source_provenance_verified":False,"redistribution_permission_verified":False,
+         "source_provenance_verified":False,"working_preseason_baseline_accepted":True,"acceptance_basis":"User approved treating archived 2017-18 original preseason page as unchanged baseline; not independently proven", "redistribution_permission_verified":False,
          "publication_allowed":False,"rankings":schools}
  args.output.parent.mkdir(parents=True,exist_ok=True)
  args.output.write_text(json.dumps(result,indent=2)+"\n")
  print("STAGED ONLY:",len(schools),"preseason candidates;",len(mapped),"registry teams,",len(legacy),"historical-only")
  print("Capture:",timestamp,url)
- print("Source provenance & redistribution approval required before website publication")
+ print("2017-18 archived preseason baseline accepted for internal historical comparisons; public redistribution still unverified")
 if __name__=="__main__":main()
