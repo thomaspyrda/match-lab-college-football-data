@@ -1,0 +1,57 @@
+name: Complete CBB 2020-21 through 2025-26 historical preseason backfill
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate-and-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install DuckDB for source archive
+        run: pip install duckdb
+      - name: Recover six dated preseason archives
+        run: |
+          set -euo pipefail
+          for season in 2021 2022 2023 2024 2025 2026; do
+            echo "Importing dated historical season $season"
+            python import_cbb_torvik_daily.py --season "$season"
+          done
+      - name: Validate and integrate all six preseason seasons atomically
+        run: python integrate_cbb_2021_2026_preseason.py
+      - name: Rebuild verified historical match archive once
+        run: python reconstruct_cbb_match_lab_history.py
+      - name: Verify all six seasons have actual ranked pregame comparisons
+        run: |
+          python - <<'PY'
+          import json
+          from build_cbb_match_lab_archive import validated
+          root='cbb/match-lab/data/'
+          ranks=json.load(open(root+'preseason-ranks.json'))['seasons']
+          games=json.load(open(root+'verified-historical.json'))['games']
+          assert games and all(validated(g) for g in games)
+          for season in range(2021,2027):
+            sample=[g for g in games if g['season']==season]
+            both=sum(all('preseason_rank' in g[side]['profile'] for side in ('home','away')) for g in sample)
+            profiles=sum('preseason_rank' in g[side]['profile'] for g in sample for side in ('home','away'))
+            print(f"{season-1}-{str(season)[-2:]}: {len(ranks[str(season)])} teams with preseason ranks; {len(sample)} historical games; {profiles} ranked profiles; {both} both-team ranked comparisons")
+            assert len(ranks[str(season)])>=300 and len(sample)>0 and both>0, f"{season}: incomplete backfill; publication stopped"
+          assert all(y in ranks for y in map(str,range(2016,2027)))
+          print('All 11 historical seasons present and six new seasons validated.')
+          PY
+      - name: Commit validated data and rebuilt history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cbb/match-lab/data/preseason-ranks.json cbb/match-lab/data/torvik-daily-20*.json cbb/match-lab/data/verified-historical.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate six dated CBB preseason rankings and validated historical comparisons"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
