@@ -162,6 +162,47 @@ def main():
   # Historical identity fallback is retained if the present-day registry omits a school.
   aliases[norm(historical)].add(identifier if identifier in known else "historical:"+identifier)
  aliases[norm("California Baptist")].add("california-baptist-lancers" if "california-baptist-lancers" in known else "historical:california-baptist-lancers")
+ if args.season==2019:
+  # Exact 32 identities from CBS source; fail rather than guess or merge duplicates.
+  cbs_names={
+   "Southern California":"USC",
+   "Brigham Young":"BYU",
+   "Texas-San Antonio":"UTSA",
+   "Eastern Michigan":"Eastern Michigan",
+   "Southern Illinois":"Southern Illinois",
+   "Miami (Ohio)":"Miami Ohio",
+   "Pennsylvania":"Penn",
+   "St. Francis (Pa.)":"Saint Francis Pennsylvania",
+   "Purdue Fort Wayne":"Fort Wayne",
+   "Maryland-Baltimore County":"UMBC",
+   "Appalachian State":"Appalachian State",
+   "Northern Colorado":"Northern Colorado",
+   "Northern Illinois":"Northern Illinois",
+   "Eastern Illinois":"Eastern Illinois",
+   "Western Michigan":"Western Michigan",
+   "Louisiana-Monroe":"Louisiana Monroe",
+   "Sam Houston State":"Sam Houston",
+   "Western Illinois":"Western Illinois",
+   "California Riverside":"UC Riverside",
+   "Eastern Washington":"Eastern Washington",
+   "Texas-El Paso":"UTEP",
+   "Army West Point":"Army",
+   "Loyola-Maryland":"Loyola Maryland",
+   "Central Connecticut State":"Central Connecticut",
+   "North Carolina Central":"North Carolina Central",
+   "Texas-Arlington":"UT Arlington",
+   "St. Francis (N.Y.)":"St. Francis Brooklyn",
+   "Florida International":"FIU",
+   "Texas-Rio Grande Valley":"UT Rio Grande Valley",
+   "Northern Arizona":"Northern Arizona",
+   "North Carolina A&T":"North Carolina A&T",
+   "Northridge":"Cal State Northridge"
+  }
+  for name,canonical in cbs_names.items():
+   candidates=aliases.get(norm(canonical),set())
+   if len(candidates)==1:aliases[norm(name)].update(candidates)
+   elif not aliases.get(norm(name)):
+    aliases[norm(name)].add("historical:"+re.sub(r"[^a-z0-9]+","-",canonical.lower()).strip("-"))
  mapped=[];missing=[];ambiguous=[];used=set()
  for row in rows:
   key=norm(row["team"]);options=aliases.get(key,set())
