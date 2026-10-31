@@ -1,0 +1,24 @@
+name: Audit original CBB Torvik preseason archives 2016-2020
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Retrieve and audit original preseason projections without publishing
+        run: python audit_cbb_torvik_original_preseason.py
+      - name: Upload source and audit output for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: torvik-original-preseason-audit
+          path: cbb/match-lab/imports/preseason-review/
+          retention-days: 7
