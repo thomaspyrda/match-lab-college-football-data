@@ -11,12 +11,18 @@ function date(g){return Date.parse(g.date||g.kickoff||g.start_date||"")}
 function name(g,side){return team(g[side]).name||"Unknown"}
 function schedule(g){return g.metrics||[]}
 function metric(g,k,side){const m=schedule(g).find(x=>x.key===k);return num(m?.[side]?.value??m?.[side]??team(g[side])?.profile?.[k]??team(g[side])?.[k])}
-function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null}}
+function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(num(a.profile?.preseason_rank??a.preseason_rank),num(h.profile?.preseason_rank??h.preseason_rank)),preseasonAvg:avg(num(a.profile?.preseason_rank??a.preseason_rank),num(h.profile?.preseason_rank??h.preseason_rank)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
 const weights={strength:[25,25],off:[12.5,20],def:[12.5,20],pace:[15,8],spread:[7.5,5],total:[7.5,8],homePPG:[7.5,12],awayPPG:[7.5,12],homeAllowed:[7.5,12],awayAllowed:[7.5,12],homeForm:[7.5,.4],awayForm:[7.5,.4],conference:[5,1]};
+ // Similarity scores rely on dated pregame performance or an accepted preseason baseline; never on market totals alone.
 function similarity(a,b){
- let total=0,used=0;const full=Object.values(weights).reduce((s,x)=>s+x[0],0);
- for(const [k,[w,scale]] of Object.entries(weights)){const x=a[k],y=b[k];if(!Number.isFinite(x)||!Number.isFinite(y))continue;total+=w*Math.exp(-Math.abs(x-y)/scale);used+=w}
- if(used<7.5)return null;
+ const opening=Math.min(a.played??0,12),anchor=Math.max(0,1-opening/12);
+ const active={...weights,preseasonDiff:[25*anchor,65],preseasonAvg:[10*anchor,90]};
+ let total=0,used=0;const full=Object.values(active).reduce((s,x)=>s+x[0],0);
+ for(const [k,[w,scale]] of Object.entries(active)){const x=a[k],y=b[k];if(!Number.isFinite(x)||!Number.isFinite(y))continue;total+=w*Math.exp(-Math.abs(x-y)/scale);used+=w}
+ const enoughPreseason=anchor>0.25&&Number.isFinite(a.preseasonDiff)&&Number.isFinite(b.preseasonDiff)&&Number.isFinite(a.preseasonAvg)&&Number.isFinite(b.preseasonAvg);
+ const performanceEvidence=["strength","off","def","pace","homePPG","awayPPG","homeAllowed","awayAllowed"].some(k=>Number.isFinite(a[k])&&Number.isFinite(b[k]));
+ if(!performanceEvidence&&!enoughPreseason)return null;
+ if(used<15)return null;
  const coverage=used/full,raw=total/used;
  // Reliability penalty: limited contextual evidence must never produce near-perfect scores.
  // Display scale is deliberately calibrated, not a statistical probability.
@@ -46,7 +52,7 @@ function renderResults(){
    .slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
- byId("status").textContent=pool.length?pool.length+" verified historical comparisons · Scores account for statistical coverage.":"No verified historical games share sufficient available pregame comparison fields.";
+ byId("status").textContent=pool.length?pool.length+" historical comparisons · Scores account for statistical coverage.":"No defensible comparisons yet: first-game matching requires verified preseason ranks for both teams; later games require pre-tipoff team performance.";
  const covers={home:0,away:0,push:0,available:0};
  pool.forEach(({g})=>{const spread=num(g.market?.spread),hp=num(g.result?.home_points),ap=num(g.result?.away_points);if(spread===null||hp===null||ap===null)return;covers.available++;const margin=hp-ap+spread;if(margin>0)covers.home++;else if(margin<0)covers.away++;else covers.push++});
  const summary=[[covers.available?String(covers.home):"—","Home covers"],[covers.available?String(covers.away):"—","Away covers"],[counts.over+"–"+counts.under+(counts.push?" (+"+counts.push+" push)":""),"Over–Under"],[String(pool.length),"Matches"]];
