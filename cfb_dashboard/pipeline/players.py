@@ -26,25 +26,33 @@ def enrich_players(teams, ppa_rows, passing, team_games, recent, metadata, repor
 
 
 def select_players(rows):
-    available = [row for row in rows if not row.get('unavailable')]
-    quarterbacks = [row for row in available if row.get('position') == 'QB']
-    qb = max(quarterbacks, key=lambda row:(row.get('recent_passing_role') or (0,0), row.get('pass') or 0), default=None)
-    skills = sorted([row for row in available if row.get('position') in {'RB','WR','TE'}], key=lambda row:float(row.get('overall') or 0), reverse=True)
-    chosen = [next((row for row in skills if row.get('position') == pos), None) for pos in ('RB','WR','TE')]
-    # ID is authoritative; name is the fallback for incomplete provider rows.
-    def identity(row): return str(row.get('id') or row.get('name'))
-    seen = {identity(row) for row in chosen if row}
-    # Extra RB/WR/TE: highest verified season rushing + receiving yardage.
-    # Do not substitute usage percentages for missing production statistics.
-    def total_yards(row):
-        totals = (row.get('production') or {}).get('totals') or {}
-        rushing, receiving = totals.get('rushing_yards'), totals.get('receiving_yards')
-        if rushing is None and receiving is None:
+    """Choose season leaders; availability is metadata, not a ranking filter."""
+    def yards(row, field):
+        value = ((row.get("production") or {}).get("totals") or {}).get(field)
+        try:
+            return float(value) if value is not None else None
+        except (ValueError, TypeError):
             return None
-        return float(rushing or 0) + float(receiving or 0)
-    eligible = [row for row in skills if identity(row) not in seen and total_yards(row) is not None]
-    extra = max(eligible, key=lambda row:(total_yards(row), identity(row)), default=None)
-    return [qb, *chosen, extra]
+
+    def identity(row):
+        return str(row.get("id") or row.get("name") or "")
+
+    qbs = [row for row in rows if row.get("position") == "QB"]
+    active_qbs = [row for row in qbs if not row.get("unavailable")]
+    qb = max(active_qbs or qbs,
+             key=lambda row: (row.get("recent_passing_role") or (0, 0), row.get("pass") or 0),
+             default=None)
+    skills = [row for row in rows if row.get("position") in {"RB", "WR", "TE"}]
+    selection = []
+    for position, field in (("RB", "rushing_yards"), ("WR", "receiving_yards"), ("TE", "receiving_yards")):
+        eligible = [row for row in skills if row.get("position") == position and yards(row, field) is not None]
+        selection.append(max(eligible, key=lambda row: (yards(row, field), identity(row)), default=None))
+    selected_ids = {identity(row) for row in selection if row}
+    remaining = [row for row in skills if identity(row) not in selected_ids
+                 and (yards(row, "rushing_yards") is not None or yards(row, "receiving_yards") is not None)]
+    extra = max(remaining, key=lambda row: ((yards(row, "rushing_yards") or 0) +
+                                           (yards(row, "receiving_yards") or 0), identity(row)), default=None)
+    return [qb, *selection, extra]
 
 PRODUCTION_FIELDS = {
     'completions': ('passing:COMPLETIONS', 'passing:CMP', 'passing:COMP'),
