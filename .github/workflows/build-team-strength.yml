@@ -8,6 +8,8 @@ on:
       timezone: America/New_York
     - cron: '10 6 * * 1'
       timezone: America/New_York
+    - cron: '15 11 * * 0'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
