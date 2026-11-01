@@ -72,7 +72,7 @@
     banner.innerHTML = '<span class="underdog-hero-banner__copy">GET A $50 BONUS\n+ A RIPS PACK WORTH UP TO $150!</span>';
     const terms = document.createElement("details");
     terms.className = "underdog-hero-terms";
-    terms.innerHTML = "<summary>Terms</summary><p class=\"underdog-hero-terms__copy\">This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $75 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and all reward conditions are determined by Underdog. Verify the current offer terms on the linked destination before participating.</p>";
+    terms.innerHTML = "<summary>Terms</summary><p class=\"underdog-hero-terms__copy\">This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $50 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and all reward conditions are determined by Underdog. Verify the current offer terms on the linked destination before participating.</p>";
     hero.insertAdjacentElement("afterend", banner);
     banner.insertAdjacentElement("afterend", terms);
   };
@@ -84,7 +84,7 @@
       banner.innerHTML = '<span class="underdog-hero-banner__copy">GET A $50 BONUS\n+ A RIPS PACK WORTH UP TO $150!</span>';
       const terms = banner.nextElementSibling;
       if (terms?.classList.contains("underdog-hero-terms")) {
-        terms.innerHTML = '<summary>Terms</summary><p class="underdog-hero-terms__copy">This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $75 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and reward conditions are determined by Underdog. Verify the offer terms on the linked destination before participating.</p>';
+        terms.innerHTML = '<summary>Terms</summary><p class="underdog-hero-terms__copy">This is an offer for Underdog. Sign up through our link. After a qualifying first entry, the advertised referral offer includes $50 in bonus funds and a Sports Starter Pack for you and your friend. Pack maximum value is $150 and is not guaranteed; view pack odds in Rips. Eligibility, qualifying actions, geographic restrictions, pack availability, and reward conditions are determined by Underdog. Verify the offer terms on the linked destination before participating.</p>';
       }
     });
   };
