@@ -41,9 +41,9 @@ def scoreboard_day(day, today):
         return {'events':[]}
 
 def location_market_records(games,team_id,cutoff):
-    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away','Neutral')}
+    result={place:{'games':0,'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}} for place in ('Home','Away')}
     for g in games:
-        place='Neutral' if g.get('neutral') else ('Home' if g['home']==team_id else 'Away')
+        place='Home' if g['home']==team_id else 'Away'
         row=result[place];row['games']+=1
         own_points=g['teams'][team_id]['points'];opp_points=g['teams'][next(i for i in g['teams'] if i!=team_id)]['points']
         row['wins']=row.get('wins',0)+int(own_points>opp_points);row['losses']=row.get('losses',0)+int(own_points<opp_points)
