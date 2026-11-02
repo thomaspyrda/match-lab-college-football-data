@@ -6,7 +6,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent
 E=lambda s:html.escape(str(s),quote=True)
-VERSION='20261102-cbb-mobile-columns-v6'
+VERSION='20261102-cbb-header-fix-v7'
 CONFERENCES={'Atlantic Coast Conference':'ACC','Southeastern Conference':'SEC','Atlantic 10 Conference':'A-10','American Conference':'AAC','Atlantic Sun Conference':'ASUN','Coastal Athletic Association':'CAA','Conference USA':'CUSA','Metro Conference':'MAAC','Mid-American Conference':'MAC','Mid-Eastern Athletic Conference':'MEAC','Missouri Valley Conference':'MVC','Northeast Conference':'NEC','Ohio Valley Conference':'OVC','Southern Conference':'SoCon','Southwestern Athletic Conference':'SWAC','United Athletic Conference':'UAC','West Coast Conference':'WCC'}
 def conference_name(value):
  return CONFERENCES.get(value,(value or '—').replace(' Conference','').replace(' League',''))
@@ -27,7 +27,7 @@ def publish():
   eligible=data['teams'] if mode=='overall' else sorted([t for t in data['teams'] if t.get(mode+'_rank')],key=lambda t:t[mode+'_rank'])
   header=''
   for key,title,helptext in columns:
-   btn=f'<button type="button" data-sort="{key}">{E(title)}<span class="sort-arrow" aria-hidden="true"> ↕</span></button>' if key not in ('logo','record') else E(title)
+   btn=f'<button type="button" data-sort="{key}">{E(title)}<span class="sort-arrow" aria-hidden="true"></span></button>' if key not in ('logo','record') else E(title)
    helpbtn=f' <button type="button" class="help-btn" aria-label="Define {E(title)}" aria-expanded="false" data-help="{E(helptext)}">?</button>' if helptext else ''
    header+=f'<th scope="col">{btn}{helpbtn}</th>'
   rows=[]
