@@ -1,6 +1,12 @@
 name: Capture CBB pregame markets
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - sync_cbb_market_archives.py
+      - tests/test_cbb_market_capture.py
+      - .github/workflows/cbb-pregame-market-capture.yml
   schedule:
     - cron: '15 10 * * *'
       timezone: America/New_York
