@@ -71,6 +71,7 @@ jobs:
   enrich:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 110
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -81,11 +82,21 @@ jobs:
       - name: Build pregame advanced percentile profiles
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python build_advanced_profiles.py
+        run: |
+          for attempt in 1 2 3; do
+            if python build_advanced_profiles.py; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - name: Refresh upcoming games and historical market index
         env:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: python refresh_match_lab.py
+        run: |
+          for attempt in 1 2 3; do
+            if python refresh_match_lab.py; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
       - name: Validate fresh CFB results before modeling
