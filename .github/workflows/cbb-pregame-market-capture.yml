@@ -39,7 +39,17 @@ jobs:
       - name: Capture actual pregame lines and grade completed verified games
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
-        run: python sync_cbb_market_archives.py
+        run: |
+          for attempt in 1 2 3; do
+            if python sync_cbb_market_archives.py; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              echo "::error::CBB market collection failed after three attempts"
+              exit 1
+            fi
+            sleep $((attempt * 20))
+          done
       - name: Publish only CBB market observations
         run: |
           git config user.name 'github-actions[bot]'
