@@ -42,3 +42,10 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 .strength-table-scroll .nba-rank-table th .help-btn{display:inline-flex;align-items:center;justify-content:center;margin-left:6px;vertical-align:middle;flex-shrink:0}
 .strength-table-scroll .sort-arrow{font-size:0!important;flex-shrink:0}
 @media(max-width:760px){.strength-table-scroll .nba-rank-table th{min-width:112px;padding:12px 9px!important}.strength-table-scroll .nba-rank-table th:nth-child(1){min-width:76px}.strength-table-scroll .nba-rank-table th:nth-child(2){min-width:52px}.strength-table-scroll .nba-rank-table th:nth-child(3){min-width:160px}.strength-table-scroll .nba-rank-table td:nth-child(3){min-width:160px;max-width:180px}}
+
+/* Only Rank and Logo may stay pinned during horizontal scrolling. */
+.strength-board #strength-table th:nth-child(3),.strength-board #strength-table td:nth-child(3){position:static!important;left:auto!important;right:auto!important;z-index:auto!important;transform:none!important}
+.strength-board #strength-table th:nth-child(1),.strength-board #strength-table td:nth-child(1),.strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){position:sticky;z-index:8;background:#151817}
+.strength-board #strength-table th:nth-child(1),.strength-board #strength-table td:nth-child(1){left:0!important}
+.strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:76px!important}
+.strength-board #strength-table thead th:nth-child(-n+2){z-index:12}
