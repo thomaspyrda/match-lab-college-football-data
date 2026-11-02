@@ -183,6 +183,17 @@ def main():
     for g in ThreadPoolExecutor(8).map(completed,new):
         if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
         old[g['id']]=g
+    # Historical results must use recorded pre-tipoff lines, not late ESPN quotes.
+    pregame_path=ROOT/f'data/cbb/pregame-markets/{season}.json'
+    pregame=json.loads(pregame_path.read_text()).get('games',{}) if pregame_path.exists() else {}
+    for game in old.values():
+        quote=pregame.get(str(game['id']))
+        if not quote:continue
+        if stamp(quote['observed_at'])>=stamp(quote['tipoff']):continue
+        game['market']={'home_spread':quote.get('home_spread'),'total':quote.get('total'),
+                        'provider':quote.get('provider'),'line_type':'observed before tipoff; closing not verified',
+                        'observed_at':quote['observed_at'],'source':quote.get('source')}
+        game['market_checked']=True
     roster_ids={c['team']['id'] for e in events.values() for c in e['competitions'][0]['competitors']}
     rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,roster_ids)}
     for g in old.values():
