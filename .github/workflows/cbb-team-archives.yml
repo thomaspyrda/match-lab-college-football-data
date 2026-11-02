@@ -10,6 +10,8 @@ on:
   schedule:
     - cron: '19 4 * * *'
       timezone: America/New_York
+    - cron: '19 16 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
