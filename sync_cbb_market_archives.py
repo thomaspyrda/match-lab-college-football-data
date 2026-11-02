@@ -5,6 +5,10 @@ An ESPN quote first observed after scheduled tipoff is NEVER used as a result li
 This supplements existing historical market archives without rewriting older seasons.
 """
 import json
+import os
+import re
+import unicodedata
+import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -65,6 +69,95 @@ def capture_event(e, now):
         "line_type": "ESPN pregame observed; not verified closing line",
     }
 
+
+def canonical(name):
+    s=unicodedata.normalize("NFKD",str(name)).encode("ascii","ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]","",s.replace("saint ","st ").replace("state ","state "))
+
+def fetch_cbbd_lines(now):
+    """Authenticated archived provider odds, backfill recent games without pretending live observation."""
+    key=os.getenv("CBBD_API_KEY")
+    if not key:
+        print("CBBD_API_KEY unavailable; skipping CBBD odds fallback")
+        return []
+    end=(now+timedelta(days=8)).isoformat()
+    start=(now-timedelta(days=14)).isoformat()
+    params=urllib.parse.urlencode({"season":SEASON,"startDateRange":start,"endDateRange":end})
+    url="https://api.collegebasketballdata.com/lines?"+params
+    req=urllib.request.Request(url,headers={"Authorization":"Bearer "+key,"Accept":"application/json","User-Agent":"BetWiseCBBD/1.0"})
+    with urllib.request.urlopen(req,timeout=60) as response:
+        payload=json.load(response)
+    if not isinstance(payload,list):raise ValueError("CBBD lines API did not return a list")
+    return payload
+
+def incorporate_cbbd(entries, rows):
+    registry=json.loads((ROOT/"data/sports/team-registry.json").read_text())
+    aliases={}
+    for team in registry["teams"]:
+        if team.get("sport")!="cbb":continue
+        keys=[team.get("short_name"),team.get("name"),*team.get("aliases",[])]
+        for key in keys:
+            if key and canonical(key):
+                aliases.setdefault(canonical(key),set()).add(str(team["espn_id"]))
+    candidates={}
+    for row in rows:
+        home=aliases.get(canonical(row.get("homeTeam")),set())
+        away=aliases.get(canonical(row.get("awayTeam")),set())
+        if len(home)!=1 or len(away)!=1:continue
+        h,a=next(iter(home)),next(iter(away))
+        if h==a:continue
+        for line in row.get("lines") or []:
+            provider=line.get("provider")
+            spread=number(line.get("spread"))
+            total=number(line.get("overUnder"))
+            if spread is None and total is None:continue
+            candidates.setdefault((h,a),[]).append((row,line))
+    matched=0
+    # Match against ESPN's final-game archives by exact participants, scores and date.
+    by_id={}
+    for file in TEAMS.glob("*.json"):
+        team=json.loads(file.read_text())
+        for phase in team.get("seasons",{}).get(str(SEASON),{}).get("phases",{}).values():
+            for g in phase.get("games",[]):
+                if g.get("status")!="final":continue
+                by_id.setdefault(str(g["id"]),[]).append((str(team["team_id"]),g))
+    for gid, sides in by_id.items():
+        if len(sides)!=2:continue
+        (id1,g1),(id2,g2)=sides
+        matching=[]
+        for home,away in ((id1,id2),(id2,id1)):
+            for row,line in candidates.get((home,away),[]):
+                try:
+                    game_day=timestamp(g1["date"]).date()
+                    api_day=timestamp(row["startDate"]).date()
+                    if abs((game_day-api_day).days)>1:continue
+                    hs=number(row.get("homeScore"));ascore=number(row.get("awayScore"))
+                    homegame=g1 if id1==home else g2
+                    awaygame=g2 if id1==home else g1
+                    if hs is None or ascore is None or hs!=number(homegame["points"]) or ascore!=number(awaygame["points"]):continue
+                    matching.append((home,away,row,line))
+                except (KeyError,ValueError,TypeError):continue
+        if not matching:continue
+        # Consistent provider selection; do not merge potentially contradictory lines.
+        matching.sort(key=lambda x:(0 if str(x[3].get("provider","")).lower()=="consensus" else 1,
+                                    str(x[3].get("provider",""))))
+        home,away,row,line=matching[0]
+        prior=entries.get(gid)
+        if prior and prior.get("home")==home and prior.get("away")==away and prior.get("home_spread") is not None and prior.get("total") is not None:
+            continue
+        new={"id":gid,"tipoff":g1["date"],"observed_at":row.get("startDate",g1["date"]),
+             "home":home,"away":away,"home_spread":number(line.get("spread")),
+             "total":number(line.get("overUnder")),"provider":line.get("provider"),
+             "source":"https://api.collegebasketballdata.com/lines?season=2027",
+             "line_type":"CBBD archived provider line; closing not independently verified",
+             "source_type":"archived_provider"}
+        if prior and prior.get("home")==home and prior.get("away")==away:
+            for field in ("home_spread","total"):
+                if prior.get(field) is not None:new[field]=prior[field]
+        entries[gid]=new
+        matched+=1
+    return matched
+
 def update(now=None, fetch=None):
     now = now or datetime.now(timezone.utc)
     def load(url):
@@ -91,6 +184,7 @@ def update(now=None, fetch=None):
                             row[field] = prev.get(field)
                 entries[row["id"]] = row
                 observed += 1
+    archived_matched=incorporate_cbbd(entries,fetch_cbbd_lines(now)) if os.getenv("CBBD_API_KEY") else 0
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
     new_ledger = {"season": SEASON, "last_checked": now.isoformat(), "games": entries}
     LEDGER.write_text(json.dumps(new_ledger, separators=(",", ":")) + "\n")
@@ -109,7 +203,7 @@ def update(now=None, fetch=None):
             if game.get("status") != "final":
                 continue
             odds = entries.get(str(game["id"]))
-            if not odds or timestamp(odds["observed_at"]) >= timestamp(odds["tipoff"]):
+            if not odds or (odds.get("source_type")!="archived_provider" and timestamp(odds["observed_at"]) >= timestamp(odds["tipoff"])):
                 continue
             pts, opp = number(game.get("points")), number(game.get("opponent_points"))
             if pts is None or opp is None:
@@ -141,7 +235,7 @@ def update(now=None, fetch=None):
             previous_path.parent.mkdir(parents=True, exist_ok=True)
             previous_path.write_text(json.dumps(archive, separators=(",", ":")) + "\n")
             count += 1
-    print(json.dumps({"observed_upcoming_games": observed, "pregame_ledger_games": len(entries), "updated_team_market_files": count}))
+    print(json.dumps({"observed_upcoming_games": observed, "pregame_ledger_games": len(entries), "updated_team_market_files": count, "cbbd_archived_games_matched": archived_matched}))
     return new_ledger
 
 if __name__ == "__main__":
