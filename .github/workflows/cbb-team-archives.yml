@@ -103,6 +103,8 @@ jobs:
           python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
           python -m unittest discover -s tests -p test_cbb_market_capture.py -v
       - name: Capture pregame CBB lines and publish verified current-season market records
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
         run: python sync_cbb_market_archives.py
       - name: Audit verified ATS and totals coverage for every completed current-season game
         if: github.event_name != 'push' && !inputs.historical_backfill
