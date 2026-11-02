@@ -79,7 +79,15 @@ function renderGames(){
  const filtered=games.filter(g=>activeDay==="all"||day(g)===activeDay);
  byId("scheduleStatus").textContent=filtered.length+" upcoming Division I games in the selected window";
  const image=t=>{const url=team(t).logo||team(t).logo_url;return /^https:\/\//.test(url||"")?'<img src="'+clean(url)+'" alt="" loading="lazy">':""};
- byId("games").innerHTML=filtered.map(g=>'<button class="game" data-id="'+clean(gameKey(g))+'" aria-pressed="'+(selected&&gameKey(selected)===gameKey(g))+'"><small>'+clean(new Date(date(g)).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))+'</small><strong>'+image(g.away)+clean(name(g,"away"))+'</strong><strong>'+image(g.home)+clean(name(g,"home"))+'</strong><small class="game-market-lines"><span>'+upcomingSpread(g)+'</span><span>O/U '+clean(g.market?.total??"—")+'</span></small></button>').join("")||'<p class="muted">No upcoming games on this date.</p>';
+ const card=g=>{
+  try{
+   const market=g.market||{};
+   const logo=t=>{const url=team(t).logo||team(t).logo_url;return typeof url==="string"&&/^https:\/\//.test(url)?'<img src="'+clean(url)+'" alt="" loading="lazy">':""};
+   const gameTime=new Date(date(g)).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+   return '<button class="game" data-id="'+clean(gameKey(g))+'" aria-pressed="'+Boolean(selected&&gameKey(selected)===gameKey(g))+'"><small>'+clean(gameTime)+'</small><strong>'+logo(g.away)+clean(name(g,"away"))+'</strong><strong>'+logo(g.home)+clean(name(g,"home"))+'</strong><small class="game-market-lines"><span>'+upcomingSpread(g)+'</span><span>O/U '+clean(market.total??"—")+'</span></small></button>';
+  }catch(error){console.error("CBB Match Lab card error",g?.id,error);return '<button class="game" data-id="'+clean(gameKey(g))+'"><small>Upcoming game</small><strong>'+clean(name(g,"away"))+'</strong><strong>'+clean(name(g,"home"))+'</strong><small>Market unavailable</small></button>'}
+ };
+ byId("games").innerHTML=filtered.map(card).join("")||'<p class="muted">No upcoming games on this date.</p>';
  byId("games").querySelectorAll("button").forEach(button=>button.onclick=()=>{selected=games.find(g=>gameKey(g)===button.dataset.id);byId("see").disabled=false;byId("chosen").textContent=name(selected,"away")+" at "+name(selected,"home");byId("results").hidden=true;renderGames()})
 }
 document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({left:-640,behavior:"smooth"});
