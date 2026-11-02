@@ -10,6 +10,8 @@ on:
       timezone: America/New_York
     - cron: '15 9 * * *'
       timezone: America/New_York
+    - cron: '45 10 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
@@ -46,7 +48,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
         with:
