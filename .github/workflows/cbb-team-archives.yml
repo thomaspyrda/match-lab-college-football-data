@@ -12,6 +12,11 @@ on:
       timezone: America/New_York
     - cron: '19 16 * * *'
       timezone: America/New_York
+    # Backup triggers: GitHub may delay or drop a scheduled event.
+    - cron: '11 5 * * *'
+      timezone: America/New_York
+    - cron: '11 17 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
@@ -19,11 +24,48 @@ on:
       - enrich_cbb_team_boxes.py
 permissions:
   contents: write
+  actions: read
 concurrency:
   group: cbb-team-archives
   cancel-in-progress: false
 jobs:
+  refresh_gate:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - name: Check whether backup refresh is necessary
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+          GH_EVENT_SCHEDULE: ${{ github.event.schedule }}
+          GH_RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import datetime,json,os,urllib.request
+          from datetime import timezone
+          backup={'11 5 * * *','11 17 * * *'}
+          should_run=True
+          if os.environ.get('GH_EVENT_SCHEDULE') in backup:
+              try:
+                  repo=os.environ['GH_REPOSITORY']
+                  url=f'https://api.github.com/repos/{repo}/actions/workflows/cbb-team-archives.yml/runs?event=schedule&status=success&per_page=30'
+                  req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
+                  with urllib.request.urlopen(req,timeout=15) as response: runs=json.load(response)['workflow_runs']
+                  cutoff=datetime.datetime.now(timezone.utc)-datetime.timedelta(minutes=85)
+                  recent=[run for run in runs if str(run['id'])!=os.environ['GH_RUN_ID'] and datetime.datetime.fromisoformat(run['updated_at'].replace('Z','+00:00'))>=cutoff]
+                  if recent:
+                      should_run=False
+                      print('Successful scheduled refresh found within 85 minutes; skip backup.')
+                  else: print('No recent successful scheduled refresh; run backup.')
+              except Exception as exc:
+                  print('Could not verify prior run; fail open and run backup:',exc)
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:stream.write('should_run='+str(should_run).lower()+'\n')
+          PY
   refresh:
+    needs: refresh_gate
+    if: needs.refresh_gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 110
     steps:
