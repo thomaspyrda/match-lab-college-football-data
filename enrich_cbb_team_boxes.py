@@ -80,6 +80,7 @@ def enrich(archives, boxes, year):
             stats={'gamesPlayed':g,'avgMinutes':t['minutes']/g,'avgPoints':t['points']/g,
                    'avgRebounds':t['rebounds']/g,'avgAssists':t['assists']/g,
                    'avgSteals':t['steals']/g,'avgBlocks':t['blocks']/g,
+                   'fieldGoalsAttempted':t['fga'],'threePointFieldGoalsAttempted':t['tpa'],'freeThrowsAttempted':t['fta'],
                    'fieldGoalPct':ratio(t['fgm'],t['fga'],100),
                    'threePointFieldGoalPct':ratio(t['tpm'],t['tpa'],100),
                    'freeThrowPct':ratio(t['ftm'],t['fta'],100),
