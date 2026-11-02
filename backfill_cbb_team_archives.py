@@ -42,8 +42,12 @@ def league(year,phase,kind):
     url=WEB+kind+f'?season={year}&seasontype={phase}&limit={limit}&isqualified=false'
     first=get(url)
     if first.get('requestedSeason',{}).get('year')!=year:
-        if not first.get('athletes') and not first.get('teams'):
-            print('Unavailable league player statistics',year,flush=True)
+        # ESPN sometimes returns the prior year's leaderboard when the new
+        # season opens. Never attribute that leaderboard to the active season.
+        active=datetime.now(timezone.utc).year+(datetime.now(timezone.utc).month>=7)
+        if year==active or (not first.get('athletes') and not first.get('teams')):
+            print('Skipping unavailable or wrong-year league player statistics',year,
+                  'source year',first.get('requestedSeason',{}).get('year'),flush=True)
             return {}
         raise ValueError('Wrong source season '+str(year))
     key='teams' if kind=='byteam' else 'athletes'
