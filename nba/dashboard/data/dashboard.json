@@ -1184,9 +1184,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.851379+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909903",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -2379,9 +2379,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.904544+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909903",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -4425,9 +4425,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.840149+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909904",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -5682,11 +5682,20 @@
         "roster_updated_at": "2026-11-01T17:30:43.892387+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909904",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
+            {
+              "player_id": "nba:espn:player:4433076",
+              "name": "Ben Sheppard",
+              "position": "G",
+              "status": "Out",
+              "reason": "Left \u00b7 Knee",
+              "reported_at": "2026-10-28T21:41Z",
+              "expected_return": "2027-01-02"
+            },
             {
               "player_id": "nba:espn:player:4017837",
               "name": "Ivica Zubac",
@@ -5706,6 +5715,15 @@
               "expected_return": "2027-01-02"
             },
             {
+              "player_id": "nba:espn:player:4278355",
+              "name": "Obi Toppin",
+              "position": "F",
+              "status": "Out",
+              "reason": "Back \u00b7 Soreness",
+              "reported_at": "2026-11-01T20:29Z",
+              "expected_return": "2026-11-02"
+            },
+            {
               "player_id": "nba:espn:player:2530530",
               "name": "T.J. McConnell",
               "position": "G",
@@ -5713,24 +5731,6 @@
               "reason": "Right \u00b7 Hamstring \u00b7 Strain",
               "reported_at": "2026-11-01T16:26Z",
               "expected_return": "2026-11-02"
-            },
-            {
-              "player_id": "nba:espn:player:4396909",
-              "name": "Aaron Nesmith",
-              "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Left \u00b7 Hamstring \u00b7 Strain",
-              "reported_at": "2026-10-31T21:13Z",
-              "expected_return": "2026-11-01"
-            },
-            {
-              "player_id": "nba:espn:player:4278355",
-              "name": "Obi Toppin",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Back \u00b7 Soreness",
-              "reported_at": "2026-10-31T21:10Z",
-              "expected_return": "2026-11-01"
             }
           ],
           "state": "reported"
@@ -7638,9 +7638,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.019367+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909905",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -7650,6 +7650,15 @@
               "status": "Out",
               "reason": "Right \u00b7 Knee \u00b7 Inflammation",
               "reported_at": "2026-10-15T01:03Z",
+              "expected_return": "2026-11-08"
+            },
+            {
+              "player_id": "nba:espn:player:3913176",
+              "name": "Brandon Ingram",
+              "position": "F",
+              "status": "Out",
+              "reason": "Right \u00b7 Achilles \u00b7 Surgery",
+              "reported_at": "2026-11-01T20:17Z",
               "expected_return": "2026-11-08"
             },
             {
@@ -7667,7 +7676,16 @@
               "position": "G",
               "status": "Out",
               "reason": "Right \u00b7 Foot \u00b7 Plantar Fasciitis",
-              "reported_at": "2026-10-29T01:03Z",
+              "reported_at": "2026-11-02T00:45Z",
+              "expected_return": "2026-11-08"
+            },
+            {
+              "player_id": "nba:espn:player:5108024",
+              "name": "Yanic Konan Niederhauser",
+              "position": "C",
+              "status": "Out",
+              "reason": "Right \u00b7 Foot \u00b7 Surgery",
+              "reported_at": "2026-11-01T20:17Z",
               "expected_return": "2026-11-08"
             }
           ],
@@ -8911,9 +8929,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.073760+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909905",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -8924,6 +8942,15 @@
               "reason": "Rest",
               "reported_at": "2026-10-31T19:51Z",
               "expected_return": "2026-11-02"
+            },
+            {
+              "player_id": "nba:espn:player:6430",
+              "name": "Jimmy Butler III",
+              "position": "F",
+              "status": "Out",
+              "reason": "Right \u00b7 Knee \u00b7 Surgery",
+              "reported_at": "2026-10-16T16:11Z",
+              "expected_return": "2027-01-02"
             },
             {
               "player_id": "nba:espn:player:3102531",
@@ -8951,15 +8978,6 @@
               "reason": "Rest",
               "reported_at": "2026-10-31T19:48Z",
               "expected_return": "2026-11-02"
-            },
-            {
-              "player_id": "nba:espn:player:4997536",
-              "name": "Gui Santos",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Left \u00b7 Knee",
-              "reported_at": "2026-10-31T19:54Z",
-              "expected_return": "2026-11-01"
             }
           ],
           "state": "reported"
@@ -10819,9 +10837,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.860819+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909906",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -12046,9 +12064,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.029051+00:00",
         "availability": {
           "game_date": "2026-11-01",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909906",
-          "report_as_of": "2026-11-01T17:30:44.191085+00:00",
+          "report_as_of": "2026-11-02T01:24:04.013991+00:00",
           "context": "matchup",
           "players": [
             {
@@ -12064,10 +12082,10 @@
               "player_id": "nba:espn:player:4433137",
               "name": "Ziaire Williams",
               "position": "F",
-              "status": "Day-To-Day",
+              "status": "Out",
               "reason": "Left \u00b7 Foot",
-              "reported_at": "2026-11-01T00:04Z",
-              "expected_return": "2026-11-01"
+              "reported_at": "2026-11-01T21:04Z",
+              "expected_return": "2026-11-02"
             }
           ],
           "state": "reported"
@@ -13996,9 +14014,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.006989+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -15140,9 +15158,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.821523+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -15837,10 +15855,10 @@
       "venue": "Rocket Arena",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "CLE -4.5",
+        "total": 227.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909907",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -17193,9 +17211,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.820220+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -18316,9 +18334,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.921102+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -19013,10 +19031,10 @@
       "venue": "Spectrum Center",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "DET -4.5",
+        "total": 209.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909908",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -20157,9 +20175,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.935273+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -21386,9 +21404,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.892387+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -23386,9 +23404,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.840149+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -24615,9 +24633,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.838315+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -25312,10 +25330,10 @@
       "venue": "Madison Square Garden",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "NY -14.5",
+        "total": 222.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909910",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -26615,9 +26633,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.972031+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -27791,9 +27809,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.904544+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -28488,10 +28506,10 @@
       "venue": "Kia Center",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "ORL -1.5",
+        "total": 224.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909911",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -29722,9 +29740,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.858166+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -30845,9 +30863,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.953335+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -31542,10 +31560,10 @@
       "venue": "Xfinity Mobile Arena",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "PHI -11.5",
+        "total": 238.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909912",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -32670,9 +32688,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.138580+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -33915,9 +33933,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.135385+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -35915,9 +35933,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.147239+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -37319,9 +37337,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.142358+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -38016,10 +38034,10 @@
       "venue": "FedExForum",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "MEM -6.5",
+        "total": 235.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909914",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -39213,9 +39231,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.874485+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -40389,9 +40407,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.951557+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -41086,10 +41104,10 @@
       "venue": "Target Center",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "MIN -11.5",
+        "total": 233.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909915",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -42267,9 +42285,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.851379+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -43496,9 +43514,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.163135+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -44193,10 +44211,10 @@
       "venue": "Toyota Center (Houston)",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "HOU -5.5",
+        "total": 219.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909916",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -45390,9 +45408,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.005636+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -46619,9 +46637,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.190367+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -47316,10 +47334,10 @@
       "venue": "Frost Bank Center",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "SA -15.5",
+        "total": 230.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909917",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -48603,9 +48621,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.960473+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -49832,9 +49850,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.969197+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -50529,10 +50547,10 @@
       "venue": "Ball Arena",
       "neutral": false,
       "market": {
-        "spread": null,
-        "total": null,
-        "provider": null,
-        "observed_at": null
+        "spread": "DEN -4.5",
+        "total": 229.5,
+        "provider": "Draft Kings",
+        "observed_at": "2026-11-02T01:24:04.013991+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909918",
       "profile_cutoff": "2026-11-01T17:30:44.191085+00:00"
@@ -51756,9 +51774,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.101237+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -53001,9 +53019,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.073760+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -54863,9 +54881,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.860819+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -56071,9 +56089,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.019367+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -57949,9 +57967,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.913704+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -59157,9 +59175,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.029051+00:00",
         "availability": {
           "game_date": "2026-11-02",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -60982,9 +61000,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.953335+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -62333,9 +62351,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.820220+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -64174,9 +64192,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.935273+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -65472,9 +65490,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.972031+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -67366,9 +67384,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.874485+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -68542,9 +68560,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.851379+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -70367,9 +70385,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.921102+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -71665,9 +71683,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.840149+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -73596,9 +73614,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.858166+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -74825,9 +74843,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.838315+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -76756,9 +76774,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.892387+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -78160,9 +78178,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.142358+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -80054,9 +80072,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.005636+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -81352,9 +81370,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.147239+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -83198,9 +83216,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.821523+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -84427,9 +84445,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.006989+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -86305,9 +86323,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.951557+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -87534,9 +87552,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.163135+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -89396,9 +89414,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.860819+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -90625,9 +90643,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.969197+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -92609,9 +92627,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.960473+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -93831,9 +93849,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.101237+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -95778,9 +95796,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.135385+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -97007,9 +97025,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.190367+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -98917,9 +98935,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.029051+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -100040,9 +100058,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.138580+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -101918,9 +101936,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.913704+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -103126,9 +103144,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.019367+00:00",
         "availability": {
           "game_date": "2026-11-04",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -105004,9 +105022,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.904544+00:00",
         "availability": {
           "game_date": "2026-11-05",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -106226,9 +106244,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.101237+00:00",
         "availability": {
           "game_date": "2026-11-05",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -108104,9 +108122,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.913704+00:00",
         "availability": {
           "game_date": "2026-11-05",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -109349,9 +109367,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.073760+00:00",
         "availability": {
           "game_date": "2026-11-05",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -111349,9 +111367,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.972031+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -112488,9 +112506,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.935273+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -114366,9 +114384,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.851379+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -115489,9 +115507,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.921102+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -117314,9 +117332,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.953335+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -118458,9 +118476,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.821523+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -120352,9 +120370,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.005636+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -121597,9 +121615,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.135385+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -123528,9 +123546,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.006989+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -124932,9 +124950,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.142358+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -126794,9 +126812,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.860819+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -127986,9 +128004,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.874485+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -129864,9 +129882,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.951557+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -131162,9 +131180,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.147239+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -133146,9 +133164,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.960473+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -134354,9 +134372,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.029051+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -136285,9 +136303,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.190367+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -137408,9 +137426,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.138580+00:00",
         "availability": {
           "game_date": "2026-11-06",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -139339,9 +139357,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.969197+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -140568,9 +140586,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.892387+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -142568,9 +142586,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.840149+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -143707,9 +143725,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.935273+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -145638,9 +145656,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.838315+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -146782,9 +146800,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.821523+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -148782,9 +148800,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.972031+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -150011,9 +150029,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.006989+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -151889,9 +151907,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.904544+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -153134,9 +153152,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.073760+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -155065,9 +155083,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.163135+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -156287,9 +156305,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.101237+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -158218,9 +158236,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.190367+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -159500,9 +159518,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.960473+00:00",
         "availability": {
           "game_date": "2026-11-07",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -161325,9 +161343,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.953335+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -162554,9 +162572,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.858166+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -164464,9 +164482,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.029051+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -165815,9 +165833,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.820220+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -167709,9 +167727,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.005636+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -168885,9 +168903,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.951557+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -170885,9 +170903,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.840149+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -172130,9 +172148,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.135385+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -174008,9 +174026,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.851379+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -175200,9 +175218,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.874485+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -177200,9 +177218,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.147239+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -178408,9 +178426,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.019367+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -180286,9 +180304,9 @@
         "roster_updated_at": "2026-11-01T17:30:43.913704+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -181409,9 +181427,9 @@
         "roster_updated_at": "2026-11-01T17:30:44.138580+00:00",
         "availability": {
           "game_date": "2026-11-08",
-          "checked_at": "2026-11-01T17:30:44.191085+00:00",
+          "checked_at": "2026-11-02T01:24:04.013991+00:00",
           "source": "https://www.espn.com/nba/injuries",
-          "report_as_of": "2026-11-01T17:30:45Z",
+          "report_as_of": "2026-11-02T01:23:45Z",
           "context": "team_report",
           "players": [],
           "state": "pending"
@@ -182134,5 +182152,6 @@
       "401909901",
       "401909902"
     ]
-  }
+  },
+  "pregame_updated_at": "2026-11-02T01:24:04.013991+00:00"
 }
