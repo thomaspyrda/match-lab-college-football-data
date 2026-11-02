@@ -23,6 +23,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,9 +32,19 @@ jobs:
       - name: Capture historical snapshot before refresh
         run: git show HEAD:data/mlb/season-snapshots.json > /tmp/mlb-season-snapshots-before.json
       - name: Collect MLB game results and validate seasons
-        run: python build_mlb_season_snapshots.py --years "$(date -u +%Y)"
+        run: |
+          for attempt in 1 2 3; do
+            if python build_mlb_season_snapshots.py --years "$(date -u +%Y)"; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - name: Add missing official team metrics
-        run: python backfill_mlb_team_metrics.py
+        run: |
+          for attempt in 1 2 3; do
+            if python backfill_mlb_team_metrics.py; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - name: Validate output and preserve historical seasons
         run: |
           python - <<'PY'
