@@ -27,3 +27,18 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 .strength-table-scroll .sort-arrow::before{border-bottom:5px solid #939d98}
 .strength-table-scroll .sort-arrow::after{border-top:5px solid #939d98}
 .strength-table-scroll [aria-sort=ascending] .sort-arrow::before,.strength-table-scroll [aria-sort=descending] .sort-arrow::after{filter:brightness(1.4)}
+
+/* Single aligned table header; remove the obsolete cloned-header overlay. */
+.strength-board #strength-table thead{visibility:visible!important}
+.strength-board #strength-table thead th{position:sticky;top:0;background:#181b19;z-index:2}
+.strength-board #strength-table thead th:nth-child(-n+3){z-index:3}
+.strength-board .strength-header-scroll,.strength-board .strength-sticky-head{display:none!important}
+.strength-top-scrollbar{width:100%;margin:0 0 0;border-radius:10px 10px 0 0;z-index:1}
+.strength-table-scroll .nba-rank-table th{padding:12px 10px!important;white-space:nowrap;vertical-align:middle;min-width:110px;box-sizing:border-box}
+.strength-table-scroll .nba-rank-table th:nth-child(1){min-width:75px}
+.strength-table-scroll .nba-rank-table th:nth-child(2){min-width:54px}
+.strength-table-scroll .nba-rank-table th:nth-child(3){min-width:155px}
+.strength-table-scroll .nba-rank-table th button[data-sort]{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.strength-table-scroll .nba-rank-table th .help-btn{display:inline-flex;align-items:center;justify-content:center;margin-left:6px;vertical-align:middle;flex-shrink:0}
+.strength-table-scroll .sort-arrow{font-size:0!important;flex-shrink:0}
+@media(max-width:760px){.strength-table-scroll .nba-rank-table th{min-width:112px;padding:12px 9px!important}.strength-table-scroll .nba-rank-table th:nth-child(1){min-width:76px}.strength-table-scroll .nba-rank-table th:nth-child(2){min-width:52px}.strength-table-scroll .nba-rank-table th:nth-child(3){min-width:160px}.strength-table-scroll .nba-rank-table td:nth-child(3){min-width:160px;max-width:180px}}
