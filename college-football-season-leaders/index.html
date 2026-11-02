@@ -96,7 +96,7 @@ h2{margin-top:2rem}
 }
 .ranking-team-link{color:inherit;text-decoration:none;font-weight:700}.ranking-team-link:hover,.ranking-team-link:focus-visible{color:#00ff41;text-decoration:underline}
 </style>
-<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261101-mobile-half-hero-v2" defer></script>
+<link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261101-fbs-50-offer-fix" defer></script>
 <link rel="stylesheet" href="/sports-research/season-leaders.css?v=1"></head><body>
 <header class="site-header">
   <div class="header-inner">
@@ -191,4 +191,20 @@ document.querySelectorAll('.data-table').forEach(function(table){
  });
 });
 })();
-</script></body></html>
+</script><script id="fbs-leaders-offer-correction">
+/* Keep this page's promotion synchronized with the approved offer, including older cached banner scripts. */
+(() => {
+  const offerText = "GET A $50 BONUS\n+ A RIPS PACK WORTH UP TO $150!";
+  const fixOffer = () => {
+    document.querySelectorAll(".underdog-hero-banner").forEach(banner => {
+      banner.setAttribute("aria-label", "GET A $50 BONUS + A RIPS PACK WORTH UP TO $150!");
+      const label = banner.querySelector(".underdog-hero-banner__copy");
+      if (label && label.textContent !== offerText) label.textContent = offerText;
+    });
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fixOffer, {once:true});
+  else fixOffer();
+  new MutationObserver(fixOffer).observe(document.documentElement, {childList:true,subtree:true});
+})();
+</script>
+</body></html>
