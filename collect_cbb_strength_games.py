@@ -52,7 +52,7 @@ def extract(event,known,season):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--season',type=int,default=2027);args=p.parse_args();season=args.season
-    today=datetime.now(ZoneInfo('America/New_York')).date();start=date(season-1,11,1);end=min(today-timedelta(days=1),date(season,6,30))
+    today=datetime.now(ZoneInfo('America/New_York')).date();start=date(season-1,11,1);end=min(today,date(season,6,30))
     # Never mutate a completed historical season through the daily updater.
     if today>date(season,7,1):raise RuntimeError('Season frozen; manual correction required')
     known={str(t['espn_id']) for t in json.loads((ROOT/'data/sports/team-registry.json').read_text())['teams'] if t['sport']=='cbb'}
