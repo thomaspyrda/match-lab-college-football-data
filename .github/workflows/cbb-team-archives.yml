@@ -94,6 +94,8 @@ jobs:
               print('First 30 missing:',missing[:30])
               raise SystemExit('Historical collection incomplete; refusing publication')
           PY
+      - name: Capture pregame CBB lines and publish verified current-season market records
+        run: python sync_cbb_market_archives.py
       - name: Build historical CBB national metric rankings
         run: python build_cbb_metric_ranks.py
       - name: Publish CBB team archive references
@@ -102,7 +104,7 @@ jobs:
         run: |
           git config user.name 'BetWise Data Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add data/cbb/teams data/cbb/backfill-report.json data/cbb/metric-ranks.json cbb/teams
+          git add data/cbb/teams data/cbb/backfill-report.json data/cbb/metric-ranks.json data/cbb/markets data/cbb/pregame-markets cbb/teams
           git diff --cached --quiet && exit 0
           git commit -m 'data(cbb): publish verified team archives'
           for attempt in 1 2 3 4 5; do
