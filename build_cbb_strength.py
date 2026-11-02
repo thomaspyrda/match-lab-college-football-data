@@ -100,7 +100,8 @@ def calculate(seed,ledger,registry,now=None,previous=None):
         ranked=sorted([t for t in rows if t[field] is not None],key=lambda t:((-t[field] if reverse else t[field]),t['rank']))
         for i,t in enumerate(ranked,1):t[rank]=i
     output={'model':'betwise_cbb_strength_v1','season':seed['season'],'season_label':f"{seed['season']-1}–{str(seed['season'])[-2:]}",'updated_at':now.isoformat(),'status':'Preseason' if not audit else 'In season','games_evaluated':len(seen),'data_through':max(byday,default=None),'sources':seed['sources'],'preseason_frozen_at':seed['frozen_at'],'coverage':{'pending_games':len(ledger.get('pending_games',[]))},'teams':rows}
-    if ledger.get('pending_games'):raise ValueError('Unverified completed games remain; retain previous published snapshot')
+    # Unverified final boxes remain queued for retry; verified games must still publish.
+    # Every included game is independently validated above; do not include pending results.
     return output,audit
 
 def main():
