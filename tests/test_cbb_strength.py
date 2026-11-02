@@ -40,10 +40,14 @@ class StrengthTests(unittest.TestCase):
   self.assertEqual(row['d1_games'],0);self.assertEqual(row['preseason_weight'],1);self.assertIsNone(row['offensive_rating']);self.assertEqual(row['non_d1_penalty'],1)
   self.assertEqual(non_d1_penalty(15),0)
   self.assertTrue(non_d1_penalty(14)<non_d1_penalty(10)<non_d1_penalty(5)<non_d1_penalty(-1)<non_d1_penalty(-20))
- def test_incomplete_box_or_unverified_final_blocks_publication(self):
+ def test_incomplete_box_rejected_but_pending_final_deferred(self):
   g=self.game('150','57');g['teams']['150']['oreb']=None
   with self.assertRaises(ValueError):self.calc([g])
-  with self.assertRaises(ValueError):calculate(self.seed,{'season':2027,'games':[],'pending_games':[{}]},self.reg,self.now)
+  valid=self.game('150','57',index=0)
+  out,_=calculate(self.seed,{'season':2027,'games':[valid],'pending_games':[{'event':{'id':'other'},'error':'Missing team box'}]},self.reg,self.now)
+  self.assertEqual(out['games_evaluated'],1)
+  self.assertEqual(out['coverage']['pending_games'],1)
+  self.assertEqual(next(t for t in out['teams'] if t['team_id']=='150')['wins'],1)
  def test_duplicates_and_future_results_rejected(self):
   g=self.game('150','57')
   with self.assertRaises(ValueError):self.calc([g,g])
