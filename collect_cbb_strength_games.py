@@ -78,6 +78,9 @@ def main():
     for game,error in ThreadPoolExecutor(6).map(recover,pending.values()):
         if game:games[game['id']]=game
         else:failures.append(error)
+    for failed in failures:
+        event=failed['event']
+        print(json.dumps({'unverified_game':event.get('id'),'date':event.get('date'),'teams':[v.get('team',{}).get('displayName') for v in event.get('competitions',[{}])[0].get('competitors',[])],'reason':failed['error']}))
     save(path,{'season':season,'last_scanned':end.isoformat() if end>=start else None,'collected_at':datetime.now(timezone.utc).isoformat(),'games':sorted(games.values(),key=lambda g:(g['date'],g['id'])),'pending_games':failures})
     print(json.dumps({'season':season,'games':len(games),'pending':len(failures),'scoreboard_dates_checked':len(dates)}))
 if __name__=='__main__':main()
