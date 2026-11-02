@@ -20,3 +20,10 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 
 @media(max-width:760px){.strength-table-scroll .nba-rank-table td:nth-child(3){min-width:125px;max-width:180px;white-space:normal;font-size:12px}.strength-table-scroll .nba-rank-table th:nth-child(3){min-width:125px}.strength-table-scroll .nba-rank-logo{min-width:40px}}
 .strength-table-scroll .sort-arrow{color:#9fa8a4;font-size:0!important;font-weight:400}.strength-table-scroll .sort-arrow::after{content:'↕';font-size:14px;color:#a3aba6}.strength-table-scroll [aria-sort=ascending] .sort-arrow::after{content:'↑'}.strength-table-scroll [aria-sort=descending] .sort-arrow::after{content:'↓'}
+
+/* Gray CSS chevrons rather than platform-dependent emoji sort glyphs. */
+.strength-table-scroll .sort-arrow{display:inline-flex;flex-direction:column;gap:2px;vertical-align:middle;margin-left:5px;font-size:0!important;line-height:0}
+.strength-table-scroll .sort-arrow::before,.strength-table-scroll .sort-arrow::after{content:""!important;display:block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent}
+.strength-table-scroll .sort-arrow::before{border-bottom:5px solid #939d98}
+.strength-table-scroll .sort-arrow::after{border-top:5px solid #939d98}
+.strength-table-scroll [aria-sort=ascending] .sort-arrow::before,.strength-table-scroll [aria-sort=descending] .sort-arrow::after{filter:brightness(1.4)}
