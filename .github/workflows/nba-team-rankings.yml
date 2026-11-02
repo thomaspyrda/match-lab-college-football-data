@@ -18,6 +18,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,5 +66,10 @@ jobs:
           git add nba/rankings/data/nba-team-rankings.json
           git diff --cached --quiet && exit 0
           git commit -m "data(nba): refresh season team rankings"
-          git pull --rebase -X theirs origin main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase -X theirs origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
