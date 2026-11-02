@@ -26,6 +26,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Validate CBB market collection and syntax
+        run: |
+          python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
+          python -m unittest discover -s tests -p test_cbb_market_capture.py -v
       - name: Capture actual pregame lines and grade completed verified games
         run: python sync_cbb_market_archives.py
       - name: Publish only CBB market observations
