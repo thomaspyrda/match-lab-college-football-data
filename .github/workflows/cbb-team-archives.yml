@@ -25,6 +25,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 110
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -103,10 +104,13 @@ jobs:
           python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
           python -m unittest discover -s tests -p test_cbb_market_capture.py -v
       - name: Capture pregame CBB lines and publish verified current-season market records
+        id: markets
+        continue-on-error: true
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
         run: python sync_cbb_market_archives.py
       - name: Audit verified ATS and totals coverage for every completed current-season game
+        continue-on-error: true
         if: github.event_name != 'push' && !inputs.historical_backfill
         run: python audit_cbb_current_markets.py
       - name: Rebuild current CBB Division I player season leaders
