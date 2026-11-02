@@ -68,13 +68,23 @@ jobs:
           python -m unittest discover -s tests -p test_stage_nba_team_backfill.py
           python -m unittest discover -s tests -p test_publish_nba_team_backfill.py
       - name: Refresh NBA games and player box scores
-        run: python refresh_nba_dashboard.py
+        run: |
+          for attempt in 1 2 3; do
+            if python refresh_nba_dashboard.py; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - name: Prepare 2026-27 completed-game team backfill
         run: |
           python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
           python publish_nba_team_backfill.py --publish
       - name: Collect the full season schedule
-        run: python build_nba_current_schedule.py
+        run: |
+          for attempt in 1 2 3; do
+            if python build_nba_current_schedule.py; then break; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            sleep $((attempt * 20))
+          done
       - name: Refresh scoring allowed by position
         continue-on-error: true
         run: python refresh_nba_defense.py
