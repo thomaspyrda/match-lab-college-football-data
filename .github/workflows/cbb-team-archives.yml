@@ -16,6 +16,7 @@ on:
     branches: [main]
     paths:
       - data/cbb/bootstrap/*.json.gz
+      - enrich_cbb_team_boxes.py
 permissions:
   contents: write
 concurrency:
@@ -94,6 +95,9 @@ jobs:
               print('First 30 missing:',missing[:30])
               raise SystemExit('Historical collection incomplete; refusing publication')
           PY
+      - name: Enrich active-season player and advanced team statistics from verified final boxes
+        if: github.event_name != 'push' && !inputs.historical_backfill
+        run: python enrich_cbb_team_boxes.py
       - name: Validate CBB market collection and syntax
         run: |
           python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
