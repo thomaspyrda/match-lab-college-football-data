@@ -19,6 +19,7 @@ def publish():
  season=datetime.now(timezone.utc).year+(datetime.now(timezone.utc).month>=7)
  raw=json.loads(DATA.read_text())
  result={k:{'label':label,'leaders':[]} for k,(label,field) in CATEGORIES.items()}
+ thresholds={'fieldGoalPct':('fieldGoalsAttempted',50),'threePointFieldGoalPct':('threePointFieldGoalsAttempted',25),'freeThrowPct':('freeThrowsAttempted',50)}
  players=[]
  for path in sorted((ROOT/'data/cbb/teams').glob('*.json')):
   team=json.loads(path.read_text())
@@ -28,8 +29,10 @@ def publish():
    if gp<=0:continue
    players.append((player,stats,gp,path.stem))
  for key,(label,field) in CATEGORIES.items():
+  qualifying=[p for p in players if key not in thresholds or (p[1].get(thresholds[key][0]) or 0)>=thresholds[key][1]]
+  # For the active season, only waive the minimum until ten players qualify.
   eligible=[]
-  for player,stats,gp,slug in players:
+  for player,stats,gp,slug in (qualifying if key not in thresholds or len(qualifying)>=10 else players):
    val=stats.get(field)
    if not isinstance(val,(int,float)):continue
    entry={'name':player['name'],'team':slug,'id':str(player['id']),'gp':gp,'value':val}
