@@ -98,7 +98,7 @@
       const hero = banner.previousElementSibling;
       const image = hero?.querySelector("img");
       const height = image?.getBoundingClientRect().height || hero?.getBoundingClientRect().height || 0;
-      if (mobile && height > 0) banner.style.setProperty("--underdog-mobile-height", Math.max(Math.round(height / 2), location.hostname === "nfl.parlaycalculator.bet" ? Math.round(Math.min(window.innerWidth,700) * 0.40) : 0) + "px");
+      if (mobile && height > 0) banner.style.setProperty("--underdog-mobile-height", (location.hostname === "nfl.parlaycalculator.bet" ? Math.round(banner.getBoundingClientRect().width / 5.2) : Math.round(height / 2)) + "px");
       else banner.style.removeProperty("--underdog-mobile-height");
     });
   };
