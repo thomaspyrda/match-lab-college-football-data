@@ -56,7 +56,7 @@
   if (!document.getElementById(styleId)) {
     const style = document.createElement("style");
     style.id = styleId;
-    style.textContent = ".underdog-hero-banner{display:block;position:relative;container-type:inline-size;box-sizing:border-box;width:min(1194px,calc(100% - 32px));aspect-ratio:1194/98;margin:10px auto 0;padding:0;overflow:hidden;border:0;border-radius:999px;background-image:url(https://matchlab.parlaycalculator.bet/assets/underdog-rips-banner-complete.png);background-size:100% 252.5926%;background-position:50% 47.8155%;background-repeat:no-repeat;color:#fff;font-family:inherit;text-decoration:none}.underdog-hero-banner:hover{filter:brightness(1.04)}.underdog-hero-banner:focus-visible{outline:3px solid #f6e923;outline-offset:3px}.underdog-hero-banner__copy{position:absolute;inset:2% 14%;display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;background:linear-gradient(90deg,rgba(6,62,124,0) 0%,#075197 12%,#075197 88%,rgba(6,62,124,0) 100%);text-align:center;font-size:clamp(6px,2.15cqw,26px);text-shadow:0 1px 4px rgba(0,0,0,.5);font-weight:900;line-height:1;letter-spacing:-.025em;white-space:pre-line}.underdog-hero-terms{box-sizing:border-box;width:min(1194px,calc(100% - 32px));margin:6px auto 22px;color:#aeb9b3;font-family:inherit;font-size:12px;line-height:1.45}\n.underdog-hero-terms summary{display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border:1px solid rgba(255,255,255,.27);border-radius:999px;color:#e8ece9;font-size:11px;font-weight:700;cursor:pointer;list-style:none}\n.underdog-hero-terms summary::-webkit-details-marker{display:none}\n.underdog-hero-terms summary:after{content:\"+\";margin-left:7px;font-size:15px;line-height:1}\n.underdog-hero-terms[open] summary:after{content:\"\u2212\"}\n.underdog-hero-terms__copy{max-width:900px;margin:7px 0 0;color:#aeb9b3;font-size:11px;line-height:1.5}\n@media(max-width:700px){.underdog-hero-banner{width:calc(100% - 24px);aspect-ratio:auto;height:var(--underdog-mobile-height,auto);min-height:60px;margin-top:8px}.underdog-hero-banner__copy{font-size:clamp(13px,3.5cqw,22px);line-height:1.15;inset:2% 12%}.underdog-hero-terms{width:calc(100% - 24px);margin:5px auto 18px}.underdog-hero-terms__copy{font-size:10px}}";
+    style.textContent = ".underdog-hero-banner{display:block;position:relative;container-type:inline-size;box-sizing:border-box;width:min(1194px,calc(100% - 32px));aspect-ratio:1194/98;margin:10px auto 0;padding:0;overflow:hidden;border:0;border-radius:999px;background-image:url(https://matchlab.parlaycalculator.bet/assets/underdog-rips-banner-complete.png);background-size:100% 252.5926%;background-position:50% 47.8155%;background-repeat:no-repeat;color:#fff;font-family:inherit;text-decoration:none}.underdog-hero-banner:hover{filter:brightness(1.04)}.underdog-hero-banner:focus-visible{outline:3px solid #f6e923;outline-offset:3px}.underdog-hero-banner__copy{position:absolute;inset:2% 14%;display:flex;align-items:center;justify-content:center;min-width:0;color:#fff;background:linear-gradient(90deg,rgba(6,62,124,0) 0%,#075197 12%,#075197 88%,rgba(6,62,124,0) 100%);text-align:center;font-size:clamp(6px,2.15cqw,26px);text-shadow:0 1px 4px rgba(0,0,0,.5);font-weight:900;line-height:1;letter-spacing:-.025em;white-space:pre-line}.underdog-hero-terms{box-sizing:border-box;width:min(1194px,calc(100% - 32px));margin:6px auto 22px;color:#aeb9b3;font-family:inherit;font-size:12px;line-height:1.45}\n.underdog-hero-terms summary{display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border:1px solid rgba(255,255,255,.27);border-radius:999px;color:#e8ece9;font-size:11px;font-weight:700;cursor:pointer;list-style:none}\n.underdog-hero-terms summary::-webkit-details-marker{display:none}\n.underdog-hero-terms summary:after{content:\"+\";margin-left:7px;font-size:15px;line-height:1}\n.underdog-hero-terms[open] summary:after{content:\"\u2212\"}\n.underdog-hero-terms__copy{max-width:900px;margin:7px 0 0;color:#aeb9b3;font-size:11px;line-height:1.5}\n@media(max-width:700px){.underdog-hero-banner{width:min(90vw,calc(100% - 24px));aspect-ratio:5.2/1!important;height:auto!important;min-height:0!important;margin-top:8px}.underdog-hero-banner__copy{font-size:clamp(13px,3.5cqw,22px);line-height:1.15;inset:2% 12%}.underdog-hero-terms{width:calc(100% - 24px);margin:5px auto 18px}.underdog-hero-terms__copy{font-size:10px}}";
     document.head.appendChild(style);
   }
   const selector = ".nfl-hero-image,.rank-hero,.cfb-hero-art,.hero-media";
@@ -92,21 +92,10 @@
   document.querySelectorAll(selector).forEach(addBanner);
   // Mobile banners track half the rendered height of their own hero image.
   // Desktop uses the original CSS aspect ratio, without inline height overrides.
-  const syncMobileBannerHeights = () => {
-    const mobile = window.matchMedia("(max-width:700px)").matches;
-    document.querySelectorAll(".underdog-hero-banner").forEach(banner => {
-      const hero = banner.previousElementSibling;
-      const image = hero?.querySelector("img");
-      const height = image?.getBoundingClientRect().height || hero?.getBoundingClientRect().height || 0;
-      if (mobile && height > 0) banner.style.setProperty("--underdog-mobile-height", Math.round(height / 2) + "px");
-      else banner.style.removeProperty("--underdog-mobile-height");
-    });
-  };
-  syncMobileBannerHeights();
-  window.addEventListener("resize", syncMobileBannerHeights, {passive:true});
-  window.addEventListener("load", syncMobileBannerHeights);
-  document.querySelectorAll(selector + " img").forEach(img => img.addEventListener("load", syncMobileBannerHeights));
-
+  // Consistent mobile banner dimensions across all sports: 90vw at 5.2:1.
+  const clearLegacyMobileHeight=()=>document.querySelectorAll(".underdog-hero-banner").forEach(banner=>{banner.style.removeProperty("--underdog-mobile-height");banner.style.removeProperty("height")});
+  clearLegacyMobileHeight();
+  window.addEventListener("load",clearLegacyMobileHeight);
   new MutationObserver(records => {
     records.forEach(record => record.addedNodes.forEach(node => {
       if (node.nodeType !== 1) return;
