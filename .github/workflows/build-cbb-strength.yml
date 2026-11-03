@@ -1,5 +1,6 @@
 name: Build CBB Team Strength
 on:
+  workflow_call:
   workflow_dispatch:
   workflow_run:
     workflows: ['Refresh CBB team archives']
