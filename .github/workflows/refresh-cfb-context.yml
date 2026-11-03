@@ -1,0 +1,17 @@
+name: Refresh CFB weather and venues
+on:
+  workflow_call:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh CFB verified results']
+    branches: [main]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/cfb-collect-component.yml
+    with:
+      component: context
+    secrets: inherit

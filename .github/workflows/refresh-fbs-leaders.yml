@@ -2,6 +2,10 @@ name: Refresh FBS Season Leaders
 on:
   workflow_call:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh CFB verified results']
+    branches: [main]
+    types: [completed]
   schedule:
     - cron: '13 4 * * *'
       timezone: America/New_York
@@ -19,6 +23,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,3 +53,4 @@ jobs:
           done
           echo "Unable to safely publish CFB outputs after five attempts" >&2
           exit 1
+

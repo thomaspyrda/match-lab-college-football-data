@@ -1,4 +1,5 @@
 name: Sport Data Coordinators (manual validation)
+run-name: "${{ inputs.sport }} data pipeline"
 # Phase 1: opt-in orchestration. Existing automatic refresh schedules remain enabled.
 # Existing Python models, HTML, CSS and JSON schemas are intentionally unchanged.
 on:
@@ -40,21 +41,74 @@ jobs:
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
 
-  cfb-seven-day-results:
+  cfb-results:
     if: inputs.sport == 'cfb'
-    uses: ./.github/workflows/refresh-cfb-dashboard-schedule-only.yml
+    uses: ./.github/workflows/refresh-cfb-results.yml
+    secrets: inherit
+
+  cfb-markets:
+    if: inputs.sport == 'cfb'
+    uses: ./.github/workflows/refresh-cfb-markets.yml
+    secrets: inherit
+
+  cfb-market-publication:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-markets]
+    uses: ./.github/workflows/cfb-publish-markets.yml
+    secrets: inherit
+
+  cfb-team-metrics:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-results]
+    uses: ./.github/workflows/refresh-cfb-metrics.yml
+    secrets: inherit
+
+  cfb-player-statistics:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-results]
+    uses: ./.github/workflows/refresh-cfb-players.yml
+    secrets: inherit
+
+  cfb-dashboard-strength:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-results]
+    uses: ./.github/workflows/refresh-cfb-strength.yml
+    secrets: inherit
+
+  cfb-context:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-results]
+    uses: ./.github/workflows/refresh-cfb-context.yml
+    secrets: inherit
+
+  cfb-team-metadata:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-results]
+    uses: ./.github/workflows/refresh-cfb-metadata.yml
     secrets: inherit
 
   cfb-team-strength:
     if: inputs.sport == 'cfb'
-    needs: [cfb-seven-day-results]
+    needs: [cfb-results]
     uses: ./.github/workflows/build-team-strength.yml
     secrets: inherit
 
   cfb-player-season-leaders:
     if: inputs.sport == 'cfb'
-    needs: [cfb-seven-day-results]
+    needs: [cfb-results]
     uses: ./.github/workflows/refresh-fbs-leaders.yml
+    secrets: inherit
+
+  cfb-team-pages:
+    if: always() && inputs.sport == 'cfb' && needs.cfb-results.result == 'success'
+    needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-team-metadata]
+    uses: ./.github/workflows/build-cfb-team-pages.yml
+    secrets: inherit
+
+  cfb-dashboard:
+    if: always() && inputs.sport == 'cfb' && needs.cfb-results.result == 'success'
+    needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength]
+    uses: ./.github/workflows/cfb-publish-dashboard.yml
     secrets: inherit
 
   mlb-current-season-dashboard:
@@ -90,8 +144,8 @@ jobs:
 
   validate-cfb-datasets:
     name: Validate CFB result and publication inputs
-    if: inputs.sport == 'cfb'
-    needs: [cfb-seven-day-results, cfb-team-strength, cfb-player-season-leaders]
+    if: always() && inputs.sport == 'cfb'
+    needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength, cfb-team-strength, cfb-player-season-leaders, cfb-team-pages, cfb-dashboard]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -99,7 +153,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - run: python3 scripts/verify_sport_dataset_contract.py --sport cfb
+      - run: |
+          python3 scripts/verify_sport_dataset_contract.py --sport cfb
+          python3 scripts/verify_cfb_pipeline.py
 
   validate-mlb-datasets:
     name: Validate MLB result and publication inputs
@@ -113,3 +169,4 @@ jobs:
         with:
           ref: main
       - run: python3 scripts/verify_sport_dataset_contract.py --sport mlb
+

@@ -2,6 +2,10 @@ name: Build Team Strength
 on:
   workflow_call:
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh CFB verified results']
+    branches: [main]
+    types: [completed]
   schedule:
     - cron: '10 6 * * 0'
       timezone: America/New_York
@@ -14,7 +18,6 @@ on:
   push:
     branches: [main]
     paths:
-      - .github/workflows/build-team-strength.yml
       - enrich_team_strength.py
       - build_web_data.py
       - refresh_match_lab.py
@@ -66,11 +69,9 @@ concurrency:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 jobs:
   enrich:
-    if: github.actor != 'github-actions[bot]'
+    if: (github.event_name != 'push' || github.actor != 'github-actions[bot]') && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 110
     steps:
@@ -78,6 +79,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Require current verified results before ranking calculations
+        run: python scripts/run_cfb_pipeline.py require-results --store data/cfb/pipeline
       - run: python enrich_team_strength.py
       - run: python build_web_data.py
       - name: Build pregame advanced percentile profiles
@@ -94,14 +97,14 @@ jobs:
           CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
         run: |
           for attempt in 1 2 3; do
-            if python refresh_match_lab.py; then break; fi
+            if python scripts/run_cfb_pipeline.py ranking-inputs --store data/cfb/pipeline; then break; fi
             if [ "$attempt" -eq 3 ]; then exit 1; fi
             sleep $((attempt * 20))
           done
       - run: python -m unittest -v test_build.py
       - run: python -m unittest -v test_advanced_profiles.py
       - name: Validate fresh CFB results before modeling
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_run'
         run: python scripts/validate_weekly_cfb_freshness.py --stage input
       - name: Generate approved season-aware chronological ratings
         env:
@@ -110,7 +113,7 @@ jobs:
       - name: Promote approved 15 percent uncapped margin and SOS model
         run: python promote_four_unit_live.py
       - name: Validate approved model publication
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_run'
         run: python scripts/validate_weekly_cfb_freshness.py --stage output
       - name: Build ranking and SEO pages
         run: python build_seo_pages.py
@@ -121,7 +124,8 @@ jobs:
           # Commit only CFB source and generated outputs, never another sport's files.
           git add -A -- data \
             ':(exclude)data/mlb/**' ':(exclude)data/nba/**' \
-            ':(exclude)data/cbb/**' ':(exclude)data/nfl/**'
+            ':(exclude)data/cbb/**' ':(exclude)data/nfl/**' \
+            ':(exclude)data/cfb/pipeline/**' ':(exclude)data/dashboard-availability/**'
           git add -A -- college-football-team-strength-rankings \
             college-football-offensive-strength-rankings \
             college-football-defensive-strength-rankings \
@@ -145,27 +149,3 @@ jobs:
           done
           echo "Unable to publish after five safe push attempts" >&2
           exit 1
-
-  deploy:
-    needs: enrich
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - name: Publish consistent navigation on all pages
-        run: |
-          python3 scripts/normalize_site_navigation.py
-          python3 scripts/normalize_site_navigation.py --check
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
