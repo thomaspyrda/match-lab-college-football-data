@@ -1,5 +1,6 @@
 name: Refresh NBA Dashboard
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '45 3 * * *'
