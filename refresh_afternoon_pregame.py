@@ -2,6 +2,7 @@
 """Refresh only observed ESPN pregame market/status/probable fields.
 Never recompute completed-game statistics, player production, or rankings.
 """
+import argparse
 import json
 import time
 import urllib.request
@@ -81,6 +82,22 @@ def refresh(sport, route, destination):
     path.write_text(json.dumps(data, indent=2) + "\n")
     print(sport + ": refreshed observed pregame fields for " + str(updated) + " games")
 
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--sport", choices=sorted(SPORTS),
+                        help="Refresh one sport independently; omit to refresh all sports.")
+    args = parser.parse_args(argv)
+    failed = []
+    for key in ([args.sport] if args.sport else SPORTS):
+        route, dest = SPORTS[key]
+        try:
+            refresh(key, route, dest)
+        except Exception as exc:
+            failed.append(key)
+            print(f"{key}: pregame refresh failed: {exc}", flush=True)
+    if failed:
+        raise SystemExit("Pregame refresh failed for: " + ", ".join(failed))
+
+
 if __name__ == "__main__":
-    for key, (route, dest) in SPORTS.items():
-        refresh(key, route, dest)
+    main()
