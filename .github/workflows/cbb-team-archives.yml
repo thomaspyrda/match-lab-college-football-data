@@ -197,7 +197,11 @@ jobs:
               season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
               python backfill_cbb_team_archives.py --years "$season" --workers 12
               python enrich_cbb_team_boxes.py
-              python sync_cbb_market_archives.py
+              # Match the initial optional-market step: a market outage must not
+              # discard verified results and player statistics on a push retry.
+              if ! python sync_cbb_market_archives.py; then
+                echo "::warning::CBB market retry failed; continuing with verified statistical outputs."
+              fi
               if [ "$GITHUB_EVENT_NAME" != "push" ]; then
                 python publish_cbb_current_season_leaders.py
               fi
