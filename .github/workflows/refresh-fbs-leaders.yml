@@ -39,5 +39,12 @@ jobs:
           git add data/cfb-season-leaders.json college-football-season-leaders/index.html
           git diff --cached --quiet && exit 0
           git commit -m "Refresh FBS player season leaders"
-          git pull --rebase -X theirs origin main
-          git push
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            # Never auto-resolve competing changes to the same generated file.
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          echo "Unable to safely publish CFB outputs after five attempts" >&2
+          exit 1
