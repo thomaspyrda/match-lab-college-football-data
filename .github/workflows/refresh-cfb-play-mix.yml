@@ -9,7 +9,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: cfb-play-mix
+  # All scheduled writers of the production CFB dashboard share this lock.
+  group: cfb-dashboard-data
   cancel-in-progress: false
 jobs:
   refresh:
@@ -36,5 +37,12 @@ jobs:
           git add cfb-dashboard-preview/data/dashboard.json
           git diff --cached --quiet && exit 0
           git commit -m "Populate CFB rushing and passing play-mix rates"
-          git pull --rebase origin main
-          git push origin main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            # Never auto-resolve competing changes to the same generated file.
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          echo "Unable to safely publish CFB outputs after five attempts" >&2
+          exit 1
