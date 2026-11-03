@@ -12,3 +12,10 @@
  .leader-card th:nth-child(3),.leader-card td:nth-child(3){width:27%!important;min-width:0!important}
  .leader-card th:nth-child(4),.leader-card td:nth-child(4){width:17%!important;min-width:0!important}
 }
+
+/* Match NFL/CFB ranking-table sort arrows; CSS glyphs, never emoji. */
+.mlb-all-players th[aria-sort] .sort-indicator{display:inline-block;margin-left:4px;font-size:.82rem;color:#9ca3af;vertical-align:baseline}
+.mlb-all-players th[aria-sort] .sort-indicator::after{content:'⇅';opacity:.48}
+.mlb-all-players th[aria-sort="ascending"] .sort-indicator::after{content:'▲';opacity:1;color:#00ff41}
+.mlb-all-players th[aria-sort="descending"] .sort-indicator::after{content:'▼';opacity:1;color:#00ff41}
+.mlb-all-players th[aria-sort] button:hover{color:#00ff41}
