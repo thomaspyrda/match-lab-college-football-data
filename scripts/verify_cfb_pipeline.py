@@ -24,6 +24,11 @@ def verify(root=ROOT):
     assert expected <= archived, 'Team pages missing verified completed games'
     dashboard = read(root / 'cfb-dashboard-preview/data/dashboard.json')
     assert dashboard['games'], 'Published CFB dashboard is empty'
+    status = read(store / 'status.json')
+    assert status['components']['results']['collected_at'] == results['collected_at'], 'Dashboard has not published the latest verified results'
+    for name, document in components.items():
+        assert status['components'][name]['collected_at'] == document['collected_at'], 'Dashboard input publication is pending: ' + name
+    assert datetime.fromisoformat(dashboard['slate']['generated_at']) >= datetime.fromisoformat(results['collected_at']), 'Dashboard is older than verified results'
     assert len({str(g['game_id']) for g in dashboard['games']}) == len(dashboard['games']), 'Duplicate dashboard matchups'
     for game in dashboard['games']:
         assert len(game['players']) == 10, 'Player card contract changed'
