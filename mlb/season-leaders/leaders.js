@@ -28,7 +28,7 @@ function render(){
  }).join('');
  const filtered=app.querySelector('#qualified-only').checked?rows.filter(r=>qualified(r,group==='hitting'?'ops':'era')):rows;
  const tableCols=[['name','Player'],['team','Team'],...cols[group]];
- app.querySelector('#player-head').innerHTML='<tr>'+tableCols.map(([key,label])=>'<th scope="col" aria-sort="'+(sort===key?(asc?'ascending':'descending'):'none')+'"><button data-sort="'+key+'">'+h(label)+' '+(sort===key?(asc?'↑':'↓'):'↕')+'</button></th>').join('')+'</tr>';
+ app.querySelector('#player-head').innerHTML='<tr>'+tableCols.map(([key,label])=>'<th scope="col" aria-sort="'+(sort===key?(asc?'ascending':'descending'):'none')+'"><button data-sort="'+key+'">'+h(label)+'<span class="sort-indicator" aria-hidden="true"></span></button></th>').join('')+'</tr>';
  const pages=Math.max(1,Math.ceil(filtered.length/PAGE_SIZE));page=Math.min(page,pages-1);
  const visible=ordered(filtered,sort,asc).slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE);
  app.querySelector('#player-body').innerHTML=visible.map(r=>'<tr>'+tableCols.map(([key])=>'<td>'+(key==='name'?player(r):key==='team'?h(r.team):fmt(r.stats[key],key))+'</td>').join('')+'</tr>').join('')||'<tr><td colspan="20">No matching players.</td></tr>';
