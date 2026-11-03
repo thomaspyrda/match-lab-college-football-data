@@ -6,7 +6,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 ROOT=Path(__file__).resolve().parent
 E=lambda s:html.escape(str(s),quote=True)
-VERSION='20261102-cbb-unit-metrics-v10'
+VERSION='20261102-cbb-expanded-metrics-v11'
 CONFERENCES={'Atlantic Coast Conference':'ACC','Southeastern Conference':'SEC','Atlantic 10 Conference':'A-10','American Conference':'AAC','Atlantic Sun Conference':'ASUN','Coastal Athletic Association':'CAA','Conference USA':'CUSA','Metro Conference':'MAAC','Mid-American Conference':'MAC','Mid-Eastern Athletic Conference':'MEAC','Missouri Valley Conference':'MVC','Northeast Conference':'NEC','Ohio Valley Conference':'OVC','Southern Conference':'SoCon','Southwestern Athletic Conference':'SWAC','United Athletic Conference':'UAC','West Coast Conference':'WCC'}
 def conference_name(value):
  return CONFERENCES.get(value,(value or '—').replace(' Conference','').replace(' League',''))
@@ -42,6 +42,22 @@ def publish():
   'offense':[('rank','Rank'),('logo',''),('name','Team'),('conference','Conference'),('record','Record'),('offense','Adj. Offense'),('ppg','PPG'),('fgpct','FG%'),('threepg','3PM/G'),('ftpct','FT%'),('oreb','OFF REB/G'),('tov','TOV/G'),('games','D1 Games')],
   'defense':[('rank','Rank'),('logo',''),('name','Team'),('conference','Conference'),('record','Record'),('defense','Adj. Defense'),('allowed','PPG Allowed'),('oppfgpct','OPP FG%'),('oppthreepg','OPP 3PM/G'),('opporeb','OPP OFF REB/G'),('forced','Forced TOV/G'),('games','D1 Games')]
  }
+ # Reuse the regular-season metrics displayed on the individual team pages.
+ archives={}
+ for t in data['teams']:
+  p=ROOT/'data/cbb/teams'/(t['slug']+'.json')
+  if p.exists():
+   d=json.loads(p.read_text());archives[t['team_id']]=d.get('seasons',{}).get(str(data['season']),{}).get('phases',{}).get('regular',{}).get('metrics',{})
+ def compute(tid):
+  m=archives.get(str(tid),{});gp=m.get('gamesPlayed') or 0
+  def ratio(n,d,scale=1):
+   return scale*n/d if isinstance(n,(int,float)) and isinstance(d,(int,float)) and d>0 else None
+  fgm=m.get('fieldGoalsMade');fga=m.get('fieldGoalsAttempted');thm=m.get('threePointFieldGoalsMade');tha=m.get('threePointFieldGoalsAttempted');ftm=m.get('freeThrowsMade');fta=m.get('freeThrowsAttempted');oreb=m.get('offensiveRebounds');tov=m.get('turnovers')
+  pos=(fga-oreb+tov+.475*fta) if all(isinstance(v,(int,float)) for v in (fga,oreb,tov,fta)) else None
+  reb=m.get('rebounds') or m.get('totalRebounds');diff=m.get('reboundsDifferential');oppreb=reb-diff if isinstance(reb,(int,float)) and isinstance(diff,(int,float)) else None
+  return {'ppg':m.get('avgPoints'),'fgpct':m.get('fieldGoalPct'),'twopct':m.get('twoPointFieldGoalPct'),'threepct':m.get('threePointFieldGoalPct'),'threepg':ratio(thm,gp),'threerate':ratio(tha,fga,100),'efgpct':ratio(fgm+.5*thm if fgm is not None and thm is not None else None,fga,100),'ftpct':m.get('freeThrowPct'),'ftattempt':ratio(fta,fga,100),'oreb':ratio(oreb,gp),'reb':m.get('avgRebounds'),'rebshare':ratio(reb,reb+oppreb if oppreb is not None else None,100),'assists':m.get('avgAssists'),'tov':m.get('avgTurnovers'),'steals':m.get('avgSteals'),'blocks':m.get('avgBlocks'),'paint':m.get('avgPointsInPaint'),'offrating':ratio(m.get('points'),pos,100),'pace':ratio(pos,gp),'allowed':rate(tid,'opp_points'),'oppreb':ratio(oppreb,gp),'oppthreerate':ratio(m.get('opponentThreePointFieldGoalsAttempted'),m.get('opponentFieldGoalsAttempted'),100),'paintallowed':ratio(m.get('opponentPointsInPaint'),gp),'forced':ratio(m.get('opponentTurnovers'),gp),'margin':ratio(m.get('opponentTurnovers')-tov if m.get('opponentTurnovers') is not None and tov is not None else None,gp),'defrating':ratio(rate(tid,'opp_points')*gp if rate(tid,'opp_points') is not None else None,pos,100)}
+ variants['offense'] += [('offrating','OFF Rating'),('efgpct','eFG%'),('twopct','2P%'),('threepct','3P%'),('threerate','3P Rate'),('ftattempt','FT Attempt Rate'),('reb','REB/G'),('rebshare','Total Rebound Rate'),('assists','AST/G'),('steals','STL/G'),('blocks','BLK/G'),('paint','Paint PPG'),('pace','Pace')]
+ variants['defense'] += [('defrating','DEF Rating'),('oppthreerate','OPP 3P Rate'),('oppreb','REB Allowed/G'),('paintallowed','Paint PPG Allowed'),('margin','Turnover Margin')]
  for mode,path,label in [('overall','cbb/rankings/index.html','Team Strength'),('offense','cbb/rankings/offense/index.html','Offensive Strength'),('defense','cbb/rankings/defense/index.html','Defensive Strength')]:
   eligible=data['teams'] if mode=='overall' else sorted([t for t in data['teams'] if t.get(mode+'_rank')],key=lambda t:t[mode+'_rank'])
   active_columns=columns if mode=='overall' else [(k,label,'') for k,label in variants[mode]]
@@ -56,12 +72,14 @@ def publish():
    rank=t['rank'] if mode=='overall' else t[mode+'_rank'];change=t['rank_change'] if mode=='overall' else None
    values={'rank':rank,'name':t['name'],'conference':conference_name(t['conference']), 'rating':t['strength_score'],'sd':(t['strength_score']-50)/10,'change':change,'offense':t['offensive_rating'],'defense':t['defensive_rating'],'sos':t.get('sos_rank'),'games':t['d1_games'],'form':t['recent_form'],'prior':100*t['preseason_weight'],'kenpom':t['source_ranks']['kenpom'],'torvik':t['source_ranks']['torvik']}
    values.update({'ppg':rate(t['team_id'],'points'),'fgpct':rate(t['team_id'],'fgm','fga',100),'threepg':rate(t['team_id'],'tpm'),'ftpct':rate(t['team_id'],'ftm','fta',100),'oreb':rate(t['team_id'],'oreb'),'tov':rate(t['team_id'],'tov'),'allowed':rate(t['team_id'],'opp_points'),'oppfgpct':rate(t['team_id'],'opp_fgm','opp_fga',100),'oppthreepg':rate(t['team_id'],'opp_tpm'),'opporeb':rate(t['team_id'],'opp_oreb'),'forced':rate(t['team_id'],'opp_tov')})
+   values.update({k:v for k,v in compute(t['team_id']).items() if v is not None})
    attrs=' '.join(f'data-{k}="{E(v) if v is not None else ""}"' for k,v in values.items())
    teamurl='/cbb/teams/'+t['slug']+'/'
    cells=[str(rank),f'<a href="{teamurl}" aria-label="{E(t["name"])}"><img src="{E(t["logo"])}" alt="" width="26" height="26" loading="lazy"></a>',f'<a class="nba-rank-team" href="{teamurl}">{E(t["name"])}</a>',E(conference_name(t['conference'])),f'{t["wins"]}–{t["losses"]}',fmt(t['strength_score']),f'{(t["strength_score"]-50)/10:+.2f}',f'{change:+d}' if change else '—',fmt(t['offensive_rating']),fmt(t['defensive_rating']),str(t.get('sos_rank') or '—'),str(t['d1_games']),fmt(t['recent_form']),str(t['source_ranks']['kenpom'])]
    if mode!='overall':
     distinct={'rank':str(rank),'logo':cells[1],'name':cells[2],'conference':cells[3],'record':cells[4],'offense':fmt(t['offensive_rating']),'defense':fmt(t['defensive_rating']),'games':str(t['d1_games'])}
     distinct.update({k:fmt(values[k]) for k in ('ppg','fgpct','threepg','ftpct','oreb','tov','allowed','oppfgpct','oppthreepg','opporeb','forced')})
+    distinct.update({k:fmt(values.get(k)) for k,_ in variants[mode] if k not in distinct})
     cells=[distinct[k] for k,_,_ in active_columns]
    rows.append(f'<tr {attrs}>'+''.join(f'<td'+(' class="nba-rank-logo"' if i==1 else '')+f'>{c}</td>' for i,c in enumerate(cells))+'</tr>')
   controls='<div class="strength-controls"><label>Find a team<input id="strength-search" type="search" placeholder="Search schools" autocomplete="off"></label><label>Conference<select id="strength-conference"><option value="">All conferences</option>'+''.join(f'<option value="{E(c)}">{E(c)}</option>' for c in sorted({conference_name(t['conference']) for t in eligible if t['conference']}))+'</select></label><span id="strength-count" aria-live="polite">'+str(len(eligible))+' teams</span></div>'
