@@ -10,9 +10,13 @@ FIELDS={"avgPoints":"PPG","avgRebounds":"REB/G","avgAssists":"AST/G","avgTurnove
 LOWER={"avgTurnovers","ppgAllowed","defRating"}
 def main():
     seasons={}
+    total_by_season={}
+    registry=json.loads((ROOT/"data/sports/team-registry.json").read_text())
+    registered=sum(t["sport"]=="cbb" for t in registry["teams"])
     for path in sorted(DATA.glob("*.json")):
         d=json.loads(path.read_text())
         for y,s in d.get("seasons",{}).items():
+            total_by_season[y]=total_by_season.get(y,0)+1
             p=s.get("phases",{}).get("regular",{})
             if p.get("completed_games",0)<1:continue
             m=dict(p.get("metrics",{}))
@@ -40,7 +44,7 @@ def main():
             seasons.setdefault(y,{})[d["slug"]]=m
     result={}
     for year,teams in seasons.items():
-        result[year]={}
+        result[year]={"_total_division_one":registered if int(year)==2027 else total_by_season.get(year,registered)}
         for field in FIELDS:
             vals=sorted(((float(m[field]),slug) for slug,m in teams.items() if isinstance(m.get(field),(float,int))),reverse=field not in LOWER)
             ranks={};last=None;rank=0
