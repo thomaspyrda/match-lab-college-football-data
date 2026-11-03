@@ -61,3 +61,55 @@ jobs:
     if: inputs.sport == 'mlb'
     uses: ./.github/workflows/refresh-mlb-dashboard.yml
     secrets: inherit
+
+  validate-cbb-datasets:
+    name: Validate CBB result and publication inputs
+    if: inputs.sport == 'cbb'
+    needs: [cbb-results-and-team-archives, cbb-dashboard, cbb-rankings-and-strength]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python3 scripts/verify_sport_dataset_contract.py --sport cbb
+
+  validate-nba-datasets:
+    name: Validate NBA result and publication inputs
+    if: inputs.sport == 'nba'
+    needs: [nba-verified-statistics-and-pages]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python3 scripts/verify_sport_dataset_contract.py --sport nba
+
+  validate-cfb-datasets:
+    name: Validate CFB result and publication inputs
+    if: inputs.sport == 'cfb'
+    needs: [cfb-seven-day-results, cfb-team-strength, cfb-player-season-leaders]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python3 scripts/verify_sport_dataset_contract.py --sport cfb
+
+  validate-mlb-datasets:
+    name: Validate MLB result and publication inputs
+    if: inputs.sport == 'mlb'
+    needs: [mlb-current-season-dashboard]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python3 scripts/verify_sport_dataset_contract.py --sport mlb
