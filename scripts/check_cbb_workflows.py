@@ -10,7 +10,7 @@ def main():
     docs = {path.name: yaml.safe_load(path.read_text()) for path in files}
     names = {doc['name'] for doc in docs.values()}
     for filename, doc in docs.items():
-        if 'cbb' not in filename and filename not in ('deploy-pages.yml', 'coordinate-sport-data.yml'):
+        if filename not in ["build-cbb-metric-ranks.yml","build-cbb-strength.yml","cbb-collect-component.yml","cbb-historical-archives.yml","cbb-publish-markets.yml","cbb-publish-team-pages.yml","cbb-team-archives.yml","coordinate-sport-data.yml","deploy-pages.yml","refresh-cbb-boxes.yml","refresh-cbb-dashboard.yml","refresh-cbb-metrics.yml","refresh-cbb-players.yml","refresh-cbb-rosters.yml","refresh-cbb-season-leaders.yml","test-cbb-component-pipeline.yml","verify-cbb-pipeline.yml"]:
             continue
         trigger = doc.get('on', doc.get(True, {}))
         for name in (trigger.get('workflow_run') or {}).get('workflows', []):
