@@ -67,8 +67,10 @@ def enrich(archives, boxes, year):
                     threePointFieldGoalPct=percent('tpm','tpa'),freeThrowPct=percent('ftm','fta'),
                     pointsInPaint=sums['paint_points'],avgPointsInPaint=sums['paint_points']/n,
                     opponentPointsInPaint=opp['paint_points'],
-                    opponentFieldGoalsAttempted=opp['fga'],
-                    opponentThreePointFieldGoalsAttempted=opp['tpa'])
+                    opponentFieldGoalsMade=opp['fgm'],opponentFieldGoalsAttempted=opp['fga'],
+                    opponentThreePointFieldGoalsMade=opp['tpm'],opponentThreePointFieldGoalsAttempted=opp['tpa'],
+                    opponentFreeThrowsMade=opp['ftm'],opponentFreeThrowsAttempted=opp['fta'],
+                    opponentOffensiveRebounds=opp['oreb'],opponentAssists=opp['ast'])
                 metrics['twoPointFieldGoalPct']=ratio(sums['fgm']-sums['tpm'],sums['fga']-sums['tpa'],100)
                 if int(metrics['points'])!=sum(g['points'] for g in final.values()):
                     raise ValueError('Box totals mismatch '+path.name)
