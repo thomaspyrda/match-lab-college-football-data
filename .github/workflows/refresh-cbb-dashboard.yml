@@ -3,31 +3,24 @@ on:
   workflow_call:
   workflow_dispatch:
   workflow_run:
-    workflows: ['Refresh CBB team archives']
+    workflows: ['Refresh CBB verified box scores', 'Refresh CBB player statistics', 'Refresh CBB rosters and coaches']
+    branches: [main]
     types: [completed]
   schedule:
-    - cron: '11 4 * * *'
+    - cron: '11 4,16 * * *'
       timezone: America/New_York
-    - cron: '11 16 * * *'
-      timezone: America/New_York
-  push:
-    branches: [main]
-    paths:
-      - basketball_dashboard_metrics.py
-      - tests/test_basketball_dashboard_metrics.py
-      - refresh_cbb_dashboard.py
-      - dashboard_snapshot.py
-      - tests/test_new_sport_dashboards.py
-      - .github/workflows/refresh-cbb-dashboard.yml
 permissions:
   contents: write
-concurrency:
-  group: cbb-dashboard-refresh
-  cancel-in-progress: false
+  pages: write
+  id-token: write
 jobs:
-  refresh:
+  publish:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    concurrency:
+      group: cbb-dashboard-refresh
+      cancel-in-progress: false
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,18 +28,37 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Verify season boundaries and rankings
+      - name: Wait for first verified component snapshots
+        id: ready
         run: |
-          python -m unittest discover -s tests -p test_new_sport_dashboards.py
-          python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
-      - name: Refresh sourced games and roster data
-        run: python refresh_cbb_dashboard.py
-      - name: Publish dashboard snapshot
+          ready=true
+          for component in results boxes players rosters; do
+            if [ ! -f "data/cbb/pipeline/$component.json" ]; then ready=false; fi
+          done
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+      - name: Assemble dashboard without provider calls
+        if: steps.ready.outputs.ready == 'true'
+        run: python scripts/run_cbb_pipeline.py dashboard
+      - name: Publish dashboard data only
+        if: steps.ready.outputs.ready == 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add cbb/dashboard/data
+          git add cbb/dashboard/data data/cbb/pipeline/status.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Refresh CBB Dashboard snapshot'
-          git pull --rebase -X theirs origin main
-          git push origin main
+          git commit -m 'Publish CBB dashboard from independent verified inputs'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+  deploy:
+    needs: publish
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

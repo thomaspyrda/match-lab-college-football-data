@@ -1,0 +1,17 @@
+name: Refresh CBB rosters and coaches
+on:
+  workflow_call:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh CBB team archives']
+    branches: [main]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/cbb-collect-component.yml
+    with:
+      component: rosters
+    secrets: inherit

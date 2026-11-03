@@ -1,0 +1,28 @@
+name: Verify CBB live pipeline
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '55 6,18 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths: ['scripts/verify_cbb_pipeline.py', '.github/workflows/verify-cbb-pipeline.yml']
+permissions:
+  contents: read
+concurrency:
+  group: cbb-live-health
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify saved facts and publication freshness without provider requests
+        run: |
+          python scripts/verify_sport_dataset_contract.py --sport cbb
+          python scripts/verify_cbb_pipeline.py

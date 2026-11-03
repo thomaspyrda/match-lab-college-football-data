@@ -1,19 +1,23 @@
 name: Build CBB Historical Metric Rankings
 on:
+  workflow_call:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: ['Refresh CBB team metrics']
     branches: [main]
-    paths:
-      - build_cbb_metric_ranks.py
-      - .github/workflows/build-cbb-metric-ranks.yml
+    types: [completed]
 permissions:
   contents: write
-concurrency:
-  group: cbb-metric-ranks
-  cancel-in-progress: false
+  pages: write
+  id-token: write
 jobs:
-  build:
+  publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    concurrency:
+      group: cbb-metric-ranks
+      cancel-in-progress: false
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,30 +25,37 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Generate historical season-by-season national ranks
-        run: python build_cbb_metric_ranks.py
-      - name: Validate rank output
+      - name: Check initial input readiness
+        id: ready
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          data=json.loads(Path('data/cbb/metric-ranks.json').read_text())
-          seasons=data['seasons']
-          assert len(seasons)>=10, f'Expected historical season coverage; got {len(seasons)}'
-          assert all('avgPoints' in values for values in seasons.values()), 'Missing PPG ranks'
-          print('Verified',len(seasons),'seasons of CBB national metric ranks')
-          PY
-      - name: Publish only CBB metric ranks
+          ready=true
+          for component in results metrics; do
+            if [ ! -f "data/cbb/pipeline/$component.json" ]; then ready=false; fi
+          done
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+      - name: Publish from saved verified facts
+        if: steps.ready.outputs.ready == 'true'
+        run: python scripts/run_cbb_pipeline.py ranks
+      - name: Commit this publication only
+        if: steps.ready.outputs.ready == 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/cbb/metric-ranks.json
+          git add data/cbb/metric-ranks.json data/cbb/pipeline/ranks-status.json
           git diff --cached --quiet && exit 0
-          git commit -m 'data(cbb): publish historical national metric rankings'
+          git commit -m 'Build CBB Historical Metric Rankings from verified inputs'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main
+            git rebase origin/main || { git rebase --abort; exit 1; }
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 3))
           done
           exit 1
+
+  deploy:
+    needs: publish
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

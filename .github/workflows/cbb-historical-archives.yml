@@ -1,0 +1,199 @@
+name: Backfill CBB historical archives
+on:
+  workflow_call:
+    inputs:
+      historical_backfill:
+        type: boolean
+        required: false
+        default: false
+  workflow_dispatch:
+    inputs:
+      historical_backfill:
+        description: 'Collect missing historical seasons; current updates use independent components'
+        type: boolean
+        required: false
+        default: true
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: cbb-team-archives
+  cancel-in-progress: false
+jobs:
+  refresh_gate:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - name: Check whether backup refresh is necessary
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+          GH_EVENT_SCHEDULE: ${{ github.event.schedule }}
+          GH_RUN_ID: ${{ github.run_id }}
+        run: |
+          python - <<'PY'
+          import datetime,json,os,urllib.request
+          from datetime import timezone
+          backup=set()  # Always execute backup refreshes; successful but stale data must not suppress retries.
+          should_run=True
+          if os.environ.get('GH_EVENT_SCHEDULE') in backup:
+              try:
+                  repo=os.environ['GH_REPOSITORY']
+                  url=f'https://api.github.com/repos/{repo}/actions/workflows/cbb-team-archives.yml/runs?event=schedule&status=success&per_page=30'
+                  req=urllib.request.Request(url,headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'})
+                  with urllib.request.urlopen(req,timeout=15) as response: runs=json.load(response)['workflow_runs']
+                  cutoff=datetime.datetime.now(timezone.utc)-datetime.timedelta(minutes=85)
+                  recent=[run for run in runs if str(run['id'])!=os.environ['GH_RUN_ID'] and datetime.datetime.fromisoformat(run['updated_at'].replace('Z','+00:00'))>=cutoff]
+                  if recent:
+                      should_run=False
+                      print('Successful scheduled refresh found within 85 minutes; skip backup.')
+                  else: print('No recent successful scheduled refresh; run backup.')
+              except Exception as exc:
+                  print('Could not verify prior run; fail open and run backup:',exc)
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:stream.write('should_run='+str(should_run).lower()+'\n')
+          PY
+  refresh:
+    needs: refresh_gate
+    if: needs.refresh_gate.outputs.should_run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate collector regression tests
+        run: python -m unittest discover -s tests -p test_cbb_archives.py -v
+      - name: Import verified historical archive when provided
+        if: ${{ github.event_name == 'push' && contains(toJSON(github.event.commits), 'data/cbb/bootstrap/') }}
+        run: |
+          python - <<'PY'
+          import gzip,json
+          from pathlib import Path
+          registry=json.loads(Path('data/sports/team-registry.json').read_text())
+          expected={t['slug']:str(t['espn_id']) for t in registry['teams'] if t['sport']=='cbb'}
+          source=sorted(Path('data/cbb/bootstrap').glob('*.json.gz'))[-1]
+          bundle=json.loads(gzip.decompress(source.read_bytes()))
+          assert set(bundle['teams'])==set(expected), 'Incomplete team coverage'
+          for slug,data in bundle['teams'].items():
+              assert str(data['team_id'])==expected[slug]
+              assert set(data['seasons'])=={str(y) for y in range(2016,2028)}
+              for year,season in data['seasons'].items():
+                  assert season['team_id']==expected[slug] and season['key']==year
+                  for phase in season['phases'].values():
+                      games=phase['games']
+                      assert len(games)==len({g['id'] for g in games})
+                      finals=[g for g in games if g['status']=='final']
+                      assert phase['completed_games']==len(finals)
+                      assert phase['record']['wins']==sum(g['result']=='W' for g in finals)
+                      assert phase['record']['losses']==sum(g['result']=='L' for g in finals)
+              path=Path('data/cbb/teams')/(slug+'.json')
+              if path.exists():
+                  previous=json.loads(path.read_text())
+                  for year,season in previous['seasons'].items():
+                      if int(year)<2027:
+                          data['seasons'][year]=season
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n')
+          Path('data/cbb/backfill-report.json').write_text(json.dumps(bundle['report'],indent=2)+'\n')
+          print('Imported',len(expected),'CBB archives; existing historical seasons preserved')
+          PY
+      - name: Collect missing historical seasons
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
+      - name: Refresh active season
+        if: ${{ !inputs.historical_backfill && (github.event_name != 'push' || !contains(toJSON(github.event.commits), 'data/cbb/bootstrap/')) }}
+        run: |
+          season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
+          python backfill_cbb_team_archives.py --years "$season" --workers 12
+      - name: Verify historical collection coverage
+        if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          teams=[t for t in json.loads(Path('data/sports/team-registry.json').read_text())['teams'] if t['sport']=='cbb']
+          missing=[]
+          for team in teams:
+              p=Path('data/cbb/teams')/(team['slug']+'.json')
+              if not p.exists():
+                  missing.extend((team['slug'],y) for y in range(2016,2027))
+                  continue
+              d=json.loads(p.read_text())
+              assert str(d['team_id'])==str(team['espn_id']), 'Identity mismatch '+team['slug']
+              missing.extend((team['slug'],y) for y in range(2016,2027) if str(y) not in d['seasons'])
+          print(f'Checked {len(teams)} teams; missing {len(missing)} historical team-seasons')
+          if missing:
+              print('First 30 missing:',missing[:30])
+              raise SystemExit('Historical collection incomplete; refusing publication')
+          PY
+      - name: Enrich active-season player and advanced team statistics from verified final boxes
+        if: ${{ !inputs.historical_backfill }}
+        run: python enrich_cbb_team_boxes.py
+      - name: Validate CBB market collection and syntax
+        continue-on-error: true
+        run: |
+          python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
+          python -m unittest discover -s tests -p test_cbb_market_capture.py -v
+      - name: Capture pregame CBB lines and publish verified current-season market records
+        id: markets
+        continue-on-error: true
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+        run: python sync_cbb_market_archives.py
+      - name: Audit verified ATS and totals coverage for every completed current-season game
+        continue-on-error: true
+        if: github.event_name != 'push' && !inputs.historical_backfill
+        run: python audit_cbb_current_markets.py
+      - name: Rebuild current CBB Division I player season leaders
+        if: github.event_name != 'push' && !inputs.historical_backfill
+        run: python publish_cbb_current_season_leaders.py
+      - name: Build historical CBB national metric rankings
+        run: python build_cbb_metric_ranks.py
+      - name: Publish CBB team archive references
+        run: python publish_cbb_team_archives.py
+      - name: Commit CBB data and team page references
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+          HISTORICAL_BACKFILL: ${{ inputs.historical_backfill || 'false' }}
+        run: |
+          git config user.name 'BetWise Data Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          stage_generated() {
+            git add data/cbb/teams data/cbb/backfill-report.json data/cbb/metric-ranks.json data/cbb/markets data/cbb/pregame-markets data/cbb/market-coverage-2027.json data/cbb/division-one-season-leaders.json cbb/teams
+          }
+          stage_generated
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cbb): publish verified team archives'
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then exit 0; fi
+            if [ "$attempt" -eq 5 ]; then break; fi
+            echo "Concurrent CBB publication detected; rebuilding on current main (attempt $attempt)."
+            git fetch origin main
+            git reset --hard origin/main
+            if [ "$HISTORICAL_BACKFILL" = "true" ]; then
+              python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
+            else
+              season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
+              python backfill_cbb_team_archives.py --years "$season" --workers 12
+              python enrich_cbb_team_boxes.py
+              # Match the initial optional-market step: a market outage must not
+              # discard verified results and player statistics on a push retry.
+              if ! python sync_cbb_market_archives.py; then
+                echo "::warning::CBB market retry failed; continuing with verified statistical outputs."
+              fi
+              if [ "$GITHUB_EVENT_NAME" != "push" ]; then
+                python publish_cbb_current_season_leaders.py
+              fi
+            fi
+            python build_cbb_metric_ranks.py
+            python publish_cbb_team_archives.py
+            stage_generated
+            git diff --cached --quiet && exit 0
+            git commit -m 'data(cbb): publish verified team archives against latest main'
+          done
+          echo "Unable to safely publish CBB archives after five attempts" >&2
+          exit 1
+
