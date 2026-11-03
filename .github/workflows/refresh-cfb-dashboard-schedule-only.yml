@@ -1,5 +1,6 @@
 name: Refresh CFB Dashboard schedule only
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '42 4 * * *'
