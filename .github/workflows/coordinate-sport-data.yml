@@ -19,21 +19,93 @@ jobs:
     uses: ./.github/workflows/cbb-team-archives.yml
     secrets: inherit
 
-  cbb-dashboard:
+  cbb-box-scores:
     if: inputs.sport == 'cbb'
     needs: [cbb-results-and-team-archives]
-    uses: ./.github/workflows/refresh-cbb-dashboard.yml
+    uses: ./.github/workflows/refresh-cbb-boxes.yml
     secrets: inherit
 
-  cbb-rankings-and-strength:
+  cbb-player-statistics:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-box-scores]
+    uses: ./.github/workflows/refresh-cbb-players.yml
+    secrets: inherit
+
+  cbb-team-metrics:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-box-scores]
+    uses: ./.github/workflows/refresh-cbb-metrics.yml
+    secrets: inherit
+
+  cbb-rosters:
     if: inputs.sport == 'cbb'
     needs: [cbb-results-and-team-archives]
-    uses: ./.github/workflows/build-cbb-strength.yml
+    uses: ./.github/workflows/refresh-cbb-rosters.yml
     secrets: inherit
 
   cbb-market-capture:
     if: inputs.sport == 'cbb'
     uses: ./.github/workflows/cbb-pregame-market-capture.yml
+    secrets: inherit
+
+  cbb-market-publication:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-market-capture]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/cbb-publish-markets.yml
+    secrets: inherit
+
+  cbb-rankings-and-strength:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-team-metrics]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/build-cbb-strength.yml
+    secrets: inherit
+
+  cbb-metric-rankings:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-team-metrics]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/build-cbb-metric-ranks.yml
+    secrets: inherit
+
+  cbb-season-leaders:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-player-statistics]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/refresh-cbb-season-leaders.yml
+    secrets: inherit
+
+  cbb-team-publication:
+    if: always() && inputs.sport == 'cbb' && needs.cbb-results-and-team-archives.result == 'success'
+    needs: [cbb-results-and-team-archives, cbb-team-metrics, cbb-player-statistics, cbb-rosters]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/cbb-publish-team-pages.yml
+    secrets: inherit
+
+  cbb-dashboard:
+    if: always() && inputs.sport == 'cbb' && needs.cbb-results-and-team-archives.result == 'success'
+    needs: [cbb-results-and-team-archives, cbb-box-scores, cbb-player-statistics, cbb-rosters]
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/refresh-cbb-dashboard.yml
     secrets: inherit
 
   nba-verified-statistics-and-pages:
@@ -118,8 +190,8 @@ jobs:
 
   validate-cbb-datasets:
     name: Validate CBB result and publication inputs
-    if: inputs.sport == 'cbb'
-    needs: [cbb-results-and-team-archives, cbb-dashboard, cbb-rankings-and-strength]
+    if: always() && inputs.sport == 'cbb'
+    needs: [cbb-results-and-team-archives, cbb-box-scores, cbb-player-statistics, cbb-team-metrics, cbb-rosters, cbb-rankings-and-strength, cbb-metric-rankings, cbb-season-leaders, cbb-team-publication, cbb-dashboard]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -127,7 +199,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - run: python3 scripts/verify_sport_dataset_contract.py --sport cbb
+      - run: |
+          python3 scripts/verify_sport_dataset_contract.py --sport cbb
+          python3 scripts/verify_cbb_pipeline.py
 
   validate-nba-datasets:
     name: Validate NBA result and publication inputs
@@ -169,4 +243,5 @@ jobs:
         with:
           ref: main
       - run: python3 scripts/verify_sport_dataset_contract.py --sport mlb
+
 

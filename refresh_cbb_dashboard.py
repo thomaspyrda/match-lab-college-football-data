@@ -169,7 +169,7 @@ def roster(team_id):
 
 def season_history(games,season,phase):return [g for g in games if g['season']==season and g['phase']==phase]
 
-def main():
+def main(offline_inputs=None):
     now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();season=today.year+(today.month>=7)
     registry=json.loads((ROOT/'data/sports/team-registry.json').read_text());teams={t['espn_id']:t for t in registry['teams'] if t['sport']=='cbb'}
     cache_path=ROOT/'cbb/dashboard/data/completed-games.json';cache=json.loads(cache_path.read_text()) if cache_path.exists() else {'games':[]}
@@ -177,9 +177,10 @@ def main():
     start=today-timedelta(days=7) if old else today.replace(month=11,day=1) if today.month>=7 else today.replace(year=today.year-1,month=11,day=1)
     end=max(today+timedelta(days=7),start+timedelta(days=6))
     dates=[start+timedelta(days=i) for i in range((end-start).days+1)]
-    boards=list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?groups=50&limit=1000&dates='+d.strftime('%Y%m%d')),dates))
+    boards=([{'events':list(offline_inputs['events'].values())}] if offline_inputs is not None else
+            list(ThreadPoolExecutor(8).map(lambda d:get('scoreboard?groups=50&limit=1000&dates='+d.strftime('%Y%m%d')),dates)))
     events={e['id']:e for b in boards for e in b.get('events',[]) if e.get('season',{}).get('year')==season and all(c['team']['id'] in teams for c in e['competitions'][0]['competitors'])}
-    new=[e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
+    new=[] if offline_inputs is not None else [e for e in events.values() if e['status']['type'].get('completed') and (e['id'] not in old or old[e['id']].get('player_stats_version',0)<2 or not old[e['id']].get('market_checked') or (not old[e['id']].get('market') and stamp(e['date'])>=now-timedelta(days=3)))]
     for g in ThreadPoolExecutor(8).map(completed,new):
         if g['id'] in old:g['observed_complete_at']=old[g['id']]['observed_complete_at']
         old[g['id']]=g
@@ -195,7 +196,7 @@ def main():
                         'observed_at':quote['observed_at'],'source':quote.get('source')}
         game['market_checked']=True
     roster_ids={c['team']['id'] for e in events.values() for c in e['competitions'][0]['competitors']}
-    rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,roster_ids)}
+    rosters=offline_inputs['rosters'] if offline_inputs is not None else {r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,roster_ids)}
     for g in old.values():
         g['game_id']='cbb:espn:game:'+g['id']
         if g['id'] in events:g['neutral']=events[g['id']]['competitions'][0].get('neutralSite',False)
@@ -234,3 +235,4 @@ def main():
     print(f"CBB {data['season_type']}: {len(output)} matchups, {len(history)} completed games, {sum(len(g['players'].get(i,[])) for g in history for i in g['players'])} player game records")
 
 if __name__=='__main__':main()
+

@@ -3,7 +3,7 @@ on:
   workflow_call:
   workflow_dispatch:
   workflow_run:
-    workflows: ['Refresh CBB team archives']
+    workflows: ['Refresh CBB team metrics']
     types: [completed]
   schedule:
     - cron: '0 5 * * *'
@@ -17,10 +17,11 @@ on:
       - collect_cbb_strength_games.py
       - publish_cbb_strength.py
       - tests/test_cbb_strength.py
-      - .github/workflows/build-cbb-strength.yml
       - data/cbb/preseason/**
 permissions:
   contents: write
+  pages: write
+  id-token: write
 concurrency:
   group: cbb-strength-production
   cancel-in-progress: false
@@ -39,11 +40,13 @@ jobs:
       - name: Check strength model rules
         run: python -m unittest discover -s tests -p test_cbb_strength.py -v
       - name: Collect verified final results
-        run: python collect_cbb_strength_games.py --season 2027
+        run: python scripts/run_cbb_pipeline.py strength-inputs
       - name: Calculate daily strength and archive snapshot
-        run: python build_cbb_strength.py --season 2027
+        run: |
+          season=$(python -c 'from datetime import datetime; from zoneinfo import ZoneInfo; n=datetime.now(ZoneInfo("America/New_York")); print(n.year+(n.month>=7))')
+          python build_cbb_strength.py --season "$season"
       - name: Publish strength ranking pages
-        run: python publish_cbb_strength.py
+        run: python scripts/run_cbb_pipeline.py strength-publish
       - name: Publish CBB strength outputs only
         run: |
           git config user.name 'github-actions[bot]'
@@ -53,8 +56,17 @@ jobs:
           git commit -m 'Publish daily verified CBB Team Strength rankings'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main
+            git rebase origin/main || { git rebase --abort; exit 1; }
             if git push origin HEAD:main; then exit 0; fi
             sleep $((attempt * 3))
           done
           exit 1
+
+
+  deploy:
+    needs: build
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

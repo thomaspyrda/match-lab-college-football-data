@@ -1,0 +1,17 @@
+name: Refresh CBB team metrics
+on:
+  workflow_call:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh CBB verified box scores']
+    branches: [main]
+    types: [completed]
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/cbb-collect-component.yml
+    with:
+      component: metrics
+    secrets: inherit

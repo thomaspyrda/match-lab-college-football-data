@@ -1,0 +1,20 @@
+name: Test CBB component pipeline
+on:
+  pull_request:
+    paths: ['scripts/*cbb*', 'refresh_cbb_dashboard.py', 'tests/test_cbb*', '.github/workflows/*cbb*', '.github/workflows/deploy-pages.yml', '.github/workflows/coordinate-sport-data.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install PyYAML
+      - name: Source isolation, score verification and unchanged calculation tests
+        run: python -m unittest discover -s tests -p 'test_cbb*.py' -v
+      - name: Workflow call and publication safety checks
+        run: python scripts/check_cbb_workflows.py

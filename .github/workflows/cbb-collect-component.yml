@@ -1,0 +1,48 @@
+name: Collect one CBB component
+on:
+  workflow_call:
+    inputs:
+      component:
+        type: string
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: cbb-input-${{ inputs.component }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source isolation and unchanged calculations
+        run: python -m unittest discover -s tests -p test_cbb_pipeline.py
+      - name: Collect this verified component only
+        run: python scripts/run_cbb_pipeline.py ${{ inputs.component }}
+      - name: Publish only this component's facts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          case '${{ inputs.component }}' in
+            results) git add data/cbb/pipeline/results.json data/cbb/pipeline/boards ;;
+            boxes) git add data/cbb/pipeline/boxes.json; if [ -d data/cbb/pipeline/boxes ]; then git add data/cbb/pipeline/boxes; fi ;;
+            players) git add data/cbb/pipeline/players.json; if [ -d data/cbb/pipeline/players ]; then git add data/cbb/pipeline/players; fi ;;
+            metrics) git add data/cbb/pipeline/metrics.json ;;
+            rosters) git add data/cbb/pipeline/rosters.json ;;
+            *) exit 1 ;;
+          esac
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh verified CBB ${{ inputs.component }} facts'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
