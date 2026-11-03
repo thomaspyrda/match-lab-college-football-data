@@ -1,5 +1,11 @@
 name: Refresh CBB team archives
 on:
+  workflow_call:
+    inputs:
+      historical_backfill:
+        type: boolean
+        required: false
+        default: false
   workflow_dispatch:
     inputs:
       historical_backfill:
