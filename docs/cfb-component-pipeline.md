@@ -23,7 +23,7 @@ This replaces the combined daily dashboard collector with independent, versioned
 
 ## Failure behavior
 
-- A collector commits only its own validated snapshot. An exception, an incomplete final score, a duplicate game ID, or a provider failure caught by the old metric/player collector cannot replace its last good snapshot.
+- A collector commits only its own validated snapshot. An exception, a duplicate game ID, or a provider failure caught by the old metric/player collector cannot replace its last good snapshot. Provider records marked complete without usable scores are quarantined as unverified; they are not counted as finals and do not stop unrelated verified games.
 - Verified results are a required prerequisite for new statistical or ranking calculations. Old or wrong-season result snapshots are rejected before modeling. Current-season live scores are cleared until the provider confirms a final score.
 - Markets and injury updates continue independently when statistical collectors fail. Markets have their own publication path; they do not wait for full dashboard assembly.
 - Dashboard and team-page assembly can reuse the most recent verified current-season statistics and strength data. Collection timestamps remain available in the private component status report. New result publication requires a current result snapshot; it does not relabel missing statistics as freshly collected.

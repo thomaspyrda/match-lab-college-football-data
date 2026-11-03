@@ -191,9 +191,18 @@ def api(path, **params):
         self.assertIsNone(result['awayPoints'])
         self.assertEqual(row['homePoints'], 7)
 
-    def test_final_missing_score_and_duplicate_id_are_rejected(self):
-        with self.assertRaisesRegex(ValueError, 'Final game missing'):
-            pipeline.verified_games([dict(self.raw_final, homePoints=None)])
+    def test_unscored_complete_record_is_excluded_without_blocking_verified_games(self):
+        rows = pipeline.verified_games([self.raw_final, dict(self.future, id=401907219, completed=True, homePoints=None)])
+        self.assertTrue(rows[0]['completed'])
+        self.assertEqual(rows[0]['homePoints'], 28)
+        self.assertFalse(rows[1]['completed'])
+        self.assertIsNone(rows[1]['homePoints'])
+        self.assertEqual(rows[1]['verification_issue'], 'provider_complete_without_valid_scores')
+
+    def test_numeric_provider_scores_are_normalized_and_duplicate_ids_rejected(self):
+        row = pipeline.verified_games([dict(self.raw_final, homePoints='28', awayPoints='21')])[0]
+        self.assertTrue(row['completed'])
+        self.assertEqual(row['homePoints'], 28)
         with self.assertRaisesRegex(ValueError, 'Duplicate'):
             pipeline.verified_games([self.raw_final, self.raw_final])
 

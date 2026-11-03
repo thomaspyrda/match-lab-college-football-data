@@ -104,12 +104,24 @@ def verified_games(rows):
         if gid in ids:
             raise ValueError('Duplicate CFBD game: ' + gid)
         ids.add(gid)
-        scores = [row.get('homePoints'), row.get('awayPoints')]
-        valid = all(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v >= 0 for v in scores)
-        if row.get('completed') is True and not valid:
-            raise ValueError('Final game missing a valid score: ' + gid)
+        scores = []
+        for field in ('homePoints', 'awayPoints'):
+            value = row.get(field)
+            try:
+                score = float(value) if value is not None and not isinstance(value, bool) else None
+            except (ValueError, TypeError, OverflowError):
+                score = None
+            scores.append(score if score is not None and math.isfinite(score) and score >= 0 else None)
+        if row.get('completed') is True and any(value is None for value in scores):
+            # Cancelled/unscored provider records must not stop unrelated verified
+            # games, and must never enter records or model calculations as finals.
+            row['completed'] = False
+            row['verification_issue'] = 'provider_complete_without_valid_scores'
+            print('::warning::CFBD game ' + gid + ' is marked complete without valid scores; excluded from final results')
         if row.get('completed') is not True:
             row['homePoints'] = row['awayPoints'] = None
+        else:
+            row['homePoints'], row['awayPoints'] = scores
         out.append(row)
     return out
 
