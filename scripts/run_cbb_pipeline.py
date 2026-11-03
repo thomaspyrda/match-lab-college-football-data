@@ -500,7 +500,7 @@ def publish_strength():
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(path, destination)
         with patch.object(publisher, 'ROOT', folder):
-            publisher.main()
+            publisher.publish()
         for relative in ['cbb/rankings/index.html', 'cbb/rankings/offense/index.html', 'cbb/rankings/defense/index.html']:
             (ROOT / relative).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(folder / relative, ROOT / relative)
