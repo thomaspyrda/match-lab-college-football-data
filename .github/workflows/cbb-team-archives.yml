@@ -76,7 +76,7 @@ jobs:
       - name: Validate collector regression tests
         run: python -m unittest discover -s tests -p test_cbb_archives.py -v
       - name: Import verified historical archive when provided
-        if: github.event_name == 'push' && contains(toJSON(github.event.commits), 'data/cbb/bootstrap/')
+        if: ${{ github.event_name == 'push' && contains(toJSON(github.event.commits), 'data/cbb/bootstrap/') }}
         run: |
           python - <<'PY'
           import gzip,json
@@ -113,7 +113,7 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && inputs.historical_backfill
         run: python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
       - name: Refresh active season
-        if: !inputs.historical_backfill && (github.event_name != 'push' || !contains(toJSON(github.event.commits), 'data/cbb/bootstrap/'))
+        if: ${{ !inputs.historical_backfill && (github.event_name != 'push' || !contains(toJSON(github.event.commits), 'data/cbb/bootstrap/')) }}
         run: |
           season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
           python backfill_cbb_team_archives.py --years "$season" --workers 12
@@ -139,7 +139,7 @@ jobs:
               raise SystemExit('Historical collection incomplete; refusing publication')
           PY
       - name: Enrich active-season player and advanced team statistics from verified final boxes
-        if: !inputs.historical_backfill
+        if: ${{ !inputs.historical_backfill }}
         run: python enrich_cbb_team_boxes.py
       - name: Validate CBB market collection and syntax
         continue-on-error: true
