@@ -1,5 +1,6 @@
 name: Refresh MLB Dashboard
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '9 4 * * *'
