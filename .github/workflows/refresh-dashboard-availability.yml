@@ -1,5 +1,6 @@
 name: Refresh all dashboard player availability
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '35 4 * * *'
@@ -14,11 +15,17 @@ on:
       - .github/workflows/refresh-dashboard-availability.yml
 permissions:
   contents: write
-concurrency:
-  group: dashboard-player-availability
-  cancel-in-progress: false
 jobs:
   refresh:
+    name: Refresh ${{ matrix.sport }} availability
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        sport: [nfl, nba, cbb, cfb, mlb]
+    concurrency:
+      group: dashboard-availability-${{ matrix.sport }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -31,14 +38,14 @@ jobs:
       - name: Verify report freshness and status handling
         run: python -m unittest discover -s tests -p test_dashboard_availability.py
       - name: Refresh current player availability for every sport
-        run: python refresh_dashboard_availability.py
+        run: python refresh_dashboard_availability.py --sport ${{ matrix.sport }}
       - name: Publish availability independently of statistical snapshots
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/dashboard-availability
+          git add data/dashboard-availability/${{ matrix.sport }}.json
           git diff --cached --quiet && exit 0
-          git commit -m 'Refresh sourced player availability for all sport dashboards'
+          git commit -m 'Refresh ${{ matrix.sport }} player availability'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             git rebase origin/main
