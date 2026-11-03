@@ -17,6 +17,18 @@ for version in ("v11", "v12"):
     assert 'styleId = "underdog-hero-banner-style"' not in nav, f"{version}: legacy injected banner sizes exist"
     assert 'aspect-ratio:1194/98' not in nav, f"{version}: local banner sizing duplicated"
 
+# Prevent new sport-specific stylesheets from silently overriding shared geometry.
+for stylesheet in ROOT.rglob("*.css"):
+    if any(part in {".git", "node_modules"} for part in stylesheet.relative_to(ROOT).parts):
+        continue
+    if stylesheet == ROOT / "assets/underdog-banner.css":
+        continue
+    source = stylesheet.read_text(encoding="utf-8")
+    for block in re.finditer(r"([^{}]+)\\{([^{}]*)\\}", source, re.S):
+        selector, declarations = block.group(1), block.group(2)
+        if ".underdog-hero-banner" in selector and re.search(r"(?<![\\w-])(width|height|min-height|max-height|aspect-ratio)\\s*:", declarations):
+            raise AssertionError(f"Conflicting banner size rule in {stylesheet}: {selector.strip()[-120:]}")
+
 total = 0
 for path in ROOT.rglob("*.html"):
     if any(part in {".git", "node_modules"} for part in path.relative_to(ROOT).parts):
