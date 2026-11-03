@@ -1,5 +1,6 @@
 name: Refresh CBB Conference Standings
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '25 4 * * *'
