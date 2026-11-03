@@ -15,6 +15,8 @@ on:
     # Backup triggers: GitHub may delay or drop a scheduled event.
     - cron: '11 5 * * *'
       timezone: America/New_York
+    - cron: '41 5 * * *'
+      timezone: America/New_York
     - cron: '11 17 * * *'
       timezone: America/New_York
   push:
@@ -46,7 +48,7 @@ jobs:
           python - <<'PY'
           import datetime,json,os,urllib.request
           from datetime import timezone
-          backup={'11 5 * * *','11 17 * * *'}
+          backup=set()  # Always execute backup refreshes; successful but stale data must not suppress retries.
           should_run=True
           if os.environ.get('GH_EVENT_SCHEDULE') in backup:
               try:
