@@ -3,7 +3,7 @@ name: Deploy Match Lab
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Afternoon pregame data refresh", "Sport Data Coordinators (manual validation)", "Refresh all dashboard player availability", "Build CBB Team Strength", "Import verified CBB official supplements", "Build CBB Historical Metric Rankings", "Recover CBB complete player boxes", "Recover missing CBB paint boxes", "Recover CBB historical player statistics", "Refresh CBB Recruiting Rankings", "Refresh CFB play mix", "Frozen CFB Dashboard Data", "Refresh CFB Dashboard schedule only", "Publish CBB Team Page Layouts", "Recover missing CBB historical ATS and totals", "Backfill CBB linked custom paint archives", "Backfill CBB complete period paint", "Backfill CBB classic HTML paint", "Backfill CBB official WMT paint", "Backfill CBB legacy paint archives", "Backfill CBB official paint archives", "Backfill CBB historical lines and paint", "Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
+    workflows: ["Publish CFB live markets", "Build Team Strength", "Afternoon pregame data refresh", "Sport Data Coordinators (manual validation)", "Refresh all dashboard player availability", "Build CBB Team Strength", "Import verified CBB official supplements", "Build CBB Historical Metric Rankings", "Recover CBB complete player boxes", "Recover missing CBB paint boxes", "Recover CBB historical player statistics", "Refresh CBB Recruiting Rankings", "Refresh CFB play mix", "Frozen CFB Dashboard Data", "Refresh CFB Dashboard schedule only", "Publish CBB Team Page Layouts", "Recover missing CBB historical ATS and totals", "Backfill CBB linked custom paint archives", "Backfill CBB complete period paint", "Backfill CBB classic HTML paint", "Backfill CBB official WMT paint", "Backfill CBB legacy paint archives", "Backfill CBB official paint archives", "Backfill CBB historical lines and paint", "Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Dashboard", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
     branches: [cfb-dashboard-foundation, main]
     types: [completed]
   push:
@@ -60,7 +60,9 @@ jobs:
       github.event_name != 'workflow_run' ||
       github.event.workflow_run.conclusion == 'success' ||
       (github.event.workflow_run.conclusion == 'failure' &&
-       contains(fromJSON('["Afternoon pregame data refresh", "Refresh all dashboard player availability"]'), github.event.workflow_run.name))
+       (contains(fromJSON('["Afternoon pregame data refresh", "Refresh all dashboard player availability"]'), github.event.workflow_run.name) ||
+        (github.event.workflow_run.name == 'Sport Data Coordinators (manual validation)' &&
+         startsWith(github.event.workflow_run.display_title, 'cfb data pipeline'))))
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -80,11 +82,12 @@ jobs:
       - name: Prepare public site without model source or internal CBB inputs
         run: |
           mkdir -p "${{ runner.temp }}/matchlab-public"
-          rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
+          rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/matchlab-public
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
 

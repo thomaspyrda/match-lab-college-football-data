@@ -1,5 +1,6 @@
 name: Build CFB team history
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
@@ -17,7 +18,7 @@ on:
       - data/historical/**
       - .github/workflows/build-cfb-team-pages.yml
   workflow_run:
-    workflows: [Build Match Lab production, Build Team Strength]
+    workflows: ['Refresh CFB verified results', 'Refresh CFB team metrics', 'Refresh CFB player statistics', 'Refresh CFB live markets', 'Refresh CFB team metadata', Build Team Strength]
     branches: [main]
     types: [completed]
 permissions:
@@ -38,19 +39,28 @@ jobs:
           python-version: '3.12'
       - name: Validate team history calculations
         run: python -m unittest test_cfb_team_pages.py
-      - name: Collect full-season CFB detail sources
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+      - name: Check initial component readiness
+        id: ready
         run: |
-          python refresh_cfb_team_details.py
-          python supplement_cfb_2015_defense.py
+          ready=true
+          for component in results metrics players; do
+            if [ ! -f "data/cfb/pipeline/$component.json" ]; then ready=false; fi
+          done
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+      - name: Assemble active-season team inputs from independent verified components
+        if: steps.ready.outputs.ready == 'true'
+        run: python scripts/run_cfb_pipeline.py team-pages --store data/cfb/pipeline
       - name: Build all CFB team pages
+        if: steps.ready.outputs.ready == 'true'
         run: python build_cfb_team_pages.py
       - name: Sync CFB directory records with completed 2026 games
+        if: steps.ready.outputs.ready == 'true'
         run: python scripts/refresh_cfb_directory_records.py
       - name: Verify every populated team-season
+        if: steps.ready.outputs.ready == 'true'
         run: python verify_cfb_team_pages.py
       - name: Publish generated team archives
+        if: steps.ready.outputs.ready == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -66,3 +76,4 @@ jobs:
           done
           echo "Unable to safely publish CFB outputs after five attempts" >&2
           exit 1
+

@@ -1,0 +1,23 @@
+name: Refresh CFB verified results
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    - cron: '5 4,16 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths:
+      - scripts/run_cfb_pipeline.py
+      - tests/test_cfb_pipeline.py
+      - .github/workflows/cfb-collect-component.yml
+      - .github/workflows/refresh-cfb-results.yml
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/cfb-collect-component.yml
+    with:
+      component: results
+    secrets: inherit

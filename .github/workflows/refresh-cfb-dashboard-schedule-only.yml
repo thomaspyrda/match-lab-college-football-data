@@ -1,4 +1,5 @@
 name: Refresh CFB Dashboard schedule only
+# Scheduled retry of offline assembly; result collection owns the schedule source.
 on:
   workflow_call:
   workflow_dispatch:
@@ -7,46 +8,9 @@ on:
       timezone: America/New_York
     - cron: '0 17 * * *'
       timezone: America/New_York
-  push:
-    branches: [main]
-    paths:
-      - "refresh_cfb_dashboard_schedule_only.py"
-      - ".github/workflows/refresh-cfb-dashboard-schedule-only.yml"
 permissions:
   contents: write
-concurrency:
-  # All scheduled writers of the production CFB dashboard share this lock.
-  group: cfb-dashboard-data
-  cancel-in-progress: false
 jobs:
   update-schedule:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Refresh only seven-day CFB schedule
-        env:
-          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-        run: |
-          python refresh_cfb_dashboard_schedule_only.py
-          python refresh_cfb_play_rates.py
-      - name: Commit dashboard data only
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cfb-dashboard-preview/data/dashboard.json cfb-dashboard-preview/data/location-records.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Refresh CFB Dashboard seven-day schedule only"
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            # Never auto-resolve competing changes to the same generated file.
-            git rebase origin/main || { git rebase --abort; exit 1; }
-            if git push origin HEAD:main; then exit 0; fi
-            sleep $((attempt * 3))
-          done
-          echo "Unable to safely publish CFB outputs after five attempts" >&2
-          exit 1
+    uses: ./.github/workflows/cfb-publish-dashboard.yml
+    secrets: inherit

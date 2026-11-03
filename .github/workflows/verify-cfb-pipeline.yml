@@ -1,0 +1,21 @@
+name: Verify CFB component publication
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '55 6,18 * * *'
+      timezone: America/New_York
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check result cutoff and all dependent publications
+        run: python scripts/verify_cfb_pipeline.py

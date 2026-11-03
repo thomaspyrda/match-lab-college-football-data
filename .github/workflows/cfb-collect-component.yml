@@ -1,0 +1,63 @@
+name: Collect one CFB component
+on:
+  workflow_call:
+    inputs:
+      component:
+        type: string
+        required: true
+permissions:
+  contents: write
+concurrency:
+  group: cfb-input-${{ inputs.component }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ebb7892f2300f67e174e4d57abeb9b18cdf4ee60
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: .pipeline-code
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate component contracts and failure isolation
+        run: python -m unittest discover -s .pipeline-code/tests -p test_cfb_pipeline.py
+      - name: Collect only this component
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: python .pipeline-code/scripts/run_cfb_pipeline.py collect-${{ inputs.component }} --store .pipeline-code/data/cfb/pipeline
+      - name: Save verified results independently of statistical feeds
+        if: inputs.component == 'results'
+        run: python .pipeline-code/scripts/run_cfb_pipeline.py pack-results --store .pipeline-code/data/cfb/pipeline
+      - name: Restore existing validated dashboard strength inputs
+        if: inputs.component == 'strength'
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+          PYTHONPATH: .
+        run: |
+          MODEL_WEEK=$(python -c 'import json; print(int(json.load(open("data/current_rankings.json"))["week"]))')
+          if [ ! -f "data/experiments/recursive_unit_strength_v15_2026_week_${MODEL_WEEK}.json" ]; then
+            MODEL_WEEK="$MODEL_WEEK" python experiment_dominance_v15.py
+          fi
+          python promote_v15_live.py
+          python .pipeline-code/scripts/run_cfb_pipeline.py pack-strength --store .pipeline-code/data/cfb/pipeline
+      - name: Commit this verified component only
+        working-directory: .pipeline-code
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cfb/pipeline/${{ inputs.component }}.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh verified CFB ${{ inputs.component }} inputs'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
