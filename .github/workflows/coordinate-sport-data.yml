@@ -1,0 +1,63 @@
+name: Sport Data Coordinators (manual validation)
+# Phase 1: opt-in orchestration. Existing automatic refresh schedules remain enabled.
+# Existing Python models, HTML, CSS and JSON schemas are intentionally unchanged.
+on:
+  workflow_dispatch:
+    inputs:
+      sport:
+        description: 'Run one sport pipeline; independent injury jobs remain separately scheduled'
+        type: choice
+        required: true
+        options: [cbb, nba, cfb, mlb]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  cbb-results-and-team-archives:
+    if: inputs.sport == 'cbb'
+    uses: ./.github/workflows/cbb-team-archives.yml
+    secrets: inherit
+
+  cbb-dashboard:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-results-and-team-archives]
+    uses: ./.github/workflows/refresh-cbb-dashboard.yml
+    secrets: inherit
+
+  cbb-rankings-and-strength:
+    if: inputs.sport == 'cbb'
+    needs: [cbb-results-and-team-archives]
+    uses: ./.github/workflows/build-cbb-strength.yml
+    secrets: inherit
+
+  cbb-market-capture:
+    if: inputs.sport == 'cbb'
+    uses: ./.github/workflows/cbb-pregame-market-capture.yml
+    secrets: inherit
+
+  nba-verified-statistics-and-pages:
+    if: inputs.sport == 'nba'
+    uses: ./.github/workflows/refresh-nba-dashboard.yml
+    secrets: inherit
+
+  cfb-seven-day-results:
+    if: inputs.sport == 'cfb'
+    uses: ./.github/workflows/refresh-cfb-dashboard-schedule-only.yml
+    secrets: inherit
+
+  cfb-team-strength:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-seven-day-results]
+    uses: ./.github/workflows/build-team-strength.yml
+    secrets: inherit
+
+  cfb-player-season-leaders:
+    if: inputs.sport == 'cfb'
+    needs: [cfb-seven-day-results]
+    uses: ./.github/workflows/refresh-fbs-leaders.yml
+    secrets: inherit
+
+  mlb-current-season-dashboard:
+    if: inputs.sport == 'mlb'
+    uses: ./.github/workflows/refresh-mlb-dashboard.yml
+    secrets: inherit
