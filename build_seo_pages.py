@@ -380,7 +380,7 @@ def ranking_tabs(active):
 
 def ranking_hero():
     return f"""<div class="rank-hero">
-<img src="{BASE}/assets/betwise-cfb-vip-collage.webp" alt="College football players and mascots in a stadium collage">
+<img src="{BASE}/cfb-dashboard-preview/ChatGPT%20Image%20Nov%201%2C%202026%2C%2007_38_17%20PM.png" alt="College football players and mascots in a stadium collage">
 </div>"""
 
 _TEAM_ARCHIVE_URLS=None
