@@ -167,19 +167,40 @@ jobs:
       - name: Publish CBB team archive references
         run: python publish_cbb_team_archives.py
       - name: Commit CBB data and team page references
+        env:
+          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+          HISTORICAL_BACKFILL: ${{ inputs.historical_backfill || 'false' }}
         run: |
           git config user.name 'BetWise Data Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add data/cbb/teams data/cbb/backfill-report.json data/cbb/metric-ranks.json data/cbb/markets data/cbb/pregame-markets data/cbb/market-coverage-2027.json data/cbb/division-one-season-leaders.json cbb/teams
+          stage_generated() {
+            git add data/cbb/teams data/cbb/backfill-report.json data/cbb/metric-ranks.json data/cbb/markets data/cbb/pregame-markets data/cbb/market-coverage-2027.json data/cbb/division-one-season-leaders.json cbb/teams
+          }
+          stage_generated
           git diff --cached --quiet && exit 0
           git commit -m 'data(cbb): publish verified team archives'
           for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:main; then exit 0; fi
+            if [ "$attempt" -eq 5 ]; then break; fi
+            echo "Concurrent CBB publication detected; rebuilding on current main (attempt $attempt)."
             git fetch origin main
-            git rebase origin/main
-            if git push origin HEAD:main; then
-              exit 0
+            git reset --hard origin/main
+            if [ "$HISTORICAL_BACKFILL" = "true" ]; then
+              python backfill_cbb_team_archives.py --years 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 2026 --workers 8
+            else
+              season=$(python -c 'from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(n.year+(n.month>=7))')
+              python backfill_cbb_team_archives.py --years "$season" --workers 12
+              python enrich_cbb_team_boxes.py
+              python sync_cbb_market_archives.py
+              if [ "$GITHUB_EVENT_NAME" != "push" ]; then
+                python publish_cbb_current_season_leaders.py
+              fi
             fi
-            sleep $((attempt * 3))
+            python build_cbb_metric_ranks.py
+            python publish_cbb_team_archives.py
+            stage_generated
+            git diff --cached --quiet && exit 0
+            git commit -m 'data(cbb): publish verified team archives against latest main'
           done
-          echo "Unable to publish after five safe push attempts" >&2
+          echo "Unable to safely publish CBB archives after five attempts" >&2
           exit 1
