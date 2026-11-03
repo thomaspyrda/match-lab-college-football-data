@@ -36,6 +36,14 @@ def enrich(archives, boxes, year):
             # Do not publish partial season aggregates as though they cover all played games.
             if len(eligible)!=len(final) or not final:
                 continue
+            # ESPN's schedule and dashboard box feeds can briefly disagree.
+            # Keep verified schedule results and previous aggregates instead of
+            # blocking publication for every school on a single disputed box.
+            box_points=[g.get('teams',{}).get(tid,{}).get('points') for g in eligible]
+            schedule_points=[g['points'] for g in final.values()]
+            if any(not isinstance(p,(int,float)) for p in box_points) or int(sum(box_points))!=int(sum(schedule_points)):
+                print(f"Skipping mismatched box-score enrichment: {path.name} phase={label} schedule={sum(schedule_points)} boxes={box_points}",flush=True)
+                continue
             sums=defaultdict(float);opp=defaultdict(float)
             for g in eligible:
                 own=g['teams'].get(tid)
@@ -73,7 +81,8 @@ def enrich(archives, boxes, year):
                     opponentOffensiveRebounds=opp['oreb'],opponentAssists=opp['ast'])
                 metrics['twoPointFieldGoalPct']=ratio(sums['fgm']-sums['tpm'],sums['fga']-sums['tpa'],100)
                 if int(metrics['points'])!=sum(g['points'] for g in final.values()):
-                    raise ValueError('Box totals mismatch '+path.name)
+                    print(f"Skipping inconsistent box metrics: {path.name} phase={label}",flush=True)
+                    continue
                 record['metrics']=metrics
                 record['coverage']='verified_box_scores'
         players=[]
