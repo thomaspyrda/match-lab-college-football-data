@@ -30,6 +30,7 @@ on:
       - site-navigation-v4.js
       - site-navigation-v10.js
       - site-navigation-v11.js
+      - site-navigation-v12.js
       - assets/underdog-*
       - site-navigation-v9.js
       - site-navigation-v8.js
@@ -67,6 +68,7 @@ jobs:
         run: |
           python3 scripts/normalize_site_navigation.py
           python3 scripts/normalize_site_navigation.py --check
+          python3 scripts/verify_underdog_banner_contract.py
       - name: Prepare public site without model source or internal CBB inputs
         run: |
           mkdir -p "${{ runner.temp }}/matchlab-public"
