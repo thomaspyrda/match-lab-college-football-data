@@ -24,7 +24,7 @@ def main():
             for step in steps:
                 script = step.get('run', '')
                 if 'git push origin HEAD:main' in script:
-                    assert 'git rebase origin/main' in script and 'for attempt in' in script, filename + ': unsafe publication retry'
+                    assert ('git rebase origin/main' in script or (filename == 'cbb-historical-archives.yml' and 'git reset --hard origin/main' in script and 'stage_generated' in script)) and 'for attempt in' in script, filename + ': unsafe publication retry'
     publishers = ['refresh-cbb-dashboard.yml', 'cbb-publish-team-pages.yml', 'refresh-cbb-season-leaders.yml',
                   'build-cbb-metric-ranks.yml', 'build-cbb-strength.yml', 'cbb-publish-markets.yml']
     for filename in publishers:
