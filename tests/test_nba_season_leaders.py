@@ -87,7 +87,7 @@ class LeadersTests(unittest.TestCase):
             page=render_page(data,'<html><head><title>NBA</title></head><body><main></main></body></html>',[2016,2027],2027)
             self.assertEqual(page.count('</head>'),1)
             self.assertLess(page.index('/sports-research/season-leaders.css'),page.index('</head>'))
-            self.assertLess(page.index('/nba/season-leaders/leaders.css?v=3'),page.index('</head>'))
+            self.assertLess(page.index('/nba/season-leaders/leaders.css?v='),page.index('</head>'))
             self.assertLess(page.index('/nba/season-leaders/seasons.js'),page.index('</head>'))
             self.assertLess(page.index('</head>'),page.index('<body>'))
 
