@@ -161,5 +161,11 @@ def collect(sport,now):
  print(sport,len(output['teams']),'team reports;',sum(len(r['players']) for r in output['teams'].values()),'players;',len(jobs),'matchup checks',flush=True)
  return output
 if __name__=='__main__':
+ import argparse
+ parser=argparse.ArgumentParser(description='Refresh one sport or all sports without changing report schemas.')
+ parser.add_argument('--sport',choices=[*PATHS,'all'],default='all')
+ args=parser.parse_args()
  now=datetime.now(timezone.utc)
- with ThreadPoolExecutor(max_workers=3) as pool:list(pool.map(lambda s:collect(s,now),PATHS))
+ sports=list(PATHS) if args.sport=='all' else [args.sport]
+ with ThreadPoolExecutor(max_workers=min(3,len(sports))) as pool:
+  list(pool.map(lambda sport:collect(sport,now),sports))
