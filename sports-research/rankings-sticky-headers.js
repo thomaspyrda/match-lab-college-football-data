@@ -4,6 +4,21 @@
  if (!/(?:^|[/-])rankings(?:\/|$)/.test(location.pathname) || window.betwiseRankingHeaders) return;
  window.betwiseRankingHeaders = true;
  const states = new Map();
+ const scrollSources = new WeakMap();
+ function syncHorizontal(state, source) {
+  const left=source.scrollLeft;
+  if (state.expected.has(source) && Math.abs(state.expected.get(source)-left)<1) {
+   state.expected.delete(source); return;
+  }
+  state.expected.delete(source);
+  for (const target of [state.scroller,state.clip,state.track]) {
+   if (target===source || Math.abs(target.scrollLeft-left)<1) continue;
+   state.expected.set(target,left); target.scrollLeft=left;
+  }
+ }
+ const scrollbarStyle=document.createElement('style');
+ scrollbarStyle.textContent='[data-ranking-header-clip]{scrollbar-width:none!important}[data-ranking-header-clip]::-webkit-scrollbar{display:none}';
+ document.head.appendChild(scrollbarStyle);
  let frame = 0;
  const visual = ['font','color','backgroundColor','borderTop','borderRight','borderBottom','borderLeft','padding','textAlign','verticalAlign','letterSpacing','textTransform','whiteSpace','lineHeight','boxSizing','borderCollapse','borderSpacing','borderRadius','display','alignItems','justifyContent','gap'];
  const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
@@ -69,30 +84,20 @@
    const overlay = document.createElement('div');
    overlay.dataset.rankingHeaderOverlay = ''; overlay.setAttribute('aria-hidden','true');
    Object.assign(overlay.style, {position:'fixed',zIndex:'90',overflow:'hidden',background:'#0d0d0d',boxShadow:'0 2px 0 #333',display:'none',overscrollBehavior:'contain'});
-   const clip = document.createElement('div'); clip.style.overflow = 'hidden';
+   const clip = document.createElement('div'); clip.dataset.rankingHeaderClip='';
+   Object.assign(clip.style,{overflowX:'auto',overflowY:'hidden',overscrollBehaviorX:'contain',touchAction:'auto',webkitOverflowScrolling:'touch'});
    const track = document.createElement('div'); track.dataset.rankingHeaderScrollbar = '';
    Object.assign(track.style,{overflowX:'scroll',overflowY:'hidden',height:'18px',width:'100%',scrollbarWidth:'auto',background:'#222a25'});
    const size = document.createElement('div'); size.style.height = '1px'; track.append(size);
    overlay.append(clip,track); document.body.append(overlay);
-   overlay.style.touchAction = 'pan-y';
-   let touchStart;
-   overlay.addEventListener('pointerdown', event => {
-    if (event.pointerType === 'touch' && !event.target.closest('button,a,[role="scrollbar"]')) touchStart = {x:event.clientX,left:scroller.scrollLeft};
-   });
-   overlay.addEventListener('pointermove', event => {
-    if (touchStart && event.pointerType === 'touch') {scroller.scrollLeft = touchStart.left + touchStart.x - event.clientX; schedule();}
-   });
-   ['pointerup','pointercancel','pointerleave'].forEach(type => overlay.addEventListener(type,() => {touchStart=null;}));
-   const state = {table,scroller,overlay,clip,track,size,dirty:true}; states.set(table,state);
-   track.addEventListener('scroll',() => {
-    if (Math.abs(scroller.scrollLeft-track.scrollLeft)>1) scroller.scrollLeft=track.scrollLeft;
-    clip.scrollLeft=track.scrollLeft; schedule();
-   },{passive:true});
+   const state = {table,scroller,overlay,clip,track,size,expected:new WeakMap(),dirty:true}; states.set(table,state);
+   for (const source of [scroller,clip,track]) {
+    scrollSources.set(source,state);
+    source.addEventListener('scroll',()=>syncHorizontal(state,source),{passive:true});
+   }
    const resize = new ResizeObserver(() => { state.dirty = true; schedule(); });
    resize.observe(table); resize.observe(table.tHead); state.resize = resize;
-   overlay.addEventListener('wheel', event => {
-    if (event.deltaX || event.shiftKey) { scroller.scrollLeft += event.deltaX || event.deltaY; event.preventDefault(); schedule(); }
-   }, {passive:false});
+
   });
   const top = offset();
   states.forEach((state, table) => {
@@ -101,25 +106,31 @@
    const bounds = state.scroller === document.body ? rect : state.scroller.getBoundingClientRect();
    const left = Math.max(0,bounds.left), right = Math.min(document.documentElement.clientWidth,bounds.right);
    const active = rect.width > 0 && head.top < top && rect.bottom > top + head.height && right > left;
+   const wasActive=state.overlay.style.display==='block';
    state.overlay.style.display = active ? 'block' : 'none';
    if (!active) return;
-   if (state.dirty) refresh(state);
+   const refreshed=state.dirty;
+   if (refreshed) refresh(state);
    const hasScroll = state.scroller.scrollWidth > state.scroller.clientWidth + 1;
    state.track.style.display=hasScroll?'block':'none';
    state.size.style.width=state.scroller.scrollWidth+'px';
    Object.assign(state.overlay.style, {left:left+'px',top:top+'px',width:(right-left)+'px',height:(state.headerHeight+(hasScroll?18:0))+'px'});
    state.clip.style.height=state.headerHeight+'px';
    const scrollLeft = state.scroller === document.body ? Math.max(0,-rect.left) : state.scroller.scrollLeft + Math.max(0,-bounds.left);
-   state.clip.scrollLeft=scrollLeft;
-   if(Math.abs(state.track.scrollLeft-scrollLeft)>1) state.track.scrollLeft=scrollLeft;
+   if (!wasActive || refreshed) {
+    for (const target of [state.clip,state.track]) {
+     if (Math.abs(target.scrollLeft-scrollLeft)<1) continue;
+     state.expected.set(target,scrollLeft); target.scrollLeft=scrollLeft;
+    }
+   }
   });
  }
  new MutationObserver(records => {
-  const external = records.some(record => !record.target.closest?.('[data-ranking-header-overlay]') && ![...record.addedNodes,...record.removedNodes].every(node => node.nodeType === 1 && node.hasAttribute('data-ranking-header-overlay')));
+  const external = records.some(record => !record.target.closest?.('[data-ranking-header-overlay]') && !((record.addedNodes.length+record.removedNodes.length)>0 && [...record.addedNodes,...record.removedNodes].every(node => node.nodeType === 1 && node.hasAttribute('data-ranking-header-overlay'))));
   if (!external) return;
-  states.forEach(state => { state.dirty = true; }); schedule();
- }).observe(document.body,{childList:true,subtree:true,characterData:true});
- window.addEventListener('scroll',schedule,{passive:true,capture:true});
+  states.forEach(state => { if(records.some(record=>state.table===record.target || state.table.tHead?.contains(record.target))) state.dirty=true; }); schedule();
+ }).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-sort','aria-expanded']});
+ window.addEventListener('scroll',event=>{if(!scrollSources.has(event.target)) schedule();},{passive:true,capture:true});
  window.addEventListener('resize',() => {states.forEach(state => {state.dirty=true;}); schedule();},{passive:true});
  document.fonts?.ready.then(() => {states.forEach(state => {state.dirty=true;}); schedule();});
  schedule();

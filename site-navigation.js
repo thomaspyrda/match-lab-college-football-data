@@ -54,6 +54,6 @@
  if (!/(?:^|[/-])rankings(?:\/|$)/.test(location.pathname) || document.getElementById('ranking-sticky-headers-script')) return;
  const script=document.createElement('script');
  script.id='ranking-sticky-headers-script';
- script.src='https://matchlab.parlaycalculator.bet/sports-research/rankings-sticky-headers.js?v=20261104-2';
+ script.src='https://matchlab.parlaycalculator.bet/sports-research/rankings-sticky-headers.js?v=20261104-3';
  document.head.appendChild(script);
 })();
