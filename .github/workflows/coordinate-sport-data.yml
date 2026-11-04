@@ -113,6 +113,12 @@ jobs:
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
 
+  nba-current-leaders:
+    if: inputs.sport == 'nba'
+    needs: [nba-verified-statistics-and-pages]
+    uses: ./.github/workflows/publish-nba-leaders.yml
+    secrets: inherit
+
   cfb-results:
     if: inputs.sport == 'cfb'
     uses: ./.github/workflows/refresh-cfb-results.yml

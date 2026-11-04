@@ -1,0 +1,48 @@
+name: Publish independent NBA season leaders
+on:
+  workflow_call:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Refresh NBA Dashboard']
+    branches: [main]
+    types: [completed]
+  push:
+    branches: [main]
+    paths: ['build_nba_season_leaders.py', 'tests/test_nba_season_leaders.py', '.github/workflows/publish-nba-leaders.yml']
+  schedule:
+    - cron: '15 6,18 * * *'
+      timezone: America/New_York
+permissions:
+  contents: write
+concurrency:
+  group: nba-current-leaders
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_nba_season_leaders.py -v
+      - name: Render leaders from saved verified boxes
+        run: python build_nba_season_leaders.py
+      - name: Publish current leader outputs only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nba/season-leaders/index.html nba/season-leaders/data/leaders.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish independent NBA current season leaders'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1

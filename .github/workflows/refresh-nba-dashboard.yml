@@ -32,8 +32,6 @@ on:
       - nba_player_context.py
       - tests/test_nba_player_context.py
       - nba/dashboard/data/player-value.json
-      - build_nba_season_leaders.py
-      - tests/test_nba_season_leaders.py
       - tests/test_nba_dashboard.py
       - daily_backfill_core.py
       - stage_nba_team_backfill.py
@@ -92,14 +90,13 @@ jobs:
           python -m unittest discover -s tests -p test_nba_team_current.py
           python build_nba_team_current.py
           python build_nba_team_rankings.py
-          python build_nba_season_leaders.py
       - name: Verify previous-day coverage before publishing
         run: python validate_nba_refresh.py
       - name: Publish NBA snapshot and verified 2026-27 team games
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add nba/dashboard/data/location-records.json nba/teams/data/current-season.json nba/season-leaders/index.html nba/season-leaders/data/leaders.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
+          git add nba/dashboard/data/location-records.json nba/teams/data/current-season.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
           git diff --cached --quiet && exit 0
           git commit -m 'Refresh NBA Dashboard snapshot'
           # Keep the commit clean before rebasing against other sports' publications.
