@@ -1,0 +1,49 @@
+name: Grade verified CBB market results
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/cbb-grade-markets.yml']
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: cbb-market-capture
+  cancel-in-progress: false
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_cbb_market_capture.py -v
+      - name: Grade saved pretipoff lines against published verified finals
+        run: python sync_cbb_market_archives.py --grade-only
+      - name: Publish verified team market records
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/cbb/markets
+          git diff --cached --quiet && exit 0
+          git commit -m 'Grade all published CBB finals against saved verified market lines'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
+  deploy:
+    needs: grade
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

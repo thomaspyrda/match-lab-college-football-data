@@ -1,5 +1,8 @@
 name: Publish CBB team archives
 on:
+  push:
+    branches: [main]
+    paths: ['publish_cbb_team_archives.py', '.github/workflows/cbb-publish-team-pages.yml']
   workflow_call:
   workflow_dispatch:
   workflow_run:
@@ -59,3 +62,7 @@ jobs:
       pages: write
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
+
+  grade-markets:
+    needs: publish
+    uses: ./.github/workflows/cbb-grade-markets.yml

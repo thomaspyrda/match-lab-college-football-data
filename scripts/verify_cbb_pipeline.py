@@ -7,13 +7,8 @@ import run_cbb_pipeline as p
 
 
 def require_morning_collection(collected_at, now):
-    from zoneinfo import ZoneInfo
-    local = now.astimezone(ZoneInfo('America/New_York'))
-    if local.hour >= 6:
-        boundary = local.replace(hour=4, minute=0, second=0, microsecond=0)
-        observed = datetime.fromisoformat(collected_at.replace('Z', '+00:00'))
-        if observed < boundary:
-            raise ValueError('CBB morning results collection is missing; prior-evening data is not a completed daily refresh')
+    from scripts.morning_results import require_morning_results
+    return require_morning_results(collected_at, now, 'CBB')
 
 
 def verify():
