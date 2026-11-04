@@ -275,5 +275,24 @@ class CBBHealthTests(unittest.TestCase):
             health.verify()
 
 
+class MorningCollectionTests(unittest.TestCase):
+    def guard(self):
+        spec = importlib.util.spec_from_file_location('morning_health', CODE / 'scripts/verify_cbb_pipeline.py')
+        health = importlib.util.module_from_spec(spec)
+        with patch.dict(sys.modules, {'run_cbb_pipeline': p}):
+            spec.loader.exec_module(health)
+        return health.require_morning_collection
+
+    def test_prior_evening_snapshot_fails_morning_check(self):
+        with self.assertRaisesRegex(ValueError, 'morning results collection is missing'):
+            self.guard()('2026-11-04T02:18:55+00:00', datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
+
+    def test_current_morning_snapshot_passes(self):
+        self.guard()('2026-11-04T09:30:00+00:00', datetime(2026, 11, 4, 12, tzinfo=timezone.utc))
+
+    def test_early_check_allows_morning_collection_window(self):
+        self.guard()('2026-11-04T02:18:55+00:00', datetime(2026, 11, 4, 10, tzinfo=timezone.utc))
+
+
 if __name__ == '__main__':
     unittest.main()
