@@ -1,7 +1,7 @@
 name: Refresh NBA Dashboard
 on:
   workflow_run:
-    workflows: ['Refresh independent NBA rosters']
+    workflows: ['Refresh independent NBA rosters', 'Refresh independent NBA availability']
     branches: [main]
     types: [completed]
   workflow_call:
