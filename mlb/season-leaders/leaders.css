@@ -19,3 +19,12 @@
 .mlb-all-players th[aria-sort="ascending"] .sort-indicator::after{content:'▲';opacity:1;color:#00ff41}
 .mlb-all-players th[aria-sort="descending"] .sort-indicator::after{content:'▼';opacity:1;color:#00ff41}
 .mlb-all-players th[aria-sort] button:hover{color:#00ff41}
+
+/* Keep player identity visible while mobile users scroll either individual-stat table. */
+@media(max-width:750px){
+ #player-stats-scroll .mlb-all-players{border-collapse:separate;border-spacing:0}
+ #player-stats-scroll .mlb-all-players th:first-child,
+ #player-stats-scroll .mlb-all-players td:first-child:not([colspan]){position:sticky;left:0;box-shadow:2px 0 0 #29312c}
+ #player-stats-scroll .mlb-all-players td:first-child:not([colspan]){z-index:1;background:#111}
+ #player-stats-scroll .mlb-all-players th:first-child{z-index:3;background:#18211b}
+}
