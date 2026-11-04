@@ -2,9 +2,10 @@
 """Fail deployment if the shared banner can revert through stale navigation or sizing."""
 from pathlib import Path
 import re
+from normalize_site_navigation import NAV_URL
 
 ROOT = Path(__file__).resolve().parents[1]
-CANONICAL_JS = "site-navigation-v12.js?v=20261102-canonical-banner-v1"
+CANONICAL_JS = NAV_URL
 CANONICAL_CSS = "assets/underdog-banner.css?v=20261102-canonical-v1"
 css = (ROOT / "assets/underdog-banner.css").read_text(encoding="utf-8")
 assert "aspect-ratio:1194/98!important" in css, "Desktop banner geometry changed"
