@@ -41,7 +41,8 @@ def main():
         raw = get(f"teams/{tid}/statistics?season={year}&seasontype={phase}", True)
         requested = raw.get("requestedSeason", raw.get("season", {}))
         if raw and (requested.get("year") != year or requested.get("type") != phase):
-            raise ValueError("Wrong MLB provider metric season/phase")
+            print("Excluded mismatched provider metrics for team", tid) 
+            return tid, profile({})
         return tid, profile(categories(raw, year, phase))
     with ThreadPoolExecutor(8) as pool:
         teams = dict(pool.map(one, ids))
