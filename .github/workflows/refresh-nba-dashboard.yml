@@ -1,5 +1,9 @@
 name: Refresh NBA Dashboard
 on:
+  workflow_run:
+    workflows: ['Refresh independent NBA rosters']
+    branches: [main]
+    types: [completed]
   workflow_call:
   workflow_dispatch:
   schedule:
@@ -50,6 +54,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:

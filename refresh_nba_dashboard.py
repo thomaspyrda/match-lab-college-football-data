@@ -239,7 +239,8 @@ def main():
     for g in ThreadPoolExecutor(4).map(enrich_paint,list(old.values())):old[g['id']]=g
     required={str(e['id']) for e in events.values() if e['season']['type']==2 and e['status']['type'].get('completed') and stamp(e['date']).astimezone(ZoneInfo('America/New_York')).date()==today-timedelta(days=1)}
     if required-set(old):raise ValueError('Missing completed games from yesterday: '+str(sorted(required-set(old))))
-    rosters={r['team_id']:r for r in ThreadPoolExecutor(8).map(roster,teams)}
+    from nba_roster_source import load_rosters
+    rosters=load_rosters(ROOT/'nba/pipeline/rosters.json',season,teams)
     for g in old.values():
         g['game_id']='nba:espn:game:'+g['id']
         if g['id'] in events:g['neutral']=events[g['id']]['competitions'][0].get('neutralSite',False)
