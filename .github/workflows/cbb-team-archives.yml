@@ -21,6 +21,9 @@ on:
       timezone: America/New_York
     - cron: '11 17 * * *'
       timezone: America/New_York
+    # Independent morning retries if an earlier scheduled trigger is delayed or missed.
+    - cron: '19 6,7 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
