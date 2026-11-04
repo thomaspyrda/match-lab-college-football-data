@@ -1,5 +1,9 @@
 name: Refresh MLB Dashboard
 on:
+  workflow_run:
+    workflows: ['Refresh independent MLB team metrics']
+    branches: [main]
+    types: [completed]
   workflow_call:
   workflow_dispatch:
   schedule:
@@ -19,6 +23,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   refresh:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +45,7 @@ jobs:
           git commit -m 'Refresh MLB Dashboard snapshot'
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            git rebase origin/main
+            git rebase origin/main || { git rebase --abort; exit 1; }
             if git push origin HEAD:main; then
               exit 0
             fi
