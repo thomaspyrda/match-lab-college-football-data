@@ -158,7 +158,7 @@ def incorporate_cbbd(entries, rows):
         matched+=1
     return matched
 
-def update(now=None, fetch=None):
+def update(now=None, fetch=None, *, capture=True):
     now = now or datetime.now(timezone.utc)
     def load(url):
         req = urllib.request.Request(url, headers={"User-Agent": "BetWiseCBBMarkets/1.0"})
@@ -171,7 +171,7 @@ def update(now=None, fetch=None):
     entries = old.setdefault("games", {})
     day = now.astimezone(ZoneInfo("America/New_York")).date()
     observed = 0
-    for offset in range(8):
+    for offset in range(8 if capture else 0):
         board = fetch(URL + (day + timedelta(days=offset)).strftime("%Y%m%d"))
         for e in board.get("events", []):
             row = capture_event(e, now)
@@ -184,10 +184,11 @@ def update(now=None, fetch=None):
                             row[field] = prev.get(field)
                 entries[row["id"]] = row
                 observed += 1
-    archived_matched=incorporate_cbbd(entries,fetch_cbbd_lines(now)) if os.getenv("CBBD_API_KEY") else 0
+    archived_matched=incorporate_cbbd(entries,fetch_cbbd_lines(now)) if capture and os.getenv("CBBD_API_KEY") else 0
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
     new_ledger = {"season": SEASON, "last_checked": now.isoformat(), "games": entries}
-    LEDGER.write_text(json.dumps(new_ledger, separators=(",", ":")) + "\n")
+    if capture:
+        LEDGER.write_text(json.dumps(new_ledger, separators=(",", ":")) + "\n")
     count = 0
     for path in sorted(TEAMS.glob("*.json")):
         team = json.loads(path.read_text())
@@ -239,4 +240,7 @@ def update(now=None, fetch=None):
     return new_ledger
 
 if __name__ == "__main__":
-    update()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--grade-only", action="store_true")
+    update(capture=not parser.parse_args().grade_only)

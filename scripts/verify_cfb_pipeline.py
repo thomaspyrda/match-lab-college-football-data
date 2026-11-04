@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def verify(root=ROOT):
     store = root / 'data/cfb/pipeline'
     results = load(store, 'results', max_hours=30)
+    from scripts.morning_results import require_morning_results
+    require_morning_results(results['collected_at'], datetime.now(timezone.utc), 'CFB')
     components = {name: load(store, name) for name in ['strength', 'metrics', 'players']}
     expected = set(results['completed_game_ids'])
     board = read(root / 'data/current_rankings.json')
