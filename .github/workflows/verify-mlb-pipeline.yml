@@ -1,0 +1,27 @@
+name: Verify MLB live pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['verify_mlb_pipeline.py', '.github/workflows/verify-mlb-pipeline.yml']
+  schedule:
+    - cron: '30 6,18 * * *'
+      timezone: America/New_York
+permissions:
+  contents: read
+concurrency:
+  group: mlb-read-only-health
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python scripts/verify_sport_dataset_contract.py --sport mlb
+          python verify_mlb_pipeline.py
