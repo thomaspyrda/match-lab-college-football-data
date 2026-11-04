@@ -9,6 +9,19 @@ js='''/* Team-page gradients only. Shared branding and semantic result colors re
  const themes=PALETTE;
  let path=location.pathname.replace(/\\/index\\.html$/,'/');
  if(!path.endsWith('.html')&&!path.endsWith('/'))path+='/';
+
+ // Official dark-background artwork preserves team colors and light outlines.
+ if (/^\\/(cbb|cfb)\\/teams\\//.test(path)) {
+  document.querySelectorAll('.team-hero-logo, .team-research-heading img').forEach(img => {
+   const original=img.getAttribute('src');
+   if (!original || !original.includes('a.espncdn.com/i/teamlogos/ncaa/500/')) return;
+   img.addEventListener('error', () => { img.src=original; }, {once:true});
+   img.src=original.replace('/ncaa/500/', '/ncaa/500-dark/');
+  });
+  const logoStyle=document.createElement('style');
+  logoStyle.textContent='.team-hero-logo-wrap,.team-hero-logo-wrap--dark-gray,.cbb-hero-logo{background:#000!important}';
+  document.head.appendChild(logoStyle);
+ }
  const theme=themes[path];
  if(!theme)return;
  if(!document.getElementById('teamSeasonData')&&!document.getElementById('team-season-data')&&!document.body.classList.contains('team-page'))return;
