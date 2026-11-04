@@ -185,8 +185,13 @@ def season_market_records(year,phase,now,team_ids):
  totals={tid:dict(empty(),locations={place:dict(empty(),games=0,wins=0,losses=0,points=0,ppg=None) for place in ('Home','Away','Neutral')}) for tid in team_ids}
  if not team_ids:return totals
  # Monthly requests avoid truncating a full MLB season at the provider's event limit.
+ game_types='R' if phase==2 else 'F,D,L,W' if phase==3 else 'S'
+ calendar_url=(f'https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate={year}-01-01&endDate='+now.date().isoformat()+'&gameTypes='+game_types)
+ with urllib.request.urlopen(calendar_url,timeout=30) as response:calendar=json.load(response)
+ if not isinstance(calendar.get('dates'),list):raise ValueError('Invalid official MLB market calendar')
+ months={int(day['date'][5:7]) for day in calendar['dates'] if day.get('games') and day['date'].startswith(str(year)+'-')}
  dates=[]
- for month in range(1,now.month+1):
+ for month in sorted(months):
   start=datetime(year,month,1,tzinfo=UTC)
   end=(datetime(year+1,1,1,tzinfo=UTC) if month==12 else datetime(year,month+1,1,tzinfo=UTC))-timedelta(days=1)
   dates.append(start.strftime('%Y%m%d')+'-'+min(end,now).strftime('%Y%m%d'))
