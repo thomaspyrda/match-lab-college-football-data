@@ -116,3 +116,12 @@
   script.src = "https://matchlab.parlaycalculator.bet/assets/underdog-offer.js?v=" + Date.now();
   document.head.appendChild(script);
 })();
+
+/* Shared ranking headers across every sport, including legacy page templates. */
+(() => {
+ if (!/(?:^|[/-])rankings(?:\/|$)/.test(location.pathname) || document.getElementById('ranking-sticky-headers-script')) return;
+ const script=document.createElement('script');
+ script.id='ranking-sticky-headers-script';
+ script.src='https://matchlab.parlaycalculator.bet/sports-research/rankings-sticky-headers.js?v=20261104-1';
+ document.head.appendChild(script);
+})();
