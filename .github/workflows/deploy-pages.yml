@@ -83,7 +83,7 @@ jobs:
       - name: Prepare public site without model source or internal CBB inputs
         run: |
           mkdir -p "${{ runner.temp }}/matchlab-public"
-          rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
+          rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='mlb/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ runner.temp }}/matchlab-public

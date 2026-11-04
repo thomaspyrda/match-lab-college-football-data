@@ -230,8 +230,8 @@ def main():
  upcoming=sorted([e for e in events.values() if not e['status']['type'].get('completed') and stamp(e['date'])>=now-timedelta(hours=8)],key=lambda e:e['date'])
  phase=upcoming[0]['season']['type'] if upcoming else (3 if today.month>=10 else 2)
  upcoming=[e for e in upcoming if e['season']['type']==phase]
- def stats(i):return i,profile(categories(get(f'teams/{i}/statistics?season={year}&seasontype={phase}',True),year,phase))
- profiles=dict(ThreadPoolExecutor(8).map(stats,teams))
+ from mlb_metric_source import load_profiles, source_path
+ profiles=load_profiles(source_path(year,phase),year,phase,teams,now)
  past=sorted([e for e in events.values() if e['status']['type'].get('completed') and e['season']['type']==phase and stamp(e['date'])<=now],key=lambda e:e['date'])
  for i,p in profiles.items():
   for e in past:
