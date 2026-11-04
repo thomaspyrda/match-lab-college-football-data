@@ -7,11 +7,12 @@ import json
 import re
 from pathlib import Path
 
-NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261102-canonical-banner-v1"
+NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261104-complete-cbb-menu"
 CSS_URL = "https://matchlab.parlaycalculator.bet/site-navigation.css?v=20261021-1"
 SPORTS = json.loads(r'''{"NFL":[["NFL Dashboard","https://nfl.parlaycalculator.bet/"],["NFL Teams","https://nfl.parlaycalculator.bet/teams.html"],["Rankings","https://nfl.parlaycalculator.bet/nfl-team-strength-rankings/"]],"CFB":[["CFB Dashboard","https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"],["CFB Teams","https://matchlab.parlaycalculator.bet/teams.html"],["CFB Match Lab","https://matchlab.parlaycalculator.bet/"],["Rankings","https://matchlab.parlaycalculator.bet/college-football-team-strength-rankings/"]],"MLB":[["MLB Dashboard","https://matchlab.parlaycalculator.bet/mlb/dashboard/"],["MLB Teams","https://matchlab.parlaycalculator.bet/mlb/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/mlb/rankings/"]],"NBA":[["NBA Dashboard","https://matchlab.parlaycalculator.bet/nba/dashboard/"],["NBA Teams","https://matchlab.parlaycalculator.bet/nba/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/nba/rankings/"]],"CBB":[["CBB Dashboard","https://matchlab.parlaycalculator.bet/cbb/dashboard/"],["CBB Teams","https://matchlab.parlaycalculator.bet/cbb/teams/"],["CBB Match Lab","https://matchlab.parlaycalculator.bet/cbb/match-lab/"],["Rankings","https://matchlab.parlaycalculator.bet/cbb/rankings/"]]}''')
 NBA_RANKINGS = "https://matchlab.parlaycalculator.bet/nba/rankings/"
 CBB_RANKINGS = "https://matchlab.parlaycalculator.bet/cbb/rankings/"
+CBB_MATCH_LAB = "https://matchlab.parlaycalculator.bet/cbb/match-lab/"
 NAV_TAG = re.compile(r'(<nav\b[^>]*>)(.*?)(</nav>)', re.I | re.S)
 JS_REF = re.compile(r"""(src\s*=\s*)(["'])(?:https?://[^"'<>\s]+)?/?site-navigation(?:-v\d+)?\.js(?:\?[^"'<>]*)?\2""", re.I)
 CSS_REF = re.compile(r"""(href\s*=\s*)(["'])(?:https?://[^"'<>\s]+)?/?site-navigation\.css(?:\?[^"'<>]*)?\2""", re.I)
@@ -53,6 +54,7 @@ def normalize(source, sport):
             if is_shared_nav(tag[1]):
                 assert NBA_RANKINGS in tag[2], "NBA Rankings must exist in every shared menu"
                 assert CBB_RANKINGS in tag[2], "CBB Rankings must exist in every shared menu"
+                assert CBB_MATCH_LAB in tag[2], "CBB Match Lab must exist in every shared menu"
     return updated, nav_count, script_count
 
 def self_test():
