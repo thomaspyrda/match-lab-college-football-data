@@ -49,3 +49,7 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 .strength-board #strength-table th:nth-child(1),.strength-board #strength-table td:nth-child(1){left:0!important}
 .strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:76px!important}
 .strength-board #strength-table thead th:nth-child(-n+2){z-index:12}
+
+/* Keep the horizontal control immediately below the real column headings. */
+.strength-table-scroll .nba-rank-table .strength-scrollbar-row th{padding:0!important;min-width:0!important;width:auto!important;max-width:none!important;height:18px;left:0;z-index:11;background:#222a25}
+.strength-scrollbar-row .strength-top-scrollbar{position:sticky;left:0;border-radius:0;margin:0;box-sizing:border-box}
