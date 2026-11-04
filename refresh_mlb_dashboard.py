@@ -184,17 +184,12 @@ def season_market_records(year,phase,now,team_ids):
  empty=lambda:{'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0}}
  totals={tid:dict(empty(),locations={place:dict(empty(),games=0,wins=0,losses=0,points=0,ppg=None) for place in ('Home','Away','Neutral')}) for tid in team_ids}
  if not team_ids:return totals
- # Monthly requests avoid truncating a full MLB season at the provider's event limit.
+ # Query verified game dates; the provider rejects some multi-date ranges.
  game_types='R' if phase==2 else 'F,D,L,W' if phase==3 else 'S'
  calendar_url=(f'https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate={year}-01-01&endDate='+now.date().isoformat()+'&gameTypes='+game_types)
  with urllib.request.urlopen(calendar_url,timeout=30) as response:calendar=json.load(response)
  if not isinstance(calendar.get('dates'),list):raise ValueError('Invalid official MLB market calendar')
- months={int(day['date'][5:7]) for day in calendar['dates'] if day.get('games') and day['date'].startswith(str(year)+'-')}
- dates=[]
- for month in sorted(months):
-  start=datetime(year,month,1,tzinfo=UTC)
-  end=(datetime(year+1,1,1,tzinfo=UTC) if month==12 else datetime(year,month+1,1,tzinfo=UTC))-timedelta(days=1)
-  dates.append(start.strftime('%Y%m%d')+'-'+min(end,now).strftime('%Y%m%d'))
+ dates=sorted({day['date'].replace('-','') for day in calendar['dates'] if day.get('games') and day['date'].startswith(str(year)+'-')})
  boards=list(ThreadPoolExecutor(8).map(lambda dates:get('scoreboard?limit=1000&dates='+dates),dates))
  events={e['id']:e for board in boards for e in board.get('events',[]) if e.get('season',{}).get('year')==year and e.get('season',{}).get('type')==phase and e['status']['type'].get('completed') and stamp(e['date'])<=now and any(c['team']['id'] in team_ids for c in e['competitions'][0]['competitors'])}
  cache_path=ROOT/f'mlb/dashboard/data/season-market-cache-{year}-{phase}.json'
