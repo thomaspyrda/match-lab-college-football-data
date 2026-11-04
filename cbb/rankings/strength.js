@@ -27,8 +27,11 @@
   bar.setAttribute('aria-controls',viewport.id='strength-table-viewport');
   bar.setAttribute('aria-orientation','horizontal');bar.setAttribute('aria-valuemin','0');
   const thumb=document.createElement('span');thumb.className='strength-scroll-thumb';bar.append(thumb);
-  board.before(bar);
+  const scrollRow=table.tHead.insertRow();scrollRow.className='strength-scrollbar-row';
+  const scrollCell=document.createElement('th');scrollCell.colSpan=table.tHead.rows[0].cells.length;
+  scrollCell.append(bar);scrollRow.append(scrollCell);
   const sync=()=>{
+   bar.style.width=viewport.clientWidth+'px';
    const max=Math.max(0,viewport.scrollWidth-viewport.clientWidth),width=bar.clientWidth;
    const size=max?Math.min(width,Math.max(44,width*viewport.clientWidth/viewport.scrollWidth)):width;
    thumb.style.width=size+'px';

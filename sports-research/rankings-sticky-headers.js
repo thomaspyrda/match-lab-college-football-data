@@ -53,17 +53,11 @@
    event.preventDefault(); event.stopPropagation();
    state.dirty = true; schedule();
   });
-  copy.querySelectorAll('[role="scrollbar"]').forEach(bar => {
-   const move = event => {
-    const rect = bar.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-    state.scroller.scrollLeft = ratio * (state.scroller.scrollWidth - state.scroller.clientWidth);
-    schedule();
-   };
-   bar.addEventListener('pointerdown', event => { bar.setPointerCapture(event.pointerId); move(event); });
-   bar.addEventListener('pointermove', event => { if (bar.hasPointerCapture(event.pointerId)) move(event); });
-  });
-  overlay.replaceChildren(copy);
+  // A persistent native scrollbar lives outside the replaceable header copy.
+  // Repainting sort arrows or the original scrubber cannot interrupt its drag.
+  copy.querySelectorAll('[role="scrollbar"]').forEach(bar => bar.closest('tr')?.remove());
+  state.clip.replaceChildren(copy);
+  state.headerHeight = copy.tHead.getBoundingClientRect().height;
   state.dirty = false;
  }
  function update() {
@@ -75,7 +69,11 @@
    const overlay = document.createElement('div');
    overlay.dataset.rankingHeaderOverlay = ''; overlay.setAttribute('aria-hidden','true');
    Object.assign(overlay.style, {position:'fixed',zIndex:'90',overflow:'hidden',background:'#0d0d0d',boxShadow:'0 2px 0 #333',display:'none',overscrollBehavior:'contain'});
-   document.body.append(overlay);
+   const clip = document.createElement('div'); clip.style.overflow = 'hidden';
+   const track = document.createElement('div'); track.dataset.rankingHeaderScrollbar = '';
+   Object.assign(track.style,{overflowX:'scroll',overflowY:'hidden',height:'18px',width:'100%',scrollbarWidth:'auto',background:'#222a25'});
+   const size = document.createElement('div'); size.style.height = '1px'; track.append(size);
+   overlay.append(clip,track); document.body.append(overlay);
    overlay.style.touchAction = 'pan-y';
    let touchStart;
    overlay.addEventListener('pointerdown', event => {
@@ -85,7 +83,11 @@
     if (touchStart && event.pointerType === 'touch') {scroller.scrollLeft = touchStart.left + touchStart.x - event.clientX; schedule();}
    });
    ['pointerup','pointercancel','pointerleave'].forEach(type => overlay.addEventListener(type,() => {touchStart=null;}));
-   const state = {table,scroller,overlay,dirty:true}; states.set(table,state);
+   const state = {table,scroller,overlay,clip,track,size,dirty:true}; states.set(table,state);
+   track.addEventListener('scroll',() => {
+    if (Math.abs(scroller.scrollLeft-track.scrollLeft)>1) scroller.scrollLeft=track.scrollLeft;
+    clip.scrollLeft=track.scrollLeft; schedule();
+   },{passive:true});
    const resize = new ResizeObserver(() => { state.dirty = true; schedule(); });
    resize.observe(table); resize.observe(table.tHead); state.resize = resize;
    overlay.addEventListener('wheel', event => {
@@ -102,8 +104,14 @@
    state.overlay.style.display = active ? 'block' : 'none';
    if (!active) return;
    if (state.dirty) refresh(state);
-   Object.assign(state.overlay.style, {left:left+'px',top:top+'px',width:(right-left)+'px',height:head.height+'px'});
-   state.overlay.scrollLeft = state.scroller === document.body ? Math.max(0,-rect.left) : state.scroller.scrollLeft + Math.max(0,-bounds.left);
+   const hasScroll = state.scroller.scrollWidth > state.scroller.clientWidth + 1;
+   state.track.style.display=hasScroll?'block':'none';
+   state.size.style.width=state.scroller.scrollWidth+'px';
+   Object.assign(state.overlay.style, {left:left+'px',top:top+'px',width:(right-left)+'px',height:(state.headerHeight+(hasScroll?18:0))+'px'});
+   state.clip.style.height=state.headerHeight+'px';
+   const scrollLeft = state.scroller === document.body ? Math.max(0,-rect.left) : state.scroller.scrollLeft + Math.max(0,-bounds.left);
+   state.clip.scrollLeft=scrollLeft;
+   if(Math.abs(state.track.scrollLeft-scrollLeft)>1) state.track.scrollLeft=scrollLeft;
   });
  }
  new MutationObserver(records => {
