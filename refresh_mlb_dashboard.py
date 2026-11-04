@@ -261,25 +261,11 @@ def main():
  for tid,records in season_markets.items():profiles[tid]['location_markets']=records.pop('locations');profiles[tid]['season_market']=records
  from mlb_player_source import load_player_stats, source_path as player_source_path
  player_stats=load_player_stats(player_source_path(year,phase),year,phase,ids,now)
- def lineup_for(e):
-  allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
-  return e['id'],game_lineups(e['id'],allowed)
- lineups=dict(ThreadPoolExecutor(6).map(lineup_for,upcoming))
- # Use the latest confirmed lineup only as a labeled reference when today's lineup is unavailable.
- latest_lineups={}
- recent_events=list(reversed(past))
- def recent_lineup(e):
-  allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
-  return e['id'],game_lineups(e['id'],allowed)
- for event_id, found in ThreadPoolExecutor(6).map(recent_lineup,recent_events[:18]):
-  for team_id, players in found.items():
-   if team_id not in latest_lineups:
-    prior=next((ev for ev in recent_events if ev['id']==event_id),None)
-    latest_lineups[team_id]={'players':players,'date':prior['date'] if prior else None}
+ from mlb_lineup_source import load_context
+ lineups,latest_lineups,official_starters=load_context(ROOT/'mlb/pipeline/lineups.json',year,phase,upcoming,now)
  def stat_for(team_id,person):
   key=player_key(person['name'])
   return player_stats.get(team_id,{}).get(key,{})
- official_starters=official_probables(upcoming)
 
  ranks={key:ranking(profiles,key,high) for key,_,_,high,_,_ in METRICS}
  for e in upcoming:
