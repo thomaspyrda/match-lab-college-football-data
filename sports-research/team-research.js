@@ -376,7 +376,7 @@
   }
   if (!document.querySelector('script[data-nba-modern-layout]')) {
     const js = document.createElement('script');
-    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=grouped-metrics-20261028';
+    js.src = 'https://matchlab.parlaycalculator.bet/nba/teams/nfl-style.js?v=20261103-remove-rim-cards';
     js.dataset.nbaModernLayout = 'true';
     document.body.append(js);
   }
