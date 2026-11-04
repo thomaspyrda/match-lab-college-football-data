@@ -240,11 +240,8 @@ def main():
    opp=next(c for c in comp['competitors'] if c is not own);a=float(own['score']);b=float(opp['score'])
    p['results'].append({'date':e['date'],'result':'W' if a>b else 'L','score':f'{int(a)}–{int(b)}','location':'Neutral' if comp.get('neutralSite') else own['homeAway'].title()})
   p['results']=p['results'][-5:];p['last_game_date']=p['results'][-1]['date'] if p['results'] else None;p['last5_market']['window_games']=len(p['results'])
- # Source historical market quotes separately; never infer missing lines.
- def historical_line(e):
-  d=get('summary?event='+e['id'],True);quotes=d.get('pickcenter',[])
-  return e['id'],quotes[0] if quotes else {}
- lines=dict(ThreadPoolExecutor(8).map(historical_line,past))
+ from mlb_market_source import load_markets
+ lines,saved_season_markets=load_markets(ROOT/'mlb/pipeline/markets.json',year,phase,now)
  for i,p in profiles.items():
   games=[e for e in past if any(c['team']['id']==i for c in e['competitions'][0]['competitors'])][-5:]
   for e in games:
@@ -257,7 +254,7 @@ def main():
     home_spread=-abs(float(spread)) if homefav else abs(float(spread));margin=a-b+(home_spread if own['homeAway']=='home' else -home_spread)
     r=p['last5_market']['ats'];r['lined_games']+=1;r['wins' if margin>0 else 'losses' if margin<0 else 'pushes']+=1
  ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
- season_markets=season_market_records(year,phase,now,ids)
+ season_markets={tid:records for tid,records in saved_season_markets.items() if tid in ids}
  for tid,records in season_markets.items():profiles[tid]['location_markets']=records.pop('locations');profiles[tid]['season_market']=records
  from mlb_player_source import load_player_stats, source_path as player_source_path
  player_stats=load_player_stats(player_source_path(year,phase),year,phase,ids,now)
