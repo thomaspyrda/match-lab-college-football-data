@@ -267,7 +267,8 @@ def main():
           'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),
           'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':provider,'observed_at':refreshed.isoformat() if line else None},
           'source':'https://www.espn.com/nba/game/_/gameId/'+event['id'],'profile_cutoff':cutoff.isoformat()})
-    refresh_availability(output,refreshed,lambda url:get(url[len(API):]))
+    from nba_availability_source import apply_saved
+    apply_saved(output,refreshed,ROOT/'nba/pipeline/availability.json')
     expected_ids={p['id'] for g in history if stamp(g['observed_complete_at'])<=refreshed for rows in g.get('players',{}).values() for p in rows}
     values,value_coverage=load_player_values(ROOT/'nba/dashboard/data/player-value.json',season,latest_phase,refreshed,expected_ids)
     for g in output:

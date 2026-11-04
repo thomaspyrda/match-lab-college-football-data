@@ -1,7 +1,7 @@
 name: Test NBA workflow separation
 on:
   pull_request:
-    paths: ['nba_roster_source.py', 'refresh_nba_dashboard.py', 'tests/test_nba_roster_source.py', '.github/workflows/*nba*', '.github/workflows/deploy-pages.yml']
+    paths: ['nba_availability_source.py', 'tests/test_nba_availability_source.py', 'nba_roster_source.py', 'refresh_nba_dashboard.py', 'tests/test_nba_roster_source.py', '.github/workflows/*nba*', '.github/workflows/deploy-pages.yml']
 permissions:
   contents: read
 jobs:
@@ -15,6 +15,7 @@ jobs:
       - name: Verify existing NBA calculations and source contracts
         run: |
           python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
+          python -m unittest discover -s tests -p test_nba_availability_source.py
           python -m unittest discover -s tests -p test_nba_roster_source.py
           python -m unittest discover -s tests -p test_nba_page_updates.py
           python -m unittest discover -s tests -p test_nba_dashboard.py
