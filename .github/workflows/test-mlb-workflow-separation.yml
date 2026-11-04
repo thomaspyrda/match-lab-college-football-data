@@ -1,7 +1,7 @@
 name: Test MLB workflow separation
 on:
   pull_request:
-    paths: ['mlb_metric_source.py', 'refresh_mlb_dashboard.py', 'tests/test_mlb_metric_source.py', '.github/workflows/*mlb*', '.github/workflows/deploy-pages.yml']
+    paths: ['mlb_player_source.py', 'tests/test_mlb_player_source.py', 'mlb_metric_source.py', 'refresh_mlb_dashboard.py', 'tests/test_mlb_metric_source.py', '.github/workflows/*mlb*', '.github/workflows/deploy-pages.yml']
 permissions:
   contents: read
 jobs:
@@ -13,5 +13,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: |
+          python -m unittest discover -s tests -p test_mlb_player_source.py -v
           python -m unittest discover -s tests -p test_mlb_metric_source.py -v
           python -m unittest discover -s tests -p test_new_sport_dashboards.py -v

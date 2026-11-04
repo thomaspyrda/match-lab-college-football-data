@@ -259,7 +259,8 @@ def main():
  ids={c['team']['id'] for e in upcoming for c in e['competitions'][0]['competitors']};out=[]
  season_markets=season_market_records(year,phase,now,ids)
  for tid,records in season_markets.items():profiles[tid]['location_markets']=records.pop('locations');profiles[tid]['season_market']=records
- player_stats=current_phase_player_stats({tid:teams[tid] for tid in ids},year,phase)
+ from mlb_player_source import load_player_stats, source_path as player_source_path
+ player_stats=load_player_stats(player_source_path(year,phase),year,phase,ids,now)
  def lineup_for(e):
   allowed={c['team']['id'] for c in e['competitions'][0]['competitors']}
   return e['id'],game_lineups(e['id'],allowed)
