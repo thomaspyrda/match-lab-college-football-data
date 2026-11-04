@@ -1,0 +1,27 @@
+name: Verify NBA live pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['verify_nba_pipeline.py', '.github/workflows/verify-nba-pipeline.yml']
+  schedule:
+    - cron: '45 6,18 * * *'
+      timezone: America/New_York
+permissions:
+  contents: read
+concurrency:
+  group: nba-read-only-health
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python scripts/verify_sport_dataset_contract.py --sport nba
+          python verify_nba_pipeline.py
