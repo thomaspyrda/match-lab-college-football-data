@@ -1,0 +1,23 @@
+name: Test NBA workflow separation
+on:
+  pull_request:
+    paths: ['.github/workflows/*nba*', '.github/workflows/deploy-pages.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify existing NBA calculations and source contracts
+        run: |
+          python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
+          python -m unittest discover -s tests -p test_nba_page_updates.py
+          python -m unittest discover -s tests -p test_nba_dashboard.py
+          python -m unittest discover -s tests -p test_nba_current_rankings.py
+          python -m unittest discover -s tests -p test_nba_team_current.py
+          python -m unittest discover -s tests -p test_nba_season_leaders.py
+          python -m unittest discover -s tests -p test_nba_player_context.py
