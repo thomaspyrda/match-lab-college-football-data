@@ -100,7 +100,7 @@ def profile(team_id,history,cutoff):
                     target['totals'][k]+=p[k];target['stat_games'][k]+=1
             if p.get('plus_minus') is not None:target['pm_games']+=1
     n=len(games);valid_poss=n>0 and poss_games==n
-    values={'ortg':ratio(totals.get('points'),possessions,100) if valid_poss else None,'drtg':ratio(other.get('points'),possessions,100) if valid_poss else None,
+    values={'ppg':ratio(totals.get('points'),n), 'ppg_allowed':ratio(other.get('points'),n), 'ortg':ratio(totals.get('points'),possessions,100) if valid_poss else None,'drtg':ratio(other.get('points'),possessions,100) if valid_poss else None,
       'efg':ratio(totals.get('fgm',0)+.5*totals.get('tpm',0),totals.get('fga'),100) if n else None,
       'opp_efg':ratio(other.get('fgm',0)+.5*other.get('tpm',0),other.get('fga'),100) if n else None,
       'three_pct':ratio(totals.get('tpm'),totals.get('tpa'),100),'opp_three_pct':ratio(other.get('tpm'),other.get('tpa'),100),
@@ -152,7 +152,7 @@ def rank(profiles,key,high):
     values=sorted([(i,p['metrics'][key]) for i,p in profiles.items() if p['metrics'].get(key) is not None],key=lambda r:r[1],reverse=high)
     return {i:{'value':round(v,1),'rank':1+sum((x>v if high else x<v) for _,x in values),'population':len(values),'percentile':round(100*sum((x<v if high else x>v) for _,x in values)/max(len(values)-1,1))} for i,v in values}
 
-METRICS=[('ortg','Offensive rating','OFFENSE',True,''),('drtg','Defensive rating','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
+METRICS=[('ppg','PPG','OFFENSE',True,''),('ppg_allowed','PPG Allowed','DEFENSE',False,''),('ortg','Offensive rating','OFFENSE',True,''),('drtg','Defensive rating','DEFENSE',False,''),('efg','Effective FG%','OFFENSE',True,'%'),('opp_efg','Effective FG% allowed','DEFENSE',False,'%'),('three_pct','Three-point FG%','OFFENSE',True,'%'),('opp_three_pct','Three-point FG% allowed','DEFENSE',False,'%'),('orb_pct','Offensive rebound rate','OFFENSE',True,'%'),('opp_orb_pct','Offensive rebound rate allowed','DEFENSE',False,'%'),('tov_pct','Turnover rate','OFFENSE',False,'%'),('forced_tov_pct','Turnovers forced rate','DEFENSE',True,'%'),('ft_rate','Free-throw attempt rate','OFFENSE',True,'%'),('opp_ft_rate','Free-throw attempt rate allowed','DEFENSE',False,'%')]
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
 
 METRICS.extend(ADDITIONAL_METRICS)

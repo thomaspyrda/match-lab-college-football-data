@@ -44,6 +44,19 @@ class BasketballMetricsTests(unittest.TestCase):
             self.assertEqual(profile['metrics']['points_in_paint'],42)
             self.assertEqual(profile['metrics']['turnover_margin'],5)
 
+    def test_cbb_scoring_averages_share_the_completed_game_cutoff(self):
+        one=self.game();future=copy.deepcopy(one)
+        future['observed_complete_at']='2026-10-23T05:00:00Z'
+        future['teams']['1']['points']=200
+        profile=cbb.profile('1',[one,future],datetime(2026,10,22,tzinfo=timezone.utc))
+        self.assertEqual(profile['metrics']['ppg'],profile['ppg'])
+        self.assertEqual(profile['metrics']['ppg_allowed'],profile['allowed'])
+        self.assertEqual((profile['metrics']['ppg'],profile['metrics']['ppg_allowed']),(100,90))
+        empty=cbb.profile('3',[one],datetime(2026,10,22,tzinfo=timezone.utc))
+        self.assertIsNone(empty['metrics']['ppg'])
+        self.assertIsNone(empty['metrics']['ppg_allowed'])
+        self.assertEqual([m[0] for m in cbb.METRICS[:2]],['ppg','ppg_allowed'])
+
     def test_cbb_box_collects_actual_paint_field_without_imputing_it(self):
         row={'statistics':[{'name':'pointsInPaint','displayValue':'38'}]}
         self.assertEqual(cbb.team_box(row,80)['paint_points'],38)
