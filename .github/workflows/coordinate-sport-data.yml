@@ -31,7 +31,16 @@ concurrency:
   group: ordered-morning-publication
   cancel-in-progress: false
 jobs:
+  morning-start:
+    name: Morning recovery entry point
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Start ordered publication and dependent jobs
+        run: date -u
+
   cbb-results-and-team-archives:
+    needs: [morning-start]
     if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/cbb-team-archives.yml
     secrets: inherit
@@ -61,6 +70,7 @@ jobs:
     secrets: inherit
 
   cbb-market-capture:
+    needs: [morning-start]
     if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/cbb-pregame-market-capture.yml
     secrets: inherit
@@ -126,6 +136,7 @@ jobs:
     secrets: inherit
 
   nba-verified-statistics-and-pages:
+    needs: [morning-start]
     if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
@@ -137,11 +148,13 @@ jobs:
     secrets: inherit
 
   cfb-results:
+    needs: [morning-start]
     if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-cfb-results.yml
     secrets: inherit
 
   cfb-markets:
+    needs: [morning-start]
     if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-cfb-markets.yml
     secrets: inherit

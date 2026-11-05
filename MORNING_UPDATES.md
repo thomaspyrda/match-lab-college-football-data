@@ -16,10 +16,21 @@ even when a collector exits successfully. No pending values are fabricated.
 The public audit compares JSON for dashboards, rankings, leader datasets, CFB
 current-season details, NBA current-season team data, and all CBB team archives.
 
-## Independent clock: deployment still required
+## Independent recovery clock
 
-GitHub schedules are best effort. These repository changes cannot by themselves
-provide an independent clock. Configure a separate cron service with a securely
+GitHub schedules are best effort. A separate ChatGPT task can inspect the
+coordinators at 02:40 and 04:40 Eastern. If no current run is active and collection
+or publication is missing, it can re-run the job named Morning recovery entry
+point through the connected GitHub app. GitHub re-runs that job and its dependent
+jobs, and every collector checks out current main-branch data. The selected
+coordinator must include all active sports (schedule, repository_dispatch, or
+push event) and be less than 30 days old; do not replay a one-sport manual run
+as recovery for all sports. Check run_started_at/run_attempt and job start times,
+not just created_at, when recognizing a recovered morning run.
+
+The task is a second scheduler, not a guaranteed execution SLA. Its installation
+and first execution must be confirmed separately. For an infrastructure-only
+backup, configure a separate cron service with a securely
 stored GitHub App installation token or fine-grained token; never put the token
 in this repository. The token requires access to both repositories, contents write
 for repository_dispatch, and actions write for workflow_dispatch. Run the following
