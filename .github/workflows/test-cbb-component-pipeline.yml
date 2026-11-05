@@ -16,5 +16,9 @@ jobs:
       - run: pip install PyYAML
       - name: Source isolation, score verification and unchanged calculation tests
         run: python -m unittest discover -s tests -p 'test_cbb*.py' -v
+      - name: Verify basketball metric calculations and dashboard syntax
+        run: |
+          python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
+          node --check cbb/dashboard/app.js
       - name: Workflow call and publication safety checks
         run: python scripts/check_cbb_workflows.py
