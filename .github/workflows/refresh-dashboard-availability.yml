@@ -3,8 +3,6 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '35 4 * * *'
-      timezone: America/New_York
     - cron: '5 17 * * *'
       timezone: America/New_York
   push:
@@ -22,7 +20,7 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        sport: [nfl, nba, cbb, cfb, mlb]
+        sport: [nfl, nba, cbb, cfb]
     concurrency:
       group: dashboard-availability-${{ matrix.sport }}
       cancel-in-progress: false
@@ -53,3 +51,4 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
