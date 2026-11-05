@@ -1,0 +1,27 @@
+name: Audit every CBB team page
+on:
+  pull_request:
+    paths:
+      - sports-research/cbb-team-archive-v1.js
+      - publish_cbb_team_archives.py
+      - scripts/audit_cbb_team_pages.cjs
+      - tests/test_cbb_archive_loader.cjs
+      - .github/workflows/audit-cbb-team-pages.yml
+      - .github/workflows/publish-cbb-team-pages.yml
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate canonical archive asset references
+        run: python publish_cbb_team_archives.py
+      - name: Verify every CBB team and archived season renders
+        run: |
+          node --check sports-research/cbb-team-archive-v1.js
+          node tests/test_cbb_archive_loader.cjs
+          node scripts/audit_cbb_team_pages.cjs --check-assets

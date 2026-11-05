@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - publish_cbb_team_archives.py
+      - scripts/audit_cbb_team_pages.cjs
       - sports-research/cbb-team-archive-v1.js
       - sports-research/cbb-team-archive-v1.css
       - .github/workflows/publish-cbb-team-pages.yml
@@ -25,15 +26,10 @@ jobs:
           python-version: '3.12'
       - name: Publish CBB team page layouts from existing archives
         run: python publish_cbb_team_archives.py
-      - name: Verify Duke team page uses the current renderer
+      - name: Audit every CBB team and archived season
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          html=Path('cbb/teams/duke-blue-devils/index.html').read_text()
-          assert 'cbb-team-archive-v1.js?v=20261103-draft-picks-last-v4' in html
-          assert 'cbb-team-archive-v1.css?v=20261029-cbb-draft-history-v12' in html
-          print('Verified CBB page renderer and stylesheet references')
-          PY
+          node --check sports-research/cbb-team-archive-v1.js
+          node scripts/audit_cbb_team_pages.cjs --check-assets
       - name: Publish CBB team page references only
         run: |
           git config user.name 'github-actions[bot]'

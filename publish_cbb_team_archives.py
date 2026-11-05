@@ -2,6 +2,8 @@
 import json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
+JS_VERSION='20261105-resilient-archives'
+CSS_VERSION='20261104-bold-results-links'
 
 def main():
     registry=json.loads((ROOT/'data/sports/team-registry.json').read_text())
@@ -18,7 +20,7 @@ def main():
         source=re.sub(r'<script\b[^>]*data-archive-layout="mlb-cbb-v1"[^>]*>\s*</script>','',source)
         source=re.sub(r'<(?:script|link)\b[^>]*data-cbb-archive="v1"[^>]*>(?:\s*</script>)?','',source)
         source=re.sub(r'team-theme\.js\?v=[\w-]+','team-theme.js?v=20261104-dark-logos',source)
-        source=source.replace('</head>','<link rel="stylesheet" href="/sports-research/cbb-team-archive-v1.css?v=20261104-bold-results-links" data-cbb-archive="v1"><script defer src="/sports-research/cbb-team-archive-v1.js?v=20261104-schedule-opponent-links" data-cbb-archive="v1"></script></head>')
+        source=source.replace('</head>',f'<link rel="stylesheet" href="/sports-research/cbb-team-archive-v1.css?v={CSS_VERSION}" data-cbb-archive="v1"><script defer src="/sports-research/cbb-team-archive-v1.js?v={JS_VERSION}" data-cbb-archive="v1"></script></head>')
         source=re.sub(r'site-navigation-v\d+\.js\?v=[\w-]+','site-navigation-v12.js?v=20261027-cbb-rankings',source)
         if any(s['phases']['regular']['completed_games'] for s in data['seasons'].values()):
             source=source.replace('content="noindex,follow"','content="index,follow"')
