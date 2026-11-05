@@ -21,6 +21,7 @@ permissions:
 concurrency:
   group: fbs-leaders-production
   cancel-in-progress: false
+  queue: max
 jobs:
   build:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'

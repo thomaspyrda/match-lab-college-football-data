@@ -17,6 +17,7 @@ permissions:
 concurrency:
   group: nba-current-leaders
   cancel-in-progress: false
+  queue: max
 jobs:
   publish:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'

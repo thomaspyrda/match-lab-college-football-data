@@ -22,6 +22,7 @@ permissions:
 concurrency:
   group: cbb-market-capture
   cancel-in-progress: false
+  queue: max
 jobs:
   capture:
     runs-on: ubuntu-latest
