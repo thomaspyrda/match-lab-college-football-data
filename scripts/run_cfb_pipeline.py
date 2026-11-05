@@ -461,6 +461,8 @@ def assemble(root, store):
     runpy.run_path(str(root / 'cfb_dashboard/pipeline/validate_launch.py'), run_name='__main__')
     enrich_yardage = runpy.run_path(str(store.parents[2] / 'scripts/cfb_dashboard_yardage.py'))['enrich']
     payload = enrich_yardage(payload, metrics)
+    enrich_scoring = runpy.run_path(str(store.parents[2] / 'scripts/cfb_dashboard_scoring_form.py'))['enrich']
+    payload = enrich_scoring(payload, results, markets)
     write(path, payload)
     health = {key: {'collected_at': d['collected_at'], 'through_week': d.get('through_week')}
               for key, d in dict(results=results, strength=strength, metrics=metrics, players=players, markets=markets, context=context).items() if d}

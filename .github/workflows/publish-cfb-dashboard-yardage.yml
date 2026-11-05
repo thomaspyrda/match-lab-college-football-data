@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - scripts/cfb_dashboard_yardage.py
+      - scripts/cfb_dashboard_scoring_form.py
+      - tests/test_cfb_dashboard_scoring_form.py
       - scripts/run_cfb_pipeline.py
       - tests/test_cfb_dashboard_yardage.py
       - cfb-dashboard-preview/app.js
@@ -11,6 +13,8 @@ on:
     branches: [main]
     paths:
       - scripts/cfb_dashboard_yardage.py
+      - scripts/cfb_dashboard_scoring_form.py
+      - tests/test_cfb_dashboard_scoring_form.py
       - tests/test_cfb_dashboard_yardage.py
       - .github/workflows/publish-cfb-dashboard-yardage.yml
   workflow_dispatch:
@@ -27,6 +31,7 @@ jobs:
       - name: Verify yardage calculations, ranks, missing values and existing metrics
         run: |
           python -m unittest discover -s tests -p test_cfb_dashboard_yardage.py -v
+          python -m unittest discover -s tests -p test_cfb_dashboard_scoring_form.py -v
           python -m py_compile scripts/cfb_dashboard_yardage.py scripts/run_cfb_pipeline.py
           node --check cfb-dashboard-preview/app.js
   publish:
@@ -44,7 +49,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Add yardage from existing verified inputs without provider requests
-        run: python scripts/cfb_dashboard_yardage.py
+        run: |
+          python scripts/cfb_dashboard_yardage.py
+          python scripts/cfb_dashboard_scoring_form.py
       - name: Publish dashboard data
         run: |
           git config user.name 'github-actions[bot]'
