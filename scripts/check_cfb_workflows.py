@@ -44,7 +44,7 @@ def check():
         for job in jobs:
             visit(job, [])
     for name in ['cfb-publish-dashboard.yml', 'cfb-publish-markets.yml']:
-        assert workflows[name]['jobs']['publish']['concurrency'] == {'group': 'cfb-dashboard-data', 'cancel-in-progress': 'false'}
+        assert workflows[name]['jobs']['publish']['concurrency'] == {'group': 'cfb-dashboard-data', 'cancel-in-progress': 'false', 'queue': 'max'}
     model = (BASE / 'build-team-strength.yml').read_text()
     assert 'require-results' in model and 'ranking-inputs' in model
     assert '  deploy:' not in model
