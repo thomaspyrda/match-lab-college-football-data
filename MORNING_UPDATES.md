@@ -28,8 +28,9 @@ push event) and be less than 30 days old; do not replay a one-sport manual run
 as recovery for all sports. Check run_started_at/run_attempt and job start times,
 not just created_at, when recognizing a recovered morning run.
 
-The task is a second scheduler, not a guaranteed execution SLA. Its installation
-and first execution must be confirmed separately. For an infrastructure-only
+The BetWise morning recovery ChatGPT task is enabled for 02:40 and 04:40
+Eastern daily beginning November 6, 2026. It is a second scheduler, not a
+guaranteed execution SLA. Its first overnight execution is still to be verified. For an infrastructure-only
 backup, configure a separate cron service with a securely
 stored GitHub App installation token or fine-grained token; never put the token
 in this repository. The token requires access to both repositories, contents write
