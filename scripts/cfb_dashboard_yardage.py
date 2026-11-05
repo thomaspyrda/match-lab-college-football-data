@@ -50,7 +50,8 @@ def board(snapshot):
         stats[key] = value
     advanced = {canon(r["team"]): r for r in source["advanced"] if int(r.get("season") or 0) == season}
     # The existing collector's dashboard team set is the established FBS rank universe.
-    fbs = {canon(name) for name in source["dashboard"]["teams"]}
+    fbs = {canon(name) for name, values in source["dashboard"]["teams"].items()
+           if isinstance(values.get("offensive_ppa_rank"), int)}
     teams = {}
     for name in basic.keys() | advanced.keys():
         stats, adv = basic.get(name, {}), advanced.get(name, {})
