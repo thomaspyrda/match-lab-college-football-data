@@ -1,0 +1,61 @@
+name: Publish CFB dashboard yardage metrics
+on:
+  pull_request:
+    paths:
+      - scripts/cfb_dashboard_yardage.py
+      - scripts/run_cfb_pipeline.py
+      - tests/test_cfb_dashboard_yardage.py
+      - cfb-dashboard-preview/app.js
+      - .github/workflows/publish-cfb-dashboard-yardage.yml
+  push:
+    branches: [main]
+    paths:
+      - scripts/cfb_dashboard_yardage.py
+      - tests/test_cfb_dashboard_yardage.py
+      - .github/workflows/publish-cfb-dashboard-yardage.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify yardage calculations, ranks, missing values and existing metrics
+        run: |
+          python -m unittest discover -s tests -p test_cfb_dashboard_yardage.py -v
+          python -m py_compile scripts/cfb_dashboard_yardage.py scripts/run_cfb_pipeline.py
+          node --check cfb-dashboard-preview/app.js
+  publish:
+    if: github.event_name != 'pull_request'
+    needs: verify
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cfb-dashboard-data
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Add yardage from existing verified inputs without provider requests
+        run: python scripts/cfb_dashboard_yardage.py
+      - name: Publish dashboard data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cfb-dashboard-preview/data/dashboard.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Publish CFB matchup passing, rushing and line yardage'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1
