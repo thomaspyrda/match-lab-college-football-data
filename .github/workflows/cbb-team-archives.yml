@@ -15,9 +15,7 @@ on:
         required: false
         default: false
   schedule:
-    - cron: '19 4,16 * * *'
-      timezone: America/New_York
-    - cron: '11,41 5 * * *'
+    - cron: '19 16 * * *'
       timezone: America/New_York
     - cron: '11 17 * * *'
       timezone: America/New_York
@@ -48,3 +46,4 @@ jobs:
     with:
       historical_backfill: ${{ inputs.historical_backfill || false }}
     secrets: inherit
+

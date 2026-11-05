@@ -7,8 +7,9 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    # Explicit UTC schedules cover both winter and daylight-saving morning windows.
-    - cron: '15 8,9,14,22 * * *'
+    # Morning collection is owned by the ordered coordinator.
+    - cron: '15 10,17 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths:
@@ -103,3 +104,4 @@ jobs:
           done
           echo "Unable to publish after five safe push attempts" >&2
           exit 1
+

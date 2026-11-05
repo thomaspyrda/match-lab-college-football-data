@@ -1,0 +1,15 @@
+name: Test morning publication contracts
+on:
+  pull_request:
+    paths: ['scripts/verify_morning_publication.py', 'tests/test_morning_publication.py', '.github/workflows/*morning*.yml', '.github/workflows/coordinate-*.yml']
+  push:
+    branches: [main]
+    paths: ['scripts/verify_morning_publication.py', 'tests/test_morning_publication.py']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s tests -p test_morning_publication.py -v

@@ -1,8 +1,20 @@
-name: Sport Data Coordinators (manual validation)
-run-name: "${{ inputs.sport }} data pipeline"
-# Phase 1: opt-in orchestration. Existing automatic refresh schedules remain enabled.
+name: Ordered Active Sports Morning Update
+run-name: "${{ inputs.sport || 'active sports morning' }} data pipeline"
+# Ordered morning runs; existing afternoon and source-specific schedules remain enabled.
 # Existing Python models, HTML, CSS and JSON schemas are intentionally unchanged.
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/coordinate-sport-data.yml']
+  repository_dispatch:
+    types: [morning-refresh]
+  schedule:
+    - cron: '30 2 * * *'
+      timezone: America/New_York
+    - cron: '15 3 * * *'
+      timezone: America/New_York
+    - cron: '0,40 4 * * *'
+      timezone: America/New_York
   workflow_dispatch:
     inputs:
       sport:
@@ -13,43 +25,48 @@ on:
 permissions:
   contents: write
   actions: read
+  pages: write
+  id-token: write
+concurrency:
+  group: ordered-morning-publication
+  cancel-in-progress: false
 jobs:
   cbb-results-and-team-archives:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/cbb-team-archives.yml
     secrets: inherit
 
   cbb-box-scores:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-results-and-team-archives]
     uses: ./.github/workflows/refresh-cbb-boxes.yml
     secrets: inherit
 
   cbb-player-statistics:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-box-scores]
     uses: ./.github/workflows/refresh-cbb-players.yml
     secrets: inherit
 
   cbb-team-metrics:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-box-scores]
     uses: ./.github/workflows/refresh-cbb-metrics.yml
     secrets: inherit
 
   cbb-rosters:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-results-and-team-archives]
     uses: ./.github/workflows/refresh-cbb-rosters.yml
     secrets: inherit
 
   cbb-market-capture:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/cbb-pregame-market-capture.yml
     secrets: inherit
 
   cbb-market-publication:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-market-capture]
     permissions:
       contents: write
@@ -59,7 +76,7 @@ jobs:
     secrets: inherit
 
   cbb-rankings-and-strength:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-team-metrics]
     permissions:
       contents: write
@@ -69,7 +86,7 @@ jobs:
     secrets: inherit
 
   cbb-metric-rankings:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-team-metrics]
     permissions:
       contents: write
@@ -79,7 +96,7 @@ jobs:
     secrets: inherit
 
   cbb-season-leaders:
-    if: inputs.sport == 'cbb'
+    if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cbb-player-statistics]
     permissions:
       contents: write
@@ -89,7 +106,7 @@ jobs:
     secrets: inherit
 
   cbb-team-publication:
-    if: always() && inputs.sport == 'cbb' && needs.cbb-results-and-team-archives.result == 'success'
+    if: always() && (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push') && needs.cbb-results-and-team-archives.result == 'success'
     needs: [cbb-results-and-team-archives, cbb-team-metrics, cbb-player-statistics, cbb-rosters]
     permissions:
       contents: write
@@ -99,7 +116,7 @@ jobs:
     secrets: inherit
 
   cbb-dashboard:
-    if: always() && inputs.sport == 'cbb' && needs.cbb-results-and-team-archives.result == 'success'
+    if: always() && (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push') && needs.cbb-results-and-team-archives.result == 'success'
     needs: [cbb-results-and-team-archives, cbb-box-scores, cbb-player-statistics, cbb-rosters]
     permissions:
       contents: write
@@ -109,82 +126,82 @@ jobs:
     secrets: inherit
 
   nba-verified-statistics-and-pages:
-    if: inputs.sport == 'nba'
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
 
   nba-current-leaders:
-    if: inputs.sport == 'nba'
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [nba-verified-statistics-and-pages]
     uses: ./.github/workflows/publish-nba-leaders.yml
     secrets: inherit
 
   cfb-results:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-cfb-results.yml
     secrets: inherit
 
   cfb-markets:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-cfb-markets.yml
     secrets: inherit
 
   cfb-market-publication:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-markets]
     uses: ./.github/workflows/cfb-publish-markets.yml
     secrets: inherit
 
   cfb-team-metrics:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-cfb-metrics.yml
     secrets: inherit
 
   cfb-player-statistics:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-cfb-players.yml
     secrets: inherit
 
   cfb-dashboard-strength:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-cfb-strength.yml
     secrets: inherit
 
   cfb-context:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-cfb-context.yml
     secrets: inherit
 
   cfb-team-metadata:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-cfb-metadata.yml
     secrets: inherit
 
   cfb-team-strength:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/build-team-strength.yml
     secrets: inherit
 
   cfb-player-season-leaders:
-    if: inputs.sport == 'cfb'
+    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results]
     uses: ./.github/workflows/refresh-fbs-leaders.yml
     secrets: inherit
 
   cfb-team-pages:
-    if: always() && inputs.sport == 'cfb' && needs.cfb-results.result == 'success'
+    if: always() && (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push') && needs.cfb-results.result == 'success'
     needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-team-metadata]
     uses: ./.github/workflows/build-cfb-team-pages.yml
     secrets: inherit
 
   cfb-dashboard:
-    if: always() && inputs.sport == 'cfb' && needs.cfb-results.result == 'success'
+    if: always() && (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push') && needs.cfb-results.result == 'success'
     needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength]
     uses: ./.github/workflows/cfb-publish-dashboard.yml
     secrets: inherit
@@ -196,8 +213,8 @@ jobs:
 
   validate-cbb-datasets:
     name: Validate CBB result and publication inputs
-    if: always() && inputs.sport == 'cbb'
-    needs: [cbb-results-and-team-archives, cbb-box-scores, cbb-player-statistics, cbb-team-metrics, cbb-rosters, cbb-rankings-and-strength, cbb-metric-rankings, cbb-season-leaders, cbb-team-publication, cbb-dashboard]
+    if: always() && (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    needs: [cbb-results-and-team-archives, cbb-box-scores, cbb-player-statistics, cbb-team-metrics, cbb-rosters, cbb-rankings-and-strength, cbb-metric-rankings, cbb-season-leaders, cbb-team-publication, cbb-dashboard, cbb-market-publication]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -211,8 +228,8 @@ jobs:
 
   validate-nba-datasets:
     name: Validate NBA result and publication inputs
-    if: inputs.sport == 'nba'
-    needs: [nba-verified-statistics-and-pages]
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    needs: [nba-verified-statistics-and-pages, nba-current-leaders]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -224,8 +241,8 @@ jobs:
 
   validate-cfb-datasets:
     name: Validate CFB result and publication inputs
-    if: always() && inputs.sport == 'cfb'
-    needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength, cfb-team-strength, cfb-player-season-leaders, cfb-team-pages, cfb-dashboard]
+    if: always() && (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength, cfb-team-strength, cfb-player-season-leaders, cfb-team-pages, cfb-dashboard, cfb-context, cfb-market-publication]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -251,3 +268,20 @@ jobs:
       - run: python3 scripts/verify_sport_dataset_contract.py --sport mlb
 
 
+
+
+  deploy-morning:
+    if: always() && (github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || inputs.sport != 'mlb')
+    needs: [validate-cbb-datasets, validate-nba-datasets, validate-cfb-datasets]
+    uses: ./.github/workflows/deploy-pages.yml
+
+  verify-live-morning:
+    needs: [deploy-morning]
+    if: always() && needs.deploy-morning.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: python3 scripts/verify_morning_publication.py --sport "${{ inputs.sport || 'all' }}"

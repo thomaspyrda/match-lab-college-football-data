@@ -6,8 +6,6 @@ on:
     workflows: ['Refresh CBB team metrics']
     types: [completed]
   schedule:
-    - cron: '0 5 * * *'
-      timezone: America/New_York
     - cron: '0 17 * * *'
       timezone: America/New_York
   push:
@@ -70,3 +68,4 @@ jobs:
       pages: write
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
+
