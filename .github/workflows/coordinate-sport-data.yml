@@ -143,7 +143,7 @@ jobs:
 
   nba-verified-statistics-and-pages:
     needs: [morning-start, morning-availability]
-    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
 
