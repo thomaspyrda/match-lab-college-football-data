@@ -1,7 +1,7 @@
 name: Test NBA workflow separation
 on:
   pull_request:
-    paths: ['verify_nba_pipeline.py', 'tests/test_nba_live_health.py', 'nba_availability_source.py', 'tests/test_nba_availability_source.py', 'nba_roster_source.py', 'refresh_nba_dashboard.py', 'tests/test_nba_roster_source.py', '.github/workflows/*nba*', '.github/workflows/deploy-pages.yml']
+    paths: ['verify_nba_pipeline.py', 'tests/test_nba_live_health.py', 'nba_availability_source.py', 'tests/test_nba_availability_source.py', 'nba_roster_source.py', 'refresh_nba_dashboard.py', 'nba_market_quotes.py', 'tests/test_nba_market_quotes.py', 'refresh_afternoon_pregame.py', 'nba/dashboard/app.js', 'tests/test_nba_roster_source.py', '.github/workflows/*nba*', '.github/workflows/deploy-pages.yml']
 permissions:
   contents: read
 jobs:
@@ -20,6 +20,9 @@ jobs:
           python -m unittest discover -s tests -p test_nba_roster_source.py
           python -m unittest discover -s tests -p test_nba_page_updates.py
           python -m unittest discover -s tests -p test_nba_dashboard.py
+          python -m unittest discover -s tests -p test_nba_market_quotes.py
+          python -m unittest discover -s tests -p test_afternoon_pregame.py
+          node --check nba/dashboard/app.js
           python -m unittest discover -s tests -p test_nba_current_rankings.py
           python -m unittest discover -s tests -p test_nba_team_current.py
           python -m unittest discover -s tests -p test_nba_season_leaders.py

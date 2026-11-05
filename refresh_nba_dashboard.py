@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 from basketball_dashboard_metrics import ADDITIONAL_METRICS, derived_metrics
 from nba_current_rankings import game_minutes
 from nba_closing_markets import closing_market, verified_closing_market
+from nba_market_quotes import current_market
 from nba_player_context import refresh_availability, load_player_values
 
 ROOT=Path(__file__).resolve().parent
@@ -265,7 +266,7 @@ def main():
         output.append({'id':event['id'],'date':event['date'],'label':tip.astimezone(ZoneInfo('America/New_York')).strftime('%a %b %-d · %-I:%M %p ET'),
           'status':event['status']['type']['description'],'away':team(away),'home':team(home),'metrics':metrics,
           'venue':comp.get('venue',{}).get('fullName','Venue unavailable'),'neutral':comp.get('neutralSite',False),
-          'market':{'spread':line.get('details'),'total':line.get('overUnder'),'provider':provider,'observed_at':refreshed.isoformat() if line else None},
+          'market':current_market(event, refreshed.isoformat(), lambda gid: get('summary?event=' + gid)),
           'source':'https://www.espn.com/nba/game/_/gameId/'+event['id'],'profile_cutoff':cutoff.isoformat()})
     from nba_availability_source import apply_saved
     apply_saved(output,refreshed,ROOT/'nba/pipeline/availability.json')

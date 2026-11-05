@@ -1,0 +1,42 @@
+name: Refresh independent NBA live markets
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+permissions:
+  contents: write
+concurrency:
+  group: nba-dashboard-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify market parsing and statistics preservation
+        run: |
+          python -m unittest discover -s tests -p test_nba_market_quotes.py -v
+          python -m unittest discover -s tests -p test_afternoon_pregame.py
+      - name: Refresh only NBA observed quotes and availability
+        run: python refresh_afternoon_pregame.py --sport nba
+      - name: Publish NBA quote snapshot only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nba/dashboard/data/dashboard.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Refresh NBA observed spreads and totals'
+          git restore --worktree .
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep $((attempt * 3))
+          done
+          exit 1

@@ -50,7 +50,11 @@ def refresh(sport, route, destination):
         comp = (event.get("competitions") or [{}])[0]
         game["status"] = event.get("status", {}).get("type", {}).get("description", game.get("status"))
         quotes = comp.get("odds") or []
-        if quotes:
+        if sport == "nba":
+            from nba_market_quotes import current_market
+            game["market"] = current_market(event, observed, lambda gid: request(
+                "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=" + gid))
+        elif quotes:
             quote = quotes[0]
             game["market"] = {
                 "spread": quote.get("details"),

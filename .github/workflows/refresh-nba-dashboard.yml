@@ -7,26 +7,16 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '45 3 * * *'
-      timezone: America/New_York
-    - cron: '35 4 * * *'
-      timezone: America/New_York
-    - cron: '10 4 * * *'
-      timezone: America/New_York
-    - cron: '50 4 * * *'
-      timezone: America/New_York
-    - cron: '5,25 5 * * *'
-      timezone: America/New_York
-    - cron: '15 9 * * *'
-      timezone: America/New_York
-    - cron: '45 10 * * *'
-      timezone: America/New_York
+    # Explicit UTC schedules cover both winter and daylight-saving morning windows.
+    - cron: '15 8,9,14,22 * * *'
   push:
     branches: [main]
     paths:
       - basketball_dashboard_metrics.py
       - tests/test_basketball_dashboard_metrics.py
       - refresh_nba_dashboard.py
+      - nba_market_quotes.py
+      - tests/test_nba_market_quotes.py
       - validate_nba_refresh.py
       - tests/test_nba_page_updates.py
       - nba_player_context.py
@@ -68,6 +58,7 @@ jobs:
           python -m unittest discover -s tests -p test_nba_page_updates.py
           python -m unittest discover -s tests -p test_nba_closing_markets.py
           python -m unittest discover -s tests -p test_nba_dashboard.py
+          python -m unittest discover -s tests -p test_nba_market_quotes.py
           python -m unittest discover -s tests -p test_nba_player_context.py
           python -m unittest discover -s tests -p test_nba_season_leaders.py
           python -m unittest discover -s tests -p test_daily_backfill_core.py
