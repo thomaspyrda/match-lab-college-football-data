@@ -301,6 +301,7 @@ def api(path, **params):
             shutil.copy(CODE / filename, self.main / filename)
         (self.main / 'scripts').mkdir()
         shutil.copy(CODE / 'scripts/cfb_dashboard_yardage.py', self.main / 'scripts/cfb_dashboard_yardage.py')
+        shutil.copy(CODE / 'scripts/cfb_dashboard_scoring_form.py', self.main / 'scripts/cfb_dashboard_scoring_form.py')
         target = self.root / 'cfb_dashboard/pipeline/validate_launch.py'
         target.parent.mkdir(parents=True)
         shutil.copy(SOURCE / 'cfb_dashboard/pipeline/validate_launch.py', target)
