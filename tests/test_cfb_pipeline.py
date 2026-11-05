@@ -291,10 +291,16 @@ def api(path, **params):
     def test_dashboard_assembly_is_offline_and_preserves_strength_and_players(self):
         from cfb_dashboard.pipeline import build_dashboard as builder
         pipeline.save(self.store, 'strength', {'board': self.files['data/current_rankings.json']})
-        pipeline.save(self.store, 'metrics', {'dashboard': {'teams': self.metadata}, 'play_mix': {'games': [], 'slate': {}}})
+        pipeline.save(self.store, 'metrics', {'dashboard': {'teams': self.metadata}, 'play_mix': {'games': [], 'slate': {}},
+            'advanced': self.provider('/stats/season/advanced'),
+            'basic': [dict(season=YEAR, team=t, statName=k, statValue=v) for t in self.teams
+                      for k, v in [('games', 1), ('netPassingYards', 300), ('passCompletions', 20),
+                                   ('rushingYards', 100), ('rushingAttempts', 25)]]})
         pipeline.save(self.store, 'players', {'dashboard': {'teams': self.metadata}})
         for filename in ['refresh_cfb_dashboard_schedule_only.py']:
             shutil.copy(CODE / filename, self.main / filename)
+        (self.main / 'scripts').mkdir()
+        shutil.copy(CODE / 'scripts/cfb_dashboard_yardage.py', self.main / 'scripts/cfb_dashboard_yardage.py')
         target = self.root / 'cfb_dashboard/pipeline/validate_launch.py'
         target.parent.mkdir(parents=True)
         shutil.copy(SOURCE / 'cfb_dashboard/pipeline/validate_launch.py', target)
@@ -302,7 +308,7 @@ def api(path, **params):
                    for side in ['A', 'B'] for i, position in enumerate(['QB', 'RB', 'WR', 'TE', 'WR'])]
         game = dict(game_id='2', season=YEAR, week=2, kickoff=self.future['startDate'],
                     home=dict(name='A', espn_id=1, team_strength=80), away=dict(name='B', espn_id=2, team_strength=60),
-                    players=players, matchup_metrics=[dict(away_offense=.5, home_defense=.5, home_offense=.5, away_defense=.5) for _ in range(11)],
+                    players=players, matchup_metrics=[dict(label='Baseline metric ' + str(i), away_offense=.5, home_defense=.5, home_offense=.5, away_defense=.5) for i in range(11)],
                     context={}, market={}, weather={}, trends=[])
         payload = dict(slate={'model_version': 'v15'}, games=[game])
         def build():
@@ -313,6 +319,11 @@ def api(path, **params):
         after = pipeline.read(self.root / 'cfb_dashboard/data/dashboard.json')
         self.assertEqual(after['games'][0]['players'], players)
         self.assertEqual(after['games'][0]['home']['team_strength'], 80)
+        self.assertEqual(after['games'][0]['matchup_metrics'][:11], payload['games'][0]['matchup_metrics'])
+        added = {m['label']: m for m in after['games'][0]['matchup_metrics'][11:]}
+        self.assertEqual(added['Pass Yards/Game']['away_offense'], 300)
+        self.assertEqual(added['Yards/Completion']['away_offense'], 15)
+        self.assertEqual(added['Yards/Carry']['home_offense'], 4)
         self.assertTrue((self.root / 'cfb_dashboard/data/location-records.json').exists())
         self.assertEqual(pipeline.read(self.store / 'status.json')['game_count'], 1)
 
