@@ -7,9 +7,11 @@ import json
 import re
 from pathlib import Path
 
-NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261104-smooth-ranking-scroll"
+NAV_URL = "https://matchlab.parlaycalculator.bet/site-navigation-v12.js?v=20261104-betwise-research"
 CSS_URL = "https://matchlab.parlaycalculator.bet/site-navigation.css?v=20261021-1"
 SPORTS = json.loads(r'''{"NFL":[["NFL Dashboard","https://nfl.parlaycalculator.bet/"],["NFL Teams","https://nfl.parlaycalculator.bet/teams.html"],["Rankings","https://nfl.parlaycalculator.bet/nfl-team-strength-rankings/"]],"CFB":[["CFB Dashboard","https://matchlab.parlaycalculator.bet/cfb-dashboard-preview/"],["CFB Teams","https://matchlab.parlaycalculator.bet/teams.html"],["CFB Match Lab","https://matchlab.parlaycalculator.bet/"],["Rankings","https://matchlab.parlaycalculator.bet/college-football-team-strength-rankings/"]],"MLB":[["MLB Dashboard","https://matchlab.parlaycalculator.bet/mlb/dashboard/"],["MLB Teams","https://matchlab.parlaycalculator.bet/mlb/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/mlb/rankings/"]],"NBA":[["NBA Dashboard","https://matchlab.parlaycalculator.bet/nba/dashboard/"],["NBA Teams","https://matchlab.parlaycalculator.bet/nba/teams/"],["Rankings","https://matchlab.parlaycalculator.bet/nba/rankings/"]],"CBB":[["CBB Dashboard","https://matchlab.parlaycalculator.bet/cbb/dashboard/"],["CBB Teams","https://matchlab.parlaycalculator.bet/cbb/teams/"],["CBB Match Lab","https://matchlab.parlaycalculator.bet/cbb/match-lab/"],["Rankings","https://matchlab.parlaycalculator.bet/cbb/rankings/"]]}''')
+BETWISE_URL = "https://parlaycalculator.bet/betwise/?v=20261104-research-by-sport"
+BETWISE_HREF = re.compile(r"""(href\s*=\s*)(["'])(?:https?://(?:www\.)?parlaycalculator\.bet)?/betwise/?(?:\?[^"'#<>]*)?(#[^"'<>]*)?\2""", re.I)
 NBA_RANKINGS = "https://matchlab.parlaycalculator.bet/nba/rankings/"
 CBB_RANKINGS = "https://matchlab.parlaycalculator.bet/cbb/rankings/"
 CBB_MATCH_LAB = "https://matchlab.parlaycalculator.bet/cbb/match-lab/"
@@ -39,6 +41,7 @@ def normalize(source, sport):
         nav_count += 1
         return match[1] + menu + match[3]
     updated = NAV_TAG.sub(replace_nav, source)
+    updated = BETWISE_HREF.sub(lambda m: m[1] + m[2] + BETWISE_URL + (m[3] or '') + m[2], updated)
     updated, script_count = JS_REF.subn(lambda m: m[1] + m[2] + NAV_URL + m[2], updated)
     updated, style_count = CSS_REF.subn(lambda m: m[1] + m[2] + CSS_URL + m[2], updated)
     if nav_count:
@@ -49,6 +52,7 @@ def normalize(source, sport):
             assets += f'<link rel="stylesheet" href="{CSS_URL}">'
         if assets:
             updated = re.sub(r'</head>', lambda m: assets + m[0], updated, count=1, flags=re.I)
+        assert all(BETWISE_URL in tag[2] for tag in NAV_TAG.finditer(updated) if is_shared_nav(tag[1])), "Every shared menu must use the current Why BetWise destination"
         assert NAV_URL in updated, "Shared navigation must load the canonical script"
         for tag in NAV_TAG.finditer(updated):
             if is_shared_nav(tag[1]):
@@ -58,6 +62,10 @@ def normalize(source, sport):
     return updated, nav_count, script_count
 
 def self_test():
+    for href in ('/betwise', '/betwise/', 'https://parlaycalculator.bet/betwise/', 'https://parlaycalculator.bet/betwise/?v=old#vip'):
+        expected = BETWISE_URL + ('#vip' if '#vip' in href else '')
+        assert f'href="{expected}"' in normalize(f'<a href="{href}">Why BetWise?</a>', 'CFB')[0]
+
     sample = """<html><head><script defer src="/site-navigation-v10.js?v=20261022-tophero"></script></head><body><nav class="site-nav">old</nav><details class="mobile-menu"><nav aria-label="Mobile navigation">old</nav></details><main><table><tr><td>Archived stats 112.5</td></tr></table></main></body></html>"""
     result, menus, _ = normalize(sample, 'NFL')
     assert menus == 2 and result.count(NBA_RANKINGS) == 2 and result.count(CBB_RANKINGS) == 2
