@@ -4,8 +4,6 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '42 4 * * *'
-      timezone: America/New_York
     - cron: '0 17 * * *'
       timezone: America/New_York
 permissions:
@@ -14,3 +12,4 @@ jobs:
   update-schedule:
     uses: ./.github/workflows/cfb-publish-dashboard.yml
     secrets: inherit
+

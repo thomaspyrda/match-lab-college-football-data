@@ -10,7 +10,7 @@ on:
     branches: [main]
     types: [completed]
   schedule:
-    - cron: '11 4,16 * * *'
+    - cron: '11 16 * * *'
       timezone: America/New_York
 permissions:
   contents: write
@@ -67,3 +67,4 @@ jobs:
       pages: write
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
+

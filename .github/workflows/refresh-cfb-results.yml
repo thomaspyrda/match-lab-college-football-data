@@ -3,7 +3,7 @@ on:
   workflow_call:
   workflow_dispatch:
   schedule:
-    - cron: '5 4,16 * * *'
+    - cron: '5 16 * * *'
       timezone: America/New_York
     - cron: '5 6,7 * * *'
       timezone: America/New_York
@@ -23,3 +23,4 @@ jobs:
     with:
       component: results
     secrets: inherit
+
