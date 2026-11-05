@@ -83,7 +83,7 @@ jobs:
 
   cbb-market-publication:
     if: (inputs.sport == 'cbb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
-    needs: [cbb-market-capture]
+    needs: [cbb-market-capture, cbb-dashboard]
     permissions:
       contents: write
       pages: write
