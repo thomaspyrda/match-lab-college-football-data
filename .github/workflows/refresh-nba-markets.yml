@@ -8,6 +8,7 @@ permissions:
 concurrency:
   group: nba-dashboard-refresh
   cancel-in-progress: false
+  queue: max
 jobs:
   refresh:
     runs-on: ubuntu-latest

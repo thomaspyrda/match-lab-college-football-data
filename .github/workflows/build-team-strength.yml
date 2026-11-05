@@ -66,6 +66,7 @@ on:
 concurrency:
   group: team-strength-production
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write

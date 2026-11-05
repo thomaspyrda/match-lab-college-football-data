@@ -30,6 +30,7 @@ permissions:
 concurrency:
   group: ordered-morning-publication
   cancel-in-progress: false
+  queue: max
 jobs:
   morning-start:
     name: Morning recovery entry point

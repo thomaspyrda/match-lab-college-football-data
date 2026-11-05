@@ -55,6 +55,7 @@ jobs:
     concurrency:
       group: pages
       cancel-in-progress: false
+      queue: max
     # Matrix refreshes commit each successful sport separately. Publish those
     # commits even if another sport failed; failed jobs keep their last good data.
     if: >-

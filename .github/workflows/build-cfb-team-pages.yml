@@ -26,6 +26,7 @@ permissions:
 concurrency:
   group: cfb-team-history
   cancel-in-progress: false
+  queue: max
 jobs:
   build:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'

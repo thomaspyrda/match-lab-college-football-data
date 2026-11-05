@@ -8,6 +8,7 @@ jobs:
     concurrency:
       group: cfb-dashboard-data
       cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

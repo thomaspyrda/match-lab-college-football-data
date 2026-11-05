@@ -24,6 +24,7 @@ jobs:
     concurrency:
       group: dashboard-availability-${{ matrix.sport }}
       cancel-in-progress: false
+      queue: max
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
