@@ -20,7 +20,7 @@ class YardageTests(unittest.TestCase):
         advanced = [dict(team=team, season=2026, offense=dict(lineYards=off), defense=dict(lineYards=defense))
                     for team, off, defense in (("A", 3.2, 2.4), ("B", 3.2, 2.8), ("FCS", 8, 1))]
         return dict(season=2026, collected_at="2026-11-05T00:00:00+00:00", through_week=10,
-                    payload=dict(basic=basic, advanced=advanced, dashboard=dict(teams={"A": {}, "B": {}})))
+                    payload=dict(basic=basic, advanced=advanced, dashboard=dict(teams={"A": {"offensive_ppa_rank": 1}, "B": {"offensive_ppa_rank": 2}, "FCS": {"offensive_ppa_rank": None}})))
 
     def test_denominators_ties_and_defensive_rank_direction(self):
         board = yardage.board(self.snapshot())
