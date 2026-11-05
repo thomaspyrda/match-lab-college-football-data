@@ -3,6 +3,10 @@
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
+
+# Direct CLI execution starts with scripts/, so expose the repository package root.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import run_cbb_pipeline as p
 
 

@@ -56,6 +56,7 @@ jobs:
           exit 1
 
   deploy:
+    if: github.workflow != 'Ordered Active Sports Morning Update'
     needs: publish
     permissions:
       contents: read
@@ -66,3 +67,4 @@ jobs:
   grade-markets:
     needs: publish
     uses: ./.github/workflows/cbb-grade-markets.yml
+

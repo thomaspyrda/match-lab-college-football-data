@@ -51,6 +51,10 @@ def plan(sport, root, now):
         else:
             paths = ['cfb-dashboard-preview/data/dashboard.json', 'data/current_rankings.json',
                      'data/cfb-season-leaders.json', f'data/cfb/details/{now.year}.json']
+    if sport != 'nfl':
+        availability = f'data/dashboard-availability/{sport}.json'
+        require_collection(json.loads((root / availability).read_text())['checked_at'], now)
+        paths.append(availability)
     return paths
 
 

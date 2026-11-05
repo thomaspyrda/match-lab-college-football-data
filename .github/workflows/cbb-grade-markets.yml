@@ -41,9 +41,11 @@ jobs:
           done
           exit 1
   deploy:
+    if: github.workflow != 'Ordered Active Sports Morning Update'
     needs: grade
     permissions:
       contents: read
       pages: write
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
+
