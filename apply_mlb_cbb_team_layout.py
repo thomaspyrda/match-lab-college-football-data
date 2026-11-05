@@ -12,8 +12,7 @@ def apply_assets(text, sport):
     text = re.sub(r'<link\b[^>]*\bdata-archive-layout="mlb-cbb-v1"[^>]*>', '', text)
     text = re.sub(r'<script\b[^>]*\bdata-archive-layout="mlb-cbb-v1"[^>]*>\s*</script>', '', text)
     if sport == 'cbb' and '/sports-research/cbb-team-archive-v1.js' in text:
-        for asset in ('js', 'css'):
-            text = re.sub(r'(/sports-research/cbb-team-archive-v1\.'+asset+r')(?:\?[^"<>]*)?', r'\1?v=20261028-cbb-complete-v6', text)
+        # The CBB publisher owns its release versions; never downgrade them here.
         return text
     if '</head>' not in text or '</body>' not in text:
         raise ValueError('Missing page shell')
