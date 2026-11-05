@@ -91,5 +91,54 @@ function render(){const season=archive.seasons[year],data=season?.phases.regular
 
  
 }
-Promise.all([fetch('/data/cbb/teams/'+route[1]+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}),fetch('/data/cbb/metric-ranks.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/recruiting-classes.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/conference-tournament-results.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/tournament-results.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/national-awards.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/opponent-metrics.json').then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/markets/'+route[1]+'.json?v=20261102-market-results-v2',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/pregame-markets/2027.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({})),fetch('/data/cbb/nba-draft-history.json?v=20261029').then(r=>r.ok?r.json():{}).catch(()=>({}))]).then(([d,ranks,recruits,conference,national,awards,opponents,markets,pregame,drafts])=>{pregameArchive=pregame;draftHistory=drafts;opponentMetrics=opponents;marketArchive=markets;awardResults=awards;rankArchive=ranks;recruitArchive=recruits;conferenceResults=conference;tournamentResults=national;archive=d;const requested=new URLSearchParams(location.search).get('season');year=d.seasons[requested]?requested:Object.keys(d.seasons).sort().at(-1);render();}).catch(()=>{main.insertAdjacentHTML('afterbegin','<p class="research-source">Team archive is temporarily unavailable. Please refresh shortly.</p>');});
+/* CBB_ARCHIVE_LOADER_START */
+const RELEASE='20261105-resilient-archives';
+const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function loadJson(path,required=false){
+ const attempts=required?3:2;
+ for(let attempt=0;attempt<attempts;attempt++){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+  try{
+   const response=await fetch(path+(path.includes('?')?'&':'?')+'release='+RELEASE,{cache:'no-store',signal:controller.signal});
+   if(!response.ok)throw Error('Archive request failed: '+response.status+' '+path);
+   const value=await response.json();
+   if(required&&(!value||value.slug!==route[1]||!value.seasons||!Object.keys(value.seasons).length))throw Error('Invalid team archive identity or seasons');
+   return value;
+  }catch(error){
+   if(attempt===attempts-1){if(required)throw error;console.warn('Optional CBB source unavailable',path,error);return {}}
+   await delay(300*(attempt+1));
+  }finally{clearTimeout(timer)}
+ }
+}
+function showLoading(){
+ main.setAttribute('aria-busy','true');
+ main.innerHTML='<section class="research-panel"><h1>'+h(name)+'</h1><p role="status">Loading verified team archive…</p></section>';
+}
+async function loadArchive(){
+ showLoading();
+ try{
+  archive=await loadJson('/data/cbb/teams/'+route[1]+'.json',true);
+  const requested=new URLSearchParams(location.search).get('season');
+  year=archive.seasons[requested]?requested:Object.keys(archive.seasons).sort().at(-1);
+  render();main.setAttribute('aria-busy','false');
+ }catch(error){
+  console.error('CBB team archive failed',route[1],error);
+  main.setAttribute('aria-busy','false');
+  main.innerHTML='<section class="research-panel"><h1>'+h(name)+'</h1><p role="alert">Unable to load this team’s saved season archive. Please try again.</p><button type="button" id="cbb-archive-retry">Retry loading team archive</button></section>';
+  main.querySelector('#cbb-archive-retry').addEventListener('click',loadArchive);
+ }
+}
+const primary=loadArchive();
+Promise.all([
+ loadJson('/data/cbb/metric-ranks.json'),loadJson('/data/cbb/recruiting-classes.json'),
+ loadJson('/data/cbb/conference-tournament-results.json'),loadJson('/data/cbb/tournament-results.json'),
+ loadJson('/data/cbb/national-awards.json'),loadJson('/data/cbb/opponent-metrics.json'),
+ loadJson('/data/cbb/markets/'+route[1]+'.json'),loadJson('/data/cbb/pregame-markets/2027.json'),
+ loadJson('/data/cbb/nba-draft-history.json')
+]).then(async([ranks,recruits,conference,national,awards,opponents,markets,pregame,drafts])=>{
+ rankArchive=ranks;recruitArchive=recruits;conferenceResults=conference;tournamentResults=national;
+ awardResults=awards;opponentMetrics=opponents;marketArchive=markets;pregameArchive=pregame;draftHistory=drafts;
+ await primary;
+ if(archive){try{render()}catch(error){console.error('CBB supplemental rendering failed',route[1],error)}}
+});
 })();
