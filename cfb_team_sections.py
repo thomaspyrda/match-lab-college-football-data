@@ -8,6 +8,37 @@ def fmt(v,pct=False):
  return f'{v*100:.1f}%' if pct else f'{v:,.0f}' if float(v).is_integer() else f'{v:,.2f}'
 def cls(v):return 'result-w' if v in ('W','O') else 'result-l' if v in ('L','U') else 'result-p'
 
+
+METRIC_ORDER = ['PPG','Total yards per game','Passing yards per game','Yards/Completion',
+ 'Rushing yards per game','Yards/Carry','PPA per play','Success rate','Explosiveness',
+ 'Passing PPA','Passing success rate','Passing explosiveness','Passing downs PPA',
+ 'Passing downs success rate','Passing downs explosiveness','Rushing PPA',
+ 'Rushing success rate','Rushing explosiveness','Line yards per rush','Power success rate',
+ 'Stuff rate','Second-level yards','Open-field yards','Standard downs PPA',
+ 'Standard downs success rate','Standard downs explosiveness','3rd-down conversion rate',
+ '3rd-down conversions','Points per scoring opportunity','Havoc rate','Turnovers / turnovers forced']
+
+def add_scoring_yardage(details, games):
+ totals={}
+ for game in games:
+  result=game.get('result')
+  if not result:continue
+  for side,other in [('home','away'),('away','home')]:
+   team=canon(game[side]);row=totals.setdefault(team,[0,0,0])
+   row[0]+=1;row[1]+=result[side+'_points'];row[2]+=result[other+'_points']
+ for team,d in details.items():
+  stats=d.get('basic_totals') or {};scoring=totals.get(team)
+  pairs=[p for p in d.get('metrics',[]) if p['label'] not in ['PPG','Yards/Carry','Yards/Completion']]
+  if scoring:
+   pairs.append(dict(label='PPG',offense=scoring[1]/scoring[0],defense=scoring[2]/scoring[0],percent=False))
+  for label,yards,attempts in [('Yards/Carry','rushingYards','rushingAttempts'),('Yards/Completion','netPassingYards','passCompletions')]:
+   values=[]
+   for suffix in ['', 'Opponent']:
+    numerator=stats.get(yards+suffix);denominator=stats.get(attempts+suffix)
+    values.append(numerator/denominator if numerator is not None and denominator and denominator>0 else None)
+   pairs.append(dict(label=label,offense=values[0],defense=values[1],percent=False))
+  d['metrics']=sorted(pairs,key=lambda p:METRIC_ORDER.index(p['label']) if p['label'] in METRIC_ORDER else len(METRIC_ORDER))
+
 def rank_metrics(details):
  for team,d in details.items():
   for pair in d.get('metrics',[]):
@@ -84,6 +115,7 @@ def attach_details(seasons,details_file,registry,build_season,current):
     pair['label']+=' per game'
     for side in ['offense','defense']:
      if pair.get(side) is not None:pair[side]/=counts[team]
+ add_scoring_yardage(details_file['teams'], details_file['games'])
  rank_metrics(details_file['teams'])
  games=details_file['games'];regular=[g for g in games if g['season_type']=='regular'];allseasons=build_season(games,details_file['year'])
  rebuilt=build_season(regular,details_file['year'])
