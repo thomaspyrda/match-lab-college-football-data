@@ -8,6 +8,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parent
+RANKING_HEADER_SCRIPT = (ROOT / "sports-research/rankings-sticky-headers.js").read_text(encoding="utf-8")
+RANKING_HEADER_INLINE = "<script id=\"ranking-sticky-headers-script\">\n// Keep generated ranking pages independent of separately hosted assets.\nfunction startRankingHeaders() {\n__HELPER__\n}\nif (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startRankingHeaders, {once:true});\nelse startRankingHeaders();\n</script>".replace("__HELPER__", RANKING_HEADER_SCRIPT)
 DATA=ROOT/"data"
 BASE="https://matchlab.parlaycalculator.bet"
 FIRST_SEASON=2015
@@ -165,7 +167,7 @@ h2{{margin-top:2rem}}
 .ranking-team-link{{color:inherit;text-decoration:none;font-weight:700}}.ranking-team-link:hover,.ranking-team-link:focus-visible{{color:#00ff41;text-decoration:underline}}
 </style>
 <link rel="stylesheet" href="https://matchlab.parlaycalculator.bet/site-navigation.css?v=2"><script src="https://matchlab.parlaycalculator.bet/site-navigation-v11.js?v=20261026-sos-unified5" defer></script>
-<script id="ranking-sticky-headers-script" src="/sports-research/rankings-sticky-headers.js?v=20261106-cfb" defer></script></head><body>
+{RANKING_HEADER_INLINE}</head><body>
 <header class="site-header">
   <div class="header-inner">
     <a class="betwise-brand" href="https://parlaycalculator.bet/" aria-label="BetWise and ParlayCalculator.bet home">
