@@ -13,6 +13,7 @@ const common={ranks:read('data/cbb/metric-ranks.json'),recruits:read('data/cbb/r
  conference:read('data/cbb/conference-tournament-results.json'),tournament:read('data/cbb/tournament-results.json'),
  awards:read('data/cbb/national-awards.json'),opponents:read('data/cbb/opponent-metrics.json'),
  pregame:read('data/cbb/pregame-markets/2027.json'),drafts:read('data/cbb/nba-draft-history.json')};
+const expectedVersion=fs.readFileSync(path.join(root,'publish_cbb_team_archives.py'),'utf8').match(/JS_VERSION=['"]([^'"]+)['"]/)[1];
 const failures=[],coverage={teams:0,seasons:0,currentSchedules:0,currentCompleted:0,currentPlayers:0,currentCoaches:0};
 for(const team of registry){
  try{
@@ -22,7 +23,7 @@ for(const team of registry){
   const page=fs.readFileSync(path.join(root,'cbb/teams',team.slug,'index.html'),'utf8');
   assert(page.includes('data-cbb-archive="v1"'),'Archive loader missing');
   assert.strictEqual((page.match(/<script[^>]*data-cbb-archive="v1"/g)||[]).length,1,'Duplicate archive scripts');
-  if(process.argv.includes('--check-assets'))assert(page.includes('cbb-team-archive-v1.js?v=20261105-resilient-archives'),'Obsolete renderer version');
+  if(process.argv.includes('--check-assets'))assert(page.includes('cbb-team-archive-v1.js?v='+expectedVersion),'Obsolete renderer version');
   const main={innerHTML:'',querySelector(selector){
    if(selector==='h1')return {textContent:team.name};
    if(selector==='.team-research-heading img')return {src:team.logo};
