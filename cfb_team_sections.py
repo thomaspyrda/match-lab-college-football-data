@@ -86,6 +86,8 @@ def sections(s):
    v=pair.get(side);rank=pair.get(side+'_rank')
    ranktext=f"FBS #{rank} of {pair[side+'_field_size']}" if rank else 'Source value unavailable'
    label=pair['label']
+   label={'Total yards per game':'Yards/Game','Passing yards per game':'Pass Yards/Game','Rushing yards per game':'Rush Yards/Game'}.get(label,label)
+   if side=='defense' and label in ['PPG','Yards/Game','Pass Yards/Game','Rush Yards/Game','Yards/Carry','Yards/Completion']:label+=' Allowed'
    if label=='Havoc rate' and side=='offense':label='Havoc allowed'
    if label=='Turnovers / turnovers forced':label='Turnovers' if side=='offense' else 'Turnovers forced'
    cards.append(f'<article class="metric-box metric-box--{side}"><span>{esc(label)}</span><strong>{fmt(v,pair.get("percent",False))}</strong><small>{ranktext}</small></article>')
