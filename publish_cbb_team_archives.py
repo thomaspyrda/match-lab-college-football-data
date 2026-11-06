@@ -2,7 +2,7 @@
 import json,re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
-JS_VERSION='20261105-resilient-archives'
+JS_VERSION='20261106-national-metrics'
 CSS_VERSION='20261104-bold-results-links'
 
 def main():
