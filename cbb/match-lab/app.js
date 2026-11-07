@@ -122,7 +122,7 @@ function renderResults(){
  const atsDecision=g=>{const hp=num(g.result?.home_points),ap=num(g.result?.away_points),spread=num(g.market?.spread??g.market?.home_spread);if(hp===null||ap===null||spread===null)return null;const margin=hp-ap+spread;return Math.abs(margin)<0.00001?"push":margin>0?"home":"away"};
  let pool=candidates.map(g=>({g,distance:metricDistance(g),match:similarity(researched,context(g))}))
    .filter(x=>x.distance!==null&&x.distance<=20)
-   .map(x=>({...x,match:x.match?{...x.match,score:Math.round(.4*x.match.score+.6*(100-x.distance*2))}:null}))
+   .map(x=>({...x,match:x.match?{...x.match,score:Math.min(x.match.score,Math.round((100-x.distance*2)*Math.pow(x.match.coveragePct/100,.55)))}:null}))
    .filter(x=>x.match!==null&&["home","away"].includes(atsDecision(x.g))&&["over","under","push"].includes(String(x.g.result?.total).toLowerCase()))
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
    .slice(0,10);
