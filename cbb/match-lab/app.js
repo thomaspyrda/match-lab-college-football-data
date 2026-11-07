@@ -5,7 +5,23 @@ let games=[],selected=null,history=[],activeDay='all',logoByName={},frozenPresea
 const requests=new Map();
 async function load(url){if(requests.has(url))return requests.get(url);const pending=(async()=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);try{const r=await fetch(url,{cache:url.includes('stage-')?'force-cache':'no-cache',signal:controller.signal});if(!r.ok)throw Error(url+' unavailable');return await r.json()}finally{clearTimeout(timer)}})();requests.set(url,pending);try{return await pending}catch(e){requests.delete(url);throw e}}
 let archiveSamples={};
-async function loadHistory(){const index=await load('data/search-index.json');archiveSamples=index.samples;const counts=['away','home'].map(side=>num(selected[side]?.profile?.games)??0),tol=counts.map(n=>n<5?3:n<12?4:6);const keys=Object.keys(index.shards).filter(key=>key.split('-').every((b,i)=>+b*4<=counts[i]+tol[i]&&+b*4+3>=Math.max(0,counts[i]-tol[i])));const rows=[];for(let i=0;i<keys.length;i+=3){const batch=await Promise.all(keys.slice(i,i+3).map(k=>load('data/'+index.shards[k])));batch.forEach(d=>rows.push(...d.games));await new Promise(r=>setTimeout(r,0))}return rows}
+function atsDecision(g){const hp=num(g.result?.home_points),ap=num(g.result?.away_points),spread=num(g.market?.spread??g.market?.home_spread);if(hp===null||ap===null||spread===null)return null;const margin=hp-ap+spread;return Math.abs(margin)<0.00001?'push':margin>0?'home':'away'}
+async function loadHistory(){
+ const index=await load('data/search-index.json');archiveSamples=index.samples;
+ const counts=['away','home'].map(side=>num(selected[side]?.profile?.games)??0);
+ const tol=counts.map(n=>n<5?3:n<12?4:6);
+ const shardDistance=key=>key.split('-').reduce((sum,b,i)=>sum+Math.max(0,+b*4-counts[i],counts[i]-(+b*4+3))/tol[i],0);
+ const keys=Object.keys(index.shards).sort((a,b)=>shardDistance(a)-shardDistance(b)||a.localeCompare(b));
+ const initial=keys.filter(k=>shardDistance(k)===0); // Always include the complete nearby season-stage neighborhood.
+ const rows=[],seen=new Set();
+ const read=async batch=>{const data=await Promise.all(batch.map(k=>load('data/'+index.shards[k])));data.forEach(d=>d.games.forEach(g=>{const id=gameKey(g);if(!seen.has(id)){seen.add(id);rows.push(g)}}));await new Promise(r=>setTimeout(r,0))};
+ for(let i=0;i<initial.length;i+=3)await read(initial.slice(i,i+3));
+ const eligible=()=>rows.filter(g=>verified(g)&&date(g)<date(selected)&&['home','away'].includes(atsDecision(g))).length;
+ const remaining=keys.filter(k=>!initial.includes(k));
+ // Sparse stage neighborhoods expand outward, never manufacture or duplicate historical games.
+ for(let i=0;eligible()<10&&i<remaining.length;i+=3)await read(remaining.slice(i,i+3));
+ return rows;
+}
 
 const val=(x,...keys)=>keys.reduce((v,k)=>v?.[k],x);
 const num=v=>v==null||v===""?null:Number.isFinite(+v)?+v:null;
@@ -107,28 +123,37 @@ function renderGames(){
 document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({left:-640,behavior:"smooth"});
 document.querySelector(".rail-arrow.next").onclick=()=>byId("games").scrollBy({left:640,behavior:"smooth"});
 function percentileValue(t,k){const v=stat(t,k),a=archiveSamples[k]||[];if(v===null||a.length<30)return null;let lo=0,hi=a.length;while(lo<hi){const mid=(lo+hi)>>1;if(a[mid]<v)lo=mid+1;else hi=mid}return 100*lo/a.length}
-function metricDistance(g){let total=0,count=0;for(const side of ['away','home']){let sideCount=0;for(const k of ['off_eff','def_eff'])if(stat(selected[side],k)!==null&&stat(g[side],k)===null)return null;for(const k of ['ppg','allowed_ppg','off_eff','def_eff','efg_pct','opp_efg_pct','three_pct','opp_three_pct','turnover_margin','pace','margin']){const av=stat(selected[side],k),bv=stat(g[side],k);if(['off_eff','def_eff'].includes(k)&&av!==null&&bv!==null&&Math.abs(av-bv)>15)return null;const a=percentileValue(selected[side],k),b=percentileValue(g[side],k);if(a===null||b===null)continue;const gap=Math.abs(a-b);if(gap>40)return null;if(['off_eff','def_eff'].includes(k)&&gap>25)return null;total+=gap;count++;sideCount++}if((selected[side]?.profile?.games??0)>0&&sideCount<3)return null}return count?total/count:null}
+function metricDistance(g){
+ let total=0,used=0,available=0;
+ const metrics={ppg:1,allowed_ppg:1,off_eff:2,def_eff:2,efg_pct:1,opp_efg_pct:1,three_pct:1,opp_three_pct:1,turnover_margin:1,pace:1,margin:1,oreb_pg:.5,dreb_pg:.5,assists_pg:.5,opp_assists_pg:.5,ft_pct:.5};
+ for(const side of ['away','home'])for(const [k,w] of Object.entries(metrics)){
+  const a=percentileValue(selected[side],k),b=percentileValue(g[side],k);
+  if(a===null)continue;available+=w;
+  if(b===null){total+=50*w;continue}
+  total+=Math.abs(a-b)*w;used+=w;
+ }
+ return {distance:available?total/available:50,coverage:available?used/available:0};
+}
+function rankMatch(g,researched){
+ const metrics=metricDistance(g),base=similarity(researched,context(g));
+ const gaps=['away','home'].map(side=>{const a=num(selected[side]?.profile?.games),b=num(g[side]?.profile?.games);return a===null||b===null?1:Math.abs(a-b)/(a<5?3:a<12?4:6)});
+ const stage=Math.exp(-(gaps[0]+gaps[1])/2);
+ const fingerprint=Math.exp(-metrics.distance/30)*Math.pow(metrics.coverage,.55);
+ // Rank by unrounded similarity. Differences reduce scores, never exclude verified results.
+ const quality=.65*fingerprint+.20*(base?base.score/100:0)+.15*stage;
+ return {score:Math.max(0,Math.min(96,Math.round(100*quality))),quality,coverage:metrics.coverage,coveragePct:Math.round(100*metrics.coverage)};
+}
 function renderResults(){
  byId("results").hidden=false;
- const candidates=history.filter(g=>['away','home'].every(side=>{const a=num(selected[side]?.profile?.games),b=num(g[side]?.profile?.games);return a!==null&&b!==null&&Math.abs(a-b)<=(a<5?3:a<12?4:6)})).filter(verified).filter(g=>date(g)<date(selected)).filter(g=>preRank(team(g.away))!==null&&preRank(team(g.home))!==null);
+ const candidates=history.filter(verified).filter(g=>date(g)<date(selected));
  const researched=context(selected);
- if(researched.played===0&&(!Number.isFinite(researched.preseasonDiff)||!Number.isFinite(researched.preseasonAvg))){
-  byId("status").textContent="This opening-day matchup needs verified 2026–27 preseason or starting-strength rankings for both teams. The historical archive is available, but unranked games cannot be compared responsibly.";
-  byId("summary").innerHTML="";byId("matches").innerHTML="";
-  return;
- }
- // A displayed historical match must have a verifiable ATS decision and total result.
- // Exclude ATS pushes rather than misclassifying them as home/away covers.
- const atsDecision=g=>{const hp=num(g.result?.home_points),ap=num(g.result?.away_points),spread=num(g.market?.spread??g.market?.home_spread);if(hp===null||ap===null||spread===null)return null;const margin=hp-ap+spread;return Math.abs(margin)<0.00001?"push":margin>0?"home":"away"};
- let pool=candidates.map(g=>({g,distance:metricDistance(g),match:similarity(researched,context(g))}))
-   .filter(x=>x.distance!==null&&x.distance<=20)
-   .map(x=>({...x,match:x.match?{...x.match,score:Math.min(x.match.score,Math.round((100-x.distance*2)*Math.pow(x.match.coveragePct/100,.55)))}:null}))
-   .filter(x=>x.match!==null&&["home","away"].includes(atsDecision(x.g))&&["over","under","push"].includes(String(x.g.result?.total).toLowerCase()))
-   .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
-   .slice(0,10);
+ const pool=candidates.filter(g=>["home","away"].includes(atsDecision(g))&&["over","under","push"].includes(String(g.result?.total).toLowerCase()))
+  .map(g=>({g,match:rankMatch(g,researched)}))
+  .sort((a,b)=>b.match.quality-a.match.quality||b.match.coverage-a.match.coverage||gameKey(a.g).localeCompare(gameKey(b.g)))
+  .slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
- byId("status").textContent=pool.length?pool.length+" historical comparisons at a similar season stage · Scores prioritize individual-team metric percentiles and coverage.":"No sufficiently similar historical games at this season stage. Fewer than ten matches is preferable to filling the list with weak comparisons.";
+ byId("status").textContent=pool.length+" closest verified historical comparisons · Match Scores reflect statistical fingerprint, season stage, and available data. Low scores indicate larger differences.";
  const covers={home:0,away:0};
  pool.forEach(({g})=>{covers[atsDecision(g)]++});
  const summary=[[String(covers.home),"Home covers"],[String(covers.away),"Away covers"],[counts.over+"–"+counts.under+(counts.push?"–"+counts.push:""),"Over–Under"],[String(pool.length),"Matches"]];
@@ -232,7 +257,7 @@ function renderResults(){
  '<div class="cbb-research-grid">'+sidePanel("RESEARCHED GAME",selected,"researched")+'<div class="cbb-versus">VS</div>'+sidePanel("HISTORICAL MATCH",g,"historical")+'</div>'+
  '<div class="cbb-reasons-grid">'+(match.marketOnly?reasonBox('MARKET-ONLY REFERENCE',['No preseason or in-season performance comparison is available.','Historical game total differs by '+match.totalDelta.toFixed(1)+' points.','This is not a statistically validated team matchup.']):reasonBoxPlaceholder(reason))+'</div>'+
  '<div class="cbb-outcome"><h3>WHAT HAPPENED</h3><strong>'+clean(r.away_points)+'–'+clean(r.home_points)+'</strong><p>'+clean(away.name)+' '+clean(r.away_points)+', '+clean(home.name)+' '+clean(r.home_points)+'</p><span>ATS: '+ats+' · TOTAL: '+clean(String(r.total).toUpperCase())+'</span></div>'+
- '<p class="cbb-detail-foot">Statistical coverage: '+match.coveragePct+'% of configured model factors. Low coverage limits match confidence. Similarity is not a probability.</p></div></details></article>';
+ '<p class="cbb-detail-foot">Statistical coverage: '+match.coveragePct+'% of available researched metric weight. Low coverage limits match confidence. Similarity is not a probability.</p></div></details></article>';
  }).join("");
  if(!pool.length)byId("matches").innerHTML='<div class="cbb-research-grid">'+sidePanel("RESEARCHED GAME",selected,"researched")+'</div>';
  function reasonBoxPlaceholder(reason){return reasonBox("✓ WHY THESE GAMES MATCH",reason.facts)+reasonBox("⚠ KEY DIFFERENCES",reason.differences)+reasonBox("✧ THE BOTTOM LINE",[reason.facts.length>=4&&reason.differences.length>=4?reason.facts.length+" verified similarities and "+reason.differences.length+" meaningful differences identified. Compare both panels before interpreting the match score.":reason.facts.length+" verified similarities and "+reason.differences.length+" differences identified; fewer than four observations in either category limits a detailed comparison."])}
