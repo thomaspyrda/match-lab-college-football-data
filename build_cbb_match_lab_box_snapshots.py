@@ -22,7 +22,8 @@ def nested(d,*keys):
  return d
 def measure(row,section,name,field="total"):
  section_data=row.get(section) or {}
- item=section_data.get(name) or {}
+ item=section_data.get(name)
+ if item is None:return None
  if isinstance(item,(int,float)):return v(item)
  if isinstance(item,dict):
   for fieldname in ((field,) if field!="total" else ("total","value","count")):
