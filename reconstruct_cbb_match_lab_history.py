@@ -28,6 +28,7 @@ def main():
     schools=[x for x in registry if x.get("sport")=="cbb"]
     idmap={str(x["espn_id"]):x for x in schools}
     records=defaultdict(dict)
+    prior_records=defaultdict(dict)
     odds=defaultdict(dict)
     audits=defaultdict(int)
     collected_at={}
@@ -48,7 +49,11 @@ def main():
                     pts=number(game.get("points")); opppts=number(game.get("opponent_points"))
                     opp=str(game.get("opponent_id") or "")
                     gid=str(game.get("id") or "")
-                    if not(gdate and pts is not None and opppts is not None and opp in idmap and gid):continue
+                    if not(gdate and pts is not None and opppts is not None and gid):continue
+                    # Prior form includes every completed game, including non-D1 opponents,
+                    # matching the complete schedule used by box-stat reconstruction.
+                    prior_records[(str(season),slug)][gid]={"date":gdate,"points":pts,"opp_points":opppts,"id":gid}
+                    if opp not in idmap:continue
                     records[(str(season),slug)][gid]={"date":gdate,"points":pts,"opp_points":opppts,
                       "opponent":idmap[opp]["slug"],"location":game.get("location"),"id":gid}
             for gid,market in markets.get("games",{}).get(str(season),{}).items():
@@ -104,7 +109,7 @@ def main():
             code={"over":"O","under":"U","push":"P"}[result]
             if home_line.get("ou")!=code or away_line.get("ou")!=code:continue
             def pregame(subject):
-                prior=sorted([g for g in records.get((season,subject),{}).values()
+                prior=sorted([g for g in prior_records.get((season,subject),{}).values()
                               if g["date"].date()<game["date"].date()],key=lambda g:g["date"])
                 if len(prior)<1:return None
                 rest_days=(game["date"].date()-prior[-1]["date"].date()).days-1
