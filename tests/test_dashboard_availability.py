@@ -27,3 +27,20 @@ class Availability(unittest.TestCase):
  def test_healthy_player_news_is_not_an_injury_report_entry(self):
   row=self.row('2026-10-29T18:31Z');row['status']='Active';row['shortComment']='Recorded several tackles in the previous game.'
   rows,_=players([row],self.now);self.assertEqual(rows,[])
+
+ def college_page(self,date):
+  return '<title>College Football Injury Report for '+date+'</title>'+('<a id="Alabama"></a><section>No injuries to report</section>'*100)
+ def test_zero_padded_college_report_date(self):
+  now=datetime(2026,11,6,15,tzinfo=timezone.utc)
+  reports=college_reports(self.college_page('Nov 06, 2026'),'cfb',now)
+  self.assertEqual(reports['333']['report_as_of'],'2026-11-06')
+ def test_next_game_day_page_before_eastern_midnight(self):
+  now=datetime(2026,11,7,1,tzinfo=timezone.utc)
+  reports=college_reports(self.college_page('Nov 07, 2026'),'cfb',now)
+  self.assertEqual(reports['333']['report_as_of'],'2026-11-07')
+  self.assertEqual(reports['333']['checked_at'],now.isoformat())
+ def test_stale_and_distant_future_college_reports_rejected(self):
+  now=datetime(2026,11,6,15,tzinfo=timezone.utc)
+  for day in ['Nov 05, 2026','Nov 08, 2026']:
+   with self.subTest(day=day),self.assertRaises(ValueError):
+    college_reports(self.college_page(day),'cfb',now)
