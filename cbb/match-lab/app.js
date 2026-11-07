@@ -131,15 +131,15 @@ function renderResults(){
  ["FT%","ft_pct",false],
  
  ["Scoring Margin","margin",false]];
- const aliases={off_eff:["off_eff","adj_off_eff","offensive_efficiency","offensive_rating","off_rating","ortg"],def_eff:["def_eff","adj_def_eff","defensive_efficiency","defensive_rating","def_rating","drtg"],
+ const aliases={allowed_ppg:["allowed_ppg","ppg_allowed","allowed"],efg_pct:["efg_pct","efg","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opp_efg","opponent_efg_pct"],off_eff:["off_eff","adj_off_eff","offensive_efficiency","offensive_rating","off_rating","ortg"],def_eff:["def_eff","adj_def_eff","defensive_efficiency","defensive_rating","def_rating","drtg"],
  three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
- efg_pct:["efg_pct","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opponent_efg_pct"],
+
  turnover_margin:["turnover_margin","turnoverMargin"],pace:["pace","avgEstimatedPossessions"],
  oreb_pg:["oreb_pg","offensive_rebounds_pg","avgOffensiveRebounds"],dreb_pg:["dreb_pg","defensive_rebounds_pg","avgDefensiveRebounds"],
  preseason_rank:["preseason_rank","preseasonRank"],strength_rank:["strength_rank","team_strength_rank","strengthRank"],kenpom_rank:["kenpom_rank","kenpomRank"],
  assists_pg:["assists_pg","avgAssists"],opp_assists_pg:["opp_assists_pg","assists_allowed_pg"],
  rest_days:["rest_days","days_rest"],ft_pct:["ft_pct","freeThrowPct"]};
- const stat=(t,key)=>{const profile=t?.profile||{};for(const k of aliases[key]||[key]){const v=num(profile[k]??t?.[k]);if(v!==null)return v}return null};
+ const stat=(t,key)=>{const profile=t?.profile||{};for(const k of aliases[key]||[key]){const v=num(profile.metrics?.[k]??profile[k]??t?.[k]);if(v!==null)return v}return null};
  // Rankings must be authentic dated pregame observations, never current/final ranks projected backwards.
  const samples={};
  const buildSamples=()=>{for(const [label,k] of metricDefs){samples[k]=history.flatMap(g=>[stat(team(g.away),k),stat(team(g.home),k)]).filter(v=>v!==null).sort((a,b)=>a-b)}};
