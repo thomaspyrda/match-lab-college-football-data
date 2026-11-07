@@ -2,7 +2,11 @@
 const byId=id=>document.getElementById(id);
 const clean=s=>String(s??"—").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let games=[],selected=null,history=[],activeDay='all',logoByName={},frozenPreseason=new Map();
-async function load(url){const r=await fetch(url,{cache:"no-store"});if(!r.ok)throw Error(url+" unavailable");return r.json()}
+const requests=new Map();
+async function load(url){if(requests.has(url))return requests.get(url);const pending=(async()=>{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);try{const r=await fetch(url,{cache:url.includes('stage-')?'force-cache':'no-cache',signal:controller.signal});if(!r.ok)throw Error(url+' unavailable');return await r.json()}finally{clearTimeout(timer)}})();requests.set(url,pending);try{return await pending}catch(e){requests.delete(url);throw e}}
+let archiveSamples={};
+async function loadHistory(){const index=await load('data/search-index.json');archiveSamples=index.samples;const counts=['away','home'].map(side=>num(selected[side]?.profile?.games)??0),tol=counts.map(n=>n<5?3:n<12?4:6);const keys=Object.keys(index.shards).filter(key=>key.split('-').every((b,i)=>+b*4<=counts[i]+tol[i]&&+b*4+3>=Math.max(0,counts[i]-tol[i])));const rows=[];for(let i=0;i<keys.length;i+=3){const batch=await Promise.all(keys.slice(i,i+3).map(k=>load('data/'+index.shards[k])));batch.forEach(d=>rows.push(...d.games));await new Promise(r=>setTimeout(r,0))}return rows}
+
 const val=(x,...keys)=>keys.reduce((v,k)=>v?.[k],x);
 const num=v=>v==null||v===""?null:Number.isFinite(+v)?+v:null;
 function team(v){return typeof v==="string"?{name:v}:v||{name:"Unknown"}}
@@ -10,7 +14,7 @@ function gameKey(g){return String(g.id??g.game_id??[g.date,g.away?.name,g.home?.
 function date(g){return Date.parse(g.date||g.kickoff||g.start_date||"")}
 function name(g,side){return team(g[side]).name||"Unknown"}
 function schedule(g){return g.metrics||[]}
-function metric(g,k,side){const m=schedule(g).find(x=>x.key===k);return num(m?.[side]?.value??m?.[side]??team(g[side])?.profile?.[k]??team(g[side])?.[k])}
+function metric(g,k,side){const m=schedule(g).find(x=>x.key===k);return num(m?.[side]?.value??m?.[side]??team(g[side])?.profile?.metrics?.[k]??team(g[side])?.profile?.[k]??team(g[side])?.[k])}
 const rankKey=s=>String(s||"").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g," ").trim();
 async function loadFrozenPreseason(){
  const data=await load("data/preseason-2027.json");
@@ -51,7 +55,17 @@ function preRank(t){
  const starting=num(frozenRank(t));
  return starting!==null&&starting>=1?starting:null;
 }
-function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:num(h.allowed_ppg??h.profile?.allowed_ppg),awayAllowed:num(a.allowed_ppg??a.profile?.allowed_ppg),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(preRank(a),preRank(h)),preseasonAvg:avg(preRank(a),preRank(h)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
+ const aliases={allowed_ppg:["allowed_ppg","ppg_allowed","allowed"],efg_pct:["efg_pct","efg","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opp_efg","opponent_efg_pct"],off_eff:["off_eff","adj_off_eff","offensive_efficiency","offensive_rating","off_rating","ortg"],def_eff:["def_eff","adj_def_eff","defensive_efficiency","defensive_rating","def_rating","drtg"],
+ three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
+
+ turnover_margin:["turnover_margin","turnoverMargin"],pace:["pace","avgEstimatedPossessions"],
+ oreb_pg:["oreb_pg","offensive_rebounds_pg","avgOffensiveRebounds"],dreb_pg:["dreb_pg","defensive_rebounds_pg","avgDefensiveRebounds"],
+ preseason_rank:["preseason_rank","preseasonRank"],strength_rank:["strength_rank","team_strength_rank","strengthRank"],kenpom_rank:["kenpom_rank","kenpomRank"],
+ assists_pg:["assists_pg","avgAssists"],opp_assists_pg:["opp_assists_pg","assists_allowed_pg"],
+ rest_days:["rest_days","days_rest"],ft_pct:["ft_pct","freeThrowPct"]};
+ const stat=(t,key)=>{const profile=t?.profile||{};for(const k of aliases[key]||[key]){const v=num(profile.metrics?.[k]??profile[k]??t?.[k]);if(v!==null)return v}return null};
+
+function context(g){const a=team(g.away),h=team(g.home),market=g.market||{};const diff=(x,y)=>x===null||y===null?null:x-y;const avg=(x,y)=>x===null||y===null?null:(x+y)/2;return {strength:diff(num(a.team_strength??a.strength_score),num(h.team_strength??h.strength_score)),off:diff(metric(g,"ortg","away"),metric(g,"ortg","home")),def:diff(metric(g,"drtg","away"),metric(g,"drtg","home")),pace:avg(metric(g,"pace","away"),metric(g,"pace","home")),spread:num(market.spread??market.home_spread),total:num(market.total),homePPG:num(h.ppg??h.profile?.ppg),awayPPG:num(a.ppg??a.profile?.ppg),homeAllowed:stat(h,"allowed_ppg"),awayAllowed:stat(a,"allowed_ppg"),homeForm:num(h.last5_win_pct??h.profile?.last5_win_pct),awayForm:num(a.last5_win_pct??a.profile?.last5_win_pct),conference:a.conference&&h.conference?Number(a.conference===h.conference):null,preseasonDiff:diff(preRank(a),preRank(h)),preseasonAvg:avg(preRank(a),preRank(h)),played:Math.min(num(a.profile?.games)??0,num(h.profile?.games)??0)}}
 const weights={strength:[25,25],off:[12.5,20],def:[12.5,20],pace:[15,8],spread:[7.5,5],total:[7.5,8],homePPG:[7.5,12],awayPPG:[7.5,12],homeAllowed:[7.5,12],awayAllowed:[7.5,12],homeForm:[7.5,.4],awayForm:[7.5,.4],conference:[5,1]};
  // Similarity scores rely on dated pregame performance or an accepted preseason baseline; never on market totals alone.
 function similarity(a,b){
@@ -69,7 +83,7 @@ function similarity(a,b){
  const score=Math.min(96,Math.round(100*raw*Math.pow(coverage,0.55)));
  return {score,coverage:used,coveragePct:Math.round(coverage*100),raw};
 }
-function verified(g){const r=g.result||{};if(r.verified!==true||g.pregame_verified!==true||!g.snapshot_as_of||!g.result_verified_at||!g.pregame_source||!g.result_source||!g.market_source)return false;const snapshot=Date.parse(g.snapshot_as_of),tip=date(g),finalized=Date.parse(g.result_verified_at);if(!Number.isFinite(snapshot)||!Number.isFinite(tip)||!Number.isFinite(finalized)||!(snapshot<tip&&tip<finalized))return false;const away=team(g.away),home=team(g.home);const keys=["team_strength","offensive_rating","defensive_rating","pace"];const available=keys.filter(k=>num(away[k]??away.profile?.[k])!==null&&num(home[k]??home.profile?.[k])!==null).length;const basic=[away,home].every(t=>num(t.profile?.ppg)!==null&&num(t.profile?.allowed_ppg)!==null&&num(t.profile?.games)>=5);if(available<2&&!basic)return false;const a=num(r.away_points),h=num(r.home_points),line=num(g.market?.total??g.over_under);if(a===null||h===null||line===null)return false;const outcome=a+h>line?"over":a+h<line?"under":"push";return String(r.total).toLowerCase()===outcome}
+function verified(g){const r=g.result||{};if(r.verified!==true||g.pregame_verified!==true||!g.snapshot_as_of||!g.result_verified_at||!g.pregame_source||!g.result_source||!g.market_source)return false;const snapshot=Date.parse(g.snapshot_as_of),tip=date(g),finalized=Date.parse(g.result_verified_at);if(!Number.isFinite(snapshot)||!Number.isFinite(tip)||!Number.isFinite(finalized)||!(snapshot<tip&&tip<finalized))return false;const away=team(g.away),home=team(g.home);const keys=["team_strength","offensive_rating","defensive_rating","pace"];const available=keys.filter(k=>num(away[k]??away.profile?.[k])!==null&&num(home[k]??home.profile?.[k])!==null).length;const basic=[away,home].every(t=>num(t.profile?.ppg)!==null&&num(t.profile?.allowed_ppg)!==null&&num(t.profile?.games)>=1);if(available<2&&!basic)return false;const a=num(r.away_points),h=num(r.home_points),line=num(g.market?.total??g.over_under);if(a===null||h===null||line===null)return false;const outcome=a+h>line?"over":a+h<line?"under":"push";return String(r.total).toLowerCase()===outcome}
 function day(g){return new Intl.DateTimeFormat("en-CA",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date(date(g)))}
 function upcomingSpread(g){const m=g.market||{},raw=m.spread??m.home_spread;if(raw==null||raw==="")return "Spread —";if(typeof raw==="string"&&/[a-z]/i.test(raw))return clean(raw);const n=num(raw);if(n===null)return "Spread —";const fav=n<=0?name(g,"home"):name(g,"away");const line=n<=0?n:-n;return clean(fav)+" "+(line>0?"+":"")+line}
 function renderGames(){
@@ -92,9 +106,11 @@ function renderGames(){
 }
 document.querySelector(".rail-arrow.prev").onclick=()=>byId("games").scrollBy({left:-640,behavior:"smooth"});
 document.querySelector(".rail-arrow.next").onclick=()=>byId("games").scrollBy({left:640,behavior:"smooth"});
+function percentileValue(t,k){const v=stat(t,k),a=archiveSamples[k]||[];if(v===null||a.length<30)return null;let lo=0,hi=a.length;while(lo<hi){const mid=(lo+hi)>>1;if(a[mid]<v)lo=mid+1;else hi=mid}return 100*lo/a.length}
+function metricDistance(g){let total=0,count=0;for(const side of ['away','home']){let sideCount=0;for(const k of ['ppg','allowed_ppg','off_eff','def_eff','efg_pct','opp_efg_pct','three_pct','opp_three_pct','turnover_margin','pace','margin']){const a=percentileValue(selected[side],k),b=percentileValue(g[side],k);if(a===null||b===null)continue;const gap=Math.abs(a-b);if(['off_eff','def_eff'].includes(k)&&gap>25)return null;total+=gap;count++;sideCount++}if((selected[side]?.profile?.games??0)>0&&sideCount<3)return null}return count?total/count:null}
 function renderResults(){
  byId("results").hidden=false;
- const candidates=history.filter(verified).filter(g=>date(g)<date(selected)).filter(g=>preRank(team(g.away))!==null&&preRank(team(g.home))!==null);
+ const candidates=history.filter(g=>['away','home'].every(side=>{const a=num(selected[side]?.profile?.games),b=num(g[side]?.profile?.games);return a!==null&&b!==null&&Math.abs(a-b)<=(a<5?3:a<12?4:6)})).filter(verified).filter(g=>date(g)<date(selected)).filter(g=>preRank(team(g.away))!==null&&preRank(team(g.home))!==null);
  const researched=context(selected);
  if(researched.played===0&&(!Number.isFinite(researched.preseasonDiff)||!Number.isFinite(researched.preseasonAvg))){
   byId("status").textContent="This opening-day matchup needs verified 2026–27 preseason or starting-strength rankings for both teams. The historical archive is available, but unranked games cannot be compared responsibly.";
@@ -104,13 +120,15 @@ function renderResults(){
  // A displayed historical match must have a verifiable ATS decision and total result.
  // Exclude ATS pushes rather than misclassifying them as home/away covers.
  const atsDecision=g=>{const hp=num(g.result?.home_points),ap=num(g.result?.away_points),spread=num(g.market?.spread??g.market?.home_spread);if(hp===null||ap===null||spread===null)return null;const margin=hp-ap+spread;return Math.abs(margin)<0.00001?"push":margin>0?"home":"away"};
- let pool=candidates.map(g=>({g,match:similarity(researched,context(g))}))
+ let pool=candidates.map(g=>({g,distance:metricDistance(g),match:similarity(researched,context(g))}))
+   .filter(x=>x.distance!==null&&x.distance<=20)
+   .map(x=>({...x,match:x.match?{...x.match,score:Math.min(x.match.score,Math.round((100-x.distance*2)*Math.pow(x.match.coveragePct/100,.55)))}:null}))
    .filter(x=>x.match!==null&&["home","away"].includes(atsDecision(x.g))&&["over","under","push"].includes(String(x.g.result?.total).toLowerCase()))
    .sort((a,b)=>b.match.score-a.match.score||b.match.coverage-a.match.coverage)
    .slice(0,10);
  const counts={over:0,under:0,push:0};
  pool.forEach(({g})=>counts[g.result.total]++);
- byId("status").textContent=pool.length?pool.length+" historical comparisons with both teams ranked preseason · Scores account for statistical coverage.":"No eligible ranked historical comparisons yet. Both historical teams must have preseason ranks, and opening-day researched teams also need preseason ranks.";
+ byId("status").textContent=pool.length?pool.length+" historical comparisons at a similar season stage · Scores prioritize individual-team metric percentiles and coverage.":"No sufficiently similar historical games at this season stage. Fewer than ten matches is preferable to filling the list with weak comparisons.";
  const covers={home:0,away:0};
  pool.forEach(({g})=>{covers[atsDecision(g)]++});
  const summary=[[String(covers.home),"Home covers"],[String(covers.away),"Away covers"],[counts.over+"–"+counts.under+(counts.push?"–"+counts.push:""),"Over–Under"],[String(pool.length),"Matches"]];
@@ -131,24 +149,15 @@ function renderResults(){
  ["FT%","ft_pct",false],
  
  ["Scoring Margin","margin",false]];
- const aliases={allowed_ppg:["allowed_ppg","ppg_allowed","allowed"],efg_pct:["efg_pct","efg","effective_field_goal_pct"],opp_efg_pct:["opp_efg_pct","opp_efg","opponent_efg_pct"],off_eff:["off_eff","adj_off_eff","offensive_efficiency","offensive_rating","off_rating","ortg"],def_eff:["def_eff","adj_def_eff","defensive_efficiency","defensive_rating","def_rating","drtg"],
- three_pct:["three_pct","three_point_pct","threePointFieldGoalPct"],opp_three_pct:["opp_three_pct","opponent_three_point_pct"],
-
- turnover_margin:["turnover_margin","turnoverMargin"],pace:["pace","avgEstimatedPossessions"],
- oreb_pg:["oreb_pg","offensive_rebounds_pg","avgOffensiveRebounds"],dreb_pg:["dreb_pg","defensive_rebounds_pg","avgDefensiveRebounds"],
- preseason_rank:["preseason_rank","preseasonRank"],strength_rank:["strength_rank","team_strength_rank","strengthRank"],kenpom_rank:["kenpom_rank","kenpomRank"],
- assists_pg:["assists_pg","avgAssists"],opp_assists_pg:["opp_assists_pg","assists_allowed_pg"],
- rest_days:["rest_days","days_rest"],ft_pct:["ft_pct","freeThrowPct"]};
- const stat=(t,key)=>{const profile=t?.profile||{};for(const k of aliases[key]||[key]){const v=num(profile.metrics?.[k]??profile[k]??t?.[k]);if(v!==null)return v}return null};
  // Rankings must be authentic dated pregame observations, never current/final ranks projected backwards.
  const samples={};
- const buildSamples=()=>{for(const [label,k] of metricDefs){samples[k]=history.flatMap(g=>[stat(team(g.away),k),stat(team(g.home),k)]).filter(v=>v!==null).sort((a,b)=>a-b)}};
+ const buildSamples=()=>{for(const [label,k] of metricDefs){samples[k]=archiveSamples[k]||history.flatMap(g=>[stat(team(g.away),k),stat(team(g.home),k)]).filter(v=>v!==null).sort((a,b)=>a-b)}};
  const percentile=(v,k,invert)=>{const arr=samples[k]||[];if(v===null||arr.length<30)return null;let lo=0,hi=arr.length;while(lo<hi){let mid=(lo+hi)>>1;if(arr[mid]<v)lo=mid+1;else hi=mid}const pct=100*lo/arr.length;return Math.round(invert?100-pct:pct)};
  buildSamples();
  const bars=(g)=>{const away=team(g.away),home=team(g.home);
  return '<div class="cbb-metric-title">PREGAME METRIC PERCENTILES</div><p class="cbb-note">Percentiles compare verified historical pregame values across the archive, when available (higher = stronger). Unavailable fields are shown as —; season-end figures are excluded.</p><div class="cbb-bars">'+metricDefs.map(([label,k,invert])=>{const av=stat(away,k),hv=stat(home,k),ap=percentile(av,k,invert),hp=percentile(hv,k,invert);if((k==="off_eff"||k==="def_eff")&&(ap===null||hp===null))return "";const val=v=>v===null?"—":String(v);const fill=v=>v===null?0:Math.max(1,Math.min(100,v));
  return '<div class="cbb-barrow"><span title="'+clean(label)+'">'+clean(label)+'</span><div class="cbb-barval"><i style="width:'+fill(ap)+'%"></i></div><b>'+val(ap)+'</b><b>'+val(hp)+'</b><div class="cbb-barval pink"><i style="width:'+fill(hp)+'%"></i></div></div>'}).join("")+'</div>'};
- const form=t=>{const p=t.profile||{},n=num(p.games),w=num(p.wins),l=num(p.losses),lw=num(p.last5_wins),ll=num(p.last5_losses);const overall=w!==null&&l!==null?w+'–'+l:n!==null&&num(p.win_pct)!==null?Math.round(n*num(p.win_pct))+'–'+Math.round(n*(1-num(p.win_pct))):'—';const last5=lw!==null&&ll!==null?lw+'–'+ll:n>=5&&num(p.last5_win_pct)!==null?Math.round(5*num(p.last5_win_pct))+'–'+Math.round(5*(1-num(p.last5_win_pct))):'—';const rest=num(p.rest_days);return '<div class="cbb-form-tile"><b title="'+clean(t.name)+'">'+clean(t.name)+'</b><div class="cbb-form-rows"><span><small>Overall</small><strong>'+overall+'</strong></span><span><small>Last 5</small><strong>'+last5+'</strong></span><span><small>Rest Days</small><strong>'+(rest===null?'—':rest)+'</strong></span></div></div>'};
+ const form=t=>{const p=t.profile||{},n=num(p.games),w=num(p.wins),l=num(p.losses),lw=num(p.last5_wins),ll=num(p.last5_losses);const overall=w!==null&&l!==null?w+'–'+l:n!==null&&num(p.win_pct)!==null?Math.round(n*num(p.win_pct))+'–'+Math.round(n*(1-num(p.win_pct))):'—';const last5=lw!==null&&ll!==null?lw+'–'+ll:n>0&&num(p.last5_win_pct)!==null?Math.round(Math.min(n,5)*num(p.last5_win_pct))+'–'+Math.round(Math.min(n,5)*(1-num(p.last5_win_pct))):'—';const rest=num(p.rest_days);return '<div class="cbb-form-tile"><b title="'+clean(t.name)+'">'+clean(t.name)+'</b><div class="cbb-form-rows"><span><small>Overall</small><strong>'+overall+'</strong></span><span><small>Last 5</small><strong>'+last5+'</strong></span><span><small>Rest Days</small><strong>'+(rest===null?'—':rest)+'</strong></span></div></div>'};
  const contextRows=g=>{const a=team(g.away),h=team(g.home);return [["Spread (home)",signed(marketLine(g))],["Game total",g.market?.total??"—"],["Away PPG",fmt(a.profile?.ppg)],["Home PPG",fmt(h.profile?.ppg)],["Away allowed",fmt(a.profile?.allowed_ppg)],["Home allowed",fmt(h.profile?.allowed_ppg)]]};
  const contextTable=(title,g)=>'<div class="cbb-context-table"><h4>'+title+'</h4>'+contextRows(g).map(([label,value])=>'<div><span>'+label+'</span><strong>'+clean(value)+'</strong></div>').join("")+'</div>';
  const sidePanel=(title,g,type)=>{const a=team(g.away),h=team(g.home);return '<section class="cbb-research-panel '+type+'"><div class="cbb-research-head"><b>'+title+'</b><small>'+clean(new Date(date(g)).toLocaleDateString("en-US",{month:"numeric",day:"numeric",year:"numeric"}))+'</small></div><div class="cbb-research-teams">'+teamSide(a,type)+'<span>@</span>'+teamSide(h,type)+'</div><div class="cbb-match-pills"><span>'+spreadLabel(g)+'</span><span>O/U '+clean(g.market?.total??"—")+'</span></div>'+bars(g)+'<div class="cbb-metric-title">SEASON-TO-DATE FORM (BEFORE TIPOFF)</div><div class="cbb-form-row">'+form(a)+form(h)+'</div></section>'};
@@ -231,4 +240,4 @@ function renderResults(){
  byId("results").scrollIntoView({behavior:"smooth",block:"start"});
 }
 (async()=>{try{const d=await load("/cbb/dashboard/data/dashboard.json");const raw=Array.isArray(d.games)?d.games:[];const now=Date.now();try{await loadFrozenPreseason()}catch(error){console.warn("Frozen preseason rankings unavailable",error)}games=raw.map(g=>({...g,away:typeof g.away==="string"?d.teams?.[g.away]||{name:g.away}:g.away,home:typeof g.home==="string"?d.teams?.[g.home]||{name:g.home}:g.home})).filter(g=>Number.isFinite(date(g))&&date(g)>=now&&date(g)<now+7*86400000);renderGames()}catch(e){byId("games").innerHTML='<p class="muted">CBB schedule source unavailable. Historical results cannot be searched until the dashboard feed loads.</p>';console.error(e)}})();
-byId("see").onclick=async()=>{if(!selected)return;byId("see").disabled=true;byId("see").textContent="FINDING MATCHES…";try{const d=await load("data/verified-historical.json");history=Array.isArray(d.games)?d.games:[];try{const logos=await load("data/team-logos.json");logoByName=logos.logos||{}}catch(e){console.warn("Logo registry unavailable",e)}renderResults()}catch(e){byId("results").hidden=false;byId("status").textContent="Verified historical archive not yet available. No unverified comparisons will be shown.";byId("summary").innerHTML="";byId("matches").innerHTML="";console.error(e)}finally{byId("see").textContent="SEE MATCHES";byId("see").disabled=false}};
+byId("see").onclick=async()=>{if(!selected)return;byId("see").disabled=true;byId("see").textContent="FINDING MATCHES…";try{history=await loadHistory();await new Promise(r=>setTimeout(r,0));try{const logos=await load("data/team-logos.json");logoByName=logos.logos||{}}catch(e){console.warn("Logo registry unavailable",e)}renderResults()}catch(e){byId("results").hidden=false;byId("status").textContent="Verified historical archive not yet available. No unverified comparisons will be shown.";byId("summary").innerHTML="";byId("matches").innerHTML="";console.error(e)}finally{byId("see").textContent="SEE MATCHES";byId("see").disabled=false}};

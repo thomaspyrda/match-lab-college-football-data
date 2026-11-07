@@ -122,6 +122,13 @@ def profile(team_id,history,cutoff):
       'ft_pct':ratio(totals.get('ftm'),totals.get('fta'),100),'opp_ft_pct':ratio(other.get('ftm'),other.get('fta'),100),
       'ast_rate':ratio(totals.get('ast'),possessions,100) if valid_poss else None,'opp_ast_rate':ratio(other.get('ast'),possessions,100) if valid_poss else None})
     values.update(derived_metrics(games,team_id))
+    # Expose verified box-based Match Lab fields without treating absent stats as zero.
+    for key,field in [('oreb_pg','oreb'),('dreb_pg','dreb'),('assists_pg','ast')]:
+        values[key]=ratio(totals.get(field),n) if n and all(g['teams'][team_id].get(field) is not None for g in games) else None
+    values['opp_assists_pg']=ratio(other.get('ast'),n) if n and all(next(t for i,t in g['teams'].items() if i!=team_id).get('ast') is not None for g in games) else None
+    values['pace']=ratio(possessions,n) if valid_poss else None
+    values['margin']=ratio(totals.get('points',0)-other.get('points',0),n) if n else None
+
     market_records={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':min(n,5)}
     for g in games[-5:]:
         market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
@@ -145,7 +152,7 @@ def profile(team_id,history,cutoff):
         total=market.get('total')
         if total is not None:
             margin=own['points']+opp['points']-total;r=season_market['ou'];r['lined_games']+=1;r['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1;loc['ou']['lined_games']+=1;loc['ou']['overs' if margin>0 else 'unders' if margin<0 else 'pushes']+=1
-    return {'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
+    return {'wins':wins,'losses':losses,'win_pct':ratio(wins,n),'last5_wins':sum(r['result']=='W' for r in results[-5:]),'last5_losses':sum(r['result']=='L' for r in results[-5:]),'last5_win_pct':ratio(sum(r['result']=='W' for r in results[-5:]),min(n,5)),'rest_days':max(0,(cutoff.date()-stamp(games[-1]['date']).date()).days-1) if games else None,'games':n,'record':f'{wins}–{losses}' if n else '—','ppg':round(totals['points']/n,1) if n else None,'allowed':round(other['points']/n,1) if n else None,
       'metrics':values,'players':players,'results':results[-5:],'last5_market':market_records,'season_market':season_market,'location_markets':location_markets,'last_game_date':games[-1]['date'] if games else None}
 
 def rank(profiles,key,high):
