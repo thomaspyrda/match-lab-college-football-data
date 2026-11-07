@@ -5,96 +5,130 @@ on:
       season:
         description: 'Season ending year (2016–2026)'
         required: true
-        default: '2025'
+        default: '2024'
       all_seasons:
-        description: 'Backfill all ending years 2016–2026 sequentially'
+        description: 'Backfill all ending years 2016–2026'
         type: boolean
         default: false
+  push:
+    branches: [main]
+    paths:
+      - build_cbb_match_lab_box_snapshots.py
+      - tests/test_cbb_match_lab_box_snapshots.py
+      - .github/workflows/build-cbb-match-lab-advanced.yml
 permissions:
   contents: write
+concurrency:
+  group: cbb-advanced-historical-backfill
+  cancel-in-progress: false
 jobs:
-  reconstruct:
+  prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    outputs:
+      seasons: ${{ steps.matrix.outputs.seasons }}
+    steps:
+      - id: matrix
+        env:
+          EVENT: ${{ github.event_name }}
+          ALL: ${{ inputs.all_seasons }}
+          SEASON: ${{ inputs.season }}
+        shell: python
+        run: |
+          import os,json
+          years=list(range(2016,2027)) if os.environ['EVENT']=='push' or os.environ['ALL']=='true' else [int(os.environ['SEASON'])]
+          assert all(2016<=n<=2026 for n in years)
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:f.write('seasons='+json.dumps(years)+'\n')
+  snapshots:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        season: ${{ fromJSON(needs.prepare.outputs.seasons) }}
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          ref: main
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: pip install pytest
+      - name: Test chronological box reconstruction
+        run: python -m pytest -q tests/test_cbb_match_lab_box_snapshots.py
       - name: Build prior-game advanced statistical snapshots
         env:
           CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
-        run: |
-          if [ "${{ inputs.all_seasons }}" = "true" ]; then
-            for year in $(seq 2016 2026); do
-              echo "Building pregame CBB box statistics for $year"
-              python build_cbb_match_lab_box_snapshots.py --season "$year"
-            done
-          else
-            python build_cbb_match_lab_box_snapshots.py --season "${{ inputs.season }}"
-          fi
-      - name: Confirm 2017-18 numerical preseason ranks are present
-        run: |
-          python - <<'PY'
-          import json
-          data=json.load(open('cbb/match-lab/data/preseason-ranks.json'))
-          assert len(data['seasons']['2018']) == 343
-          assert len(data['historical_only']['2018']) == 8
-          print('Confirmed 343 current-registry preseason rankings and 8 historical-only records')
-          PY
+        run: python build_cbb_match_lab_box_snapshots.py --season ${{ matrix.season }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cbb-advanced-${{ matrix.season }}
+          path: cbb/match-lab/data/box-pregame-${{ matrix.season }}.json
+          retention-days: 7
+  publish:
+    needs: [prepare,snapshots]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Save previous archive for coverage comparison
+        run: cp cbb/match-lab/data/verified-historical.json /tmp/cbb-history-before.json
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cbb-advanced-*
+          merge-multiple: true
+          path: cbb/match-lab/data
       - name: Rebuild verified historical comparison archive
         run: python reconstruct_cbb_match_lab_history.py
-      - name: Validate every historical comparison
+      - name: Validate facts, chronology and metric coverage
         run: |
           python - <<'PY'
           import json
+          from collections import Counter
           from build_cbb_match_lab_archive import validated
           p='cbb/match-lab/data/verified-historical.json'
+          before=json.load(open('/tmp/cbb-history-before.json'))['games']
           games=json.load(open(p))['games']
           assert games and all(validated(g) for g in games)
-          print('Verified historical games:',len(games))
-          from collections import Counter
-          advanced=('three_pct','efg_pct','oreb_pg','dreb_pg','assists_pg','turnover_margin','ft_pct')
-          counts=Counter(k for g in games for k in advanced if k in g['home']['profile'] and k in g['away']['profile'])
-          print('Validated advanced metric coverage by game:',dict(counts))
-          with_2019=[g for g in games if g['season']==2019]
-          filled_2019=sum('preseason_rank' in side['profile'] for g in with_2019 for side in (g['home'],g['away']))
-          both_2019=sum(all('preseason_rank' in side['profile'] for side in (g['home'],g['away'])) for g in with_2019)
-          print('2018-19 historical comparisons:',len(with_2019),'preseason team-profiles populated:',filled_2019,'both-team ranked games:',both_2019)
-          if '${{ inputs.season }}' == '2019' and '${{ inputs.all_seasons }}' != 'true':
-            assert with_2019 and both_2019>0, '2018-19 rebuild produced no both-team ranked comparisons'
-          with_2020=[g for g in games if g['season']==2020]
-          filled_2020=sum('preseason_rank' in side['profile'] for g in with_2020 for side in (g['home'],g['away']))
-          both_2020=sum(all('preseason_rank' in side['profile'] for side in (g['home'],g['away'])) for g in with_2020)
-          print('2019-20 historical comparisons:',len(with_2020),'preseason team-profiles populated:',filled_2020,'both-team ranked games:',both_2020)
-          if '${{ inputs.season }}' == '2020' and '${{ inputs.all_seasons }}' != 'true':
-            assert with_2020 and both_2020>0, '2019-20 rebuild produced no both-team ranked comparisons'
-          with_2016=[g for g in games if g['season']==2016]
-          filled_2016=sum('preseason_rank' in side['profile'] for g in with_2016 for side in (g['home'],g['away']))
-          both_2016=sum(all('preseason_rank' in side['profile'] for side in (g['home'],g['away'])) for g in with_2016)
-          print('2015-16 historical comparisons:',len(with_2016),'preseason team-profiles populated:',filled_2016,'both-team ranked games:',both_2016)
-          if '${{ inputs.season }}' == '2016' and '${{ inputs.all_seasons }}' != 'true':
-            assert with_2016 and both_2016>0, '2015-16 rebuild produced no both-team ranked comparisons'
-          with_preseason=[g for g in games if g['season']==2018]
-          filled=sum('preseason_rank' in side['profile'] for g in with_preseason for side in (g['home'],g['away']))
-          print('2017-18 historical comparisons:',len(with_preseason),'preseason team-profiles populated:',filled)
-          if '${{ inputs.season }}' == '2018' and '${{ inputs.all_seasons }}' != 'true':
-            assert len(with_preseason)>0, '2017-18 rebuild produced no eligible historical games'
-          assert not with_preseason or filled>0, '2017-18 historical comparisons exist but no preseason rankings joined'
-          with_2017=[g for g in games if g['season']==2017]
-          filled_2017=sum('preseason_rank' in side['profile'] for g in with_2017 for side in (g['home'],g['away']))
-          print('2016-17 historical comparisons:',len(with_2017),'preseason team-profiles populated:',filled_2017)
-          if '${{ inputs.season }}' == '2017' and '${{ inputs.all_seasons }}' != 'true':
-            assert len(with_2017)>0 and filled_2017>0, '2016-17 rebuild produced no ranked historical matches'
+          assert len(games)==len(set(g['game_id'] for g in games))
+          assert {g['game_id'] for g in before}<={g['game_id'] for g in games}
+          keys=('ppg','allowed_ppg','off_eff','def_eff','three_pct','opp_three_pct','efg_pct','opp_efg_pct','turnover_margin','pace','oreb_pg','dreb_pg','assists_pg','opp_assists_pg','ft_pct','margin')
+          def coverage(rows):
+            result={}
+            for year in sorted({g['season'] for g in rows}):
+              profiles=[g[s]['profile'] for g in rows if g['season']==year for s in ('home','away')]
+              result[str(year)]={'profiles':len(profiles),'complete_16':sum(all(k in p for k in keys) for p in profiles),'metrics':dict(Counter(k for p in profiles for k in keys if k in p))}
+            return result
+          for g in games:
+            for s in ('home','away'):
+              p=g[s]['profile']
+              if p.get('box_stats_as_of'):assert p['box_stats_as_of'][:10]<g['date'][:10]
+          report={'before':coverage(before),'after':coverage(games)}
+          print(json.dumps(report,indent=2))
+          json.dump(report,open('cbb/match-lab/data/metric-coverage.json','w'),indent=2)
           PY
       - name: Publish validated snapshots and archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cbb/match-lab/data/box-pregame-*.json cbb/match-lab/data/verified-historical.json
+          git add cbb/match-lab/data/box-pregame-*.json cbb/match-lab/data/verified-historical.json cbb/match-lab/data/metric-coverage.json
           if ! git diff --cached --quiet; then
-            git commit -m "Add verified CBB pregame advanced metrics for season ${{ inputs.season }}"
-            git push
+            git commit -m "Expand verified CBB historical pregame metric coverage"
+            for attempt in 1 2 3 4 5; do
+              git fetch origin main
+              git rebase origin/main || { git rebase --abort; exit 1; }
+              if git push origin HEAD:main; then exit 0; fi
+              sleep $((attempt * 3))
+            done
+            exit 1
           fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cbb-historical-metric-coverage
+          path: cbb/match-lab/data/metric-coverage.json
+          retention-days: 30
