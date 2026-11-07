@@ -1,7 +1,7 @@
 name: Notify WiseStats publication
 on:
   workflow_run:
-    workflows: ["Ordered Active Sports Morning Update","Afternoon pregame data refresh","Refresh NBA Dashboard","Refresh independent NBA live markets","Publish CFB live markets","Publish CBB Team Page Layouts","Refresh CBB team archives","Build CFB team history","Refresh all dashboard player availability","Publish independent NBA season leaders","Refresh independent NBA full schedules","Build NBA team rankings","Refresh independent NBA scoring allowed by position","Refresh CBB Dashboard","Refresh CBB current Season Leaders","Publish CBB team archives","Build CBB Team Strength","Build CBB Historical Metric Rankings","Publish CBB live markets","Assemble and publish CFB dashboard","Publish CFB dashboard yardage metrics","Refresh CFB directory current records"]
+    workflows: ["Build CBB Match Lab advanced pregame snapshots","Build verified CBB Match Lab historical candidates","Ordered Active Sports Morning Update","Afternoon pregame data refresh","Refresh NBA Dashboard","Refresh independent NBA live markets","Publish CFB live markets","Publish CBB Team Page Layouts","Refresh CBB team archives","Build CFB team history","Refresh all dashboard player availability","Publish independent NBA season leaders","Refresh independent NBA full schedules","Build NBA team rankings","Refresh independent NBA scoring allowed by position","Refresh CBB Dashboard","Refresh CBB current Season Leaders","Publish CBB team archives","Build CBB Team Strength","Build CBB Historical Metric Rankings","Publish CBB live markets","Assemble and publish CFB dashboard","Publish CFB dashboard yardage metrics","Refresh CFB directory current records"]
     branches: [main]
     types: [completed]
   push:
