@@ -52,10 +52,24 @@ def derive(r):
  if None not in (ft,fta) and fta>0:values["ft_pct"]=100*ft/fta
  if values["turnovers"] is not None and values["opponent_turnovers"] is not None:
   values["turnover_margin"]=values["opponent_turnovers"]-values["turnovers"]
+ # Same box-score possession estimate already used by the live CBB dashboard.
+ # Used only when the API does not supply complete possession counts.
+ own_poss,opp_poss=v(own.get("possessions")),v(opp.get("possessions"))
+ estimated=0
+ if own_poss is None or opp_poss is None or own_poss<=0 or opp_poss<=0:
+  ofta=made_attempt(opp,"freeThrows")[1]
+  orb,oorb=values["oreb_pg"],measure(r,"opponentStats","rebounds","offensive")
+  tov,ot=values["turnovers"],values["opponent_turnovers"]
+  if None not in (fga,ofga,fta,ofta,orb,oorb,tov,ot):
+   poss=(fga-orb+tov+.44*fta+ofga-oorb+ot+.44*ofta)/2
+   if poss>0:own_poss=opp_poss=poss;estimated=1
+ if values["pace"] is None and own_poss is not None and opp_poss is not None and own_poss>0 and opp_poss>0:
+  values["pace"]=(own_poss+opp_poss)/2
+ values["_poss_estimated"]=estimated
  for key,n in {"_fg_m":fg,"_fg_a":fga,"_three_m":th,"_three_a":tha,
   "_opp_fg_m":ofg,"_opp_fg_a":ofga,"_opp_three_m":oth,"_opp_three_a":otha,"_ft_m":ft,"_ft_a":fta,
   "_points":measure(r,"teamStats","points"),"_opp_points":measure(r,"opponentStats","points"),
-  "_poss":v(own.get("possessions")),"_opp_poss":v(opp.get("possessions"))}.items():
+  "_poss":own_poss,"_opp_poss":opp_poss}.items():
   if n is not None:values[key]=n
  return {k:round(n,5) for k,n in values.items() if n is not None}
 
@@ -82,6 +96,7 @@ def aggregate(previous):
   if p is not None and n is not None and n>0:profile[key]=round(100*p/n,4)
  if profile:
   profile["box_stat_games"]=count
+  profile["possession_estimated_games"]=sum(p["stats"].get("_poss_estimated",0) for p in previous)
   profile["box_stats_as_of"]=max(p["date"] for p in previous)
  return profile
 
