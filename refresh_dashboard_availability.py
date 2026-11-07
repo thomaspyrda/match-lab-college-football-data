@@ -39,7 +39,11 @@ def college_reports(html,sport,now):
  """Read current, public Covers team injury tables; preserve reported statuses."""
  title=re.search(r'<title>(.*?)</title>',html,re.S)
  current=now.astimezone(ET).date()
- if not title or current.strftime('%b')+' '+str(current.day)+', '+str(current.year) not in title[1]:raise ValueError('College injury page does not identify today’s report date')
+ # Covers may zero-pad days and publish the next game-day page before midnight ET.
+ match=re.search(r'\b([A-Z][a-z]{2})\s+(\d{1,2}),\s+(\d{4})\b',title[1]) if title else None
+ if not match:raise ValueError('College injury page does not identify its report date')
+ report_date=datetime.strptime(' '.join(match.groups()),'%b %d %Y').date()
+ if not current<=report_date<=current+timedelta(days=1):raise ValueError('College injury page report date is stale or too far in the future')
  import html as html_module,unicodedata
  def key(value):
   value=html_module.unescape(str(value))
@@ -78,7 +82,7 @@ def college_reports(html,sport,now):
    status,sep,reason=plain(bold[1]).partition(' - ')
    records.append({'name':name,'position':position,'status':status,'reason':reason if sep else 'Reason not provided'})
   if not records and 'No injuries to report' not in section:continue
-  result[tid]={'state':'reported','checked_at':now.isoformat(),'source':'https://www.covers.com/sport/'+('football/ncaaf' if sport=='cfb' else 'basketball/ncaab')+'/injuries','source_name':'Covers','context':'team_report','name':school,'players':records,'report_as_of':current.isoformat()}
+  result[tid]={'state':'reported','checked_at':now.isoformat(),'source':'https://www.covers.com/sport/'+('football/ncaaf' if sport=='cfb' else 'basketball/ncaab')+'/injuries','source_name':'Covers','context':'team_report','name':school,'players':records,'report_as_of':report_date.isoformat()}
  if unmapped:print(sport,'Unmatched college injury teams:',unmapped,flush=True)
  return result
 
