@@ -1,0 +1,25 @@
+# Legacy domain migration. Data collectors remain unchanged.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^$ https://wisestats.bet/cfb/match-lab/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^teams\.html$ https://wisestats.bet/cfb/teams/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^cfb-dashboard-preview/?$ https://wisestats.bet/cfb/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^college-football-team-strength-rankings/?$ https://wisestats.bet/cfb/rankings/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^college-football-strength-of-schedule-rankings/?$ https://wisestats.bet/cfb/rankings/strength-of-schedule/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^college-football-offensive-strength-rankings/?$ https://wisestats.bet/cfb/rankings/offense/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^college-football-defensive-strength-rankings/?$ https://wisestats.bet/cfb/rankings/defense/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^college-football-season-leaders/?$ https://wisestats.bet/cfb/season-leaders/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^(nba|cbb|mlb)/dashboard/?$ https://wisestats.bet/$1/ [R=301,L]
+RewriteCond %{HTTP_HOST} ^(?:www\.)?matchlab\.parlaycalculator\.bet(?::[0-9]+)?$ [NC]
+RewriteRule ^(.*)$ https://wisestats.bet/$1 [R=301,L]
+</IfModule>
