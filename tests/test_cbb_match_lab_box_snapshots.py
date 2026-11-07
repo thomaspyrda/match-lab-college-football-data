@@ -37,3 +37,12 @@ def test_prior_only_same_day_future_and_missing_boxes():
  assert snapshots["target"]["box_stats_as_of"]==expected["first"]["date"]
  del observed["first"]
  assert "target" not in snapshots_for_team(expected,observed)
+
+def test_possession_fallback_matches_live_dashboard_and_requires_inputs():
+ r=row();r["teamStats"].pop("possessions");r["pace"]=None
+ p=aggregate([prior(r)])
+ assert p["pace"]==50 and p["off_eff"]==120 and p["def_eff"]==120
+ assert p["possession_estimated_games"]==1
+ r["teamStats"]["fieldGoals"]["attempted"]=None
+ p=aggregate([prior(r)])
+ assert "pace" not in p and "off_eff" not in p
