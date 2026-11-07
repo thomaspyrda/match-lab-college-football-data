@@ -10,7 +10,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-HOST = 'https://matchlab.parlaycalculator.bet/'
+HOST = 'https://wisestats.bet/'
 
 
 def require_collection(value, now):
@@ -51,6 +51,12 @@ def plan(sport, root, now):
         else:
             paths = ['cfb-dashboard-preview/data/dashboard.json', 'data/current_rankings.json',
                      'data/cfb-season-leaders.json', f'data/cfb/details/{now.year}.json']
+    if sport == 'nba':
+        paths += [str(p.relative_to(root)) for p in (root / 'nba/teams/data').glob('*-season-details.json')]
+    elif sport == 'cfb':
+        paths += [str(p.relative_to(root)) for p in (root / 'data/cfb/teams').glob('*.json')]
+    elif sport == 'nfl':
+        paths += [str(p.relative_to(root)) for p in (root / 'data/team-history').glob('*.json')]
     if sport != 'nfl':
         availability = f'data/dashboard-availability/{sport}.json'
         require_collection(json.loads((root / availability).read_text())['checked_at'], now)
@@ -80,7 +86,7 @@ def main():
     for sport in sports:
         try:
             paths = plan(sport, ROOT, datetime.now(timezone.utc))
-            host = 'https://nfl.parlaycalculator.bet/' if sport == 'nfl' else HOST
+            host = 'https://wisestats.bet/nfl/' if sport == 'nfl' else HOST
             # Hosting can lag a successful commit. Retry the entire snapshot check,
             # but never accept a timestamp alone as proof of deployment.
             for attempt in range(5):
