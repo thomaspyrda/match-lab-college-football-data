@@ -167,6 +167,10 @@ def collect_boxes():
     games = {str(g['id']): g for g in (previous or {}).get('payload', {}).get('games', [])}
     games = {**old, **games}
     pending = []
+    score_only = []
+    known = {str(t['espn_id']) for t in registry()}
+    if len(known) < MIN_D1_TEAMS:
+        raise ValueError('Incomplete Division I membership')
     player_state = load('players', required=False)
     retry_players = {str(g['id']) for g in (player_state or {}).get('pending', [])}
     retry_boxes = {str(g['id']) for g in (previous or {}).get('pending', [])}
@@ -199,6 +203,12 @@ def collect_boxes():
                 raise ValueError('Schedule/summary scores disagree')
             if summary.get('header', {}).get('season', {}).get('year', season()) != season():
                 raise ValueError('Wrong summary season')
+            # Verified non-D1 finals may legitimately have no published box score.
+            # Keep schedule/result facts; never manufacture team or player statistics.
+            missing_team_box = any(not t.get('statistics') for t in summary.get('boxscore', {}).get('teams', [])) or len(summary.get('boxscore', {}).get('teams', [])) != 2
+            if missing_team_box and len(set(expected) & known) == 1:
+                score_only.append({'id': gid, 'scores': expected, 'reason': 'Non-D1 final; official box score unavailable', 'source': 'https://www.espn.com/mens-college-basketball/game/_/gameId/' + gid})
+                return gid, saved
             complete = cloned(dashboard.completed, get=lambda _: summary, players_box=lambda _: [])
             game = complete(event)
             for tid, box in game['teams'].items():
@@ -215,7 +225,7 @@ def collect_boxes():
         for gid, game in pool.map(one, events):
             if game is not None:
                 games[gid] = game
-    save('boxes', {'games': list(games.values())}, pending=pending, results_collected_at=results['collected_at'])
+    save('boxes', {'games': list(games.values())}, pending=pending, score_only=score_only, results_collected_at=results['collected_at'])
     print(json.dumps({'verified_boxes': len(games), 'pending': len(pending)}))
 
 
@@ -242,6 +252,7 @@ def collect_players():
             if path.exists():
                 verified.append(gid)
     fallback = {}
+    score_only_teams = {str(tid) for game in boxes.get('score_only', []) for tid in game.get('scores', {})}
     if pending:
         try:
             league = archives.league(season(), 2, 'byathlete')
@@ -249,7 +260,7 @@ def collect_players():
                 regular = team['phases']['regular']
                 rows = league.get(team['team_id'], [])
                 finals = [g for g in regular['games'] if g['status'] == 'final']
-                if not team['phases']['postseason']['completed_games'] and rows and sum((p.get('stats') or {}).get('points', 0) for p in rows) == sum(g['points'] for g in finals):
+                if team['team_id'] not in score_only_teams and not team['phases']['postseason']['completed_games'] and rows and sum((p.get('stats') or {}).get('points', 0) for p in rows) == sum(g['points'] for g in finals):
                     fallback[team['team_id']] = rows
         except Exception as exc:
             print('League player fallback unavailable:', type(exc).__name__)
@@ -332,7 +343,8 @@ def project(folder, include_metrics=True, include_players=True, calculate_metric
             tid = str(doc['team_id'])
             finals = {str(g['id']) for p in doc['seasons'][year]['phases'].values() for g in p.get('games', []) if g['status'] == 'final'}
             usable = {str(g['id']) for g in player_games if tid in g['teams']}
-            if finals and finals <= usable:
+            excluded = {str(g['id']) for g in boxes.get('score_only', []) if tid in g.get('scores', {})}
+            if finals and (finals - excluded) <= usable:
                 doc['seasons'][year]['players'] = read(projected / path.name)['seasons'][year].get('players', [])
                 write(path, doc)
             elif tid in players['payload'].get('fallback', {}):
