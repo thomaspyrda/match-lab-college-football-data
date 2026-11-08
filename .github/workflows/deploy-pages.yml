@@ -85,12 +85,19 @@ jobs:
         run: |
           mkdir -p "${{ runner.temp }}/matchlab-public"
           rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='mlb/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
+      - name: Allocate a unique artifact for this deployment job
+        id: pages-artifact
+        run: echo "name=github-pages-$(cat /proc/sys/kernel/random/uuid)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v3
         with:
+          name: ${{ steps.pages-artifact.outputs.name }}
+          retention-days: 1
           path: ${{ runner.temp }}/matchlab-public
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ steps.pages-artifact.outputs.name }}
 
 
 
