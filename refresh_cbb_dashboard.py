@@ -179,6 +179,16 @@ def season_history(games,season,phase):return [g for g in games if g['season']==
 def main(offline_inputs=None):
     now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();season=today.year+(today.month>=7)
     registry=json.loads((ROOT/'data/sports/team-registry.json').read_text());teams={t['espn_id']:t for t in registry['teams'] if t['sport']=='cbb'}
+    ap_ranks={}
+    if offline_inputs is None:
+        try:
+            poll_data=get('rankings')
+            if poll_data.get('season',{}).get('year') == season:
+                for poll in poll_data.get('rankings',[]):
+                    if 'associated press' in poll.get('name','').lower() or poll.get('shortName','').upper() == 'AP':
+                        ap_ranks={str(x['team']['id']):int(x['current']) for x in poll.get('ranks',[]) if 1 <= int(x.get('current',0)) <= 25}
+        except (OSError, ValueError, KeyError, TypeError):
+            pass  # Unavailable polls are omitted, never guessed.
     cache_path=ROOT/'cbb/dashboard/data/completed-games.json';cache=json.loads(cache_path.read_text()) if cache_path.exists() else {'games':[]}
     old={g['id']:g for g in cache['games'] if g['season']==season}
     start=today-timedelta(days=7) if old else today.replace(month=11,day=1) if today.month>=7 else today.replace(year=today.year-1,month=11,day=1)
@@ -222,7 +232,7 @@ def main(offline_inputs=None):
             for p in rosters[i]['players']:
                 item=dict(p);item.update(sample.get(p['id'],{'games':0,'per_game':{},'plus_minus':None,'pm_games':0,'fg_pct':None,'three_pct':None,'bpm':None,'vorp':None,'vorp_percentile':None}));full.append(item)
             full.sort(key=lambda p:((p.get('per_game') or {}).get('points',-1),p['name']),reverse=True)
-            return {'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+sides['away' if i==away else 'home']['team'].get('color','666666'),'profile':profiles[i],'roster':full,'roster_source':rosters[i]['source'],'roster_updated_at':rosters[i]['observed_at']}
+            return {'ap_rank':ap_ranks.get(i),'id':i,'team_id':t['id'],'name':t['name'],'abbr':t['abbreviation'],'logo':t['logo'],'color':'#'+sides['away' if i==away else 'home']['team'].get('color','666666'),'profile':profiles[i],'roster':full,'roster_source':rosters[i]['source'],'roster_updated_at':rosters[i]['observed_at']}
         metrics=[]
         for key,label,unit,high,suffix in METRICS:
             ranks=rank(profiles,key,high);metrics.append({'key':key,'label':label,'unit':unit,'high':high,'suffix':suffix,'away':ranks.get(away),'home':ranks.get(home)})

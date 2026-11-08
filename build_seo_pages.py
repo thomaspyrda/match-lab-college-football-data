@@ -226,7 +226,8 @@ document.querySelectorAll('.data-table').forEach(function(table){{
  var tbody=table.tBodies[0],ths=Array.from(table.tHead?.rows[0]?.cells||[]);
  if(!tbody||!ths.length)return;
  var rows=Array.from(tbody.rows);
- function text(row,i){{return(row.cells[i]?.textContent||'').trim();}}
+ rows.forEach(function(row){{row.dataset.originalRank=(row.cells[0]?.textContent||'').trim();}});
+ function text(row,i){{return i===0?row.dataset.originalRank:(row.cells[i]?.textContent||'').trim();}}
  function parse(value){{
   if(!value||value==='—'||value==='-'||value==='N/A')return null;
   var m=value.match(/^#?(-?\d+(?:\.\d+)?)$/);
@@ -254,7 +255,7 @@ document.querySelectorAll('.data-table').forEach(function(table){{
     var v=(an!==null&&bn!==null)?an-bn:av.localeCompare(bv,undefined,{{numeric:true,sensitivity:'base'}});
     return (ascending?v:-v)||index.get(a)-index.get(b);
    }});
-   rows.forEach(function(row){{tbody.appendChild(row);}});
+   rows.forEach(function(row,n){{if(location.pathname.includes('rankings'))row.cells[0].textContent=String(n+1);tbody.appendChild(row);}});
   }});
  }});
 }});
