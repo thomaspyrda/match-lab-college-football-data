@@ -8,7 +8,7 @@ from leaderboard_core import derived,categories,tables
 ROOT=Path(__file__).resolve().parent
 EXTRA={'fg_made':['kicking:FGM'],'fg_att':['kicking:FGA'],'kicking_points':['kicking:PTS'],'punt_att':['punting:NO'],'punt_yards':['punting:YDS'],'punt_return_yards':['puntreturns:YDS'],'kick_return_yards':['kickreturns:YDS']}
 def aggregate(boxes,completed,fbs):
- players={};seen=set();unique=set();fields={k:aliases for group in FIELDS.values() for k,aliases in group};fields.update(EXTRA)
+ players={};seen=set();unique={};fields={k:aliases for group in FIELDS.values() for k,aliases in group};fields.update(EXTRA)
  for box in boxes:
   gid=str(box['id'])
   if gid not in completed:continue
@@ -22,8 +22,10 @@ def aggregate(boxes,completed,fbs):
      key=str(c['name']).lower()+':'+str(st['name']).upper()
      for a in st.get('athletes',[]):
       pid=str(a['id']);u=(gid,team,pid,key)
-      if u in unique:raise ValueError('Duplicate game/player/stat record')
-      unique.add(u);q=gameplayers.setdefault(pid,dict(name=a['name'],raw={}));q['raw'][key]=a['stat']
+      if u in unique:
+       if unique[u] == a['stat']:continue
+       raise ValueError(f'Conflicting game/player/stat record: {u}; {unique[u]!r} versus {a["stat"]!r}')
+      unique[u]=a['stat'];q=gameplayers.setdefault(pid,dict(name=a['name'],raw={}));q['raw'][key]=a['stat']
    for pid,q in gameplayers.items():
     p=players.setdefault(pid,dict(id=pid,name=q['name'],teams=set(),games=set(),stats=defaultdict(float)))
     p['teams'].add(team);p['games'].add(gid);raw=q['raw']
