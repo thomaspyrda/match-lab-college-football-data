@@ -79,6 +79,32 @@ class CBBPipelineTests(unittest.TestCase):
         with patch.object(p.dashboard, 'get', return_value=summary or self.summary):
             p.collect_boxes()
 
+
+    def test_non_d1_final_without_box_is_score_only(self):
+        # Opponent is outside the verified D1 registry; score remains authoritative.
+        for e in (self.final,):
+            e['competitions'][0]['competitors'][1]['team']['id'] = '999'
+        self.save_results()
+        summary = copy.deepcopy(self.summary)
+        summary['header']['competitions'][0]['competitors'] = copy.deepcopy(self.final['competitions'][0]['competitors'])
+        summary['boxscore'] = {'teams': [], 'players': []}
+        self.boxes(summary)
+        boxes = p.load('boxes')
+        self.assertFalse(boxes['pending'])
+        self.assertEqual(boxes['score_only'][0]['scores'], {'1': 80.0, '999': 75.0})
+        self.assertFalse(boxes['payload']['games'])
+        p.collect_players()
+        self.assertFalse(p.load('players')['pending'])
+        self.assertFalse(p.load('players')['payload']['games'])
+
+    def test_d1_final_without_box_remains_pending(self):
+        summary = copy.deepcopy(self.summary)
+        summary['boxscore'] = {'teams': [], 'players': []}
+        self.boxes(summary)
+        boxes = p.load('boxes')
+        self.assertTrue(boxes['pending'])
+        self.assertFalse(boxes['score_only'])
+
     def test_result_collection_does_not_request_players_metrics_or_rosters(self):
         def schedule(tid, year, phase):
             return copy.deepcopy(self.schedules['a' if tid == '1' else 'b']['phases']['regular']['games']) if phase == 2 else []
