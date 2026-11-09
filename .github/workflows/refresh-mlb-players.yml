@@ -8,9 +8,7 @@ on:
   push:
     branches: [main]
     paths: ['mlb_player_source.py', '.github/workflows/refresh-mlb-players.yml']
-  schedule:
-    - cron: '55 3 * * *'
-      timezone: America/New_York
+  # Offseason: use manual runs until MLB updates resume before the next season.
 permissions:
   contents: write
 concurrency:
