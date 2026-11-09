@@ -99,7 +99,7 @@ async function loadJson(path,required=false){
  for(let attempt=0;attempt<attempts;attempt++){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
   try{
-   const response=await fetch(path+(path.includes('?')?'&':'?')+'release='+RELEASE,{cache:'no-store',signal:controller.signal});
+   const response=await fetch(path+(path.includes('?')?'&':'?')+'release='+RELEASE,{cache:'no-cache',signal:controller.signal});
    if(!response.ok)throw Error('Archive request failed: '+response.status+' '+path);
    const value=await response.json();
    if(required&&(!value||value.slug!==route[1]||!value.seasons||!Object.keys(value.seasons).length))throw Error('Invalid team archive identity or seasons');
@@ -129,16 +129,29 @@ async function loadArchive(){
  }
 }
 const primary=loadArchive();
-Promise.all([
- loadJson('/data/cbb/metric-ranks.json'),loadJson('/data/cbb/recruiting-classes.json'),
- loadJson('/data/cbb/conference-tournament-results.json'),loadJson('/data/cbb/tournament-results.json'),
- loadJson('/data/cbb/national-awards.json'),loadJson('/data/cbb/opponent-metrics.json'),
- loadJson('/data/cbb/markets/'+route[1]+'.json'),loadJson('/data/cbb/pregame-markets/2027.json'),
- loadJson('/data/cbb/nba-draft-history.json')
-]).then(async([ranks,recruits,conference,national,awards,opponents,markets,pregame,drafts])=>{
- rankArchive=ranks;recruitArchive=recruits;conferenceResults=conference;tournamentResults=national;
- awardResults=awards;opponentMetrics=opponents;marketArchive=markets;pregameArchive=pregame;draftHistory=drafts;
- await primary;
- if(archive){try{render()}catch(error){console.error('CBB supplemental rendering failed',route[1],error)}}
-});
+// Apply each source independently so schedule results never wait for large metric files.
+let renderPending=false;
+function scheduleSupplementalRender(){
+ if(renderPending)return;
+ renderPending=true;
+ setTimeout(async()=>{
+  await primary;
+  renderPending=false;
+  if(archive){try{render()}catch(error){console.error('CBB supplemental rendering failed',route[1],error)}}
+ },50);
+}
+const supplements=[
+ ['/data/cbb/markets/'+route[1]+'.json',v=>marketArchive=v],
+ ['/data/cbb/pregame-markets/2027.json',v=>pregameArchive=v],
+ ['/data/cbb/metric-ranks.json',v=>rankArchive=v],
+ ['/data/cbb/recruiting-classes.json',v=>recruitArchive=v],
+ ['/data/cbb/conference-tournament-results.json',v=>conferenceResults=v],
+ ['/data/cbb/tournament-results.json',v=>tournamentResults=v],
+ ['/data/cbb/national-awards.json',v=>awardResults=v],
+ ['/data/cbb/opponent-metrics.json',v=>opponentMetrics=v],
+ ['/data/cbb/nba-draft-history.json',v=>draftHistory=v]
+];
+for(const [path,apply] of supplements){
+ loadJson(path).then(value=>{apply(value);scheduleSupplementalRender()});
+}
 })();
