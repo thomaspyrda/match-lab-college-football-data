@@ -69,19 +69,19 @@ const moreDraft=container.querySelector('#wiseMoreDraft');
 if(moreDraft&&draftEntries)moreDraft.addEventListener('click',()=>{container.querySelector('#draft tbody').innerHTML=draftEntries.map(draftRow).join('');moreDraft.remove()});
 const more=container.querySelector('#wiseMoreGames');if(more)more.addEventListener('click',()=>{const table=container.querySelector('#schedule table');const tbody=table?.querySelector('tbody');if(!tbody)return;const widths=Array.from(table.querySelectorAll('thead th'),th=>th.getBoundingClientRect().width);const colgroup=document.createElement('colgroup');widths.forEach(width=>{const col=document.createElement('col');col.style.width=width+'px';colgroup.appendChild(col)});table.insertBefore(colgroup,table.firstChild);table.style.tableLayout='fixed';table.style.width=table.getBoundingClientRect().width+'px';tbody.insertAdjacentHTML('beforeend',games.slice(12).map(gameRow).join(''));more.remove()});
 }
-let requestedMlbGameYear=null;function loadMlbGameResults(){if(sport!=='mlb')return;const year=String(select.value);if(requestedMlbGameYear===year)return;requestedMlbGameYear=year;mlbGameResults=null;fetch('/data/mlb/game-results/'+encodeURIComponent(year)+'.json?v=20261020-market-restored',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No MLB game results');return r.json()}).then(d=>{if(String(select.value)===year){mlbGameResults=d;render()}}).catch(()=>{if(String(select.value)===year){mlbGameResults=null;render()}})}
+let requestedMlbGameYear=null;function loadMlbGameResults(){if(sport!=='mlb')return;const year=String(select.value);if(requestedMlbGameYear===year)return;requestedMlbGameYear=year;mlbGameResults=null;fetch('/data/mlb/game-results/'+encodeURIComponent(year)+'.json?v=20261020-market-restored',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('No MLB game results');return r.json()}).then(d=>{if(String(select.value)===year){mlbGameResults=d;render()}}).catch(()=>{if(String(select.value)===year){mlbGameResults=null;render()}})}
 select.addEventListener('change',()=>{render();loadMlbGameResults()});render();loadMlbGameResults();
 
 function loadMlbDraft(){
 if(sport!=='mlb')return;
 mlbDraftSingle=null;
 const selected=select.value;
-fetch('/data/mlb/drafts/'+encodeURIComponent(selected)+'/'+encodeURIComponent(match[2])+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Draft season not published');return r.json()}).then(d=>{if(select.value===selected){mlbDraftSingle=d;render()}}).catch(()=>{});
+fetch('/data/mlb/drafts/'+encodeURIComponent(selected)+'/'+encodeURIComponent(match[2])+'.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Draft season not published');return r.json()}).then(d=>{if(select.value===selected){mlbDraftSingle=d;render()}}).catch(()=>{});
 }
 if(sport==='mlb'){select.addEventListener('change',loadMlbDraft);loadMlbDraft();}
 
-if(sport==='mlb')fetch('/data/mlb/season-playoff-results.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No MLB postseason data');return r.json()}).then(d=>{mlbPlayoffResults=d;render()}).catch(()=>{});
-if(sport==='mlb')fetch('/data/mlb/award-winners.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Historical MLB awards unavailable');return r.json()}).then(d=>{mlbAwards=d;render()}).catch(()=>{});
-if(sport==='mlb')fetch('/data/mlb/franchise-accolades.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No franchise awards data');return r.json()}).then(d=>{mlbAccolades=d;render()}).catch(()=>{});
-if(sport==='mlb')fetch('/data/mlb/season-snapshots.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No MLB season data');return r.json()}).then(d=>{mlbSnapshots=d;render()}).catch(()=>{});
+if(sport==='mlb')fetch('/data/mlb/season-playoff-results.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('No MLB postseason data');return r.json()}).then(d=>{mlbPlayoffResults=d;render()}).catch(()=>{});
+if(sport==='mlb')fetch('/data/mlb/award-winners.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('Historical MLB awards unavailable');return r.json()}).then(d=>{mlbAwards=d;render()}).catch(()=>{});
+if(sport==='mlb')fetch('/data/mlb/franchise-accolades.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('No franchise awards data');return r.json()}).then(d=>{mlbAccolades=d;render()}).catch(()=>{});
+if(sport==='mlb')fetch('/data/mlb/season-snapshots.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error('No MLB season data');return r.json()}).then(d=>{mlbSnapshots=d;render()}).catch(()=>{});
 })();
