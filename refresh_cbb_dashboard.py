@@ -163,6 +163,7 @@ METRICS=[('ppg','PPG','OFFENSE',True,''),('ppg_allowed','PPG Allowed','DEFENSE',
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
 
 METRICS.extend(ADDITIONAL_METRICS)
+METRICS.append(('pace','Pace','TEAM',True,''))
 
 def roster(team_id):
     try:d=get('teams/'+team_id+'/roster')
