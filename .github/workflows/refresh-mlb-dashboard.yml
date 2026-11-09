@@ -6,9 +6,7 @@ on:
     types: [completed]
   workflow_call:
   workflow_dispatch:
-  schedule:
-    - cron: '9 4 * * *'
-      timezone: America/New_York
+  # Offseason: use manual runs until MLB updates resume before the next season.
   push:
     branches: [main]
     paths:

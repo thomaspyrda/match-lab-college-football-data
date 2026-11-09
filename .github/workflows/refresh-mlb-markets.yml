@@ -4,9 +4,7 @@ on:
   push:
     branches: [main]
     paths: ['mlb_market_source.py', '.github/workflows/refresh-mlb-markets.yml']
-  schedule:
-    - cron: '45 3 * * *'
-      timezone: America/New_York
+  # Offseason: use manual runs until MLB updates resume before the next season.
 permissions:
   contents: write
 concurrency:
