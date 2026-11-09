@@ -87,7 +87,7 @@ function render(){const season=archive.seasons[year],data=season?.phases.regular
  section('players','Season Leaders',(season.player_stats_source?.complete===false?'<p><strong>Verified partial-season statistics: '+h(season.player_stats_source.games)+' of '+h(season.player_stats_source.expected_games)+' completed games.</strong> Per-game averages and games played include only these verified boxes; missing games are not estimated. Sorted by PPG.</p>':'<p>Full-season player leaders and statistics, sorted by PPG. Includes regular-season and postseason appearances.</p>')+(playerRows.length?table(['Player','Pos',...playerCols.map(x=>x[1])],playerRows):'<p>Full-season player statistics unavailable.</p>'))+
  section('accolades','Program Accolades',(()=>{const program=awardResults.programs?.[route[1]];const programTotals=program?statTiles(['NCAA championships','NCAA Final Four appearances','Consensus All-America First Team'].map(k=>[k,program[k]?.length||0])):'';const groups=(program?programTotals+'<p>Program history through 2025–26. Expand a category to see years and recipients. Vacated NCAA results are listed separately.</p>'+Object.entries(program).filter(([key])=>key!=='sources').map(([category,items])=>'<details class="cbb-accolade-group"><summary>'+h(category)+' <b>'+items.length+'</b></summary><ul>'+items.map(item=>'<li><strong>'+h(item.year)+'</strong>'+(item.recipient?' · '+h(item.recipient):'')+'</li>').join('')+'</ul></details>').join('')+'<p>Sources: <a href="https://www.ncaa.org/championships/statistics-and-records/mens-basketball/">NCAA record books</a>. Major player awards cover the NCAA record-book series from their establishment through 2026. Conference honors cover the archived seasons, 2015–16 through 2025–26.</p>':'');const a=awardResults?.seasons?.[year]?.[route[1]];if(!a)return groups+'<p>No selected-season national award or Consensus All-America honor recorded in these NCAA award series.</p>'+renderDraftHistory();const items=[groups,'<h3>Selected Season · '+h(season.label)+'</h3>'];if(a.awards?.length)items.push('<h3>National Awards</h3>'+table(['Award','Player'],a.awards.map(x=>[h(x.award),h(x.recipient)])));for(const [key,title] of [['first_team','Consensus All-America First Team'],['second_team','Consensus All-America Second Team']])if(a[key]?.length)items.push('<h3>'+title+'</h3><ul>'+a[key].map(x=>'<li>'+h(x)+'</li>').join('')+'</ul>');return (items.length?items.join(''):'<p>No sourced individual national awards recorded for this season.</p>')+renderDraftHistory();})())+
  '<p class="research-source">Sources: '+season.sources.map(s=>'<a href="'+h(s.url)+'">'+h(s.name)+'</a>').join(' · ')+'. Collected '+h(new Date(season.collected_at).toLocaleDateString())+'. Season ATS and O/U use the linked provider’s reported records; unlined games are excluded. Schedule lines use CBBD or ESPN historical provider lines, Sportsbook Reviews Online archived closing lines, or archived pregame bookmaker snapshots. Provider selection and coverage can vary by season. Some recovered ESPN records use opening lines. Computer predictions and in-play providers are excluded from these recoveries. '+(seasonMarket?'<a href="'+h(seasonMarket.source)+'">Season betting source</a>. ATS: '+seasonMarket.ats.reduce((a,b)=>a+b,0)+' reported games; O/U: '+seasonMarket.ou.reduce((a,b)=>a+b,0)+' reported games. ':'')+'</p>';
- main.querySelector('#cbb-archive-year').addEventListener('change',e=>{year=e.target.value;const u=new URL(location.href);u.searchParams.set('season',year);history.replaceState(null,'',u);render();});
+ main.querySelector('#cbb-archive-year').addEventListener('change',e=>{year=e.target.value;const u=new URL(location.href);u.searchParams.set('season',year);history.replaceState(null,'',u);render();loadSeasonMetrics(year);});
 
  
 }
@@ -140,15 +140,27 @@ function scheduleSupplementalRender(){
   if(archive){try{render()}catch(error){console.error('CBB supplemental rendering failed',route[1],error)}}
  },50);
 }
+const metricRequests=new Map();
+function loadSeasonMetrics(selectedYear){
+ if(metricRequests.has(selectedYear))return metricRequests.get(selectedYear);
+ const request=Promise.all(['metric-ranks','opponent-metrics'].map(async(kind)=>{
+  let value=await loadJson('/data/cbb/'+kind+'/'+selectedYear+'.json');
+  if(!value.seasons?.[selectedYear])value=await loadJson('/data/cbb/'+kind+'.json');
+  if(kind==='metric-ranks')rankArchive={...rankArchive,...value,seasons:{...rankArchive.seasons,...value.seasons}};
+  else opponentMetrics={...opponentMetrics,...value,seasons:{...opponentMetrics.seasons,...value.seasons}};
+  scheduleSupplementalRender();
+ }));
+ metricRequests.set(selectedYear,request);
+ return request;
+}
+primary.then(()=>{if(archive)loadSeasonMetrics(year)});
 const supplements=[
  ['/data/cbb/markets/'+route[1]+'.json',v=>marketArchive=v],
  ['/data/cbb/pregame-markets/2027.json',v=>pregameArchive=v],
- ['/data/cbb/metric-ranks.json',v=>rankArchive=v],
  ['/data/cbb/recruiting-classes.json',v=>recruitArchive=v],
  ['/data/cbb/conference-tournament-results.json',v=>conferenceResults=v],
  ['/data/cbb/tournament-results.json',v=>tournamentResults=v],
  ['/data/cbb/national-awards.json',v=>awardResults=v],
- ['/data/cbb/opponent-metrics.json',v=>opponentMetrics=v],
  ['/data/cbb/nba-draft-history.json',v=>draftHistory=v]
 ];
 for(const [path,apply] of supplements){
