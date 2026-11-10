@@ -1,5 +1,8 @@
 name: Publish WiseStats on public standard runner
 on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/publish-wisestats-public.yml]
   workflow_dispatch:
 permissions:
   contents: read
