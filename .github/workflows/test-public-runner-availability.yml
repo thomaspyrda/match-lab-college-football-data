@@ -1,0 +1,15 @@
+name: Test public runner availability
+on:
+  push:
+    branches: [test-public-runner-availability-20261109]
+    paths: [.github/workflows/test-public-runner-availability.yml]
+permissions: {}
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Confirm standard hosted runner starts
+        run: |
+          echo 'Public standard runner started successfully.'
+          python3 -c "import platform; print('Python ready:', platform.python_version())"
