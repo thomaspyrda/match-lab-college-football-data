@@ -80,12 +80,16 @@ def compare(path, root, host, fetch=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--sport', choices=['all', 'cbb', 'cfb', 'nba', 'nfl'], default='all')
+    parser.add_argument('--source-only', action='store_true', help='Validate source readiness before handing publication to WiseStats')
     args = parser.parse_args()
     sports = ['cbb', 'cfb', 'nba'] if args.sport == 'all' else [args.sport]
     failures = []
     for sport in sports:
         try:
             paths = plan(sport, ROOT, datetime.now(timezone.utc))
+            if args.source_only:
+                print(sport + ': morning source inputs ready; final live publication is verified separately by the publisher')
+                continue
             host = 'https://wisestats.bet/nfl/' if sport == 'nfl' else HOST
             # Hosting can lag a successful commit. Retry the entire snapshot check,
             # but never accept a timestamp alone as proof of deployment.
