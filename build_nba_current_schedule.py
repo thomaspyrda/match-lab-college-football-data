@@ -77,6 +77,10 @@ def main():
         return lookup[tid]['slug'],build_team(data,tid,lookup,completed,year)
     teams=dict(ThreadPoolExecutor(4).map(one,lookup))
     output={'season':year,'updated_at':now.isoformat(),'cup_source':CUP_SOURCE,'teams':teams}
+    from scripts.verify_sport_dataset_contract import verify_nba_schedule_results
+    dashboard_path = ROOT/'nba/dashboard/data/dashboard.json'
+    if dashboard_path.exists():
+        verify_nba_schedule_results(output, json.loads(dashboard_path.read_text()))
     (ROOT/'nba/teams/data/current-schedule.json').write_text(json.dumps(output,ensure_ascii=False,separators=(',',':'))+'\n')
     print('Published all 30 full schedules: 82 games/slots per team, including explicit unassigned NBA Cup slots.')
 
