@@ -2,7 +2,7 @@
   "schema_version": 1,
   "season": "2026\u201327",
   "season_type": "Regular season",
-  "updated_at": "2026-11-10T02:44:25.428069+00:00",
+  "updated_at": "2026-11-10T02:54:02.253514+00:00",
   "player_value": {
     "state": "unavailable",
     "source": null,
@@ -15,7 +15,7 @@
       "id": "401909955",
       "date": "2026-11-10T00:30Z",
       "label": "Mon Nov 9 \u00b7 7:30 PM ET",
-      "status": "In Progress",
+      "status": "End of Period",
       "away": {
         "id": "29",
         "team_id": "nba:espn:29",
@@ -1428,9 +1428,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.654224+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909955",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -1459,6 +1459,15 @@
               "reason": "Back \u00b7 Soreness",
               "reported_at": "2026-11-08T23:07Z",
               "expected_return": "2026-11-11"
+            },
+            {
+              "player_id": "nba:espn:player:4593016",
+              "name": "Quinten Post",
+              "position": "C",
+              "status": "Day-To-Day",
+              "reason": "Head",
+              "reported_at": "2026-11-10T01:17Z",
+              "expected_return": "2026-11-09"
             }
           ],
           "state": "reported"
@@ -2632,11 +2641,29 @@
         "roster_updated_at": "2026-11-10T02:43:36.036009+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909955",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
+            {
+              "player_id": "nba:espn:player:5093267",
+              "name": "Collin Murray-Boyles",
+              "position": "F",
+              "status": "Out",
+              "reason": "Illness",
+              "reported_at": "2026-11-09T22:52Z",
+              "expected_return": "2026-11-11"
+            },
+            {
+              "player_id": "nba:espn:player:4395724",
+              "name": "Immanuel Quickley",
+              "position": "G",
+              "status": "Out",
+              "reason": "Right \u00b7 Hamstring",
+              "reported_at": "2026-11-09T22:54Z",
+              "expected_return": "2026-11-11"
+            },
             {
               "player_id": "nba:espn:player:6450",
               "name": "Kawhi Leonard",
@@ -2656,31 +2683,13 @@
               "expected_return": "2026-11-15"
             },
             {
-              "player_id": "nba:espn:player:5093267",
-              "name": "Collin Murray-Boyles",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Illness",
-              "reported_at": "2026-11-09T18:28Z",
-              "expected_return": "2026-11-09"
-            },
-            {
-              "player_id": "nba:espn:player:4395724",
-              "name": "Immanuel Quickley",
-              "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Right \u00b7 Hamstring",
-              "reported_at": "2026-11-08T17:14Z",
-              "expected_return": "2026-11-09"
-            },
-            {
               "player_id": "nba:espn:player:4433134",
               "name": "Scottie Barnes",
               "position": "F",
-              "status": "Day-To-Day",
+              "status": "Out",
               "reason": "Left \u00b7 Groin \u00b7 Soreness",
-              "reported_at": "2026-11-08T17:11Z",
-              "expected_return": "2026-11-09"
+              "reported_at": "2026-11-09T22:50Z",
+              "expected_return": "2026-11-11"
             }
           ],
           "state": "reported"
@@ -3378,7 +3387,7 @@
         "spread": "MEM -1.5",
         "total": 225.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909955",
       "profile_cutoff": "2026-11-10T00:30:00+00:00"
@@ -4662,9 +4671,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.171704+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909956",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -4693,15 +4702,6 @@
               "reason": "Left \u00b7 Hamstring \u00b7 Strain",
               "reported_at": "2026-11-07T20:46Z",
               "expected_return": "2026-11-13"
-            },
-            {
-              "player_id": "nba:espn:player:2530530",
-              "name": "T.J. McConnell",
-              "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Right \u00b7 Hamstring \u00b7 Strain",
-              "reported_at": "2026-11-08T23:24Z",
-              "expected_return": "2026-11-09"
             }
           ],
           "state": "reported"
@@ -5997,9 +5997,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.625549+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909956",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -6009,6 +6009,15 @@
               "status": "Out",
               "reason": "Right \u00b7 Foot \u00b7 Surgery",
               "reported_at": "2026-11-01T22:57Z",
+              "expected_return": "2026-11-12"
+            },
+            {
+              "player_id": "nba:espn:player:4873153",
+              "name": "Morez Johnson Jr.",
+              "position": "F",
+              "status": "Out",
+              "reason": "Leg",
+              "reported_at": "2026-11-09T23:07Z",
               "expected_return": "2026-11-12"
             },
             {
@@ -6028,15 +6037,6 @@
               "reason": "Right \u00b7 Heel \u00b7 Inflammation",
               "reported_at": "2026-11-01T23:19Z",
               "expected_return": "2026-11-12"
-            },
-            {
-              "player_id": "nba:espn:player:4873153",
-              "name": "Morez Johnson Jr.",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Leg",
-              "reported_at": "2026-11-09T18:50Z",
-              "expected_return": "2026-11-09"
             }
           ],
           "state": "reported"
@@ -6734,7 +6734,7 @@
         "spread": "DAL -4.5",
         "total": 227.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909956",
       "profile_cutoff": "2026-11-10T01:00:00+00:00"
@@ -6743,7 +6743,7 @@
       "id": "401909957",
       "date": "2026-11-10T01:30Z",
       "label": "Mon Nov 9 \u00b7 8:30 PM ET",
-      "status": "Halftime",
+      "status": "In Progress",
       "away": {
         "id": "7",
         "team_id": "nba:espn:7",
@@ -8018,55 +8018,19 @@
         "roster_updated_at": "2026-11-10T02:43:36.305475+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909957",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
-              "player_id": "nba:espn:player:3064290",
-              "name": "Aaron Gordon",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Lower Body",
-              "reported_at": "2026-11-08T22:42Z",
-              "expected_return": "2026-11-09"
-            },
-            {
-              "player_id": "nba:espn:player:3138196",
-              "name": "Cameron Johnson",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Lower Body",
-              "reported_at": "2026-11-08T22:51Z",
-              "expected_return": "2026-11-09"
-            },
-            {
-              "player_id": "nba:espn:player:4431767",
-              "name": "Christian Braun",
+              "player_id": "nba:espn:player:4432181",
+              "name": "Julian Strawther",
               "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Left \u00b7 Calf \u00b7 Bruise",
-              "reported_at": "2026-11-08T22:46Z",
-              "expected_return": "2026-11-09"
-            },
-            {
-              "player_id": "nba:espn:player:3978",
-              "name": "DeMar DeRozan",
-              "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Back \u00b7 Spasms",
-              "reported_at": "2026-11-08T22:51Z",
-              "expected_return": "2026-11-09"
-            },
-            {
-              "player_id": "nba:espn:player:3936299",
-              "name": "Jamal Murray",
-              "position": "G",
-              "status": "Day-To-Day",
-              "reason": "Left \u00b7 Lower Leg \u00b7 Bruise",
-              "reported_at": "2026-11-08T22:43Z",
-              "expected_return": "2026-11-09"
+              "status": "Out",
+              "reason": "Left \u00b7 Knee \u00b7 Sprain",
+              "reported_at": "2026-10-17T00:52Z",
+              "expected_return": "2026-11-29"
             }
           ],
           "state": "reported"
@@ -9293,9 +9257,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.613620+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909957",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -9304,8 +9268,8 @@
               "position": "C",
               "status": "Out",
               "reason": "Right \u00b7 Ankle \u00b7 Sprain",
-              "reported_at": "2026-11-08T22:56Z",
-              "expected_return": "2026-11-11"
+              "reported_at": "2026-11-09T23:56Z",
+              "expected_return": "2026-11-15"
             },
             {
               "player_id": "nba:espn:player:4432827",
@@ -9322,8 +9286,8 @@
               "position": "C",
               "status": "Out",
               "reason": "Right \u00b7 Calf \u00b7 Strain",
-              "reported_at": "2026-11-05T00:21Z",
-              "expected_return": "2026-11-11"
+              "reported_at": "2026-11-09T23:55Z",
+              "expected_return": "2026-11-15"
             }
           ],
           "state": "reported"
@@ -10021,7 +9985,7 @@
         "spread": "HOU -4.5",
         "total": 224.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909957",
       "profile_cutoff": "2026-11-10T01:30:00+00:00"
@@ -11252,9 +11216,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.593355+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909958",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -12509,9 +12473,9 @@
         "roster_updated_at": "2026-11-10T02:43:36.486792+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909958",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
             {
@@ -12520,8 +12484,8 @@
               "position": "G",
               "status": "Out",
               "reason": "Right \u00b7 Calf",
-              "reported_at": "2026-11-09T00:23Z",
-              "expected_return": "2026-11-09"
+              "reported_at": "2026-11-10T00:21Z",
+              "expected_return": "2026-11-10"
             },
             {
               "player_id": "nba:espn:player:4701232",
@@ -13228,7 +13192,7 @@
         "spread": "SA -9.5",
         "total": 225.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909958",
       "profile_cutoff": "2026-11-10T02:00:00+00:00"
@@ -14528,11 +14492,29 @@
         "roster_updated_at": "2026-11-10T02:43:36.513985+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909959",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
+            {
+              "player_id": "nba:espn:player:4431675",
+              "name": "Trendon Watford",
+              "position": "F",
+              "status": "Out",
+              "reason": "Ankle",
+              "reported_at": "2026-11-09T20:50Z",
+              "expected_return": "2026-11-11"
+            },
+            {
+              "player_id": "nba:espn:player:4397688",
+              "name": "Trey Murphy III",
+              "position": "F",
+              "status": "Out",
+              "reason": "Knee \u00b7 Tendinitis",
+              "reported_at": "2026-11-09T20:49Z",
+              "expected_return": "2026-11-11"
+            },
             {
               "player_id": "nba:espn:player:5061589",
               "name": "Yves Missi",
@@ -14541,6 +14523,15 @@
               "reason": "Left \u00b7 Knee \u00b7 Bruise",
               "reported_at": "2026-11-05T20:47Z",
               "expected_return": "2026-11-16"
+            },
+            {
+              "player_id": "nba:espn:player:4395628",
+              "name": "Zion Williamson",
+              "position": "F",
+              "status": "Out",
+              "reason": "Rest",
+              "reported_at": "2026-11-09T21:49Z",
+              "expected_return": "2026-11-11"
             }
           ],
           "state": "reported"
@@ -15783,11 +15774,20 @@
         "roster_updated_at": "2026-11-10T02:43:36.371513+00:00",
         "availability": {
           "game_date": "2026-11-09",
-          "checked_at": "2026-11-09T19:02:33.705336+00:00",
+          "checked_at": "2026-11-10T02:53:15.971179+00:00",
           "source": "https://www.espn.com/nba/game/_/gameId/401909959",
-          "report_as_of": "2026-11-09T19:02:33.705336+00:00",
+          "report_as_of": "2026-11-10T02:53:15.971179+00:00",
           "context": "matchup",
           "players": [
+            {
+              "player_id": "nba:espn:player:3134903",
+              "name": "Gary Payton II",
+              "position": "G",
+              "status": "Out",
+              "reason": "Left \u00b7 Knee \u00b7 Inflammation",
+              "reported_at": "2026-11-10T01:50Z",
+              "expected_return": "2026-11-11"
+            },
             {
               "player_id": "nba:espn:player:6430",
               "name": "Jimmy Butler III",
@@ -15821,17 +15821,8 @@
               "position": "G",
               "status": "Out",
               "reason": "Left \u00b7 Thumb",
-              "reported_at": "2026-11-09T01:52Z",
-              "expected_return": "2026-11-11"
-            },
-            {
-              "player_id": "nba:espn:player:4997536",
-              "name": "Gui Santos",
-              "position": "F",
-              "status": "Day-To-Day",
-              "reason": "Left \u00b7 Knee \u00b7 Tendinitis",
-              "reported_at": "2026-11-09T01:13Z",
-              "expected_return": "2026-11-09"
+              "reported_at": "2026-11-10T01:26Z",
+              "expected_return": "2026-11-16"
             }
           ],
           "state": "reported"
@@ -16529,10 +16520,10 @@
         "spread": "GS -11.5",
         "total": 228.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909959",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909960",
@@ -17723,7 +17714,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.229598+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -19005,7 +18996,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.050334+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -19705,10 +19696,10 @@
         "spread": "NY -15.5",
         "total": 220.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909960",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909961",
@@ -20901,7 +20892,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.041156+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -22130,7 +22121,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.003553+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -22830,10 +22821,10 @@
         "spread": "BOS -1.5",
         "total": 216.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909961",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909962",
@@ -24093,7 +24084,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.452627+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -25322,7 +25313,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.486792+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -26025,7 +26016,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909962",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909963",
@@ -27200,7 +27191,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.186968+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -28392,7 +28383,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.519649+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -29092,10 +29083,10 @@
         "spread": "MIA -10.5",
         "total": 228.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909963",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909964",
@@ -30270,7 +30261,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.224148+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -31411,7 +31402,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.562321+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -32111,10 +32102,10 @@
         "spread": "ORL -5.5",
         "total": 222.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909964",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909965",
@@ -33392,7 +33383,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.543125+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -34674,7 +34665,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.358889+00:00",
         "availability": {
           "game_date": "2026-11-10",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -35374,10 +35365,10 @@
         "spread": "OKC -1.5",
         "total": 226.5,
         "provider": "DraftKings",
-        "observed_at": "2026-11-10T02:44:25.428069+00:00"
+        "observed_at": "2026-11-10T02:54:02.253514+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909965",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909966",
@@ -36674,7 +36665,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.210288+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -37956,7 +37947,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.171704+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -38659,7 +38650,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909966",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909967",
@@ -39836,7 +39827,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.015698+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -41118,7 +41109,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.050334+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -41821,7 +41812,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909967",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909968",
@@ -43014,7 +43005,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.041156+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -44190,7 +44181,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.036009+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -44893,7 +44884,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909968",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909969",
@@ -46121,7 +46112,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.593355+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -47456,7 +47447,7 @@
         "roster_updated_at": "2026-11-10T02:43:35.999920+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -48159,7 +48150,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909969",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909970",
@@ -49440,7 +49431,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.305475+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -50860,7 +50851,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.654224+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -51563,7 +51554,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909970",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909971",
@@ -52929,7 +52920,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.435055+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -54121,7 +54112,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.229598+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -54824,7 +54815,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909971",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909972",
@@ -56121,7 +56112,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.063216+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -57419,7 +57410,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.513985+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -58122,7 +58113,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909972",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909973",
@@ -59297,7 +59288,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.224148+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -60489,7 +60480,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.519649+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -61192,7 +61183,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909973",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909974",
@@ -62436,7 +62427,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.371513+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -63665,7 +63656,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.613620+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -64368,7 +64359,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909974",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909975",
@@ -65646,7 +65637,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.543125+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -66928,7 +66919,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.358889+00:00",
         "availability": {
           "game_date": "2026-11-11",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -67631,7 +67622,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909975",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909976",
@@ -68806,7 +68797,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.036009+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -70035,7 +70026,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.003553+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -70738,7 +70729,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909976",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909977",
@@ -72088,7 +72079,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.154999+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -73386,7 +73377,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.210288+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -74089,7 +74080,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909977",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909978",
@@ -75386,7 +75377,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.625549+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -76599,7 +76590,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.439954+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -77302,7 +77293,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909978",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909979",
@@ -78546,7 +78537,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.276960+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -79775,7 +79766,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.486792+00:00",
         "availability": {
           "game_date": "2026-11-12",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -80478,7 +80469,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909979",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909296",
@@ -81759,7 +81750,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.050334+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -83041,7 +83032,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.171704+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -83744,7 +83735,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909296",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909297",
@@ -84935,7 +84926,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.229598+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -86111,7 +86102,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.224148+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -86814,7 +86805,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909297",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909298",
@@ -87991,7 +87982,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.015698+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -89167,7 +89158,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.186968+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -89870,7 +89861,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909298",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909299",
@@ -91061,7 +91052,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.269127+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -92396,7 +92387,7 @@
         "roster_updated_at": "2026-11-10T02:43:35.999920+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -93099,7 +93090,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909299",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909300",
@@ -94518,7 +94509,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.654224+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -95816,7 +95807,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.513985+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -96519,7 +96510,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909300",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909301",
@@ -97710,7 +97701,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.519649+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -98939,7 +98930,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.613620+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -99642,7 +99633,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909301",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909302",
@@ -100886,7 +100877,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.371513+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -102115,7 +102106,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.593355+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -102818,7 +102809,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909302",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909303",
@@ -104099,7 +104090,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.358889+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -105240,7 +105231,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.562321+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -105943,7 +105934,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909303",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909304",
@@ -107221,7 +107212,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.543125+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -108482,7 +108473,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.452627+00:00",
         "availability": {
           "game_date": "2026-11-13",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -109185,7 +109176,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909304",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909980",
@@ -110466,7 +110457,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.305475+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -111764,7 +111755,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.513985+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -112467,7 +112458,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909980",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909981",
@@ -113764,7 +113755,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.625549+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -114942,7 +114933,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.015698+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -115645,7 +115636,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909981",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909982",
@@ -116995,7 +116986,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.154999+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -118171,7 +118162,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.186968+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -118874,7 +118865,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909982",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909983",
@@ -120171,7 +120162,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.063216+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -121591,7 +121582,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.654224+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -122294,7 +122285,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909983",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909984",
@@ -123628,7 +123619,7 @@
         "roster_updated_at": "2026-11-10T02:43:35.999920+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -124841,7 +124832,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.439954+00:00",
         "availability": {
           "game_date": "2026-11-14",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -125544,7 +125535,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909984",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909985",
@@ -126825,7 +126816,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.171704+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -128054,7 +128045,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.003553+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -128757,7 +128748,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909985",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909986",
@@ -130123,7 +130114,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.435055+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -131352,7 +131343,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.486792+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -132055,7 +132046,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909986",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909987",
@@ -133299,7 +133290,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.276960+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -134560,7 +134551,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.452627+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -135263,7 +135254,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909987",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909988",
@@ -136491,7 +136482,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.593355+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -137683,7 +137674,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.519649+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -138386,7 +138377,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909988",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909989",
@@ -139683,7 +139674,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.625549+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -140877,7 +140868,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.041156+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -141580,7 +141571,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909989",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909990",
@@ -142861,7 +142852,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.050334+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -144037,7 +144028,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.036009+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -144740,7 +144731,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909990",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909991",
@@ -145968,7 +145959,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.613620+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -147266,7 +147257,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.210288+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -147969,7 +147960,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909991",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909992",
@@ -149160,7 +149151,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.269127+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -150352,7 +150343,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.229598+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -151055,7 +151046,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909992",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909993",
@@ -152333,7 +152324,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.543125+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -153474,7 +153465,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.562321+00:00",
         "availability": {
           "game_date": "2026-11-15",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -154177,7 +154168,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909993",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909994",
@@ -155352,7 +155343,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.224148+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -156546,7 +156537,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.041156+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -157249,7 +157240,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909994",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909995",
@@ -158583,7 +158574,7 @@
         "roster_updated_at": "2026-11-10T02:43:35.999920+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -159761,7 +159752,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.015698+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -160464,7 +160455,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909995",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909996",
@@ -161883,7 +161874,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.654224+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -163181,7 +163172,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.210288+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -163884,7 +163875,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909996",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909997",
@@ -165112,7 +165103,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.003553+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -166410,7 +166401,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.063216+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -167113,7 +167104,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909997",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909998",
@@ -168341,7 +168332,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.613620+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -169517,7 +169508,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.186968+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -170220,7 +170211,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909998",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401909999",
@@ -171501,7 +171492,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.358889+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -172714,7 +172705,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.439954+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -173417,7 +173408,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909999",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401910000",
@@ -174661,7 +174652,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.371513+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -175959,7 +175950,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.513985+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -176662,7 +176653,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910000",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     },
     {
       "id": "401910001",
@@ -177890,7 +177881,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.486792+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -179172,7 +179163,7 @@
         "roster_updated_at": "2026-11-10T02:43:36.305475+00:00",
         "availability": {
           "game_date": "2026-11-16",
-          "checked_at": "2026-11-10T02:44:25.428069+00:00",
+          "checked_at": "2026-11-10T02:54:02.253514+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -179875,7 +179866,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910001",
-      "profile_cutoff": "2026-11-10T02:44:25.428069+00:00"
+      "profile_cutoff": "2026-11-10T02:54:02.253514+00:00"
     }
   ],
   "coverage": {
@@ -179886,7 +179877,7 @@
   },
   "methodology": "Ratings use estimated possessions: average of both teams\u2019 FGA \u2212 OREB + TO + 0.44 \u00d7 FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.",
   "freshness": {
-    "checked_at": "2026-11-10T02:44:25.428069+00:00",
+    "checked_at": "2026-11-10T02:54:02.253514+00:00",
     "checked_through": "2026-11-08",
     "expected_previous_day_games": [
       "401909945",
