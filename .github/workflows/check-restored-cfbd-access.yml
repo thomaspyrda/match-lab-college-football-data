@@ -1,0 +1,28 @@
+name: Check restored CFB provider access
+on:
+  push:
+    branches: [check-restored-cfbd-access]
+    paths: [.github/workflows/check-restored-cfbd-access.yml]
+permissions: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read one authenticated provider response
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        shell: python
+        run: |
+          import json, os, urllib.request, urllib.error
+          key = os.environ.get('CFBD_API_KEY', '')
+          if not key:
+              raise SystemExit('CFBD_API_KEY is not configured.')
+          req = urllib.request.Request('https://api.collegefootballdata.com/teams/fbs?year=2026', headers={'Authorization': 'Bearer ' + key, 'Accept': 'application/json', 'User-Agent': 'WiseStats-provider-access-check/1.0'})
+          try:
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  rows = json.load(response)
+                  assert isinstance(rows, list) and len(rows) >= 130, 'Unexpected provider response'
+                  print('Authenticated CFBD request succeeded: HTTP', response.status, '; FBS teams:', len(rows))
+          except urllib.error.HTTPError as exc:
+              raise SystemExit('Provider access check returned HTTP ' + str(exc.code) + '. No data or credentials were changed.')
