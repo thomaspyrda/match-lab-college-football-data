@@ -2,7 +2,18 @@ name: Publish WiseStats on public standard runner
 on:
   push:
     branches: [main]
-    paths: [.github/workflows/publish-wisestats-public.yml]
+    paths: ['.github/workflows/publish-wisestats-public.yml', '**.html', '**.js', '**.css', '**.json']
+  repository_dispatch:
+    types: [sports-publication]
+  workflow_run:
+    workflows: ["Build CBB Match Lab advanced pregame snapshots","Build verified CBB Match Lab historical candidates","Ordered Active Sports Morning Update","Afternoon pregame data refresh","Refresh NBA Dashboard","Refresh independent NBA live markets","Publish CFB live markets","Publish CBB Team Page Layouts","Refresh CBB team archives","Build CFB team history","Refresh all dashboard player availability","Publish independent NBA season leaders","Refresh independent NBA full schedules","Build NBA team rankings","Refresh independent NBA scoring allowed by position","Refresh CBB Dashboard","Refresh CBB current Season Leaders","Publish CBB team archives","Build CBB Team Strength","Build CBB Historical Metric Rankings","Publish CBB live markets","Assemble and publish CFB dashboard","Publish CFB dashboard yardage metrics","Refresh CFB directory current records","Run private NFL processing on public standard runner"]
+    branches: [main]
+    types: [completed]
+  schedule:
+    - cron: '35 2,3,4,5,6,7 * * *'
+      timezone: America/New_York
+    - cron: '35 17 * * *'
+      timezone: America/New_York
   workflow_dispatch:
 permissions:
   contents: read
