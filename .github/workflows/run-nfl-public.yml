@@ -1,0 +1,44 @@
+name: Run private NFL processing on public standard runner
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/run-nfl-public.yml]
+  workflow_dispatch:
+    inputs:
+      task:
+        type: choice
+        required: true
+        default: morning
+        options: [morning, afternoon, leaders, audit]
+permissions:
+  contents: read
+concurrency:
+  group: nfl-public-processing
+  cancel-in-progress: false
+  queue: single
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check private source credential
+        env:
+          ACCESS_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        run: test -n "$ACCESS_TOKEN"
+      - name: Checkout private NFL source
+        uses: actions/checkout@v4
+        with:
+          repository: thomaspyrda/betwise-nfl-matchup-dashboard
+          ref: main
+          path: nfl
+          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing model and workflow dependencies
+        run: python -m pip install numpy==2.3.5 PyYAML==6.0.3
+      - name: Run existing private source processing
+        working-directory: nfl
+        env:
+          NFL_TASK: ${{ inputs.task || 'morning' }}
+        run: python scripts/run_public_nfl.py "$NFL_TASK"
