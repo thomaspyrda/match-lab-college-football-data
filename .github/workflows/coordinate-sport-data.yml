@@ -154,6 +154,12 @@ jobs:
     uses: ./.github/workflows/publish-nba-leaders.yml
     secrets: inherit
 
+  nba-full-schedules:
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    needs: [nba-verified-statistics-and-pages]
+    uses: ./.github/workflows/refresh-nba-schedules.yml
+    secrets: inherit
+
   cfb-results:
     needs: [morning-start]
     if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
@@ -249,7 +255,7 @@ jobs:
   validate-nba-datasets:
     name: Validate NBA result and publication inputs
     if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
-    needs: [nba-verified-statistics-and-pages, nba-current-leaders]
+    needs: [nba-verified-statistics-and-pages, nba-current-leaders, nba-full-schedules]
     runs-on: ubuntu-latest
     permissions:
       contents: read

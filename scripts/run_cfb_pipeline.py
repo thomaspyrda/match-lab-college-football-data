@@ -15,6 +15,7 @@ import os
 import runpy
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -77,6 +78,11 @@ def query_key(path, params):
     return path + '?' + urllib.parse.urlencode(sorted((k, str(v)) for k, v in params.items()))
 
 
+def report_provider_limit(exc):
+    retry = exc.headers.get("Retry-After", "not supplied") if exc.headers else "not supplied"
+    remaining = exc.headers.get("X-RateLimit-Remaining", "not supplied") if exc.headers else "not supplied"
+    print(f"::error::CFBD HTTP {exc.code}; provider refused collection. Retry-After: {retry}; remaining: {remaining}. Prior verified inputs are preserved; collection is not marked fresh.")
+
 def request(path, **params):
     url = 'https://api.collegefootballdata.com' + query_key(path, params)
     req = urllib.request.Request(url, headers={'Authorization': 'Bearer ' + os.environ['CFBD_API_KEY'],
@@ -88,6 +94,13 @@ def request(path, **params):
             if not isinstance(rows, list):
                 raise ValueError('Expected CFBD list response')
             return rows
+        except urllib.error.HTTPError as exc:
+            if exc.code == 429:
+                report_provider_limit(exc)
+                raise
+            if attempt == 2:
+                raise
+            time.sleep(2 ** attempt)
         except Exception:
             if attempt == 2:
                 raise
@@ -205,7 +218,12 @@ def collect_results(root, store, parts):
                 rows = (previous or {}).get('payload', {}).get('responses', {}).get(query_key(path, params), [])
                 print('AP reference feed unavailable; retaining previous reference when available')
         else:
-            rows = provider(path, **params)
+            try:
+                rows = provider(path, **params)
+            except urllib.error.HTTPError as exc:
+                if exc.code == 429:
+                    report_provider_limit(exc)
+                raise
         if path == '/games':
             rows = verified_games(rows)
             if int(params.get('year', 0)) == year:

@@ -35,7 +35,7 @@ def plan(sport, root, now):
         if dashboard['freshness']['checked_through'] != str(date.fromordinal(yesterday)):
             raise ValueError('NBA has not checked all previous-day games')
         paths = ['nba/dashboard/data/dashboard.json', 'nba/dashboard/data/completed-games.json',
-                 'nba/teams/data/current-season.json', 'nba/rankings/data/nba-team-rankings.json']
+                 'nba/teams/data/current-season.json', 'nba/teams/data/current-schedule.json', 'nba/rankings/data/nba-team-rankings.json']
     else:
         names = ['results', 'boxes', 'players', 'metrics'] if sport == 'cbb' else ['results', 'metrics', 'players', 'strength']
         for name in names:

@@ -1,5 +1,6 @@
 name: Refresh independent NBA full schedules
 on:
+  workflow_call:
   workflow_dispatch:
   workflow_run:
     workflows: ['Refresh NBA Dashboard']
