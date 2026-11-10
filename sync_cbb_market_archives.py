@@ -4,6 +4,7 @@
 An ESPN quote first observed after scheduled tipoff is NEVER used as a result line.
 This supplements existing historical market archives without rewriting older seasons.
 """
+import urllib.error
 import json
 import os
 import re
@@ -184,9 +185,21 @@ def update(now=None, fetch=None, *, capture=True):
                             row[field] = prev.get(field)
                 entries[row["id"]] = row
                 observed += 1
-    archived_matched=incorporate_cbbd(entries,fetch_cbbd_lines(now)) if capture and os.getenv("CBBD_API_KEY") else 0
+    archived_matched = 0
+    provider_status = {}
+    if capture and os.getenv("CBBD_API_KEY"):
+        try:
+            archived_matched = incorporate_cbbd(entries, fetch_cbbd_lines(now))
+            provider_status["cbbd_archive"] = {"status": "success"}
+        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError) as exc:
+            # Optional archive failures must not discard verified ESPN pregame captures.
+            code = getattr(exc, "code", None)
+            provider_status["cbbd_archive"] = {"status": "unavailable", "http_status": code}
+            print(f"::warning::Optional CBBD archive unavailable (HTTP {code}); preserving verified ESPN captures and existing archived lines.")
+    if not capture:
+        provider_status = old.get("provider_status", {})
     LEDGER.parent.mkdir(parents=True, exist_ok=True)
-    new_ledger = {"season": SEASON, "last_checked": now.isoformat(), "games": entries}
+    new_ledger = {"season": SEASON, "last_checked": now.isoformat(), "games": entries, "provider_status": provider_status}
     if capture:
         LEDGER.write_text(json.dumps(new_ledger, separators=(",", ":")) + "\n")
     count = 0
