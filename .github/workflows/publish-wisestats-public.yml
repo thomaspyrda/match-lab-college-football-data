@@ -1,0 +1,54 @@
+name: Publish WiseStats on public standard runner
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: wisestats-public-hosted-publication
+  cancel-in-progress: false
+  queue: single
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check required private repository credential
+        env:
+          ACCESS_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        run: |
+          if [ -z "$ACCESS_TOKEN" ]; then
+            echo '::error::Add WISESTATS_AUTOMATION_TOKEN to this repository. It needs Contents read/write on wisestats-site and betwise-nfl-matchup-dashboard.'
+            exit 1
+          fi
+      - name: Checkout private publisher
+        uses: actions/checkout@v4
+        with:
+          repository: thomaspyrda/wisestats-site
+          ref: main
+          path: site
+          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+      - name: Checkout private NFL source
+        uses: actions/checkout@v4
+        with:
+          repository: thomaspyrda/betwise-nfl-matchup-dashboard
+          ref: main
+          path: site/.sources/nfl
+          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+          persist-credentials: false
+      - name: Checkout public sports source
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site/.sources/sports
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install workflow reader
+        run: python3 -m pip install PyYAML==6.0.3
+      - name: Build, publish and verify live site
+        working-directory: site
+        env:
+          WISESTATS_SOURCE_EVENT: '{"source_repository":"public-hosted-publisher","source_conclusion":"manual-verification"}'
+          RUNNER_TEMP: ${{ runner.temp }}
+        run: python3 scripts/run_public_publication.py
