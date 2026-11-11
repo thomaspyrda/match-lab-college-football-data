@@ -64,7 +64,7 @@ jobs:
               try:
                   events,h=odds("sports/"+sportkey+"/events")
                   result["event_usage"]=h
-                  events=sorted([e for e in events if e["id"] not in seen_events and NOW<datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")) and datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date()==NOW.astimezone(ZoneInfo("America/New_York")).date()],key=lambda e:e["commence_time"])
+                  events=sorted([e for e in events if e["id"] not in seen_events and NOW+timedelta(minutes=25)<datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")) and datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date()==NOW.astimezone(ZoneInfo("America/New_York")).date()],key=lambda e:e["commence_time"])
                   if not events:
                       result["status"]="no_upcoming_event_within_72_hours"
                       continue
@@ -93,7 +93,7 @@ jobs:
                   result["status"]="error";result["error"]=str(e)
                   # Stop on authentication/quota/provider failure; never burn credits retrying.
                   break
-          path="research/prop-lab/odds-review-2026-11-11.json"
+          path="research/prop-lab/odds-evening-2026-11-11.json"
           payload={"message":"Record capped private Prop Lab coverage test","branch":branch,"content":base64.b64encode(json.dumps(report,indent=2).encode()).decode()}
           try:payload["sha"]=gh("contents/"+path+"?ref="+branch)["sha"]
           except RuntimeError as e:
