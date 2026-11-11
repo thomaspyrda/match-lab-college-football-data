@@ -1,0 +1,101 @@
+name: Private Prop Lab capped coverage test
+on:
+  push:
+    branches: [prop-lab-capped-coverage-test]
+    paths: ['.github/workflows/prop-lab-capped-coverage-test.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: prop-lab-capped-coverage-test
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Test two upcoming games and save results privately
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          PRIVATE_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        shell: python
+        run: |
+          import os,json,urllib.request,urllib.parse,urllib.error,base64
+          from datetime import datetime,timezone,timedelta
+          KEY=os.environ.get("ODDS_API_KEY","")
+          TOKEN=os.environ.get("PRIVATE_TOKEN","")
+          if not KEY or not TOKEN: raise SystemExit("Required Actions secret is missing.")
+          NOW=datetime.now(timezone.utc)
+          report={"observed_at":NOW.isoformat(),"provider":"The Odds API","max_credits":8,"credits_spent":0,"sports":{}}
+          def odds(path,params=None):
+              q={"apiKey":KEY,**(params or {})}
+              req=urllib.request.Request("https://api.the-odds-api.com/v4/"+path+"?"+urllib.parse.urlencode(q),headers={"User-Agent":"WiseStats-Private-Prop-Probe/1"})
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as r:
+                      data=json.load(r)
+                      h={k:r.headers.get(k) for k in ("x-requests-last","x-requests-used","x-requests-remaining")}
+                      return data,h
+              except urllib.error.HTTPError as e:
+                  raise RuntimeError("Odds provider HTTP "+str(e.code)) from None
+              except Exception:
+                  raise RuntimeError("Odds provider connection or response failure") from None
+          def gh(path,method="GET",data=None):
+              req=urllib.request.Request("https://api.github.com/repos/thomaspyrda/wisestats-site/"+path,method=method,
+                data=json.dumps(data).encode() if data is not None else None,
+                headers={"Authorization":"Bearer "+TOKEN,"Accept":"application/vnd.github+json","Content-Type":"application/json","User-Agent":"WiseStats-Private-Prop-Probe"})
+              try:
+                  with urllib.request.urlopen(req,timeout=25) as r:return json.load(r)
+              except urllib.error.HTTPError as e:
+                  raise RuntimeError("Private report storage HTTP "+str(e.code)) from None
+          # Confirm private storage permissions before spending provider credits.
+          head=gh("git/ref/heads/main")["object"]["sha"]
+          branch="prop-lab-private-research"
+          try:gh("git/ref/heads/"+branch)
+          except RuntimeError as e:
+              if "404" not in str(e):raise
+              gh("git/refs","POST",{"ref":"refs/heads/"+branch,"sha":head})
+          specs={"nba":("basketball_nba",["player_points","player_rebounds","player_assists","player_points_assists"]),
+                 "nfl":("americanfootball_nfl",["player_pass_yds","player_rush_yds","player_reception_yds","player_receptions"])}
+          for sport,(sportkey,markets) in specs.items():
+              result={"requested_markets":markets,"requested_books":["draftkings","fanduel","betmgm"]}
+              report["sports"][sport]=result
+              try:
+                  events,h=odds("sports/"+sportkey+"/events")
+                  result["event_usage"]=h
+                  events=sorted([e for e in events if NOW<datetime.fromisoformat(e["commence_time"].replace("Z","+00:00"))<NOW+timedelta(days=3)],key=lambda e:e["commence_time"])
+                  if not events:
+                      result["status"]="no_upcoming_event_within_72_hours"
+                      continue
+                  if report["credits_spent"]+len(markets)>8:
+                      result["status"]="credit_cap_reached";continue
+                  event=events[0]
+                  result["event"]={k:event[k] for k in ("id","home_team","away_team","commence_time")}
+                  # One request per sport, no automatic retries or historical calls.
+                  data,h=odds("sports/"+sportkey+"/events/"+event["id"]+"/odds",{"bookmakers":"draftkings,fanduel,betmgm","markets":",".join(markets),"oddsFormat":"american"})
+                  spent=int(h["x-requests-last"]) if h["x-requests-last"] is not None else len(markets)
+                  report["credits_spent"]+=spent
+                  result["usage"]=h
+                  result["status"]="quotes_received" if data.get("bookmakers") else "no_quotes_yet"
+                  result["bookmakers"]=data.get("bookmakers",[])
+                  result["counts"]={}
+                  for book in data.get("bookmakers",[]):
+                      for market in book.get("markets",[]):
+                          rows=market.get("outcomes",[])
+                          count=result["counts"].setdefault(market["key"],{"books":[],"outcomes":0,"qualifying_outcomes":0})
+                          count["books"].append(book["key"]);count["outcomes"]+=len(rows)
+                          count["qualifying_outcomes"]+=sum(isinstance(o.get("price"),(int,float)) and (o["price"]>=100 or -140<=o["price"]<=-100) for o in rows)
+              except RuntimeError as e:
+                  result["status"]="error";result["error"]=str(e)
+                  # Stop on authentication/quota/provider failure; never burn credits retrying.
+                  break
+          path="research/prop-lab/odds-probe.json"
+          payload={"message":"Record capped private Prop Lab coverage test","branch":branch,"content":base64.b64encode(json.dumps(report,indent=2).encode()).decode()}
+          try:payload["sha"]=gh("contents/"+path+"?ref="+branch)["sha"]
+          except RuntimeError as e:
+              if "404" not in str(e):raise
+          gh("contents/"+path,"PUT",payload)
+          print("Private Prop Lab coverage report saved. Credits consumed:",report["credits_spent"])
+          for sport,r in report["sports"].items():
+              print(sport.upper()+": "+r["status"]+"; market types returned: "+str(len(r.get("counts",{}))))
+          print("No recurring schedule enabled. No quotes or API credentials are printed.")
+          
