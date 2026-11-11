@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Scan one full NBA matchup and save results privately
+      - name: Scan one full NFL matchup and save results privately
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           PRIVATE_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
@@ -26,7 +26,7 @@ jobs:
           TOKEN=os.environ.get("PRIVATE_TOKEN","")
           if not KEY or not TOKEN: raise SystemExit("Required Actions secret is missing.")
           NOW=datetime.now(timezone.utc)
-          report={"observed_at":NOW.isoformat(),"provider":"The Odds API","max_credits":10,"credits_spent":0,"sports":{}}
+          report={"observed_at":NOW.isoformat(),"provider":"The Odds API","max_credits":6,"credits_spent":0,"sports":{}}
           def odds(path,params=None):
               q={"apiKey":KEY,**(params or {})}
               req=urllib.request.Request("https://api.the-odds-api.com/v4/"+path+"?"+urllib.parse.urlencode(q),headers={"User-Agent":"WiseStats-Private-Prop-Probe/1"})
@@ -54,7 +54,7 @@ jobs:
           except RuntimeError as e:
               if "404" not in str(e):raise
               gh("git/refs","POST",{"ref":"refs/heads/"+branch,"sha":head})
-          specs={"nba":("basketball_nba",["player_points","player_rebounds","player_assists","player_points_assists","player_points_rebounds","player_threes","player_steals","player_blocks_steals","player_points_rebounds_assists","player_rebounds_assists"])}
+          specs={"nfl":("americanfootball_nfl",["player_pass_yds","player_rush_yds","player_reception_yds","player_receptions","player_pass_tds","player_rush_tds"])}
           for sport,(sportkey,markets) in specs.items():
               result={"requested_markets":markets,"requested_books":["draftkings","fanduel","betmgm"]}
               report["sports"][sport]=result
@@ -65,7 +65,7 @@ jobs:
                   if not events:
                       result["status"]="no_upcoming_event_within_72_hours"
                       continue
-                  if report["credits_spent"]+len(markets)>10:
+                  if report["credits_spent"]+len(markets)>6:
                       result["status"]="credit_cap_reached";continue
                   event=events[0]
                   result["event"]={k:event[k] for k in ("id","home_team","away_team","commence_time")}
