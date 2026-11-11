@@ -27,7 +27,7 @@ jobs:
           TOKEN=os.environ.get("PRIVATE_TOKEN","")
           if not KEY or not TOKEN: raise SystemExit("Required Actions secret is missing.")
           NOW=datetime.now(timezone.utc)
-          report={"observed_at":NOW.isoformat(),"provider":"The Odds API","max_credits":30,"credits_spent":0,"sports":{}}
+          report={"observed_at":NOW.isoformat(),"provider":"The Odds API","max_credits":10,"credits_spent":0,"sports":{}}
           def odds(path,params=None):
               q={"apiKey":KEY,**(params or {})}
               req=urllib.request.Request("https://api.the-odds-api.com/v4/"+path+"?"+urllib.parse.urlencode(q),headers={"User-Agent":"WiseStats-Private-Prop-Probe/1"})
@@ -56,19 +56,19 @@ jobs:
               if "404" not in str(e):raise
               gh("git/refs","POST",{"ref":"refs/heads/"+branch,"sha":head})
           nba_markets=["player_points","player_rebounds","player_assists","player_points_assists","player_points_rebounds","player_threes","player_steals","player_blocks_steals","player_points_rebounds_assists","player_rebounds_assists"]
-          specs={s:("basketball_nba",nba_markets) for s in ["nba_1","nba_2","nba_3"]}
-          seen_events={"37f4c00ff7ec01d5aa7c33dd1ac84bbc","095441822e3b9b1b84bff9e482b9057a","e9545a3084389f5f3429e19fea891124"}
+          specs={s:("basketball_nba",nba_markets) for s in ["nba_1"]}
+          seen_events=set()
           for sport,(sportkey,markets) in specs.items():
               result={"requested_markets":markets,"requested_books":["draftkings","fanduel","betmgm"]}
               report["sports"][sport]=result
               try:
                   events,h=odds("sports/"+sportkey+"/events")
                   result["event_usage"]=h
-                  events=sorted([e for e in events if e["id"] not in seen_events and NOW+timedelta(minutes=25)<datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")) and datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date()==NOW.astimezone(ZoneInfo("America/New_York")).date()],key=lambda e:e["commence_time"])
+                  events=sorted([e for e in events if e["id"]=="37f4c00ff7ec01d5aa7c33dd1ac84bbc" and e["id"] not in seen_events and NOW+timedelta(minutes=5)<datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")) and datetime.fromisoformat(e["commence_time"].replace("Z","+00:00")).astimezone(ZoneInfo("America/New_York")).date()==NOW.astimezone(ZoneInfo("America/New_York")).date()],key=lambda e:e["commence_time"])
                   if not events:
                       result["status"]="no_upcoming_event_within_72_hours"
                       continue
-                  if report["credits_spent"]+len(markets)>30:
+                  if report["credits_spent"]+len(markets)>10:
                       result["status"]="credit_cap_reached";continue
                   event=events[0]
                   seen_events.add(event["id"])
@@ -93,7 +93,7 @@ jobs:
                   result["status"]="error";result["error"]=str(e)
                   # Stop on authentication/quota/provider failure; never burn credits retrying.
                   break
-          path="research/prop-lab/odds-late-evening-2026-11-11.json"
+          path="research/prop-lab/odds-simple-final-2026-11-11.json"
           payload={"message":"Record capped private Prop Lab coverage test","branch":branch,"content":base64.b64encode(json.dumps(report,indent=2).encode()).decode()}
           try:payload["sha"]=gh("contents/"+path+"?ref="+branch)["sha"]
           except RuntimeError as e:
