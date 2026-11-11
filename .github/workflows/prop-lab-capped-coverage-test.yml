@@ -57,7 +57,7 @@ jobs:
               gh("git/refs","POST",{"ref":"refs/heads/"+branch,"sha":head})
           nba_markets=["player_points","player_rebounds","player_assists","player_points_assists","player_points_rebounds","player_threes","player_steals","player_blocks_steals","player_points_rebounds_assists","player_rebounds_assists"]
           specs={s:("basketball_nba",nba_markets) for s in ["nba_1","nba_2","nba_3"]}
-          seen_events=set()
+          seen_events={"37f4c00ff7ec01d5aa7c33dd1ac84bbc","095441822e3b9b1b84bff9e482b9057a","e9545a3084389f5f3429e19fea891124"}
           for sport,(sportkey,markets) in specs.items():
               result={"requested_markets":markets,"requested_books":["draftkings","fanduel","betmgm"]}
               report["sports"][sport]=result
@@ -93,7 +93,7 @@ jobs:
                   result["status"]="error";result["error"]=str(e)
                   # Stop on authentication/quota/provider failure; never burn credits retrying.
                   break
-          path="research/prop-lab/odds-evening-2026-11-11.json"
+          path="research/prop-lab/odds-late-evening-2026-11-11.json"
           payload={"message":"Record capped private Prop Lab coverage test","branch":branch,"content":base64.b64encode(json.dumps(report,indent=2).encode()).decode()}
           try:payload["sha"]=gh("contents/"+path+"?ref="+branch)["sha"]
           except RuntimeError as e:
