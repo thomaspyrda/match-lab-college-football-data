@@ -1,0 +1,49 @@
+name: Recover missing private Prop Lab collection
+on:
+  schedule:
+    - cron: '30 4,5 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths: [.github/workflows/prop-lab-recovery.yml]
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: write
+concurrency:
+  group: private-prop-lab-recovery
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Recover absent or failed collector without replaying successful requests
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const local = new Intl.DateTimeFormat('en-GB', {timeZone:'America/New_York',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date());
+            const [hour,minute] = local.split(':').map(Number);
+            const clock = hour*60+minute;
+            if (clock < 265 || clock > 355) {
+              core.info('Outside 4:25–5:55 Eastern recovery window; no collection requested.');
+              return;
+            }
+            const {data} = await github.rest.actions.listWorkflowRuns({...context.repo,workflow_id:'prop-lab-scheduled.yml',per_page:100});
+            const active = new Set(['queued','in_progress','waiting','pending','requested']);
+            if (data.workflow_runs.some(r=>active.has(r.status))) {
+              core.info('Collector already active; no duplicate requested.');
+              return;
+            }
+            const today = new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York'}).format(new Date());
+            const date = value=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York'}).format(new Date(value));
+            const eligible = data.workflow_runs.filter(r=>r.head_branch==='main' && ['schedule','repository_dispatch'].includes(r.event) && r.status==='completed' && date(r.run_started_at)===today)
+              .sort((a,b)=>Date.parse(b.run_started_at)-Date.parse(a.run_started_at));
+            const last = eligible[0];
+            if (last?.conclusion==='failure') {
+              await github.rest.actions.reRunWorkflowFailedJobs({...context.repo,run_id:last.id});
+              core.warning('Retried failed collector. Durable quote reservations prevent paid replay.');
+            } else if (!last || (clock>=325 && new Date(last.run_started_at).getTime()<Date.now()-60*60000)) {
+              await github.rest.repos.createDispatchEvent({...context.repo,event_type:'prop-lab-morning-recovery'});
+              core.warning('Requested missing morning collection through the existing protected collector.');
+            } else core.info('A recent morning collector completed; publication verifies release freshness separately.');
