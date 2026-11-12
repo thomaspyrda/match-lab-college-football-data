@@ -16,9 +16,9 @@ HOST = 'https://wisestats.bet/'
 def require_collection(value, now):
     observed = datetime.fromisoformat(value.replace('Z', '+00:00'))
     local = now.astimezone(ZoneInfo('America/New_York'))
-    boundary = local.replace(hour=2, minute=30, second=0, microsecond=0)
+    boundary = local.replace(hour=3, minute=15, second=0, microsecond=0)
     if observed < boundary or observed > now:
-        raise ValueError('No verified collection since 2:30 a.m. Eastern: ' + value)
+        raise ValueError('No verified collection since 3:15 a.m. Eastern: ' + value)
 
 
 def plan(sport, root, now):
@@ -59,7 +59,10 @@ def plan(sport, root, now):
         paths += [str(p.relative_to(root)) for p in (root / 'data/team-history').glob('*.json')]
     if sport != 'nfl':
         availability = f'data/dashboard-availability/{sport}.json'
-        require_collection(json.loads((root / availability).read_text())['checked_at'], now)
+        try:
+            require_collection(json.loads((root / availability).read_text())['checked_at'], now)
+        except Exception as exc:
+            raise ValueError('availability: ' + str(exc)) from exc
         paths.append(availability)
     return paths
 
@@ -81,12 +84,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--sport', choices=['all', 'cbb', 'cfb', 'nba', 'nfl'], default='all')
     parser.add_argument('--source-only', action='store_true', help='Validate source readiness before handing publication to WiseStats')
+    parser.add_argument('--root', type=Path, default=ROOT)
+    parser.add_argument('--report', type=Path, help='Write per-sport source/live status for selective recovery')
     args = parser.parse_args()
     sports = ['cbb', 'cfb', 'nba'] if args.sport == 'all' else [args.sport]
     failures = []
+    report = {}
     for sport in sports:
         try:
-            paths = plan(sport, ROOT, datetime.now(timezone.utc))
+            paths = plan(sport, args.root, datetime.now(timezone.utc))
+            report[sport] = {'source': 'ready', 'live': 'unchecked'}
             if args.source_only:
                 print(sport + ': morning source inputs ready; final live publication is verified separately by the publisher')
                 continue
@@ -96,18 +103,24 @@ def main():
             for attempt in range(5):
                 try:
                     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
-                        list(pool.map(lambda path: compare(path, ROOT, host), paths))
+                        list(pool.map(lambda path: compare(path, args.root, host), paths))
                     break
                 except Exception:
                     if attempt == 4:
                         raise
                     time.sleep(15)
+            report[sport]['live'] = 'ready'
             print(sport + ': morning inputs ready; ' + str(len(paths)) + ' public files match')
         except Exception as exc:
+            report.setdefault(sport, {'source': 'missing', 'live': 'unchecked'})
+            report[sport]['error'] = str(exc)
             failures.append(sport + ': ' + str(exc))
+    if args.report:
+        args.report.write_text(json.dumps(report, indent=2) + '\n')
     if failures:
         raise SystemExit('\n'.join(failures))
 
 
 if __name__ == '__main__':
     main()
+
