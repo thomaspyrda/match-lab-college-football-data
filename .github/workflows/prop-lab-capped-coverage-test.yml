@@ -1,4 +1,4 @@
-name: Private Prop Lab capped coverage test
+name: Private Prop Lab account verification
 on:
   push:
     branches: [prop-lab-capped-coverage-test]
@@ -56,7 +56,7 @@ jobs:
               if "404" not in str(e):raise
               gh("git/refs","POST",{"ref":"refs/heads/"+branch,"sha":head})
           nba_markets=["player_points","player_rebounds","player_assists","player_points_assists","player_points_rebounds","player_threes","player_steals","player_blocks_steals","player_points_rebounds_assists","player_rebounds_assists"]
-          specs={"nfl":("americanfootball_nfl",["player_pass_yds","player_rush_yds","player_reception_yds","player_receptions","player_pass_tds","player_rush_tds"])}
+          specs={}
           seen_events=set()
           for sport,(sportkey,markets) in specs.items():
               result={"requested_markets":markets,"requested_books":["draftkings","fanduel","betmgm"]}
@@ -93,7 +93,9 @@ jobs:
                   result["status"]="error";result["error"]=str(e)
                   # Stop on authentication/quota/provider failure; never burn credits retrying.
                   break
-          path="research/prop-lab/odds-football-final-2026-11-11.json"
+          events,h=odds("sports/basketball_nba/events")
+          report["verification"]={"status":"authenticated","usage":h,"nba_events_available":len(events)}
+          path="research/prop-lab/account-verification.json"
           payload={"message":"Record capped private Prop Lab coverage test","branch":branch,"content":base64.b64encode(json.dumps(report,indent=2).encode()).decode()}
           try:payload["sha"]=gh("contents/"+path+"?ref="+branch)["sha"]
           except RuntimeError as e:
