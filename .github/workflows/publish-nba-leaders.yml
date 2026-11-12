@@ -10,7 +10,7 @@ on:
     branches: [main]
     paths: ['build_nba_season_leaders.py', 'tests/test_nba_season_leaders.py', '.github/workflows/publish-nba-leaders.yml']
   schedule:
-    - cron: '15 6,18 * * *'
+    - cron: '15 18 * * *'
       timezone: America/New_York
 permissions:
   contents: write
@@ -47,3 +47,4 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
