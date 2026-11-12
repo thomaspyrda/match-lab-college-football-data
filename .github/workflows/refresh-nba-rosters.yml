@@ -1,11 +1,12 @@
 name: Refresh independent NBA rosters
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
     paths: ['nba_roster_source.py', '.github/workflows/refresh-nba-rosters.yml']
   schedule:
-    - cron: '15 3,15 * * *'
+    - cron: '15 15 * * *'
       timezone: America/New_York
 permissions:
   contents: write
@@ -39,3 +40,4 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
