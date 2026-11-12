@@ -3,10 +3,17 @@ on:
   schedule:
     - cron: '15 4,5 * * *'
       timezone: America/New_York
+    - cron: '15 10,15 * * *'
+      timezone: America/New_York
   push:
     branches: [main]
     paths: ['.github/workflows/prop-lab-scheduled.yml']
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      collect_missing:
+        type: boolean
+        default: false
   repository_dispatch:
     types: [prop-lab-morning-recovery]
 permissions:
@@ -53,6 +60,6 @@ jobs:
         working-directory: private
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' }}
+          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' && inputs.collect_missing != true }}
         run: python3 prop_lab_runtime/collector.py
 
