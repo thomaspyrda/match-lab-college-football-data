@@ -1,0 +1,14 @@
+name: Commission current private Prop Lab research
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/prop-lab-commission.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collect-current:
+    uses: ./.github/workflows/prop-lab-scheduled.yml
+    with:
+      collect_missing: true
+    secrets: inherit
