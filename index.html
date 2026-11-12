@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Use CFB Match Lab to compare upcoming and past college football games with historically similar pregame profiles, Team Strength, schedule context, market lines and season-to-date form."
+      content="Use CFB Match Lab to compare upcoming college football games with historically similar pregame profiles, Team Strength, schedule context, market lines and season-to-date form."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://matchlab.parlaycalculator.bet/" />
@@ -150,10 +150,6 @@
         </div>
       </section>
       <section class="lab">
-        <div class="lab-mode" role="tablist" aria-label="CFB Match Lab game mode" hidden aria-hidden="true">
-          <button id="upcomingMode" class="active" type="button" role="tab" aria-selected="true">Upcoming college football</button>
-          <button id="historyMode" type="button" role="tab" aria-selected="false">Past college football games</button>
-        </div>
         <div id="upcomingSection">
           <div class="step">
             <span>1</span>
@@ -178,26 +174,6 @@
           <button class="rail-arrow next" aria-label="Next games">›</button>
         </div>
         
-        </div>
-        <div id="historySection" hidden aria-label="Historical game archive (direct links only)">
-          <div class="step">
-            <span>1</span>
-            <div>
-              <b>Search past college football games</b>
-              <small>Reopen the pregame CFB Match Lab view from prior seasons</small>
-            </div>
-          </div>
-          <div class="history-search">
-            <label>Season
-              <select id="historySeason" aria-label="Historical college football season"></select>
-            </label>
-            <label>Team
-              <input id="historyTeam" type="search" placeholder="Georgia, Ohio State, UConn…" autocomplete="off" />
-            </label>
-            <button id="historySearchButton" type="button">Find past games</button>
-          </div>
-          <p id="historyStatus" class="history-status">Search by season and team to view past college football matchups.</p>
-          <div id="historyGames" class="history-games"></div>
         </div>
         <div id="marketSection" hidden></div>
         <div id="resultsSection" aria-labelledby="resultTitle" hidden>
@@ -335,7 +311,6 @@
       </section>
     </main>
     <footer>CFB Match Lab · College football research, not advice</footer>
-    <script src="app.js?v=20261031-focused-match-lab-v20" defer></script>
+    <script src="app.js?v=20261031-current-week-comparisons-v21" defer></script>
   </body>
 </html>
-

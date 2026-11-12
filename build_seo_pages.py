@@ -68,12 +68,16 @@ def indexable_current(g, upcoming_ids):
     )
 
 def page_shell(title,description,canonical,body):
+    internal_archive='/college-football/matchups/' in canonical
+    robots='noindex,follow' if internal_archive else 'index, follow, max-image-preview:large'
+    if internal_archive:
+        body='<h1>CFB Match Lab</h1><p>Historical game data supports comparable matchups for the current week.</p><a class="cta" href="/">View current-week comparisons</a>'
     return f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{robots}">
 <link rel="canonical" href="{esc(canonical)}">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
@@ -315,6 +319,8 @@ def matchup_body(g,season_url):
 def write_urlset(path,urls,lastmod):
     rows=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for url,priority,freq in urls:
+        if '/college-football/matchups/' in url:
+            continue
         rows.append(f"<url><loc>{url}</loc><lastmod>{lastmod}</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
     rows.append("</urlset>")
     path.write_text("\n".join(rows),encoding="utf-8")
@@ -565,10 +571,10 @@ def main():
     # Main CFB matchup-tool landing page.
     d=ROOT/"college-football-matchup-tool"; d.mkdir(exist_ok=True)
     body=f"""<p class="eyebrow">CFB MATCH LAB</p><h1>College Football Matchup Research Tool</h1>
-<p>CFB Match Lab compares upcoming and past college football games with historically similar pregame situations. Research Team Strength, schedule quality, season-to-date form, market lines and advanced metrics, then view the 10 closest historical matchup profiles.</p>
+<p>CFB Match Lab compares upcoming college football games with historically similar pregame situations. Research Team Strength, schedule quality, season-to-date form, market lines and advanced metrics, then view the 10 closest historical matchup profiles.</p>
 <a class="cta" href="{BASE}/">Use CFB Match Lab</a>
-<h2>What you can research</h2><div class="grid"><div class="card"><b>Upcoming college football games</b><p>Compare the next seven days of FBS matchups.</p></div><div class="card"><b>Past college football games</b><p>Reopen the exact pregame context for completed games.</p></div><div class="card"><b>Historical matchup comparisons</b><p>Find the 10 closest prior games by market, strength, form and advanced profile.</p></div><div class="card"><b>College football Team Strength</b><p>Track compounded weekly movement from preseason based on opponent quality and game performance.</p></div></div>"""
-    (d/"index.html").write_text(page_shell("CFB Match Lab | College Football Matchup Research Tool","Research upcoming and past college football matchups with CFB Match Lab, Team Strength, schedule quality, advanced metrics and historically similar games.",f"{BASE}/college-football-matchup-tool/",body),encoding="utf-8")
+<h2>What you can research</h2><div class="grid"><div class="card"><b>Upcoming college football games</b><p>Compare the next seven days of FBS matchups.</p></div><div class="card"><b>Historical matchup comparisons</b><p>Find the 10 closest prior games by market, strength, form and advanced profile.</p></div><div class="card"><b>College football Team Strength</b><p>Track compounded weekly movement from preseason based on opponent quality and game performance.</p></div></div>"""
+    (d/"index.html").write_text(page_shell("CFB Match Lab | College Football Matchup Research Tool","Research upcoming college football matchups with CFB Match Lab, Team Strength, schedule quality, advanced metrics and historically similar games.",f"{BASE}/college-football-matchup-tool/",body),encoding="utf-8")
 
     # Generate live full-FBS data pages from the current pregame snapshot.
     write_live_data_pages(now)
@@ -650,8 +656,6 @@ def main():
     sm=['<?xml version="1.0" encoding="UTF-8"?>','<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sm.append(f"<sitemap><loc>{BASE}/sitemap-core.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
     sm.append(f"<sitemap><loc>{BASE}/sitemap-sports.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
-    for filename,_,_ in season_sitemap_files:
-        sm.append(f"<sitemap><loc>{BASE}/{filename}</loc><lastmod>{now.date()}</lastmod></sitemap>")
     sm.append(f"<sitemap><loc>{BASE}/sitemap-cfb-teams.xml</loc><lastmod>{now.date()}</lastmod></sitemap>")
     sm.append("</sitemapindex>")
     (ROOT/"sitemap.xml").write_text("\n".join(sm),encoding="utf-8")
@@ -662,4 +666,3 @@ def main():
 
 if __name__=="__main__":
     main()
-

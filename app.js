@@ -3,8 +3,7 @@ let upcoming,
   selected,
   market = "unified",
   historical = [],
-  activeDate = "all",
-  historySeason = new Date().getFullYear();
+  activeDate = "all";
 async function get(u) {
   const r = await fetch(u, { cache: "no-cache" });
   if (!r.ok) throw Error("Unable to load " + u);
@@ -63,18 +62,6 @@ function renderSlate() {
       b.setAttribute("aria-pressed", String(active));
     });
 }
-function setLabMode(mode) {
-  const historyMode = mode === "history";
-  $("upcomingSection").hidden = historyMode;
-  $("seeMatchesAction").hidden = historyMode;
-  $("historySection").hidden = !historyMode;
-  $("upcomingMode").classList.toggle("active", !historyMode);
-  $("historyMode").classList.toggle("active", historyMode);
-  $("upcomingMode").setAttribute("aria-selected", String(!historyMode));
-  $("historyMode").setAttribute("aria-selected", String(historyMode));
-  $("marketSection").hidden = true;
-  $("resultsSection").hidden = true;
-}
 const historicalBySeason=new Map();
 let historicalLoading=new Map();
 const hasFinal=g=>g?.result&&Number.isFinite(Number(g.result.away_points))&&Number.isFinite(Number(g.result.home_points));
@@ -94,42 +81,6 @@ async function ensureHistorical(){
  // Historical comparisons require the full archive, but browsing a season does not.
  const years=Array.from({length:12},(_,i)=>2015+i);
  await Promise.all(years.filter(y=>!historicalBySeason.has(y)).map(loadHistoricalSeason));
-}
-const safeHistory=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-function historicalGameCard(g){
- const finalText=`Final: ${g.away} ${g.result.away_points}, ${g.home} ${g.result.home_points}`;
- const resultLogo=(name,id)=>logo(name,id,"team-logo");
- return `<button type="button" class="history-game" data-id="${safeHistory(g.game_id)}" aria-label="View ${safeHistory(g.away)} at ${safeHistory(g.home)} historical game">
- <span class="history-date">${new Date(g.start_date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})} · Week ${safeHistory(g.week)}</span>
- <span class="history-team-logos">${resultLogo(g.away,g.away_id??g.away_profile?.espn_id)}<strong>${safeHistory(g.away)} at ${safeHistory(g.home)}</strong>${resultLogo(g.home,g.home_id??g.home_profile?.espn_id)}</span>
- <small>${safeHistory(finalText)}</small><span class="history-view">View matchup metrics & results ›</span>
- </button>`;
-}
-async function searchHistory(){
- const season=Number($("historySeason").value),q=$("historyTeam").value.trim().toLowerCase();
- $("historyStatus").textContent="Searching season "+season+"…";
- try{
-  const seasonGames=await loadHistoricalSeason(season);
-  const rows=seasonGames.filter(g=>hasFinal(g)&&researchableGame(g)&&new Date(g.start_date).getTime()<=Date.now())
-   .filter(g=>!q||g.home.toLowerCase().includes(q)||g.away.toLowerCase().includes(q))
-   .sort((a,b)=>new Date(b.start_date)-new Date(a.start_date)).slice(0,100);
-  $("historyStatus").textContent=rows.length?`${rows.length} completed past college football games found`:"No completed past games with usable pregame profiles matched this search.";
-  $("historyGames").innerHTML=rows.map(historicalGameCard).join("");
- }catch(e){$("historyStatus").textContent="Historical games for this season could not be loaded.";console.error(e)}
-}
-function selectHistoricalGame(gameId){
- selected=historical.find(g=>String(g.game_id)===String(gameId));
- if(!selected||!hasFinal(selected))return;
- $("selectedGame").textContent=`Past CFB game: ${selected.away} at ${selected.home} · ${new Date(selected.start_date).toLocaleDateString()}`;
- $("resultsSection").hidden=false;
- match("unified").then(()=>{
-  const r=selected.result,existing=document.getElementById("selectedHistoricalDetail");
-  if(existing)existing.remove();
-  const section=document.createElement("section");section.id="selectedHistoricalDetail";section.className="historical-selected-detail";
-  const stats=(name,p)=>`<div class="historical-metrics-team"><b>${safeHistory(name)}</b><p>AP: ${safeHistory(p?.ap_rank??"Unranked")} · Strength Rank: ${safeHistory(p?.national_strength_rank??"—")}</p><p>Team Strength: ${safeHistory(p?.strength_score??"—")} · Season Record: ${safeHistory(p?.recent_form?.wins??"—")}–${safeHistory(p?.recent_form?.losses??"—")}</p></div>`;
-  section.innerHTML=`<h3>HISTORICAL GAME RESULT</h3><strong class="historical-final">${safeHistory(selected.away)} ${r.away_points} — ${safeHistory(selected.home)} ${r.home_points}</strong><p>Final · ${new Date(selected.start_date).toLocaleDateString("en-US")}</p><div class="historical-metrics">${stats(selected.away,selected.away_profile)}${stats(selected.home,selected.home_profile)}</div><p>Pregame spread: ${safeHistory(selected.spread??"Unavailable")} · Game total: ${safeHistory(selected.over_under??"Unavailable")} · Combined score: ${Number(r.away_points)+Number(r.home_points)}</p>`;
-  $("resultsSection").insertBefore(section,$("summary"));$("resultsSection").scrollIntoView({behavior:"smooth",block:"start"});
- }).catch(console.error);
 }
 async function init() {
   try {
@@ -619,44 +570,5 @@ document
   .addEventListener("click", () =>
     $("games").scrollBy({ left: 650, behavior: "smooth" }),
   );
-$("upcomingMode").addEventListener("click", () => setLabMode("upcoming"));
-$("historyMode").addEventListener("click", async () => {
-  setLabMode("history");
-  if (!$("historySeason").options.length) {
-    const current = new Date().getFullYear();
-    $("historySeason").innerHTML = Array.from({ length: current - 2014 }, (_, i) => current - i)
-      .map((y) => `<option value="${y}">${y}</option>`)
-      .join("");
-  }
-});
-$("historySearchButton").addEventListener("click", searchHistory);
-$("historyTeam").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") searchHistory();
-});
-$("historyGames").addEventListener("click", (e) => {
-  const b = e.target.closest(".history-game");
-  if (b) selectHistoricalGame(b.dataset.id);
-});
-async function applyDeepLink() {
-  const params = new URLSearchParams(location.search);
-  const gameId = params.get("game");
-  if (!gameId) return;
-  await ensureHistorical();
-  const game = historical.find((g) => g.game_id === gameId);
-  if (!game) return;
-  setLabMode("history");
-  if (!$("historySeason").options.length) {
-    const current = new Date().getFullYear();
-    $("historySeason").innerHTML = Array.from({ length: current - 2014 }, (_, i) => current - i)
-      .map((y) => `<option value="${y}">${y}</option>`)
-      .join("");
-  }
-  $("historySeason").value = String(game.season);
-  $("historyTeam").value = game.home;
-  $("historyGames").innerHTML = historicalGameCard(game);
-  $("historyStatus").textContent = "Historical college football game loaded from its permanent matchup page.";
-  selectHistoricalGame(gameId);
-  // Keep old deep links functional without restoring the standalone search UI.
-  $("historySection").hidden = true;
-}
-init().then(applyDeepLink);
+// Archived games are comparison inputs, never independently selectable.
+init();
