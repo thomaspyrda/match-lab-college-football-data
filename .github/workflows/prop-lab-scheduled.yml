@@ -48,4 +48,5 @@ jobs:
         working-directory: private
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' }}
         run: python3 prop_lab_runtime/collector.py
