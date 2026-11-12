@@ -10,7 +10,7 @@ on:
     branches: [main]
     types: [completed]
   schedule:
-    - cron: '35 2,3,4,5,6,7 * * *'
+    - cron: '10 5 * * *'
       timezone: America/New_York
     - cron: '35 17 * * *'
       timezone: America/New_York
@@ -66,3 +66,4 @@ jobs:
           WISESTATS_SOURCE_EVENT: '{"source_repository":"public-hosted-publisher","source_conclusion":"manual-verification"}'
           RUNNER_TEMP: ${{ runner.temp }}
         run: python3 scripts/run_public_publication.py
+
