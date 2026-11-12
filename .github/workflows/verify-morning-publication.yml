@@ -4,9 +4,16 @@ on:
   schedule:
     - cron: '30 4 * * *'
       timezone: America/New_York
+    - cron: '30 5 * * *'
+      timezone: America/New_York
+    - cron: '45 5 * * *'
+      timezone: America/New_York
 permissions:
-  contents: write
+  contents: read
   actions: write
+concurrency:
+  group: verify-morning-publication
+  cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -15,24 +22,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-      - name: Verify current sources and live publication
-        id: audit
-        continue-on-error: true
-        run: python3 scripts/verify_morning_publication.py --sport all
-      - name: Recover missing publication without interrupting an active coordinator
-        if: steps.audit.outcome == 'failure'
+      - name: Checkout current NFL source for read-only verification
+        uses: actions/checkout@v4
+        with:
+          repository: thomaspyrda/betwise-nfl-matchup-dashboard
+          ref: main
+          path: .sources/nfl
+          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+          persist-credentials: false
+      - name: Check sports sources and actual live files separately
+        run: |
+          python3 scripts/verify_morning_publication.py --sport all --report sports-morning-report.json || true
+          python3 scripts/verify_morning_publication.py --sport nfl --root .sources/nfl --report nfl-morning-report.json || true
+      - name: Verify selective recovery safeguards
+        run: node scripts/test_recover_morning_publication.cjs
+      - name: Recover only missing or failed stages
         uses: actions/github-script@v7
         with:
           script: |
-            const {data} = await github.rest.actions.listWorkflowRuns({...context.repo,
-              workflow_id: 'coordinate-sport-data.yml', per_page: 30});
-            const active = data.workflow_runs.some(run => ['queued','in_progress','waiting','pending','requested'].includes(run.status));
-            if (active) {
-              core.warning('Morning coordinator is still active. Live publication is not yet verified.');
-            } else {
-              await github.rest.repos.createDispatchEvent({...context.repo, event_type: 'morning-refresh'});
-              core.warning('Recovery requested. This audit remains failed until a subsequent live check succeeds.');
-            }
-      - name: Report incomplete publication
-        if: steps.audit.outcome == 'failure'
-        run: exit 1
+            const recover = require('./scripts/recover_morning_publication.cjs');
+            await recover({github, context, core});
+
