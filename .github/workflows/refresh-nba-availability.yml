@@ -1,11 +1,12 @@
 name: Refresh independent NBA availability
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [main]
     paths: ['nba_availability_source.py', '.github/workflows/refresh-nba-availability.yml']
   schedule:
-    - cron: '30 3,15 * * *'
+    - cron: '30 15 * * *'
       timezone: America/New_York
 permissions:
   contents: write
@@ -39,3 +40,4 @@ jobs:
             sleep $((attempt * 3))
           done
           exit 1
+
