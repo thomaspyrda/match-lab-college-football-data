@@ -6,9 +6,6 @@ on:
     workflows: ['Refresh CFB verified results']
     branches: [main]
     types: [completed]
-  schedule:
-    - cron: '13 4 * * *'
-      timezone: America/New_York
   push:
     branches: [main]
     paths:
@@ -54,4 +51,5 @@ jobs:
           done
           echo "Unable to safely publish CFB outputs after five attempts" >&2
           exit 1
+
 
