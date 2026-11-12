@@ -1,0 +1,51 @@
+name: Collect private Prop Lab morning research
+on:
+  schedule:
+    - cron: '5 4,5 * * *'
+      timezone: America/New_York
+  push:
+    branches: [main]
+    paths: ['.github/workflows/prop-lab-scheduled.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: private-prop-lab-collection
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Check existing secrets
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          PRIVATE_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        shell: python
+        run: |
+          import os
+          if not os.environ.get('ODDS_API_KEY') or not os.environ.get('PRIVATE_TOKEN'):
+              raise SystemExit('ODDS_API_KEY and WISESTATS_AUTOMATION_TOKEN are required')
+      - name: Checkout private processing and durable scan state
+        uses: actions/checkout@v4
+        with:
+          repository: thomaspyrda/wisestats-site
+          ref: prop-lab-private-research
+          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+          path: private
+      - name: Restore public statistics cache (never credentials or odds)
+        uses: actions/cache@v4
+        with:
+          path: private/.prop-source-cache
+          key: prop-lab-public-stats-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: prop-lab-public-stats-
+      - name: Configure private data checkpoint author
+        working-directory: private
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Collect once per game per Eastern date and build research
+        working-directory: private
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python3 prop_lab_runtime/collector.py
