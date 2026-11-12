@@ -1,8 +1,5 @@
 name: Commission current private Prop Lab research
 on:
-  push:
-    branches: [main]
-    paths: [.github/workflows/prop-lab-commission.yml]
   workflow_dispatch:
 permissions:
   contents: read
