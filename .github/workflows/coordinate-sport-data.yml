@@ -3,17 +3,10 @@ run-name: "${{ inputs.sport || 'active sports morning' }} data pipeline"
 # Ordered morning runs; existing afternoon and source-specific schedules remain enabled.
 # Existing Python models, HTML, CSS and JSON schemas are intentionally unchanged.
 on:
-  push:
-    branches: [main]
-    paths: ['.github/workflows/coordinate-sport-data.yml']
   repository_dispatch:
     types: [morning-refresh]
   schedule:
-    - cron: '30 2 * * *'
-      timezone: America/New_York
     - cron: '15 3 * * *'
-      timezone: America/New_York
-    - cron: '0,40 4 * * *'
       timezone: America/New_York
   workflow_dispatch:
     inputs:
@@ -21,7 +14,7 @@ on:
         description: 'Run one sport pipeline; independent injury jobs remain separately scheduled'
         type: choice
         required: true
-        options: [cbb, nba, cfb, mlb]
+        options: [cbb, nba, cfb]
 permissions:
   contents: write
   actions: read
@@ -42,7 +35,6 @@ jobs:
 
   morning-availability:
     needs: [morning-start]
-    if: inputs.sport != 'mlb'
     uses: ./.github/workflows/refresh-dashboard-availability.yml
     secrets: inherit
 
@@ -142,9 +134,21 @@ jobs:
     uses: ./.github/workflows/refresh-cbb-dashboard.yml
     secrets: inherit
 
+  nba-rosters:
+    needs: [morning-start]
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    uses: ./.github/workflows/refresh-nba-rosters.yml
+    secrets: inherit
+
+  nba-availability:
+    needs: [morning-start]
+    if: (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    uses: ./.github/workflows/refresh-nba-availability.yml
+    secrets: inherit
+
   nba-verified-statistics-and-pages:
-    needs: [morning-start, morning-availability]
-    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    needs: [morning-start, nba-rosters, nba-availability]
+    if: always() && needs.morning-start.result == 'success' && needs.nba-rosters.result == 'success' && (inputs.sport == 'nba' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     uses: ./.github/workflows/refresh-nba-dashboard.yml
     secrets: inherit
 
@@ -197,7 +201,7 @@ jobs:
     secrets: inherit
 
   cfb-context:
-    if: (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
+    if: always() && needs.cfb-results.result == 'success' && (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push')
     needs: [cfb-results, morning-availability]
     uses: ./.github/workflows/refresh-cfb-context.yml
     secrets: inherit
@@ -230,11 +234,6 @@ jobs:
     if: always() && (inputs.sport == 'cfb' || github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || github.event_name == 'push') && needs.cfb-results.result == 'success'
     needs: [cfb-results, cfb-team-metrics, cfb-player-statistics, cfb-dashboard-strength]
     uses: ./.github/workflows/cfb-publish-dashboard.yml
-    secrets: inherit
-
-  mlb-current-season-dashboard:
-    if: inputs.sport == 'mlb'
-    uses: ./.github/workflows/refresh-mlb-dashboard.yml
     secrets: inherit
 
   validate-cbb-datasets:
@@ -280,24 +279,11 @@ jobs:
           python3 scripts/verify_sport_dataset_contract.py --sport cfb
           python3 scripts/verify_cfb_pipeline.py
 
-  validate-mlb-datasets:
-    name: Validate MLB result and publication inputs
-    if: inputs.sport == 'mlb'
-    needs: [mlb-current-season-dashboard]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - run: python3 scripts/verify_sport_dataset_contract.py --sport mlb
-
 
 
 
   deploy-morning:
-    if: always() && (github.event_name == 'schedule' || github.event_name == 'repository_dispatch' || inputs.sport != 'mlb')
+    if: always()
     needs: [validate-cbb-datasets, validate-nba-datasets, validate-cfb-datasets, morning-availability]
     uses: ./.github/workflows/deploy-pages.yml
 
@@ -312,3 +298,4 @@ jobs:
         with:
           ref: main
       - run: python3 scripts/verify_morning_publication.py --sport "${{ inputs.sport || 'all' }}" --source-only
+
