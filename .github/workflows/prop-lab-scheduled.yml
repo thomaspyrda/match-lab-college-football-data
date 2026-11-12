@@ -1,12 +1,14 @@
 name: Collect private Prop Lab morning research
 on:
   schedule:
-    - cron: '5 4,5 * * *'
+    - cron: '15 4,5 * * *'
       timezone: America/New_York
   push:
     branches: [main]
     paths: ['.github/workflows/prop-lab-scheduled.yml']
   workflow_dispatch:
+  repository_dispatch:
+    types: [prop-lab-morning-recovery]
 permissions:
   contents: read
 concurrency:
@@ -44,9 +46,13 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Validate scan windows, morning source freshness and replay protection
+        working-directory: private
+        run: python3 -m unittest discover -s prop_lab_runtime -p test_morning_schedule.py -v
       - name: Collect once per game per Eastern date and build research
         working-directory: private
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' }}
+          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' }}
         run: python3 prop_lab_runtime/collector.py
+
