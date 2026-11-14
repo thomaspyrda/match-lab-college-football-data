@@ -5,6 +5,10 @@ on:
       timezone: America/New_York
     - cron: '15 10,15 * * *'
       timezone: America/New_York
+  workflow_run:
+    workflows: ["Publish WiseStats on public standard runner"]
+    branches: [main]
+    types: [completed]
   push:
     branches: [main]
     paths: ['.github/workflows/prop-lab-scheduled.yml']
@@ -23,9 +27,59 @@ concurrency:
   cancel-in-progress: false
 jobs:
   collect:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 130
     steps:
+      - name: Wait for prerequisite sources and verified live publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        shell: python
+        run: |
+          import json, os, time, urllib.request
+          from datetime import datetime, timezone
+          from zoneinfo import ZoneInfo
+          local = datetime.now(ZoneInfo('America/New_York'))
+          boundary = local.replace(hour=3, minute=15, second=0, microsecond=0).timestamp()
+          def get(url, github=False):
+              headers = {'Cache-Control': 'no-cache', 'User-Agent': 'WiseStats-PropLab-dependency/1'}
+              if github: headers['Authorization'] = 'Bearer ' + os.environ['GH_TOKEN']
+              with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as response:
+                  return json.load(response)
+          deadline = time.monotonic() + 5400
+          while True:
+              try:
+                  base = 'https://api.github.com/repos/' + os.environ['REPOSITORY'] + '/actions/workflows/'
+                  required = ['coordinate-sport-data.yml', 'run-nfl-public.yml', 'publish-wisestats-public.yml']
+                  for workflow in required:
+                      runs = get(base + workflow + '/runs?per_page=100', True)['workflow_runs']
+                      recent = [r for r in runs if r['head_branch'] == 'main' and datetime.fromisoformat(r['run_started_at'].replace('Z', '+00:00')).timestamp() >= boundary]
+                      if not any(r['status'] == 'completed' and r['conclusion'] == 'success' for r in recent):
+                          raise ValueError(workflow + ' has no successful current morning run')
+                      if any(r['status'] in ['queued', 'in_progress', 'waiting', 'pending', 'requested'] for r in runs):
+                          raise ValueError(workflow + ' is still active')
+                  host = 'https://wisestats.bet/'
+                  def live(path): return get(host + path + '?prop_dependency=' + str(time.time_ns()))
+                  nba = live('nba/dashboard/data/dashboard.json')
+                  from datetime import timedelta
+                  assert nba['freshness']['checked_through'] == str(local.date() - timedelta(days=1))
+                  for stamp in [nba['updated_at'], live('cbb/dashboard/data/dashboard.json')['updated_at'],
+                                live('cfb-dashboard-preview/data/dashboard.json')['slate']['generated_at'],
+                                live('nfl/data/nfl-rankings.json')['as_of']]:
+                      assert datetime.fromisoformat(stamp.replace('Z', '+00:00')).timestamp() >= boundary
+                  manifest = live('publication-manifest.json')
+                  for key, repository in [('sports', os.environ['REPOSITORY']), ('nfl', 'thomaspyrda/betwise-nfl-matchup-dashboard')]:
+                      if key == 'sports':
+                          head = get('https://api.github.com/repos/' + repository + '/branches/main', True)['commit']['sha']
+                          assert manifest['source_commits'][key] == head
+                  print('Prerequisite workflows completed and current data is live; starting Prop Lab.')
+                  break
+              except Exception as exc:
+                  print('Waiting for source dependency:', type(exc).__name__, str(exc), flush=True)
+                  if time.monotonic() >= deadline:
+                      raise SystemExit('Sources/publication not ready; collection and release writing were not started.')
+                  time.sleep(60)
       - name: Check existing secrets
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
@@ -60,6 +114,6 @@ jobs:
         working-directory: private
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' && inputs.collect_missing != true }}
+          PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' && github.event_name != 'workflow_run' && inputs.collect_missing != true }}
         run: python3 prop_lab_runtime/collector.py
 
