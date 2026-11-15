@@ -1,6 +1,6 @@
 {
   "season": 2026,
-  "as_of": "2026-11-14T17:02:55.690357+00:00",
+  "as_of": "2026-11-15T01:03:07.616501+00:00",
   "through_week": 11,
   "completed_game_ids": [
     "401856634",
@@ -183,8 +183,15 @@
     "401856854",
     "401856855",
     "401856856",
+    "401856859",
     "401856860",
+    "401856861",
+    "401856862",
     "401856881",
+    "401856883",
+    "401856886",
+    "401856888",
+    "401856889",
     "401858201",
     "401858202",
     "401858204",
@@ -275,6 +282,12 @@
     "401858291",
     "401858292",
     "401858293",
+    "401858294",
+    "401858295",
+    "401858296",
+    "401858297",
+    "401858300",
+    "401858301",
     "401858422",
     "401858423",
     "401858424",
@@ -371,6 +384,11 @@
     "401858515",
     "401858516",
     "401858517",
+    "401858518",
+    "401858520",
+    "401858522",
+    "401858523",
+    "401858525",
     "401858526",
     "401859184",
     "401859185",
@@ -410,6 +428,7 @@
     "401860911",
     "401860912",
     "401860913",
+    "401860916",
     "401860921",
     "401860922",
     "401860923",
@@ -419,6 +438,7 @@
     "401861964",
     "401861965",
     "401861966",
+    "401861967",
     "401861970",
     "401862693",
     "401862694",
@@ -488,6 +508,9 @@
     "401862822",
     "401862823",
     "401862824",
+    "401862825",
+    "401862828",
+    "401862829",
     "401864424",
     "401864425",
     "401864432",
@@ -533,6 +556,7 @@
     "401864533",
     "401864534",
     "401864535",
+    "401864536",
     "401864570",
     "401864571",
     "401864572",
@@ -634,6 +658,7 @@
     "401869934",
     "401869935",
     "401869936",
+    "401869937",
     "401869940",
     "401869941",
     "401869942",
@@ -644,6 +669,7 @@
     "401869949",
     "401869950",
     "401869951",
+    "401869952",
     "401869955",
     "401869956",
     "401869957",
@@ -658,11 +684,14 @@
     "401869968",
     "401869969",
     "401870745",
+    "401870752",
     "401870763",
     "401870764",
     "401870766",
+    "401870769",
     "401870790",
     "401870795",
+    "401870796",
     "401871045",
     "401871046",
     "401871047",
@@ -678,6 +707,8 @@
     "401871057",
     "401871058",
     "401871059",
+    "401871060",
+    "401871061",
     "401871066",
     "401871067",
     "401871068",
@@ -701,7 +732,7 @@
     "401871098"
   ],
   "fbs_teams": 138,
-  "players": 8543,
+  "players": 8593,
   "categories": [
     {
       "title": "Passing Yards",
@@ -720,6 +751,26 @@
         },
         {
           "rank": 2,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 3083.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 2992.0
+        },
+        {
+          "rank": 4,
           "player_id": "5219834",
           "name": "Drew Mestemaker",
           "teams": [
@@ -729,7 +780,7 @@
           "value": 2962.0
         },
         {
-          "rank": 3,
+          "rank": 5,
           "player_id": "4801307",
           "name": "Tayven Jackson",
           "teams": [
@@ -739,7 +790,7 @@
           "value": 2871.0
         },
         {
-          "rank": 4,
+          "rank": 6,
           "player_id": "5165807",
           "name": "Marcus Stokes",
           "teams": [
@@ -749,17 +800,17 @@
           "value": 2845.0
         },
         {
-          "rank": 5,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
+          "rank": 7,
+          "player_id": "4685454",
+          "name": "Jayden Maiava",
           "teams": [
-            "SMU"
+            "USC"
           ],
-          "games": 9,
-          "value": 2783.0
+          "games": 10,
+          "value": 2836.0
         },
         {
-          "rank": 6,
+          "rank": 8,
           "player_id": "4801717",
           "name": "Noah Fifita",
           "teams": [
@@ -769,7 +820,7 @@
           "value": 2777.0
         },
         {
-          "rank": 7,
+          "rank": 9,
           "player_id": "4869991",
           "name": "Caden Veltkamp",
           "teams": [
@@ -779,34 +830,14 @@
           "value": 2744.0
         },
         {
-          "rank": 8,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
+          "rank": 10,
+          "player_id": "5083569",
+          "name": "Jaden Craig",
           "teams": [
-            "Miami"
-          ],
-          "games": 9,
-          "value": 2701.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4685574",
-          "name": "Conner Weigman",
-          "teams": [
-            "Houston"
+            "TCU"
           ],
           "games": 10,
-          "value": 2551.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5078810",
-          "name": "Sam Leavitt",
-          "teams": [
-            "LSU"
-          ],
-          "games": 9,
-          "value": 2551.0
+          "value": 2664.0
         }
       ],
       "qualification": ""
@@ -818,6 +849,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 29.0
+        },
+        {
+          "rank": 1,
           "player_id": "5219834",
           "name": "Drew Mestemaker",
           "teams": [
@@ -827,23 +868,13 @@
           "value": 29.0
         },
         {
-          "rank": 2,
+          "rank": 3,
           "player_id": "5165807",
           "name": "Marcus Stokes",
           "teams": [
             "Memphis"
           ],
           "games": 10,
-          "value": 28.0
-        },
-        {
-          "rank": 2,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
-          "teams": [
-            "Miami"
-          ],
-          "games": 9,
           "value": 28.0
         },
         {
@@ -858,6 +889,16 @@
         },
         {
           "rank": 5,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 26.0
+        },
+        {
+          "rank": 6,
           "player_id": "5212654",
           "name": "Braden Atkinson",
           "teams": [
@@ -867,17 +908,7 @@
           "value": 25.0
         },
         {
-          "rank": 5,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 25.0
-        },
-        {
-          "rank": 5,
+          "rank": 6,
           "player_id": "4685574",
           "name": "Conner Weigman",
           "teams": [
@@ -897,24 +928,24 @@
           "value": 23.0
         },
         {
-          "rank": 9,
-          "player_id": "4801717",
-          "name": "Noah Fifita",
-          "teams": [
-            "Arizona"
-          ],
-          "games": 9,
-          "value": 21.0
-        },
-        {
-          "rank": 9,
+          "rank": 8,
           "player_id": "5079369",
           "name": "C.J. Carr",
           "teams": [
             "Notre Dame"
           ],
-          "games": 9,
-          "value": 21.0
+          "games": 10,
+          "value": 23.0
+        },
+        {
+          "rank": 10,
+          "player_id": "5148803",
+          "name": "Brad Jackson",
+          "teams": [
+            "Texas State"
+          ],
+          "games": 10,
+          "value": 22.0
         }
       ],
       "qualification": ""
@@ -936,6 +967,16 @@
         },
         {
           "rank": 2,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 242.0
+        },
+        {
+          "rank": 3,
           "player_id": "5212654",
           "name": "Braden Atkinson",
           "teams": [
@@ -945,7 +986,17 @@
           "value": 241.0
         },
         {
-          "rank": 3,
+          "rank": 4,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 231.0
+        },
+        {
+          "rank": 5,
           "player_id": "5101124",
           "name": "Micah Alejado",
           "teams": [
@@ -955,7 +1006,37 @@
           "value": 228.0
         },
         {
-          "rank": 4,
+          "rank": 6,
+          "player_id": "4685740",
+          "name": "Max Johnson",
+          "teams": [
+            "Georgia Southern"
+          ],
+          "games": 10,
+          "value": 225.0
+        },
+        {
+          "rank": 7,
+          "player_id": "4685454",
+          "name": "Jayden Maiava",
+          "teams": [
+            "USC"
+          ],
+          "games": 10,
+          "value": 224.0
+        },
+        {
+          "rank": 8,
+          "player_id": "5083569",
+          "name": "Jaden Craig",
+          "teams": [
+            "TCU"
+          ],
+          "games": 10,
+          "value": 223.0
+        },
+        {
+          "rank": 8,
           "player_id": "4801717",
           "name": "Noah Fifita",
           "teams": [
@@ -965,7 +1046,7 @@
           "value": 223.0
         },
         {
-          "rank": 5,
+          "rank": 10,
           "player_id": "5144078",
           "name": "Ethan Grunkemeyer",
           "teams": [
@@ -973,56 +1054,6 @@
           ],
           "games": 9,
           "value": 215.0
-        },
-        {
-          "rank": 5,
-          "player_id": "5078810",
-          "name": "Sam Leavitt",
-          "teams": [
-            "LSU"
-          ],
-          "games": 9,
-          "value": 215.0
-        },
-        {
-          "rank": 7,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
-          "teams": [
-            "Miami"
-          ],
-          "games": 9,
-          "value": 212.0
-        },
-        {
-          "rank": 7,
-          "player_id": "4801307",
-          "name": "Tayven Jackson",
-          "teams": [
-            "North Texas"
-          ],
-          "games": 9,
-          "value": 212.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 209.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4685740",
-          "name": "Max Johnson",
-          "teams": [
-            "Georgia Southern"
-          ],
-          "games": 9,
-          "value": 209.0
         }
       ],
       "qualification": ""
@@ -1054,6 +1085,16 @@
         },
         {
           "rank": 3,
+          "player_id": "5083569",
+          "name": "Jaden Craig",
+          "teams": [
+            "TCU"
+          ],
+          "games": 10,
+          "value": 344.0
+        },
+        {
+          "rank": 4,
           "player_id": "4869991",
           "name": "Caden Veltkamp",
           "teams": [
@@ -1063,7 +1104,27 @@
           "value": 340.0
         },
         {
-          "rank": 4,
+          "rank": 5,
+          "player_id": "4685454",
+          "name": "Jayden Maiava",
+          "teams": [
+            "USC"
+          ],
+          "games": 10,
+          "value": 338.0
+        },
+        {
+          "rank": 6,
+          "player_id": "5194626",
+          "name": "Roman Gagliano",
+          "teams": [
+            "Middle Tennessee"
+          ],
+          "games": 10,
+          "value": 333.0
+        },
+        {
+          "rank": 7,
           "player_id": "4911529",
           "name": "Trinidad Chambliss",
           "teams": [
@@ -1073,64 +1134,34 @@
           "value": 330.0
         },
         {
-          "rank": 5,
-          "player_id": "5083569",
-          "name": "Jaden Craig",
-          "teams": [
-            "TCU"
-          ],
-          "games": 9,
-          "value": 310.0
-        },
-        {
-          "rank": 6,
-          "player_id": "5219834",
-          "name": "Drew Mestemaker",
-          "teams": [
-            "Oklahoma State"
-          ],
-          "games": 9,
-          "value": 309.0
-        },
-        {
-          "rank": 7,
-          "player_id": "4878681",
-          "name": "Davis Warren",
-          "teams": [
-            "Stanford"
-          ],
-          "games": 9,
-          "value": 308.0
-        },
-        {
           "rank": 8,
-          "player_id": "5141695",
-          "name": "Malik Washington",
-          "teams": [
-            "Maryland"
-          ],
-          "games": 9,
-          "value": 307.0
-        },
-        {
-          "rank": 9,
           "player_id": "5044387",
           "name": "Anthony Colandrea",
           "teams": [
             "Nebraska"
           ],
-          "games": 9,
-          "value": 306.0
+          "games": 10,
+          "value": 328.0
         },
         {
           "rank": 9,
-          "player_id": "4801717",
-          "name": "Noah Fifita",
+          "player_id": "4685740",
+          "name": "Max Johnson",
           "teams": [
-            "Arizona"
+            "Georgia Southern"
           ],
-          "games": 9,
-          "value": 306.0
+          "games": 10,
+          "value": 327.0
+        },
+        {
+          "rank": 10,
+          "player_id": "4870883",
+          "name": "J.J. Kohl",
+          "teams": [
+            "Florida International"
+          ],
+          "games": 10,
+          "value": 318.0
         }
       ],
       "qualification": ""
@@ -1142,6 +1173,26 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5219258",
+          "name": "Aiden Flora",
+          "teams": [
+            "Iowa State"
+          ],
+          "games": 10,
+          "value": 1335.0
+        },
+        {
+          "rank": 2,
+          "player_id": "5164332",
+          "name": "Nate Sheppard",
+          "teams": [
+            "Duke"
+          ],
+          "games": 10,
+          "value": 1320.0
+        },
+        {
+          "rank": 3,
           "player_id": "5146712",
           "name": "Dylan Riley",
           "teams": [
@@ -1151,17 +1202,17 @@
           "value": 1241.0
         },
         {
-          "rank": 2,
-          "player_id": "5164332",
-          "name": "Nate Sheppard",
+          "rank": 4,
+          "player_id": "5088888",
+          "name": "Torrance Burgess Jr.",
           "teams": [
-            "Duke"
+            "Texas State"
           ],
-          "games": 9,
-          "value": 1189.0
+          "games": 10,
+          "value": 1225.0
         },
         {
-          "rank": 3,
+          "rank": 5,
           "player_id": "4911971",
           "name": "Jahiem White",
           "teams": [
@@ -1171,7 +1222,17 @@
           "value": 1182.0
         },
         {
-          "rank": 4,
+          "rank": 6,
+          "player_id": "4921108",
+          "name": "DeSean Bishop",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
+          "value": 1163.0
+        },
+        {
+          "rank": 7,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -1181,27 +1242,17 @@
           "value": 1162.0
         },
         {
-          "rank": 5,
-          "player_id": "5219258",
-          "name": "Aiden Flora",
+          "rank": 8,
+          "player_id": "4921116",
+          "name": "Jamal Roberts",
           "teams": [
-            "Iowa State"
+            "Missouri"
           ],
-          "games": 9,
-          "value": 1119.0
+          "games": 10,
+          "value": 1133.0
         },
         {
-          "rank": 6,
-          "player_id": "5088888",
-          "name": "Torrance Burgess Jr.",
-          "teams": [
-            "Texas State"
-          ],
-          "games": 9,
-          "value": 1118.0
-        },
-        {
-          "rank": 7,
+          "rank": 9,
           "player_id": "5151369",
           "name": "Messiah Burch",
           "teams": [
@@ -1211,34 +1262,14 @@
           "value": 1110.0
         },
         {
-          "rank": 8,
-          "player_id": "5258016",
-          "name": "Caleb Hawkins",
-          "teams": [
-            "Oklahoma State"
-          ],
-          "games": 9,
-          "value": 1081.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4918103",
-          "name": "Cam Cook",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 9,
-          "value": 1072.0
-        },
-        {
           "rank": 10,
-          "player_id": "4921116",
-          "name": "Jamal Roberts",
+          "player_id": "5220253",
+          "name": "James Jones",
           "teams": [
-            "Missouri"
+            "New Mexico State"
           ],
-          "games": 9,
-          "value": 1071.0
+          "games": 10,
+          "value": 1090.0
         }
       ],
       "qualification": ""
@@ -1255,11 +1286,21 @@
           "teams": [
             "West Virginia"
           ],
-          "games": 9,
-          "value": 19.0
+          "games": 10,
+          "value": 20.0
         },
         {
           "rank": 2,
+          "player_id": "5164332",
+          "name": "Nate Sheppard",
+          "teams": [
+            "Duke"
+          ],
+          "games": 10,
+          "value": 19.0
+        },
+        {
+          "rank": 3,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -1269,7 +1310,7 @@
           "value": 18.0
         },
         {
-          "rank": 2,
+          "rank": 3,
           "player_id": "5150297",
           "name": "Cale Hellums",
           "teams": [
@@ -1277,16 +1318,6 @@
           ],
           "games": 9,
           "value": 18.0
-        },
-        {
-          "rank": 4,
-          "player_id": "5164332",
-          "name": "Nate Sheppard",
-          "teams": [
-            "Duke"
-          ],
-          "games": 9,
-          "value": 17.0
         },
         {
           "rank": 5,
@@ -1315,7 +1346,7 @@
           "teams": [
             "Tennessee"
           ],
-          "games": 9,
+          "games": 10,
           "value": 13.0
         },
         {
@@ -1358,26 +1389,36 @@
       "players": [
         {
           "rank": 1,
-          "player_id": "4918103",
-          "name": "Cam Cook",
+          "player_id": "4921108",
+          "name": "DeSean Bishop",
           "teams": [
-            "West Virginia"
+            "Tennessee"
           ],
-          "games": 9,
-          "value": 209.0
+          "games": 10,
+          "value": 230.0
         },
         {
-          "rank": 1,
+          "rank": 2,
           "player_id": "4921116",
           "name": "Jamal Roberts",
           "teams": [
             "Missouri"
           ],
-          "games": 9,
-          "value": 209.0
+          "games": 10,
+          "value": 228.0
         },
         {
           "rank": 3,
+          "player_id": "4918103",
+          "name": "Cam Cook",
+          "teams": [
+            "West Virginia"
+          ],
+          "games": 10,
+          "value": 218.0
+        },
+        {
+          "rank": 4,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -1388,16 +1429,26 @@
         },
         {
           "rank": 4,
-          "player_id": "4921108",
-          "name": "DeSean Bishop",
+          "player_id": "5079465",
+          "name": "Michael Hawkins Jr.",
           "teams": [
-            "Tennessee"
+            "West Virginia"
           ],
-          "games": 9,
-          "value": 196.0
+          "games": 10,
+          "value": 207.0
         },
         {
           "rank": 4,
+          "player_id": "5164332",
+          "name": "Nate Sheppard",
+          "teams": [
+            "Duke"
+          ],
+          "games": 10,
+          "value": 207.0
+        },
+        {
+          "rank": 7,
           "player_id": "5151369",
           "name": "Messiah Burch",
           "teams": [
@@ -1407,17 +1458,7 @@
           "value": 196.0
         },
         {
-          "rank": 6,
-          "player_id": "5164332",
-          "name": "Nate Sheppard",
-          "teams": [
-            "Duke"
-          ],
-          "games": 9,
-          "value": 191.0
-        },
-        {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5258016",
           "name": "Caleb Hawkins",
           "teams": [
@@ -1427,7 +1468,17 @@
           "value": 187.0
         },
         {
-          "rank": 8,
+          "rank": 9,
+          "player_id": "5219258",
+          "name": "Aiden Flora",
+          "teams": [
+            "Iowa State"
+          ],
+          "games": 10,
+          "value": 185.0
+        },
+        {
+          "rank": 9,
           "player_id": "5150297",
           "name": "Cale Hellums",
           "teams": [
@@ -1435,26 +1486,6 @@
           ],
           "games": 9,
           "value": 185.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5146712",
-          "name": "Dylan Riley",
-          "teams": [
-            "Boise State"
-          ],
-          "games": 9,
-          "value": 184.0
-        },
-        {
-          "rank": 10,
-          "player_id": "5079465",
-          "name": "Michael Hawkins Jr.",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 9,
-          "value": 182.0
         }
       ],
       "qualification": ""
@@ -1466,6 +1497,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5079720",
+          "name": "Jeremiah Smith",
+          "teams": [
+            "Ohio State"
+          ],
+          "games": 10,
+          "value": 1317.0
+        },
+        {
+          "rank": 2,
           "player_id": "5289510",
           "name": "Jesse Legree",
           "teams": [
@@ -1475,17 +1516,37 @@
           "value": 1209.0
         },
         {
-          "rank": 2,
-          "player_id": "5079720",
-          "name": "Jeremiah Smith",
+          "rank": 3,
+          "player_id": "4691315",
+          "name": "Umari Hatcher",
           "teams": [
-            "Ohio State"
+            "Syracuse"
           ],
-          "games": 9,
-          "value": 1200.0
+          "games": 10,
+          "value": 1045.0
         },
         {
-          "rank": 3,
+          "rank": 4,
+          "player_id": "5153074",
+          "name": "Carlos Hernandez",
+          "teams": [
+            "Wake Forest"
+          ],
+          "games": 9,
+          "value": 1039.0
+        },
+        {
+          "rank": 5,
+          "player_id": "5219476",
+          "name": "Isaiah Myers",
+          "teams": [
+            "Missouri State"
+          ],
+          "games": 9,
+          "value": 1029.0
+        },
+        {
+          "rank": 6,
           "player_id": "5159175",
           "name": "Malachi Toney",
           "teams": [
@@ -1495,7 +1556,7 @@
           "value": 1027.0
         },
         {
-          "rank": 4,
+          "rank": 7,
           "player_id": "4914830",
           "name": "Easton Messer",
           "teams": [
@@ -1505,27 +1566,17 @@
           "value": 976.0
         },
         {
-          "rank": 5,
-          "player_id": "4691315",
-          "name": "Umari Hatcher",
+          "rank": 8,
+          "player_id": "5146735",
+          "name": "Charlie Becker",
           "teams": [
-            "Syracuse"
+            "Indiana"
           ],
-          "games": 9,
-          "value": 964.0
+          "games": 10,
+          "value": 950.0
         },
         {
-          "rank": 6,
-          "player_id": "5153074",
-          "name": "Carlos Hernandez",
-          "teams": [
-            "Wake Forest"
-          ],
-          "games": 8,
-          "value": 945.0
-        },
-        {
-          "rank": 7,
+          "rank": 9,
           "player_id": "4923226",
           "name": "Collin Dixon",
           "teams": [
@@ -1535,17 +1586,7 @@
           "value": 941.0
         },
         {
-          "rank": 8,
-          "player_id": "5219476",
-          "name": "Isaiah Myers",
-          "teams": [
-            "Missouri State"
-          ],
-          "games": 8,
-          "value": 940.0
-        },
-        {
-          "rank": 9,
+          "rank": 10,
           "player_id": "5189530",
           "name": "Joseph Williams",
           "teams": [
@@ -1553,16 +1594,6 @@
           ],
           "games": 10,
           "value": 933.0
-        },
-        {
-          "rank": 10,
-          "player_id": "5031157",
-          "name": "Reed Harris",
-          "teams": [
-            "Arizona State"
-          ],
-          "games": 9,
-          "value": 907.0
         }
       ],
       "qualification": ""
@@ -1574,20 +1605,20 @@
       "players": [
         {
           "rank": 1,
-          "player_id": "5289510",
-          "name": "Jesse Legree",
-          "teams": [
-            "Oregon State"
-          ],
-          "games": 9,
-          "value": 14.0
-        },
-        {
-          "rank": 1,
           "player_id": "5079720",
           "name": "Jeremiah Smith",
           "teams": [
             "Ohio State"
+          ],
+          "games": 10,
+          "value": 15.0
+        },
+        {
+          "rank": 2,
+          "player_id": "5289510",
+          "name": "Jesse Legree",
+          "teams": [
+            "Oregon State"
           ],
           "games": 9,
           "value": 14.0
@@ -1624,6 +1655,16 @@
         },
         {
           "rank": 6,
+          "player_id": "5146735",
+          "name": "Charlie Becker",
+          "teams": [
+            "Indiana"
+          ],
+          "games": 10,
+          "value": 10.0
+        },
+        {
+          "rank": 6,
           "player_id": "5083747",
           "name": "Justin Bowick",
           "teams": [
@@ -1633,7 +1674,7 @@
           "value": 10.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5031157",
           "name": "Reed Harris",
           "teams": [
@@ -1643,17 +1684,7 @@
           "value": 9.0
         },
         {
-          "rank": 7,
-          "player_id": "5146735",
-          "name": "Charlie Becker",
-          "teams": [
-            "Indiana"
-          ],
-          "games": 9,
-          "value": 9.0
-        },
-        {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5084771",
           "name": "KJ Duff",
           "teams": [
@@ -1663,7 +1694,7 @@
           "value": 9.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5077060",
           "name": "Amare Thomas",
           "teams": [
@@ -1682,6 +1713,26 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5079720",
+          "name": "Jeremiah Smith",
+          "teams": [
+            "Ohio State"
+          ],
+          "games": 10,
+          "value": 80.0
+        },
+        {
+          "rank": 1,
+          "player_id": "5296150",
+          "name": "DeAree Rogers",
+          "teams": [
+            "Northern Illinois"
+          ],
+          "games": 10,
+          "value": 80.0
+        },
+        {
+          "rank": 3,
           "player_id": "4914830",
           "name": "Easton Messer",
           "teams": [
@@ -1691,7 +1742,7 @@
           "value": 79.0
         },
         {
-          "rank": 2,
+          "rank": 4,
           "player_id": "5159175",
           "name": "Malachi Toney",
           "teams": [
@@ -1701,7 +1752,7 @@
           "value": 73.0
         },
         {
-          "rank": 3,
+          "rank": 5,
           "player_id": "4923226",
           "name": "Collin Dixon",
           "teams": [
@@ -1711,27 +1762,17 @@
           "value": 71.0
         },
         {
-          "rank": 4,
-          "player_id": "5296150",
-          "name": "DeAree Rogers",
+          "rank": 6,
+          "player_id": "5193298",
+          "name": "Chris Durr Jr.",
           "teams": [
-            "Northern Illinois"
+            "Maryland"
           ],
-          "games": 9,
+          "games": 10,
           "value": 70.0
         },
         {
-          "rank": 5,
-          "player_id": "5079720",
-          "name": "Jeremiah Smith",
-          "teams": [
-            "Ohio State"
-          ],
-          "games": 9,
-          "value": 69.0
-        },
-        {
-          "rank": 5,
+          "rank": 7,
           "player_id": "4896289",
           "name": "Gavin Freeman",
           "teams": [
@@ -1741,24 +1782,14 @@
           "value": 69.0
         },
         {
-          "rank": 7,
-          "player_id": "4920163",
-          "name": "Kelby Valsin",
+          "rank": 8,
+          "player_id": "5153074",
+          "name": "Carlos Hernandez",
           "teams": [
-            "Florida Atlantic"
+            "Wake Forest"
           ],
           "games": 9,
-          "value": 66.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5189530",
-          "name": "Joseph Williams",
-          "teams": [
-            "Colorado"
-          ],
-          "games": 10,
-          "value": 63.0
+          "value": 67.0
         },
         {
           "rank": 9,
@@ -1767,18 +1798,18 @@
           "teams": [
             "Syracuse"
           ],
-          "games": 9,
-          "value": 62.0
+          "games": 10,
+          "value": 66.0
         },
         {
           "rank": 9,
-          "player_id": "5193298",
-          "name": "Chris Durr Jr.",
+          "player_id": "4920163",
+          "name": "Kelby Valsin",
           "teams": [
-            "Maryland"
+            "Florida Atlantic"
           ],
           "games": 9,
-          "value": 62.0
+          "value": 66.0
         }
       ],
       "qualification": ""
@@ -1790,6 +1821,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5164332",
+          "name": "Nate Sheppard",
+          "teams": [
+            "Duke"
+          ],
+          "games": 10,
+          "value": 1719.0
+        },
+        {
+          "rank": 2,
           "player_id": "5258016",
           "name": "Caleb Hawkins",
           "teams": [
@@ -1797,16 +1838,6 @@
           ],
           "games": 9,
           "value": 1505.0
-        },
-        {
-          "rank": 2,
-          "player_id": "5164332",
-          "name": "Nate Sheppard",
-          "teams": [
-            "Duke"
-          ],
-          "games": 9,
-          "value": 1495.0
         },
         {
           "rank": 3,
@@ -1820,6 +1851,16 @@
         },
         {
           "rank": 4,
+          "player_id": "5219258",
+          "name": "Aiden Flora",
+          "teams": [
+            "Iowa State"
+          ],
+          "games": 10,
+          "value": 1473.0
+        },
+        {
+          "rank": 5,
           "player_id": "5146712",
           "name": "Dylan Riley",
           "teams": [
@@ -1829,17 +1870,47 @@
           "value": 1459.0
         },
         {
-          "rank": 5,
+          "rank": 6,
           "player_id": "5088888",
           "name": "Torrance Burgess Jr.",
           "teams": [
             "Texas State"
           ],
-          "games": 9,
-          "value": 1249.0
+          "games": 10,
+          "value": 1378.0
         },
         {
-          "rank": 6,
+          "rank": 7,
+          "player_id": "5079720",
+          "name": "Jeremiah Smith",
+          "teams": [
+            "Ohio State"
+          ],
+          "games": 10,
+          "value": 1324.0
+        },
+        {
+          "rank": 8,
+          "player_id": "4921116",
+          "name": "Jamal Roberts",
+          "teams": [
+            "Missouri"
+          ],
+          "games": 10,
+          "value": 1259.0
+        },
+        {
+          "rank": 9,
+          "player_id": "5107875",
+          "name": "Cole Tabb",
+          "teams": [
+            "Cincinnati"
+          ],
+          "games": 10,
+          "value": 1236.0
+        },
+        {
+          "rank": 10,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -1847,46 +1918,6 @@
           ],
           "games": 9,
           "value": 1233.0
-        },
-        {
-          "rank": 7,
-          "player_id": "5219258",
-          "name": "Aiden Flora",
-          "teams": [
-            "Iowa State"
-          ],
-          "games": 9,
-          "value": 1219.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5289510",
-          "name": "Jesse Legree",
-          "teams": [
-            "Oregon State"
-          ],
-          "games": 9,
-          "value": 1209.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5079720",
-          "name": "Jeremiah Smith",
-          "teams": [
-            "Ohio State"
-          ],
-          "games": 9,
-          "value": 1207.0
-        },
-        {
-          "rank": 10,
-          "player_id": "4918103",
-          "name": "Cam Cook",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 9,
-          "value": 1196.0
         }
       ],
       "qualification": ""
@@ -1903,8 +1934,8 @@
           "teams": [
             "Duke"
           ],
-          "games": 9,
-          "value": 21.0
+          "games": 10,
+          "value": 23.0
         },
         {
           "rank": 2,
@@ -1913,8 +1944,8 @@
           "teams": [
             "West Virginia"
           ],
-          "games": 9,
-          "value": 19.0
+          "games": 10,
+          "value": 20.0
         },
         {
           "rank": 3,
@@ -1948,6 +1979,16 @@
         },
         {
           "rank": 6,
+          "player_id": "5079720",
+          "name": "Jeremiah Smith",
+          "teams": [
+            "Ohio State"
+          ],
+          "games": 10,
+          "value": 15.0
+        },
+        {
+          "rank": 6,
           "player_id": "4912342",
           "name": "Wayne Knight",
           "teams": [
@@ -1957,17 +1998,17 @@
           "value": 15.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5107875",
           "name": "Cole Tabb",
           "teams": [
             "Cincinnati"
           ],
-          "games": 9,
+          "games": 10,
           "value": 14.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "4914830",
           "name": "Easton Messer",
           "teams": [
@@ -1977,21 +2018,11 @@
           "value": 14.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5079322",
           "name": "Jadan Baugh",
           "teams": [
             "Florida"
-          ],
-          "games": 9,
-          "value": 14.0
-        },
-        {
-          "rank": 7,
-          "player_id": "5079720",
-          "name": "Jeremiah Smith",
-          "teams": [
-            "Ohio State"
           ],
           "games": 9,
           "value": 14.0
@@ -2006,6 +2037,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5085721",
+          "name": "Jared Lloyd",
+          "teams": [
+            "Missouri State"
+          ],
+          "games": 10,
+          "value": 118.0
+        },
+        {
+          "rank": 2,
           "player_id": "5086986",
           "name": "Gideon Lampron",
           "teams": [
@@ -2015,17 +2056,57 @@
           "value": 106.0
         },
         {
-          "rank": 2,
-          "player_id": "5085721",
-          "name": "Jared Lloyd",
+          "rank": 3,
+          "player_id": "4918441",
+          "name": "Marcellius Pulliam",
           "teams": [
-            "Missouri State"
+            "Coastal Carolina"
           ],
-          "games": 9,
-          "value": 103.0
+          "games": 10,
+          "value": 105.0
         },
         {
-          "rank": 3,
+          "rank": 4,
+          "player_id": "5296359",
+          "name": "EJ Smith",
+          "teams": [
+            "Nevada"
+          ],
+          "games": 10,
+          "value": 101.0
+        },
+        {
+          "rank": 5,
+          "player_id": "5167173",
+          "name": "Cooper Catalano",
+          "teams": [
+            "Wisconsin"
+          ],
+          "games": 10,
+          "value": 100.0
+        },
+        {
+          "rank": 5,
+          "player_id": "5079582",
+          "name": "Nicholas Rodriguez",
+          "teams": [
+            "Missouri"
+          ],
+          "games": 10,
+          "value": 100.0
+        },
+        {
+          "rank": 7,
+          "player_id": "5296366",
+          "name": "Curly Ordonez",
+          "teams": [
+            "Temple"
+          ],
+          "games": 10,
+          "value": 97.0
+        },
+        {
+          "rank": 7,
           "player_id": "5193283",
           "name": "Dorian Pringle",
           "teams": [
@@ -2035,74 +2116,24 @@
           "value": 97.0
         },
         {
-          "rank": 3,
-          "player_id": "4918441",
-          "name": "Marcellius Pulliam",
+          "rank": 7,
+          "player_id": "5294514",
+          "name": "Joe Drew",
           "teams": [
-            "Coastal Carolina"
+            "Arkansas State"
           ],
-          "games": 9,
+          "games": 10,
           "value": 97.0
         },
         {
-          "rank": 5,
-          "player_id": "5296359",
-          "name": "EJ Smith",
+          "rank": 10,
+          "player_id": "5091817",
+          "name": "Dickson Agu",
           "teams": [
-            "Nevada"
-          ],
-          "games": 9,
-          "value": 95.0
-        },
-        {
-          "rank": 5,
-          "player_id": "5083312",
-          "name": "Michael Molnar",
-          "teams": [
-            "Ohio"
+            "Tulane"
           ],
           "games": 10,
-          "value": 95.0
-        },
-        {
-          "rank": 7,
-          "player_id": "5079582",
-          "name": "Nicholas Rodriguez",
-          "teams": [
-            "Missouri"
-          ],
-          "games": 9,
-          "value": 93.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5167173",
-          "name": "Cooper Catalano",
-          "teams": [
-            "Wisconsin"
-          ],
-          "games": 9,
-          "value": 90.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4701591",
-          "name": "Boogsie Silvera",
-          "teams": [
-            "Sacramento State"
-          ],
-          "games": 11,
-          "value": 89.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4683224",
-          "name": "Derek Mcdonald",
-          "teams": [
-            "North Carolina"
-          ],
-          "games": 9,
-          "value": 89.0
+          "value": 96.0
         }
       ],
       "qualification": ""
@@ -2123,7 +2154,47 @@
           "value": 61.0
         },
         {
-          "rank": 2,
+          "rank": 1,
+          "player_id": "5092287",
+          "name": "Muaaz Byard",
+          "teams": [
+            "UAB"
+          ],
+          "games": 10,
+          "value": 61.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5296366",
+          "name": "Curly Ordonez",
+          "teams": [
+            "Temple"
+          ],
+          "games": 10,
+          "value": 60.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5296359",
+          "name": "EJ Smith",
+          "teams": [
+            "Nevada"
+          ],
+          "games": 10,
+          "value": 60.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5121987",
+          "name": "Kevin Adams",
+          "teams": [
+            "Tulane"
+          ],
+          "games": 10,
+          "value": 60.0
+        },
+        {
+          "rank": 6,
           "player_id": "4922985",
           "name": "Randon Fontenette",
           "teams": [
@@ -2133,84 +2204,44 @@
           "value": 58.0
         },
         {
-          "rank": 3,
-          "player_id": "5121987",
-          "name": "Kevin Adams",
-          "teams": [
-            "Tulane"
-          ],
-          "games": 9,
-          "value": 57.0
-        },
-        {
-          "rank": 3,
-          "player_id": "5092287",
-          "name": "Muaaz Byard",
-          "teams": [
-            "UAB"
-          ],
-          "games": 9,
-          "value": 57.0
-        },
-        {
-          "rank": 5,
-          "player_id": "5296359",
-          "name": "EJ Smith",
-          "teams": [
-            "Nevada"
-          ],
-          "games": 9,
-          "value": 54.0
-        },
-        {
-          "rank": 6,
+          "rank": 7,
           "player_id": "5195616",
           "name": "Jo Pierce",
           "teams": [
             "UAB"
           ],
-          "games": 8,
-          "value": 52.0
+          "games": 9,
+          "value": 57.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5085721",
           "name": "Jared Lloyd",
           "teams": [
             "Missouri State"
           ],
-          "games": 9,
-          "value": 49.0
-        },
-        {
-          "rank": 7,
-          "player_id": "4685379",
-          "name": "Sione Hala",
-          "teams": [
-            "San Diego State"
-          ],
-          "games": 9,
-          "value": 49.0
+          "games": 10,
+          "value": 55.0
         },
         {
           "rank": 9,
-          "player_id": "5113022",
-          "name": "Caleb Womack",
+          "player_id": "4701950",
+          "name": "Jaylen Lewis",
           "teams": [
-            "San Jos\u00e9 State"
+            "Western Kentucky"
           ],
           "games": 10,
-          "value": 48.0
+          "value": 52.0
         },
         {
-          "rank": 9,
-          "player_id": "5296366",
-          "name": "Curly Ordonez",
+          "rank": 10,
+          "player_id": "5195298",
+          "name": "Mason Posa",
           "teams": [
-            "Temple"
+            "Wisconsin"
           ],
-          "games": 9,
-          "value": 48.0
+          "games": 10,
+          "value": 51.0
         }
       ],
       "qualification": ""
@@ -2237,8 +2268,8 @@
           "teams": [
             "UAB"
           ],
-          "games": 9,
-          "value": 11.5
+          "games": 10,
+          "value": 12.5
         },
         {
           "rank": 3,
@@ -2252,12 +2283,12 @@
         },
         {
           "rank": 4,
-          "player_id": "5079689",
-          "name": "Colin Simmons",
+          "player_id": "5166484",
+          "name": "Xavier Esquillen",
           "teams": [
-            "Texas"
+            "Georgia State"
           ],
-          "games": 6,
+          "games": 10,
           "value": 10.0
         },
         {
@@ -2267,21 +2298,21 @@
           "teams": [
             "Indiana"
           ],
-          "games": 9,
+          "games": 10,
           "value": 10.0
         },
         {
-          "rank": 6,
-          "player_id": "5166484",
-          "name": "Xavier Esquillen",
+          "rank": 4,
+          "player_id": "5079689",
+          "name": "Colin Simmons",
           "teams": [
-            "Georgia State"
+            "Texas"
           ],
-          "games": 9,
-          "value": 9.0
+          "games": 6,
+          "value": 10.0
         },
         {
-          "rank": 6,
+          "rank": 7,
           "player_id": "4917971",
           "name": "Princewill Umanmielen",
           "teams": [
@@ -2291,7 +2322,7 @@
           "value": 9.0
         },
         {
-          "rank": 6,
+          "rank": 7,
           "player_id": "5197102",
           "name": "Alonzo Jackson Jr.",
           "teams": [
@@ -2307,17 +2338,17 @@
           "teams": [
             "SMU"
           ],
-          "games": 9,
-          "value": 7.5
+          "games": 10,
+          "value": 8.5
         },
         {
-          "rank": 9,
-          "player_id": "4920136",
-          "name": "Aycen Stevens",
+          "rank": 10,
+          "player_id": "4871052",
+          "name": "Matayo Uiagalelei",
           "teams": [
-            "Virginia Tech"
+            "Oregon"
           ],
-          "games": 9,
+          "games": 10,
           "value": 7.5
         }
       ],
@@ -2330,6 +2361,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5220652",
+          "name": "Marlin Dean",
+          "teams": [
+            "UAB"
+          ],
+          "games": 10,
+          "value": 16.5
+        },
+        {
+          "rank": 2,
           "player_id": "5224269",
           "name": "Andrew Zock",
           "teams": [
@@ -2340,6 +2381,16 @@
         },
         {
           "rank": 2,
+          "player_id": "5223986",
+          "name": "Leroy Harris III",
+          "teams": [
+            "Kansas"
+          ],
+          "games": 10,
+          "value": 16.0
+        },
+        {
+          "rank": 4,
           "player_id": "5197102",
           "name": "Alonzo Jackson Jr.",
           "teams": [
@@ -2349,7 +2400,7 @@
           "value": 15.5
         },
         {
-          "rank": 2,
+          "rank": 4,
           "player_id": "5079689",
           "name": "Colin Simmons",
           "teams": [
@@ -2359,7 +2410,7 @@
           "value": 15.5
         },
         {
-          "rank": 2,
+          "rank": 4,
           "player_id": "4807124",
           "name": "Darren Agu",
           "teams": [
@@ -2369,17 +2420,17 @@
           "value": 15.5
         },
         {
-          "rank": 2,
+          "rank": 4,
           "player_id": "4857878",
           "name": "Tobi Osunsanmi",
           "teams": [
             "Indiana"
           ],
-          "games": 9,
+          "games": 10,
           "value": 15.5
         },
         {
-          "rank": 6,
+          "rank": 8,
           "player_id": "5086986",
           "name": "Gideon Lampron",
           "teams": [
@@ -2389,7 +2440,7 @@
           "value": 15.0
         },
         {
-          "rank": 6,
+          "rank": 8,
           "player_id": "5083312",
           "name": "Michael Molnar",
           "teams": [
@@ -2399,17 +2450,7 @@
           "value": 15.0
         },
         {
-          "rank": 8,
-          "player_id": "5220652",
-          "name": "Marlin Dean",
-          "teams": [
-            "UAB"
-          ],
-          "games": 9,
-          "value": 14.5
-        },
-        {
-          "rank": 8,
+          "rank": 10,
           "player_id": "5093334",
           "name": "Myles Bradley",
           "teams": [
@@ -2417,16 +2458,6 @@
           ],
           "games": 9,
           "value": 14.5
-        },
-        {
-          "rank": 10,
-          "player_id": "5223986",
-          "name": "Leroy Harris III",
-          "teams": [
-            "Kansas"
-          ],
-          "games": 9,
-          "value": 14.0
         }
       ],
       "qualification": ""
@@ -2463,8 +2494,8 @@
           "teams": [
             "Delaware"
           ],
-          "games": 9,
-          "value": 13.0
+          "games": 10,
+          "value": 15.0
         },
         {
           "rank": 4,
@@ -2473,11 +2504,31 @@
           "teams": [
             "NC State"
           ],
-          "games": 9,
+          "games": 10,
+          "value": 13.0
+        },
+        {
+          "rank": 5,
+          "player_id": "4871079",
+          "name": "Boubacar Traore",
+          "teams": [
+            "Notre Dame"
+          ],
+          "games": 10,
           "value": 12.0
         },
         {
-          "rank": 4,
+          "rank": 5,
+          "player_id": "5239197",
+          "name": "Nissi Ogbebor",
+          "teams": [
+            "Syracuse"
+          ],
+          "games": 10,
+          "value": 12.0
+        },
+        {
+          "rank": 5,
           "player_id": "4698710",
           "name": "Santana Hopper",
           "teams": [
@@ -2487,17 +2538,27 @@
           "value": 12.0
         },
         {
-          "rank": 6,
-          "player_id": "5239197",
-          "name": "Nissi Ogbebor",
+          "rank": 5,
+          "player_id": "4870970",
+          "name": "Yhonzae Pierre",
           "teams": [
-            "Syracuse"
+            "Alabama"
           ],
-          "games": 9,
+          "games": 10,
+          "value": 12.0
+        },
+        {
+          "rank": 9,
+          "player_id": "4918427",
+          "name": "Matthew Fobbs-White",
+          "teams": [
+            "Virginia"
+          ],
+          "games": 10,
           "value": 11.0
         },
         {
-          "rank": 6,
+          "rank": 9,
           "player_id": "4683043",
           "name": "Thomas Davis",
           "teams": [
@@ -2505,36 +2566,6 @@
           ],
           "games": 9,
           "value": 11.0
-        },
-        {
-          "rank": 6,
-          "player_id": "5087182",
-          "name": "Toby Anene",
-          "teams": [
-            "Colorado"
-          ],
-          "games": 10,
-          "value": 11.0
-        },
-        {
-          "rank": 6,
-          "player_id": "5146422",
-          "name": "Xavier Gilliam",
-          "teams": [
-            "Tennessee"
-          ],
-          "games": 9,
-          "value": 11.0
-        },
-        {
-          "rank": 10,
-          "player_id": "4871079",
-          "name": "Boubacar Traore",
-          "teams": [
-            "Notre Dame"
-          ],
-          "games": 9,
-          "value": 10.0
         }
       ],
       "qualification": ""
@@ -2571,7 +2602,7 @@
           "teams": [
             "Clemson"
           ],
-          "games": 9,
+          "games": 10,
           "value": 5.0
         },
         {
@@ -2582,6 +2613,16 @@
             "Louisville"
           ],
           "games": 9,
+          "value": 5.0
+        },
+        {
+          "rank": 2,
+          "player_id": "5079483",
+          "name": "Dejuan Lane",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
           "value": 5.0
         },
         {
@@ -2601,11 +2642,11 @@
           "teams": [
             "California"
           ],
-          "games": 7,
+          "games": 8,
           "value": 5.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5295448",
           "name": "DJ Kelly",
           "teams": [
@@ -2615,31 +2656,21 @@
           "value": 4.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5235453",
           "name": "Davien Kerr",
           "teams": [
             "Syracuse"
           ],
-          "games": 9,
+          "games": 10,
           "value": 4.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "4700805",
           "name": "Mumu Bin-Wahad",
           "teams": [
             "UNLV"
-          ],
-          "games": 9,
-          "value": 4.0
-        },
-        {
-          "rank": 7,
-          "player_id": "5079483",
-          "name": "Dejuan Lane",
-          "teams": [
-            "Tennessee"
           ],
           "games": 9,
           "value": 4.0
@@ -2669,7 +2700,7 @@
           "teams": [
             "Clemson"
           ],
-          "games": 9,
+          "games": 10,
           "value": 11.0
         },
         {
@@ -2683,7 +2714,37 @@
           "value": 11.0
         },
         {
-          "rank": 4,
+          "rank": 2,
+          "player_id": "5295776",
+          "name": "Tyson McCrary",
+          "teams": [
+            "Georgia State"
+          ],
+          "games": 10,
+          "value": 11.0
+        },
+        {
+          "rank": 2,
+          "player_id": "5141645",
+          "name": "Ty Redmond",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
+          "value": 11.0
+        },
+        {
+          "rank": 2,
+          "player_id": "4685591",
+          "name": "Larry Turner-Gooden",
+          "teams": [
+            "Nevada"
+          ],
+          "games": 10,
+          "value": 11.0
+        },
+        {
+          "rank": 7,
           "player_id": "5125781",
           "name": "Jones Thomas",
           "teams": [
@@ -2693,7 +2754,7 @@
           "value": 10.0
         },
         {
-          "rank": 4,
+          "rank": 7,
           "player_id": "5077284",
           "name": "Jaheim Clarke",
           "teams": [
@@ -2703,54 +2764,24 @@
           "value": 10.0
         },
         {
-          "rank": 4,
+          "rank": 7,
+          "player_id": "5159343",
+          "name": "Trez Moore",
+          "teams": [
+            "Texas State"
+          ],
+          "games": 9,
+          "value": 10.0
+        },
+        {
+          "rank": 7,
           "player_id": "5294647",
           "name": "Amarien Jefferson",
           "teams": [
             "Mississippi State"
           ],
-          "games": 9,
-          "value": 10.0
-        },
-        {
-          "rank": 4,
-          "player_id": "5141645",
-          "name": "Ty Redmond",
-          "teams": [
-            "Tennessee"
-          ],
-          "games": 9,
-          "value": 10.0
-        },
-        {
-          "rank": 4,
-          "player_id": "5295776",
-          "name": "Tyson McCrary",
-          "teams": [
-            "Georgia State"
-          ],
-          "games": 9,
-          "value": 10.0
-        },
-        {
-          "rank": 9,
-          "player_id": "4873636",
-          "name": "Jordan Allen",
-          "teams": [
-            "Houston"
-          ],
           "games": 10,
-          "value": 9.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5382988",
-          "name": "Janard Lockhardt",
-          "teams": [
-            "Louisiana Tech"
-          ],
-          "games": 8,
-          "value": 9.0
+          "value": 10.0
         }
       ],
       "qualification": ""
@@ -2767,18 +2798,8 @@
           "teams": [
             "Clemson"
           ],
-          "games": 9,
-          "value": 27.0
-        },
-        {
-          "rank": 2,
-          "player_id": "5296700",
-          "name": "Jacobo Echeverria Lozano",
-          "teams": [
-            "Purdue"
-          ],
-          "games": 9,
-          "value": 21.0
+          "games": 10,
+          "value": 29.0
         },
         {
           "rank": 2,
@@ -2786,6 +2807,16 @@
           "name": "Jonah Delange",
           "teams": [
             "UAB"
+          ],
+          "games": 10,
+          "value": 23.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5296700",
+          "name": "Jacobo Echeverria Lozano",
+          "teams": [
+            "Purdue"
           ],
           "games": 9,
           "value": 21.0
@@ -2812,6 +2843,36 @@
         },
         {
           "rank": 6,
+          "player_id": "5192420",
+          "name": "Cooper Ranvier",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
+          "value": 18.0
+        },
+        {
+          "rank": 6,
+          "player_id": "5122027",
+          "name": "Jackson Kleather",
+          "teams": [
+            "Northwestern"
+          ],
+          "games": 10,
+          "value": 18.0
+        },
+        {
+          "rank": 6,
+          "player_id": "4691984",
+          "name": "Morgan Suarez",
+          "teams": [
+            "James Madison"
+          ],
+          "games": 11,
+          "value": 18.0
+        },
+        {
+          "rank": 6,
           "player_id": "5103116",
           "name": "Stone Harrington",
           "teams": [
@@ -2821,7 +2882,7 @@
           "value": 18.0
         },
         {
-          "rank": 7,
+          "rank": 10,
           "player_id": "5082358",
           "name": "Luke Drzewiecki",
           "teams": [
@@ -2829,36 +2890,6 @@
           ],
           "games": 8,
           "value": 17.0
-        },
-        {
-          "rank": 7,
-          "player_id": "4691984",
-          "name": "Morgan Suarez",
-          "teams": [
-            "James Madison"
-          ],
-          "games": 10,
-          "value": 17.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5077223",
-          "name": "David Olano",
-          "teams": [
-            "Texas A&M"
-          ],
-          "games": 9,
-          "value": 16.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5122027",
-          "name": "Jackson Kleather",
-          "teams": [
-            "Northwestern"
-          ],
-          "games": 9,
-          "value": 16.0
         }
       ],
       "qualification": ""
@@ -2870,6 +2901,26 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "4691984",
+          "name": "Morgan Suarez",
+          "teams": [
+            "James Madison"
+          ],
+          "games": 11,
+          "value": 104.0
+        },
+        {
+          "rank": 2,
+          "player_id": "5119662",
+          "name": "Nolan Hauser",
+          "teams": [
+            "Clemson"
+          ],
+          "games": 10,
+          "value": 102.0
+        },
+        {
+          "rank": 3,
           "player_id": "5219233",
           "name": "Sam Keltner",
           "teams": [
@@ -2879,24 +2930,14 @@
           "value": 101.0
         },
         {
-          "rank": 2,
-          "player_id": "4691984",
-          "name": "Morgan Suarez",
+          "rank": 4,
+          "player_id": "5151663",
+          "name": "Jonah Delange",
           "teams": [
-            "James Madison"
+            "UAB"
           ],
           "games": 10,
-          "value": 100.0
-        },
-        {
-          "rank": 3,
-          "player_id": "5119662",
-          "name": "Nolan Hauser",
-          "teams": [
-            "Clemson"
-          ],
-          "games": 9,
-          "value": 96.0
+          "value": 90.0
         },
         {
           "rank": 4,
@@ -2909,7 +2950,27 @@
           "value": 90.0
         },
         {
-          "rank": 5,
+          "rank": 6,
+          "player_id": "5228152",
+          "name": "Connor Calvert",
+          "teams": [
+            "Wake Forest"
+          ],
+          "games": 10,
+          "value": 89.0
+        },
+        {
+          "rank": 6,
+          "player_id": "5192420",
+          "name": "Cooper Ranvier",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
+          "value": 89.0
+        },
+        {
+          "rank": 6,
           "player_id": "5296700",
           "name": "Jacobo Echeverria Lozano",
           "teams": [
@@ -2919,7 +2980,7 @@
           "value": 89.0
         },
         {
-          "rank": 6,
+          "rank": 9,
           "player_id": "5257313",
           "name": "Dominic De Freitas",
           "teams": [
@@ -2929,44 +2990,14 @@
           "value": 88.0
         },
         {
-          "rank": 7,
-          "player_id": "5265058",
-          "name": "Philippe Laforge",
+          "rank": 10,
+          "player_id": "5122027",
+          "name": "Jackson Kleather",
           "teams": [
-            "Memphis"
+            "Northwestern"
           ],
           "games": 10,
-          "value": 84.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5228152",
-          "name": "Connor Calvert",
-          "teams": [
-            "Wake Forest"
-          ],
-          "games": 9,
-          "value": 82.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5151663",
-          "name": "Jonah Delange",
-          "teams": [
-            "UAB"
-          ],
-          "games": 9,
-          "value": 80.0
-        },
-        {
-          "rank": 9,
-          "player_id": "5149075",
-          "name": "Nico Gramatica",
-          "teams": [
-            "South Florida"
-          ],
-          "games": 10,
-          "value": 80.0
+          "value": 86.0
         }
       ],
       "qualification": ""
@@ -3003,7 +3034,7 @@
           "teams": [
             "Temple"
           ],
-          "games": 8,
+          "games": 9,
           "value": 290.0
         },
         {
@@ -3013,7 +3044,7 @@
           "teams": [
             "James Madison"
           ],
-          "games": 10,
+          "games": 11,
           "value": 287.0
         },
         {
@@ -3038,6 +3069,16 @@
         },
         {
           "rank": 7,
+          "player_id": "5121666",
+          "name": "Kameran Shanks",
+          "teams": [
+            "Wake Forest"
+          ],
+          "games": 8,
+          "value": 253.0
+        },
+        {
+          "rank": 8,
           "player_id": "4914830",
           "name": "Easton Messer",
           "teams": [
@@ -3045,16 +3086,6 @@
           ],
           "games": 9,
           "value": 247.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5121666",
-          "name": "Kameran Shanks",
-          "teams": [
-            "Wake Forest"
-          ],
-          "games": 7,
-          "value": 238.0
         },
         {
           "rank": 9,
@@ -3106,6 +3137,26 @@
         },
         {
           "rank": 3,
+          "player_id": "5085830",
+          "name": "Rahkeem Smith",
+          "teams": [
+            "Georgia Tech"
+          ],
+          "games": 8,
+          "value": 551.0
+        },
+        {
+          "rank": 4,
+          "player_id": "5214955",
+          "name": "Michael Scott",
+          "teams": [
+            "James Madison"
+          ],
+          "games": 11,
+          "value": 547.0
+        },
+        {
+          "rank": 5,
           "player_id": "5155789",
           "name": "DJ James-Hamilton",
           "teams": [
@@ -3113,26 +3164,6 @@
           ],
           "games": 10,
           "value": 538.0
-        },
-        {
-          "rank": 4,
-          "player_id": "5085830",
-          "name": "Rahkeem Smith",
-          "teams": [
-            "Georgia Tech"
-          ],
-          "games": 7,
-          "value": 534.0
-        },
-        {
-          "rank": 5,
-          "player_id": "5214955",
-          "name": "Michael Scott",
-          "teams": [
-            "James Madison"
-          ],
-          "games": 10,
-          "value": 507.0
         },
         {
           "rank": 6,
@@ -3171,18 +3202,18 @@
           "teams": [
             "Tulane"
           ],
-          "games": 9,
+          "games": 10,
           "value": 430.0
         },
         {
           "rank": 10,
-          "player_id": "4941012",
-          "name": "London Montgomery",
+          "player_id": "5157266",
+          "name": "Bryson Graves",
           "teams": [
-            "Florida"
+            "Delaware"
           ],
-          "games": 9,
-          "value": 409.0
+          "games": 10,
+          "value": 427.0
         }
       ],
       "qualification": ""
@@ -3224,16 +3255,6 @@
         },
         {
           "rank": 4,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 309.222222
-        },
-        {
-          "rank": 5,
           "player_id": "4801717",
           "name": "Noah Fifita",
           "teams": [
@@ -3241,6 +3262,16 @@
           ],
           "games": 9,
           "value": 308.555556
+        },
+        {
+          "rank": 5,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 308.3
         },
         {
           "rank": 6,
@@ -3254,13 +3285,13 @@
         },
         {
           "rank": 7,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
           "teams": [
-            "Miami"
+            "SMU"
           ],
-          "games": 9,
-          "value": 300.111111
+          "games": 10,
+          "value": 299.2
         },
         {
           "rank": 8,
@@ -3284,13 +3315,13 @@
         },
         {
           "rank": 10,
-          "player_id": "5078810",
-          "name": "Sam Leavitt",
+          "player_id": "4685454",
+          "name": "Jayden Maiava",
           "teams": [
-            "LSU"
+            "USC"
           ],
-          "games": 9,
-          "value": 283.444444
+          "games": 10,
+          "value": 283.6
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -3312,16 +3343,6 @@
         },
         {
           "rank": 2,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
-          "teams": [
-            "Miami"
-          ],
-          "games": 9,
-          "value": 3.111111
-        },
-        {
-          "rank": 3,
           "player_id": "4869991",
           "name": "Caden Veltkamp",
           "teams": [
@@ -3329,6 +3350,16 @@
           ],
           "games": 9,
           "value": 3.0
+        },
+        {
+          "rank": 3,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 2.9
         },
         {
           "rank": 4,
@@ -3361,17 +3392,7 @@
           "value": 2.777778
         },
         {
-          "rank": 6,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 2.777778
-        },
-        {
-          "rank": 8,
+          "rank": 7,
           "player_id": "5079712",
           "name": "Julian Sayin",
           "teams": [
@@ -3381,7 +3402,7 @@
           "value": 2.714286
         },
         {
-          "rank": 9,
+          "rank": 8,
           "player_id": "5079443",
           "name": "Hauss Hejny",
           "teams": [
@@ -3389,6 +3410,16 @@
           ],
           "games": 6,
           "value": 2.666667
+        },
+        {
+          "rank": 9,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 2.6
         },
         {
           "rank": 10,
@@ -3420,16 +3451,26 @@
         },
         {
           "rank": 2,
+          "player_id": "5219258",
+          "name": "Aiden Flora",
+          "teams": [
+            "Iowa State"
+          ],
+          "games": 10,
+          "value": 133.5
+        },
+        {
+          "rank": 3,
           "player_id": "5164332",
           "name": "Nate Sheppard",
           "teams": [
             "Duke"
           ],
-          "games": 9,
-          "value": 132.111111
+          "games": 10,
+          "value": 132.0
         },
         {
-          "rank": 3,
+          "rank": 4,
           "player_id": "4911971",
           "name": "Jahiem White",
           "teams": [
@@ -3439,7 +3480,7 @@
           "value": 131.333333
         },
         {
-          "rank": 4,
+          "rank": 5,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -3449,24 +3490,14 @@
           "value": 129.111111
         },
         {
-          "rank": 5,
-          "player_id": "5219258",
-          "name": "Aiden Flora",
-          "teams": [
-            "Iowa State"
-          ],
-          "games": 9,
-          "value": 124.333333
-        },
-        {
           "rank": 6,
           "player_id": "5088888",
           "name": "Torrance Burgess Jr.",
           "teams": [
             "Texas State"
           ],
-          "games": 9,
-          "value": 124.222222
+          "games": 10,
+          "value": 122.5
         },
         {
           "rank": 7,
@@ -3480,13 +3511,13 @@
         },
         {
           "rank": 8,
-          "player_id": "4918103",
-          "name": "Cam Cook",
+          "player_id": "4921108",
+          "name": "DeSean Bishop",
           "teams": [
-            "West Virginia"
+            "Tennessee"
           ],
-          "games": 9,
-          "value": 119.111111
+          "games": 10,
+          "value": 116.3
         },
         {
           "rank": 9,
@@ -3495,18 +3526,18 @@
           "teams": [
             "Missouri"
           ],
-          "games": 9,
-          "value": 119.0
+          "games": 10,
+          "value": 113.3
         },
         {
           "rank": 10,
-          "player_id": "4921108",
-          "name": "DeSean Bishop",
+          "player_id": "5151369",
+          "name": "Messiah Burch",
           "teams": [
-            "Tennessee"
+            "Buffalo"
           ],
-          "games": 9,
-          "value": 118.444444
+          "games": 10,
+          "value": 111.0
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -3518,16 +3549,6 @@
       "players": [
         {
           "rank": 1,
-          "player_id": "5079465",
-          "name": "Michael Hawkins Jr.",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 9,
-          "value": 2.111111
-        },
-        {
-          "rank": 2,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -3537,7 +3558,17 @@
           "value": 2.0
         },
         {
-          "rank": 2,
+          "rank": 1,
+          "player_id": "5079465",
+          "name": "Michael Hawkins Jr.",
+          "teams": [
+            "West Virginia"
+          ],
+          "games": 10,
+          "value": 2.0
+        },
+        {
+          "rank": 1,
           "player_id": "5150297",
           "name": "Cale Hellums",
           "teams": [
@@ -3553,8 +3584,8 @@
           "teams": [
             "Duke"
           ],
-          "games": 9,
-          "value": 1.888889
+          "games": 10,
+          "value": 1.9
         },
         {
           "rank": 5,
@@ -3578,16 +3609,6 @@
         },
         {
           "rank": 7,
-          "player_id": "4921108",
-          "name": "DeSean Bishop",
-          "teams": [
-            "Tennessee"
-          ],
-          "games": 9,
-          "value": 1.444444
-        },
-        {
-          "rank": 7,
           "player_id": "5166161",
           "name": "Scottre Humphrey",
           "teams": [
@@ -3597,7 +3618,17 @@
           "value": 1.444444
         },
         {
-          "rank": 9,
+          "rank": 8,
+          "player_id": "4921108",
+          "name": "DeSean Bishop",
+          "teams": [
+            "Tennessee"
+          ],
+          "games": 10,
+          "value": 1.3
+        },
+        {
+          "rank": 8,
           "player_id": "4912342",
           "name": "Wayne Knight",
           "teams": [
@@ -3607,7 +3638,7 @@
           "value": 1.3
         },
         {
-          "rank": 9,
+          "rank": 8,
           "player_id": "4838679",
           "name": "Ashton Daniels",
           "teams": [
@@ -3641,8 +3672,8 @@
           "teams": [
             "Ohio State"
           ],
-          "games": 9,
-          "value": 133.333333
+          "games": 10,
+          "value": 131.7
         },
         {
           "rank": 3,
@@ -3661,8 +3692,8 @@
           "teams": [
             "Wake Forest"
           ],
-          "games": 8,
-          "value": 118.125
+          "games": 9,
+          "value": 115.444444
         },
         {
           "rank": 5,
@@ -3671,8 +3702,8 @@
           "teams": [
             "Missouri State"
           ],
-          "games": 8,
-          "value": 117.5
+          "games": 9,
+          "value": 114.333333
         },
         {
           "rank": 6,
@@ -3701,8 +3732,8 @@
           "teams": [
             "Syracuse"
           ],
-          "games": 9,
-          "value": 107.111111
+          "games": 10,
+          "value": 104.5
         },
         {
           "rank": 9,
@@ -3753,14 +3784,14 @@
           "value": 1.555556
         },
         {
-          "rank": 2,
+          "rank": 3,
           "player_id": "5079720",
           "name": "Jeremiah Smith",
           "teams": [
             "Ohio State"
           ],
-          "games": 9,
-          "value": 1.555556
+          "games": 10,
+          "value": 1.5
         },
         {
           "rank": 4,
@@ -3804,12 +3835,12 @@
         },
         {
           "rank": 8,
-          "player_id": "5219476",
-          "name": "Isaiah Myers",
+          "player_id": "5146735",
+          "name": "Charlie Becker",
           "teams": [
-            "Missouri State"
+            "Indiana"
           ],
-          "games": 8,
+          "games": 10,
           "value": 1.0
         },
         {
@@ -3824,12 +3855,12 @@
         },
         {
           "rank": 8,
-          "player_id": "5146735",
-          "name": "Charlie Becker",
+          "player_id": "5194308",
+          "name": "Kyle Koch",
           "teams": [
-            "Indiana"
+            "North Texas"
           ],
-          "games": 9,
+          "games": 6,
           "value": 1.0
         }
       ],
@@ -3862,26 +3893,26 @@
         },
         {
           "rank": 3,
-          "player_id": "5296150",
-          "name": "DeAree Rogers",
-          "teams": [
-            "Northern Illinois"
-          ],
-          "games": 9,
-          "value": 7.777778
-        },
-        {
-          "rank": 4,
           "player_id": "5079720",
           "name": "Jeremiah Smith",
           "teams": [
             "Ohio State"
           ],
-          "games": 9,
-          "value": 7.666667
+          "games": 10,
+          "value": 8.0
         },
         {
-          "rank": 4,
+          "rank": 3,
+          "player_id": "5296150",
+          "name": "DeAree Rogers",
+          "teams": [
+            "Northern Illinois"
+          ],
+          "games": 10,
+          "value": 8.0
+        },
+        {
+          "rank": 5,
           "player_id": "4896289",
           "name": "Gavin Freeman",
           "teams": [
@@ -3897,8 +3928,8 @@
           "teams": [
             "Wake Forest"
           ],
-          "games": 8,
-          "value": 7.625
+          "games": 9,
+          "value": 7.444444
         },
         {
           "rank": 7,
@@ -3922,23 +3953,23 @@
         },
         {
           "rank": 9,
-          "player_id": "4691315",
-          "name": "Umari Hatcher",
-          "teams": [
-            "Syracuse"
-          ],
-          "games": 9,
-          "value": 6.888889
-        },
-        {
-          "rank": 9,
           "player_id": "5193298",
           "name": "Chris Durr Jr.",
           "teams": [
             "Maryland"
           ],
-          "games": 9,
-          "value": 6.888889
+          "games": 10,
+          "value": 7.0
+        },
+        {
+          "rank": 10,
+          "player_id": "4832804",
+          "name": "Jordan Dwyer",
+          "teams": [
+            "TCU"
+          ],
+          "games": 6,
+          "value": 6.833333
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -3950,6 +3981,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5164332",
+          "name": "Nate Sheppard",
+          "teams": [
+            "Duke"
+          ],
+          "games": 10,
+          "value": 171.9
+        },
+        {
+          "rank": 2,
           "player_id": "5258016",
           "name": "Caleb Hawkins",
           "teams": [
@@ -3957,16 +3998,6 @@
           ],
           "games": 9,
           "value": 167.222222
-        },
-        {
-          "rank": 2,
-          "player_id": "5164332",
-          "name": "Nate Sheppard",
-          "teams": [
-            "Duke"
-          ],
-          "games": 9,
-          "value": 166.111111
         },
         {
           "rank": 3,
@@ -3990,16 +4021,26 @@
         },
         {
           "rank": 5,
+          "player_id": "5219258",
+          "name": "Aiden Flora",
+          "teams": [
+            "Iowa State"
+          ],
+          "games": 10,
+          "value": 147.3
+        },
+        {
+          "rank": 6,
           "player_id": "5088888",
           "name": "Torrance Burgess Jr.",
           "teams": [
             "Texas State"
           ],
-          "games": 9,
-          "value": 138.777778
+          "games": 10,
+          "value": 137.8
         },
         {
-          "rank": 6,
+          "rank": 7,
           "player_id": "5220473",
           "name": "Jackson Gutierrez",
           "teams": [
@@ -4009,7 +4050,7 @@
           "value": 137.0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "player_id": "5159175",
           "name": "Malachi Toney",
           "teams": [
@@ -4017,16 +4058,6 @@
           ],
           "games": 8,
           "value": 136.0
-        },
-        {
-          "rank": 8,
-          "player_id": "5219258",
-          "name": "Aiden Flora",
-          "teams": [
-            "Iowa State"
-          ],
-          "games": 9,
-          "value": 135.444444
         },
         {
           "rank": 9,
@@ -4045,8 +4076,8 @@
           "teams": [
             "Ohio State"
           ],
-          "games": 9,
-          "value": 134.111111
+          "games": 10,
+          "value": 132.4
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -4063,21 +4094,11 @@
           "teams": [
             "Missouri State"
           ],
-          "games": 9,
-          "value": 11.444444
+          "games": 10,
+          "value": 11.8
         },
         {
           "rank": 2,
-          "player_id": "4918441",
-          "name": "Marcellius Pulliam",
-          "teams": [
-            "Coastal Carolina"
-          ],
-          "games": 9,
-          "value": 10.777778
-        },
-        {
-          "rank": 3,
           "player_id": "5086986",
           "name": "Gideon Lampron",
           "teams": [
@@ -4087,14 +4108,34 @@
           "value": 10.6
         },
         {
+          "rank": 3,
+          "player_id": "4918441",
+          "name": "Marcellius Pulliam",
+          "teams": [
+            "Coastal Carolina"
+          ],
+          "games": 10,
+          "value": 10.5
+        },
+        {
           "rank": 4,
           "player_id": "5296359",
           "name": "EJ Smith",
           "teams": [
             "Nevada"
           ],
-          "games": 9,
-          "value": 10.555556
+          "games": 10,
+          "value": 10.1
+        },
+        {
+          "rank": 5,
+          "player_id": "5167173",
+          "name": "Cooper Catalano",
+          "teams": [
+            "Wisconsin"
+          ],
+          "games": 10,
+          "value": 10.0
         },
         {
           "rank": 5,
@@ -4103,17 +4144,7 @@
           "teams": [
             "Missouri"
           ],
-          "games": 9,
-          "value": 10.333333
-        },
-        {
-          "rank": 6,
-          "player_id": "5167173",
-          "name": "Cooper Catalano",
-          "teams": [
-            "Wisconsin"
-          ],
-          "games": 9,
+          "games": 10,
           "value": 10.0
         },
         {
@@ -4138,6 +4169,16 @@
         },
         {
           "rank": 9,
+          "player_id": "5296366",
+          "name": "Curly Ordonez",
+          "teams": [
+            "Temple"
+          ],
+          "games": 10,
+          "value": 9.7
+        },
+        {
+          "rank": 9,
           "player_id": "5193283",
           "name": "Dorian Pringle",
           "teams": [
@@ -4145,16 +4186,6 @@
           ],
           "games": 10,
           "value": 9.7
-        },
-        {
-          "rank": 10,
-          "player_id": "5195616",
-          "name": "Jo Pierce",
-          "teams": [
-            "UAB"
-          ],
-          "games": 8,
-          "value": 9.625
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -4191,21 +4222,11 @@
           "teams": [
             "UAB"
           ],
-          "games": 9,
-          "value": 1.277778
+          "games": 10,
+          "value": 1.25
         },
         {
           "rank": 4,
-          "player_id": "4857878",
-          "name": "Tobi Osunsanmi",
-          "teams": [
-            "Indiana"
-          ],
-          "games": 9,
-          "value": 1.111111
-        },
-        {
-          "rank": 5,
           "player_id": "5224269",
           "name": "Andrew Zock",
           "teams": [
@@ -4215,17 +4236,27 @@
           "value": 1.1
         },
         {
-          "rank": 6,
+          "rank": 5,
           "player_id": "5166484",
           "name": "Xavier Esquillen",
           "teams": [
             "Georgia State"
           ],
-          "games": 9,
+          "games": 10,
           "value": 1.0
         },
         {
-          "rank": 6,
+          "rank": 5,
+          "player_id": "4857878",
+          "name": "Tobi Osunsanmi",
+          "teams": [
+            "Indiana"
+          ],
+          "games": 10,
+          "value": 1.0
+        },
+        {
+          "rank": 5,
           "player_id": "4917971",
           "name": "Princewill Umanmielen",
           "teams": [
@@ -4235,17 +4266,7 @@
           "value": 1.0
         },
         {
-          "rank": 6,
-          "player_id": "5083313",
-          "name": "DeeJay Holmes Jr.",
-          "teams": [
-            "Florida International"
-          ],
-          "games": 7,
-          "value": 1.0
-        },
-        {
-          "rank": 6,
+          "rank": 5,
           "player_id": "5197102",
           "name": "Alonzo Jackson Jr.",
           "teams": [
@@ -4255,11 +4276,21 @@
           "value": 1.0
         },
         {
-          "rank": 10,
+          "rank": 9,
           "player_id": "5294564",
           "name": "Xavier Lewis",
           "teams": [
             "North Carolina"
+          ],
+          "games": 8,
+          "value": 0.875
+        },
+        {
+          "rank": 9,
+          "player_id": "5083313",
+          "name": "DeeJay Holmes Jr.",
+          "teams": [
+            "Florida International"
           ],
           "games": 8,
           "value": 0.875
@@ -4303,24 +4334,14 @@
           "value": 1.722222
         },
         {
-          "rank": 2,
-          "player_id": "4857878",
-          "name": "Tobi Osunsanmi",
-          "teams": [
-            "Indiana"
-          ],
-          "games": 9,
-          "value": 1.722222
-        },
-        {
-          "rank": 5,
+          "rank": 4,
           "player_id": "5220652",
           "name": "Marlin Dean",
           "teams": [
             "UAB"
           ],
-          "games": 9,
-          "value": 1.611111
+          "games": 10,
+          "value": 1.65
         },
         {
           "rank": 5,
@@ -4333,7 +4354,7 @@
           "value": 1.611111
         },
         {
-          "rank": 7,
+          "rank": 6,
           "player_id": "5224269",
           "name": "Andrew Zock",
           "teams": [
@@ -4343,14 +4364,14 @@
           "value": 1.6
         },
         {
-          "rank": 8,
+          "rank": 6,
           "player_id": "5223986",
           "name": "Leroy Harris III",
           "teams": [
             "Kansas"
           ],
-          "games": 9,
-          "value": 1.555556
+          "games": 10,
+          "value": 1.6
         },
         {
           "rank": 8,
@@ -4363,13 +4384,23 @@
           "value": 1.555556
         },
         {
-          "rank": 10,
-          "player_id": "4868925",
-          "name": "Braydon Brus",
+          "rank": 9,
+          "player_id": "4857878",
+          "name": "Tobi Osunsanmi",
           "teams": [
-            "Northwestern"
+            "Indiana"
           ],
-          "games": 9,
+          "games": 10,
+          "value": 1.55
+        },
+        {
+          "rank": 10,
+          "player_id": "5086986",
+          "name": "Gideon Lampron",
+          "teams": [
+            "Colorado"
+          ],
+          "games": 10,
           "value": 1.5
         }
       ],
@@ -4407,18 +4438,8 @@
           "teams": [
             "Delaware"
           ],
-          "games": 9,
-          "value": 1.444444
-        },
-        {
-          "rank": 4,
-          "player_id": "4901373",
-          "name": "Harvey Dyson III",
-          "teams": [
-            "NC State"
-          ],
-          "games": 9,
-          "value": 1.333333
+          "games": 10,
+          "value": 1.5
         },
         {
           "rank": 4,
@@ -4429,6 +4450,16 @@
           ],
           "games": 9,
           "value": 1.333333
+        },
+        {
+          "rank": 5,
+          "player_id": "4901373",
+          "name": "Harvey Dyson III",
+          "teams": [
+            "NC State"
+          ],
+          "games": 10,
+          "value": 1.3
         },
         {
           "rank": 6,
@@ -4442,16 +4473,6 @@
         },
         {
           "rank": 7,
-          "player_id": "5239197",
-          "name": "Nissi Ogbebor",
-          "teams": [
-            "Syracuse"
-          ],
-          "games": 9,
-          "value": 1.222222
-        },
-        {
-          "rank": 7,
           "player_id": "4683043",
           "name": "Thomas Davis",
           "teams": [
@@ -4461,24 +4482,34 @@
           "value": 1.222222
         },
         {
-          "rank": 7,
-          "player_id": "5146422",
-          "name": "Xavier Gilliam",
+          "rank": 8,
+          "player_id": "4871079",
+          "name": "Boubacar Traore",
           "teams": [
-            "Tennessee"
+            "Notre Dame"
           ],
-          "games": 9,
-          "value": 1.222222
+          "games": 10,
+          "value": 1.2
         },
         {
-          "rank": 10,
-          "player_id": "5079709",
-          "name": "Dylan Stewart",
+          "rank": 8,
+          "player_id": "5239197",
+          "name": "Nissi Ogbebor",
           "teams": [
-            "South Carolina"
+            "Syracuse"
           ],
-          "games": 6,
-          "value": 1.166667
+          "games": 10,
+          "value": 1.2
+        },
+        {
+          "rank": 8,
+          "player_id": "4870970",
+          "name": "Yhonzae Pierre",
+          "teams": [
+            "Alabama"
+          ],
+          "games": 10,
+          "value": 1.2
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -4500,26 +4531,16 @@
         },
         {
           "rank": 2,
-          "player_id": "5127738",
-          "name": "Ashton Hampton",
+          "player_id": "5127735",
+          "name": "Xavier Lucas",
           "teams": [
-            "Clemson"
+            "Miami"
           ],
-          "games": 9,
-          "value": 1.222222
+          "games": 6,
+          "value": 1.166667
         },
         {
           "rank": 3,
-          "player_id": "5214512",
-          "name": "Jayden Sanders",
-          "teams": [
-            "Notre Dame"
-          ],
-          "games": 7,
-          "value": 1.142857
-        },
-        {
-          "rank": 4,
           "player_id": "5382988",
           "name": "Janard Lockhardt",
           "teams": [
@@ -4529,17 +4550,7 @@
           "value": 1.125
         },
         {
-          "rank": 4,
-          "player_id": "5159343",
-          "name": "Trez Moore",
-          "teams": [
-            "Texas State"
-          ],
-          "games": 8,
-          "value": 1.125
-        },
-        {
-          "rank": 4,
+          "rank": 3,
           "player_id": "4876462",
           "name": "Isaiah Reed",
           "teams": [
@@ -4549,17 +4560,7 @@
           "value": 1.125
         },
         {
-          "rank": 4,
-          "player_id": "4808749",
-          "name": "Chris Graves",
-          "teams": [
-            "Missouri"
-          ],
-          "games": 8,
-          "value": 1.125
-        },
-        {
-          "rank": 8,
+          "rank": 5,
           "player_id": "5125781",
           "name": "Jones Thomas",
           "teams": [
@@ -4569,24 +4570,54 @@
           "value": 1.111111
         },
         {
-          "rank": 8,
-          "player_id": "5294647",
-          "name": "Amarien Jefferson",
+          "rank": 5,
+          "player_id": "5159343",
+          "name": "Trez Moore",
           "teams": [
-            "Mississippi State"
+            "Texas State"
           ],
           "games": 9,
           "value": 1.111111
         },
         {
-          "rank": 8,
+          "rank": 7,
+          "player_id": "5127738",
+          "name": "Ashton Hampton",
+          "teams": [
+            "Clemson"
+          ],
+          "games": 10,
+          "value": 1.1
+        },
+        {
+          "rank": 7,
+          "player_id": "4893102",
+          "name": "Amariyun Knighten",
+          "teams": [
+            "Miami (OH)"
+          ],
+          "games": 10,
+          "value": 1.1
+        },
+        {
+          "rank": 7,
+          "player_id": "5295776",
+          "name": "Tyson McCrary",
+          "teams": [
+            "Georgia State"
+          ],
+          "games": 10,
+          "value": 1.1
+        },
+        {
+          "rank": 7,
           "player_id": "5141645",
           "name": "Ty Redmond",
           "teams": [
             "Tennessee"
           ],
-          "games": 9,
-          "value": 1.111111
+          "games": 10,
+          "value": 1.1
         }
       ],
       "qualification": "Minimum 6 recorded player appearances."
@@ -4603,21 +4634,11 @@
           "teams": [
             "Miami"
           ],
-          "games": 9,
-          "value": 76.811594
+          "games": 10,
+          "value": 76.340694
         },
         {
           "rank": 2,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 73.85159
-        },
-        {
-          "rank": 3,
           "player_id": "5198324",
           "name": "Cibastian Broughton",
           "teams": [
@@ -4627,7 +4648,7 @@
           "value": 73.728814
         },
         {
-          "rank": 4,
+          "rank": 3,
           "player_id": "4801717",
           "name": "Noah Fifita",
           "teams": [
@@ -4635,6 +4656,16 @@
           ],
           "games": 9,
           "value": 72.875817
+        },
+        {
+          "rank": 4,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 72.641509
         },
         {
           "rank": 5,
@@ -4668,6 +4699,16 @@
         },
         {
           "rank": 8,
+          "player_id": "4685578",
+          "name": "Gunner Stockton",
+          "teams": [
+            "Georgia"
+          ],
+          "games": 10,
+          "value": 71.363636
+        },
+        {
+          "rank": 9,
           "player_id": "5078810",
           "name": "Sam Leavitt",
           "teams": [
@@ -4675,16 +4716,6 @@
           ],
           "games": 9,
           "value": 70.957096
-        },
-        {
-          "rank": 9,
-          "player_id": "4685578",
-          "name": "Gunner Stockton",
-          "teams": [
-            "Georgia"
-          ],
-          "games": 9,
-          "value": 70.918367
         },
         {
           "rank": 10,
@@ -4711,8 +4742,8 @@
           "teams": [
             "Miami"
           ],
-          "games": 9,
-          "value": 191.044928
+          "games": 10,
+          "value": 186.962776
         },
         {
           "rank": 2,
@@ -4726,26 +4757,16 @@
         },
         {
           "rank": 3,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
-          "teams": [
-            "SMU"
-          ],
-          "games": 9,
-          "value": 181.368198
-        },
-        {
-          "rank": 4,
           "player_id": "4685578",
           "name": "Gunner Stockton",
           "teams": [
             "Georgia"
           ],
-          "games": 9,
-          "value": 180.095918
+          "games": 10,
+          "value": 179.752727
         },
         {
-          "rank": 5,
+          "rank": 4,
           "player_id": "5165807",
           "name": "Marcus Stokes",
           "teams": [
@@ -4753,6 +4774,16 @@
           ],
           "games": 10,
           "value": 177.027586
+        },
+        {
+          "rank": 5,
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
+          "teams": [
+            "SMU"
+          ],
+          "games": 10,
+          "value": 174.254088
         },
         {
           "rank": 6,
@@ -4796,13 +4827,13 @@
         },
         {
           "rank": 10,
-          "player_id": "4920227",
-          "name": "Giovanni Lopez",
+          "player_id": "5079443",
+          "name": "Hauss Hejny",
           "teams": [
-            "Wake Forest"
+            "Colorado State"
           ],
-          "games": 8,
-          "value": 172.449123
+          "games": 6,
+          "value": 169.587421
         }
       ],
       "qualification": "Minimum 6 recorded player appearances. At least 14 attempts per appearance."
@@ -4814,16 +4845,6 @@
       "players": [
         {
           "rank": 1,
-          "player_id": "5079465",
-          "name": "Michael Hawkins Jr.",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 9,
-          "value": 10.862857
-        },
-        {
-          "rank": 2,
           "player_id": "5079712",
           "name": "Julian Sayin",
           "teams": [
@@ -4833,17 +4854,17 @@
           "value": 10.453125
         },
         {
-          "rank": 3,
-          "player_id": "5084084",
-          "name": "Kevin Jennings",
+          "rank": 2,
+          "player_id": "5079465",
+          "name": "Michael Hawkins Jr.",
           "teams": [
-            "SMU"
+            "West Virginia"
           ],
-          "games": 9,
-          "value": 9.833922
+          "games": 10,
+          "value": 10.181818
         },
         {
-          "rank": 4,
+          "rank": 3,
           "player_id": "5165807",
           "name": "Marcus Stokes",
           "teams": [
@@ -4853,17 +4874,7 @@
           "value": 9.810345
         },
         {
-          "rank": 5,
-          "player_id": "5121169",
-          "name": "Darian Mensah",
-          "teams": [
-            "Miami"
-          ],
-          "games": 9,
-          "value": 9.786232
-        },
-        {
-          "rank": 6,
+          "rank": 4,
           "player_id": "5078278",
           "name": "Lincoln Kienholz",
           "teams": [
@@ -4873,7 +4884,17 @@
           "value": 9.76824
         },
         {
-          "rank": 7,
+          "rank": 5,
+          "player_id": "5121169",
+          "name": "Darian Mensah",
+          "teams": [
+            "Miami"
+          ],
+          "games": 10,
+          "value": 9.725552
+        },
+        {
+          "rank": 6,
           "player_id": "4801307",
           "name": "Tayven Jackson",
           "teams": [
@@ -4881,6 +4902,16 @@
           ],
           "games": 9,
           "value": 9.602007
+        },
+        {
+          "rank": 7,
+          "player_id": "4685578",
+          "name": "Gunner Stockton",
+          "teams": [
+            "Georgia"
+          ],
+          "games": 10,
+          "value": 9.586364
         },
         {
           "rank": 8,
@@ -4894,23 +4925,23 @@
         },
         {
           "rank": 9,
-          "player_id": "4920227",
-          "name": "Giovanni Lopez",
+          "player_id": "5084084",
+          "name": "Kevin Jennings",
           "teams": [
-            "Wake Forest"
+            "SMU"
           ],
-          "games": 8,
-          "value": 9.54386
+          "games": 10,
+          "value": 9.408805
         },
         {
           "rank": 10,
-          "player_id": "4685578",
-          "name": "Gunner Stockton",
+          "player_id": "5075805",
+          "name": "Aidan Chiles",
           "teams": [
-            "Georgia"
+            "Northwestern"
           ],
-          "games": 9,
-          "value": 9.47449
+          "games": 8,
+          "value": 9.39604
         }
       ],
       "qualification": "Minimum 6 recorded player appearances. At least 14 attempts per appearance."
@@ -4922,6 +4953,16 @@
       "players": [
         {
           "rank": 1,
+          "player_id": "5107875",
+          "name": "Cole Tabb",
+          "teams": [
+            "Cincinnati"
+          ],
+          "games": 10,
+          "value": 9.130841
+        },
+        {
+          "rank": 2,
           "player_id": "4870857",
           "name": "Avery Johnson",
           "teams": [
@@ -4929,16 +4970,6 @@
           ],
           "games": 6,
           "value": 9.058824
-        },
-        {
-          "rank": 2,
-          "player_id": "5107875",
-          "name": "Cole Tabb",
-          "teams": [
-            "Cincinnati"
-          ],
-          "games": 9,
-          "value": 8.923077
         },
         {
           "rank": 3,
@@ -5007,18 +5038,18 @@
           "teams": [
             "Georgia"
           ],
-          "games": 9,
-          "value": 7.287879
+          "games": 10,
+          "value": 7.493151
         },
         {
           "rank": 10,
-          "player_id": "4911971",
-          "name": "Jahiem White",
+          "player_id": "5219258",
+          "name": "Aiden Flora",
           "teams": [
-            "North Texas"
+            "Iowa State"
           ],
-          "games": 9,
-          "value": 7.207317
+          "games": 10,
+          "value": 7.216216
         }
       ],
       "qualification": "Minimum 6 recorded player appearances. At least 6 carries per appearance."
@@ -5040,26 +5071,6 @@
         },
         {
           "rank": 2,
-          "player_id": "5296407",
-          "name": "Nahzae Cox",
-          "teams": [
-            "Kansas"
-          ],
-          "games": 8,
-          "value": 27.875
-        },
-        {
-          "rank": 3,
-          "player_id": "5082584",
-          "name": "DJ Epps",
-          "teams": [
-            "West Virginia"
-          ],
-          "games": 8,
-          "value": 24.521739
-        },
-        {
-          "rank": 4,
           "player_id": "5148784",
           "name": "TK Keyes",
           "teams": [
@@ -5069,7 +5080,17 @@
           "value": 22.785714
         },
         {
-          "rank": 5,
+          "rank": 3,
+          "player_id": "5082584",
+          "name": "DJ Epps",
+          "teams": [
+            "West Virginia"
+          ],
+          "games": 9,
+          "value": 21.964286
+        },
+        {
+          "rank": 4,
           "player_id": "5149831",
           "name": "Kayden McGee",
           "teams": [
@@ -5079,17 +5100,17 @@
           "value": 21.590909
         },
         {
-          "rank": 6,
-          "player_id": "5138042",
-          "name": "Zechariah Sample",
+          "rank": 5,
+          "player_id": "4870959",
+          "name": "Shamar Porter",
           "teams": [
-            "Texas State"
+            "Connecticut"
           ],
-          "games": 7,
-          "value": 21.5625
+          "games": 10,
+          "value": 21.272727
         },
         {
-          "rank": 7,
+          "rank": 6,
           "player_id": "5075529",
           "name": "Anthony Eager",
           "teams": [
@@ -5099,14 +5120,24 @@
           "value": 21.217391
         },
         {
-          "rank": 8,
-          "player_id": "5153389",
-          "name": "Colton Hinton",
+          "rank": 7,
+          "player_id": "5069231",
+          "name": "Deondre Johnson",
           "teams": [
-            "Coastal Carolina"
+            "Jacksonville State"
           ],
-          "games": 7,
-          "value": 20.611111
+          "games": 10,
+          "value": 21.142857
+        },
+        {
+          "rank": 8,
+          "player_id": "5138042",
+          "name": "Zechariah Sample",
+          "teams": [
+            "Texas State"
+          ],
+          "games": 8,
+          "value": 20.952381
         },
         {
           "rank": 9,
@@ -5143,7 +5174,7 @@
           "teams": [
             "Liberty"
           ],
-          "games": 9,
+          "games": 10,
           "value": 100.0
         },
         {
@@ -5178,13 +5209,13 @@
         },
         {
           "rank": 5,
-          "player_id": "5077223",
-          "name": "David Olano",
+          "player_id": "5192420",
+          "name": "Cooper Ranvier",
           "teams": [
-            "Texas A&M"
+            "Tennessee"
           ],
-          "games": 9,
-          "value": 94.117647
+          "games": 10,
+          "value": 94.736842
         },
         {
           "rank": 6,
@@ -5198,16 +5229,6 @@
         },
         {
           "rank": 7,
-          "player_id": "5119662",
-          "name": "Nolan Hauser",
-          "teams": [
-            "Clemson"
-          ],
-          "games": 9,
-          "value": 93.103448
-        },
-        {
-          "rank": 8,
           "player_id": "5092428",
           "name": "Antonio Chadha",
           "teams": [
@@ -5217,7 +5238,7 @@
           "value": 92.857143
         },
         {
-          "rank": 8,
+          "rank": 7,
           "player_id": "4872845",
           "name": "Carson Smith",
           "teams": [
@@ -5227,14 +5248,24 @@
           "value": 92.857143
         },
         {
-          "rank": 8,
+          "rank": 7,
           "player_id": "5228152",
           "name": "Connor Calvert",
           "teams": [
             "Wake Forest"
           ],
-          "games": 9,
+          "games": 10,
           "value": 92.857143
+        },
+        {
+          "rank": 10,
+          "player_id": "5309724",
+          "name": "Cooper DiLeva",
+          "teams": [
+            "San Diego State"
+          ],
+          "games": 9,
+          "value": 92.307692
         }
       ],
       "qualification": "Minimum 6 recorded player appearances. At least 1 fg att per appearance."
@@ -5251,8 +5282,8 @@
           "teams": [
             "Virginia"
           ],
-          "games": 9,
-          "value": 50.8
+          "games": 10,
+          "value": 50.581395
         },
         {
           "rank": 2,
@@ -5261,21 +5292,11 @@
           "teams": [
             "Texas A&M"
           ],
-          "games": 9,
-          "value": 49.424242
+          "games": 10,
+          "value": 49.675
         },
         {
           "rank": 3,
-          "player_id": "4912159",
-          "name": "Ashton Logan",
-          "teams": [
-            "Middle Tennessee"
-          ],
-          "games": 9,
-          "value": 48.795455
-        },
-        {
-          "rank": 4,
           "player_id": "5192953",
           "name": "Rhys Dakin",
           "teams": [
@@ -5285,7 +5306,7 @@
           "value": 48.75
         },
         {
-          "rank": 5,
+          "rank": 4,
           "player_id": "5220376",
           "name": "Bart Edmiston Jr.",
           "teams": [
@@ -5295,7 +5316,7 @@
           "value": 48.666667
         },
         {
-          "rank": 6,
+          "rank": 5,
           "player_id": "5150302",
           "name": "James Wagenseller",
           "teams": [
@@ -5305,17 +5326,7 @@
           "value": 48.178571
         },
         {
-          "rank": 7,
-          "player_id": "5092224",
-          "name": "Simon McClannan",
-          "teams": [
-            "Kansas State"
-          ],
-          "games": 9,
-          "value": 48.176471
-        },
-        {
-          "rank": 8,
+          "rank": 6,
           "player_id": "5078459",
           "name": "Palmer Williams",
           "teams": [
@@ -5325,7 +5336,17 @@
           "value": 48.135135
         },
         {
-          "rank": 9,
+          "rank": 7,
+          "player_id": "4912159",
+          "name": "Ashton Logan",
+          "teams": [
+            "Middle Tennessee"
+          ],
+          "games": 10,
+          "value": 48.125
+        },
+        {
+          "rank": 8,
           "player_id": "5083238",
           "name": "Hunter Green",
           "teams": [
@@ -5335,14 +5356,24 @@
           "value": 48.111111
         },
         {
-          "rank": 10,
-          "player_id": "5172403",
-          "name": "Alec Clark",
+          "rank": 9,
+          "player_id": "5295365",
+          "name": "Lachlan Carrigan",
           "teams": [
-            "Florida"
+            "USC"
           ],
-          "games": 8,
-          "value": 47.096774
+          "games": 10,
+          "value": 48.1
+        },
+        {
+          "rank": 10,
+          "player_id": "5092224",
+          "name": "Simon McClannan",
+          "teams": [
+            "Kansas State"
+          ],
+          "games": 10,
+          "value": 47.575
         }
       ],
       "qualification": "Minimum 6 recorded player appearances. At least 2 punt att per appearance."
