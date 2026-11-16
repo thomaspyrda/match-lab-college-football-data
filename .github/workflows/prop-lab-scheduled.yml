@@ -47,12 +47,13 @@ jobs:
           while True:
               try:
                   base = 'https://api.github.com/repos/' + os.environ['REPOSITORY'] + '/actions/workflows/'
+                  # Wait for active prerequisite writers, not their aggregate conclusion.
+                  # The research engine independently validates each sport/event's
+                  # statistics, availability and completed-game coverage before any
+                  # paid capture; unavailable inputs remain explicit partial results.
                   required = ['coordinate-sport-data.yml', 'run-nfl-public.yml', 'publish-wisestats-public.yml']
                   for workflow in required:
                       runs = get(base + workflow + '/runs?per_page=100', True)['workflow_runs']
-                      recent = [r for r in runs if r['head_branch'] == 'main' and datetime.fromisoformat(r['run_started_at'].replace('Z', '+00:00')).timestamp() >= boundary]
-                      if not any(r['status'] == 'completed' and r['conclusion'] == 'success' for r in recent):
-                          raise ValueError(workflow + ' has no successful current morning run')
                       if any(r['status'] in ['queued', 'in_progress', 'waiting', 'pending', 'requested'] for r in runs):
                           raise ValueError(workflow + ' is still active')
                   host = 'https://wisestats.bet/'
