@@ -1,0 +1,34 @@
+name: Complete owner-authorized Prop Lab repair
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/prop-lab-repair-once.yml]
+permissions:
+  actions: write
+  contents: read
+jobs:
+  request-protected-scan:
+    if: github.event.head_commit.message == 'Commission one protected Prop Lab refresh after dependency repair'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Wait for existing research before requesting the protected commission workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (new Date().toISOString().slice(0,10)!=='2026-11-16') {
+              core.info('Expired one-time owner repair; no request.');
+              return;
+            }
+            const deadline=Date.now()+30*60000;
+            while (true) {
+              const {data}=await github.rest.actions.listWorkflowRuns({...context.repo,per_page:100});
+              const active=new Set(['queued','in_progress','waiting','pending','requested']);
+              const busy=data.workflow_runs.some(r=>active.has(r.status) && ['.github/workflows/prop-lab-scheduled.yml','.github/workflows/prop-lab-commission.yml','.github/workflows/prop-lab-recovery.yml'].includes(r.path));
+              if (!busy) break;
+              if (Date.now()>=deadline) throw new Error('Existing research still active; no duplicate scan requested.');
+              core.info('Existing research remains active; waiting without issuing any odds request.');
+              await new Promise(resolve=>setTimeout(resolve,60000));
+            }
+            await github.rest.actions.createWorkflowDispatch({...context.repo,workflow_id:'prop-lab-commission.yml',ref:'main'});
+            core.notice('Requested the existing protected commissioning workflow once. Ledger, source and budget guards remain unchanged.');
