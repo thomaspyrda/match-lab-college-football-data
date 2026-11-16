@@ -33,7 +33,7 @@ jobs:
               if (running.length!==1) continue;
               const steps=running[0].steps || [];
               const gate=steps.find(s=>s.name==='Wait for prerequisite sources and verified live publication');
-              const later=steps.filter(s=>gate && s.number>gate.number && s.status!=='queued');
+              const later=steps.filter(s=>gate && s.number>gate.number && !['queued','pending'].includes(s.status));
               if (gate?.status!=='in_progress' || later.length) continue;
               await github.rest.actions.cancelWorkflowRun({...context.repo,run_id:run.id});
               core.warning('Cancelled superseded push research-only run '+run.id+' before checkout, capture or release writing.');
