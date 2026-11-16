@@ -61,8 +61,8 @@ jobs:
               .sort((a,b)=>Date.parse(b.run_started_at)-Date.parse(a.run_started_at));
             const last = eligible[0];
             if (last?.conclusion==='failure') {
-              await github.rest.actions.reRunWorkflowFailedJobs({...context.repo,run_id:last.id});
-              core.warning('Retried failed collector. Durable quote reservations prevent paid replay.');
+              await github.rest.repos.createDispatchEvent({...context.repo,event_type:'prop-lab-morning-recovery'});
+              core.warning('Requested recovery using the current collector workflow. Durable quote reservations prevent paid replay.');
             } else if (!last || (clock>=325 && new Date(last.run_started_at).getTime()<Date.now()-60*60000)) {
               await github.rest.repos.createDispatchEvent({...context.repo,event_type:'prop-lab-morning-recovery'});
               core.warning('Requested missing morning collection through the existing protected collector.');
