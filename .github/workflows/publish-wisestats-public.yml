@@ -5,14 +5,11 @@ name: Publish WiseStats on public standard runner
   repository_dispatch:
     types:
     - sports-publication
-  workflow_run:
-    workflows:
-    - Collect private Prop Lab morning research
-    - Commission current private Prop Lab research
+  push:
     branches:
     - main
-    types:
-    - completed
+    paths:
+    - .github/workflows/publish-wisestats-public.yml
 permissions:
   contents: read
 concurrency:
@@ -21,7 +18,6 @@ concurrency:
   queue: single
 jobs:
   publish:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
