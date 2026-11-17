@@ -3,15 +3,21 @@ import argparse
 import json
 import os
 import urllib.request
+from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--mode', choices=('auto', 'morning', 'afternoon'), default='auto')
+    parser.add_argument('--mode', choices=('requested', 'auto', 'morning', 'afternoon'), default='auto')
     args = parser.parse_args()
     local = datetime.now(ZoneInfo('America/New_York'))
     mode = ('morning' if local.hour < 12 else 'afternoon') if args.mode == 'auto' else args.mode
+    if args.mode == 'requested':
+        request = json.loads((Path(__file__).resolve().parents[1]/'data/automation/primary-request.json').read_text())
+        if request.get('date') != str(local.date()) or request.get('cycle') not in ('morning', 'afternoon'):
+            raise SystemExit('Primary request is stale or invalid; no data work started.')
+        mode = request['cycle']
     repo = os.environ['GITHUB_REPOSITORY']
     base = 'https://api.github.com/repos/'+repo+'/actions/workflows/coordinate-sport-data.yml'
     headers = {'Authorization': 'Bearer '+os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'}

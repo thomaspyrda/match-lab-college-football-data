@@ -530,3 +530,28 @@ jobs:
     if: always() && needs.nba-availability.result == 'success' && contains(fromJSON('["success","skipped"]'), needs.nba-verified-statistics-and-pages.result)
     uses: ./.github/workflows/refresh-nba-markets.yml
     secrets: inherit
+  start-prop-research:
+    name: Start Prop Lab after verified live source publication
+    needs:
+    - publish-verified-site
+    if: always() && needs.publish-verified-site.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    steps:
+    - name: Dispatch current research with its verified parent run
+      env:
+        GH_TOKEN: ${{ github.token }}
+        PARENT_RUN: ${{ github.run_id }}
+        REPOSITORY: ${{ github.repository }}
+      shell: python
+      run: |
+        import json,os,urllib.request
+        url='https://api.github.com/repos/'+os.environ['REPOSITORY']+'/actions/workflows/prop-lab-scheduled.yml/dispatches'
+        body=json.dumps({'ref':'main','inputs':{'collect_missing':True,'parent_run_id':os.environ['PARENT_RUN']}}).encode()
+        headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'}
+        with urllib.request.urlopen(urllib.request.Request(url,data=body,headers=headers,method='POST'),timeout=30) as response:
+            if response.status!=204:raise SystemExit('Prop Lab start was not accepted')
+        print('Prop Lab dispatched after successful live source verification.')

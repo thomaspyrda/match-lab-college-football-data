@@ -5,7 +5,7 @@ The connected WiseStats daily scheduler starts the current `main` workflow at
 it checks progress and reports problems without starting recovery jobs.
 
 `start-daily-primary.yml` is a small reusable launch point for that scheduler.
-It checks out current main and dispatches `coordinate-sport-data.yml` explicitly;
+The scheduler writes a fresh Eastern-date request to `data/automation/primary-request.json`; that push starts a fresh launcher, which checks out current main and dispatches `coordinate-sport-data.yml` explicitly;
 it never replays an old schedule's task selection. It refuses duplicate active
 coordinators and duplicate successful cycles on the same Eastern date.
 
@@ -28,7 +28,7 @@ Prop Lab release. Internal planning receipts do not invalidate that fingerprint.
 An unchanged release skips assembly and deployment only after full live package
 verification. A changed release must pass package and final Hostinger verification.
 
-Prop Lab starts after the source publication is verified, including when an
+The coordinator explicitly dispatches Prop Lab after source publication is verified, including when an
 unrelated source branch remains pending. Its existing per-event eligibility,
 API budget, durable reservation and replay protections remain in force. A new
 verified Prop Lab release triggers its own publication. Later 10:15 and 15:15

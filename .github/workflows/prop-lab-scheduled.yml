@@ -1,21 +1,24 @@
 name: Collect private Prop Lab morning research
 'on':
-  workflow_dispatch: null
+  workflow_dispatch:
+    inputs:
+      collect_missing:
+        type: boolean
+        default: false
+      parent_run_id:
+        type: string
+        default: ''
   workflow_call:
     inputs:
       collect_missing:
         type: boolean
         default: false
+      parent_run_id:
+        type: string
+        default: ''
   schedule:
   - cron: 15 10,15 * * *
     timezone: America/New_York
-  workflow_run:
-    workflows:
-    - Ordered Active Sports Morning Update
-    branches:
-    - main
-    types:
-    - completed
 permissions:
   contents: read
   actions: read
@@ -24,7 +27,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   collect:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled'
+    if: 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 130
     steps:
@@ -32,7 +35,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
         REPOSITORY: ${{ github.repository }}
-        PARENT_RUN: ${{ github.event.workflow_run.id }}
+        PARENT_RUN: ${{ inputs.parent_run_id || '' }}
       shell: python
       run: |
         import json, os, time, urllib.request
