@@ -1,0 +1,30 @@
+name: Check daily source probe contracts
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [scripts/daily_work_plan.py, .github/workflows/test-daily-source-probes.yml]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Test skip and watermark rules
+        run: python3 -m unittest discover -s tests -p test_daily_work_plan.py -v
+      - name: Check free authoritative feeds without collecting odds or publishing
+        env:
+          CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+        run: |
+          python3 scripts/daily_work_plan.py
+          python3 - <<'PY'
+          import json
+          plan = json.load(open('data/automation/daily-plan.json'))
+          failures = {sport: item.get('reason') for sport, item in plan['sports'].items() if item['status'] != 'checked'}
+          if failures: raise SystemExit('Source checks unavailable: '+str(failures))
+          print('All free source probes passed; no calculations or publication started.')
+          PY
