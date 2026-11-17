@@ -425,25 +425,11 @@ jobs:
     - run: |
         python3 scripts/verify_sport_dataset_contract.py --sport cfb
         python3 scripts/verify_cfb_pipeline.py
-  deploy-morning:
-    if: always()
-    needs:
-    - validate-nba-datasets
-    - validate-cbb-datasets
-    - validate-cfb-datasets
-    - nfl-statistics
-    - nfl-leaders
-    - nfl-context
-    - nfl-markets
-    - record-completed-inputs
-    - morning-availability
-    - nba-live-markets
-    uses: ./.github/workflows/deploy-pages.yml
   verify-live-morning:
     name: Validate source readiness for WiseStats handoff
     needs:
-    - deploy-morning
-    if: always() && needs.deploy-morning.result == 'success'
+    - record-completed-inputs
+    if: always() && needs.record-completed-inputs.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -532,10 +518,9 @@ jobs:
         git push origin HEAD:main
   publish-verified-site:
     needs:
-    - deploy-morning
     - verify-live-morning
     - record-completed-inputs
-    if: always() && needs.deploy-morning.result == 'success'
+    if: always() && needs.record-completed-inputs.result == 'success'
     uses: ./.github/workflows/publish-wisestats-public.yml
     secrets: inherit
   nba-live-markets:
