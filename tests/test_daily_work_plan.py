@@ -24,6 +24,13 @@ class Tests(unittest.TestCase):
    (root/m.PLAN).write_text(json.dumps({'checked_at':NOW.isoformat(),'checked_through':'2026-11-16','sports':{s:{'status':'checked','statistics':True,'observed_finals':{'g':[1,0]}} for s in ('nba','cbb')}}))
    m.checkpoint(root,{'nba':'success','cbb':'failure'})
    state=m.read(root/m.STATE);self.assertIn('nba',state['sports']);self.assertNotIn('cbb',state['sports'])
+ def test_skipped_unchanged_sport_advances_only_its_check_date(self):
+  with tempfile.TemporaryDirectory() as tmp:
+   root=Path(tmp);(root/m.PLAN).parent.mkdir(parents=True)
+   (root/m.STATE).write_text(json.dumps({'schema':1,'sports':{'nba':{'checked_through':'2026-11-15','finals':{'g':[1,0]}}}}))
+   (root/m.PLAN).write_text(json.dumps({'checked_at':NOW.isoformat(),'checked_through':'2026-11-16','sports':{'nba':{'status':'checked','statistics':False,'observed_finals':{'g':[1,0]}},'cbb':{'status':'checked','statistics':True,'observed_finals':{'new':[2,0]}}}}))
+   m.checkpoint(root,{'nba':'skipped','cbb':'skipped'})
+   state=m.read(root/m.STATE)['sports'];self.assertEqual(state['nba']['checked_through'],'2026-11-16');self.assertEqual(state['nba']['finals'],{'g':[1,0]});self.assertNotIn('cbb',state)
  def test_offday_proof_expires_and_rejects_new_scores(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);(root/m.PLAN).parent.mkdir(parents=True)
