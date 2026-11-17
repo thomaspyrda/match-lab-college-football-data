@@ -1,51 +1,7 @@
 name: Deploy Match Lab
-# Includes restored MLB team-page layouts and draft archive updates through 2015.
-on:
-  workflow_call:
-  workflow_dispatch:
-  workflow_run:
-    workflows: ["Refresh independent NBA live markets", "Publish CFB dashboard yardage metrics", "Publish independent NBA season leaders", "Refresh independent NBA full schedules", "Refresh independent NBA scoring allowed by position", "Publish CFB live markets", "Build Team Strength", "Afternoon pregame data refresh", "Ordered Active Sports Morning Update", "Refresh all dashboard player availability", "Import verified CBB official supplements", "Recover CBB complete player boxes", "Recover missing CBB paint boxes", "Recover CBB historical player statistics", "Refresh CBB Recruiting Rankings", "Refresh CFB play mix", "Frozen CFB Dashboard Data", "Refresh CFB Dashboard schedule only", "Publish CBB Team Page Layouts", "Recover missing CBB historical ATS and totals", "Backfill CBB linked custom paint archives", "Backfill CBB complete period paint", "Backfill CBB classic HTML paint", "Backfill CBB official WMT paint", "Backfill CBB legacy paint archives", "Backfill CBB official paint archives", "Backfill CBB historical lines and paint", "Backfill CBB historical tournament results", "Validate CFB Dashboard foundation", "Refresh NBA Dashboard", "Build NBA team rankings", "Refresh MLB Dashboard", "Refresh MLB season snapshots", "Refresh CBB Conference Standings", "Refresh CBB team archives", "Build CFB team history", "Refresh FBS Season Leaders", "Build CFB Program Accolades"]
-    branches: [cfb-dashboard-foundation, main]
-    types: [completed]
-  push:
-    branches: [main]
-    paths:
-      - index.html
-      - college-football-defensive-strength-rankings/**
-      - college-football-offensive-strength-rankings/**
-      - college-football-strength-of-schedule-rankings/**
-      - college-football-team-strength-rankings/**
-      - styles.css
-      - app.js
-      - data/**
-      - cfb/**
-      - teams.html
-      - sitemap-cfb-teams.xml
-      - sitemap.xml
-      - mlb/**
-      - nba/**
-      - cbb/**
-      - sports-research/**
-      - college-football-season-leaders/**
-      - site-navigation-v3.js
-      - site-navigation-v4.js
-      - site-navigation-v10.js
-      - site-navigation-v11.js
-      - site-navigation-v12.js
-      - assets/underdog-*
-      - site-navigation-v9.js
-      - site-navigation-v8.js
-      - site-navigation-v7.js
-      - site-navigation-v6.js
-      - site-navigation-v5.js
-      - scripts/normalize_site_navigation.py
-      - scripts/verify_underdog_banner_contract.py
-      - assets/underdog-banner.css
-      - site-navigation.js
-      - site-navigation.css
-      - sitemap-sports.xml
-      - cfb-dashboard-preview/**
-      - ".github/workflows/deploy-pages.yml"
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: read
   pages: write
@@ -56,12 +12,8 @@ jobs:
       group: pages
       cancel-in-progress: false
       queue: max
-    # Matrix refreshes commit each successful sport separately. Publish those
-    # commits even if another sport failed; failed jobs keep their last good data.
-    if: >-
-      github.event_name != 'workflow_run' ||
-      github.event.workflow_run.conclusion == 'success' ||
-      (github.event.workflow_run.conclusion == 'failure' &&
+    if: |-
+      github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' || (github.event.workflow_run.conclusion == 'failure' &&
        (contains(fromJSON('["Afternoon pregame data refresh", "Refresh all dashboard player availability"]'), github.event.workflow_run.name) ||
         (github.event.workflow_run.name == 'Ordered Active Sports Morning Update' &&
          (startsWith(github.event.workflow_run.display_title, 'cfb data pipeline') || startsWith(github.event.workflow_run.display_title, 'cbb data pipeline')))))
@@ -70,35 +22,31 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Publish consistent navigation on all pages
-        run: |
-          python3 scripts/normalize_site_navigation.py
-          python3 scripts/normalize_site_navigation.py --check
-          python3 scripts/verify_underdog_banner_contract.py
-      - name: Prepare public site without model source or internal CBB inputs
-        run: |
-          mkdir -p "${{ runner.temp }}/matchlab-public"
-          rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='mlb/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
-      - name: Allocate a unique artifact for this deployment job
-        id: pages-artifact
-        run: echo "name=github-pages-$(cat /proc/sys/kernel/random/uuid)" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          name: ${{ steps.pages-artifact.outputs.name }}
-          retention-days: 1
-          path: ${{ runner.temp }}/matchlab-public
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: ${{ steps.pages-artifact.outputs.name }}
-
-
-
-
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - uses: actions/configure-pages@v5
+      with:
+        enablement: true
+    - name: Publish consistent navigation on all pages
+      run: |
+        python3 scripts/normalize_site_navigation.py
+        python3 scripts/normalize_site_navigation.py --check
+        python3 scripts/verify_underdog_banner_contract.py
+    - name: Prepare public site without model source or internal CBB inputs
+      run: |
+        mkdir -p "${{ runner.temp }}/matchlab-public"
+        rsync -a --exclude='.git/' --exclude='.github/' --exclude='__pycache__/' --exclude='*.py' --exclude='*.md' --exclude='tests/' --exclude='scripts/' --exclude='nba/pipeline/' --exclude='mlb/pipeline/' --exclude='data/cfb/pipeline/' --exclude='data/cbb/pipeline/' --exclude='data/cbb/preseason/' --exclude='data/cbb/strength-*/' --exclude='data/cbb/strength-*.json' ./ "${{ runner.temp }}/matchlab-public/"
+    - name: Allocate a unique artifact for this deployment job
+      id: pages-artifact
+      run: echo "name=github-pages-$(cat /proc/sys/kernel/random/uuid)" >> "$GITHUB_OUTPUT"
+    - uses: actions/upload-pages-artifact@v3
+      with:
+        name: ${{ steps.pages-artifact.outputs.name }}
+        retention-days: 1
+        path: ${{ runner.temp }}/matchlab-public
+    - name: Deploy
+      id: deployment
+      uses: actions/deploy-pages@v4
+      with:
+        artifact_name: ${{ steps.pages-artifact.outputs.name }}

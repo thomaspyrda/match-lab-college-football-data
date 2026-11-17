@@ -1,19 +1,7 @@
 name: Refresh CFB verified results
-on:
-  workflow_call:
-  workflow_dispatch:
-  schedule:
-    - cron: '5 16 * * *'
-      timezone: America/New_York
-    - cron: '5 6,7 * * *'
-      timezone: America/New_York
-  push:
-    branches: [main]
-    paths:
-      - scripts/run_cfb_pipeline.py
-      - tests/test_cfb_pipeline.py
-      - .github/workflows/cfb-collect-component.yml
-      - .github/workflows/refresh-cfb-results.yml
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: write
 jobs:
@@ -23,4 +11,3 @@ jobs:
     with:
       component: results
     secrets: inherit
-

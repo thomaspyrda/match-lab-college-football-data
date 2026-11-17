@@ -1,11 +1,6 @@
 name: Frozen CFB Dashboard Data
-# Existing dashboard calculations; independent verified inputs and offline assembly.
-on:
-  workflow_dispatch:
-  workflow_run:
-    workflows: ['Refresh CFB dashboard strength', 'Refresh CFB team metrics', 'Refresh CFB player statistics', 'Refresh CFB weather and venues']
-    branches: [main]
-    types: [completed]
+'on':
+  workflow_dispatch: null
 permissions:
   contents: write
 jobs:

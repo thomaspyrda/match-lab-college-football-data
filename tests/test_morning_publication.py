@@ -12,11 +12,11 @@ spec.loader.exec_module(m)
 
 class MorningPublicationTests(unittest.TestCase):
     def test_eastern_boundary_in_winter_and_summer(self):
-        for day, hour in [('2026-11-06', 8), ('2026-07-06', 7)]:
+        for day, hour in [('2026-11-06', 7), ('2026-07-06', 6)]:
             now = datetime.fromisoformat(day + 'T09:30:00+00:00')
-            m.require_collection(day + f'T{hour:02}:15:00+00:00', now)
+            m.require_collection(day + f'T{hour:02}:00:00+00:00', now)
             with self.assertRaises(ValueError):
-                m.require_collection(day + f'T{hour:02}:14:59+00:00', now)
+                m.require_collection(day + f'T{hour-1:02}:59:59+00:00', now)
 
     def test_live_json_must_match_not_just_load(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -40,4 +40,3 @@ class MorningPublicationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

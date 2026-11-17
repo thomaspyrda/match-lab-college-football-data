@@ -61,7 +61,10 @@ def load(store, component, max_hours=None, required=True):
             return None
         raise ValueError(f'Wrong CFB season: {component}')
     age = (datetime.now(timezone.utc) - datetime.fromisoformat(data['collected_at'])).total_seconds() / 3600
-    if age < -0.1 or (max_hours is not None and age > max_hours):
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from daily_work_plan import verified_no_change
+    unchanged_results = component == 'results' and verified_no_change('cfb', store.parents[2], datetime.now(timezone.utc))
+    if age < -0.1 or (max_hours is not None and age > max_hours and not unchanged_results):
         if not required:
             return None
         raise ValueError(f'Stale CFB input: {component}, age {age:.1f} hours')

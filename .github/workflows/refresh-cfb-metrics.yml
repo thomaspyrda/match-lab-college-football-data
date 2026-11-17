@@ -1,11 +1,7 @@
 name: Refresh CFB team metrics
-on:
-  workflow_call:
-  workflow_dispatch:
-  workflow_run:
-    workflows: ['Refresh CFB verified results']
-    branches: [main]
-    types: [completed]
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: write
 jobs:

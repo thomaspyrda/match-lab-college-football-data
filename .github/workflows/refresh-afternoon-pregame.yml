@@ -1,17 +1,7 @@
 name: Afternoon pregame data refresh
-on:
-  workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - refresh_afternoon_pregame.py
-      - tests/test_afternoon_pregame.py
-      - .github/workflows/refresh-afternoon-pregame.yml
-  schedule:
-    - cron: '40 4 * * *'
-      timezone: America/New_York
-    - cron: '0 17 * * *'
-      timezone: America/New_York
+'on':
+  workflow_dispatch: null
+  workflow_call: null
 permissions:
   contents: write
 jobs:
@@ -20,36 +10,37 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        sport: [nba, mlb, cbb]
-    # Serialize writers of the same dashboard snapshot, including full refreshes.
+        sport:
+        - nba
+        - cbb
     concurrency:
       group: ${{ matrix.sport }}-dashboard-refresh
       cancel-in-progress: false
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Verify sport isolation and final-game preservation
-        run: python -m unittest discover -s tests -p test_afternoon_pregame.py
-      - name: Update observed pregame fields for this sport only
-        run: python refresh_afternoon_pregame.py --sport ${{ matrix.sport }}
-      - name: Commit pregame snapshots
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add ${{ matrix.sport }}/dashboard/data/dashboard.json
-          git diff --cached --quiet && exit 0
-          git commit -m 'Update ${{ matrix.sport }} pregame market snapshot'
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main || exit 1
-            if git push origin HEAD:main; then exit 0; fi
-            sleep $((attempt * 3))
-          done
-          echo "Unable to publish pregame snapshot after five safe push attempts" >&2
-          exit 1
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Verify sport isolation and final-game preservation
+      run: python -m unittest discover -s tests -p test_afternoon_pregame.py
+    - name: Update observed pregame fields for this sport only
+      run: python refresh_afternoon_pregame.py --sport ${{ matrix.sport }}
+    - name: Commit pregame snapshots
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git add ${{ matrix.sport }}/dashboard/data/dashboard.json
+        git diff --cached --quiet && exit 0
+        git commit -m 'Update ${{ matrix.sport }} pregame market snapshot'
+        for attempt in 1 2 3 4 5; do
+          git fetch origin main
+          git rebase origin/main || exit 1
+          if git push origin HEAD:main; then exit 0; fi
+          sleep $((attempt * 3))
+        done
+        echo "Unable to publish pregame snapshot after five safe push attempts" >&2
+        exit 1

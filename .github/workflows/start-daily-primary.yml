@@ -1,0 +1,26 @@
+name: Start current WiseStats daily workflow
+'on':
+  push:
+    branches:
+    - main
+    paths:
+    - .github/workflows/start-daily-primary.yml
+  workflow_dispatch: null
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: start-wisestats-daily
+  cancel-in-progress: false
+jobs:
+  start:
+    name: Start current daily workflow
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - env:
+        GH_TOKEN: ${{ github.token }}
+      run: python3 scripts/start_daily_run.py --mode auto

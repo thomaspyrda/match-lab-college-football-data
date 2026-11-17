@@ -1,6 +1,5 @@
 name: Refresh CBB team archives
-# Verified schedules/results are independent of player, metric, roster, and market feeds.
-on:
+'on':
   workflow_call:
     inputs:
       historical_backfill:
@@ -10,26 +9,10 @@ on:
   workflow_dispatch:
     inputs:
       historical_backfill:
-        description: 'Use the existing explicit historical backfill path'
+        description: Use the existing explicit historical backfill path
         type: boolean
         required: false
         default: false
-  schedule:
-    - cron: '19 16 * * *'
-      timezone: America/New_York
-    - cron: '11 17 * * *'
-      timezone: America/New_York
-    # Independent morning retries if an earlier scheduled trigger is delayed or missed.
-    - cron: '19 6,7 * * *'
-      timezone: America/New_York
-  push:
-    branches: [main]
-    paths:
-      - scripts/run_cbb_pipeline.py
-      - tests/test_cbb_pipeline.py
-      - .github/workflows/cbb-collect-component.yml
-      - .github/workflows/cbb-team-archives.yml
-      - data/cbb/bootstrap/*.json.gz
 permissions:
   contents: write
   actions: read
@@ -46,4 +29,3 @@ jobs:
     with:
       historical_backfill: ${{ inputs.historical_backfill || false }}
     secrets: inherit
-

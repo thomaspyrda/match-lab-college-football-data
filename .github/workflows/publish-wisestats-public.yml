@@ -1,20 +1,18 @@
 name: Publish WiseStats on public standard runner
-on:
-  push:
-    branches: [main]
-    paths: ['**.html', '**.js', '**.css', '**.json']
+'on':
+  workflow_call: null
+  workflow_dispatch: null
   repository_dispatch:
-    types: [sports-publication]
+    types:
+    - sports-publication
   workflow_run:
-    workflows: ["Build CBB Match Lab advanced pregame snapshots","Build verified CBB Match Lab historical candidates","Ordered Active Sports Morning Update","Afternoon pregame data refresh","Refresh NBA Dashboard","Refresh independent NBA live markets","Publish CFB live markets","Publish CBB Team Page Layouts","Refresh CBB team archives","Build CFB team history","Refresh all dashboard player availability","Publish independent NBA season leaders","Refresh independent NBA full schedules","Build NBA team rankings","Refresh independent NBA scoring allowed by position","Refresh CBB Dashboard","Refresh CBB current Season Leaders","Publish CBB team archives","Build CBB Team Strength","Build CBB Historical Metric Rankings","Publish CBB live markets","Assemble and publish CFB dashboard","Publish CFB dashboard yardage metrics","Refresh CFB directory current records","Run private NFL processing on public standard runner","Collect private Prop Lab morning research","Commission current private Prop Lab research"]
-    branches: [main]
-    types: [completed]
-  schedule:
-    - cron: '10 5 * * *'
-      timezone: America/New_York
-    - cron: '35 17 * * *'
-      timezone: America/New_York
-  workflow_dispatch:
+    workflows:
+    - Collect private Prop Lab morning research
+    - Commission current private Prop Lab research
+    branches:
+    - main
+    types:
+    - completed
 permissions:
   contents: read
 concurrency:
@@ -23,56 +21,55 @@ concurrency:
   queue: single
 jobs:
   publish:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - name: Check required private repository credential
-        env:
-          ACCESS_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
-        run: |
-          if [ -z "$ACCESS_TOKEN" ]; then
-            echo '::error::Add WISESTATS_AUTOMATION_TOKEN to this repository. It needs Contents read/write on wisestats-site and betwise-nfl-matchup-dashboard.'
-            exit 1
-          fi
-      - name: Checkout private publisher
-        uses: actions/checkout@v4
-        with:
-          repository: thomaspyrda/wisestats-site
-          ref: main
-          path: site
-          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
-      - name: Checkout private NFL source
-        uses: actions/checkout@v4
-        with:
-          repository: thomaspyrda/betwise-nfl-matchup-dashboard
-          ref: main
-          path: site/.sources/nfl
-          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
-          persist-credentials: false
-      - name: Checkout public sports source
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: site/.sources/sports
-          persist-credentials: false
-      - name: Checkout verified Prop Lab release
-        uses: actions/checkout@v4
-        with:
-          repository: thomaspyrda/wisestats-site
-          ref: prop-lab-private-research
-          path: site/.sources/prop-lab
-          token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: Install workflow reader
-        run: python3 -m pip install PyYAML==6.0.3
-      - name: Build, publish and verify live site
-        working-directory: site
-        env:
-          WISESTATS_SOURCE_EVENT: '{"source_repository":"public-hosted-publisher","source_conclusion":"manual-verification"}'
-          RUNNER_TEMP: ${{ runner.temp }}
-        run: python3 scripts/run_public_publication.py
-
+    - name: Check required private repository credential
+      env:
+        ACCESS_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+      run: |
+        if [ -z "$ACCESS_TOKEN" ]; then
+          echo '::error::Add WISESTATS_AUTOMATION_TOKEN to this repository. It needs Contents read/write on wisestats-site and betwise-nfl-matchup-dashboard.'
+          exit 1
+        fi
+    - name: Checkout private publisher
+      uses: actions/checkout@v4
+      with:
+        repository: thomaspyrda/wisestats-site
+        ref: main
+        path: site
+        token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+    - name: Checkout private NFL source
+      uses: actions/checkout@v4
+      with:
+        repository: thomaspyrda/betwise-nfl-matchup-dashboard
+        ref: main
+        path: site/.sources/nfl
+        token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        persist-credentials: false
+    - name: Checkout public sports source
+      uses: actions/checkout@v4
+      with:
+        ref: main
+        path: site/.sources/sports
+        persist-credentials: false
+    - name: Checkout verified Prop Lab release
+      uses: actions/checkout@v4
+      with:
+        repository: thomaspyrda/wisestats-site
+        ref: prop-lab-private-research
+        path: site/.sources/prop-lab
+        token: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
+        persist-credentials: false
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+    - name: Install workflow reader
+      run: python3 -m pip install PyYAML==6.0.3
+    - name: Build, publish and verify live site
+      working-directory: site
+      env:
+        WISESTATS_SOURCE_EVENT: '{"source_repository":"public-hosted-publisher","source_conclusion":"manual-verification"}'
+        RUNNER_TEMP: ${{ runner.temp }}
+      run: python3 scripts/run_public_publication.py

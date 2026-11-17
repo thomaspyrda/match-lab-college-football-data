@@ -1,15 +1,10 @@
 name: Refresh CFB Dashboard schedule only
-# Scheduled retry of offline assembly; result collection owns the schedule source.
-on:
-  workflow_call:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 17 * * *'
-      timezone: America/New_York
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: write
 jobs:
   update-schedule:
     uses: ./.github/workflows/cfb-publish-dashboard.yml
     secrets: inherit
-

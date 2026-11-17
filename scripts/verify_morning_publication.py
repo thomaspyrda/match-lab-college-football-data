@@ -3,10 +3,14 @@
 import argparse
 import concurrent.futures
 import json
+import os
 import time
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from daily_work_plan import verified_no_change
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,23 +20,24 @@ HOST = 'https://wisestats.bet/'
 def require_collection(value, now):
     observed = datetime.fromisoformat(value.replace('Z', '+00:00'))
     local = now.astimezone(ZoneInfo('America/New_York'))
-    boundary = local.replace(hour=3, minute=15, second=0, microsecond=0)
+    boundary = local.replace(hour=2, minute=0, second=0, microsecond=0)
     if observed < boundary or observed > now:
-        raise ValueError('No verified collection since 3:15 a.m. Eastern: ' + value)
+        raise ValueError('No verified collection since 2:00 a.m. Eastern: ' + value)
 
 
 def plan(sport, root, now):
     paths = []
+    unchanged = verified_no_change(sport, Path(os.environ.get("WISESTATS_PLAN_ROOT", root)), now)
     if sport == 'nfl':
         ranking = json.loads((root / 'data/nfl-rankings.json').read_text())
-        require_collection(ranking['as_of'], now)
+        if not unchanged: require_collection(ranking['as_of'], now)
         paths = ['data/dashboard.json', 'data/nfl-rankings.json', 'data/nfl-season-leaders.json']
     elif sport == 'nba':
         dashboard = json.loads((root / 'nba/dashboard/data/dashboard.json').read_text())
-        require_collection(dashboard['updated_at'], now)
+        if not unchanged: require_collection(dashboard['updated_at'], now)
         yesterday = (now.astimezone(ZoneInfo('America/New_York')).date()).toordinal() - 1
         from datetime import date
-        if dashboard['freshness']['checked_through'] != str(date.fromordinal(yesterday)):
+        if not unchanged and dashboard['freshness']['checked_through'] != str(date.fromordinal(yesterday)):
             raise ValueError('NBA has not checked all previous-day games')
         paths = ['nba/dashboard/data/dashboard.json', 'nba/dashboard/data/completed-games.json',
                  'nba/teams/data/current-season.json', 'nba/teams/data/current-schedule.json', 'nba/rankings/data/nba-team-rankings.json']
@@ -40,7 +45,7 @@ def plan(sport, root, now):
         names = ['results', 'boxes', 'players', 'metrics'] if sport == 'cbb' else ['results', 'metrics', 'players', 'strength']
         for name in names:
             component = json.loads((root / f'data/{sport}/pipeline/{name}.json').read_text())
-            require_collection(component['collected_at'], now)
+            if not unchanged: require_collection(component['collected_at'], now)
             if component.get('pending') or (name == 'results' and component.get('retained_schedules')):
                 raise ValueError(sport + ' ' + name + ': source items are still pending; see component diagnostics')
         if sport == 'cbb':
@@ -123,4 +128,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

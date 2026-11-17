@@ -1,41 +1,7 @@
 name: Refresh NBA Dashboard
-on:
-  workflow_run:
-    workflows: ['Refresh independent NBA rosters', 'Refresh independent NBA availability']
-    branches: [main]
-    types: [completed]
-  workflow_call:
-  workflow_dispatch:
-  schedule:
-    # Morning collection is owned by the ordered coordinator.
-    - cron: '15 10,17 * * *'
-      timezone: America/New_York
-  push:
-    branches: [main]
-    paths:
-      - basketball_dashboard_metrics.py
-      - tests/test_basketball_dashboard_metrics.py
-      - refresh_nba_dashboard.py
-      - nba_market_quotes.py
-      - tests/test_nba_market_quotes.py
-      - validate_nba_refresh.py
-      - tests/test_nba_page_updates.py
-      - nba_player_context.py
-      - tests/test_nba_player_context.py
-      - nba/dashboard/data/player-value.json
-      - tests/test_nba_dashboard.py
-      - daily_backfill_core.py
-      - stage_nba_team_backfill.py
-      - publish_nba_team_backfill.py
-      - build_nba_team_rankings.py
-      - nba_closing_markets.py
-      - tests/test_nba_closing_markets.py
-      - nba_current_rankings.py
-      - build_nba_team_current.py
-      - tests/test_nba_team_current.py
-      - tests/test_stage_nba_team_backfill.py
-      - tests/test_publish_nba_team_backfill.py
-      - .github/workflows/refresh-nba-dashboard.yml
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: write
 concurrency:
@@ -48,61 +14,60 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Test season boundaries and pregame isolation
-        run: |
-          python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
-          python -m unittest discover -s tests -p test_nba_page_updates.py
-          python -m unittest discover -s tests -p test_nba_closing_markets.py
-          python -m unittest discover -s tests -p test_nba_dashboard.py
-          python -m unittest discover -s tests -p test_nba_market_quotes.py
-          python -m unittest discover -s tests -p test_nba_player_context.py
-          python -m unittest discover -s tests -p test_nba_season_leaders.py
-          python -m unittest discover -s tests -p test_daily_backfill_core.py
-          python -m unittest discover -s tests -p test_stage_nba_team_backfill.py
-          python -m unittest discover -s tests -p test_publish_nba_team_backfill.py
-      - name: Refresh NBA games and player box scores
-        run: |
-          for attempt in 1 2 3; do
-            if python refresh_nba_dashboard.py; then break; fi
-            if [ "$attempt" -eq 3 ]; then exit 1; fi
-            sleep $((attempt * 20))
-          done
-      - name: Prepare 2026-27 completed-game team backfill
-        run: |
-          python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
-          python publish_nba_team_backfill.py --publish
-      - name: Update current-season rankings from the refreshed box scores
-        run: |
-          python -m unittest discover -s tests -p test_nba_current_rankings.py
-          python -m unittest discover -s tests -p test_nba_team_current.py
-          python build_nba_team_current.py
-          python build_nba_team_rankings.py
-      - name: Verify previous-day coverage before publishing
-        run: python validate_nba_refresh.py
-      - name: Publish NBA snapshot and verified 2026-27 team games
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add nba/dashboard/data/location-records.json nba/teams/data/current-season.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
-          git diff --cached --quiet && exit 0
-          git commit -m 'Refresh NBA Dashboard snapshot'
-          # Keep the commit clean before rebasing against other sports' publications.
-          # Only explicitly staged verified NBA files are published.
-          git restore --worktree .
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main || { git rebase --abort; exit 1; }
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            sleep $((attempt * 3))
-          done
-          echo "Unable to publish after five safe push attempts" >&2
-          exit 1
-
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Test season boundaries and pregame isolation
+      run: |
+        python -m unittest discover -s tests -p test_basketball_dashboard_metrics.py
+        python -m unittest discover -s tests -p test_nba_page_updates.py
+        python -m unittest discover -s tests -p test_nba_closing_markets.py
+        python -m unittest discover -s tests -p test_nba_dashboard.py
+        python -m unittest discover -s tests -p test_nba_market_quotes.py
+        python -m unittest discover -s tests -p test_nba_player_context.py
+        python -m unittest discover -s tests -p test_nba_season_leaders.py
+        python -m unittest discover -s tests -p test_daily_backfill_core.py
+        python -m unittest discover -s tests -p test_stage_nba_team_backfill.py
+        python -m unittest discover -s tests -p test_publish_nba_team_backfill.py
+    - name: Refresh NBA games and player box scores
+      run: |
+        for attempt in 1 2 3; do
+          if python refresh_nba_dashboard.py; then break; fi
+          if [ "$attempt" -eq 3 ]; then exit 1; fi
+          sleep $((attempt * 20))
+        done
+    - name: Prepare 2026-27 completed-game team backfill
+      run: |
+        python stage_nba_team_backfill.py --season 2027 --out nba/dashboard/data/season-team-backfill-preview.json
+        python publish_nba_team_backfill.py --publish
+    - name: Update current-season rankings from the refreshed box scores
+      run: |
+        python -m unittest discover -s tests -p test_nba_current_rankings.py
+        python -m unittest discover -s tests -p test_nba_team_current.py
+        python build_nba_team_current.py
+        python build_nba_team_rankings.py
+    - name: Verify previous-day coverage before publishing
+      run: python validate_nba_refresh.py
+    - name: Publish NBA snapshot and verified 2026-27 team games
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git add nba/dashboard/data/location-records.json nba/teams/data/current-season.json nba/dashboard/data/dashboard.json nba/dashboard/data/completed-games.json nba/teams/data/*-season-details.json nba/rankings/data/nba-team-rankings.json
+        git diff --cached --quiet && exit 0
+        git commit -m 'Refresh NBA Dashboard snapshot'
+        # Keep the commit clean before rebasing against other sports' publications.
+        # Only explicitly staged verified NBA files are published.
+        git restore --worktree .
+        for attempt in 1 2 3 4 5; do
+          git fetch origin main
+          git rebase origin/main || { git rebase --abort; exit 1; }
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+          sleep $((attempt * 3))
+        done
+        echo "Unable to publish after five safe push attempts" >&2
+        exit 1

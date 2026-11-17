@@ -1,22 +1,7 @@
 name: Capture CBB pregame markets
-on:
-  workflow_call:
-  workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - sync_cbb_market_archives.py
-      - tests/test_cbb_market_capture.py
-      - .github/workflows/cbb-pregame-market-capture.yml
-  schedule:
-    - cron: '15 10 * * *'
-      timezone: America/New_York
-    - cron: '15 13 * * *'
-      timezone: America/New_York
-    - cron: '15 16 * * *'
-      timezone: America/New_York
-    - cron: '15 19 * * *'
-      timezone: America/New_York
+'on':
+  workflow_call: null
+  workflow_dispatch: null
 permissions:
   contents: write
 concurrency:
@@ -28,41 +13,41 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Validate CBB market collection and syntax
-        run: |
-          python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
-          python -m unittest discover -s tests -p test_cbb_market_capture.py -v
-      - name: Capture actual pregame lines and grade completed verified games
-        env:
-          CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
-        run: |
-          for attempt in 1 2 3; do
-            if python sync_cbb_market_archives.py; then
-              exit 0
-            fi
-            if [ "$attempt" -eq 3 ]; then
-              echo "::error::CBB market collection failed after three attempts"
-              exit 1
-            fi
-            sleep $((attempt * 20))
-          done
-      - name: Publish only CBB market observations
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/cbb/pregame-markets data/cbb/markets
-          git diff --cached --quiet && exit 0
-          git commit -m 'Capture CBB pregame markets and publish observed ATS O-U'
-          for attempt in 1 2 3 4 5; do
-            git fetch origin main
-            git rebase origin/main
-            if git push origin HEAD:main; then exit 0; fi
-            sleep $((attempt * 3))
-          done
-          exit 1
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - name: Validate CBB market collection and syntax
+      run: |
+        python -m py_compile sync_cbb_market_archives.py refresh_cbb_dashboard.py
+        python -m unittest discover -s tests -p test_cbb_market_capture.py -v
+    - name: Capture actual pregame lines and grade completed verified games
+      env:
+        CBBD_API_KEY: ${{ secrets.CBBD_API_KEY }}
+      run: |
+        for attempt in 1 2 3; do
+          if python sync_cbb_market_archives.py; then
+            exit 0
+          fi
+          if [ "$attempt" -eq 3 ]; then
+            echo "::error::CBB market collection failed after three attempts"
+            exit 1
+          fi
+          sleep $((attempt * 20))
+        done
+    - name: Publish only CBB market observations
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+        git add data/cbb/pregame-markets data/cbb/markets
+        git diff --cached --quiet && exit 0
+        git commit -m 'Capture CBB pregame markets and publish observed ATS O-U'
+        for attempt in 1 2 3 4 5; do
+          git fetch origin main
+          git rebase origin/main
+          if git push origin HEAD:main; then exit 0; fi
+          sleep $((attempt * 3))
+        done
+        exit 1
