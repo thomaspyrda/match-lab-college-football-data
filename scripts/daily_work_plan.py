@@ -9,6 +9,8 @@ import io
 import json
 import os
 import urllib.parse
+import urllib.error
+import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -26,8 +28,13 @@ def read(path, default=None):
 def get(url, token=None):
     headers = {'User-Agent': 'WiseStats-primary-source-check/1', 'Cache-Control': 'no-cache'}
     if token: headers['Authorization'] = 'Bearer '+token
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as response:
-        return response.read().decode()
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as response:
+                return response.read().decode()
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 500, 502, 503, 504) or attempt == 2: raise
+            time.sleep(2 ** attempt)
 
 def espn_finals(board):
     out = {}
@@ -74,15 +81,18 @@ def make_plan(root=ROOT, now=None, fetch=get):
         previous = old.get('sports', {}).get(sport, {})
         try:
             if sport in LEAGUES:
-                url = 'https://site.api.espn.com/apis/site/v2/sports/'+LEAGUES[sport]+'/scoreboard?limit=1000&dates='+first_day.strftime('%Y%m%d')+'-'+last_day.strftime('%Y%m%d')
-                if sport == 'cbb': url += '&groups=50'
-                observed = espn_finals(json.loads(fetch(url)))
+                observed = {}
+                for offset in range((last_day-first_day).days+1):
+                    day = first_day+timedelta(days=offset)
+                    url = 'https://site.api.espn.com/apis/site/v2/sports/'+LEAGUES[sport]+'/scoreboard?limit=1000&dates='+day.strftime('%Y%m%d')
+                    if sport == 'cbb': url += '&groups=50'
+                    observed.update(espn_finals(json.loads(fetch(url))))
             elif sport == 'cfb':
                 key = os.environ.get('CFBD_API_KEY')
                 if not key: raise ValueError('CFB source credential is unavailable')
                 rows = json.loads(fetch('https://api.collegefootballdata.com/games?year='+str(local.year)+'&seasonType=regular', key))
                 if not isinstance(rows, list): raise ValueError('CFB source returned an invalid schedule')
-                observed = {str(g['id']): [g['homePoints'], g['awayPoints']] for g in rows if g.get('completed') and g.get('homePoints') is not None and g.get('awayPoints') is not None and str(g.get('startDate', ''))[:10] <= str(last_day)}
+                observed = {str(g['id']): [g['homePoints'], g['awayPoints']] for g in rows if (g.get('homeClassification') == 'fbs' or g.get('awayClassification') == 'fbs') and g.get('completed') and g.get('homePoints') is not None and g.get('awayPoints') is not None and str(g.get('startDate', ''))[:10] <= str(last_day)}
             else:
                 rows = list(csv.DictReader(io.StringIO(fetch('https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv'))))
                 observed = {r['game_id']: [r['home_score'], r['away_score']] for r in rows if r.get('season') == str(local.year) and r.get('game_type') == 'REG' and r.get('home_score') not in ('', 'NA', None) and r.get('away_score') not in ('', 'NA', None) and r.get('gameday', '9999') <= str(last_day)}
@@ -99,7 +109,7 @@ def make_plan(root=ROOT, now=None, fetch=get):
             plan['sports'][sport] = {'status': 'checked', 'statistics': stats, 'leaders': leaders, 'changed_finals': sorted(changed), 'pending_inputs': pending, 'observed_finals': observed}
         except Exception as exc:
             # A failed check must never authorize an off-day skip or mark data fresh.
-            plan['sports'][sport] = {'status': 'source_unavailable', 'statistics': True, 'leaders': True, 'reason': type(exc).__name__}
+            plan['sports'][sport] = {'status': 'source_unavailable', 'statistics': True, 'leaders': True, 'reason': type(exc).__name__ + (': HTTP '+str(exc.code) if isinstance(exc, urllib.error.HTTPError) else '')}
     return plan
 
 def checkpoint(root, results):
