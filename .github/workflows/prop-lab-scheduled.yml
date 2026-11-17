@@ -18,6 +18,7 @@ name: Collect private Prop Lab morning research
     - completed
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: private-prop-lab-collection
   cancel-in-progress: false
