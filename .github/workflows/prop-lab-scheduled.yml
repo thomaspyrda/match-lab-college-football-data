@@ -116,3 +116,9 @@ jobs:
         PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' && github.event_name != 'workflow_run'
           && inputs.collect_missing != true }}
       run: python3 prop_lab_runtime/collector.py
+
+  publish-verified-research:
+    name: Publish and verify completed Prop Lab research
+    needs: collect
+    uses: ./.github/workflows/publish-wisestats-public.yml
+    secrets: inherit
