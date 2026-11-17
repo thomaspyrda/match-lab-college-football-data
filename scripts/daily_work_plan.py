@@ -72,13 +72,12 @@ def make_plan(root=ROOT, now=None, fetch=get):
     last_day = local.date()-timedelta(days=1)
     first_day = last_day-timedelta(days=2)
     old = read(root/STATE, {'sports': {}})
-    # Catch every missed day after an outage, not just a fixed recent window.
-    for prior in old.get('sports', {}).values():
-        if prior.get('checked_through'):
-            first_day = min(first_day, datetime.fromisoformat(prior['checked_through']).date())
     plan = {'schema': 1, 'checked_at': now.isoformat(), 'checked_through': str(last_day), 'sports': {}}
     for sport in ('nba', 'cbb', 'cfb', 'nfl'):
         previous = old.get('sports', {}).get(sport, {})
+        first_day = last_day-timedelta(days=2)
+        if previous.get('checked_through'):
+            first_day = min(first_day, datetime.fromisoformat(previous['checked_through']).date())
         try:
             if sport in LEAGUES:
                 observed = {}
@@ -116,7 +115,8 @@ def checkpoint(root, results):
     plan = read(root/PLAN)
     state = read(root/STATE, {'schema': 1, 'sports': {}})
     for sport, item in plan['sports'].items():
-        if item['status'] == 'checked' and results.get(sport) in ('success', 'unchanged'):
+        unchanged = results.get(sport) == 'skipped' and item.get('statistics') is False and bool(state['sports'].get(sport))
+        if item['status'] == 'checked' and (results.get(sport) in ('success', 'unchanged') or unchanged):
             prior = state['sports'].get(sport, {})
             state['sports'][sport] = {'checked_through': plan['checked_through'], 'checked_at': plan['checked_at'], 'finals': {**prior.get('finals', {}), **item.get('observed_finals', {})}}
     path = root/STATE
