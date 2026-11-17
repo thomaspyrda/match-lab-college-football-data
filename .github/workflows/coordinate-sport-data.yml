@@ -188,9 +188,10 @@ jobs:
     uses: ./.github/workflows/cbb-publish-team-pages.yml
     secrets: inherit
   cbb-dashboard:
-    if: always() && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb') && needs.morning-start.outputs.cbb == 'true' && needs.cbb-results-and-team-archives.result
-      == 'success' && needs.cbb-box-scores.result == 'success' && needs.cbb-player-statistics.result == 'success' && needs.cbb-rosters.result
-      == 'success' && needs.morning-start.result == 'success'
+    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb') && (needs.morning-start.outputs.cbb
+      == 'false' || needs.cbb-results-and-team-archives.result == 'success') && contains(fromJSON('["success","skipped"]'), needs.cbb-results-and-team-archives.result)
+      && contains(fromJSON('["success","skipped"]'), needs.cbb-box-scores.result) && contains(fromJSON('["success","skipped"]'), needs.cbb-player-statistics.result)
+      && contains(fromJSON('["success","skipped"]'), needs.cbb-rosters.result)
     needs:
     - cbb-results-and-team-archives
     - cbb-box-scores
@@ -233,8 +234,8 @@ jobs:
     uses: ./.github/workflows/publish-nba-leaders.yml
     secrets: inherit
   nba-full-schedules:
-    if: always() && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba') && needs.morning-start.outputs.nba == 'true' && needs.nba-verified-statistics-and-pages.result
-      == 'success' && needs.morning-start.result == 'success'
+    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba') && contains(fromJSON('["success","skipped"]'),
+      needs.nba-verified-statistics-and-pages.result)
     needs:
     - nba-verified-statistics-and-pages
     - morning-start
@@ -519,7 +520,7 @@ jobs:
         ref: main
     - env:
         SPORT_RESULTS: '{"nba": "${{ needs.validate-nba-datasets.result }}", "cbb": "${{ needs.validate-cbb-datasets.result }}", "cfb": "${{ needs.validate-cfb-datasets.result
-          }}", "nfl": "${{ needs.nfl-statistics.result == ''success'' && ''success'' || ''failure'' }}"}'
+          }}", "nfl": "${{ needs.nfl-statistics.result }}"}'
       run: |
         python3 scripts/daily_work_plan.py --checkpoint
         git config user.name 'github-actions[bot]'
