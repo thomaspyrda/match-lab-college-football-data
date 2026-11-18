@@ -375,6 +375,21 @@ def project(folder, include_metrics=True, include_players=True, calculate_metric
             if item and item.get('coaches'):
                 doc['seasons'][year]['coaches'] = item['coaches']
                 write(path, doc)
+    if boxes and include_metrics:
+        from basketball_dashboard_metrics import derived_metrics
+        for path in target.glob('*.json'):
+            doc = read(path)
+            tid = str(doc['team_id'])
+            for phase, label in ((2, 'regular'), (3, 'postseason')):
+                record = doc['seasons'][year]['phases'].get(label)
+                if not record:
+                    continue
+                finals = {str(g['id']) for g in record.get('games', []) if g.get('status') == 'final'}
+                sample = [g for g in boxes['payload']['games'] if tid in g['teams'] and g.get('phase') == phase and str(g['id']) in finals]
+                fast = derived_metrics(sample, tid) if len(sample) == len(finals) else {}
+                record.setdefault('metrics', {})['avgFastBreakPoints'] = fast.get('fastbreak_points')
+                record['metrics']['avgOpponentFastBreakPoints'] = fast.get('opp_fastbreak_points')
+            write(path, doc)
     return target
 
 
