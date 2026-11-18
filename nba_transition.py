@@ -24,6 +24,7 @@ def refresh(season):
         result['teams']={};result['reason']=str(exc)
     DEST.parent.mkdir(parents=True,exist_ok=True)
     DEST.write_text(json.dumps(result,separators=(',',':'))+'\n')
+    print('NBA transition source:',json.dumps({k:v for k,v in result.items() if k!='teams'}),flush=True)
     return result
 def metrics(abbr, games, season, cutoff=None):
     empty={'transition_points':None,'opp_transition_points':None}
