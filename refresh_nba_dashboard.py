@@ -181,6 +181,8 @@ def profile(team_id,history,cutoff):
       'ft_pct':ratio(totals.get('ftm'),totals.get('fta'),100),'opp_ft_pct':ratio(other.get('ftm'),other.get('fta'),100),
       'ast_rate':ratio(totals.get('ast'),possessions,100) if valid_poss else None,'opp_ast_rate':ratio(other.get('ast'),possessions,100) if valid_poss else None})
     values.update(derived_metrics(games,team_id))
+    from nba_transition import profile_metrics
+    values.update(profile_metrics(team_id,games,cutoff))
     market_records={'ats':{'wins':0,'losses':0,'pushes':0,'lined_games':0},'ou':{'overs':0,'unders':0,'pushes':0,'lined_games':0},'window_games':min(n,5)}
     for g in games[-5:]:
         market=g.get('market');own=g['teams'][team_id];opp=g['teams'][next(i for i in g['teams'] if i!=team_id)]
@@ -202,6 +204,7 @@ METRICS=[('ppg','PPG','OFFENSE',True,''),('ppg_allowed','PPG Allowed','DEFENSE',
 METRICS.extend([('fg_pct','Field-goal percentage','OFFENSE',True,'%'),('opp_fg_pct','Field-goal percentage allowed','DEFENSE',False,'%'),('two_pct','Two-point FG%','OFFENSE',True,'%'),('opp_two_pct','Two-point FG% allowed','DEFENSE',False,'%'),('ft_pct','Free-throw percentage','OFFENSE',True,'%'),('opp_ft_pct','Opponent free-throw percentage','DEFENSE',False,'%'),('ast_rate','Assists per 100 possessions','OFFENSE',True,''),('opp_ast_rate','Assists allowed per 100 possessions','DEFENSE',False,'')])
 
 METRICS.extend(ADDITIONAL_METRICS)
+METRICS.extend([('transition_points','Transition Points/Game','OFFENSE',True,''),('opp_transition_points','Transition Points Allowed/Game','DEFENSE',False,'')])
 
 def roster(team_id):
     d=get('teams/'+team_id+'/roster');assert d.get('athletes'),'Empty roster '+team_id
@@ -225,6 +228,8 @@ def select_display_phase(events, now):
 
 def main():
     now=datetime.now(UTC);today=now.astimezone(ZoneInfo('America/New_York')).date();season=today.year+(today.month>=7)
+    from nba_transition import refresh as refresh_transition
+    refresh_transition(season)
     registry=json.loads((ROOT/'data/sports/team-registry.json').read_text());teams={t['espn_id']:t for t in registry['teams'] if t['sport']=='nba'}
     cache_path=ROOT/'nba/dashboard/data/completed-games.json';cache=json.loads(cache_path.read_text()) if cache_path.exists() else {'games':[]}
     old={g['id']:g for g in cache['games'] if g['season']==season}
