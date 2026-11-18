@@ -189,6 +189,12 @@ def collect_boxes():
             path = chunk('boxes', gid)
             if saved and path.exists() and {str(i): b.get('points') for i, b in saved['teams'].items()} == expected:
                 raw = read(path)
+                # Reparse optional statistics from the verified cached box.
+                for row in raw.get('boxscore', {}).get('teams', []):
+                    tid = str(row['team']['id'])
+                    if tid in saved['teams']:
+                        values = {s['name']: s.get('displayValue') for s in row.get('statistics', [])}
+                        saved['teams'][tid]['fastbreak_points'] = dashboard.num(values.get('fastBreakPoints'))
                 observed = datetime.fromisoformat(raw.get('_verified_at', '1970-01-01T00:00:00+00:00'))
                 recent = dashboard.stamp(event['date']) >= datetime.now(timezone.utc) - timedelta(days=3)
                 refresh = gid in retry_players or gid in retry_boxes or (recent and (datetime.now(timezone.utc) - observed).total_seconds() >= 6 * 3600)

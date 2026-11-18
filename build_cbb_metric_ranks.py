@@ -9,8 +9,8 @@ OUT=ROOT/"data/cbb/metric-ranks.json"
 SUPPLEMENT=ROOT/"data/cbb/opponent-metrics.json"
 FIELDS={"avgPoints":"PPG","avgRebounds":"REB/G","avgAssists":"AST/G","avgTurnovers":"TOV/G","avgSteals":"STL/G","avgBlocks":"BLK/G","fieldGoalPct":"FG%","twoPointFieldGoalPct":"2P%","threePointFieldGoalPct":"3P%","freeThrowPct":"FT%","ppgAllowed":"PPG Allowed","offRating":"OFF Rating","defRating":"DEF Rating","pace":"Pace","efg":"eFG%","reboundShare":"Rebound Share%"}
 LOWER={"avgTurnovers","ppgAllowed","defRating"}
-FIELDS.update({"Points in the Paint":"Points in the Paint","Points in the Paint Allowed":"Points in the Paint Allowed","3P Rate":"3P Rate","3P Rate Allowed":"3P Rate Allowed","FT Attempt Rate":"FT Attempt Rate","Rebounds Allowed/Game":"Rebounds Allowed/Game","Turnover Margin":"Turnover Margin","FG% Allowed":"FG% Allowed","eFG% Allowed":"eFG% Allowed","2P% Allowed":"2P% Allowed","3P% Allowed":"3P% Allowed","FT% Allowed":"FT% Allowed","FT Attempt Rate Allowed":"FT Attempt Rate Allowed","AST/G Allowed":"AST/G Allowed","Defensive Rebound Rate":"Defensive Rebound Rate"})
-LOWER.update(["Points in the Paint Allowed","3P Rate Allowed","Rebounds Allowed/Game","FG% Allowed","eFG% Allowed","2P% Allowed","3P% Allowed","FT% Allowed","FT Attempt Rate Allowed","AST/G Allowed"])
+FIELDS.update({"Fastbreak Points/Game":"Fastbreak Points/Game","Fastbreak Points Allowed/Game":"Fastbreak Points Allowed/Game","Points in the Paint":"Points in the Paint","Points in the Paint Allowed":"Points in the Paint Allowed","3P Rate":"3P Rate","3P Rate Allowed":"3P Rate Allowed","FT Attempt Rate":"FT Attempt Rate","Rebounds Allowed/Game":"Rebounds Allowed/Game","Turnover Margin":"Turnover Margin","FG% Allowed":"FG% Allowed","eFG% Allowed":"eFG% Allowed","2P% Allowed":"2P% Allowed","3P% Allowed":"3P% Allowed","FT% Allowed":"FT% Allowed","FT Attempt Rate Allowed":"FT Attempt Rate Allowed","AST/G Allowed":"AST/G Allowed","Defensive Rebound Rate":"Defensive Rebound Rate"})
+LOWER.update(["Fastbreak Points Allowed/Game","Points in the Paint Allowed","3P Rate Allowed","Rebounds Allowed/Game","FG% Allowed","eFG% Allowed","2P% Allowed","3P% Allowed","FT% Allowed","FT Attempt Rate Allowed","AST/G Allowed"])
 def main():
     supplemental=json.loads(SUPPLEMENT.read_text()).get("seasons",{}) if (ROOT/"data/cbb/opponent-metrics.json").exists() else {}
     seasons={}
@@ -46,6 +46,8 @@ def main():
             opponent_rebounds=m.get("opponentRebounds")
             if opponent_rebounds is None:opponent_rebounds=rebounds-differential if rebounds is not None and differential is not None else None
             m["reboundShare"]=ratio(rebounds,rebounds+opponent_rebounds,100) if opponent_rebounds is not None else None
+            m["Fastbreak Points/Game"]=m.get("avgFastBreakPoints")
+            m["Fastbreak Points Allowed/Game"]=m.get("avgOpponentFastBreakPoints")
             m["Points in the Paint"]=ratio(m.get('pointsInPaint'),gp)
             m["Points in the Paint Allowed"]=ratio(m.get('opponentPointsInPaint'),gp)
             m["3P Rate"]=ratio(m.get('threePointFieldGoalsAttempted'),m.get('fieldGoalsAttempted'),100)

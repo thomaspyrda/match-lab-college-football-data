@@ -78,7 +78,7 @@ def team_box(row,score):
     ft=pair(values.get('freeThrowsMade-freeThrowsAttempted'))
     return {'points':num(score),'fgm':fg[0],'fga':fg[1],'tpm':th[0],'tpa':th[1],'ftm':ft[0],'fta':ft[1],
       'oreb':num(values.get('offensiveRebounds')),'dreb':num(values.get('defensiveRebounds')),'reb':num(values.get('totalRebounds')),
-      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'paint_points':num(values.get('pointsInPaint'))}
+      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'fastbreak_points':num(values.get('fastBreakPoints')),'paint_points':num(values.get('pointsInPaint'))}
 
 def players_box(row):
     result=[]
@@ -116,14 +116,15 @@ def completed(event):
       'defense_stats_version':1,'source':'https://www.espn.com/nba/boxscore/_/gameId/'+event['id']}
 
 def enrich_paint(game):
-    if game.get('phase')!=2 or game.get('defense_stats_version')==1:return game
+    if game.get('phase')!=2 or game.get('defense_stats_version')==2:return game
     summary=get('summary?event='+str(game['id']))
     rows={str(r['team']['id']):r for r in summary.get('boxscore',{}).get('teams',[])}
     if set(rows)!=set(game['teams']):raise ValueError('Paint source team mismatch '+str(game['id']))
     for tid,row in rows.items():
         values={s['name']:s.get('displayValue') for s in row['statistics']}
+        game['teams'][tid]['fastbreak_points']=num(values.get('fastBreakPoints'))
         game['teams'][tid]['paint_points']=num(values.get('pointsInPaint'))
-    game['defense_stats_version']=1
+    game['defense_stats_version']=2
     return game
 
 def ratio(a,b,scale=1):return a/b*scale if b and a is not None else None

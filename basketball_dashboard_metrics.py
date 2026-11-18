@@ -5,6 +5,8 @@ import math
 ADDITIONAL_METRICS = [
  ('points_in_paint','Points in the Paint','OFFENSE',True,''),
  ('opp_points_in_paint','Points in the Paint Allowed','DEFENSE',False,''),
+ ('fastbreak_points','Fastbreak Points/Game','OFFENSE',True,''),
+ ('opp_fastbreak_points','Fastbreak Points Allowed/Game','DEFENSE',False,''),
  ('three_attempt_rate','3P Rate','OFFENSE',True,'%'),
  ('opp_three_attempt_rate','3P Rate Allowed','DEFENSE',False,'%'),
  ('rebounds_per_game','Rebounds/Game','OFFENSE',True,''),
@@ -40,6 +42,8 @@ def derived_metrics(games, team_id):
     return {
       'points_in_paint': ratio(total(own, 'paint_points'), n),
       'opp_points_in_paint': ratio(total(opponents, 'paint_points'), n),
+      'fastbreak_points': ratio(total(own, 'fastbreak_points'), n),
+      'opp_fastbreak_points': ratio(total(opponents, 'fastbreak_points'), n),
       'three_attempt_rate': ratio(total(own, 'tpa'), total(own, 'fga'), 100),
       'opp_three_attempt_rate': ratio(total(opponents, 'tpa'), total(opponents, 'fga'), 100),
       'rebounds_per_game': ratio(rebounds, n),

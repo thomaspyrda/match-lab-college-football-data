@@ -41,7 +41,7 @@ def team_box(row,score):
     ft=pair(values.get('freeThrowsMade-freeThrowsAttempted'))
     return {'points':num(score),'fgm':fg[0],'fga':fg[1],'tpm':th[0],'tpa':th[1],'ftm':ft[0],'fta':ft[1],
       'oreb':num(values.get('offensiveRebounds')),'dreb':num(values.get('defensiveRebounds')),'reb':num(values.get('totalRebounds')),
-      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'paint_points':num(values.get('pointsInPaint'))}
+      'ast':num(values.get('assists')),'tov':num(values.get('totalTurnovers',values.get('turnovers'))),'stl':num(values.get('steals')),'blk':num(values.get('blocks')),'fastbreak_points':num(values.get('fastBreakPoints')),'paint_points':num(values.get('pointsInPaint'))}
 
 def players_box(row):
     result=[]

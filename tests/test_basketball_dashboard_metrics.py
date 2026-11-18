@@ -23,6 +23,18 @@ class BasketballMetricsTests(unittest.TestCase):
         self.assertEqual(m['points_in_paint'],42)
         self.assertEqual(m['opp_points_in_paint'],30)
 
+    def test_fastbreak_complete_sample_zero_and_missing(self):
+        one=self.game();two=copy.deepcopy(one)
+        one['teams']['1']['fastbreak_points']=0
+        two['teams']['1']['fastbreak_points']=20
+        one['teams']['2']['fastbreak_points']=8
+        two['teams']['2']['fastbreak_points']=12
+        m=derived_metrics([one,two],'1')
+        self.assertEqual(m['fastbreak_points'],10)
+        self.assertEqual(m['opp_fastbreak_points'],10)
+        del two['teams']['1']['fastbreak_points']
+        self.assertIsNone(derived_metrics([one,two],'1')['fastbreak_points'])
+
     def test_missing_paint_does_not_publish_a_partial_season_average(self):
         one=self.game();two=copy.deepcopy(one);two['id']='two';del two['teams']['2']['paint_points']
         m=derived_metrics([one,two],'1')

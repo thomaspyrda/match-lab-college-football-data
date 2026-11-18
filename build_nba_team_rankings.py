@@ -79,6 +79,8 @@ METRIC_LABELS = {
     "opponent_blocks_per_game": "Opponent blocks per game",
     "rim_fg_pct": "At rim field goal percentage",
     "opp_rim_fg_pct": "Opponent at rim field goal percentage",
+    "fastbreak_points": "Fastbreak Points/Game",
+    "opp_fastbreak_points": "Fastbreak Points Allowed/Game",
     "points_in_paint": "Points in the paint per game",
     "opp_three_attempt_rate": "Opponent three-point attempt rate",
     "total_rebound_rate": "Total rebound rate",
@@ -97,7 +99,7 @@ LOWER_IS_BETTER = {
     "opponent_steals_per_game", "opponent_blocks_per_game",
     "opp_efg_pct", "opp_rim_fg_pct", "tov_pct",
     "opp_three_attempt_rate", "opp_total_rebound_rate", "opp_rebounds_per_game", "opp_ft_pct", "opp_ft_rate",
-    "opp_points_in_paint", "points_allowed_pg", "points_allowed_sg", "points_allowed_sf", "points_allowed_pf", "points_allowed_c",
+    "opp_fastbreak_points", "opp_points_in_paint", "points_allowed_pg", "points_allowed_sg", "points_allowed_sf", "points_allowed_pf", "points_allowed_c",
 }
 
 

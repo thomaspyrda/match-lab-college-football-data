@@ -1,0 +1,44 @@
+name: Populate and publish basketball fastbreak metrics
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/commission-fastbreak.yml]
+permissions:
+  contents: write
+  actions: write
+  pages: write
+  id-token: write
+concurrency:
+  group: commission-basketball-fastbreak
+  cancel-in-progress: false
+jobs:
+  nba:
+    uses: ./.github/workflows/refresh-nba-dashboard.yml
+    secrets: inherit
+  cbb-boxes:
+    uses: ./.github/workflows/refresh-cbb-boxes.yml
+    secrets: inherit
+  cbb-metrics:
+    needs: cbb-boxes
+    uses: ./.github/workflows/refresh-cbb-metrics.yml
+    secrets: inherit
+  cbb-teams:
+    needs: cbb-metrics
+    uses: ./.github/workflows/cbb-publish-team-pages.yml
+    secrets: inherit
+  cbb-ranks:
+    needs: cbb-teams
+    uses: ./.github/workflows/build-cbb-metric-ranks.yml
+    secrets: inherit
+  cbb-strength:
+    needs: cbb-ranks
+    uses: ./.github/workflows/build-cbb-strength.yml
+    secrets: inherit
+  cbb-dashboard:
+    needs: cbb-strength
+    uses: ./.github/workflows/refresh-cbb-dashboard.yml
+    secrets: inherit
+  publish:
+    needs: [nba, cbb-dashboard]
+    uses: ./.github/workflows/publish-wisestats-public.yml
+    secrets: inherit

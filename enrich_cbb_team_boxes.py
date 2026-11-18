@@ -79,6 +79,10 @@ def enrich(archives, boxes, year):
                     opponentThreePointFieldGoalsMade=opp['tpm'],opponentThreePointFieldGoalsAttempted=opp['tpa'],
                     opponentFreeThrowsMade=opp['ftm'],opponentFreeThrowsAttempted=opp['fta'],
                     opponentOffensiveRebounds=opp['oreb'],opponentAssists=opp['ast'])
+                from basketball_dashboard_metrics import derived_metrics
+                fast=derived_metrics(eligible,tid)
+                metrics['avgFastBreakPoints']=fast['fastbreak_points']
+                metrics['avgOpponentFastBreakPoints']=fast['opp_fastbreak_points']
                 metrics['twoPointFieldGoalPct']=ratio(sums['fgm']-sums['tpm'],sums['fga']-sums['tpa'],100)
                 if int(metrics['points'])!=sum(g['points'] for g in final.values()):
                     print(f"Skipping inconsistent box metrics: {path.name} phase={label}",flush=True)
