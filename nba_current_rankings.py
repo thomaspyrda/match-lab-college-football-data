@@ -126,6 +126,8 @@ def build_current_rows(cache, registry, team_info, year, metric_keys):
                 suffix = venue.lower()
                 metrics["ppg_" + suffix] = sum(x[0] for x in entries) / len(entries) if entries else None
                 metrics["ppg_allowed_" + suffix] = sum(x[1] for x in entries) / len(entries) if entries else None
+        from nba_transition import metrics as transition_metrics
+        metrics.update(transition_metrics(abbr,n,year))
         metrics = {k: round(v, 4) if v is not None else None for k, v in metrics.items()}
         rows.append({"slug": slug, "team": name, "abbreviation": abbr,
                      "conference": conference, "division": division,
