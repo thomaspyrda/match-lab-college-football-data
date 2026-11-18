@@ -2,7 +2,7 @@
   "schema_version": 1,
   "season": "2026\u201327",
   "season_type": "Regular season",
-  "updated_at": "2026-11-18T18:29:04.567754+00:00",
+  "updated_at": "2026-11-18T19:45:26.428156+00:00",
   "player_value": {
     "state": "unavailable",
     "source": null,
@@ -68,7 +68,9 @@
             "opp_total_rebound_rate": 46.396761133603235,
             "turnovers_per_game": 16.071428571428573,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -1.9285714285714286
+            "turnover_margin": -1.9285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -1501,7 +1503,9 @@
             "opp_total_rebound_rate": 49.3009565857248,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 13.0,
-            "turnover_margin": -1.0
+            "turnover_margin": -1.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -3374,6 +3378,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -3437,10 +3459,10 @@
         "spread": "CLE -4.5",
         "total": 237.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910007",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910008",
@@ -3499,7 +3521,9 @@
             "opp_total_rebound_rate": 46.85314685314685,
             "turnovers_per_game": 14.4,
             "opp_turnovers_per_game": 14.6,
-            "turnover_margin": 0.2
+            "turnover_margin": 0.2,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -4758,7 +4782,9 @@
             "opp_total_rebound_rate": 52.86984640258691,
             "turnovers_per_game": 14.5,
             "opp_turnovers_per_game": 14.928571428571429,
-            "turnover_margin": 0.42857142857142855
+            "turnover_margin": 0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -6703,6 +6729,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -6764,12 +6808,12 @@
       "neutral": false,
       "market": {
         "spread": "HOU -7.5",
-        "total": 225.5,
+        "total": 224.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910008",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910009",
@@ -6828,7 +6872,9 @@
             "opp_total_rebound_rate": 51.96969696969697,
             "turnovers_per_game": 16.857142857142858,
             "opp_turnovers_per_game": 13.357142857142858,
-            "turnover_margin": -3.5
+            "turnover_margin": -3.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -8085,7 +8131,9 @@
             "opp_total_rebound_rate": 51.70178282009724,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 16.5,
-            "turnover_margin": 2.5
+            "turnover_margin": 2.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -10012,6 +10060,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -10073,12 +10139,12 @@
       "neutral": false,
       "market": {
         "spread": "MIA -11.5",
-        "total": 236.5,
+        "total": 237.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910009",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910010",
@@ -10137,7 +10203,9 @@
             "opp_total_rebound_rate": 51.316779533483825,
             "turnovers_per_game": 12.666666666666666,
             "opp_turnovers_per_game": 14.533333333333333,
-            "turnover_margin": 1.8666666666666667
+            "turnover_margin": 1.8666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -11405,7 +11473,9 @@
             "opp_total_rebound_rate": 49.0,
             "turnovers_per_game": 16.53846153846154,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -1.6153846153846154
+            "turnover_margin": -1.6153846153846154,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -13235,6 +13305,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -13295,13 +13383,13 @@
       "venue": "Kia Center",
       "neutral": false,
       "market": {
-        "spread": "PHI -1.5",
+        "spread": "ORL -1.5",
         "total": 222.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910010",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910011",
@@ -13360,7 +13448,9 @@
             "opp_total_rebound_rate": 52.268907563025216,
             "turnovers_per_game": 17.307692307692307,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -2.3846153846153846
+            "turnover_margin": -2.3846153846153846,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -14741,7 +14831,9 @@
             "opp_total_rebound_rate": 49.586776859504134,
             "turnovers_per_game": 17.153846153846153,
             "opp_turnovers_per_game": 15.923076923076923,
-            "turnover_margin": -1.2307692307692308
+            "turnover_margin": -1.2307692307692308,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -16656,6 +16748,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -16717,12 +16827,12 @@
       "neutral": false,
       "market": {
         "spread": "BKN -2.5",
-        "total": 239.5,
+        "total": 240.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910011",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910012",
@@ -16781,7 +16891,9 @@
             "opp_total_rebound_rate": 53.560830860534125,
             "turnovers_per_game": 14.666666666666666,
             "opp_turnovers_per_game": 14.066666666666666,
-            "turnover_margin": -0.6
+            "turnover_margin": -0.6,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -18127,7 +18239,9 @@
             "opp_total_rebound_rate": 51.07851596203624,
             "turnovers_per_game": 13.857142857142858,
             "opp_turnovers_per_game": 18.5,
-            "turnover_margin": 4.642857142857143
+            "turnover_margin": 4.642857142857143,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -20001,6 +20115,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -20064,10 +20196,10 @@
         "spread": "TOR -4.5",
         "total": 225.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910012",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910013",
@@ -20126,7 +20258,9 @@
             "opp_total_rebound_rate": 50.72711719418306,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 17.46153846153846,
-            "turnover_margin": 3.4615384615384617
+            "turnover_margin": 3.4615384615384617,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -21525,7 +21659,9 @@
             "opp_total_rebound_rate": 51.642475171886936,
             "turnovers_per_game": 15.733333333333333,
             "opp_turnovers_per_game": 15.666666666666666,
-            "turnover_margin": -0.06666666666666667
+            "turnover_margin": -0.06666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -23592,6 +23728,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -23652,13 +23806,13 @@
       "venue": "Smoothie King Center",
       "neutral": false,
       "market": {
-        "spread": "DET -6.5",
-        "total": 227.5,
+        "spread": "DET -4.5",
+        "total": 225.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910013",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910014",
@@ -23717,7 +23871,9 @@
             "opp_total_rebound_rate": 50.706436420722135,
             "turnovers_per_game": 15.357142857142858,
             "opp_turnovers_per_game": 18.928571428571427,
-            "turnover_margin": 3.5714285714285716
+            "turnover_margin": 3.5714285714285716,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -24957,7 +25113,9 @@
             "opp_total_rebound_rate": 48.484848484848484,
             "turnovers_per_game": 13.357142857142858,
             "opp_turnovers_per_game": 14.857142857142858,
-            "turnover_margin": 1.5
+            "turnover_margin": 1.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -27005,6 +27163,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -27065,13 +27241,13 @@
       "venue": "Paycom Center",
       "neutral": false,
       "market": {
-        "spread": "OKC -6.5",
+        "spread": "OKC -5.5",
         "total": 228.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910014",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910016",
@@ -27130,7 +27306,9 @@
             "opp_total_rebound_rate": 49.4770716009654,
             "turnovers_per_game": 15.928571428571429,
             "opp_turnovers_per_game": 15.928571428571429,
-            "turnover_margin": 0.0
+            "turnover_margin": 0.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -28423,7 +28601,9 @@
             "opp_total_rebound_rate": 50.408496732026144,
             "turnovers_per_game": 16.0,
             "opp_turnovers_per_game": 15.571428571428571,
-            "turnover_margin": -0.42857142857142855
+            "turnover_margin": -0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -30384,6 +30564,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -30447,10 +30645,10 @@
         "spread": "DAL -4.5",
         "total": 224.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910016",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910015",
@@ -30509,7 +30707,9 @@
             "opp_total_rebound_rate": 48.9051094890511,
             "turnovers_per_game": 14.357142857142858,
             "opp_turnovers_per_game": 16.571428571428573,
-            "turnover_margin": 2.2142857142857144
+            "turnover_margin": 2.2142857142857144,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -31793,7 +31993,9 @@
             "opp_total_rebound_rate": 51.45631067961165,
             "turnovers_per_game": 13.75,
             "opp_turnovers_per_game": 14.583333333333334,
-            "turnover_margin": 0.8333333333333334
+            "turnover_margin": 0.8333333333333334,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -33702,6 +33904,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -33765,10 +33985,10 @@
         "spread": "BOS -2.5",
         "total": 219.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910015",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910017",
@@ -33827,7 +34047,9 @@
             "opp_total_rebound_rate": 50.410141685309476,
             "turnovers_per_game": 16.533333333333335,
             "opp_turnovers_per_game": 13.6,
-            "turnover_margin": -2.933333333333333
+            "turnover_margin": -2.933333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -35058,7 +35280,9 @@
             "opp_total_rebound_rate": 50.16051364365971,
             "turnovers_per_game": 16.6,
             "opp_turnovers_per_game": 18.533333333333335,
-            "turnover_margin": 1.9333333333333333
+            "turnover_margin": 1.9333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -37095,6 +37319,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -37158,10 +37400,10 @@
         "spread": "LAL -10.5",
         "total": 228.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910017",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910018",
@@ -37220,7 +37462,9 @@
             "opp_total_rebound_rate": 53.147482014388494,
             "turnovers_per_game": 14.384615384615385,
             "opp_turnovers_per_game": 17.23076923076923,
-            "turnover_margin": 2.8461538461538463
+            "turnover_margin": 2.8461538461538463,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -38461,7 +38705,9 @@
             "opp_total_rebound_rate": 52.13754646840149,
             "turnovers_per_game": 17.53846153846154,
             "opp_turnovers_per_game": 14.615384615384615,
-            "turnover_margin": -2.923076923076923
+            "turnover_margin": -2.923076923076923,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -40325,6 +40571,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -40385,13 +40649,13 @@
       "venue": "Golden 1 Center",
       "neutral": false,
       "market": {
-        "spread": "PHX -6.5",
+        "spread": "PHX -7.5",
         "total": 226.5,
         "provider": "Draft Kings",
-        "observed_at": "2026-11-18T18:29:04.567754+00:00"
+        "observed_at": "2026-11-18T19:45:26.428156+00:00"
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910018",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910019",
@@ -40450,7 +40714,9 @@
             "opp_total_rebound_rate": 49.4770716009654,
             "turnovers_per_game": 15.928571428571429,
             "opp_turnovers_per_game": 15.928571428571429,
-            "turnover_margin": 0.0
+            "turnover_margin": 0.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -41637,7 +41903,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.710089+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -41697,7 +41963,9 @@
             "opp_total_rebound_rate": 46.396761133603235,
             "turnovers_per_game": 16.071428571428573,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -1.9285714285714286
+            "turnover_margin": -1.9285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -43024,7 +43292,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.892521+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -43697,6 +43965,24 @@
             "population": 30,
             "percentile": 17
           }
+        },
+        {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
         },
         {
           "key": "pace",
@@ -43765,7 +44051,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910019",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910020",
@@ -43824,7 +44110,9 @@
             "opp_total_rebound_rate": 48.730548730548726,
             "turnovers_per_game": 16.214285714285715,
             "opp_turnovers_per_game": 14.428571428571429,
-            "turnover_margin": -1.7857142857142858
+            "turnover_margin": -1.7857142857142858,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -45048,7 +45336,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.684485+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -45108,7 +45396,9 @@
             "opp_total_rebound_rate": 51.96969696969697,
             "turnovers_per_game": 16.857142857142858,
             "opp_turnovers_per_game": 13.357142857142858,
-            "turnover_margin": -3.5
+            "turnover_margin": -3.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -46295,7 +46585,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.612308+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -46968,6 +47258,24 @@
             "population": 30,
             "percentile": 3
           }
+        },
+        {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
         },
         {
           "key": "pace",
@@ -47036,7 +47344,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910020",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910021",
@@ -47095,7 +47403,9 @@
             "opp_total_rebound_rate": 45.85365853658537,
             "turnovers_per_game": 14.571428571428571,
             "opp_turnovers_per_game": 12.857142857142858,
-            "turnover_margin": -1.7142857142857142
+            "turnover_margin": -1.7142857142857142,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -48319,7 +48629,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.652914+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -48379,7 +48689,9 @@
             "opp_total_rebound_rate": 47.368421052631575,
             "turnovers_per_game": 16.133333333333333,
             "opp_turnovers_per_game": 16.666666666666668,
-            "turnover_margin": 0.5333333333333333
+            "turnover_margin": 0.5333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -49550,7 +49862,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.686343+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -50223,6 +50535,24 @@
             "population": 30,
             "percentile": 62
           }
+        },
+        {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
         },
         {
           "key": "pace",
@@ -50291,7 +50621,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910021",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910022",
@@ -50350,7 +50680,9 @@
             "opp_total_rebound_rate": 52.72391505078485,
             "turnovers_per_game": 17.23076923076923,
             "opp_turnovers_per_game": 16.076923076923077,
-            "turnover_margin": -1.1538461538461537
+            "turnover_margin": -1.1538461538461537,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -51553,7 +51885,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.727749+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -51613,7 +51945,9 @@
             "opp_total_rebound_rate": 46.9208211143695,
             "turnovers_per_game": 12.466666666666667,
             "opp_turnovers_per_game": 14.266666666666667,
-            "turnover_margin": 1.8
+            "turnover_margin": 1.8,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -52784,7 +53118,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.889522+00:00",
         "availability": {
           "game_date": "2026-11-19",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -53457,6 +53791,24 @@
             "population": 30,
             "percentile": 72
           }
+        },
+        {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
         },
         {
           "key": "pace",
@@ -53525,7 +53877,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910022",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909305",
@@ -53584,7 +53936,9 @@
             "opp_total_rebound_rate": 46.09695973705834,
             "turnovers_per_game": 19.428571428571427,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -5.285714285714286
+            "turnover_margin": -5.285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -54824,7 +55178,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.658104+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -54884,7 +55238,9 @@
             "opp_total_rebound_rate": 50.706436420722135,
             "turnovers_per_game": 15.357142857142858,
             "opp_turnovers_per_game": 18.928571428571427,
-            "turnover_margin": 3.5714285714285716
+            "turnover_margin": 3.5714285714285716,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -56018,7 +56374,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.670999+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -56691,6 +57047,24 @@
             "population": 30,
             "percentile": 97
           }
+        },
+        {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
         },
         {
           "key": "pace",
@@ -56759,7 +57133,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909305",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909306",
@@ -56818,7 +57192,9 @@
             "opp_total_rebound_rate": 49.0,
             "turnovers_per_game": 16.53846153846154,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -1.6153846153846154
+            "turnover_margin": -1.6153846153846154,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -57936,7 +58312,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.641734+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -57996,7 +58372,9 @@
             "opp_total_rebound_rate": 49.586776859504134,
             "turnovers_per_game": 17.153846153846153,
             "opp_turnovers_per_game": 15.923076923076923,
-            "turnover_margin": -1.2307692307692308
+            "turnover_margin": -1.2307692307692308,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -59236,7 +59614,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.552049+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -59911,6 +60289,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -59977,7 +60373,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909306",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909307",
@@ -60036,7 +60432,9 @@
             "opp_total_rebound_rate": 52.86984640258691,
             "turnovers_per_game": 14.5,
             "opp_turnovers_per_game": 14.928571428571429,
-            "turnover_margin": 0.42857142857142855
+            "turnover_margin": 0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -61260,7 +61658,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.663796+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -61320,7 +61718,9 @@
             "opp_total_rebound_rate": 49.3009565857248,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 13.0,
-            "turnover_margin": -1.0
+            "turnover_margin": -1.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -62472,7 +62872,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.586422+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -63147,6 +63547,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -63213,7 +63631,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909307",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909308",
@@ -63272,7 +63690,9 @@
             "opp_total_rebound_rate": 51.07851596203624,
             "turnovers_per_game": 13.857142857142858,
             "opp_turnovers_per_game": 18.5,
-            "turnover_margin": 4.642857142857143
+            "turnover_margin": 4.642857142857143,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -64443,7 +64863,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.573815+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -64503,7 +64923,9 @@
             "opp_total_rebound_rate": 50.72711719418306,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 17.46153846153846,
-            "turnover_margin": 3.4615384615384617
+            "turnover_margin": 3.4615384615384617,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -65796,7 +66218,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.564236+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -66471,6 +66893,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -66537,7 +66977,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909308",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909309",
@@ -66596,7 +67036,9 @@
             "opp_total_rebound_rate": 53.560830860534125,
             "turnovers_per_game": 14.666666666666666,
             "opp_turnovers_per_game": 14.066666666666666,
-            "turnover_margin": -0.6
+            "turnover_margin": -0.6,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -67836,7 +68278,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.630121+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -67896,7 +68338,9 @@
             "opp_total_rebound_rate": 52.268907563025216,
             "turnovers_per_game": 17.307692307692307,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -2.3846153846153846
+            "turnover_margin": -2.3846153846153846,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -69189,7 +69633,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.568592+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -69864,6 +70308,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -69930,7 +70392,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909309",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909310",
@@ -69989,7 +70451,9 @@
             "opp_total_rebound_rate": 51.642475171886936,
             "turnovers_per_game": 15.733333333333333,
             "opp_turnovers_per_game": 15.666666666666666,
-            "turnover_margin": -0.06666666666666667
+            "turnover_margin": -0.06666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -71335,7 +71799,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.886546+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -71395,7 +71859,9 @@
             "opp_total_rebound_rate": 48.484848484848484,
             "turnovers_per_game": 13.357142857142858,
             "opp_turnovers_per_game": 14.857142857142858,
-            "turnover_margin": 1.5
+            "turnover_margin": 1.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -72722,7 +73188,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.697837+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -73397,6 +73863,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -73463,7 +73947,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909310",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909311",
@@ -73522,7 +74006,9 @@
             "opp_total_rebound_rate": 53.147482014388494,
             "turnovers_per_game": 14.384615384615385,
             "opp_turnovers_per_game": 17.23076923076923,
-            "turnover_margin": 2.8461538461538463
+            "turnover_margin": 2.8461538461538463,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -74693,7 +75179,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.908986+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -74753,7 +75239,9 @@
             "opp_total_rebound_rate": 50.410141685309476,
             "turnovers_per_game": 16.533333333333335,
             "opp_turnovers_per_game": 13.6,
-            "turnover_margin": -2.933333333333333
+            "turnover_margin": -2.933333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -75887,7 +76375,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.711641+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -76562,6 +77050,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -76628,7 +77134,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909311",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909312",
@@ -76687,7 +77193,9 @@
             "opp_total_rebound_rate": 46.85314685314685,
             "turnovers_per_game": 14.4,
             "opp_turnovers_per_game": 14.6,
-            "turnover_margin": 0.2
+            "turnover_margin": 0.2,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -77858,7 +78366,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.907776+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -77918,7 +78426,9 @@
             "opp_total_rebound_rate": 51.45631067961165,
             "turnovers_per_game": 13.75,
             "opp_turnovers_per_game": 14.583333333333334,
-            "turnover_margin": 0.8333333333333334
+            "turnover_margin": 0.8333333333333334,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -79142,7 +79652,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.674468+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -79817,6 +80327,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -79883,7 +80411,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909312",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909313",
@@ -79942,7 +80470,9 @@
             "opp_total_rebound_rate": 52.13754646840149,
             "turnovers_per_game": 17.53846153846154,
             "opp_turnovers_per_game": 14.615384615384615,
-            "turnover_margin": -2.923076923076923
+            "turnover_margin": -2.923076923076923,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -81094,7 +81624,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.899778+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -81154,7 +81684,9 @@
             "opp_total_rebound_rate": 50.16051364365971,
             "turnovers_per_game": 16.6,
             "opp_turnovers_per_game": 18.533333333333335,
-            "turnover_margin": 1.9333333333333333
+            "turnover_margin": 1.9333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -82497,7 +83029,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.888057+00:00",
         "availability": {
           "game_date": "2026-11-20",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -83172,6 +83704,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -83238,7 +83788,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909313",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910023",
@@ -83297,7 +83847,9 @@
             "opp_total_rebound_rate": 51.96969696969697,
             "turnovers_per_game": 16.857142857142858,
             "opp_turnovers_per_game": 13.357142857142858,
-            "turnover_margin": -3.5
+            "turnover_margin": -3.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -84484,7 +85036,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.612308+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -84544,7 +85096,9 @@
             "opp_total_rebound_rate": 51.316779533483825,
             "turnovers_per_game": 12.666666666666666,
             "opp_turnovers_per_game": 14.533333333333333,
-            "turnover_margin": 1.8666666666666667
+            "turnover_margin": 1.8666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -85715,7 +86269,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.556004+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -86390,6 +86944,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -86456,7 +87028,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910023",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910024",
@@ -86515,7 +87087,9 @@
             "opp_total_rebound_rate": 48.730548730548726,
             "turnovers_per_game": 16.214285714285715,
             "opp_turnovers_per_game": 14.428571428571429,
-            "turnover_margin": -1.7857142857142858
+            "turnover_margin": -1.7857142857142858,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -87739,7 +88313,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.684485+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -87799,7 +88373,9 @@
             "opp_total_rebound_rate": 45.85365853658537,
             "turnovers_per_game": 14.571428571428571,
             "opp_turnovers_per_game": 12.857142857142858,
-            "turnover_margin": -1.7142857142857142
+            "turnover_margin": -1.7142857142857142,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -89023,7 +89599,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.652914+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -89698,6 +90274,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -89764,7 +90358,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910024",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910025",
@@ -89823,7 +90417,9 @@
             "opp_total_rebound_rate": 52.72391505078485,
             "turnovers_per_game": 17.23076923076923,
             "opp_turnovers_per_game": 16.076923076923077,
-            "turnover_margin": -1.1538461538461537
+            "turnover_margin": -1.1538461538461537,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -91026,7 +91622,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.727749+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -91086,7 +91682,9 @@
             "opp_total_rebound_rate": 50.408496732026144,
             "turnovers_per_game": 16.0,
             "opp_turnovers_per_game": 15.571428571428571,
-            "turnover_margin": -0.42857142857142855
+            "turnover_margin": -0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -92326,7 +92924,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.905010+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -93001,6 +93599,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -93067,7 +93683,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910025",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910026",
@@ -93126,7 +93742,9 @@
             "opp_total_rebound_rate": 46.396761133603235,
             "turnovers_per_game": 16.071428571428573,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -1.9285714285714286
+            "turnover_margin": -1.9285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -94453,7 +95071,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.892521+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -94513,7 +95131,9 @@
             "opp_total_rebound_rate": 47.368421052631575,
             "turnovers_per_game": 16.133333333333333,
             "opp_turnovers_per_game": 16.666666666666668,
-            "turnover_margin": 0.5333333333333333
+            "turnover_margin": 0.5333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -95684,7 +96304,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.686343+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -96359,6 +96979,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -96425,7 +97063,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910026",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910027",
@@ -96484,7 +97122,9 @@
             "opp_total_rebound_rate": 51.642475171886936,
             "turnovers_per_game": 15.733333333333333,
             "opp_turnovers_per_game": 15.666666666666666,
-            "turnover_margin": -0.06666666666666667
+            "turnover_margin": -0.06666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -97830,7 +98470,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.886546+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -97890,7 +98530,9 @@
             "opp_total_rebound_rate": 46.9208211143695,
             "turnovers_per_game": 12.466666666666667,
             "opp_turnovers_per_game": 14.266666666666667,
-            "turnover_margin": 1.8
+            "turnover_margin": 1.8,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -99061,7 +99703,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.889522+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -99736,6 +100378,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -99802,7 +100462,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910027",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910028",
@@ -99861,7 +100521,9 @@
             "opp_total_rebound_rate": 48.9051094890511,
             "turnovers_per_game": 14.357142857142858,
             "opp_turnovers_per_game": 16.571428571428573,
-            "turnover_margin": 2.2142857142857144
+            "turnover_margin": 2.2142857142857144,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -101085,7 +101747,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.557753+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -101145,7 +101807,9 @@
             "opp_total_rebound_rate": 52.13754646840149,
             "turnovers_per_game": 17.53846153846154,
             "opp_turnovers_per_game": 14.615384615384615,
-            "turnover_margin": -2.923076923076923
+            "turnover_margin": -2.923076923076923,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -102297,7 +102961,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.899778+00:00",
         "availability": {
           "game_date": "2026-11-21",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -102972,6 +103636,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -103038,7 +103720,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910028",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910029",
@@ -103097,7 +103779,9 @@
             "opp_total_rebound_rate": 50.72711719418306,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 17.46153846153846,
-            "turnover_margin": 3.4615384615384617
+            "turnover_margin": 3.4615384615384617,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -104390,7 +105074,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.564236+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -104450,7 +105134,9 @@
             "opp_total_rebound_rate": 50.706436420722135,
             "turnovers_per_game": 15.357142857142858,
             "opp_turnovers_per_game": 18.928571428571427,
-            "turnover_margin": 3.5714285714285716
+            "turnover_margin": 3.5714285714285716,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -105584,7 +106270,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.670999+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -106259,6 +106945,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -106325,7 +107029,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910029",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910030",
@@ -106384,7 +107088,9 @@
             "opp_total_rebound_rate": 48.484848484848484,
             "turnovers_per_game": 13.357142857142858,
             "opp_turnovers_per_game": 14.857142857142858,
-            "turnover_margin": 1.5
+            "turnover_margin": 1.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -107711,7 +108417,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.697837+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -107771,7 +108477,9 @@
             "opp_total_rebound_rate": 51.70178282009724,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 16.5,
-            "turnover_margin": 2.5
+            "turnover_margin": 2.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -108995,7 +109703,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.617870+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -109670,6 +110378,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -109736,7 +110462,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910030",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910031",
@@ -109795,7 +110521,9 @@
             "opp_total_rebound_rate": 49.0,
             "turnovers_per_game": 16.53846153846154,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -1.6153846153846154
+            "turnover_margin": -1.6153846153846154,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -110913,7 +111641,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.641734+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -110973,7 +111701,9 @@
             "opp_total_rebound_rate": 53.560830860534125,
             "turnovers_per_game": 14.666666666666666,
             "opp_turnovers_per_game": 14.066666666666666,
-            "turnover_margin": -0.6
+            "turnover_margin": -0.6,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -112213,7 +112943,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.630121+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -112888,6 +113618,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -112954,7 +113702,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910031",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910032",
@@ -113013,7 +113761,9 @@
             "opp_total_rebound_rate": 51.45631067961165,
             "turnovers_per_game": 13.75,
             "opp_turnovers_per_game": 14.583333333333334,
-            "turnover_margin": 0.8333333333333334
+            "turnover_margin": 0.8333333333333334,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -114237,7 +114987,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.674468+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -114297,7 +115047,9 @@
             "opp_total_rebound_rate": 52.268907563025216,
             "turnovers_per_game": 17.307692307692307,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -2.3846153846153846
+            "turnover_margin": -2.3846153846153846,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -115590,7 +116342,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.568592+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -116265,6 +117017,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -116331,7 +117101,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910032",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910033",
@@ -116390,7 +117160,9 @@
             "opp_total_rebound_rate": 50.408496732026144,
             "turnovers_per_game": 16.0,
             "opp_turnovers_per_game": 15.571428571428571,
-            "turnover_margin": -0.42857142857142855
+            "turnover_margin": -0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -117630,7 +118402,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.905010+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -117690,7 +118462,9 @@
             "opp_total_rebound_rate": 50.410141685309476,
             "turnovers_per_game": 16.533333333333335,
             "opp_turnovers_per_game": 13.6,
-            "turnover_margin": -2.933333333333333
+            "turnover_margin": -2.933333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -118824,7 +119598,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.711641+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -119499,6 +120273,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -119565,7 +120357,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910033",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910034",
@@ -119624,7 +120416,9 @@
             "opp_total_rebound_rate": 52.86984640258691,
             "turnovers_per_game": 14.5,
             "opp_turnovers_per_game": 14.928571428571429,
-            "turnover_margin": 0.42857142857142855
+            "turnover_margin": 0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -120848,7 +121642,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.663796+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -120908,7 +121702,9 @@
             "opp_total_rebound_rate": 45.85365853658537,
             "turnovers_per_game": 14.571428571428571,
             "opp_turnovers_per_game": 12.857142857142858,
-            "turnover_margin": -1.7142857142857142
+            "turnover_margin": -1.7142857142857142,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -122132,7 +122928,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.652914+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -122807,6 +123603,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -122873,7 +123687,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910034",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910035",
@@ -122932,7 +123746,9 @@
             "opp_total_rebound_rate": 48.9051094890511,
             "turnovers_per_game": 14.357142857142858,
             "opp_turnovers_per_game": 16.571428571428573,
-            "turnover_margin": 2.2142857142857144
+            "turnover_margin": 2.2142857142857144,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -124156,7 +124972,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.557753+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -124216,7 +125032,9 @@
             "opp_total_rebound_rate": 49.4770716009654,
             "turnovers_per_game": 15.928571428571429,
             "opp_turnovers_per_game": 15.928571428571429,
-            "turnover_margin": 0.0
+            "turnover_margin": 0.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -125403,7 +126221,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.710089+00:00",
         "availability": {
           "game_date": "2026-11-22",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -126078,6 +126896,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -126144,7 +126980,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910035",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910036",
@@ -126203,7 +127039,9 @@
             "opp_total_rebound_rate": 46.396761133603235,
             "turnovers_per_game": 16.071428571428573,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -1.9285714285714286
+            "turnover_margin": -1.9285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -127530,7 +128368,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.892521+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -127590,7 +128428,9 @@
             "opp_total_rebound_rate": 46.09695973705834,
             "turnovers_per_game": 19.428571428571427,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -5.285714285714286
+            "turnover_margin": -5.285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -128830,7 +129670,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.658104+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -129505,6 +130345,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -129571,7 +130429,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910036",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910037",
@@ -129630,7 +130488,9 @@
             "opp_total_rebound_rate": 48.730548730548726,
             "turnovers_per_game": 16.214285714285715,
             "opp_turnovers_per_game": 14.428571428571429,
-            "turnover_margin": -1.7857142857142858
+            "turnover_margin": -1.7857142857142858,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -130854,7 +131714,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.684485+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -130914,7 +131774,9 @@
             "opp_total_rebound_rate": 51.316779533483825,
             "turnovers_per_game": 12.666666666666666,
             "opp_turnovers_per_game": 14.533333333333333,
-            "turnover_margin": 1.8666666666666667
+            "turnover_margin": 1.8666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -132085,7 +132947,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.556004+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -132760,6 +133622,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -132826,7 +133706,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910037",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910038",
@@ -132885,7 +133765,9 @@
             "opp_total_rebound_rate": 48.484848484848484,
             "turnovers_per_game": 13.357142857142858,
             "opp_turnovers_per_game": 14.857142857142858,
-            "turnover_margin": 1.5
+            "turnover_margin": 1.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -134212,7 +135094,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.697837+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -134272,7 +135154,9 @@
             "opp_total_rebound_rate": 52.86984640258691,
             "turnovers_per_game": 14.5,
             "opp_turnovers_per_game": 14.928571428571429,
-            "turnover_margin": 0.42857142857142855
+            "turnover_margin": 0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -135496,7 +136380,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.663796+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -136171,6 +137055,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -136237,7 +137139,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910038",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910039",
@@ -136296,7 +137198,9 @@
             "opp_total_rebound_rate": 51.96969696969697,
             "turnovers_per_game": 16.857142857142858,
             "opp_turnovers_per_game": 13.357142857142858,
-            "turnover_margin": -3.5
+            "turnover_margin": -3.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -137483,7 +138387,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.612308+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -137543,7 +138447,9 @@
             "opp_total_rebound_rate": 51.07851596203624,
             "turnovers_per_game": 13.857142857142858,
             "opp_turnovers_per_game": 18.5,
-            "turnover_margin": 4.642857142857143
+            "turnover_margin": 4.642857142857143,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -138714,7 +139620,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.573815+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -139389,6 +140295,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -139455,7 +140379,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910039",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910040",
@@ -139514,7 +140438,9 @@
             "opp_total_rebound_rate": 49.586776859504134,
             "turnovers_per_game": 17.153846153846153,
             "opp_turnovers_per_game": 15.923076923076923,
-            "turnover_margin": -1.2307692307692308
+            "turnover_margin": -1.2307692307692308,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -140754,7 +141680,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.552049+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -140814,7 +141740,9 @@
             "opp_total_rebound_rate": 47.368421052631575,
             "turnovers_per_game": 16.133333333333333,
             "opp_turnovers_per_game": 16.666666666666668,
-            "turnover_margin": 0.5333333333333333
+            "turnover_margin": 0.5333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -141985,7 +142913,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.686343+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -142660,6 +143588,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -142726,7 +143672,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910040",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910041",
@@ -142785,7 +143731,9 @@
             "opp_total_rebound_rate": 49.3009565857248,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 13.0,
-            "turnover_margin": -1.0
+            "turnover_margin": -1.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -143937,7 +144885,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.586422+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -143997,7 +144945,9 @@
             "opp_total_rebound_rate": 52.268907563025216,
             "turnovers_per_game": 17.307692307692307,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -2.3846153846153846
+            "turnover_margin": -2.3846153846153846,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -145290,7 +146240,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.568592+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -145965,6 +146915,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -146031,7 +146999,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910041",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910042",
@@ -146090,7 +147058,9 @@
             "opp_total_rebound_rate": 53.147482014388494,
             "turnovers_per_game": 14.384615384615385,
             "opp_turnovers_per_game": 17.23076923076923,
-            "turnover_margin": 2.8461538461538463
+            "turnover_margin": 2.8461538461538463,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -147261,7 +148231,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.908986+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -147321,7 +148291,9 @@
             "opp_total_rebound_rate": 51.642475171886936,
             "turnovers_per_game": 15.733333333333333,
             "opp_turnovers_per_game": 15.666666666666666,
-            "turnover_margin": -0.06666666666666667
+            "turnover_margin": -0.06666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -148667,7 +149639,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.886546+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -149342,6 +150314,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -149408,7 +150398,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910042",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910043",
@@ -149467,7 +150457,9 @@
             "opp_total_rebound_rate": 52.72391505078485,
             "turnovers_per_game": 17.23076923076923,
             "opp_turnovers_per_game": 16.076923076923077,
-            "turnover_margin": -1.1538461538461537
+            "turnover_margin": -1.1538461538461537,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -150670,7 +151662,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.727749+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -150730,7 +151722,9 @@
             "opp_total_rebound_rate": 46.85314685314685,
             "turnovers_per_game": 14.4,
             "opp_turnovers_per_game": 14.6,
-            "turnover_margin": 0.2
+            "turnover_margin": 0.2,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -151901,7 +152895,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.907776+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -152576,6 +153570,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -152642,7 +153654,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910043",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910044",
@@ -152701,7 +153713,9 @@
             "opp_total_rebound_rate": 50.410141685309476,
             "turnovers_per_game": 16.533333333333335,
             "opp_turnovers_per_game": 13.6,
-            "turnover_margin": -2.933333333333333
+            "turnover_margin": -2.933333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -153835,7 +154849,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.711641+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -153895,7 +154909,9 @@
             "opp_total_rebound_rate": 50.16051364365971,
             "turnovers_per_game": 16.6,
             "opp_turnovers_per_game": 18.533333333333335,
-            "turnover_margin": 1.9333333333333333
+            "turnover_margin": 1.9333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -155238,7 +156254,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.888057+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -155913,6 +156929,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -155979,7 +157013,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910044",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401910045",
@@ -156038,7 +157072,9 @@
             "opp_total_rebound_rate": 46.9208211143695,
             "turnovers_per_game": 12.466666666666667,
             "opp_turnovers_per_game": 14.266666666666667,
-            "turnover_margin": 1.8
+            "turnover_margin": 1.8,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -157209,7 +158245,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.889522+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -157269,7 +158305,9 @@
             "opp_total_rebound_rate": 52.13754646840149,
             "turnovers_per_game": 17.53846153846154,
             "opp_turnovers_per_game": 14.615384615384615,
-            "turnover_margin": -2.923076923076923
+            "turnover_margin": -2.923076923076923,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -158421,7 +159459,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.899778+00:00",
         "availability": {
           "game_date": "2026-11-23",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -159096,6 +160134,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -159162,7 +160218,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401910045",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909314",
@@ -159221,7 +160277,9 @@
             "opp_total_rebound_rate": 50.72711719418306,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 17.46153846153846,
-            "turnover_margin": 3.4615384615384617
+            "turnover_margin": 3.4615384615384617,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -160514,7 +161572,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.564236+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -160574,7 +161632,9 @@
             "opp_total_rebound_rate": 49.0,
             "turnovers_per_game": 16.53846153846154,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -1.6153846153846154
+            "turnover_margin": -1.6153846153846154,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -161692,7 +162752,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.641734+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -162367,6 +163427,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -162433,7 +163511,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909314",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909315",
@@ -162492,7 +163570,9 @@
             "opp_total_rebound_rate": 48.9051094890511,
             "turnovers_per_game": 14.357142857142858,
             "opp_turnovers_per_game": 16.571428571428573,
-            "turnover_margin": 2.2142857142857144
+            "turnover_margin": 2.2142857142857144,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -163716,7 +164796,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.557753+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -163776,7 +164856,9 @@
             "opp_total_rebound_rate": 53.560830860534125,
             "turnovers_per_game": 14.666666666666666,
             "opp_turnovers_per_game": 14.066666666666666,
-            "turnover_margin": -0.6
+            "turnover_margin": -0.6,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -165016,7 +166098,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.630121+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -165691,6 +166773,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -165757,7 +166857,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909315",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909316",
@@ -165816,7 +166916,9 @@
             "opp_total_rebound_rate": 50.408496732026144,
             "turnovers_per_game": 16.0,
             "opp_turnovers_per_game": 15.571428571428571,
-            "turnover_margin": -0.42857142857142855
+            "turnover_margin": -0.42857142857142855,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -167056,7 +168158,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.905010+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -167116,7 +168218,9 @@
             "opp_total_rebound_rate": 51.45631067961165,
             "turnovers_per_game": 13.75,
             "opp_turnovers_per_game": 14.583333333333334,
-            "turnover_margin": 0.8333333333333334
+            "turnover_margin": 0.8333333333333334,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -168340,7 +169444,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.674468+00:00",
         "availability": {
           "game_date": "2026-11-24",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -169015,6 +170119,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -169081,7 +170203,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909316",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909317",
@@ -169140,7 +170262,9 @@
             "opp_total_rebound_rate": 51.70178282009724,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 16.5,
-            "turnover_margin": 2.5
+            "turnover_margin": 2.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -170364,7 +171488,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.617870+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -170424,7 +171548,9 @@
             "opp_total_rebound_rate": 51.316779533483825,
             "turnovers_per_game": 12.666666666666666,
             "opp_turnovers_per_game": 14.533333333333333,
-            "turnover_margin": 1.8666666666666667
+            "turnover_margin": 1.8666666666666667,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -171595,7 +172721,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.556004+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -172270,6 +173396,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -172336,7 +173480,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909317",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909318",
@@ -172395,7 +173539,9 @@
             "opp_total_rebound_rate": 52.268907563025216,
             "turnovers_per_game": 17.307692307692307,
             "opp_turnovers_per_game": 14.923076923076923,
-            "turnover_margin": -2.3846153846153846
+            "turnover_margin": -2.3846153846153846,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -173688,7 +174834,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.568592+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -173748,7 +174894,9 @@
             "opp_total_rebound_rate": 46.09695973705834,
             "turnovers_per_game": 19.428571428571427,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -5.285714285714286
+            "turnover_margin": -5.285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -174988,7 +176136,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.658104+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -175663,6 +176811,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -175729,7 +176895,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909318",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909319",
@@ -175788,7 +176954,9 @@
             "opp_total_rebound_rate": 49.3009565857248,
             "turnovers_per_game": 14.0,
             "opp_turnovers_per_game": 13.0,
-            "turnover_margin": -1.0
+            "turnover_margin": -1.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -176940,7 +178108,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.586422+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -177000,7 +178168,9 @@
             "opp_total_rebound_rate": 45.85365853658537,
             "turnovers_per_game": 14.571428571428571,
             "opp_turnovers_per_game": 12.857142857142858,
-            "turnover_margin": -1.7142857142857142
+            "turnover_margin": -1.7142857142857142,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -178224,7 +179394,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.652914+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -178899,6 +180069,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -178965,7 +180153,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909319",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909320",
@@ -179024,7 +180212,9 @@
             "opp_total_rebound_rate": 47.368421052631575,
             "turnovers_per_game": 16.133333333333333,
             "opp_turnovers_per_game": 16.666666666666668,
-            "turnover_margin": 0.5333333333333333
+            "turnover_margin": 0.5333333333333333,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -180195,7 +181385,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.686343+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -180255,7 +181445,9 @@
             "opp_total_rebound_rate": 48.484848484848484,
             "turnovers_per_game": 13.357142857142858,
             "opp_turnovers_per_game": 14.857142857142858,
-            "turnover_margin": 1.5
+            "turnover_margin": 1.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -181582,7 +182774,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.697837+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -182257,6 +183449,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -182323,7 +183533,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909320",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909321",
@@ -182382,7 +183592,9 @@
             "opp_total_rebound_rate": 52.72391505078485,
             "turnovers_per_game": 17.23076923076923,
             "opp_turnovers_per_game": 16.076923076923077,
-            "turnover_margin": -1.1538461538461537
+            "turnover_margin": -1.1538461538461537,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -183585,7 +184797,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.727749+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -183645,7 +184857,9 @@
             "opp_total_rebound_rate": 46.396761133603235,
             "turnovers_per_game": 16.071428571428573,
             "opp_turnovers_per_game": 14.142857142857142,
-            "turnover_margin": -1.9285714285714286
+            "turnover_margin": -1.9285714285714286,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -184972,7 +186186,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.892521+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -185647,6 +186861,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -185713,7 +186945,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909321",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909322",
@@ -185772,7 +187004,9 @@
             "opp_total_rebound_rate": 49.586776859504134,
             "turnovers_per_game": 17.153846153846153,
             "opp_turnovers_per_game": 15.923076923076923,
-            "turnover_margin": -1.2307692307692308
+            "turnover_margin": -1.2307692307692308,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -187012,7 +188246,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.552049+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -187072,7 +188306,9 @@
             "opp_total_rebound_rate": 51.96969696969697,
             "turnovers_per_game": 16.857142857142858,
             "opp_turnovers_per_game": 13.357142857142858,
-            "turnover_margin": -3.5
+            "turnover_margin": -3.5,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -188259,7 +189495,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.612308+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -188934,6 +190170,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -189000,7 +190254,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909322",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909323",
@@ -189059,7 +190313,9 @@
             "opp_total_rebound_rate": 53.147482014388494,
             "turnovers_per_game": 14.384615384615385,
             "opp_turnovers_per_game": 17.23076923076923,
-            "turnover_margin": 2.8461538461538463
+            "turnover_margin": 2.8461538461538463,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -190230,7 +191486,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.908986+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -190290,7 +191546,9 @@
             "opp_total_rebound_rate": 46.85314685314685,
             "turnovers_per_game": 14.4,
             "opp_turnovers_per_game": 14.6,
-            "turnover_margin": 0.2
+            "turnover_margin": 0.2,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -191461,7 +192719,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.907776+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -192136,6 +193394,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -192202,7 +193478,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909323",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909324",
@@ -192261,7 +193537,9 @@
             "opp_total_rebound_rate": 52.13754646840149,
             "turnovers_per_game": 17.53846153846154,
             "opp_turnovers_per_game": 14.615384615384615,
-            "turnover_margin": -2.923076923076923
+            "turnover_margin": -2.923076923076923,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -193413,7 +194691,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.899778+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -193473,7 +194751,9 @@
             "opp_total_rebound_rate": 49.4770716009654,
             "turnovers_per_game": 15.928571428571429,
             "opp_turnovers_per_game": 15.928571428571429,
-            "turnover_margin": 0.0
+            "turnover_margin": 0.0,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -194660,7 +195940,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.710089+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -195335,6 +196615,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -195401,7 +196699,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909324",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     },
     {
       "id": "401909325",
@@ -195460,7 +196758,9 @@
             "opp_total_rebound_rate": 46.9208211143695,
             "turnovers_per_game": 12.466666666666667,
             "opp_turnovers_per_game": 14.266666666666667,
-            "turnover_margin": 1.8
+            "turnover_margin": 1.8,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -196631,7 +197931,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.889522+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -196691,7 +197991,9 @@
             "opp_total_rebound_rate": 48.730548730548726,
             "turnovers_per_game": 16.214285714285715,
             "opp_turnovers_per_game": 14.428571428571429,
-            "turnover_margin": -1.7857142857142858
+            "turnover_margin": -1.7857142857142858,
+            "transition_points": null,
+            "opp_transition_points": null
           },
           "players": [
             {
@@ -197915,7 +199217,7 @@
         "roster_updated_at": "2026-11-18T07:32:18.684485+00:00",
         "availability": {
           "game_date": "2026-11-25",
-          "checked_at": "2026-11-18T18:29:04.567754+00:00",
+          "checked_at": "2026-11-18T19:45:26.428156+00:00",
           "source": null,
           "report_as_of": null,
           "context": "matchup",
@@ -198590,6 +199892,24 @@
           }
         },
         {
+          "key": "transition_points",
+          "label": "Transition Points/Game",
+          "unit": "OFFENSE",
+          "high": true,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
+          "key": "opp_transition_points",
+          "label": "Transition Points Allowed/Game",
+          "unit": "DEFENSE",
+          "high": false,
+          "suffix": "",
+          "away": null,
+          "home": null
+        },
+        {
           "key": "pace",
           "label": "Pace",
           "unit": "TEAM",
@@ -198656,7 +199976,7 @@
         "observed_at": null
       },
       "source": "https://www.espn.com/nba/game/_/gameId/401909325",
-      "profile_cutoff": "2026-11-18T18:29:04.567754+00:00"
+      "profile_cutoff": "2026-11-18T19:45:26.428156+00:00"
     }
   ],
   "coverage": {
@@ -198667,7 +199987,7 @@
   },
   "methodology": "Ratings use estimated possessions: average of both teams\u2019 FGA \u2212 OREB + TO + 0.44 \u00d7 FTA. Rankings include only teams with completed games in this season type. Completed results must have been observed before the selected tipoff; historical first-seen timestamps are not backdated.",
   "freshness": {
-    "checked_at": "2026-11-18T18:29:04.567754+00:00",
+    "checked_at": "2026-11-18T19:45:26.428156+00:00",
     "checked_through": "2026-11-17",
     "expected_previous_day_games": [
       "401910002",
