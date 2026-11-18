@@ -12,10 +12,11 @@ concurrency:
   group: commission-basketball-fastbreak
   cancel-in-progress: false
 jobs:
-  nba:
-    uses: ./.github/workflows/refresh-nba-dashboard.yml
+  cbb-results:
+    uses: ./.github/workflows/cbb-team-archives.yml
     secrets: inherit
   cbb-boxes:
+    needs: cbb-results
     uses: ./.github/workflows/refresh-cbb-boxes.yml
     secrets: inherit
   cbb-metrics:
@@ -39,6 +40,6 @@ jobs:
     uses: ./.github/workflows/refresh-cbb-dashboard.yml
     secrets: inherit
   publish:
-    needs: [nba, cbb-dashboard]
+    needs: [cbb-dashboard]
     uses: ./.github/workflows/publish-wisestats-public.yml
     secrets: inherit
