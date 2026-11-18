@@ -60,6 +60,17 @@ def load(component, hours=None, required=True):
     age = (datetime.now(timezone.utc) - datetime.fromisoformat(doc['collected_at'])).total_seconds() / 3600
     if age < -0.1 or (hours is not None and age > hours):
         raise ValueError('Stale CBB input: ' + component)
+    if component == 'boxes':
+        # Reuse already verified current-season raw boxes for optional fields.
+        for game in doc.get('payload', {}).get('games', []):
+            raw_path = chunk('boxes', game['id'])
+            if not raw_path.exists():
+                continue
+            for row in read(raw_path).get('boxscore', {}).get('teams', []):
+                tid = str(row['team']['id'])
+                if tid in game['teams']:
+                    values = {s['name']: s.get('displayValue') for s in row.get('statistics', [])}
+                    game['teams'][tid]['fastbreak_points'] = dashboard.num(values.get('fastBreakPoints'))
     return doc
 
 
