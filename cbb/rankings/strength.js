@@ -7,8 +7,11 @@
   let key=table.dataset.sort||'rank',direction=1;
   const apply=()=>{
    rows.sort((a,b)=>{let x=a.dataset[key],y=b.dataset[key];if(x===''&&y==='')return Number(a.dataset.rank)-Number(b.dataset.rank);if(x==='')return 1;if(y==='')return -1;let n=key==='name'||key==='conference'?x.localeCompare(y):Number(x)-Number(y);return direction*n||Number(a.dataset.rank)-Number(b.dataset.rank)});
+   for(const row of rows)row.hidden=!(row.dataset.name.toLowerCase().includes(search.value.trim().toLowerCase())&&(!conference.value||row.dataset.conference===conference.value));
+   const visibleCount=rows.filter(row=>!row.hidden).length;
+   const bestDirection=['rating','sd','offense','form','change','pace','games'].includes(key)?-1:1;
    let position=0;
-   for(const row of rows){row.hidden=!(row.dataset.name.toLowerCase().includes(search.value.trim().toLowerCase())&&(!conference.value||row.dataset.conference===conference.value));if(!row.hidden)row.cells[0].textContent=String(++position);body.append(row)}
+   for(const row of rows){if(!row.hidden){row.cells[0].textContent=String(direction===bestDirection?position+1:visibleCount-position);position++}body.append(row)}
    pinned.update();
    count.textContent=rows.filter(r=>!r.hidden).length+' teams';
    for(const btn of table.querySelectorAll('[data-sort]')){const active=btn.dataset.sort===key;btn.parentElement.setAttribute('aria-sort',active?(direction===1?'ascending':'descending'):'none');btn.querySelector('.sort-arrow').textContent=''}
