@@ -115,3 +115,13 @@
  .mlb-rank-table th:not(:nth-child(-n+3)) .mlb-sort-button{white-space:normal;line-height:1.2}
  .mlb-rank-logo img{width:28px;height:28px}
 }
+
+/* Final NBA-matched mobile widths for Rank / Logo / Team. */
+@media(max-width:760px){
+ .mlb-rank-table th:first-child,.mlb-rank-table td:first-child{width:38px!important;min-width:38px!important;max-width:38px!important;padding-left:5px!important;padding-right:5px!important}
+ .mlb-rank-table th:nth-child(2),.mlb-rank-table td:nth-child(2){left:38px!important;width:38px!important;min-width:38px!important;max-width:38px!important;padding:6px!important}
+ .mlb-rank-table th:nth-child(3),.mlb-rank-table td:nth-child(3){width:132px!important;min-width:132px!important;max-width:132px!important}
+ .mlb-rank-table th:first-child .mlb-th-content{display:flex;align-items:center;gap:2px;max-width:100%;flex-wrap:wrap;white-space:normal}
+ .mlb-rank-table th:first-child .mlb-sort-arrow{display:none!important}
+ .mlb-rank-logo img{width:25px!important;height:25px!important}
+}
