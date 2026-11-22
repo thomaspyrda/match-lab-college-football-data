@@ -76,3 +76,6 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
  .strength-table-scroll .nba-rank-table th:not(:nth-child(-n+3)) button[data-sort]{white-space:normal;line-height:1.2}
  .strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:62px!important}
 }
+
+/* The scrubber header spans the entire table; exclude it from identity-column widths. */
+.strength-table-scroll .nba-rank-table thead .strength-scrollbar-row th{position:sticky!important;left:0!important;width:auto!important;min-width:0!important;max-width:none!important;padding:0!important;}
