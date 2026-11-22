@@ -245,14 +245,14 @@ else startRankingHeaders();
 /* Match the NBA ranking table's compact mobile layout and pinned identity columns. */
 .data-table-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:visible;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
 .data-table-wrap::-webkit-scrollbar{display:none;width:0;height:0}
-.data-table{width:max-content;min-width:100%;table-layout:auto;border-collapse:separate;border-spacing:0;font-size:13px}
+.data-table-wrap .data-table{width:max-content;min-width:100%;table-layout:auto;border-collapse:separate;border-spacing:0;font-size:13px}
 .data-table th,.data-table td{box-sizing:border-box;padding:11px 10px;white-space:nowrap;vertical-align:middle}
-.data-table th:first-child,.data-table td:first-child{position:sticky;left:0;z-index:5;width:50px;min-width:50px;max-width:50px;background:#111;box-shadow:2px 0 4px #0004}
-.data-table th:nth-child(2),.data-table td:nth-child(2){position:sticky;left:50px;z-index:4;width:44px;min-width:44px;max-width:44px;background:#111;padding-left:7px;padding-right:7px}
+.data-table-wrap .data-table th:first-child,.data-table-wrap .data-table td:first-child{position:sticky;left:0;z-index:5;width:50px;min-width:50px;max-width:50px;background:#111;box-shadow:2px 0 4px #0004}
+.data-table-wrap .data-table th:nth-child(2),.data-table-wrap .data-table td:nth-child(2){position:sticky;left:50px;z-index:4;width:44px;min-width:44px;max-width:44px;background:#111;padding-left:7px;padding-right:7px}
 .data-table th:first-child,.data-table th:nth-child(2){z-index:8}
-.data-table th:nth-child(3),.data-table td:nth-child(3){min-width:145px}
-.data-table th:nth-child(n+4),.data-table td:nth-child(n+4){min-width:82px}
-.data-table tbody tr:hover td:first-child,.data-table tbody tr:hover td:nth-child(2){background:#171a18}
+.data-table-wrap .data-table th:nth-child(3),.data-table-wrap .data-table td:nth-child(3){min-width:145px}
+.data-table-wrap .data-table th:nth-child(n+4),.data-table-wrap .data-table td:nth-child(n+4){min-width:82px}
+.data-table-wrap .data-table tbody tr:hover td:first-child,.data-table-wrap .data-table tbody tr:hover td:nth-child(2){background:#171a18}
 .team-logo-cell{text-align:center}
 .team-logo-cell img{display:block;width:26px;height:26px;object-fit:contain;margin:auto}
 .cfb-rank-scrollbar{display:none;height:15px;margin:0 0 0;border:1px solid #292c2a;border-bottom:0;border-radius:8px 8px 0 0;background:#242725;touch-action:none;cursor:grab;position:relative;z-index:12}
@@ -263,10 +263,10 @@ else startRankingHeaders();
  .data-table{font-size:12px}
  .data-table th,.data-table td{padding:10px 8px}
  .data-table th{font-size:10px;letter-spacing:0}
- .data-table th:first-child,.data-table td:first-child{width:38px;min-width:38px;max-width:38px;padding-left:5px;padding-right:5px}
- .data-table th:nth-child(2),.data-table td:nth-child(2){left:38px;width:38px;min-width:38px;max-width:38px;padding-left:6px;padding-right:6px;box-shadow:3px 0 4px #0003}
- .data-table th:nth-child(3),.data-table td:nth-child(3){min-width:132px;max-width:150px;white-space:normal}
- .data-table th:nth-child(n+4),.data-table td:nth-child(n+4){min-width:82px}
+ .data-table-wrap .data-table th:first-child,.data-table-wrap .data-table td:first-child{width:38px;min-width:38px;max-width:38px;padding-left:5px;padding-right:5px}
+ .data-table-wrap .data-table th:nth-child(2),.data-table-wrap .data-table td:nth-child(2){left:38px;width:38px;min-width:38px;max-width:38px;padding-left:6px;padding-right:6px;box-shadow:3px 0 4px #0003}
+ .data-table-wrap .data-table th:nth-child(3),.data-table-wrap .data-table td:nth-child(3){min-width:132px;max-width:150px;white-space:normal}
+ .data-table-wrap .data-table th:nth-child(n+4),.data-table-wrap .data-table td:nth-child(n+4){min-width:82px}
  .data-table .help-wrap{gap:4px;max-width:none}
  .help-btn{width:14px;height:14px;min-width:14px;font-size:9px;line-height:12px}
  .cfb-rank-scrollbar{display:block}
