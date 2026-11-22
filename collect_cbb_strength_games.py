@@ -5,6 +5,7 @@ Rechecks the last seven Eastern game dates; retries every unresolved final box.
 import argparse,json,time,urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,date,timedelta,timezone
+from itertools import chain
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from build_cbb_strength import possessions,save
@@ -50,7 +51,7 @@ def extract(event,known,season):
     if set(boxes)!=set(ids):raise ValueError('Missing team box')
     possessions(list(boxes.values()));result['teams']=boxes;result['opponent_classification']='d1';return result
 
-def main():
+def main(extra_events=()):
     p=argparse.ArgumentParser();p.add_argument('--season',type=int,default=2027);args=p.parse_args();season=args.season
     today=datetime.now(ZoneInfo('America/New_York')).date();start=date(season-1,11,1);end=min(today,date(season,6,30))
     # Never mutate a completed historical season through the daily updater.
@@ -64,13 +65,12 @@ def main():
     scan=max(start,last-timedelta(days=6));dates=[]
     while scan<=end:dates.append(scan);scan+=timedelta(days=1)
     boards=list(ThreadPoolExecutor(6).map(lambda d:get('scoreboard?groups=50&limit=1000&dates='+d.strftime('%Y%m%d')),dates))
-    for board in boards:
-        for e in board.get('events',[]):
-            if e.get('season',{}).get('year')!=season or e['season'].get('type') not in (2,3):continue
-            c=e['competitions'][0]
-            if c.get('type',{}).get('abbreviation') not in (None,'STD'):continue
-            if not any(str(v['team']['id']) in known for v in c['competitors']):continue
-            if e.get('status',{}).get('type',{}).get('completed'):pending[e['id']]=e
+    for e in chain(extra_events, (e for board in boards for e in board.get('events', []))):
+        if e.get('season',{}).get('year')!=season or e['season'].get('type') not in (2,3):continue
+        c=e['competitions'][0]
+        if c.get('type',{}).get('abbreviation') not in (None,'STD','TRNMNT'):continue
+        if not any(str(v['team']['id']) in known for v in c['competitors']):continue
+        if e.get('status',{}).get('type',{}).get('completed'):pending[str(e['id'])]=e
     failures=[]
     def recover(e):
         try:return extract(e,known,season),None

@@ -513,19 +513,44 @@ def publish_markets():
     write(path, data)
 
 
+def saved_strength_events(boxes, ledger, boards_dir, known):
+    """Recover omitted D1 games from saved scoreboards and verified boxes."""
+    recorded = {str(game['id']) for game in ledger.get('games', [])}
+    recorded.update(str(row['event']['id']) for row in ledger.get('pending_games', []))
+    missing_by_day = {}
+    for game in boxes:
+        game_id = str(game['id'])
+        if game_id in recorded or len(game['teams']) != 2 or not set(game['teams']) <= known:
+            continue
+        day = datetime.fromisoformat(game['date'].replace('Z', '+00:00'))
+        key = day.astimezone(ZoneInfo('America/New_York')).strftime('%Y%m%d')
+        missing_by_day.setdefault(key, set()).add(game_id)
+    for day, missing in sorted(missing_by_day.items()):
+        board = boards_dir / (day + '.json')
+        if board.exists():
+            yield from (event for event in read(board).get('events', []) if str(event['id']) in missing)
+
+
 def strength_inputs():
     load('results', hours=8)
+    year = season()
+    boards_dir = store() / 'boards' / str(year)
+    ledger_path = ROOT / f'data/cbb/strength-games/{year}.json'
+    ledger = read(ledger_path) if ledger_path.exists() else {}
+    boxes = load('boxes')['payload']['games']
+    known = {str(team['espn_id']) for team in registry()}
+    extra_events = saved_strength_events(boxes, ledger, boards_dir, known)
     import collect_cbb_strength_games as collector
     original = collector.get
     def get(endpoint):
         if endpoint.startswith('scoreboard?'):
             day = endpoint.split('dates=')[-1].split('&')[0]
-            return read(store() / 'boards' / str(season()) / (day + '.json'))
+            return read(boards_dir / (day + '.json'))
         if endpoint.startswith('summary?event='):
             return read(chunk('boxes', endpoint.split('=')[-1]))
         return original(endpoint)  # Existing verified non-D1 classification lookup.
-    with patch.object(collector, 'get', get), patch.object(sys, 'argv', ['collect_cbb_strength_games.py', '--season', str(season())]):
-        collector.main()
+    with patch.object(collector, 'get', get), patch.object(sys, 'argv', ['collect_cbb_strength_games.py', '--season', str(year)]):
+        collector.main(extra_events=extra_events)
 
 
 def publish_strength():
