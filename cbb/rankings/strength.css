@@ -79,3 +79,14 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 
 /* The scrubber header spans the entire table; exclude it from identity-column widths. */
 .strength-table-scroll .nba-rank-table thead .strength-scrollbar-row th{position:sticky!important;left:0!important;width:auto!important;min-width:0!important;max-width:none!important;padding:0!important;}
+
+/* Final mobile dimensions and wrapped rank help match the NBA reference table exactly. */
+@media(max-width:760px){
+ .strength-table-scroll .nba-rank-table th:nth-child(1),.strength-table-scroll .nba-rank-table td:nth-child(1){width:38px!important;min-width:38px!important;max-width:38px!important;padding-left:5px!important;padding-right:5px!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(2),.strength-table-scroll .nba-rank-table td:nth-child(2){left:38px!important;width:38px!important;min-width:38px!important;max-width:38px!important;padding:6px!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(3),.strength-table-scroll .nba-rank-table td:nth-child(3){width:132px!important;min-width:132px!important;max-width:132px!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(1) .strength-help-wrap{display:inline-flex;flex-wrap:wrap;gap:2px;max-width:100%}
+ .strength-table-scroll .nba-rank-table th:nth-child(1) .sort-arrow{display:none!important}
+ .strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:38px!important}
+ .strength-table-scroll .nba-rank-table .strength-scrollbar-row th{width:auto!important;min-width:0!important;max-width:none!important;padding:0!important}
+}
