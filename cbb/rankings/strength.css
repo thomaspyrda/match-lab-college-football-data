@@ -53,3 +53,26 @@ html:has(body.cbb-rankings-page),body.cbb-rankings-page{overflow-x:clip;overflow
 /* Keep the horizontal control immediately below the real column headings. */
 .strength-table-scroll .nba-rank-table .strength-scrollbar-row th{padding:0!important;min-width:0!important;width:auto!important;max-width:none!important;height:18px;left:0;z-index:11;background:#222a25}
 .strength-scrollbar-row .strength-top-scrollbar{position:sticky;left:0;border-radius:0;margin:0;box-sizing:border-box}
+
+/* NBA table parity: compact rank/logo/team columns and consistent mobile type. */
+.strength-table-scroll .nba-rank-table{width:max-content!important;min-width:100%!important;max-width:none!important;table-layout:auto!important;font-size:13px}
+.strength-table-scroll .nba-rank-table th,.strength-table-scroll .nba-rank-table td{box-sizing:border-box;vertical-align:middle}
+.strength-table-scroll .nba-rank-table th:nth-child(1),.strength-table-scroll .nba-rank-table td:nth-child(1){width:62px!important;min-width:62px!important;max-width:62px!important}
+.strength-table-scroll .nba-rank-table th:nth-child(2),.strength-table-scroll .nba-rank-table td:nth-child(2){width:44px!important;min-width:44px!important;max-width:44px!important}
+.strength-table-scroll .nba-rank-table th:nth-child(3),.strength-table-scroll .nba-rank-table td:nth-child(3){position:static!important;left:auto!important;width:190px!important;min-width:190px!important;max-width:190px!important;white-space:normal!important}
+.strength-table-scroll .nba-rank-table td:nth-child(3) a{display:block;font-weight:700;line-height:1.3;white-space:normal;overflow-wrap:anywhere}
+.strength-table-scroll .nba-rank-table th:nth-child(n+4),.strength-table-scroll .nba-rank-table td:nth-child(n+4){min-width:90px!important;max-width:130px}
+.strength-board #strength-table th:nth-child(1),.strength-board #strength-table td:nth-child(1){left:0!important}
+.strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:62px!important}
+.strength-board #strength-table thead th:nth-child(-n+2){z-index:12!important}
+@media(max-width:760px){
+ .strength-table-scroll .nba-rank-table{font-size:12px!important}
+ .strength-table-scroll .nba-rank-table th,.strength-table-scroll .nba-rank-table td{padding:10px 8px!important;font-size:12px!important;line-height:1.3}
+ .strength-table-scroll .nba-rank-table th{font-size:10px!important;letter-spacing:0!important;line-height:1.2;white-space:normal!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(1),.strength-table-scroll .nba-rank-table td:nth-child(1){width:62px!important;min-width:62px!important;max-width:62px!important;padding-left:6px!important;padding-right:5px!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(2),.strength-table-scroll .nba-rank-table td:nth-child(2){width:44px!important;min-width:44px!important;max-width:44px!important;padding:6px!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(3),.strength-table-scroll .nba-rank-table td:nth-child(3){width:150px!important;min-width:150px!important;max-width:150px!important;white-space:normal!important}
+ .strength-table-scroll .nba-rank-table th:nth-child(n+4),.strength-table-scroll .nba-rank-table td:nth-child(n+4){min-width:82px!important;max-width:110px!important}
+ .strength-table-scroll .nba-rank-table th:not(:nth-child(-n+3)) button[data-sort]{white-space:normal;line-height:1.2}
+ .strength-board #strength-table th:nth-child(2),.strength-board #strength-table td:nth-child(2){left:62px!important}
+}
