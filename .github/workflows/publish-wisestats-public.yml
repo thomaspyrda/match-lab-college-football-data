@@ -1,15 +1,11 @@
 name: Publish WiseStats on public standard runner
 'on':
-  workflow_call: null
+  workflow_call:
+    inputs:
+      morning_date:
+        type: string
+        required: false
   workflow_dispatch: null
-  repository_dispatch:
-    types:
-    - sports-publication
-  push:
-    branches:
-    - main
-    paths:
-    - .github/workflows/publish-wisestats-public.yml
 permissions:
   contents: read
 concurrency:
@@ -21,6 +17,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
+    - name: Enforce the Eastern morning window
+      shell: python
+      env:
+        MORNING_DATE: ${{ inputs.morning_date }}
+      run: |
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        import os
+
+        local = datetime.now(ZoneInfo("America/New_York"))
+        expected_date = os.environ.get("MORNING_DATE")
+        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+            raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
+        cutoff = local.replace(hour=11, minute=0, second=0, microsecond=0)
+        with open(os.environ['GITHUB_ENV'], 'a') as output:
+            output.write(f'WISESTATS_MORNING_CUTOFF={int(cutoff.timestamp())}\n')
     - name: Check required private repository credential
       env:
         ACCESS_TOKEN: ${{ secrets.WISESTATS_AUTOMATION_TOKEN }}
@@ -68,4 +80,10 @@ jobs:
       env:
         WISESTATS_SOURCE_EVENT: '{"source_repository":"public-hosted-publisher","source_conclusion":"manual-verification"}'
         RUNNER_TEMP: ${{ runner.temp }}
-      run: python3 scripts/run_public_publication.py
+      run: |
+        remaining=$((WISESTATS_MORNING_CUTOFF - $(date +%s) - 5))
+        if (( remaining <= 0 )); then
+          echo 'Eastern cutoff reached before publication.'
+          exit 1
+        fi
+        timeout --kill-after=5s "${remaining}s" python3 scripts/run_public_publication.py

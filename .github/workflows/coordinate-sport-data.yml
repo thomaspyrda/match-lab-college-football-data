@@ -1,5 +1,5 @@
 name: Ordered Active Sports Morning Update
-run-name: ${{ inputs.mode || 'morning' }} daily data pipeline
+run-name: morning daily data pipeline
 'on':
   workflow_dispatch:
     inputs:
@@ -13,16 +13,10 @@ run-name: ${{ inputs.mode || 'morning' }} daily data pipeline
         - cbb
         - cfb
         - nfl
-      mode:
-        type: choice
-        required: true
-        default: morning
-        options:
-        - morning
-        - afternoon
-  repository_dispatch:
-    types:
-    - morning-refresh
+      morning_date:
+        description: Eastern date supplied by the scheduled launcher
+        type: string
+        required: false
 permissions:
   contents: write
   actions: write
@@ -38,12 +32,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     outputs:
+      morning_date: ${{ steps.window.outputs.morning_date }}
       nba: ${{ steps.plan.outputs.nba }}
       cbb: ${{ steps.plan.outputs.cbb }}
       cfb: ${{ steps.plan.outputs.cfb }}
       nfl: ${{ steps.plan.outputs.nfl }}
       nfl_leaders: ${{ steps.plan.outputs.nfl_leaders }}
+    env:
+      MORNING_DATE: ${{ inputs.morning_date }}
     steps:
+    - name: Enforce the current Eastern morning window
+      id: window
+      shell: python
+      run: |
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        import os
+
+        local = datetime.now(ZoneInfo("America/New_York"))
+        expected_date = os.environ.get("MORNING_DATE")
+        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+            raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
+        with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+            output.write(f"morning_date={local.date()}\n")
     - uses: actions/checkout@v4
       with:
         ref: main
@@ -518,10 +529,13 @@ jobs:
         git push origin HEAD:main
   publish-verified-site:
     needs:
+    - morning-start
     - verify-live-morning
     - record-completed-inputs
     if: always() && needs.record-completed-inputs.result == 'success'
     uses: ./.github/workflows/publish-wisestats-public.yml
+    with:
+      morning_date: ${{ needs.morning-start.outputs.morning_date }}
     secrets: inherit
   nba-live-markets:
     needs:
@@ -545,10 +559,19 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
         PARENT_RUN: ${{ github.run_id }}
+        MORNING_DATE: ${{ inputs.morning_date }}
         REPOSITORY: ${{ github.repository }}
       shell: python
       run: |
-        import json,os,urllib.request
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        import os
+
+        local = datetime.now(ZoneInfo("America/New_York"))
+        expected_date = os.environ.get("MORNING_DATE")
+        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+            raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
+        import json, urllib.request
         url='https://api.github.com/repos/'+os.environ['REPOSITORY']+'/actions/workflows/prop-lab-scheduled.yml/dispatches'
         body=json.dumps({'ref':'main','inputs':{'collect_missing':True,'parent_run_id':os.environ['PARENT_RUN']}}).encode()
         headers={'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'}

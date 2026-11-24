@@ -8,17 +8,6 @@ name: Collect private Prop Lab morning research
       parent_run_id:
         type: string
         default: ''
-  workflow_call:
-    inputs:
-      collect_missing:
-        type: boolean
-        default: false
-      parent_run_id:
-        type: string
-        default: ''
-  schedule:
-  - cron: 15 10,15 * * *
-    timezone: America/New_York
 permissions:
   contents: read
   actions: read
@@ -27,11 +16,14 @@ concurrency:
   cancel-in-progress: false
 jobs:
   collect:
-    if: 'true'
+    if: inputs.parent_run_id != '' && inputs.collect_missing == true
     runs-on: ubuntu-latest
     timeout-minutes: 130
+    outputs:
+      morning_date: ${{ steps.prerequisites.outputs.morning_date }}
     steps:
     - name: Wait for prerequisite sources and verified live publication
+      id: prerequisites
       env:
         GH_TOKEN: ${{ github.token }}
         REPOSITORY: ${{ github.repository }}
@@ -42,14 +34,16 @@ jobs:
         from datetime import datetime, timezone
         from zoneinfo import ZoneInfo
         local = datetime.now(ZoneInfo('America/New_York'))
-        boundary = local.replace(hour=2, minute=0, second=0, microsecond=0).timestamp()
+        cutoff = local.replace(hour=11, minute=0, second=0, microsecond=0)
+        if not 2 <= local.hour < 11:
+            raise SystemExit('Outside the Eastern morning window; collection refused.')
         def get(url, github=False):
             headers = {'Cache-Control': 'no-cache', 'User-Agent': 'WiseStats-PropLab-dependency/1'}
             if github: headers['Authorization'] = 'Bearer ' + os.environ['GH_TOKEN']
             with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as response:
                 return json.load(response)
         deadline = time.monotonic() + 5400
-        while True:
+        while time.time() < cutoff.timestamp():
             try:
                 base = 'https://api.github.com/repos/' + os.environ['REPOSITORY'] + '/actions/workflows/'
                 # Wait for active prerequisite writers, not their aggregate conclusion.
@@ -62,10 +56,15 @@ jobs:
                     if any(r['status'] in ['queued', 'in_progress', 'waiting', 'pending', 'requested'] for r in runs):
                         raise ValueError(workflow + ' is still active')
                 parent = os.environ.get('PARENT_RUN')
-                if parent:
-                    jobs = get('https://api.github.com/repos/'+os.environ['REPOSITORY']+'/actions/runs/'+parent+'/jobs?per_page=100', True)['jobs']
-                    if not any(j['name'].endswith('publish-verified-site / publish') and j['conclusion']=='success' for j in jobs):
-                        raise SystemExit('Parent did not verify a live source publication; paid collection refused.')
+                parent_url = 'https://api.github.com/repos/'+os.environ['REPOSITORY']+'/actions/runs/'+parent
+                parent_run = get(parent_url, True)
+                parent_date = datetime.fromisoformat(parent_run['created_at'].replace('Z', '+00:00')).astimezone(local.tzinfo).date()
+                if (parent_run['head_branch'] != 'main' or parent_run['path'] != '.github/workflows/coordinate-sport-data.yml'
+                        or parent_run['display_title'] != 'morning daily data pipeline' or parent_date != local.date()):
+                    raise SystemExit('Parent must be today’s main morning coordinator.')
+                jobs = get(parent_url+'/jobs?per_page=100', True)['jobs']
+                if not any(j['name'].endswith('publish-verified-site / publish') and j['conclusion']=='success' for j in jobs):
+                    raise SystemExit('Parent did not verify a live source publication; paid collection refused.')
                 host = 'https://wisestats.bet/'
                 def live(path): return get(host + path + '?prop_dependency=' + str(time.time_ns()))
                 manifest = live('publication-manifest.json')
@@ -78,7 +77,13 @@ jobs:
                 print('Waiting for source dependency:', type(exc).__name__, str(exc), flush=True)
                 if time.monotonic() >= deadline:
                     raise SystemExit('Sources/publication not ready; collection and release writing were not started.')
-                time.sleep(60)
+                time.sleep(min(60, max(0, cutoff.timestamp() - time.time())))
+        else:
+            raise SystemExit('Eastern cutoff reached while waiting for verified sources.')
+        with open(os.environ['GITHUB_ENV'], 'a') as output:
+            output.write(f'WISESTATS_MORNING_CUTOFF={int(cutoff.timestamp())}\n')
+        with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+            output.write(f'morning_date={local.date()}\n')
     - name: Check existing secrets
       env:
         ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
@@ -113,12 +118,18 @@ jobs:
       working-directory: private
       env:
         ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-        PROP_LAB_RESEARCH_ONLY: ${{ github.event_name != 'schedule' && github.event_name != 'repository_dispatch' && github.event_name != 'workflow_run'
-          && inputs.collect_missing != true }}
-      run: python3 prop_lab_runtime/collector.py
+      run: |
+        remaining=$((WISESTATS_MORNING_CUTOFF - $(date +%s) - 5))
+        if (( remaining <= 0 )); then
+          echo 'Eastern cutoff reached before collection.'
+          exit 1
+        fi
+        timeout --kill-after=5s "${remaining}s" python3 prop_lab_runtime/collector.py
 
   publish-verified-research:
     name: Publish and verify completed Prop Lab research
     needs: collect
     uses: ./.github/workflows/publish-wisestats-public.yml
+    with:
+      morning_date: ${{ needs.collect.outputs.morning_date }}
     secrets: inherit
