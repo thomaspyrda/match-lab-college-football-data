@@ -1,6 +1,11 @@
 name: Research Archive 2026 (isolated)
 on:
   workflow_dispatch:
+    inputs:
+      upload_archive:
+        description: Keep a one-day downloadable research export
+        type: boolean
+        default: false
   push:
     branches: [research/four-unit-archive-2026]
     paths:
@@ -164,9 +169,11 @@ jobs:
           print('Validated',len(rows),'team-game rows')
           PY
       - name: Upload archive artifact
+        if: github.event_name == 'workflow_dispatch' && inputs.upload_archive == true
         uses: actions/upload-artifact@v4
         with:
           name: cfb-research-2026
+          retention-days: 1
           path: |
             data/research/2025/
             data/research/2026/
