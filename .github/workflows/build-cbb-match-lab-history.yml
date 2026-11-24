@@ -1,6 +1,11 @@
 name: Build verified CBB Match Lab historical candidates
 on:
   workflow_dispatch:
+    inputs:
+      upload_archive:
+        description: Keep a one-day downloadable research export
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -55,8 +60,9 @@ jobs:
             exit 1
           fi
       - name: Upload reviewable historical dataset
+        if: github.event_name == 'workflow_dispatch' && inputs.upload_archive == true
         uses: actions/upload-artifact@v4
         with:
           name: cbb-match-lab-verified-candidates
           path: cbb/match-lab/data/verified-historical.json
-          retention-days: 30
+          retention-days: 1
