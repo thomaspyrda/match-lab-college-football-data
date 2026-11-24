@@ -12,8 +12,7 @@ def main():
     parser.add_argument('--mode', choices=('requested', 'morning'), default='morning')
     args = parser.parse_args()
     local = datetime.now(ZoneInfo('America/New_York'))
-    cutoff_hour = 15 if args.mode == 'requested' and str(local.date()) == '2026-11-24' else 11
-    if not 2 <= local.hour < cutoff_hour:
+    if not 2 <= local.hour < 11:
         raise SystemExit('Outside the 02:00–11:00 Eastern publication window.')
     if args.mode == 'requested':
         request = json.loads((Path(__file__).resolve().parents[1]/'data/automation/primary-request.json').read_text())

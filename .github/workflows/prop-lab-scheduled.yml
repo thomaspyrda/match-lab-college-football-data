@@ -34,9 +34,8 @@ jobs:
         from datetime import datetime, timezone
         from zoneinfo import ZoneInfo
         local = datetime.now(ZoneInfo('America/New_York'))
-        cutoff_hour = 15 if str(local.date()) == '2026-11-24' else 11
-        cutoff = local.replace(hour=cutoff_hour, minute=0, second=0, microsecond=0)
-        if not 2 <= local.hour < cutoff_hour:
+        cutoff = local.replace(hour=11, minute=0, second=0, microsecond=0)
+        if not 2 <= local.hour < 11:
             raise SystemExit('Outside the Eastern morning window; collection refused.')
         def get(url, github=False):
             headers = {'Cache-Control': 'no-cache', 'User-Agent': 'WiseStats-PropLab-dependency/1'}
