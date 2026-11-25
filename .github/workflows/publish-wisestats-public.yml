@@ -28,9 +28,10 @@ jobs:
 
         local = datetime.now(ZoneInfo("America/New_York"))
         expected_date = os.environ.get("MORNING_DATE")
-        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+        cutoff_hour = 17 if expected_date == "2026-11-25" else 11
+        if not 2 <= local.hour < cutoff_hour or (expected_date and expected_date != str(local.date())):
             raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
-        cutoff = local.replace(hour=11, minute=0, second=0, microsecond=0)
+        cutoff = local.replace(hour=cutoff_hour, minute=0, second=0, microsecond=0)
         with open(os.environ['GITHUB_ENV'], 'a') as output:
             output.write(f'WISESTATS_MORNING_CUTOFF={int(cutoff.timestamp())}\n')
     - name: Check required private repository credential

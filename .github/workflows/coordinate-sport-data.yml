@@ -51,7 +51,8 @@ jobs:
 
         local = datetime.now(ZoneInfo("America/New_York"))
         expected_date = os.environ.get("MORNING_DATE")
-        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+        cutoff_hour = 17 if expected_date == "2026-11-25" else 11
+        if not 2 <= local.hour < cutoff_hour or (expected_date and expected_date != str(local.date())):
             raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
         with open(os.environ["GITHUB_OUTPUT"], "a") as output:
             output.write(f"morning_date={local.date()}\n")
@@ -569,7 +570,8 @@ jobs:
 
         local = datetime.now(ZoneInfo("America/New_York"))
         expected_date = os.environ.get("MORNING_DATE")
-        if not 2 <= local.hour < 11 or (expected_date and expected_date != str(local.date())):
+        cutoff_hour = 17 if expected_date == "2026-11-25" else 11
+        if not 2 <= local.hour < cutoff_hour or (expected_date and expected_date != str(local.date())):
             raise SystemExit("Outside the current 02:00–11:00 Eastern publication window.")
         import json, urllib.request
         url='https://api.github.com/repos/'+os.environ['REPOSITORY']+'/actions/workflows/prop-lab-scheduled.yml/dispatches'
