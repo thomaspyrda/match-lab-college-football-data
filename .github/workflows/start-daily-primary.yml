@@ -5,9 +5,6 @@ name: Start current WiseStats daily workflow
     - main
     paths:
     - data/automation/primary-request.json
-  schedule:
-    - cron: '30 2 * * *'
-      timezone: America/New_York
 permissions:
   contents: read
   actions: write
@@ -25,4 +22,4 @@ jobs:
         ref: main
     - env:
         GH_TOKEN: ${{ github.token }}
-      run: python3 scripts/start_daily_run.py --mode ${{ github.event_name == 'push' && 'requested' || 'morning' }}
+      run: python3 scripts/start_daily_run.py --mode requested
