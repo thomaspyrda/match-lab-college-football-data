@@ -1,5 +1,5 @@
 name: Ordered Active Sports Morning Update
-run-name: morning daily data pipeline
+run-name: ${{ inputs.backup && 'morning backup data pipeline' || 'morning daily data pipeline' }}
 'on':
   workflow_dispatch:
     inputs:
@@ -13,6 +13,10 @@ run-name: morning daily data pipeline
         - cbb
         - cfb
         - nfl
+      backup:
+        description: Retry unfinished source statistics without paid market collection
+        type: boolean
+        default: false
       morning_date:
         description: Eastern date supplied by the scheduled launcher
         type: string
@@ -82,6 +86,7 @@ jobs:
         git pull --rebase origin main
         git push origin HEAD:main
   morning-availability:
+    if: inputs.backup != true || needs.morning-start.outputs.cfb == 'true' || needs.morning-start.outputs.nfl == 'true'
     needs:
     - morning-start
     uses: ./.github/workflows/refresh-dashboard-availability.yml
@@ -128,7 +133,7 @@ jobs:
   cbb-market-capture:
     needs:
     - morning-start
-    if: needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb')
+    if: (inputs.backup != true) && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb')
     uses: ./.github/workflows/cbb-pregame-market-capture.yml
     secrets: inherit
   cbb-market-publication:
@@ -200,7 +205,7 @@ jobs:
     uses: ./.github/workflows/cbb-publish-team-pages.yml
     secrets: inherit
   cbb-dashboard:
-    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb') && (needs.morning-start.outputs.cbb
+    if: always() && (inputs.backup != true || needs.morning-start.outputs.cbb == 'true') && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cbb') && (needs.morning-start.outputs.cbb
       == 'false' || needs.cbb-results-and-team-archives.result == 'success') && contains(fromJSON('["success","skipped"]'), needs.cbb-results-and-team-archives.result)
       && contains(fromJSON('["success","skipped"]'), needs.cbb-box-scores.result) && contains(fromJSON('["success","skipped"]'), needs.cbb-player-statistics.result)
       && contains(fromJSON('["success","skipped"]'), needs.cbb-rosters.result)
@@ -219,13 +224,13 @@ jobs:
   nba-rosters:
     needs:
     - morning-start
-    if: needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba')
+    if: (inputs.backup != true || needs.morning-start.outputs.nba == 'true') && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba')
     uses: ./.github/workflows/refresh-nba-rosters.yml
     secrets: inherit
   nba-availability:
     needs:
     - morning-start
-    if: needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba')
+    if: (inputs.backup != true || needs.morning-start.outputs.nba == 'true') && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba')
     uses: ./.github/workflows/refresh-nba-availability.yml
     secrets: inherit
   nba-verified-statistics-and-pages:
@@ -246,7 +251,7 @@ jobs:
     uses: ./.github/workflows/publish-nba-leaders.yml
     secrets: inherit
   nba-full-schedules:
-    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba') && contains(fromJSON('["success","skipped"]'),
+    if: always() && (inputs.backup != true || needs.morning-start.outputs.nba == 'true') && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nba') && contains(fromJSON('["success","skipped"]'),
       needs.nba-verified-statistics-and-pages.result)
     needs:
     - nba-verified-statistics-and-pages
@@ -263,7 +268,7 @@ jobs:
   cfb-markets:
     needs:
     - morning-start
-    if: needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cfb')
+    if: (inputs.backup != true) && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cfb')
     uses: ./.github/workflows/refresh-cfb-markets.yml
     secrets: inherit
   cfb-market-publication:
@@ -299,7 +304,7 @@ jobs:
     uses: ./.github/workflows/refresh-cfb-strength.yml
     secrets: inherit
   cfb-context:
-    if: always() && needs.morning-start.result == 'success' && needs.morning-availability.result == 'success' && contains(fromJSON('["success","skipped"]'),
+    if: always() && (inputs.backup != true || needs.morning-start.outputs.cfb == 'true') && needs.morning-start.result == 'success' && needs.morning-availability.result == 'success' && contains(fromJSON('["success","skipped"]'),
       needs.cfb-results.result) && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cfb')
     needs:
     - morning-start
@@ -345,7 +350,7 @@ jobs:
     uses: ./.github/workflows/build-cfb-team-pages.yml
     secrets: inherit
   cfb-dashboard:
-    if: always() && needs.cfb-context.result == 'success' && contains(fromJSON('["success","skipped"]'), needs.cfb-results.result) && contains(fromJSON('["success","skipped"]'),
+    if: always() && (inputs.backup != true || needs.morning-start.outputs.cfb == 'true') && needs.cfb-context.result == 'success' && contains(fromJSON('["success","skipped"]'), needs.cfb-results.result) && contains(fromJSON('["success","skipped"]'),
       needs.cfb-team-metrics.result) && contains(fromJSON('["success","skipped"]'), needs.cfb-player-statistics.result) && contains(fromJSON('["success","skipped"]'),
       needs.cfb-dashboard-strength.result)
     needs:
@@ -363,7 +368,7 @@ jobs:
       == 'success' && needs.cbb-box-scores.result == 'success' && needs.cbb-player-statistics.result == 'success' && needs.cbb-team-metrics.result
       == 'success' && needs.cbb-rosters.result == 'success' && needs.cbb-rankings-and-strength.result == 'success' && needs.cbb-metric-rankings.result
       == 'success' && needs.cbb-season-leaders.result == 'success' && needs.cbb-team-publication.result == 'success' && needs.cbb-dashboard.result
-      == 'success' && needs.cbb-market-publication.result == 'success' && needs.morning-start.result == 'success' && needs.cbb-dependent-summary.result
+      == 'success' && (inputs.backup || needs.cbb-market-publication.result == 'success') && needs.morning-start.result == 'success' && needs.cbb-dependent-summary.result
       == 'success'
     needs:
     - cbb-results-and-team-archives
@@ -413,8 +418,7 @@ jobs:
     if: always() && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'cfb') && needs.morning-start.outputs.cfb == 'true' && needs.cfb-results.result
       == 'success' && needs.cfb-team-metrics.result == 'success' && needs.cfb-player-statistics.result == 'success' && needs.cfb-dashboard-strength.result
       == 'success' && needs.cfb-team-strength.result == 'success' && needs.cfb-player-season-leaders.result == 'success' && needs.cfb-team-pages.result
-      == 'success' && needs.cfb-dashboard.result == 'success' && needs.cfb-context.result == 'success' && needs.cfb-market-publication.result
-      == 'success' && needs.morning-start.result == 'success'
+      == 'success' && needs.cfb-dashboard.result == 'success' && needs.cfb-context.result == 'success' && (inputs.backup || needs.cfb-market-publication.result == 'success') && needs.morning-start.result == 'success'
     needs:
     - cfb-results
     - cfb-team-metrics
@@ -463,7 +467,7 @@ jobs:
     needs:
     - morning-availability
     - morning-start
-    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nfl') && contains(fromJSON('["success","skipped"]'),
+    if: always() && (inputs.backup != true || needs.morning-start.outputs.nfl == 'true') && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nfl') && contains(fromJSON('["success","skipped"]'),
       needs.morning-availability.result)
     uses: ./.github/workflows/run-nfl-public.yml
     with:
@@ -493,7 +497,7 @@ jobs:
     - nfl-context
     - nfl-statistics
     - morning-start
-    if: always() && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nfl') && contains(fromJSON('["success","skipped"]'),
+    if: always() && (inputs.backup != true) && needs.morning-start.result == 'success' && (inputs.sport == 'all' || inputs.sport == '' || inputs.sport == 'nfl') && contains(fromJSON('["success","skipped"]'),
       needs.nfl-context.result) && contains(fromJSON('["success","skipped"]'), needs.nfl-statistics.result)
     uses: ./.github/workflows/run-nfl-public.yml
     with:
@@ -542,14 +546,14 @@ jobs:
     needs:
     - nba-verified-statistics-and-pages
     - nba-availability
-    if: always() && needs.nba-availability.result == 'success' && contains(fromJSON('["success","skipped"]'), needs.nba-verified-statistics-and-pages.result)
+    if: always() && (inputs.backup != true) && needs.nba-availability.result == 'success' && contains(fromJSON('["success","skipped"]'), needs.nba-verified-statistics-and-pages.result)
     uses: ./.github/workflows/refresh-nba-markets.yml
     secrets: inherit
   start-prop-research:
     name: Start Prop Lab after verified live source publication
     needs:
     - publish-verified-site
-    if: always() && needs.publish-verified-site.result == 'success'
+    if: always() && (inputs.backup != true) && needs.publish-verified-site.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
